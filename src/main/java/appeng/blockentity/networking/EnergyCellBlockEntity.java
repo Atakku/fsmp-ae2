@@ -232,6 +232,9 @@ public class EnergyCellBlockEntity extends AENetworkBlockEntity implements IAEPo
 
     @Override
     public TickRateModulation tickingRequest(IGridNode node, int ticksSinceLastCall) {
+        var grid = node.getGrid();
+        var energy = grid.getEnergyService();
+        final double overFlow = energy.injectPower(stored.getAmount() * 1.01, Actionable.MODULATE);
         if (Platform.areBlockEntitiesTicking(getLevel(), getBlockPos())) {
             if (neighborChangePending) {
                 neighborChangePending = false;
@@ -239,9 +242,6 @@ public class EnergyCellBlockEntity extends AENetworkBlockEntity implements IAEPo
                 updateStateForPowerLevel(); // and update block state
             }
         }
-        var grid = node.getGrid();
-        var energy = grid.getEnergyService();
-        final double overFlow = energy.injectPower(stored.getAmount() * 1.01, Actionable.MODULATE);
         return overFlow > 0 ? TickRateModulation.SLOWER : TickRateModulation.FASTER;
     }
 }
