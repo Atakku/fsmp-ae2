@@ -45,6 +45,7 @@ import appeng.api.util.AECableType;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.blockentity.grid.AENetworkBlockEntity;
 import appeng.me.energy.StoredEnergyAmount;
+import appeng.util.Platform;
 import appeng.util.SettingsFrom;
 
 public class EnergyCellBlockEntity extends AENetworkBlockEntity implements IAEPowerStorage, IGridTickable {
@@ -231,10 +232,16 @@ public class EnergyCellBlockEntity extends AENetworkBlockEntity implements IAEPo
 
     @Override
     public TickRateModulation tickingRequest(IGridNode node, int ticksSinceLastCall) {
+        if (Platform.areBlockEntitiesTicking(getLevel(), getBlockPos())) {
+            if (neighborChangePending) {
+                neighborChangePending = false;
+                setChanged(); // update comparators
+                updateStateForPowerLevel(); // and update block state
+            }
+        }
         var grid = node.getGrid();
         var energy = grid.getEnergyService();
-        var free = stored.getMaximum() - stored.getAmount();
-        final double overFlow = energy.injectPower(1 + free * 0.0001, Actionable.MODULATE);
+        final double overFlow = energy.injectPower(stored.getAmount() * 1.01, Actionable.MODULATE);
         return overFlow > 0 ? TickRateModulation.SLOWER : TickRateModulation.FASTER;
     }
 }
