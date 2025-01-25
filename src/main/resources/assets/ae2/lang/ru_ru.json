@@ -620,7 +620,6 @@
   "gui.tooltips.ae2.OverlayModeYes": "Показывает загруженную область в мире.",
   "gui.tooltips.ae2.PartitionStorage": "Раздел хранилища",
   "gui.tooltips.ae2.PartitionStorageHint": "Настраивает раздел на основе нынешних хранящихся предметов.",
-  "gui.tooltips.ae2.PlaceWirelessBooster": "Увеличение радиуса с помощью беспроводного ускорителя",
   "gui.tooltips.ae2.PowerUnits": "Единицы энергии",
   "gui.tooltips.ae2.Read": "Только извлекать",
   "gui.tooltips.ae2.ReadWrite": "Двусторонний",

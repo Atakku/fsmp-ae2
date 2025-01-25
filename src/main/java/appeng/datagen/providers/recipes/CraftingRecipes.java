@@ -229,15 +229,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('c', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
                 .unlockedBy("has_wireless_receiver", has(AEItems.WIRELESS_RECEIVER))
                 .save(consumer, AppEng.makeId("network/wireless_access_point"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.WIRELESS_BOOSTER, 2)
-                .pattern("abc")
-                .pattern("ddd")
-                .define('a', ConventionTags.FLUIX_DUST)
-                .define('b', ConventionTags.ALL_CERTUS_QUARTZ)
-                .define('c', ConventionTags.ENDER_PEARL_DUST)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_dusts/ender", has(ConventionTags.ENDER_PEARL_DUST))
-                .save(consumer, AppEng.makeId("network/wireless_booster"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.WIRELESS_RECEIVER)
                 .pattern(" a ")
                 .pattern("bcb")

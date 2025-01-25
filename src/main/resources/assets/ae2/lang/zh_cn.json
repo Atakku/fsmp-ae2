@@ -618,7 +618,6 @@
   "gui.tooltips.ae2.OverlayModeYes": "在世界中显示被加载的区块",
   "gui.tooltips.ae2.PartitionStorage": "分区存储",
   "gui.tooltips.ae2.PartitionStorageHint": "基于现存物品配置分区",
-  "gui.tooltips.ae2.PlaceWirelessBooster": "使用无线信号增幅器增加范围",
   "gui.tooltips.ae2.PowerUnits": "能源单位",
   "gui.tooltips.ae2.Read": "仅取出",
   "gui.tooltips.ae2.ReadWrite": "双向",

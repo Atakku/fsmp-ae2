@@ -24,13 +24,11 @@ import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import appeng.api.implementations.IPowerChannelState;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
-import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNodeListener;
@@ -38,25 +36,20 @@ import appeng.api.orientation.BlockOrientation;
 import appeng.api.orientation.RelativeSide;
 import appeng.api.util.AECableType;
 import appeng.api.util.DimensionalBlockPos;
-import appeng.blockentity.grid.AENetworkInvBlockEntity;
+import appeng.blockentity.grid.AENetworkBlockEntity;
 import appeng.core.AEConfig;
-import appeng.core.definitions.AEItems;
-import appeng.util.inv.AppEngInternalInventory;
-import appeng.util.inv.filter.AEItemDefinitionFilter;
 
-public class WirelessAccessPointBlockEntity extends AENetworkInvBlockEntity
+public class WirelessAccessPointBlockEntity extends AENetworkBlockEntity
         implements IWirelessAccessPoint, IPowerChannelState {
 
     public static final int POWERED_FLAG = 1;
     public static final int CHANNEL_FLAG = 2;
 
-    private final AppEngInternalInventory inv = new AppEngInternalInventory(this, 1);
-
     private int clientFlags = 0;
 
     public WirelessAccessPointBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
-        this.inv.setFilter(new AEItemDefinitionFilter(AEItems.WIRELESS_BOOSTER));
+        this.getMainNode().setIdlePowerUsage(AEConfig.instance().wireless_getPowerDrain());
         this.getMainNode().setFlags(GridFlags.REQUIRE_CHANNEL);
     }
 
@@ -107,42 +100,6 @@ public class WirelessAccessPointBlockEntity extends AENetworkInvBlockEntity
     @Override
     public DimensionalBlockPos getLocation() {
         return new DimensionalBlockPos(this);
-    }
-
-    @Override
-    public InternalInventory getInternalInventory() {
-        return this.inv;
-    }
-
-    @Override
-    public void onChangeInventory(InternalInventory inv, int slot) {
-        // :P
-    }
-
-    @Override
-    public void onReady() {
-        this.updatePower();
-        super.onReady();
-    }
-
-    private void updatePower() {
-        this.getMainNode().setIdlePowerUsage(AEConfig.instance().wireless_getPowerDrain(this.getBoosters()));
-    }
-
-    private int getBoosters() {
-        final ItemStack boosters = this.inv.getStackInSlot(0);
-        return boosters == null ? 0 : boosters.getCount();
-    }
-
-    @Override
-    public void saveChanges() {
-        this.updatePower();
-        super.saveChanges();
-    }
-
-    @Override
-    public double getRange() {
-        return AEConfig.instance().wireless_getMaxRange(this.getBoosters());
     }
 
     @Override

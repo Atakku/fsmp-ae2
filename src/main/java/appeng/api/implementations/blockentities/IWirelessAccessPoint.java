@@ -30,16 +30,10 @@ import appeng.api.networking.security.IActionHost;
 import appeng.api.util.DimensionalBlockPos;
 
 public interface IWirelessAccessPoint extends IActionHost {
-
     /**
      * @return location of WAP
      */
     DimensionalBlockPos getLocation();
-
-    /**
-     * @return max range for this WAP
-     */
-    double getRange();
 
     /**
      * @return can you use this WAP?

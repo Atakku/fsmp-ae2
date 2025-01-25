@@ -237,7 +237,6 @@ public final class AEItemIds {
     public static final ResourceLocation ITEM_CELL_HOUSING = id("item_cell_housing");
     public static final ResourceLocation FLUID_CELL_HOUSING = id("fluid_cell_housing");
     public static final ResourceLocation WIRELESS_RECEIVER = id("wireless_receiver");
-    public static final ResourceLocation WIRELESS_BOOSTER = id("wireless_booster");
     public static final ResourceLocation FORMATION_CORE = id("formation_core");
     public static final ResourceLocation ANNIHILATION_CORE = id("annihilation_core");
     public static final ResourceLocation SKY_DUST = id("sky_dust");

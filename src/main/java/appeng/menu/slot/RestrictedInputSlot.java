@@ -140,8 +140,6 @@ public class RestrictedInputSlot extends AppEngSlot {
                 return Platform.isChargeable(stack);
             case QE_SINGULARITY:
                 return QuantumBridgeBlockEntity.isValidEntangledSingularity(stack);
-            case RANGE_BOOSTER:
-                return AEItems.WIRELESS_BOOSTER.isSameAs(stack);
 
             case SPATIAL_STORAGE_CELLS:
                 return stack.getItem() instanceof ISpatialStorageCell
@@ -231,7 +229,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         BLANK_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         POWERED_TOOL(Icon.BACKGROUND_CHARGABLE),
-        RANGE_BOOSTER(Icon.BACKGROUND_WIRELESS_BOOSTER),
         QE_SINGULARITY(Icon.BACKGROUND_SINGULARITY),
         SPATIAL_STORAGE_CELLS(Icon.BACKGROUND_SPATIAL_CELL),
         FUEL(Icon.BACKGROUND_FUEL),

@@ -137,23 +137,31 @@ public class WirelessTerminalMenuHost extends ItemMenuHost implements IPortableT
      * @return square distance to WAP if the WAP can be used, or {@link Double#MAX_VALUE} if it cannot be used.
      */
     protected double getWapSqDistance(IWirelessAccessPoint wap) {
-        double rangeLimit = wap.getRange();
-        rangeLimit *= rangeLimit;
-
         var dc = wap.getLocation();
+
+        if (wap.isActive()) {
+            return Double.MAX_VALUE;
+        }
 
         if (dc.getLevel() == this.getPlayer().level()) {
             var offX = dc.getPos().getX() - this.getPlayer().getX();
             var offY = dc.getPos().getY() - this.getPlayer().getY();
             var offZ = dc.getPos().getZ() - this.getPlayer().getZ();
+    
+            return offX * offX + offY * offY + offZ * offZ;
+        } else {
+            var o1X = dc.getPos().getX();
+            var o1Y = dc.getPos().getY();
+            var o1Z = dc.getPos().getZ();
+            double r1 = o1X * o1X + o1Y * o1Y + o1Z * o1Z;
+            
+            var o2X = this.getPlayer().getX();
+            var o2Y = this.getPlayer().getY();
+            var o2Z = this.getPlayer().getZ();
+            double r2 = o2X * o2X + o2Y * o2Y + o2Z * o2Z;
 
-            double r = offX * offX + offY * offY + offZ * offZ;
-            if (r < rangeLimit && wap.isActive()) {
-                return r;
-            }
+            return r1 + r2;
         }
-
-        return Double.MAX_VALUE;
     }
 
     @Override

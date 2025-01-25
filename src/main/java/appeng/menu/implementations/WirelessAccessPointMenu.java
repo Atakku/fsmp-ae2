@@ -48,12 +48,9 @@ public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInven
             .build("wireless_access_point");
 
     private final WirelessAccessPointBlockEntity accessPoint;
-    private final RestrictedInputSlot boosterSlot;
     private final RestrictedInputSlot linkableIn;
     private final OutputSlot linkableOut;
 
-    @GuiSync(1)
-    public long range = 0;
     @GuiSync(2)
     public long drain = 0;
 
@@ -61,10 +58,6 @@ public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInven
         super(TYPE, id, ip, host);
 
         this.accessPoint = host;
-
-        this.addSlot(this.boosterSlot = new RestrictedInputSlot(RestrictedInputSlot.PlacableItemType.RANGE_BOOSTER,
-                host.getInternalInventory(), 0), SlotSemantics.STORAGE);
-        this.boosterSlot.setEmptyTooltip(() -> Tooltips.slotTooltip(ButtonToolTips.PlaceWirelessBooster.text()));
 
         // Add a small inventory and two slots for linking items to the connected grid
         AppEngInternalInventory gridLinkingInv = new AppEngInternalInventory(this, 2);
@@ -78,20 +71,9 @@ public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInven
 
     @Override
     public void broadcastChanges() {
-        final int boosters = this.boosterSlot.getItem().isEmpty() ? 0 : this.boosterSlot.getItem().getCount();
-
-        this.setRange((long) (10 * AEConfig.instance().wireless_getMaxRange(boosters)));
-        this.setDrain((long) (100 * AEConfig.instance().wireless_getPowerDrain(boosters)));
+        this.setDrain((long) (100 * AEConfig.instance().wireless_getPowerDrain()));
 
         super.broadcastChanges();
-    }
-
-    public long getRange() {
-        return this.range;
-    }
-
-    private void setRange(long range) {
-        this.range = range;
     }
 
     public long getDrain() {

@@ -142,10 +142,6 @@ public final class AEConfig {
     private double wirelessBaseCost;
     private double wirelessCostMultiplier;
     private double wirelessTerminalDrainMultiplier;
-    private double wirelessBaseRange;
-    private double wirelessBoosterRangeMultiplier;
-    private double wirelessBoosterExp;
-    private double wirelessHighWirelessCount;
 
     // Tunnels
     public static final double TUNNEL_POWER_LOSS = 0.05;
@@ -168,10 +164,6 @@ public final class AEConfig {
 
         this.wirelessBaseCost = COMMON.wirelessBaseCost.get();
         this.wirelessCostMultiplier = COMMON.wirelessCostMultiplier.get();
-        this.wirelessBaseRange = COMMON.wirelessBaseRange.get();
-        this.wirelessBoosterRangeMultiplier = COMMON.wirelessBoosterRangeMultiplier.get();
-        this.wirelessBoosterExp = COMMON.wirelessBoosterExp.get();
-        this.wirelessHighWirelessCount = COMMON.wirelessHighWirelessCount.get();
         this.wirelessTerminalDrainMultiplier = COMMON.wirelessTerminalDrainMultiplier.get();
 
         this.formationPlaneEntityLimit = COMMON.formationPlaneEntityLimit.get();
@@ -208,14 +200,8 @@ public final class AEConfig {
         return this.wirelessTerminalDrainMultiplier * range;
     }
 
-    public double wireless_getMaxRange(int boosters) {
-        return this.wirelessBaseRange
-                + this.wirelessBoosterRangeMultiplier * Math.pow(boosters, this.wirelessBoosterExp);
-    }
-
-    public double wireless_getPowerDrain(int boosters) {
-        return this.wirelessBaseCost
-                + this.wirelessCostMultiplier * Math.pow(boosters, 1 + boosters / this.wirelessHighWirelessCount);
+    public double wireless_getPowerDrain() {
+        return this.wirelessBaseCost + this.wirelessCostMultiplier;
     }
 
     public boolean isSearchModNameInTooltips() {
@@ -445,7 +431,8 @@ public final class AEConfig {
     }
 
     /**
-     * @return True if an in-world preview of parts and facade placement should be shown when holding one in hand.
+     * @return True if an in-world preview of parts and facade placement should be
+     *         shown when holding one in hand.
      */
     public boolean isPlacementPreviewEnabled() {
         return CLIENT.showPlacementPreview.get();
@@ -653,10 +640,6 @@ public final class AEConfig {
         public final DoubleOption wirelessBaseCost;
         public final DoubleOption wirelessCostMultiplier;
         public final DoubleOption wirelessTerminalDrainMultiplier;
-        public final DoubleOption wirelessBaseRange;
-        public final DoubleOption wirelessBoosterRangeMultiplier;
-        public final DoubleOption wirelessBoosterExp;
-        public final DoubleOption wirelessHighWirelessCount;
 
         // Portable Cells
         public final BooleanOption portableCellDisassembly;
@@ -742,10 +725,6 @@ public final class AEConfig {
             ConfigSection wireless = root.subsection("wireless");
             this.wirelessBaseCost = wireless.addDouble("wirelessBaseCost", 8.0);
             this.wirelessCostMultiplier = wireless.addDouble("wirelessCostMultiplier", 1.0);
-            this.wirelessBaseRange = wireless.addDouble("wirelessBaseRange", 16.0);
-            this.wirelessBoosterRangeMultiplier = wireless.addDouble("wirelessBoosterRangeMultiplier", 1.0);
-            this.wirelessBoosterExp = wireless.addDouble("wirelessBoosterExp", 1.5);
-            this.wirelessHighWirelessCount = wireless.addDouble("wirelessHighWirelessCount", 64.0);
             this.wirelessTerminalDrainMultiplier = wireless.addDouble("wirelessTerminalDrainMultiplier", 1.0);
 
             ConfigSection portableCells = root.subsection("PortableCells");
