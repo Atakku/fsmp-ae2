@@ -139,7 +139,7 @@ public class WirelessTerminalMenuHost extends ItemMenuHost implements IPortableT
     protected double getWapSqDistance(IWirelessAccessPoint wap) {
         var dc = wap.getLocation();
 
-        if (wap.isActive()) {
+        if (!wap.isActive()) {
             return Double.MAX_VALUE;
         }
 

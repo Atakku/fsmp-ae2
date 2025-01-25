@@ -6,29 +6,13 @@
     "srcRect": [0, 0, 176, 166]
   },
   "slots": {
-    "STORAGE": {
-      "left": 80,
+    "MACHINE_INPUT": {
+      "left": 49,
       "top": 47
     },
-    "MACHINE_INPUT": {
-      "right": -17,
-      "top": 10
-    },
     "MACHINE_OUTPUT": {
-      "right": -17,
-      "top": 68
-    }
-  },
-  "images": {
-    "linkPanel": {
-      "texture": "guis/wireless_access_point.png",
-      "srcRect": [198, 0, 44, 98]
-    }
-  },
-  "widgets": {
-    "linkPanel": {
-      "right": -3,
-      "top": 0
+      "left": 106,
+      "top": 47
     }
   },
   "text": {
@@ -40,13 +24,6 @@
         "left": 8,
         "top": 7
       }
-    },
-    "range": {
-      "position": {
-        "left": 88,
-        "top": 20
-      },
-      "align": "CENTER"
     },
     "energy_use": {
       "position": {

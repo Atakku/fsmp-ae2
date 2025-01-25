@@ -32,8 +32,6 @@ public class WirelessAccessPointScreen extends AEBaseScreen<WirelessAccessPointM
             ScreenStyle style) {
         super(menu, playerInventory, title, style);
         this.addToLeftToolbar(CommonButtons.togglePowerUnit());
-
-        widgets.addBackgroundPanel("linkPanel");
     }
 
     @Override
