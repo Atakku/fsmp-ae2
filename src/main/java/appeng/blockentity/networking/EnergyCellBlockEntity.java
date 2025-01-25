@@ -234,7 +234,7 @@ public class EnergyCellBlockEntity extends AENetworkBlockEntity implements IAEPo
     public TickRateModulation tickingRequest(IGridNode node, int ticksSinceLastCall) {
         var grid = node.getGrid();
         var energy = grid.getEnergyService();
-        final double overFlow = energy.injectPower(stored.getAmount() * 1.01, Actionable.MODULATE);
+        final double overFlow = energy.injectPower(stored.getAmount() * 0.00025, Actionable.MODULATE);
         if (Platform.areBlockEntitiesTicking(getLevel(), getBlockPos())) {
             if (neighborChangePending) {
                 neighborChangePending = false;
