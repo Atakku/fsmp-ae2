@@ -55,7 +55,6 @@ import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
 import appeng.blockentity.networking.CreativeEnergyCellBlockEntity;
 import appeng.blockentity.networking.CrystalResonanceGeneratorBlockEntity;
-import appeng.blockentity.networking.EnergyAcceptorBlockEntity;
 import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
 import appeng.blockentity.qnb.QuantumBridgeBlockEntity;
@@ -113,8 +112,6 @@ public final class AEBlockEntities {
     public static final BlockEntityType<CondenserBlockEntity> CONDENSER = create("condenser",
             CondenserBlockEntity.class,
             CondenserBlockEntity::new, AEBlocks.CONDENSER);
-    public static final BlockEntityType<EnergyAcceptorBlockEntity> ENERGY_ACCEPTOR = create("energy_acceptor",
-            EnergyAcceptorBlockEntity.class, EnergyAcceptorBlockEntity::new, AEBlocks.ENERGY_ACCEPTOR);
     public static final BlockEntityType<CrystalResonanceGeneratorBlockEntity> CRYSTAL_RESONANCE_GENERATOR = create(
             "crystal_resonance_generator",
             CrystalResonanceGeneratorBlockEntity.class, CrystalResonanceGeneratorBlockEntity::new,

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energy_acceptor": {
+    "has_energy_cell": {
       "conditions": {
         "items": [
           {
             "items": [
-              "ae2:energy_acceptor"
+              "ae2:energy_cell"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_energy_acceptor",
+      "has_energy_cell",
       "has_the_recipe"
     ]
   ],

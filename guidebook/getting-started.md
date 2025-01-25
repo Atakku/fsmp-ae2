@@ -61,7 +61,7 @@ accelerates this process when placed adjacent to the budding block. You should b
 <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-If you don't have enough quartz to also make an <ItemLink id="energy_acceptor" /> or <ItemLink id="vibration_chamber" />,
+If you don't have enough quartz to also make an <ItemLink id="energy_cell" />,
 you can make a <ItemLink id="crank" /> and stick it on the end of your accelerator.
 
 Harvesting the certus automatically is [described here](example-setups/simple-certus-farm.md).
@@ -128,20 +128,18 @@ Now that you have all of the basic materials and machines for Applied Energistic
 *   Your ingredients list:
     * 1x <ItemLink id="drive" />
     * 1x <ItemLink id="terminal" /> or <ItemLink id="crafting_terminal" />
-    * 1x <ItemLink id="energy_acceptor" />
+    * 1x <ItemLink id="energy_cell" />
     * A few [cables](items-blocks-machines/cables.md), either glass, covered, or smart, but not dense
     * A few [storage cells](items-blocks-machines/storage_cells.md), recommended of the 4k variety for a good mix of
     capacity and types (it would be more efficient to [partition](items-blocks-machines/cell_workbench.md) a mix of 4k and 1k but that's a complexity we won't go into now)
 ---
 1.  Place the drive down.
-2.  The energy acceptor (and several other AE2 [devices](ae2-mechanics/devices.md)) comes in 2 modes, cube and flat. They can be switched between in a crafting grid. If your energy acceptor is a cube, place it down next to the drive. If it's a flat square, place a cable on the drive and place the acceptor on that.
-3.  Run energy into the energy acceptor with a cable/pipe/conduit from your favorite energy-generation mod.
-4.  Place a cable on top of the drive (or otherwise at eye level) and place your terminal or crafting terminal on it.
-5.  Put your storage cells into the drive
-6.  Profit
-7.  Fiddle with the terminal's settings
-8.  Bask in your ultimate power and ability
-9.  Realize that this network is, in the grand scheme, rather small
+2.  Place a cable on top of the drive (or otherwise at eye level) and place your terminal or crafting terminal on it.
+3.  Put your storage cells into the drive
+4.  Profit
+5.  Fiddle with the terminal's settings
+6.  Bask in your ultimate power and ability
+7.  Realize that this network is, in the grand scheme, rather small
 
 ### Expanding your Network
 

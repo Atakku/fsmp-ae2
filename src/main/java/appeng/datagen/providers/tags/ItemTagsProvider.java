@@ -287,8 +287,8 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .add(Items.TORCH, Items.GLOWSTONE);
 
         tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.ENERGY_TUNNEL))
-                .add(AEBlocks.DENSE_ENERGY_CELL.asItem(), AEBlocks.ENERGY_ACCEPTOR.asItem(),
-                        AEBlocks.ENERGY_CELL.asItem(), AEBlocks.CREATIVE_ENERGY_CELL.asItem());
+                .add(AEBlocks.DENSE_ENERGY_CELL.asItem(), AEBlocks.ENERGY_CELL.asItem(),
+                        AEBlocks.CREATIVE_ENERGY_CELL.asItem());
 
         tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.REDSTONE_TUNNEL))
                 .add(Items.REDSTONE, Items.REPEATER, Items.REDSTONE_LAMP, Items.COMPARATOR, Items.DAYLIGHT_DETECTOR,

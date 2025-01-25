@@ -41,7 +41,7 @@ accelerates this process when placed adjacent to the budding block. You should b
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-If you don't have enough quartz to also make an <ItemLink id="energy_acceptor" /> or <ItemLink id="vibration_chamber" />,
+If you don't have enough quartz to also make an <ItemLink id="energy_cell" />,
 you can make a <ItemLink id="crank" /> and stick it on the end of your accelerator.
 
 Harvesting the certus automatically is [described here](../example-setups/simple-certus-farm.md).

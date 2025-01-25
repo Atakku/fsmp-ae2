@@ -101,7 +101,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         generateQuartzCluster(AEBlocks.QUARTZ_CLUSTER);
 
         simpleBlockAndItem(AEBlocks.CONDENSER);
-        simpleBlockAndItem(AEBlocks.ENERGY_ACCEPTOR);
         simpleBlockAndItem(AEBlocks.INTERFACE);
 
         simpleBlockAndItem(AEBlocks.DEBUG_ITEM_GEN, "block/debug/item_gen");
@@ -374,7 +373,7 @@ public class BlockModelProvider extends AE2BlockStateProvider {
     private BlockModelBuilder builtInBlockModel(String name) {
         var model = models().getBuilder("block/" + name);
         var loaderId = AppEng.makeId("block/" + name);
-        model.customLoader((bmb, efh) -> new CustomLoaderBuilder<>(loaderId, bmb, efh) {
+        model.customLoader((bmb, efh) -> new CustomLoaderBuilder<BlockModelBuilder>(loaderId, bmb, efh) {
         });
         return model;
     }

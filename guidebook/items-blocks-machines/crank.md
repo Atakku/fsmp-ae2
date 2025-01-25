@@ -17,7 +17,7 @@ item_ids:
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-The crank is used to power machines when you don't otherwise have access to power (or an <ItemLink id="energy_acceptor" />). Early-game struggles, am I right?
+The crank is used to power machines when you don't otherwise have access to power (or an <ItemLink id="energy_cell" />). Early-game struggles, am I right?
 
 ## Recipe
 

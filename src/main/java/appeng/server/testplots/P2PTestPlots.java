@@ -103,7 +103,7 @@ public class P2PTestPlots {
         placeTunnel(plot, AEParts.FE_P2P_TUNNEL);
 
         plot.block(origin.west().west(), AEBlocks.DEBUG_ENERGY_GEN);
-        plot.block(origin.east().east(), AEBlocks.ENERGY_ACCEPTOR);
+        plot.block(origin.east().east(), AEBlocks.ENERGY_CELL);
         var cellPos = origin.east().east().above();
         plot.block(cellPos, AEBlocks.ENERGY_CELL);
         var cellEnergy = new MutableDouble(0);

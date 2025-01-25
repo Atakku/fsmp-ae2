@@ -9,7 +9,7 @@
       "item": "minecraft:furnace"
     },
     "c": {
-      "item": "ae2:energy_acceptor"
+      "item": "ae2:energy_cell"
     },
     "d": {
       "tag": "c:copper_ingots"

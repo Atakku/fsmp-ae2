@@ -44,7 +44,7 @@ it is common to get it wrong and place the terminal backwards. Here is an exampl
   <LineAnnotation color="#33ff33" from="1 .5 .5" to="1.5 1 .5" alwaysOnTop={true} thickness="0.05"/>
 </GameScene>
 
-You still have a terminal and an energy acceptor, except now the terminal is the right way around and actually
+You still have a terminal and an energy cell, except now the terminal is the right way around and actually
 connected to the network, and it all fits in a smaller space too.
 
 <a name="terminal-ui"></a>

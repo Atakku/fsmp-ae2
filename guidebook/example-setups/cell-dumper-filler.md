@@ -33,7 +33,7 @@ The answer is use of an <ItemLink id="io_port" /> and some subnetting to restric
   </BoxAnnotation>
 
 <DiamondAnnotation pos="3 0.5 0.5" color="#00ff00">
-        To some energy source, like another network, or an energy acceptor.
+        To some energy source, like another network, or an energy cell.
     </DiamondAnnotation>
 
   <IsometricCamera yaw="195" pitch="30" />

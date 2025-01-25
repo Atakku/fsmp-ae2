@@ -57,4 +57,4 @@ They can be
 *   and so on
 
 Very useful for making subnetworks is the <ItemLink id="quartz_fiber" />. It transfers power between networks without
-connecting them, allowing you to power subnets without needing to put energy acceptors and power cables everywhere.
+connecting them, allowing you to power subnets without needing to put energy cells everywhere.
