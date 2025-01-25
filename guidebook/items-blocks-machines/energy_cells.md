@@ -27,6 +27,8 @@ out spikes in energy draw when large amounts of items are inserted or extracted,
 allow the network to run while energy isn't being generated (like at night with solar panels) or handle the massive instantaneous
 energy draw of [spatial storage](../ae2-mechanics/spatial-io.md).
 
+Energy cells also generate 0.025% of their current charge per tick, so a 200k AE cell at full charge generates 50 AE/t
+
 ## Fill Bars
 
 <Row>
