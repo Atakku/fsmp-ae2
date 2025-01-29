@@ -18,7 +18,7 @@ of various types and a <ItemLink id="mysterious_cube" /> in the center.
 
 ## Finding Meteorites
 
-Meteorites are fairly common in the end and leave massive holes in the islands, so you may have already found a few. if not, a
+Meteorites are fairly common in The End and leave massive holes in the islands, so you may have already found a few. if not, a
 <ItemLink id="meteorite_compass" /> will point toward the nearest mysterious cube.
 
 ![Meteorite Crater](../assets/assemblies/meteorite-crater.png)
