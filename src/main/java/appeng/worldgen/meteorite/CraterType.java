@@ -37,24 +37,9 @@ public enum CraterType {
     NORMAL(Blocks.AIR),
 
     /**
-     * A crater lake filled with lava.
-     */
-    LAVA(Blocks.LAVA),
-
-    /**
-     * A lava crater lake cooled down to obsidian.
-     */
-    OBSIDIAN(Blocks.OBSIDIAN),
-
-    /**
      * A crater filled with water by rain
      */
     WATER(Blocks.WATER),
-
-    /**
-     * A crater filled with snow by snowing.
-     */
-    SNOW(Blocks.SNOW_BLOCK),
 
     /**
      * A frozen water filled crater.

@@ -173,91 +173,21 @@ public class MeteoriteStructure extends Structure {
     }
 
     private static CraterType determineCraterType(BlockPos pos, Holder<Biome> biomeHolder, WorldgenRandom random) {
-        // The temperature thresholds below are taken from older Vanilla code
-        // (temperature categories)
-        var biome = biomeHolder.value();
-        final float temp = biome.getBaseTemperature();
-
         // No craters in oceans
         if (biomeHolder.is(ConventionTags.METEORITE_OCEAN)) {
             return CraterType.NONE;
         }
 
-        // 50% chance for a special meteor
-        final boolean specialMeteor = random.nextFloat() > .5f;
-
-        // Just a normal one
-        if (!specialMeteor) {
+        // 50% chance for a normal meteor
+        if (random.nextFloat() > .5f) {
             return CraterType.NORMAL;
         }
-
-        boolean canSnow = biome.coldEnoughToSnow(pos);
-
-        // Warm biomes, higher chance for lava
-        if (temp >= 1) {
-
-            // 50% chance to actually spawn as lava
-            final boolean lava = random.nextFloat() > .5f;
-
-            if (!biome.hasPrecipitation()) {
-                return lava ? CraterType.LAVA : CraterType.NORMAL;
-            } else if (!canSnow) {
-                // 25% chance to convert a lava to obsidian
-                final boolean obsidian = random.nextFloat() > .75f;
-                final CraterType alternativObsidian = obsidian ? CraterType.OBSIDIAN : CraterType.LAVA;
-                return lava ? alternativObsidian : CraterType.NORMAL;
-            } else {
-                // Nothing for now.
-            }
+        // 37.5% for an ice meteor
+        if (random.nextFloat() > .25f) {
+            return CraterType.ICE;
         }
-
-        // Temperate biomes. Water or maybe lava
-        if (temp < 1 && temp >= 0.2) {
-            // 75% chance to actually spawn with a crater lake
-            final boolean lake = random.nextFloat() > .25f;
-            // 20% to spawn with lava
-            final boolean lava = random.nextFloat() > .8f;
-
-            if (!biome.hasPrecipitation()) {
-                // No rainfall, water how?
-                return lava ? CraterType.LAVA : CraterType.NORMAL;
-            } else if (!canSnow) {
-                // Rainfall, can also turn lava to obsidian
-                final boolean obsidian = random.nextFloat() > .75f;
-                final CraterType alternativObsidian = obsidian ? CraterType.OBSIDIAN : CraterType.LAVA;
-                final CraterType craterLake = lake ? CraterType.WATER : CraterType.NORMAL;
-                return lava ? alternativObsidian : craterLake;
-            } else {
-                // No lava, but snow
-                final boolean snow = random.nextFloat() > .75f;
-                final CraterType water = lake ? CraterType.WATER : CraterType.NORMAL;
-                return snow ? CraterType.SNOW : water;
-            }
-        }
-
-        // Cold biomes, Snow or Ice, maybe water and very rarely lava.
-        if (temp < 0.2) {
-            // 75% chance to actually spawn with a crater lake
-            final boolean lake = random.nextFloat() > .25f;
-            // 5% to spawn with lava
-            final boolean lava = random.nextFloat() > .95f;
-            // 75% chance to freeze
-            final boolean frozen = random.nextFloat() > .25f;
-
-            if (!biome.hasPrecipitation()) {
-                // No rainfall, water how?
-                return lava ? CraterType.LAVA : CraterType.NORMAL;
-            } else if (!canSnow) {
-                final CraterType frozenLake = frozen ? CraterType.ICE : CraterType.WATER;
-                final CraterType craterLake = lake ? frozenLake : CraterType.NORMAL;
-                return lava ? CraterType.LAVA : craterLake;
-            } else {
-                final CraterType snowCovered = lake ? CraterType.SNOW : CraterType.NORMAL;
-                return lava ? CraterType.LAVA : snowCovered;
-            }
-        }
-
-        return CraterType.NORMAL;
+        // 12.5% for a water meteor
+        return CraterType.WATER;
     }
 
 }

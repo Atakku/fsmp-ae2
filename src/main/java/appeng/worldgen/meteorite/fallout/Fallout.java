@@ -58,7 +58,7 @@ public class Fallout {
     public void getRandomInset(LevelAccessor level, BlockPos pos) {
         var a = random.nextFloat();
         if (a > 0.9f) {
-            this.putter.put(level, pos, AEBlocks.SKY_STONE_BLOCK.block().defaultBlockState());
+            this.putter.put(level, pos, Blocks.CRYING_OBSIDIAN.defaultBlockState());
         } else if (a > 0.8f) {
             this.putter.put(level, pos, AEBlocks.SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState());
         } else if (a > 0.7f) {
