@@ -24,6 +24,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
+import appeng.core.definitions.AEBlocks;
 import appeng.worldgen.meteorite.MeteoriteBlockPutter;
 
 public class Fallout {
@@ -44,28 +45,28 @@ public class Fallout {
     public void getRandomFall(LevelAccessor level, BlockPos pos) {
         var a = random.nextFloat();
         if (a > 0.9f) {
-            this.putter.put(level, pos, Blocks.STONE.defaultBlockState());
+            this.putter.put(level, pos, AEBlocks.SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState());
         } else if (a > 0.8f) {
-            this.putter.put(level, pos, Blocks.COBBLESTONE.defaultBlockState());
+            this.putter.put(level, pos, AEBlocks.SKY_STONE_BLOCK.block().defaultBlockState());
         } else if (a > 0.7f) {
-            this.putter.put(level, pos, Blocks.DIRT.defaultBlockState());
+            this.putter.put(level, pos, Blocks.OBSIDIAN.defaultBlockState());
         } else {
-            this.putter.put(level, pos, Blocks.GRAVEL.defaultBlockState());
+            this.putter.put(level, pos, Blocks.END_STONE.defaultBlockState());
         }
     }
 
     public void getRandomInset(LevelAccessor level, BlockPos pos) {
         var a = random.nextFloat();
         if (a > 0.9f) {
-            this.putter.put(level, pos, Blocks.COBBLESTONE.defaultBlockState());
+            this.putter.put(level, pos, AEBlocks.SKY_STONE_BLOCK.block().defaultBlockState());
         } else if (a > 0.8f) {
-            this.putter.put(level, pos, Blocks.STONE.defaultBlockState());
+            this.putter.put(level, pos, AEBlocks.SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState());
         } else if (a > 0.7f) {
-            this.putter.put(level, pos, Blocks.GRASS_BLOCK.defaultBlockState());
+            this.putter.put(level, pos, Blocks.OBSIDIAN.defaultBlockState());
         } else if (a > 0.6f) {
             this.putter.put(level, pos, this.skyStone);
         } else if (a > 0.5f) {
-            this.putter.put(level, pos, Blocks.GRAVEL.defaultBlockState());
+            this.putter.put(level, pos, Blocks.END_STONE.defaultBlockState());
         } else {
             this.putter.put(level, pos, Blocks.AIR.defaultBlockState());
         }
