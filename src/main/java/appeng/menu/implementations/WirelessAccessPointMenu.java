@@ -26,12 +26,10 @@ import net.minecraft.world.item.ItemStack;
 import appeng.api.features.GridLinkables;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
-import appeng.core.AEConfig;
 import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.Tooltips;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
-import appeng.menu.guisync.GuiSync;
 import appeng.menu.slot.OutputSlot;
 import appeng.menu.slot.RestrictedInputSlot;
 import appeng.util.inv.AppEngInternalInventory;
@@ -47,23 +45,13 @@ public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInven
             .build("wireless_access_point");
 
     private final WirelessAccessPointBlockEntity accessPoint;
-    private final RestrictedInputSlot boosterSlot;
     private final RestrictedInputSlot linkableIn;
     private final OutputSlot linkableOut;
-
-    @GuiSync(1)
-    public long range = 0;
-    @GuiSync(2)
-    public long drain = 0;
 
     public WirelessAccessPointMenu(int id, Inventory ip, WirelessAccessPointBlockEntity host) {
         super(TYPE, id, ip, host);
 
         this.accessPoint = host;
-
-        this.addSlot(this.boosterSlot = new RestrictedInputSlot(RestrictedInputSlot.PlacableItemType.RANGE_BOOSTER,
-                host.getInternalInventory(), 0), SlotSemantics.STORAGE);
-        this.boosterSlot.setEmptyTooltip(() -> Tooltips.slotTooltip(ButtonToolTips.PlaceWirelessBooster.text()));
 
         // Add a small inventory and two slots for linking items to the connected grid
         AppEngInternalInventory gridLinkingInv = new AppEngInternalInventory(this, 2);
@@ -73,32 +61,6 @@ public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInven
         this.addSlot(this.linkableOut = new OutputSlot(gridLinkingInv, 1, null), SlotSemantics.MACHINE_OUTPUT);
 
         this.createPlayerInventorySlots(ip);
-    }
-
-    @Override
-    public void broadcastChanges() {
-        final int boosters = this.boosterSlot.getItem().isEmpty() ? 0 : this.boosterSlot.getItem().getCount();
-
-        this.setRange((long) (10 * AEConfig.instance().wireless_getMaxRange(boosters)));
-        this.setDrain((long) (100 * AEConfig.instance().wireless_getPowerDrain(boosters)));
-
-        super.broadcastChanges();
-    }
-
-    public long getRange() {
-        return this.range;
-    }
-
-    private void setRange(long range) {
-        this.range = range;
-    }
-
-    public long getDrain() {
-        return this.drain;
-    }
-
-    private void setDrain(long drain) {
-        this.drain = drain;
     }
 
     @Override

@@ -263,7 +263,6 @@ public enum GuiText implements LocalizationEnum {
     VibrationChamber("Vibration Chamber"),
     White("White"),
     Wireless("Wireless Access Point"),
-    WirelessRange("Range: %s m"),
     WirelessTerminal("Wireless Term"),
     With("with"),
     Yellow("Yellow"),

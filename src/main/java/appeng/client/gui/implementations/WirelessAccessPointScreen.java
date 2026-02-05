@@ -24,9 +24,7 @@ import net.minecraft.world.entity.player.Inventory;
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.CommonButtons;
-import appeng.core.localization.GuiText;
 import appeng.menu.implementations.WirelessAccessPointMenu;
-import appeng.util.Platform;
 
 public class WirelessAccessPointScreen extends AEBaseScreen<WirelessAccessPointMenu> {
 
@@ -36,22 +34,6 @@ public class WirelessAccessPointScreen extends AEBaseScreen<WirelessAccessPointM
         this.addToLeftToolbar(CommonButtons.togglePowerUnit());
 
         widgets.addBackgroundPanel("linkPanel");
-    }
-
-    @Override
-    protected void updateBeforeRender() {
-        super.updateBeforeRender();
-
-        Component rangeText = Component.empty();
-        Component energyUseText = Component.empty();
-        if (menu.getRange() > 0) {
-            double rangeBlocks = menu.getRange() / 10.0;
-            rangeText = GuiText.WirelessRange.text(rangeBlocks);
-            energyUseText = GuiText.PowerUsageRate.text(Platform.formatPowerLong(menu.getDrain(), true));
-        }
-
-        setTextContent("range", rangeText);
-        setTextContent("energy_use", energyUseText);
     }
 
 }

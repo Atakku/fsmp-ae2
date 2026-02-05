@@ -86,21 +86,6 @@ public final class AEConfig {
         return common.p2pTunnelTransportTax.get();
     }
 
-    public double wireless_getDrainRate(double range) {
-        return common.wirelessTerminalDrainMultiplier.get() * range;
-    }
-
-    public double wireless_getMaxRange(int boosters) {
-        return common.wirelessBaseRange.get()
-                + common.wirelessBoosterRangeMultiplier.get() * Math.pow(boosters, common.wirelessBoosterExp.get());
-    }
-
-    public double wireless_getPowerDrain(int boosters) {
-        return common.wirelessBaseCost.get()
-                + common.wirelessCostMultiplier.get()
-                        * Math.pow(boosters, 1 + boosters / common.wirelessHighWirelessCount.get());
-    }
-
     public boolean isSearchModNameInTooltips() {
         return client.searchModNameInTooltips.get();
     }
@@ -558,12 +543,7 @@ public final class AEConfig {
 
         // Wireless
         public final DoubleValue wirelessBaseCost;
-        public final DoubleValue wirelessCostMultiplier;
         public final DoubleValue wirelessTerminalDrainMultiplier;
-        public final DoubleValue wirelessBaseRange;
-        public final DoubleValue wirelessBoosterRangeMultiplier;
-        public final DoubleValue wirelessBoosterExp;
-        public final DoubleValue wirelessHighWirelessCount;
 
         // Power Ratios
         public final DoubleValue powerRatioForgeEnergy;
@@ -648,11 +628,6 @@ public final class AEConfig {
 
             builder.push("wireless");
             this.wirelessBaseCost = define(builder, "wirelessBaseCost", 8.0);
-            this.wirelessCostMultiplier = define(builder, "wirelessCostMultiplier", 1.0);
-            this.wirelessBaseRange = define(builder, "wirelessBaseRange", 16.0);
-            this.wirelessBoosterRangeMultiplier = define(builder, "wirelessBoosterRangeMultiplier", 1.0);
-            this.wirelessBoosterExp = define(builder, "wirelessBoosterExp", 1.5);
-            this.wirelessHighWirelessCount = define(builder, "wirelessHighWirelessCount", 64.0);
             this.wirelessTerminalDrainMultiplier = define(builder, "wirelessTerminalDrainMultiplier", 1.0);
             builder.pop();
 

@@ -242,7 +242,6 @@ public final class AEItems {
     public static final ItemDefinition<MaterialItem> ITEM_CELL_HOUSING = item("ME Item Cell Housing", AEItemIds.ITEM_CELL_HOUSING, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FLUID_CELL_HOUSING = item("ME Fluid Cell Housing", AEItemIds.FLUID_CELL_HOUSING, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> WIRELESS_RECEIVER = item("Wireless Receiver", AEItemIds.WIRELESS_RECEIVER, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> WIRELESS_BOOSTER = item("Wireless Booster", AEItemIds.WIRELESS_BOOSTER, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FORMATION_CORE = item("Formation Core", AEItemIds.FORMATION_CORE, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> ANNIHILATION_CORE = item("Annihilation Core", AEItemIds.ANNIHILATION_CORE, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> SKY_DUST = item("Sky Stone Dust", AEItemIds.SKY_DUST, MaterialItem::new);

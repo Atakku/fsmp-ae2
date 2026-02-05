@@ -120,7 +120,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.STONECUTTING_PATTERN, "item/stonecutting_pattern");
         flatSingleLayer(AEItemIds.GUIDE, "item/guide");
         flatSingleLayer(AEItems.VIEW_CELL, "item/view_cell");
-        flatSingleLayer(AEItems.WIRELESS_BOOSTER, "item/wireless_booster");
         flatSingleLayer(AEItems.WIRELESS_CRAFTING_TERMINAL, "item/wireless_crafting_terminal");
         flatSingleLayer(AEItems.WIRELESS_RECEIVER, "item/wireless_receiver");
         flatSingleLayer(AEItems.WIRELESS_TERMINAL, "item/wireless_terminal");
