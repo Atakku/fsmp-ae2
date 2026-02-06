@@ -66,7 +66,6 @@ public final class AEBlockIds {
     public static final ResourceLocation CELL_WORKBENCH = id("cell_workbench");
     public static final ResourceLocation IO_PORT = id("io_port");
     public static final ResourceLocation CONDENSER = id("condenser");
-    public static final ResourceLocation ENERGY_ACCEPTOR = id("energy_acceptor");
     public static final ResourceLocation CRYSTAL_RESONANCE_GENERATOR = id("crystal_resonance_generator");
 
     public static final ResourceLocation VIBRATION_CHAMBER = id("vibration_chamber");

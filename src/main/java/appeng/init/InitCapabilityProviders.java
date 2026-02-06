@@ -28,10 +28,6 @@ import appeng.core.definitions.ItemDefinition;
 import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
 import appeng.items.tools.powered.powersink.PoweredItemCapabilities;
-import appeng.parts.networking.EnergyAcceptorPart;
-import appeng.parts.p2p.FEP2PTunnelPart;
-import appeng.parts.p2p.FluidP2PTunnelPart;
-import appeng.parts.p2p.ItemP2PTunnelPart;
 
 public final class InitCapabilityProviders {
 
@@ -56,7 +52,6 @@ public final class InitCapabilityProviders {
 
         var partEvent = new RegisterPartCapabilitiesEvent();
         partEvent.addHostType(AEBlockEntities.CABLE_BUS.get());
-        registerPartCapabilities(partEvent);
         ModLoader.postEvent(partEvent);
         RegisterPartCapabilitiesEventInternal.register(partEvent, event);
 
@@ -182,17 +177,4 @@ public final class InitCapabilityProviders {
         event.registerBlockEntity(AECapabilities.CRANKABLE, AEBlockEntities.INSCRIBER.get(),
                 InscriberBlockEntity::getCrankable);
     }
-
-    private static void registerPartCapabilities(RegisterPartCapabilitiesEvent event) {
-        event.register(Capabilities.ItemHandler.BLOCK, (part, context) -> part.getExposedApi(),
-                ItemP2PTunnelPart.class);
-        event.register(Capabilities.EnergyStorage.BLOCK, (part, context) -> part.getExposedApi(),
-                FEP2PTunnelPart.class);
-        event.register(Capabilities.FluidHandler.BLOCK, (part, context) -> part.getExposedApi(),
-                FluidP2PTunnelPart.class);
-
-        event.register(Capabilities.EnergyStorage.BLOCK, (part, context) -> part.getEnergyStorage(),
-                EnergyAcceptorPart.class);
-    }
-
 }

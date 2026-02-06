@@ -72,7 +72,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         generateQuartzCluster(AEBlocks.QUARTZ_CLUSTER);
 
         simpleBlockAndItem(AEBlocks.CONDENSER);
-        simpleBlockAndItem(AEBlocks.ENERGY_ACCEPTOR);
 
         simpleBlockAndItem(AEBlocks.DEBUG_ITEM_GEN, "block/debug/item_gen");
         simpleBlockAndItem(AEBlocks.DEBUG_PHANTOM_NODE, "block/debug/phantom_node");

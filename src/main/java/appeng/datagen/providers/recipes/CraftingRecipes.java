@@ -299,19 +299,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('b', AEItems.CALCULATION_PROCESSOR)
                 .unlockedBy("has_energy_cell", has(AEBlocks.ENERGY_CELL))
                 .save(consumer, AppEng.makeId("network/blocks/energy_dense_energy_cell"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.ENERGY_ACCEPTOR)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEBlocks.QUARTZ_GLASS)
-                .define('c', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_crystals/fluix", has(ConventionTags.ALL_FLUIX))
-                .save(consumer, AppEng.makeId("network/blocks/energy_energy_acceptor"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.ENERGY_ACCEPTOR)
-                .requires(AEParts.ENERGY_ACCEPTOR)
-                .unlockedBy("has_cable_energy_acceptor", has(AEParts.ENERGY_ACCEPTOR))
-                .save(consumer, AppEng.makeId("network/blocks/energy_energy_acceptor_alt"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.ENERGY_CELL)
                 .pattern("aba")
                 .pattern("bcb")
@@ -329,10 +316,10 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .pattern("aca")
                 .define('a', ConventionTags.IRON_INGOT)
                 .define('b', Items.FURNACE)
-                .define('c', AEBlocks.ENERGY_ACCEPTOR)
+                .define('c', ConventionTags.ALL_FLUIX)
                 .define('d', ConventionTags.COPPER_INGOT)
                 .define('e', ConventionTags.FLUIX_CRYSTAL)
-                .unlockedBy("has_energy_acceptor", has(AEBlocks.ENERGY_ACCEPTOR))
+                .unlockedBy("has_crystals/fluix", has(ConventionTags.ALL_FLUIX))
                 .save(consumer, AppEng.makeId("network/blocks/energy_vibration_chamber"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.INSCRIBER)
                 .pattern("aba")
@@ -435,10 +422,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
         // recipes/network/parts
         // ====================================================
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEParts.ENERGY_ACCEPTOR)
-                .requires(AEBlocks.ENERGY_ACCEPTOR)
-                .unlockedBy("has_energy_acceptor", has(AEBlocks.ENERGY_ACCEPTOR))
-                .save(consumer, AppEng.makeId("network/parts/energy_acceptor"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEParts.LEVEL_EMITTER)
                 .requires(Items.REDSTONE_TORCH)
                 .requires(AEItems.CALCULATION_PROCESSOR)

@@ -9,7 +9,7 @@
       "item": "minecraft:furnace"
     },
     "c": {
-      "item": "ae2:energy_acceptor"
+      "tag": "ae2:all_fluix"
     },
     "d": {
       "tag": "c:ingots/copper"

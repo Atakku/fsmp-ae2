@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energy_acceptor": {
+    "has_crystals/fluix": {
       "conditions": {
         "items": [
           {
-            "items": "ae2:energy_acceptor"
+            "items": "#ae2:all_fluix"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_energy_acceptor"
+      "has_crystals/fluix"
     ]
   ],
   "rewards": {

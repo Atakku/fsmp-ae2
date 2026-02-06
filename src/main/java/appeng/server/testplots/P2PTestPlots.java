@@ -3,7 +3,6 @@ package appeng.server.testplots;
 import static appeng.server.testplots.P2PPlotHelper.linkTunnels;
 import static appeng.server.testplots.P2PPlotHelper.placeTunnel;
 
-import org.apache.commons.lang3.mutable.MutableDouble;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.mutable.MutableObject;
 import org.apache.commons.lang3.mutable.MutableShort;
@@ -13,7 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 
-import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEParts;
 import appeng.parts.p2p.MEP2PTunnelPart;
@@ -23,34 +21,6 @@ import appeng.server.testworld.PlotBuilder;
 
 @TestPlotClass
 public class P2PTestPlots {
-    @TestPlot("p2p_energy")
-    public static void energy(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        placeTunnel(plot, AEParts.FE_P2P_TUNNEL);
-
-        plot.block(origin.west().west(), AEBlocks.DEBUG_ENERGY_GEN);
-        plot.block(origin.east().east(), AEBlocks.ENERGY_ACCEPTOR);
-        var cellPos = origin.east().east().above();
-        plot.block(cellPos, AEBlocks.ENERGY_CELL);
-        var cellEnergy = new MutableDouble(0);
-        plot.test(helper -> {
-            helper.startSequence()
-                    .thenIdle(10)
-                    .thenWaitUntil(() -> {
-                        var cell = (EnergyCellBlockEntity) helper.getBlockEntity(cellPos);
-                        cellEnergy.setValue(cell.getAECurrentPower());
-                    })
-                    .thenIdle(10)
-                    .thenWaitUntil(() -> {
-                        var cell = (EnergyCellBlockEntity) helper.getBlockEntity(cellPos);
-                        helper.check(
-                                cell.getAECurrentPower() > cellEnergy.getValue(),
-                                "Cell should start charging through the P2P tunnel");
-                    })
-                    .thenSucceed();
-        });
-    }
-
     @TestPlot("p2p_light")
     public static void light(PlotBuilder plot) {
         var origin = BlockPos.ZERO;

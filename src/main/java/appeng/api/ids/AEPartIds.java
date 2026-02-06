@@ -236,7 +236,6 @@ public final class AEPartIds {
     public static final ResourceLocation LEVEL_EMITTER = id("level_emitter");
     public static final ResourceLocation ENERGY_LEVEL_EMITTER = id("energy_level_emitter");
     public static final ResourceLocation CONVERSION_MONITOR = id("conversion_monitor");
-    public static final ResourceLocation ENERGY_ACCEPTOR = id("cable_energy_acceptor");
 
     ///
     /// Monitors and terminals
@@ -252,10 +251,6 @@ public final class AEPartIds {
     /// P2P
     ///
     public static final ResourceLocation ME_P2P_TUNNEL = id("me_p2p_tunnel");
-    public static final ResourceLocation REDSTONE_P2P_TUNNEL = id("redstone_p2p_tunnel");
-    public static final ResourceLocation ITEM_P2P_TUNNEL = id("item_p2p_tunnel");
-    public static final ResourceLocation FLUID_P2P_TUNNEL = id("fluid_p2p_tunnel");
-    public static final ResourceLocation FE_P2P_TUNNEL = id("fe_p2p_tunnel");
     public static final ResourceLocation LIGHT_P2P_TUNNEL = id("light_p2p_tunnel");
 
     private static ResourceLocation id(String id) {

@@ -125,8 +125,6 @@ public enum GuiText implements LocalizationEnum {
     OfSecondOutput("%1$d%% Chance for second output."),
     OutOfPower("Out of Power"),
     Orange("Orange"),
-    P2PAttunementEnergy("Portable Energy Storage (i.e. Batteries)"),
-    P2PAttunementFluid("Portable Fluid Storage (i.e. Tanks, Buckets)"),
     PartialPlan("Partial Plan (Missing Ingredients)"),
     Partitioned("Partitioned"),
     Pink("Pink"),

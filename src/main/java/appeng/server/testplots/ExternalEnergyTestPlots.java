@@ -1,33 +1,17 @@
 package appeng.server.testplots;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 
 import appeng.api.stacks.AEItemKey;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
 import appeng.server.testworld.PlotBuilder;
 import appeng.server.testworld.PlotTestHelper;
 
 @TestPlotClass
 public class ExternalEnergyTestPlots {
     private static final BlockPos ORIGIN = BlockPos.ZERO;
-
-    @TestPlot("fe_energy_acceptor_block")
-    public static void testEnergyAcceptorBlock(PlotBuilder plot) {
-        placeForgeEnergyGenerator(plot);
-        plot.block(ORIGIN, AEBlocks.ENERGY_ACCEPTOR);
-        testGridIsReceivingEnergy(plot);
-    }
-
-    @TestPlot("fe_energy_acceptor_part")
-    public static void testEnergyAcceptorPart(PlotBuilder plot) {
-        placeForgeEnergyGenerator(plot);
-        plot.cable(ORIGIN).part(Direction.DOWN, AEParts.ENERGY_ACCEPTOR);
-        testGridIsReceivingEnergy(plot);
-    }
 
     @TestPlot("fe_controller")
     public static void testController(PlotBuilder plot) {
