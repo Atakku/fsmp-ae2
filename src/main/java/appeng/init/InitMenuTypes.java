@@ -29,10 +29,8 @@ import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
-import appeng.menu.implementations.InscriberMenu;
 import appeng.menu.implementations.MEChestMenu;
 import appeng.menu.implementations.PriorityMenu;
-import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
@@ -56,13 +54,11 @@ public final class InitMenuTypes {
                 CraftingTermMenu.TYPE,
                 DriveMenu.TYPE,
                 IOPortMenu.TYPE,
-                InscriberMenu.TYPE,
                 MEStorageMenu.TYPE,
                 MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
                 MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
                 MEStorageMenu.WIRELESS_TYPE,
                 PriorityMenu.TYPE,
-                QuartzKnifeMenu.TYPE,
                 SkyChestMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,
                 WirelessCraftingTermMenu.TYPE,

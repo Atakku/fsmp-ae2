@@ -71,11 +71,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         registry.addRecipeHandler(WirelessCraftingTermMenu.TYPE,
                 new EmiUseCraftingRecipeHandler<>(WirelessCraftingTermMenu.class));
 
-        // Inscriber
-        registry.addCategory(EmiInscriberRecipe.CATEGORY);
-        registry.addWorkstation(EmiInscriberRecipe.CATEGORY, EmiStack.of(AEBlocks.INSCRIBER));
-        adaptRecipeType(registry, AERecipeTypes.INSCRIBER, EmiInscriberRecipe::new);
-
         // Special upgrade recipes
         adaptSpecialRecipes(registry, StorageCellUpgradeRecipe.class, this::convertStorageCellUpgradeRecipe);
 

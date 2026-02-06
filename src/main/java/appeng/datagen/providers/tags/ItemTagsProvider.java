@@ -104,10 +104,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
         tag(ConventionTags.SILICON)
                 .add(AEItems.SILICON.asItem());
 
-        tag(ConventionTags.QUARTZ_KNIFE)
-                .add(AEItems.CERTUS_QUARTZ_KNIFE.asItem())
-                .add(AEItems.NETHER_QUARTZ_KNIFE.asItem());
-
         tag(AETags.METAL_INGOTS)
                 .addOptionalTag(ResourceLocation.parse("c:ingots/copper"))
                 .addOptionalTag(ResourceLocation.parse("c:ingots/tin"))

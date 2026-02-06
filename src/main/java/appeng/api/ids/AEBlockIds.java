@@ -50,12 +50,10 @@ public final class AEBlockIds {
     public static final ResourceLocation NOT_SO_MYSTERIOUS_CUBE = id("not_so_mysterious_cube");
     public static final ResourceLocation SKY_STONE_CHEST = id("sky_stone_chest");
     public static final ResourceLocation SMOOTH_SKY_STONE_CHEST = id("smooth_sky_stone_chest");
-    public static final ResourceLocation SKY_STONE_TANK = id("sky_stone_tank");
 
     ///
     /// ME NETWORK
     ///
-    public static final ResourceLocation INSCRIBER = id("inscriber");
     public static final ResourceLocation WIRELESS_ACCESS_POINT = id("wireless_access_point");
     public static final ResourceLocation CONTROLLER = id("controller");
     public static final ResourceLocation DRIVE = id("drive");
@@ -63,7 +61,6 @@ public final class AEBlockIds {
     public static final ResourceLocation CELL_WORKBENCH = id("cell_workbench");
     public static final ResourceLocation IO_PORT = id("io_port");
     public static final ResourceLocation CONDENSER = id("condenser");
-
     public static final ResourceLocation CABLE_BUS = id("cable_bus");
 
     ///

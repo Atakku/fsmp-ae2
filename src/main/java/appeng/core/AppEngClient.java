@@ -89,9 +89,7 @@ import appeng.client.render.model.GlassBakedModel;
 import appeng.client.render.overlay.OverlayManager;
 import appeng.client.render.tesr.ChestBlockEntityRenderer;
 import appeng.client.render.tesr.DriveLedBlockEntityRenderer;
-import appeng.client.render.tesr.InscriberTESR;
 import appeng.client.render.tesr.SkyChestTESR;
-import appeng.client.render.tesr.SkyStoneTankBlockEntityRenderer;
 import appeng.core.definitions.AEAttachmentTypes;
 import appeng.core.definitions.AEBlockEntities;
 import appeng.core.definitions.AEBlocks;
@@ -266,12 +264,10 @@ public class AppEngClient extends AppEngBase {
     }
 
     private void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(AEBlockEntities.INSCRIBER.get(), InscriberTESR::new);
         event.registerBlockEntityRenderer(AEBlockEntities.SKY_CHEST.get(), SkyChestTESR::new);
         event.registerBlockEntityRenderer(AEBlockEntities.DRIVE.get(), DriveLedBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(AEBlockEntities.ME_CHEST.get(), ChestBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(AEBlockEntities.CABLE_BUS.get(), CableBusTESR::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.SKY_STONE_TANK.get(), SkyStoneTankBlockEntityRenderer::new);
     }
 
     private void registerEntityLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

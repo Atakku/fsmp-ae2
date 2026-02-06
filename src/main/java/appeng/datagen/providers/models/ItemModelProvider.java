@@ -43,7 +43,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.CERTUS_QUARTZ_CRYSTAL, "item/certus_quartz_crystal");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED, "item/certus_quartz_crystal_charged");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_DUST, "item/certus_quartz_dust");
-        flatSingleLayer(AEItems.CERTUS_QUARTZ_KNIFE, "item/certus_quartz_cutting_knife");
         flatSingleLayer(AEItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(AEItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(AEItems.DEBUG_METEORITE_PLACER, "item/debug/meteorite_placer");
@@ -75,8 +74,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.LOGIC_PROCESSOR_PRESS, "item/logic_processor_press");
         flatSingleLayer(AEItems.LOGIC_PROCESSOR_PRINT, "item/printed_logic_processor");
         flatSingleLayer(AEItems.MATTER_BALL, "item/matter_ball");
-        flatSingleLayer(AEItems.NAME_PRESS, "item/name_press");
-        flatSingleLayer(AEItems.NETHER_QUARTZ_KNIFE, "item/nether_quartz_cutting_knife");
         portableCell(AEItems.PORTABLE_ITEM_CELL1K, "item", "1k");
         portableCell(AEItems.PORTABLE_ITEM_CELL4K, "item", "4k");
         portableCell(AEItems.PORTABLE_ITEM_CELL16K, "item", "16k");
@@ -100,7 +97,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.WIRELESS_TERMINAL, "item/wireless_terminal");
         registerEmptyModel(AEItems.WRAPPED_GENERIC_STACK);
         registerEmptyModel(AEBlocks.CABLE_BUS.item());
-        registerHandheld();
     }
 
     private void storageCell(ItemDefinition<?> item, String background) {
@@ -123,19 +119,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
                 .texture("layer1", "item/portable_cell_led")
                 .texture("layer2", "item/portable_cell_screen")
                 .texture("layer3", "item/portable_cell_side_%s".formatted(tier));
-    }
-
-    private void registerHandheld() {
-        handheld(AEItems.CERTUS_QUARTZ_KNIFE);
-        handheld(AEItems.NETHER_QUARTZ_KNIFE);
-    }
-
-    private void handheld(ItemDefinition<?> item) {
-        singleTexture(
-                item.id().getPath(),
-                ResourceLocation.parse("item/handheld"),
-                "layer0",
-                makeId("item/" + item.id().getPath()));
     }
 
     private void registerEmptyModel(ItemDefinition<?> item) {

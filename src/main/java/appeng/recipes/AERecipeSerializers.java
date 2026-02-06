@@ -9,8 +9,6 @@ import appeng.recipes.game.AddItemUpgradeRecipeSerializer;
 import appeng.recipes.game.RemoveItemUpgradeRecipeSerializer;
 import appeng.recipes.game.StorageCellDisassemblyRecipeSerializer;
 import appeng.recipes.game.StorageCellUpgradeRecipeSerializer;
-import appeng.recipes.handlers.InscriberRecipeSerializer;
-import appeng.recipes.quartzcutting.QuartzCuttingRecipeSerializer;
 import appeng.recipes.transform.TransformRecipeSerializer;
 
 public final class AERecipeSerializers {
@@ -21,12 +19,10 @@ public final class AERecipeSerializers {
             .create(Registries.RECIPE_SERIALIZER, AppEng.MOD_ID);
 
     static {
-        register("inscriber", InscriberRecipeSerializer.INSTANCE);
         register("transform", TransformRecipeSerializer.INSTANCE);
         register("storage_cell_upgrade", StorageCellUpgradeRecipeSerializer.INSTANCE);
         register("add_item_upgrade", AddItemUpgradeRecipeSerializer.INSTANCE);
         register("remove_item_upgrade", RemoveItemUpgradeRecipeSerializer.INSTANCE);
-        register("quartz_cutting", QuartzCuttingRecipeSerializer.INSTANCE);
         register("storage_cell_disassembly", StorageCellDisassemblyRecipeSerializer.INSTANCE);
     }
 

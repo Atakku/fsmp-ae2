@@ -46,7 +46,6 @@ import appeng.datagen.providers.models.PartModelProvider;
 import appeng.datagen.providers.recipes.CraftingRecipes;
 import appeng.datagen.providers.recipes.DecorationBlockRecipes;
 import appeng.datagen.providers.recipes.DecorationRecipes;
-import appeng.datagen.providers.recipes.InscriberRecipes;
 import appeng.datagen.providers.recipes.SmeltingRecipes;
 import appeng.datagen.providers.recipes.TransformRecipes;
 import appeng.datagen.providers.recipes.UpgradeRecipes;
@@ -95,7 +94,6 @@ public class AE2DataGenerators {
         // Recipes
         pack.addProvider(bindRegistries(DecorationRecipes::new, registries));
         pack.addProvider(bindRegistries(DecorationBlockRecipes::new, registries));
-        pack.addProvider(bindRegistries(InscriberRecipes::new, registries));
         pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
         pack.addProvider(bindRegistries(TransformRecipes::new, registries));

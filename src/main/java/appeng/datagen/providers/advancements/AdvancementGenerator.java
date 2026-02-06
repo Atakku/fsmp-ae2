@@ -84,21 +84,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(consumer, "ae2:main/root");
 
-        var compass = Advancement.Builder.advancement()
-                .display(
-                        AEItems.METEORITE_COMPASS,
-                        localization.component("achievement.ae2.Compass", "Meteorite Hunter"),
-                        localization.component("achievement.ae2.Compass.desc", "Craft a Meteorite Compass"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(root)
-                .addCriterion("compass", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.METEORITE_COMPASS))
-                .save(consumer, "ae2:main/compass");
-
         var chargedQuartz = Advancement.Builder.advancement()
                 .display(
                         AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,

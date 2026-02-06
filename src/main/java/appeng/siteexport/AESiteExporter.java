@@ -20,8 +20,6 @@ import guideme.internal.siteexport.SiteExporter;
 
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.core.definitions.AEBlocks;
-import appeng.recipes.handlers.InscriberProcessType;
-import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
 
 public class AESiteExporter extends SiteExporter {
@@ -30,7 +28,6 @@ public class AESiteExporter extends SiteExporter {
 
         // Ref items used as icons
         referenceItem(Items.FURNACE);
-        referenceItem(AEBlocks.INSCRIBER);
         referenceFluid(Fluids.WATER);
         referenceFluid(Fluids.LAVA);
     }
@@ -50,21 +47,9 @@ public class AESiteExporter extends SiteExporter {
     @Nullable
     protected Map<String, Object> getCustomRecipeFields(ResourceLocation id, Recipe<?> recipe) {
         return switch (recipe) {
-            case InscriberRecipe inscriberRecipe -> addRecipe(inscriberRecipe);
             case TransformRecipe transformRecipe -> addRecipe(transformRecipe);
             case null, default -> null;
         };
-    }
-
-    private Map<String, Object> addRecipe(InscriberRecipe recipe) {
-        var resultItem = recipe.getResultItem();
-        return Map.of(
-                "top", recipe.getTopOptional(),
-                "middle", recipe.getMiddleInput(),
-                "bottom", recipe.getBottomOptional(),
-                "resultItem", resultItem.getItem(),
-                "resultCount", resultItem.getCount(),
-                "consumesTopAndBottom", recipe.getProcessType() == InscriberProcessType.PRESS);
     }
 
     private Map<String, Object> addRecipe(TransformRecipe recipe) {

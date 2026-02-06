@@ -123,9 +123,5 @@ public final class InitCapabilityProviders {
                 Capabilities.EnergyStorage.BLOCK,
                 AEBlockEntities.DEBUG_ENERGY_GEN.get(),
                 (object, context) -> object);
-        event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                AEBlockEntities.SKY_STONE_TANK.get(),
-                (object, context) -> object.getFluidHandler());
     }
 }

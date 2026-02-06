@@ -135,14 +135,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('a', AEBlocks.SMOOTH_SKY_STONE_BLOCK)
                 .unlockedBy("has_smooth_sky_stone_block", has(AEBlocks.SMOOTH_SKY_STONE_BLOCK))
                 .save(consumer, AppEng.makeId("misc/chests_smooth_sky_stone"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SKY_STONE_TANK)
-                .pattern("aaa")
-                .pattern("aba")
-                .pattern("aaa")
-                .define('a', AEBlocks.SKY_STONE_BLOCK)
-                .define('b', AEBlocks.QUARTZ_GLASS)
-                .unlockedBy("has_sky_stone_block", has(AEBlocks.SKY_STONE_BLOCK))
-                .save(consumer, AppEng.makeId("misc/tank_sky_stone"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_CRYSTAL, 4)
                 .requires(AEBlocks.QUARTZ_BLOCK)
@@ -259,15 +251,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_purified_fluix_crystal", has(AEItems.FLUIX_CRYSTAL))
                 .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
                 .save(consumer, AppEng.makeId("network/blocks/controller"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.INSCRIBER)
-                .pattern("aba")
-                .pattern("c a")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', Items.PISTON)
-                .define('c', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_crystals/fluix", has(ConventionTags.ALL_FLUIX))
-                .save(consumer, AppEng.makeId("network/blocks/inscribers"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.CONDENSER)
                 .pattern("aba")
                 .pattern("bcb")
@@ -437,8 +420,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
         // ====================================================
         // recipes/tools
         // ====================================================
-
-        addQuartzTools(consumer);
 
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL1K);
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL4K);
@@ -705,28 +686,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(AEItems.CELL_COMPONENT_256K)
                 .unlockedBy("has_cell_component_256k", has(AEItems.CELL_COMPONENT_256K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_256k_storage"));
-    }
-
-    private void addQuartzTools(RecipeOutput consumer) {
-        // Knives
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_KNIFE)
-                .pattern("  a")
-                .pattern("ba ")
-                .pattern("cc ")
-                .define('a', ConventionTags.WOOD_STICK)
-                .define('b', ConventionTags.IRON_INGOT)
-                .define('c', ConventionTags.CERTUS_QUARTZ)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_cutting_knife"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_KNIFE)
-                .pattern("  a")
-                .pattern("ba ")
-                .pattern("cc ")
-                .define('a', ConventionTags.WOOD_STICK)
-                .define('b', ConventionTags.IRON_INGOT)
-                .define('c', ConventionTags.NETHER_QUARTZ)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_cutting_knife"));
     }
 
     // ====================================================

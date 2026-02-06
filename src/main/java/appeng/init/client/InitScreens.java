@@ -37,10 +37,8 @@ import appeng.client.gui.implementations.CellWorkbenchScreen;
 import appeng.client.gui.implementations.CondenserScreen;
 import appeng.client.gui.implementations.DriveScreen;
 import appeng.client.gui.implementations.IOPortScreen;
-import appeng.client.gui.implementations.InscriberScreen;
 import appeng.client.gui.implementations.MEChestScreen;
 import appeng.client.gui.implementations.PriorityScreen;
-import appeng.client.gui.implementations.QuartzKnifeScreen;
 import appeng.client.gui.implementations.SkyChestScreen;
 import appeng.client.gui.implementations.StorageLevelEmitterScreen;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
@@ -53,10 +51,8 @@ import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
-import appeng.menu.implementations.InscriberMenu;
 import appeng.menu.implementations.MEChestMenu;
 import appeng.menu.implementations.PriorityMenu;
-import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
@@ -82,13 +78,11 @@ public final class InitScreens {
         register(event, SkyChestMenu.TYPE, SkyChestScreen::new, "/screens/sky_chest.json");
         register(event, MEChestMenu.TYPE, MEChestScreen::new, "/screens/me_chest.json");
         register(event, WirelessAccessPointMenu.TYPE, WirelessAccessPointScreen::new, "/screens/wireless_access_point.json");
-        register(event, QuartzKnifeMenu.TYPE, QuartzKnifeScreen::new, "/screens/quartz_knife.json");
         register(event, DriveMenu.TYPE, DriveScreen::new, "/screens/drive.json");
         register(event, CondenserMenu.TYPE, CondenserScreen::new, "/screens/condenser.json");
         register(event, IOPortMenu.TYPE, IOPortScreen::new, "/screens/io_port.json");
         register(event, PriorityMenu.TYPE, PriorityScreen::new, "/screens/priority.json");
         register(event, StorageLevelEmitterMenu.TYPE, StorageLevelEmitterScreen::new, "/screens/level_emitter.json");
-        register(event, InscriberMenu.TYPE, InscriberScreen::new, "/screens/inscriber.json");
         register(event, CellWorkbenchMenu.TYPE, CellWorkbenchScreen::new, "/screens/cell_workbench.json");
 
         // Terminals

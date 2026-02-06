@@ -53,7 +53,6 @@ import appeng.block.AEBaseBlock;
 import appeng.block.AEBaseBlockItem;
 import appeng.block.misc.CellWorkbenchBlock;
 import appeng.block.misc.CondenserBlock;
-import appeng.block.misc.InscriberBlock;
 import appeng.block.misc.MysteriousCubeBlock;
 import appeng.block.networking.CableBusBlock;
 import appeng.block.networking.ControllerBlock;
@@ -62,7 +61,6 @@ import appeng.block.storage.DriveBlock;
 import appeng.block.storage.IOPortBlock;
 import appeng.block.storage.MEChestBlock;
 import appeng.block.storage.SkyChestBlock;
-import appeng.block.storage.SkyStoneTankBlock;
 import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
 import appeng.debug.CubeGeneratorBlock;
@@ -127,11 +125,9 @@ public final class AEBlocks {
     public static final BlockDefinition<SkyChestBlock> SKY_STONE_CHEST = block("Sky Stone Chest", AEBlockIds.SKY_STONE_CHEST, () -> new SkyChestBlock(SkyChestBlock.SkyChestType.STONE, SKY_STONE_CHEST_PROPS));
     public static final BlockDefinition<SkyChestBlock> SMOOTH_SKY_STONE_CHEST = block("Sky Stone Block Chest", AEBlockIds.SMOOTH_SKY_STONE_CHEST, () -> new SkyChestBlock(SkyChestBlock.SkyChestType.BLOCK, SKY_STONE_CHEST_PROPS));
 
-    public static final BlockDefinition<SkyStoneTankBlock> SKY_STONE_TANK = block("Sky Stone Tank", AEBlockIds.SKY_STONE_TANK, () -> new SkyStoneTankBlock(SKY_STONE_CHEST_PROPS));
     public static final BlockDefinition<MysteriousCubeBlock> MYSTERIOUS_CUBE = block("Mysterious Cube", AEBlockIds.MYSTERIOUS_CUBE, MysteriousCubeBlock::new);
     public static final BlockDefinition<NotSoMysteriousCubeBlock> NOT_SO_MYSTERIOUS_CUBE = block("Not So Mysterious Cube", AEBlockIds.NOT_SO_MYSTERIOUS_CUBE, NotSoMysteriousCubeBlock::new);
 
-    public static final BlockDefinition<InscriberBlock> INSCRIBER = block("Inscriber", AEBlockIds.INSCRIBER, () -> new InscriberBlock(metalProps().noOcclusion()));
     public static final BlockDefinition<WirelessAccessPointBlock> WIRELESS_ACCESS_POINT = block("ME Wireless Access Point", AEBlockIds.WIRELESS_ACCESS_POINT, WirelessAccessPointBlock::new);
 
     public static final BlockDefinition<ControllerBlock> CONTROLLER = block("ME Controller", AEBlockIds.CONTROLLER, ControllerBlock::new);

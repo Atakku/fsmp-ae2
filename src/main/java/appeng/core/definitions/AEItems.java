@@ -50,9 +50,7 @@ import appeng.debug.EraserItem;
 import appeng.debug.MeteoritePlacerItem;
 import appeng.debug.ReplicatorCardItem;
 import appeng.items.materials.MaterialItem;
-import appeng.items.materials.NamePressItem;
 import appeng.items.materials.StorageComponentItem;
-import appeng.items.misc.MeteoriteCompassItem;
 import appeng.items.misc.MissingContentItem;
 import appeng.items.misc.PaintBallItem;
 import appeng.items.misc.WrappedGenericStack;
@@ -65,8 +63,6 @@ import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.items.tools.powered.PortableCellItem;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
 import appeng.items.tools.powered.WirelessTerminalItem;
-import appeng.items.tools.quartz.QuartzCuttingKnifeItem;
-import appeng.items.tools.quartz.QuartzToolType;
 import appeng.menu.me.common.MEStorageMenu;
 
 /**
@@ -79,21 +75,8 @@ public final class AEItems {
     private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
 
     ///
-    /// CERTUS QUARTZ TOOLS
-    ///
-
-    public static final ItemDefinition<QuartzCuttingKnifeItem> CERTUS_QUARTZ_KNIFE = item("Certus Quartz Cutting Knife", AEItemIds.CERTUS_QUARTZ_KNIFE, p -> new QuartzCuttingKnifeItem(p.durability(50), QuartzToolType.CERTUS), CreativeModeTabs.TOOLS_AND_UTILITIES);
-
-    ///
-    /// NETHER QUARTZ TOOLS
-    ///
-
-    public static final ItemDefinition<QuartzCuttingKnifeItem> NETHER_QUARTZ_KNIFE = item("Nether Quartz Cutting Knife", AEItemIds.NETHER_QUARTZ_KNIFE, p -> new QuartzCuttingKnifeItem(p.stacksTo(1).durability(50), QuartzToolType.NETHER), CreativeModeTabs.TOOLS_AND_UTILITIES);
-
-    ///
     /// VARIOUS POWERED TOOLS
     ///
-
     public static final ItemDefinition<WirelessTerminalItem> WIRELESS_TERMINAL = item("Wireless Terminal", AEItemIds.WIRELESS_TERMINAL, p -> new WirelessTerminalItem(p.stacksTo(1)));
     public static final ItemDefinition<WirelessTerminalItem> WIRELESS_CRAFTING_TERMINAL = item("Wireless Crafting Terminal", AEItemIds.WIRELESS_CRAFTING_TERMINAL, p -> new WirelessCraftingTerminalItem(p.stacksTo(1)));
     public static final ItemDefinition<ColorApplicatorItem> COLOR_APPLICATOR = item("Color Applicator", AEItemIds.COLOR_APPLICATOR, p -> new ColorApplicatorItem(p.stacksTo(1)));
@@ -128,8 +111,6 @@ public final class AEItems {
 
     public static final ColoredItemDefinition<PaintBallItem> COLORED_PAINT_BALL = createColoredItems("Paint Ball", AEItemIds.COLORED_PAINT_BALL, (p, color) -> new PaintBallItem(p, color));
 
-    public static final ItemDefinition<MeteoriteCompassItem> METEORITE_COMPASS = item("Meteorite Compass", AEItemIds.METEORITE_COMPASS, MeteoriteCompassItem::new);
-
     ///
     /// MATERIALS
     ///
@@ -149,7 +130,6 @@ public final class AEItems {
     public static final ItemDefinition<MaterialItem> LOGIC_PROCESSOR_PRINT = item("Printed Logic Circuit", AEItemIds.LOGIC_PROCESSOR_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> SILICON_PRESS = item("Inscriber Silicon Press", AEItemIds.SILICON_PRESS, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> SILICON_PRINT = item("Printed Silicon", AEItemIds.SILICON_PRINT, MaterialItem::new);
-    public static final ItemDefinition<NamePressItem> NAME_PRESS = item("Inscriber Name Press", AEItemIds.NAME_PRESS, NamePressItem::new);
     public static final ItemDefinition<MaterialItem> LOGIC_PROCESSOR = item("Logic Processor", AEItemIds.LOGIC_PROCESSOR, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CALCULATION_PROCESSOR = item("Calculation Processor", AEItemIds.CALCULATION_PROCESSOR, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR = item("Engineering Processor", AEItemIds.ENGINEERING_PROCESSOR, MaterialItem::new);

@@ -287,39 +287,6 @@ public final class TestPlots {
         plot.cable("0 -1 0");
     }
 
-    @TestPlot("inscriber")
-    public static void inscriber(PlotBuilder plot) {
-        processorInscriber(plot.offset(0, 1, 2), AEItems.LOGIC_PROCESSOR_PRESS, Items.GOLD_INGOT);
-        processorInscriber(plot.offset(5, 1, 2), AEItems.ENGINEERING_PROCESSOR_PRESS, Items.DIAMOND);
-        processorInscriber(plot.offset(10, 1, 2), AEItems.CALCULATION_PROCESSOR_PRESS, AEItems.CERTUS_QUARTZ_CRYSTAL);
-    }
-
-    public static void processorInscriber(PlotBuilder plot, ItemLike processorPress, ItemLike processorMaterial) {
-        // Set up the inscriber for the processor print
-        plot.filledHopper("-1 3 0", Direction.DOWN, processorMaterial);
-        plot.cable("-1 2 1");
-        plot.blockEntity("-1 2 0", AEBlocks.INSCRIBER, inscriber -> {
-            inscriber.getInternalInventory().setItemDirect(0, new ItemStack(processorPress));
-            BlockOrientation.NORTH_WEST.setOn(inscriber);
-        });
-
-        // Set up the inscriber for the silicon print
-        plot.filledHopper("1 3 0", Direction.DOWN, AEItems.SILICON);
-        plot.cable("1 2 1");
-        plot.blockEntity("1 2 0", AEBlocks.INSCRIBER, inscriber -> {
-            inscriber.getInternalInventory().setItemDirect(0, AEItems.SILICON_PRESS.stack());
-            BlockOrientation.NORTH_WEST.setOn(inscriber);
-        });
-
-        // Set up the inscriber for assembly
-        plot.hopper("1 1 0", Direction.WEST);
-        plot.hopper("-1 1 0", Direction.EAST);
-        plot.filledHopper("0 2 0", Direction.DOWN, Items.REDSTONE);
-        plot.cable("0 1 1");
-        plot.blockEntity("0 1 0", AEBlocks.INSCRIBER, BlockOrientation.NORTH_WEST::setOn);
-        plot.hopper("0 0 0", Direction.DOWN);
-    }
-
     /**
      * Regression test for https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/6582
      */

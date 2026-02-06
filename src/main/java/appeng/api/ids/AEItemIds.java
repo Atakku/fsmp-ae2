@@ -113,15 +113,6 @@ public final class AEItemIds {
             .build();
 
     ///
-    /// TOOLS
-    ///
-    public static final ResourceLocation CERTUS_QUARTZ_KNIFE = id("certus_quartz_cutting_knife");
-
-    public static final ResourceLocation NETHER_QUARTZ_KNIFE = id("nether_quartz_cutting_knife");
-
-    public static final ResourceLocation METEORITE_COMPASS = id("meteorite_compass");
-
-    ///
     /// The following items were previously part of ApiItems
     ///
     public static final ResourceLocation CERTUS_QUARTZ_CRYSTAL = id("certus_quartz_crystal");
@@ -143,7 +134,6 @@ public final class AEItemIds {
     public static final ResourceLocation LOGIC_PROCESSOR_PRINT = id("printed_logic_processor");
     public static final ResourceLocation SILICON_PRESS = id("silicon_press");
     public static final ResourceLocation SILICON_PRINT = id("printed_silicon");
-    public static final ResourceLocation NAME_PRESS = id("name_press");
     public static final ResourceLocation LOGIC_PROCESSOR = id("logic_processor");
     public static final ResourceLocation CALCULATION_PROCESSOR = id("calculation_processor");
     public static final ResourceLocation ENGINEERING_PROCESSOR = id("engineering_processor");

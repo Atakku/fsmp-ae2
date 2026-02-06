@@ -32,7 +32,6 @@ import appeng.api.inventories.InternalInventory;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.upgrades.Upgrades;
-import appeng.blockentity.misc.InscriberRecipes;
 import appeng.client.gui.Icon;
 import appeng.core.definitions.AEItems;
 
@@ -95,21 +94,7 @@ public class RestrictedInputSlot extends AppEngSlot {
 
         // TODO: might need to check for our own patterns in some cases
         switch (this.which) {
-            case INSCRIBER_PLATE:
-                if (AEItems.NAME_PRESS.is(stack)) {
-                    return true;
-                }
-
-                return InscriberRecipes.isValidOptionalIngredient(getLevel(), stack);
-
-            case INSCRIBER_INPUT:
-                return true;/*
-                             * for (ItemStack is : Inscribe.inputs) if ( Platform.isSameItemPrecise( is, i ) ) return
-                             * true; return false;
-                             */
-
             case METAL_INGOTS:
-
                 return isMetalIngot(stack);
 
             case VIEW_CELL:
@@ -172,8 +157,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         UPGRADES(Icon.BACKGROUND_UPGRADE),
         WORKBENCH_CELL(Icon.BACKGROUND_STORAGE_CELL),
         VIEW_CELL(Icon.BACKGROUND_VIEW_CELL),
-        INSCRIBER_PLATE(Icon.BACKGROUND_PLATE),
-        INSCRIBER_INPUT(Icon.BACKGROUND_INGOT),
         METAL_INGOTS(Icon.BACKGROUND_INGOT);
 
         public final Icon icon;

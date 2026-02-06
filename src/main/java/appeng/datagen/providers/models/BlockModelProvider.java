@@ -41,11 +41,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         multiVariantGenerator(AEBlocks.DRIVE, Variant.variant().with(VariantProperties.MODEL, driveModel.getLocation()))
                 .with(createFacingSpinDispatch());
 
-        var inscriber = models().getExistingFile(AppEng.makeId("inscriber"));
-        multiVariantGenerator(AEBlocks.INSCRIBER,
-                Variant.variant().with(VariantProperties.MODEL, inscriber.getLocation()))
-                .with(createFacingSpinDispatch());
-
         wirelessAccessPoint();
         meChest();
         ioPort();

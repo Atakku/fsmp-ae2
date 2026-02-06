@@ -90,9 +90,6 @@ public final class InitUpgrades {
         // Color Applicator
         Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, AEItems.COLOR_APPLICATOR, 1);
         Upgrades.add(AEItems.VOID_CARD, AEItems.COLOR_APPLICATOR, 1);
-
-        // Inscriber
-        Upgrades.add(AEItems.SPEED_CARD, AEBlocks.INSCRIBER, 4);
     }
 
 }

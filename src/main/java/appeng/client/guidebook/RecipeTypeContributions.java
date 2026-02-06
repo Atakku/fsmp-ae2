@@ -17,26 +17,15 @@ import guideme.document.block.recipes.LytStandardRecipeBox;
 import guideme.layout.LayoutContext;
 import guideme.render.RenderContext;
 
-import appeng.core.definitions.AEBlocks;
 import appeng.core.localization.GuiText;
 import appeng.recipes.AERecipeTypes;
-import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
 import appeng.util.Platform;
 
 public class RecipeTypeContributions implements RecipeTypeMappingSupplier {
     @Override
     public void collect(RecipeTypeMappings mappings) {
-        mappings.add(AERecipeTypes.INSCRIBER, RecipeTypeContributions::inscribing);
         mappings.add(AERecipeTypes.TRANSFORM, RecipeTypeContributions::transform);
-    }
-
-    private static LytStandardRecipeBox<InscriberRecipe> inscribing(RecipeHolder<InscriberRecipe> holder) {
-        return LytStandardRecipeBox.builder()
-                .icon(AEBlocks.INSCRIBER)
-                .title(AEBlocks.INSCRIBER.asItem().getDescription().getString())
-                .customBody(new LytInscriberRecipe(holder.value()))
-                .build(holder);
     }
 
     private static LytStandardRecipeBox<TransformRecipe> transform(RecipeHolder<TransformRecipe> holder) {

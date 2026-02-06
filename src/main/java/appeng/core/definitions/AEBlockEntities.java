@@ -39,7 +39,6 @@ import appeng.blockentity.ClientTickingBlockEntity;
 import appeng.blockentity.ServerTickingBlockEntity;
 import appeng.blockentity.misc.CellWorkbenchBlockEntity;
 import appeng.blockentity.misc.CondenserBlockEntity;
-import appeng.blockentity.misc.InscriberBlockEntity;
 import appeng.blockentity.misc.MysteriousCubeBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
@@ -48,7 +47,6 @@ import appeng.blockentity.storage.DriveBlockEntity;
 import appeng.blockentity.storage.IOPortBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.blockentity.storage.SkyChestBlockEntity;
-import appeng.blockentity.storage.SkyStoneTankBlockEntity;
 import appeng.core.AppEng;
 import appeng.debug.CubeGeneratorBlockEntity;
 import appeng.debug.EnergyGeneratorBlockEntity;
@@ -61,9 +59,6 @@ public final class AEBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> DR = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,
             AppEng.MOD_ID);
 
-    public static final DeferredBlockEntityType<InscriberBlockEntity> INSCRIBER = create("inscriber",
-            InscriberBlockEntity.class,
-            InscriberBlockEntity::new, AEBlocks.INSCRIBER);
     public static final DeferredBlockEntityType<WirelessAccessPointBlockEntity> WIRELESS_ACCESS_POINT = create(
             "wireless_access_point",
             WirelessAccessPointBlockEntity.class, WirelessAccessPointBlockEntity::new, AEBlocks.WIRELESS_ACCESS_POINT);
@@ -86,10 +81,6 @@ public final class AEBlockEntities {
     public static final DeferredBlockEntityType<SkyChestBlockEntity> SKY_CHEST = create("sky_chest",
             SkyChestBlockEntity.class,
             SkyChestBlockEntity::new, AEBlocks.SKY_STONE_CHEST, AEBlocks.SMOOTH_SKY_STONE_CHEST);
-
-    public static final DeferredBlockEntityType<SkyStoneTankBlockEntity> SKY_STONE_TANK = create("sky_tank",
-            SkyStoneTankBlockEntity.class,
-            SkyStoneTankBlockEntity::new, AEBlocks.SKY_STONE_TANK);
 
     public static final DeferredBlockEntityType<ItemGenBlockEntity> DEBUG_ITEM_GEN = create("debug_item_gen",
             ItemGenBlockEntity.class, ItemGenBlockEntity::new, AEBlocks.DEBUG_ITEM_GEN);

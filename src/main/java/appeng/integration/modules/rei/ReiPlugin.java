@@ -56,7 +56,6 @@ import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomShapelessDi
 import appeng.api.config.CondenserOutput;
 import appeng.api.integrations.rei.IngredientConverters;
 import appeng.client.gui.AEBaseScreen;
-import appeng.client.gui.implementations.InscriberScreen;
 import appeng.core.AEConfig;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
@@ -72,7 +71,6 @@ import appeng.integration.modules.rei.transfer.UseCraftingRecipeTransfer;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.recipes.AERecipeTypes;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
-import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
 
 @REIPluginClient
@@ -103,7 +101,6 @@ public class ReiPlugin implements REIClientPlugin {
 
         registry.add(new TransformCategory());
         registry.add(new CondenserCategory());
-        registry.add(new InscriberRecipeCategory());
 
         registerWorkingStations(registry);
     }
@@ -114,7 +111,6 @@ public class ReiPlugin implements REIClientPlugin {
             return;
         }
 
-        registry.registerRecipeFiller(InscriberRecipe.class, AERecipeTypes.INSCRIBER, InscriberRecipeDisplay::new);
         registry.registerRecipeFiller(TransformRecipe.class, AERecipeTypes.TRANSFORM, TransformRecipeWrapper::new);
         registry.registerRecipeFiller(StorageCellUpgradeRecipe.class, RecipeType.CRAFTING,
                 this::convertStorageCellUpgradeRecipe);
@@ -165,10 +161,6 @@ public class ReiPlugin implements REIClientPlugin {
 
             return CompoundEventResult.pass();
         });
-        registry.registerContainerClickArea(
-                new Rectangle(82, 39, 26, 16),
-                InscriberScreen.class,
-                InscriberRecipeCategory.ID);
     }
 
     @Override
@@ -198,10 +190,6 @@ public class ReiPlugin implements REIClientPlugin {
     private void registerWorkingStations(CategoryRegistry registry) {
         var condenser = AEBlocks.CONDENSER.stack();
         registry.addWorkstations(CondenserCategory.ID, EntryStacks.of(condenser));
-
-        var inscriber = AEBlocks.INSCRIBER.stack();
-        registry.addWorkstations(InscriberRecipeCategory.ID, EntryStacks.of(inscriber));
-        registry.setPlusButtonArea(InscriberRecipeCategory.ID, ButtonArea.defaultArea());
 
         var craftingTerminal = AEParts.CRAFTING_TERMINAL.stack();
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(craftingTerminal));
