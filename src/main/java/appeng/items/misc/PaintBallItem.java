@@ -25,20 +25,12 @@ public class PaintBallItem extends AEBaseItem {
 
     private final AEColor color;
 
-    private final boolean lumen;
-
-    public PaintBallItem(Properties properties, AEColor color, boolean lumen) {
+    public PaintBallItem(Properties properties, AEColor color) {
         super(properties);
         this.color = color;
-        this.lumen = lumen;
     }
 
     public AEColor getColor() {
         return color;
     }
-
-    public boolean isLumen() {
-        return lumen;
-    }
-
 }

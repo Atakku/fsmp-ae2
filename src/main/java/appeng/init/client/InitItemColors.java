@@ -89,21 +89,11 @@ public final class InitItemColors {
      */
     private static void registerPaintBall(ItemColorRegistrar registrar, PaintBallItem item) {
         AEColor color = item.getColor();
-        final int colorValue = item.isLumen() ? color.mediumVariant : color.mediumVariant;
+        final int colorValue = color.mediumVariant;
         final int r = colorValue >> 16 & 0xff;
         final int g = colorValue >> 8 & 0xff;
         final int b = colorValue & 0xff;
-
-        int renderColor;
-        if (item.isLumen()) {
-            final float fail = 0.7f;
-            final int full = (int) (255 * 0.3);
-            renderColor = (int) (full + r * fail) << 16 | (int) (full + g * fail) << 8 | (int) (full + b * fail)
-                    | 0xff << 24;
-        } else {
-            renderColor = r << 16 | g << 8 | b | 0xff << 24;
-        }
-
+        int renderColor = r << 16 | g << 8 | b | 0xff << 24;
         registrar.register((is, tintIndex) -> renderColor, item);
     }
 

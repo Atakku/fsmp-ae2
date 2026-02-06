@@ -152,13 +152,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
                 flatSingleLayer(id, "item/paint_ball");
             }
         }
-
-        for (AEColor value : AEColor.values()) {
-            var id = AEItems.COLORED_LUMEN_PAINT_BALL.id(value);
-            if (id != null) {
-                flatSingleLayer(id, "item/paint_ball_shimmer");
-            }
-        }
     }
 
     private ItemModelBuilder flatSingleLayer(ItemDefinition<?> item, String texture) {

@@ -77,41 +77,6 @@ public final class AEItemIds {
     ///
     /// PAINT BALLS
     ///
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_WHITE = id("white_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_ORANGE = id("orange_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_MAGENTA = id("magenta_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_LIGHT_BLUE = id("light_blue_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_YELLOW = id("yellow_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_LIME = id("lime_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_PINK = id("pink_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_GRAY = id("gray_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_LIGHT_GRAY = id("light_gray_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_CYAN = id("cyan_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_PURPLE = id("purple_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_BLUE = id("blue_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_BROWN = id("brown_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_GREEN = id("green_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_RED = id("red_lumen_paint_ball");
-    public static final ResourceLocation COLORED_LUMEN_PAINT_BALL_BLACK = id("black_lumen_paint_ball");
-    public static final Map<AEColor, ResourceLocation> COLORED_LUMEN_PAINT_BALL = ImmutableMap
-            .<AEColor, ResourceLocation>builder().put(AEColor.WHITE, COLORED_LUMEN_PAINT_BALL_WHITE)
-            .put(AEColor.ORANGE, COLORED_LUMEN_PAINT_BALL_ORANGE)
-            .put(AEColor.MAGENTA, COLORED_LUMEN_PAINT_BALL_MAGENTA)
-            .put(AEColor.LIGHT_BLUE, COLORED_LUMEN_PAINT_BALL_LIGHT_BLUE)
-            .put(AEColor.YELLOW, COLORED_LUMEN_PAINT_BALL_YELLOW)
-            .put(AEColor.LIME, COLORED_LUMEN_PAINT_BALL_LIME)
-            .put(AEColor.PINK, COLORED_LUMEN_PAINT_BALL_PINK)
-            .put(AEColor.GRAY, COLORED_LUMEN_PAINT_BALL_GRAY)
-            .put(AEColor.LIGHT_GRAY, COLORED_LUMEN_PAINT_BALL_LIGHT_GRAY)
-            .put(AEColor.CYAN, COLORED_LUMEN_PAINT_BALL_CYAN)
-            .put(AEColor.PURPLE, COLORED_LUMEN_PAINT_BALL_PURPLE)
-            .put(AEColor.BLUE, COLORED_LUMEN_PAINT_BALL_BLUE)
-            .put(AEColor.BROWN, COLORED_LUMEN_PAINT_BALL_BROWN)
-            .put(AEColor.GREEN, COLORED_LUMEN_PAINT_BALL_GREEN)
-            .put(AEColor.RED, COLORED_LUMEN_PAINT_BALL_RED)
-            .put(AEColor.BLACK, COLORED_LUMEN_PAINT_BALL_BLACK)
-            .build();
-
     public static final ResourceLocation COLORED_PAINT_BALL_WHITE = id("white_paint_ball");
     public static final ResourceLocation COLORED_PAINT_BALL_ORANGE = id("orange_paint_ball");
     public static final ResourceLocation COLORED_PAINT_BALL_MAGENTA = id("magenta_paint_ball");

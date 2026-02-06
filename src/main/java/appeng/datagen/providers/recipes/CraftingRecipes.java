@@ -876,15 +876,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                     .define('b', ConventionTags.dye(color.dye))
                     .unlockedBy("has_matter_ball", has(AEItems.MATTER_BALL))
                     .save(consumer, AppEng.makeId("tools/paintballs_" + color.registryPrefix));
-
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.COLORED_LUMEN_PAINT_BALL.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', AEItems.COLORED_PAINT_BALL.item(color))
-                    .define('b', ConventionTags.GLOWSTONE)
-                    .unlockedBy("has_paint_ball", has(ConventionTags.PAINT_BALLS))
-                    .save(consumer, AppEng.makeId("tools/paintballs_lumen_" + color.registryPrefix));
         }
     }
 

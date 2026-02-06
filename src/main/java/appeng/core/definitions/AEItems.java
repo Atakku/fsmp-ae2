@@ -126,15 +126,13 @@ public final class AEItems {
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", AEItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 
-    public static final ColoredItemDefinition<PaintBallItem> COLORED_PAINT_BALL = createColoredItems("Paint Ball", AEItemIds.COLORED_PAINT_BALL, (p, color) -> new PaintBallItem(p, color, false));
-    public static final ColoredItemDefinition<PaintBallItem> COLORED_LUMEN_PAINT_BALL = createColoredItems("Lumen Paint Ball", AEItemIds.COLORED_LUMEN_PAINT_BALL, (p, color) -> new PaintBallItem(p, color, true));
+    public static final ColoredItemDefinition<PaintBallItem> COLORED_PAINT_BALL = createColoredItems("Paint Ball", AEItemIds.COLORED_PAINT_BALL, (p, color) -> new PaintBallItem(p, color));
 
     public static final ItemDefinition<MeteoriteCompassItem> METEORITE_COMPASS = item("Meteorite Compass", AEItemIds.METEORITE_COMPASS, MeteoriteCompassItem::new);
 
     ///
     /// MATERIALS
     ///
-
     public static final ItemDefinition<MaterialItem> CERTUS_QUARTZ_CRYSTAL = item("Certus Quartz Crystal", AEItemIds.CERTUS_QUARTZ_CRYSTAL, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CERTUS_QUARTZ_CRYSTAL_CHARGED = item("Charged Certus Quartz Crystal", AEItemIds.CERTUS_QUARTZ_CRYSTAL_CHARGED, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CERTUS_QUARTZ_DUST = item("Certus Quartz Dust", AEItemIds.CERTUS_QUARTZ_DUST, MaterialItem::new);

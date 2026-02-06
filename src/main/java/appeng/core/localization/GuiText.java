@@ -100,7 +100,6 @@ public enum GuiText implements LocalizationEnum {
     LightGray("Light Gray"),
     Lime("Lime"),
     Linked("Linked"),
-    Lumen("Lumen"),
     Magenta("Magenta"),
     MaxPower("Max Power: %s"),
     MEChest("ME Chest"),
