@@ -23,17 +23,11 @@ import net.minecraft.world.entity.player.Inventory;
 
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
-import appeng.client.gui.widgets.CommonButtons;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 
 public class WirelessAccessPointScreen extends AEBaseScreen<WirelessAccessPointMenu> {
-
     public WirelessAccessPointScreen(WirelessAccessPointMenu menu, Inventory playerInventory, Component title,
             ScreenStyle style) {
         super(menu, playerInventory, title, style);
-        this.addToLeftToolbar(CommonButtons.togglePowerUnit());
-
-        widgets.addBackgroundPanel("linkPanel");
     }
-
 }
