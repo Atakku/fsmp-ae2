@@ -33,21 +33,9 @@ public enum GridFlags {
     REQUIRE_CHANNEL,
 
     /**
-     * This is used for the inner node of ME-P2P tunnels, which connects to the grid that will carry the content of the
-     * P2P tunnel compressed into a single channel.
-     */
-    COMPRESSED_CHANNEL,
-
-    /**
      * cannot carry channels over this node.
      */
     CANNOT_CARRY,
-
-    /**
-     * This is used for the outer node of ME-P2P tunnels, which provides the 32-channel connection at both ends of the
-     * tunnel.
-     */
-    CANNOT_CARRY_COMPRESSED,
 
     /**
      * This node can transmit 32 signals, this should only apply to Tier2 Cable, P2P Tunnels, and Quantum Network

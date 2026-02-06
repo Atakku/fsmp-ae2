@@ -121,7 +121,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
     @Nullable
     private GridNode highestSimilarAncestor = null;
     private int subtreeMaxChannels;
-    private boolean subtreeAllowsCompressedChannels;
 
     private final EnumSet<GridFlags> flags;
     private ClassToInstanceMap<IGridNodeService> services;
@@ -572,10 +571,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
         return highestSimilarAncestor;
     }
 
-    public boolean getSubtreeAllowsCompressedChannels() {
-        return subtreeAllowsCompressedChannels;
-    }
-
     @Override
     public void setControllerRoute(IPathItem fast) {
         this.usedChannels = 0;
@@ -584,7 +579,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
         if (nodeParent.getOwner() instanceof ControllerBlockEntity) {
             this.highestSimilarAncestor = null;
             this.subtreeMaxChannels = getMaxChannels();
-            this.subtreeAllowsCompressedChannels = !hasFlag(GridFlags.CANNOT_CARRY_COMPRESSED);
         } else {
             if (nodeParent.highestSimilarAncestor == null) {
                 // Parent is connected to a controller, it is the bottleneck.
@@ -597,8 +591,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
                 this.highestSimilarAncestor = nodeParent;
             }
             this.subtreeMaxChannels = Math.min(nodeParent.subtreeMaxChannels, getMaxChannels());
-            this.subtreeAllowsCompressedChannels = nodeParent.subtreeAllowsCompressedChannels
-                    && !hasFlag(GridFlags.CANNOT_CARRY_COMPRESSED);
         }
 
         GridConnection connection = (GridConnection) fast;

@@ -20,7 +20,6 @@ package appeng.core.definitions;
 
 import static appeng.block.AEBaseBlock.defaultProps;
 import static appeng.block.AEBaseBlock.glassProps;
-import static appeng.block.AEBaseBlock.metalProps;
 import static appeng.block.AEBaseBlock.stoneProps;
 
 import java.util.ArrayList;

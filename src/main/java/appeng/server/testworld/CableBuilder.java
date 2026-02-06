@@ -3,7 +3,6 @@ package appeng.server.testworld;
 import java.util.function.Consumer;
 
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.ItemLike;
 
 import appeng.api.parts.IPart;
 import appeng.core.definitions.ItemDefinition;

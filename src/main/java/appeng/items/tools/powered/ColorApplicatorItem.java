@@ -83,7 +83,6 @@ import appeng.helpers.IMouseWheelItem;
 import appeng.hooks.IBlockTool;
 import appeng.items.AEBaseItem;
 import appeng.items.contents.CellConfig;
-import appeng.items.misc.PaintBallItem;
 import appeng.items.storage.StorageTier;
 import appeng.me.cells.BasicCellHandler;
 import appeng.me.helpers.BaseActionSource;
@@ -275,10 +274,6 @@ public class ColorApplicatorItem extends AEBaseItem
 
             if (item instanceof SnowballItem) {
                 return AEColor.TRANSPARENT;
-            }
-
-            if (item instanceof PaintBallItem ipb) {
-                return ipb.getColor();
             }
 
             // Especially during startup when Vanilla builds it's search index, we don't have tags loaded yet

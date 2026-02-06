@@ -19,7 +19,6 @@ import guideme.Guide;
 import guideme.internal.siteexport.SiteExporter;
 
 import appeng.client.guidebook.ConfigValueTagExtension;
-import appeng.core.definitions.AEBlocks;
 import appeng.recipes.transform.TransformRecipe;
 
 public class AESiteExporter extends SiteExporter {

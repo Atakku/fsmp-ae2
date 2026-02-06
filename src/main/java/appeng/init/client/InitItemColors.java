@@ -30,7 +30,6 @@ import appeng.client.render.StaticItemColor;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.ItemDefinition;
-import appeng.items.misc.PaintBallItem;
 import appeng.items.parts.ColoredPartItem;
 import appeng.items.parts.PartItem;
 import appeng.items.storage.BasicStorageCell;
@@ -78,23 +77,8 @@ public final class InitItemColors {
                     color = ((ColoredPartItem<?>) item).getColor();
                 }
                 registrar.register(new StaticItemColor(color), item);
-            } else if (item instanceof PaintBallItem) {
-                registerPaintBall(registrar, (PaintBallItem) item);
             }
         }
-    }
-
-    /**
-     * We use a white base item icon for paint balls. This applies the correct color to it.
-     */
-    private static void registerPaintBall(ItemColorRegistrar registrar, PaintBallItem item) {
-        AEColor color = item.getColor();
-        final int colorValue = color.mediumVariant;
-        final int r = colorValue >> 16 & 0xff;
-        final int g = colorValue >> 8 & 0xff;
-        final int b = colorValue & 0xff;
-        int renderColor = r << 16 | g << 8 | b | 0xff << 24;
-        registrar.register((is, tintIndex) -> renderColor, item);
     }
 
     private static int getColorApplicatorColor(ItemStack itemStack, int idx) {

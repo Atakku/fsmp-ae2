@@ -58,7 +58,6 @@ import appeng.api.parts.IPart;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartHost;
 import appeng.api.parts.IPartItem;
-import appeng.api.parts.PartHelper;
 import appeng.api.parts.SelectedPart;
 import appeng.api.util.AECableType;
 import appeng.api.util.AEColor;
@@ -107,11 +106,6 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
     public void setHost(IPartHost host) {
         this.tcb.clearContainer();
         this.tcb = host;
-    }
-
-    private void facadeChanged(Direction side) {
-        invalidateShapes();
-        updateNeighborShapeOnSide(side);
     }
 
     private ICablePart getCable() {

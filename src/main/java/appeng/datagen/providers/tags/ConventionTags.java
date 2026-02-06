@@ -113,7 +113,6 @@ public final class ConventionTags {
     public static final TagKey<Item> SMART_DENSE_CABLE = tag("ae2:smart_dense_cable");
     public static final TagKey<Item> ILLUMINATED_PANEL = tag("ae2:illuminated_panel");
     public static final TagKey<Item> QUARTZ_WRENCH = tag("ae2:quartz_wrench");
-    public static final TagKey<Item> PAINT_BALLS = tag("ae2:paint_balls");
     public static final TagKey<Item> INSCRIBER_PRESSES = tag("ae2:inscriber_presses");
     /**
      * Items that can be used in recipes to remove color from colored items.

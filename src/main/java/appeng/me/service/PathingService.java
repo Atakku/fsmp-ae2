@@ -64,7 +64,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
 
     private final Set<ControllerBlockEntity> controllers = new HashSet<>();
     private final Set<IGridNode> nodesNeedingChannels = new HashSet<>();
-    private final Set<IGridNode> cannotCarryCompressedNodes = new HashSet<>();
     private final Grid grid;
     private int channelsInUse = 0;
     private int channelsByBlocks = 0;
@@ -158,10 +157,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
             this.nodesNeedingChannels.remove(gridNode);
         }
 
-        if (gridNode.hasFlag(GridFlags.CANNOT_CARRY_COMPRESSED)) {
-            this.cannotCarryCompressedNodes.remove(gridNode);
-        }
-
         this.repath();
     }
 
@@ -178,10 +173,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
 
         if (gridNode.hasFlag(GridFlags.REQUIRE_CHANNEL)) {
             this.nodesNeedingChannels.add(gridNode);
-        }
-
-        if (gridNode.hasFlag(GridFlags.CANNOT_CARRY_COMPRESSED)) {
-            this.cannotCarryCompressedNodes.add(gridNode);
         }
 
         this.repath();
@@ -230,14 +221,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
         int channels = 0;
         for (var node : this.nodesNeedingChannels) {
             if (!ignore.contains(node)) {
-                // Prevent ad-hoc networks from being connected to the outside and inside node of P2P tunnels at the
-                // same time
-                // this effectively prevents the nesting of P2P-tunnels in ad-hoc networks.
-                if (node.hasFlag(GridFlags.COMPRESSED_CHANNEL) && !this.cannotCarryCompressedNodes.isEmpty()) {
-                    this.adHocNetworkError = AdHocNetworkError.NESTED_P2P_TUNNEL;
-                    return 0;
-                }
-
                 channels++;
 
                 // Multiblocks only require a single channel. Add the remainder of the multi-block to the ignore-list,

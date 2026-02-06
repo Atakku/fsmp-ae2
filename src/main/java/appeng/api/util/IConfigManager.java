@@ -32,7 +32,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Setting;
-import appeng.api.ids.AEComponents;
 import appeng.util.ConfigManager;
 
 /**
@@ -114,7 +113,8 @@ public interface IConfigManager {
      * Get a builder for configuration manager that stores its settings in a block entity.
      */
     static IConfigManagerBuilder builder(Supplier<ItemStack> stack) {
-        var manager = new ConfigManager((mgr, settingName) -> {});
+        var manager = new ConfigManager((mgr, settingName) -> {
+        });
 
         return new IConfigManagerBuilder() {
             @Override

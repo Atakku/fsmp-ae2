@@ -53,7 +53,6 @@ public final class ChannelDataProvider
                 var adHocError = pathingService.getAdHocNetworkError();
                 if (adHocError != null) {
                     serverData.putString(TAG_ERROR, switch (adHocError) {
-                        case NESTED_P2P_TUNNEL -> ChannelError.AD_HOC_NESTED_P2P_TUNNEL.name();
                         case TOO_MANY_CHANNELS -> ChannelError.AD_HOC_TOO_MANY_CHANNELS.name();
                     });
                     return;
@@ -68,7 +67,6 @@ public final class ChannelDataProvider
     }
 
     enum ChannelError {
-        AD_HOC_NESTED_P2P_TUNNEL(InGameTooltip.ErrorNestedP2PTunnel),
         AD_HOC_TOO_MANY_CHANNELS(InGameTooltip.ErrorTooManyChannels),
         CONTROLLER_CONFLICT(InGameTooltip.ErrorControllerConflict);
 

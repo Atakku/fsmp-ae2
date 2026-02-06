@@ -23,13 +23,7 @@
 
 package appeng.api.ids;
 
-import java.util.Map;
-
-import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.resources.ResourceLocation;
-
-import appeng.api.util.AEColor;
 
 /**
  * Contains {@link net.minecraft.world.item.Item} ids for various items defined by Ae2.
@@ -73,44 +67,6 @@ public final class AEItemIds {
     public static final ResourceLocation PORTABLE_FLUID_CELL16K = id("portable_fluid_cell_16k");
     public static final ResourceLocation PORTABLE_FLUID_CELL64K = id("portable_fluid_cell_64k");
     public static final ResourceLocation PORTABLE_FLUID_CELL256K = id("portable_fluid_cell_256k");
-
-    ///
-    /// PAINT BALLS
-    ///
-    public static final ResourceLocation COLORED_PAINT_BALL_WHITE = id("white_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_ORANGE = id("orange_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_MAGENTA = id("magenta_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_LIGHT_BLUE = id("light_blue_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_YELLOW = id("yellow_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_LIME = id("lime_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_PINK = id("pink_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_GRAY = id("gray_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_LIGHT_GRAY = id("light_gray_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_CYAN = id("cyan_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_PURPLE = id("purple_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_BLUE = id("blue_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_BROWN = id("brown_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_GREEN = id("green_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_RED = id("red_paint_ball");
-    public static final ResourceLocation COLORED_PAINT_BALL_BLACK = id("black_paint_ball");
-    public static final Map<AEColor, ResourceLocation> COLORED_PAINT_BALL = ImmutableMap
-            .<AEColor, ResourceLocation>builder().put(AEColor.WHITE, COLORED_PAINT_BALL_WHITE)
-            .put(AEColor.ORANGE, COLORED_PAINT_BALL_ORANGE)
-            .put(AEColor.MAGENTA, COLORED_PAINT_BALL_MAGENTA)
-            .put(AEColor.LIGHT_BLUE, COLORED_PAINT_BALL_LIGHT_BLUE)
-            .put(AEColor.YELLOW, COLORED_PAINT_BALL_YELLOW)
-            .put(AEColor.LIME, COLORED_PAINT_BALL_LIME)
-            .put(AEColor.PINK, COLORED_PAINT_BALL_PINK)
-            .put(AEColor.GRAY, COLORED_PAINT_BALL_GRAY)
-            .put(AEColor.LIGHT_GRAY, COLORED_PAINT_BALL_LIGHT_GRAY)
-            .put(AEColor.CYAN, COLORED_PAINT_BALL_CYAN)
-            .put(AEColor.PURPLE, COLORED_PAINT_BALL_PURPLE)
-            .put(AEColor.BLUE, COLORED_PAINT_BALL_BLUE)
-            .put(AEColor.BROWN, COLORED_PAINT_BALL_BROWN)
-            .put(AEColor.GREEN, COLORED_PAINT_BALL_GREEN)
-            .put(AEColor.RED, COLORED_PAINT_BALL_RED)
-            .put(AEColor.BLACK, COLORED_PAINT_BALL_BLACK)
-            .build();
 
     ///
     /// The following items were previously part of ApiItems

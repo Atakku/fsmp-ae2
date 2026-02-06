@@ -19,7 +19,6 @@ public interface BaseClassRegistration {
      * Adds AE2s tooltip providers for the following interfaces to a given block entity/block and their subclasses.
      * <ul>
      * <li>{@link IGridConnectedBlockEntity}</li>
-     * <li>{@link appeng.api.networking.energy.IAEPowerStorage}</li>
      * </ul>
      * <p/>
      * Please note that AE2 will already register these providers for its own block entity base class

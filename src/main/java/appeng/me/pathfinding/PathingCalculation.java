@@ -183,11 +183,6 @@ public class PathingCalculation {
      * @return true if allocation was successful
      */
     private boolean tryUseChannel(GridNode start) {
-        if (start.hasFlag(GridFlags.COMPRESSED_CHANNEL) && !start.getSubtreeAllowsCompressedChannels()) {
-            // Don't send a compressed channel through this item.
-            return false;
-        }
-
         // Check that the allocation is possible.
         GridNode pi = start;
         while (pi != null) {

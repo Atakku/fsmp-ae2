@@ -443,7 +443,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
                 .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
                 .save(consumer, AppEng.makeId("tools/network_color_applicator"));
-        addPaintBalls(consumer);
     }
 
     private void portableCell(RecipeOutput consumer, ItemDefinition<PortableCellItem> cell) {
@@ -823,19 +822,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(ConventionTags.CAN_REMOVE_COLOR)
                 .unlockedBy("has_smart_cable", has(ConventionTags.SMART_CABLE))
                 .save(consumer, AppEng.makeId("network/cables/smart_fluix_clean"));
-    }
-
-    private void addPaintBalls(RecipeOutput consumer) {
-        for (var color : AEColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.COLORED_PAINT_BALL.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', AEItems.MATTER_BALL)
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_matter_ball", has(AEItems.MATTER_BALL))
-                    .save(consumer, AppEng.makeId("tools/paintballs_" + color.registryPrefix));
-        }
     }
 
     private static Ingredient tagExcept(TagKey<Item> tag, ItemLike exception) {

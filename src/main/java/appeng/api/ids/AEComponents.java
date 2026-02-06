@@ -1,28 +1,20 @@
 package appeng.api.ids;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 
-import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
 
 import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.core.GlobalPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import appeng.api.components.ExportedUpgrades;
 import appeng.api.config.FuzzyMode;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
@@ -39,40 +31,11 @@ public final class AEComponents {
     }
 
     /**
-     * The name of the machine type the settings were exported from.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Component> EXPORTED_SETTINGS_SOURCE = register("exported_settings_source",
-            builder -> builder.persistent(ComponentSerialization.CODEC)
-                    .networkSynchronized(ComponentSerialization.STREAM_CODEC));
-
-    /**
-     * The name inscribed by a {@link appeng.items.materials.NamePressItem}
-     */
-    public static final DataComponentType<Component> NAME_PRESS_NAME = register("name_press_name",
-            builder -> builder.persistent(ComponentSerialization.CODEC)
-                    .networkSynchronized(ComponentSerialization.TRUSTED_STREAM_CODEC));
-
-    /**
      * An upgrade inventory.
      */
     public static final DataComponentType<ItemContainerContents> UPGRADES = register("upgrades",
             builder -> builder.persistent(ItemContainerContents.CODEC)
                     .networkSynchronized(ItemContainerContents.STREAM_CODEC));
-
-    /**
-     * Currently stored energy in AE in this item. Usually the capacity will be set by the item, but some items allow it
-     * to be overridden by {@link AEComponents#ENERGY_CAPACITY}.
-     */
-    public static final DataComponentType<Double> STORED_ENERGY = register("stored_energy",
-            builder -> builder.persistent(Codec.DOUBLE).networkSynchronized(ByteBufCodecs.DOUBLE));
-
-    /**
-     * The maximum amount of energy that can be stored in this item.
-     */
-    public static final DataComponentType<Double> ENERGY_CAPACITY = register("energy_capacity",
-            builder -> builder.persistent(Codec.DOUBLE).networkSynchronized(ByteBufCodecs.DOUBLE));
 
     /**
      * List of AE key types enabled in a terminal
@@ -113,19 +76,6 @@ public final class AEComponents {
             "storage_cell_config_inv",
             builder -> builder.persistent(GenericStack.FAULT_TOLERANT_NULLABLE_LIST_CODEC)
                     .networkSynchronized(GenericStack.STREAM_CODEC.apply(ByteBufCodecs.list())));
-
-    /**
-     * The item a facade is masquerading as.
-     */
-    public static final DataComponentType<Holder<Item>> FACADE_ITEM = register("facade_item",
-            builder -> builder.persistent(BuiltInRegistries.ITEM.holderByNameCodec())
-                    .networkSynchronized(ByteBufCodecs.holderRegistry(Registries.ITEM)));
-
-    /**
-     * Which property of a facade blockstate the wrench is currently cycling through.
-     */
-    public static final DataComponentType<String> FACADE_CYCLE_PROPERTY = register("facade_cycle_property",
-            builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
     /**
      * The generic stack wrapped in a {@link AEItems#WRAPPED_GENERIC_STACK}

@@ -33,7 +33,6 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -52,7 +51,6 @@ import appeng.debug.ReplicatorCardItem;
 import appeng.items.materials.MaterialItem;
 import appeng.items.materials.StorageComponentItem;
 import appeng.items.misc.MissingContentItem;
-import appeng.items.misc.PaintBallItem;
 import appeng.items.misc.WrappedGenericStack;
 import appeng.items.storage.BasicStorageCell;
 import appeng.items.storage.CreativeCellItem;
@@ -108,8 +106,6 @@ public final class AEItems {
 
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", AEItemIds.MISSING_CONTENT, MissingContentItem::new, null);
-
-    public static final ColoredItemDefinition<PaintBallItem> COLORED_PAINT_BALL = createColoredItems("Paint Ball", AEItemIds.COLORED_PAINT_BALL, (p, color) -> new PaintBallItem(p, color));
 
     ///
     /// MATERIALS

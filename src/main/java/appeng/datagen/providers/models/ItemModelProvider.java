@@ -6,7 +6,6 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import appeng.api.ids.AEItemIds;
-import appeng.api.util.AEColor;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
@@ -21,8 +20,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
 
     @Override
     protected void registerModels() {
-        registerPaintballs();
-
         flatSingleLayer(AEItems.MISSING_CONTENT, "minecraft:item/barrier");
 
         builtInItemModel("facade");
@@ -123,18 +120,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
 
     private void registerEmptyModel(ItemDefinition<?> item) {
         this.getBuilder(item.id().getPath());
-    }
-
-    /**
-     * Note that color is applied to the textures in {@link appeng.init.client.InitItemColors}.
-     */
-    private void registerPaintballs() {
-        for (AEColor value : AEColor.values()) {
-            var id = AEItems.COLORED_PAINT_BALL.id(value);
-            if (id != null) {
-                flatSingleLayer(id, "item/paint_ball");
-            }
-        }
     }
 
     private ItemModelBuilder flatSingleLayer(ItemDefinition<?> item, String texture) {
