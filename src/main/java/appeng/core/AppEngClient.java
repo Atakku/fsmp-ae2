@@ -80,7 +80,6 @@ import appeng.client.gui.style.StyleManager;
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.client.guidebook.PartAnnotationStrategy;
 import appeng.client.render.StorageCellClientTooltipComponent;
-import appeng.client.render.effects.CraftingFx;
 import appeng.client.render.effects.EnergyFx;
 import appeng.client.render.effects.EnergyParticleData;
 import appeng.client.render.effects.LightningArcFX;
@@ -245,7 +244,6 @@ public class AppEngClient extends AppEngBase {
     }
 
     public void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ParticleTypes.CRAFTING, CraftingFx.Factory::new);
         event.registerSpriteSet(ParticleTypes.ENERGY, EnergyFx.Factory::new);
         event.registerSpriteSet(ParticleTypes.LIGHTNING_ARC, LightningArcFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.LIGHTNING, LightningFX.Factory::new);

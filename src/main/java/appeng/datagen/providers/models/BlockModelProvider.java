@@ -61,14 +61,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         vibrationChamber();
         ioPort();
 
-        builtInBlockModel("crafting/unit_formed");
-        builtInBlockModel("crafting/accelerator_formed");
-        builtInBlockModel("crafting/1k_storage_formed");
-        builtInBlockModel("crafting/4k_storage_formed");
-        builtInBlockModel("crafting/16k_storage_formed");
-        builtInBlockModel("crafting/64k_storage_formed");
-        builtInBlockModel("crafting/256k_storage_formed");
-
         simpleBlockAndItem(AEBlocks.FLAWLESS_BUDDING_QUARTZ);
         simpleBlockAndItem(AEBlocks.FLAWED_BUDDING_QUARTZ);
         simpleBlockAndItem(AEBlocks.CHIPPED_BUDDING_QUARTZ);

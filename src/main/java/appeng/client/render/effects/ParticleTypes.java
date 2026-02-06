@@ -30,7 +30,6 @@ public final class ParticleTypes {
     private ParticleTypes() {
     }
 
-    public static final SimpleParticleType CRAFTING = new SimpleParticleType(false);
     public static final ParticleType<EnergyParticleData> ENERGY = new ParticleType<>(false) {
         @Override
         public MapCodec<EnergyParticleData> codec() {
