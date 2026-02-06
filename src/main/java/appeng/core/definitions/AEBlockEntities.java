@@ -49,7 +49,6 @@ import appeng.blockentity.misc.InscriberBlockEntity;
 import appeng.blockentity.misc.InterfaceBlockEntity;
 import appeng.blockentity.misc.LightDetectorBlockEntity;
 import appeng.blockentity.misc.MysteriousCubeBlockEntity;
-import appeng.blockentity.misc.PaintSplotchesBlockEntity;
 import appeng.blockentity.misc.VibrationChamberBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
@@ -146,9 +145,6 @@ public final class AEBlockEntities {
             MolecularAssemblerBlockEntity.class, MolecularAssemblerBlockEntity::new, AEBlocks.MOLECULAR_ASSEMBLER);
     public static final DeferredBlockEntityType<LightDetectorBlockEntity> LIGHT_DETECTOR = create("light_detector",
             LightDetectorBlockEntity.class, LightDetectorBlockEntity::new, AEBlocks.LIGHT_DETECTOR);
-    public static final DeferredBlockEntityType<PaintSplotchesBlockEntity> PAINT = create("paint",
-            PaintSplotchesBlockEntity.class,
-            PaintSplotchesBlockEntity::new, AEBlocks.PAINT);
     public static final DeferredBlockEntityType<SkyChestBlockEntity> SKY_CHEST = create("sky_chest",
             SkyChestBlockEntity.class,
             SkyChestBlockEntity::new, AEBlocks.SKY_STONE_CHEST, AEBlocks.SMOOTH_SKY_STONE_CHEST);

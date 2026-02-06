@@ -781,16 +781,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
 
         addQuartzTools(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.MATTER_CANNON)
-                .pattern("aab")
-                .pattern("cd ")
-                .pattern("a  ")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEItems.FORMATION_CORE)
-                .define('c', AEItems.CELL_COMPONENT_4K)
-                .define('d', AEBlocks.ENERGY_CELL)
-                .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
-                .save(consumer, AppEng.makeId("tools/matter_cannon"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CHARGED_STAFF)
                 .pattern("a  ")
                 .pattern(" b ")

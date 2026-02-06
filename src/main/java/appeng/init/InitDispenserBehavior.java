@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.DispenserBlock;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.hooks.BlockToolDispenseItemBehavior;
-import appeng.hooks.MatterCannonDispenseItemBehavior;
 import appeng.hooks.TinyTNTDispenseItemBehavior;
 
 /**
@@ -36,7 +35,6 @@ public final class InitDispenserBehavior {
 
     public static void init() {
         DispenserBlock.registerBehavior(AEBlocks.TINY_TNT, new TinyTNTDispenseItemBehavior());
-        DispenserBlock.registerBehavior(AEItems.MATTER_CANNON, new MatterCannonDispenseItemBehavior());
         DispenserBlock.registerBehavior(AEItems.COLOR_APPLICATOR, new BlockToolDispenseItemBehavior());
     }
 

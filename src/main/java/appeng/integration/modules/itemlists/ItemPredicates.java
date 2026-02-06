@@ -39,8 +39,7 @@ public final class ItemPredicates {
                 || AEItems.MISSING_CONTENT.is(stack)
                 || isBrokenFacade(stack) // REI will add a broken facade with no NBT
                 || AEBlocks.CABLE_BUS.is(stack)
-                || AEBlocks.MATRIX_FRAME.is(stack)
-                || AEBlocks.PAINT.is(stack);
+                || AEBlocks.MATRIX_FRAME.is(stack);
     }
 
     private static boolean isBrokenFacade(ItemStack stack) {

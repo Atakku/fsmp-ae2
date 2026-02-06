@@ -194,7 +194,6 @@ public final class InitCapabilityProviders {
         registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL16K);
         registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL64K);
         registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL256K);
-        registerPowerStorageItem(event, AEItems.MATTER_CANNON);
         registerPowerStorageItem(event, AEItems.WIRELESS_TERMINAL);
         registerPowerStorageItem(event, AEItems.WIRELESS_CRAFTING_TERMINAL);
     }

@@ -29,8 +29,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -40,8 +38,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -73,8 +69,6 @@ import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.items.storage.CreativeCellItem;
-import appeng.items.tools.powered.MatterCannonItem;
-import appeng.me.cells.BasicCellInventory;
 import appeng.me.helpers.BaseActionSource;
 import appeng.me.service.PathingService;
 import appeng.parts.crafting.PatternProviderPart;
@@ -580,51 +574,6 @@ public final class TestPlots {
                     })
                     .thenSucceed();
         }).setupTicks(20).maxTicks(150);
-    }
-
-    @TestPlot("mattercannon_range")
-    public static void matterCannonRange(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-
-        plot.fencedEntity(origin.offset(0, 0, 5), EntityType.COW, entity -> {
-            entity.setSilent(true);
-        });
-        plot.creativeEnergyCell(origin.below());
-        plot.blockEntity(
-                origin,
-                AEBlocks.ME_CHEST,
-                chest -> chest.setCell(createMatterCannon(Items.IRON_NUGGET)));
-
-        plot.block("-2 [0,1] 5", Blocks.STONE);
-        plot.block("2 [0,1] 5", Blocks.STONE);
-
-        plot.creativeEnergyCell(origin.west().below());
-        plot.block(origin.west(), AEBlocks.CHARGER);
-
-        matterCannonDispenser(plot.offset(-2, 1, 1), AEItems.COLORED_LUMEN_PAINT_BALL.item(AEColor.PURPLE));
-        matterCannonDispenser(plot.offset(0, 1, 1), Items.IRON_NUGGET);
-        matterCannonDispenser(plot.offset(2, 1, 1));
-    }
-
-    private static void matterCannonDispenser(PlotBuilder plot, Item... ammos) {
-        plot.blockState(BlockPos.ZERO, Blocks.DISPENSER.defaultBlockState()
-                .setValue(DispenserBlock.FACING, Direction.SOUTH));
-        plot.customizeBlockEntity(BlockPos.ZERO, BlockEntityType.DISPENSER, dispenser -> {
-            dispenser.setItem(0, createMatterCannon(ammos));
-        });
-        plot.buttonOn(BlockPos.ZERO, Direction.NORTH);
-    }
-
-    private static ItemStack createMatterCannon(Item... ammo) {
-        var cannon = AEItems.MATTER_CANNON.stack();
-        ((MatterCannonItem) cannon.getItem()).injectAEPower(cannon, Double.MAX_VALUE, Actionable.MODULATE);
-        var cannonInv = BasicCellInventory.createInventory(cannon, null);
-        for (var item : ammo) {
-            var key = AEItemKey.of(item);
-            cannonInv.insert(
-                    key, key.getMaxStackSize(), Actionable.MODULATE, new BaseActionSource());
-        }
-        return cannon;
     }
 
     /**

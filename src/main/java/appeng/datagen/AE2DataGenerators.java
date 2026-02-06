@@ -35,7 +35,6 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import appeng.core.AppEng;
-import appeng.core.definitions.AEDamageTypes;
 import appeng.datagen.providers.advancements.AdvancementGenerator;
 import appeng.datagen.providers.localization.LocalizationProvider;
 import appeng.datagen.providers.loot.AE2LootTableProvider;
@@ -49,7 +48,6 @@ import appeng.datagen.providers.recipes.CraftingRecipes;
 import appeng.datagen.providers.recipes.DecorationBlockRecipes;
 import appeng.datagen.providers.recipes.DecorationRecipes;
 import appeng.datagen.providers.recipes.InscriberRecipes;
-import appeng.datagen.providers.recipes.MatterCannonAmmoProvider;
 import appeng.datagen.providers.recipes.QuartzCuttingRecipesProvider;
 import appeng.datagen.providers.recipes.SmeltingRecipes;
 import appeng.datagen.providers.recipes.SmithingRecipes;
@@ -107,7 +105,6 @@ public class AE2DataGenerators {
         // Recipes
         pack.addProvider(bindRegistries(DecorationRecipes::new, registries));
         pack.addProvider(bindRegistries(DecorationBlockRecipes::new, registries));
-        pack.addProvider(bindRegistries(MatterCannonAmmoProvider::new, registries));
         pack.addProvider(bindRegistries(InscriberRecipes::new, registries));
         pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
@@ -126,8 +123,7 @@ public class AE2DataGenerators {
                 .add(Registries.DIMENSION_TYPE, InitDimensionTypes::init)
                 .add(Registries.STRUCTURE, InitStructures::initDatagenStructures)
                 .add(Registries.STRUCTURE_SET, InitStructures::initDatagenStructureSets)
-                .add(Registries.BIOME, InitBiomes::init)
-                .add(Registries.DAMAGE_TYPE, AEDamageTypes::init);
+                .add(Registries.BIOME, InitBiomes::init);
     }
 
     private static <T extends DataProvider> DataProvider.Factory<T> bindRegistries(

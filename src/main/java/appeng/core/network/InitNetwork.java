@@ -20,7 +20,6 @@ import appeng.core.network.clientbound.GuiDataSyncPacket;
 import appeng.core.network.clientbound.ItemTransitionEffectPacket;
 import appeng.core.network.clientbound.LightningPacket;
 import appeng.core.network.clientbound.MEInventoryUpdatePacket;
-import appeng.core.network.clientbound.MatterCannonPacket;
 import appeng.core.network.clientbound.MockExplosionPacket;
 import appeng.core.network.clientbound.NetworkStatusPacket;
 import appeng.core.network.clientbound.PatternAccessTerminalPacket;
@@ -57,7 +56,6 @@ public class InitNetwork {
         clientbound(registrar, GuiDataSyncPacket.TYPE, GuiDataSyncPacket.STREAM_CODEC);
         clientbound(registrar, ItemTransitionEffectPacket.TYPE, ItemTransitionEffectPacket.STREAM_CODEC);
         clientbound(registrar, LightningPacket.TYPE, LightningPacket.STREAM_CODEC);
-        clientbound(registrar, MatterCannonPacket.TYPE, MatterCannonPacket.STREAM_CODEC);
         clientbound(registrar, MEInventoryUpdatePacket.TYPE, MEInventoryUpdatePacket.STREAM_CODEC);
         clientbound(registrar, MockExplosionPacket.TYPE, MockExplosionPacket.STREAM_CODEC);
         clientbound(registrar, NetworkStatusPacket.TYPE, NetworkStatusPacket.STREAM_CODEC);

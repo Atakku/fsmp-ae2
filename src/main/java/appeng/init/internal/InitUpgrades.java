@@ -133,13 +133,6 @@ public final class InitUpgrades {
         Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, AEItems.COLOR_APPLICATOR, 1);
         Upgrades.add(AEItems.VOID_CARD, AEItems.COLOR_APPLICATOR, 1);
 
-        // Matter Cannon
-        Upgrades.add(AEItems.ENERGY_CARD, AEItems.MATTER_CANNON, 2);
-        Upgrades.add(AEItems.FUZZY_CARD, AEItems.MATTER_CANNON, 1);
-        Upgrades.add(AEItems.INVERTER_CARD, AEItems.MATTER_CANNON, 1);
-        Upgrades.add(AEItems.VOID_CARD, AEItems.MATTER_CANNON, 1);
-        Upgrades.add(AEItems.SPEED_CARD, AEItems.MATTER_CANNON, 4);
-
         // Molecular Assembler
         Upgrades.add(AEItems.SPEED_CARD, AEBlocks.MOLECULAR_ASSEMBLER, 5);
 

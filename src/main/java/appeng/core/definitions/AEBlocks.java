@@ -77,7 +77,6 @@ import appeng.block.networking.EnergyAcceptorBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.EnergyCellBlockItem;
 import appeng.block.networking.WirelessAccessPointBlock;
-import appeng.block.paint.PaintSplotchesBlock;
 import appeng.block.qnb.QuantumLinkChamberBlock;
 import appeng.block.qnb.QuantumRingBlock;
 import appeng.block.spatial.MatrixFrameBlock;
@@ -201,7 +200,6 @@ public final class AEBlocks {
     public static final BlockDefinition<MolecularAssemblerBlock> MOLECULAR_ASSEMBLER = block("Molecular Assembler", AEBlockIds.MOLECULAR_ASSEMBLER, () -> new MolecularAssemblerBlock(metalProps().noOcclusion()));
 
     public static final BlockDefinition<LightDetectorBlock> LIGHT_DETECTOR = block("Light Detecting Fixture", AEBlockIds.LIGHT_DETECTOR, LightDetectorBlock::new);
-    public static final BlockDefinition<PaintSplotchesBlock> PAINT = block("Paint", AEBlockIds.PAINT, PaintSplotchesBlock::new);
 
     public static final BlockDefinition<StairBlock> SKY_STONE_STAIRS = block("Sky Stone Stairs", AEBlockIds.SKY_STONE_STAIRS, () -> new StairBlock(SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));
     public static final BlockDefinition<StairBlock> SMOOTH_SKY_STONE_STAIRS = block("Sky Stone Block Stairs", AEBlockIds.SMOOTH_SKY_STONE_STAIRS, () -> new StairBlock(SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));

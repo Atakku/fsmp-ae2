@@ -239,10 +239,6 @@ public final class AEConfig {
         return common.wirelessTerminalBattery::get;
     }
 
-    public DoubleSupplier getMatterCannonBattery() {
-        return common.matterCannonBattery::get;
-    }
-
     public DoubleSupplier getPortableCellBattery() {
         return common.portableCellBattery::get;
     }
@@ -272,10 +268,6 @@ public final class AEConfig {
 
     public boolean isSpawnFlawlessOnlyEnabled() {
         return common.spawnFlawlessOnly.get();
-    }
-
-    public boolean isMatterCanonBlockDamageEnabled() {
-        return common.matterCannonBlockDamage.get();
     }
 
     public boolean isTinyTntBlockDamageEnabled() {
@@ -497,7 +489,6 @@ public final class AEConfig {
         public final IntValue formationPlaneEntityLimit;
         public final IntValue craftingCalculationTimePerTick;
         public final BooleanValue debugTools;
-        public final BooleanValue matterCannonBlockDamage;
         public final BooleanValue tinyTntBlockDamage;
         public final EnumValue<ChannelMode> channels;
 
@@ -517,7 +508,6 @@ public final class AEConfig {
         // Batteries
         public final DoubleValue chargerChargeRate;
         public final IntValue wirelessTerminalBattery;
-        public final IntValue matterCannonBattery;
         public final IntValue portableCellBattery;
         public final IntValue colorApplicatorBattery;
         public final IntValue chargedStaffBattery;
@@ -551,8 +541,6 @@ public final class AEConfig {
 
             builder.push("general");
             debugTools = define(builder, "unsupportedDeveloperTools", Platform.isDevelopmentEnvironment());
-            matterCannonBlockDamage = define(builder, "matterCannonBlockDamage", true,
-                    "Enables the ability of the Matter Cannon to break blocks.");
             tinyTntBlockDamage = define(builder, "tinyTntBlockDamage", true,
                     "Enables the ability of Tiny TNT to break blocks.");
             channels = defineEnum(builder, "channels", ChannelMode.DEFAULT,
@@ -594,7 +582,6 @@ public final class AEConfig {
             this.chargedStaffBattery = define(builder, "chargedStaff", 8000);
             this.portableCellBattery = define(builder, "portableCell", 20000);
             this.colorApplicatorBattery = define(builder, "colorApplicator", 20000);
-            this.matterCannonBattery = define(builder, "matterCannon", 200000);
             builder.pop();
 
             builder.push("worldGen");

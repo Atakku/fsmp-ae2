@@ -54,7 +54,6 @@ public final class ParticleTypes {
         }
     };
     public static final SimpleParticleType LIGHTNING = new SimpleParticleType(false);
-    public static final SimpleParticleType MATTER_CANNON = new SimpleParticleType(false);
     public static final SimpleParticleType VIBRANT = new SimpleParticleType(false);
 
 }

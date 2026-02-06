@@ -89,7 +89,6 @@ import appeng.client.render.effects.EnergyFx;
 import appeng.client.render.effects.EnergyParticleData;
 import appeng.client.render.effects.LightningArcFX;
 import appeng.client.render.effects.LightningFX;
-import appeng.client.render.effects.MatterCannonFX;
 import appeng.client.render.effects.ParticleTypes;
 import appeng.client.render.effects.VibrantFX;
 import appeng.client.render.model.GlassBakedModel;
@@ -266,7 +265,6 @@ public class AppEngClient extends AppEngBase {
         event.registerSpriteSet(ParticleTypes.ENERGY, EnergyFx.Factory::new);
         event.registerSpriteSet(ParticleTypes.LIGHTNING_ARC, LightningArcFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.LIGHTNING, LightningFX.Factory::new);
-        event.registerSpriteSet(ParticleTypes.MATTER_CANNON, MatterCannonFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.VIBRANT, VibrantFX.Factory::new);
     }
 

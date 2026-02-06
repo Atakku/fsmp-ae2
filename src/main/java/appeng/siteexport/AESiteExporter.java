@@ -21,11 +21,9 @@ import guideme.internal.siteexport.SiteExporter;
 
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.core.definitions.AEBlocks;
-import appeng.items.tools.powered.MatterCannonItem;
 import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberProcessType;
 import appeng.recipes.handlers.InscriberRecipe;
-import appeng.recipes.mattercannon.MatterCannonAmmo;
 import appeng.recipes.transform.TransformRecipe;
 
 public class AESiteExporter extends SiteExporter {
@@ -58,7 +56,6 @@ public class AESiteExporter extends SiteExporter {
         return switch (recipe) {
             case InscriberRecipe inscriberRecipe -> addRecipe(inscriberRecipe);
             case TransformRecipe transformRecipe -> addRecipe(transformRecipe);
-            case MatterCannonAmmo ammoRecipe -> addRecipe(ammoRecipe);
             case ChargerRecipe chargerRecipe -> addRecipe(chargerRecipe);
             case null, default -> null;
         };
@@ -98,12 +95,6 @@ public class AESiteExporter extends SiteExporter {
                 "resultItem", recipe.getResultItem(null),
                 "ingredients", recipe.getIngredients(),
                 "circumstance", circumstanceJson);
-    }
-
-    private Map<String, Object> addRecipe(MatterCannonAmmo recipe) {
-        return Map.of(
-                "ammo", recipe.getAmmo(),
-                "damage", MatterCannonItem.getDamageFromPenetration(recipe.getWeight()));
     }
 
     private Map<String, Object> addRecipe(ChargerRecipe recipe) {

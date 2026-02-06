@@ -79,8 +79,6 @@ import appeng.api.upgrades.Upgrades;
 import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
 import appeng.block.networking.CableBusBlock;
-import appeng.block.paint.PaintSplotchesBlock;
-import appeng.blockentity.misc.PaintSplotchesBlockEntity;
 import appeng.core.AEConfig;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.GuiText;
@@ -184,16 +182,6 @@ public class ColorApplicatorItem extends AEBasePoweredItem
                             consumeColor(is, color, false);
                             return InteractionResult.sidedSuccess(level.isClientSide());
                         }
-                    }
-
-                    // clean paint balls..
-                    final Block testBlk = level.getBlockState(pos.relative(side)).getBlock();
-                    final BlockEntity painted = level.getBlockEntity(pos.relative(side));
-                    if (this.getAECurrentPower(is) > POWER_PER_USE && testBlk instanceof PaintSplotchesBlock
-                            && painted instanceof PaintSplotchesBlockEntity) {
-                        consumeColor(is, color, false);
-                        ((PaintSplotchesBlockEntity) painted).cleanSide(side.getOpposite());
-                        return InteractionResult.sidedSuccess(level.isClientSide());
                     }
                 }
 

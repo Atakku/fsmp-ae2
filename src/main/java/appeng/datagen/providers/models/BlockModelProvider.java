@@ -46,7 +46,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         // These models will be overwritten in code
         builtInModel(AEBlocks.QUARTZ_GLASS, true);
         builtInModel(AEBlocks.CABLE_BUS);
-        builtInModel(AEBlocks.PAINT);
 
         var driveModel = builtInBlockModel("drive");
         multiVariantGenerator(AEBlocks.DRIVE, Variant.variant().with(VariantProperties.MODEL, driveModel.getLocation()))

@@ -13,7 +13,6 @@ import appeng.recipes.game.StorageCellDisassemblyRecipeSerializer;
 import appeng.recipes.game.StorageCellUpgradeRecipeSerializer;
 import appeng.recipes.handlers.ChargerRecipeSerializer;
 import appeng.recipes.handlers.InscriberRecipeSerializer;
-import appeng.recipes.mattercannon.MatterCannonAmmoSerializer;
 import appeng.recipes.quartzcutting.QuartzCuttingRecipeSerializer;
 import appeng.recipes.transform.TransformRecipeSerializer;
 
@@ -27,7 +26,6 @@ public final class AERecipeSerializers {
     static {
         register("inscriber", InscriberRecipeSerializer.INSTANCE);
         register("facade", FacadeRecipe.SERIALIZER);
-        register("matter_cannon", MatterCannonAmmoSerializer.INSTANCE);
         register("transform", TransformRecipeSerializer.INSTANCE);
         register("charger", ChargerRecipeSerializer.INSTANCE);
         register("storage_cell_upgrade", StorageCellUpgradeRecipeSerializer.INSTANCE);
