@@ -50,7 +50,6 @@ public class BlockTagsProvider extends IntrinsicHolderTagsProvider<Block> implem
     @Override
     protected void addTags(HolderLookup.Provider registries) {
         // Black- and whitelist tags
-        tag(AETags.ANNIHILATION_PLANE_BLOCK_BLACKLIST);
         tag(AETags.FACADE_BLOCK_WHITELIST)
                 .add(AEBlocks.QUARTZ_GLASS.block(), AEBlocks.QUARTZ_VIBRANT_GLASS.block(),
                         Blocks.CHISELED_BOOKSHELF, Blocks.JUKEBOX, Blocks.FURNACE, Blocks.BLAST_FURNACE, Blocks.DROPPER,

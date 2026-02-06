@@ -21,7 +21,6 @@ package appeng.init.client;
 import java.util.function.Supplier;
 
 import net.minecraft.client.resources.model.UnbakedModel;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -35,7 +34,6 @@ import appeng.client.render.model.MemoryCardModel;
 import appeng.client.render.model.MeteoriteCompassModel;
 import appeng.core.AppEng;
 import appeng.hooks.BuiltInModelHooks;
-import appeng.parts.automation.PlaneModel;
 
 @OnlyIn(Dist.CLIENT)
 public final class InitBuiltInModels {
@@ -51,22 +49,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
         addBuiltInModel("part/p2p/p2p_tunnel_frequency", P2PTunnelFrequencyModel::new);
         addBuiltInModel("item/facade", FacadeItemModel::new);
-
-        // Fabric doesn't have model-loaders, so we register the models by hand instead
-        addPlaneModel("part/annihilation_plane", "part/annihilation_plane");
-        addPlaneModel("part/annihilation_plane_on", "part/annihilation_plane_on");
-        addPlaneModel("part/identity_annihilation_plane", "part/identity_annihilation_plane");
-        addPlaneModel("part/identity_annihilation_plane_on", "part/identity_annihilation_plane_on");
-        addPlaneModel("part/formation_plane", "part/formation_plane");
-        addPlaneModel("part/formation_plane_on", "part/formation_plane_on");
-    }
-
-    private static void addPlaneModel(String planeName,
-            String frontTexture) {
-        ResourceLocation frontTextureId = AppEng.makeId(frontTexture);
-        ResourceLocation sidesTextureId = AppEng.makeId("part/plane_sides");
-        ResourceLocation backTextureId = AppEng.makeId("part/transition_plane_back");
-        addBuiltInModel(planeName, () -> new PlaneModel(frontTextureId, sidesTextureId, backTextureId));
     }
 
     private static <T extends UnbakedModel> void addBuiltInModel(String id,

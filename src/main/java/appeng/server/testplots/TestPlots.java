@@ -28,33 +28,22 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.fml.ModList;
 
-import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;
-import appeng.api.config.RedstoneMode;
-import appeng.api.config.Settings;
 import appeng.api.orientation.BlockOrientation;
-import appeng.api.parts.PartHelper;
 import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.GenericStack;
 import appeng.api.storage.StorageCells;
 import appeng.api.util.AEColor;
 import appeng.blockentity.storage.MEChestBlockEntity;
-import appeng.blockentity.storage.SkyStoneTankBlockEntity;
 import appeng.core.AELog;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
-import appeng.items.storage.CreativeCellItem;
 import appeng.me.helpers.BaseActionSource;
 import appeng.server.testworld.Plot;
 import appeng.server.testworld.PlotBuilder;
@@ -302,58 +291,6 @@ public final class TestPlots {
         plot.creativeEnergyCell("0 -1 0");
     }
 
-    @TestPlot("import_exportbus")
-    public static void importExportBus(PlotBuilder plot) {
-        plot.chest("1 0 1", new ItemStack(Items.ACACIA_LOG, 16), new ItemStack(Items.ENDER_PEARL, 6));
-        plot.block("1 1 1", Blocks.HOPPER);
-        plot.creativeEnergyCell("3 -1 1");
-        plot.cable("3 0 1")
-                .part(Direction.NORTH, AEParts.TERMINAL);
-        plot.cable("2 0 1")
-                .part(Direction.WEST, AEParts.IMPORT_BUS);
-        plot.cable("2 1 1")
-                .part(Direction.WEST, AEParts.EXPORT_BUS, bus -> {
-                    bus.getConfig().setStack(0, new GenericStack(AEItemKey.of(Items.ENDER_PEARL), 1));
-                });
-        plot.blockEntity("3 -1 0", AEBlocks.DRIVE, drive -> {
-            drive.getInternalInventory().addItems(AEItems.ITEM_CELL_64K.stack());
-        });
-    }
-
-    @TestPlot("inverted_import_bus_multitype")
-    public static void invertedImportBusMultitype(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
-        plot.cable(origin).part(Direction.WEST, AEParts.IMPORT_BUS, part -> {
-            // Add an inversion card and filter for LAVA
-            part.getUpgrades().addItems(AEItems.INVERTER_CARD.stack());
-            part.getConfig().addFilter(Fluids.LAVA);
-        });
-
-        // Place an interface such that the import bus could pull LAVA, WATER and STICKS
-        plot.blockEntity(origin.west(), AEBlocks.INTERFACE, iface -> {
-            // Set up the config & storage
-            iface.getConfig().insert(0, AEFluidKey.of(Fluids.LAVA), AEFluidKey.AMOUNT_BUCKET, Actionable.MODULATE);
-            iface.getStorage().insert(0, AEFluidKey.of(Fluids.LAVA), AEFluidKey.AMOUNT_BUCKET, Actionable.MODULATE);
-
-            iface.getConfig().insert(1, AEFluidKey.of(Fluids.WATER), AEFluidKey.AMOUNT_BUCKET, Actionable.MODULATE);
-            iface.getStorage().insert(1, AEFluidKey.of(Fluids.WATER), AEFluidKey.AMOUNT_BUCKET, Actionable.MODULATE);
-            iface.getConfig().insert(2, AEItemKey.of(Items.STICK), 1, Actionable.MODULATE);
-            iface.getStorage().insert(2, AEItemKey.of(Items.STICK), 1, Actionable.MODULATE);
-        });
-        // Add some storage for the import bus to import into
-        plot.storageDrive(origin.east());
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                // We expect that everything except the black-listed fluid is imported, regardless of type
-                helper.assertNetworkContainsNot(origin, Fluids.LAVA);
-                helper.assertNetworkContains(origin, Fluids.WATER);
-                helper.assertNetworkContains(origin, Items.STICK);
-            });
-        });
-    }
-
     @TestPlot("inscriber")
     public static void inscriber(PlotBuilder plot) {
         processorInscriber(plot.offset(0, 1, 2), AEItems.LOGIC_PROCESSOR_PRESS, Items.GOLD_INGOT);
@@ -385,170 +322,6 @@ public final class TestPlots {
         plot.creativeEnergyCell("0 1 1");
         plot.blockEntity("0 1 0", AEBlocks.INSCRIBER, BlockOrientation.NORTH_WEST::setOn);
         plot.hopper("0 0 0", Direction.DOWN);
-    }
-
-    /**
-     * Export from a chest->storagebus->exportbus->chest to test that it interacts correctly with Fabric transactions.
-     */
-    @TestPlot("export_from_storagebus")
-    public static void exportFromStorageBus(PlotBuilder plot) {
-        plot.creativeEnergyCell("1 0 0");
-        plot.cable("0 0 0")
-                .part(Direction.SOUTH, AEParts.EXPORT_BUS, part -> {
-                    part.getConfig().addFilter(Items.OAK_PLANKS);
-                })
-                .part(Direction.NORTH, AEParts.STORAGE_BUS);
-        plot.chest("0 0 1"); // Output Chest
-        plot.chest("0 0 -1", new ItemStack(Items.OAK_PLANKS)); // Import Chest
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                helper.assertContainerContains(new BlockPos(0, 0, 1), Items.OAK_PLANKS);
-                helper.assertContainerEmpty(new BlockPos(0, 0, -1));
-            });
-        });
-    }
-
-    /**
-     * Import into a storage bus, which tests that the external interaction is correct w.r.t. Fabric transactions.
-     */
-    @TestPlot("import_into_storagebus")
-    public static void importIntoStorageBus(PlotBuilder plot) {
-        plot.creativeEnergyCell("1 0 0");
-        plot.cable("0 0 0")
-                .part(Direction.NORTH, AEParts.IMPORT_BUS)
-                .part(Direction.SOUTH, AEParts.STORAGE_BUS);
-        plot.chest("0 0 1"); // Output Chest
-        plot.chest("0 0 -1", new ItemStack(Items.OAK_PLANKS)); // Import Chest
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                helper.assertContainerContains(new BlockPos(0, 0, 1), Items.OAK_PLANKS);
-                helper.assertContainerEmpty(new BlockPos(0, 0, -1));
-            });
-            helper.startSequence()
-                    .thenIdle(10)
-                    .thenSucceed();
-        });
-    }
-
-    /**
-     * Import on Pulse (transition low->high)
-     */
-    @TestPlot("import_on_pulse")
-    public static void importOnPulse(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        var inputPos = origin.south();
-
-        plot.creativeEnergyCell(origin.west().west());
-        plot.storageDrive(origin.west());
-        plot.cable(origin)
-                .part(Direction.SOUTH, AEParts.IMPORT_BUS, bus -> {
-                    bus.getUpgrades().addItems(AEItems.REDSTONE_CARD.stack());
-                    bus.getConfigManager().putSetting(Settings.REDSTONE_CONTROLLED, RedstoneMode.SIGNAL_PULSE);
-                })
-                .part(Direction.NORTH, AEParts.TERMINAL);
-        plot.chest(inputPos, new ItemStack(Items.OAK_PLANKS)); // Import Chest
-        plot.block(origin.east(), Blocks.STONE);
-        var leverPos = plot.leverOn(origin.east(), Direction.NORTH);
-
-        plot.test(helper -> {
-            // Import bus should import nothing on its own
-            var inputChest = (ChestBlockEntity) helper.getBlockEntity(inputPos);
-            var grid = helper.getGrid(origin);
-            Runnable assertNothingMoved = () -> {
-                helper.assertContainerContains(inputPos, Items.OAK_PLANKS);
-            };
-            Runnable assertMoved = () -> {
-                helper.assertContainerEmpty(inputPos);
-                helper.assertNetworkContains(origin, Items.OAK_PLANKS);
-            };
-            Runnable reset = () -> {
-                inputChest.clearContent();
-                helper.clearStorage(grid);
-                inputChest.setItem(0, new ItemStack(Items.OAK_PLANKS));
-            };
-            Runnable toggleSignal = () -> {
-                helper.pullLever(leverPos);
-            };
-
-            helper.startSequence()
-                    .thenExecuteAfter(1, assertNothingMoved)
-                    .thenExecute(toggleSignal)
-                    // The items should only be moved on the subsequent tick
-                    .thenExecute(assertNothingMoved)
-                    .thenExecuteAfter(1, assertMoved)
-                    .thenExecute(reset)
-                    // The transition from on->off should NOT count as a pulse,
-                    // and it should not move anything on its own afterwards
-                    .thenExecute(toggleSignal)
-                    .thenExecuteFor(30, assertNothingMoved)
-                    .thenSucceed();
-        });
-    }
-
-    /**
-     * Import on Pulse (transition low->high), combined with the storage bus attached to the storage we are importing
-     * from. This is a regression test for Fabric, where the Storage Bus has to open a Transaction for
-     * getAvailableStacks, and the simulated extraction causes a neighbor update, triggering the import bus.
-     */
-    @TestPlot("import_on_pulse_transactioncrash")
-    public static void importOnPulseTransactionCrash(PlotBuilder plot) {
-        plot.creativeEnergyCell("1 0 0");
-        plot.chest("0 0 -1", new ItemStack(Items.OAK_PLANKS)); // Import Chest
-        plot.chest("0 0 1"); // Output Chest
-        plot.block("0 1 0", Blocks.REDSTONE_BLOCK);
-        plot.cable("-1 0 0");
-        // This storage bus triggers a neighbor update on the input chest when it scans its inventory
-        plot.cable("-1 0 -1")
-                .part(Direction.EAST, AEParts.STORAGE_BUS, storageBus -> {
-                    storageBus.getConfigManager().putSetting(Settings.ACCESS, AccessRestriction.READ);
-                });
-        plot.cable("0 0 0")
-                .part(Direction.SOUTH, AEParts.STORAGE_BUS);
-
-        // The planks should never move over to the output chest since there's never an actual pulse
-        plot.test(helper -> {
-            helper.startSequence()
-                    .thenExecuteAfter(1, () -> {
-                        var pos = helper.absolutePos(BlockPos.ZERO);
-                        var importBus = PartHelper.setPart(helper.getLevel(), pos, Direction.NORTH,
-                                null, AEParts.IMPORT_BUS.get());
-                        importBus.getUpgrades().addItems(AEItems.REDSTONE_CARD.stack());
-                        importBus.getConfigManager().putSetting(Settings.REDSTONE_CONTROLLED,
-                                RedstoneMode.SIGNAL_PULSE);
-                    })
-                    .thenExecuteFor(100, () -> {
-                        // Force an inventory rescan
-                        helper.assertContainerEmpty(new BlockPos(0, 0, 1));
-                    })
-                    .thenSucceed();
-        }).setupTicks(20).maxTicks(150);
-    }
-
-    /**
-     * Regression test for https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/5821
-     */
-    @TestPlot("insert_fluid_into_mechest")
-    public static void testInsertFluidIntoMEChest(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
-        plot.blockEntity(origin, AEBlocks.ME_CHEST, chest -> {
-            chest.setCell(AEItems.FLUID_CELL_4K.stack());
-        });
-        plot.cable(origin.east())
-                .part(Direction.WEST, AEParts.EXPORT_BUS, bus -> {
-                    bus.getConfig().addFilter(Fluids.WATER);
-                });
-        plot.blockEntity(origin.east().north(), AEBlocks.DRIVE, drive -> {
-            drive.getInternalInventory().addItems(CreativeCellItem.ofFluids(Fluids.WATER));
-        });
-        plot.creativeEnergyCell(origin.east().north().below());
-
-        plot.test(helper -> helper.succeedWhen(() -> {
-            var meChest = (MEChestBlockEntity) helper.getBlockEntity(origin);
-            helper.assertContains(meChest.getInventory(), AEFluidKey.of(Fluids.WATER));
-        }));
     }
 
     /**
@@ -595,92 +368,6 @@ public final class TestPlots {
                     cell.add(AEItemKey.of(pickaxe), 2);
                 }
             }
-        });
-    }
-
-    @TestPlot("import_from_cauldron")
-    public static void importLavaFromCauldron(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
-        plot.cable(origin)
-                .part(Direction.EAST, AEParts.IMPORT_BUS, importBus -> {
-                    importBus.getUpgrades().addItems(AEItems.SPEED_CARD.stack());
-                })
-                .part(Direction.WEST, AEParts.STORAGE_BUS);
-        plot.block(origin.west(), AEBlocks.SKY_STONE_TANK);
-        plot.block(origin.east(), Blocks.LAVA_CAULDRON);
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                helper.assertBlockPresent(Blocks.CAULDRON, origin.east());
-                var tank = (SkyStoneTankBlockEntity) helper.getBlockEntity(origin.west());
-                helper.check(tank.getTank().getFluidAmount() == AEFluidKey.AMOUNT_BUCKET,
-                        "Less than a bucket stored");
-                helper.check(tank.getTank().getFluid().getFluid() == Fluids.LAVA,
-                        "Something other than lava stored");
-            });
-        });
-    }
-
-    /**
-     * Placing a storage bus on a double chest should report the content of both chests.
-     */
-    @TestPlot("double_chest_storage_bus")
-    private static void doubleChestStorageBus(PlotBuilder plot) {
-        var o = BlockPos.ZERO;
-        plot.chest(o.north(), new ItemStack(Items.STICK));
-        plot.chest(o.north().west(), new ItemStack(Items.STICK));
-        plot.blockState(o.north(), Blocks.CHEST.defaultBlockState().setValue(ChestBlock.TYPE, ChestType.RIGHT));
-        plot.blockState(o.north().west(), Blocks.CHEST.defaultBlockState().setValue(ChestBlock.TYPE, ChestType.LEFT));
-        plot.cable(o).part(Direction.NORTH, AEParts.STORAGE_BUS);
-        plot.creativeEnergyCell(o.below());
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                var grid = helper.getGrid(o);
-                var stacks = grid.getStorageService().getInventory().getAvailableStacks();
-                var stickCount = stacks.get(AEItemKey.of(Items.STICK));
-                // The contents of both chest halves should be reported
-                helper.check(2 == stickCount, "Stick count wasn't 2: " + stickCount);
-            });
-        });
-    }
-
-    /**
-     * Regression test for https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/6294
-     */
-    @TestPlot("export_bus_dupe_regression")
-    private static void exportBusDupeRegression(PlotBuilder plot) {
-        var o = BlockPos.ZERO;
-        plot.chest(o.north(), new ItemStack(Items.STICK, 64));
-        plot.blockState(o.north(), Blocks.CHEST.defaultBlockState().setValue(ChestBlock.TYPE, ChestType.RIGHT));
-        plot.blockState(o.north().west(), Blocks.CHEST.defaultBlockState().setValue(ChestBlock.TYPE, ChestType.LEFT));
-
-        // Storage bus on double chest, as well as export bus on output
-        plot.cable(o).part(Direction.NORTH, AEParts.STORAGE_BUS)
-                .part(Direction.SOUTH, AEParts.EXPORT_BUS, part -> {
-                    part.getConfig().addFilter(Items.STICK);
-                    part.getUpgrades().addItems(AEItems.SPEED_CARD.stack(1));
-                    part.getUpgrades().addItems(AEItems.SPEED_CARD.stack(1));
-                    part.getUpgrades().addItems(AEItems.SPEED_CARD.stack(1));
-                    part.getUpgrades().addItems(AEItems.SPEED_CARD.stack(1));
-                });
-        plot.chest(o.south());
-        // Second storage bus on double chest
-        plot.cable(o.west()).part(Direction.NORTH, AEParts.STORAGE_BUS);
-        plot.creativeEnergyCell(o.below());
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                // Both double chests should be empty
-                helper.assertContainerEmpty(o.north());
-                helper.assertContainerEmpty(o.north().west());
-
-                // The output chest should have 64
-                var counter = helper.countContainerContentAt(o.south());
-                var stickCount = counter.get(AEItemKey.of(Items.STICK));
-                helper.check(stickCount == 64,
-                        "Expected 64 sticks total, but found: " + stickCount);
-            });
         });
     }
 

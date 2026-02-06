@@ -42,7 +42,6 @@ import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.misc.CondenserBlockEntity;
 import appeng.blockentity.misc.CrankBlockEntity;
 import appeng.blockentity.misc.InscriberBlockEntity;
-import appeng.blockentity.misc.InterfaceBlockEntity;
 import appeng.blockentity.misc.LightDetectorBlockEntity;
 import appeng.blockentity.misc.MysteriousCubeBlockEntity;
 import appeng.blockentity.misc.VibrationChamberBlockEntity;
@@ -88,8 +87,6 @@ public final class AEBlockEntities {
             DriveBlockEntity::new, AEBlocks.DRIVE);
     public static final DeferredBlockEntityType<MEChestBlockEntity> ME_CHEST = create("chest", MEChestBlockEntity.class,
             MEChestBlockEntity::new, AEBlocks.ME_CHEST);
-    public static final DeferredBlockEntityType<InterfaceBlockEntity> INTERFACE = create("interface",
-            InterfaceBlockEntity.class, InterfaceBlockEntity::new, AEBlocks.INTERFACE);
     public static final DeferredBlockEntityType<CellWorkbenchBlockEntity> CELL_WORKBENCH = create("cell_workbench",
             CellWorkbenchBlockEntity.class, CellWorkbenchBlockEntity::new, AEBlocks.CELL_WORKBENCH);
     public static final DeferredBlockEntityType<IOPortBlockEntity> IO_PORT = create("io_port", IOPortBlockEntity.class,

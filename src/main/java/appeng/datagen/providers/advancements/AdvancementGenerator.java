@@ -362,37 +362,5 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL256K))
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .save(consumer, "ae2:main/portable_cell");
-
-        var storageBus = Advancement.Builder.advancement()
-                .display(
-                        AEParts.STORAGE_BUS,
-                        localization.component("achievement.ae2.StorageBus", "Limitless Potential"),
-                        localization.component("achievement.ae2.StorageBus.desc", "Craft a Storage Bus"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(glassCable)
-                .addCriterion("part", InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.STORAGE_BUS))
-                .save(consumer, "ae2:main/storage_bus");
-
-        var storageBusOnInterface = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.INTERFACE,
-                        localization.component("achievement.ae2.Recursive", "Recursive Networking"),
-                        localization.component("achievement.ae2.Recursive.desc",
-                                "Place a Storage Bus on an Interface."),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(storageBus)
-                .addCriterion("recursive", AdvancementTriggers.recursiveCriterion())
-                .save(consumer, "ae2:main/recursive");
-
     }
 }

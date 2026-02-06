@@ -1,4 +1,3 @@
 {
-  "$schema": "schema.json",
-  "includes": ["storage_bus.json"]
+  "$schema": "schema.json"
 }

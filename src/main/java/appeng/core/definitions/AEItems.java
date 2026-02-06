@@ -205,7 +205,6 @@ public final class AEItems {
     public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR = item("Engineering Processor", AEItemIds.ENGINEERING_PROCESSOR, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> BASIC_CARD = item("Basic Card", AEItemIds.BASIC_CARD, MaterialItem::new);
     public static final ItemDefinition<Item> REDSTONE_CARD = item("Redstone Card", AEItemIds.REDSTONE_CARD, Upgrades::createUpgradeCardItem);
-    public static final ItemDefinition<Item> CAPACITY_CARD = item("Capacity Card", AEItemIds.CAPACITY_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> VOID_CARD = item("Overflow Destruction Card", AEItemIds.VOID_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<MaterialItem> ADVANCED_CARD = item("Advanced Card", AEItemIds.ADVANCED_CARD, MaterialItem::new);
     public static final ItemDefinition<Item> FUZZY_CARD = item("Fuzzy Card", AEItemIds.FUZZY_CARD, Upgrades::createUpgradeCardItem);

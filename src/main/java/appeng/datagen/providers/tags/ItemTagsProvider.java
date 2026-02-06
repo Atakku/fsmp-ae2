@@ -52,14 +52,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
     protected void addTags(HolderLookup.Provider registries) {
         copyBlockTags();
 
-        // Allow the annihilation plane to be enchanted with silk touch, fortune, efficiency & unbreaking
-        tag(ItemTags.DURABILITY_ENCHANTABLE).add(AEParts.ANNIHILATION_PLANE.asItem());
-        tag(ItemTags.MINING_ENCHANTABLE).add(AEParts.ANNIHILATION_PLANE.asItem());
-        tag(ItemTags.MINING_LOOT_ENCHANTABLE).add(AEParts.ANNIHILATION_PLANE.asItem());
-
-        // Provide empty blacklist tags
-        tag(AETags.ANNIHILATION_PLANE_ITEM_BLACKLIST);
-
         tag(ConventionTags.BUDDING_BLOCKS)
                 .add(AEBlocks.FLAWLESS_BUDDING_QUARTZ.asItem())
                 .add(AEBlocks.FLAWED_BUDDING_QUARTZ.asItem())
@@ -171,10 +163,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .addOptionalTag(ResourceLocation.parse("c:ingots/nickel"))
                 .addOptionalTag(ResourceLocation.parse("c:ingots/aluminium"));
 
-        tag(ConventionTags.INTERFACE)
-                .add(AEParts.INTERFACE.asItem())
-                .add(AEBlocks.INTERFACE.asItem());
-
         tag(ConventionTags.ILLUMINATED_PANEL)
                 .add(AEParts.MONITOR.asItem())
                 .add(AEParts.SEMI_DARK_MONITOR.asItem())
@@ -256,9 +244,7 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                         Items.REDSTONE_TORCH, Items.REDSTONE_BLOCK, Items.LEVER);
 
         tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.ITEM_TUNNEL))
-                .add(AEParts.STORAGE_BUS.asItem(), AEParts.EXPORT_BUS.asItem(), AEParts.IMPORT_BUS.asItem(),
-                        Items.HOPPER, Items.CHEST, Items.TRAPPED_CHEST)
-                .addTag(ConventionTags.INTERFACE);
+                .add(Items.HOPPER, Items.CHEST, Items.TRAPPED_CHEST);
 
         tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.FLUID_TUNNEL))
                 .add(Items.BUCKET, Items.MILK_BUCKET, Items.WATER_BUCKET, Items.LAVA_BUCKET);

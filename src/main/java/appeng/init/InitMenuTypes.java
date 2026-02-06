@@ -29,16 +29,12 @@ import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.EnergyLevelEmitterMenu;
-import appeng.menu.implementations.FormationPlaneMenu;
-import appeng.menu.implementations.IOBusMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.InscriberMenu;
-import appeng.menu.implementations.InterfaceMenu;
 import appeng.menu.implementations.MEChestMenu;
 import appeng.menu.implementations.PriorityMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SkyChestMenu;
-import appeng.menu.implementations.StorageBusMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.VibrationChamberMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
@@ -64,12 +60,8 @@ public final class InitMenuTypes {
                 CraftingTermMenu.TYPE,
                 DriveMenu.TYPE,
                 EnergyLevelEmitterMenu.TYPE,
-                FormationPlaneMenu.TYPE,
-                IOBusMenu.EXPORT_TYPE,
-                IOBusMenu.IMPORT_TYPE,
                 IOPortMenu.TYPE,
                 InscriberMenu.TYPE,
-                InterfaceMenu.TYPE,
                 MEStorageMenu.TYPE,
                 MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
                 MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
@@ -80,7 +72,6 @@ public final class InitMenuTypes {
                 PriorityMenu.TYPE,
                 QuartzKnifeMenu.TYPE,
                 SkyChestMenu.TYPE,
-                StorageBusMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,
                 VibrationChamberMenu.TYPE,
                 WirelessCraftingTermMenu.TYPE,

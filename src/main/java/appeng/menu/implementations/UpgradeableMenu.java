@@ -33,7 +33,6 @@ import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.core.definitions.AEItems;
 import appeng.helpers.externalstorage.GenericStackInv;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
@@ -146,9 +145,7 @@ public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends AEBa
 
     @Override
     public boolean isSlotEnabled(int idx) {
-        int capacityUpgrades = this.getHost().getUpgrades().getInstalledUpgrades(AEItems.CAPACITY_CARD);
-        return idx == 1 && capacityUpgrades >= 1
-                || idx == 2 && capacityUpgrades >= 2;
+        return false;
     }
 
     public FuzzyMode getFuzzyMode() {

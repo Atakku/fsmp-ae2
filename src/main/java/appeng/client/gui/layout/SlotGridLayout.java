@@ -19,37 +19,8 @@
 package appeng.client.gui.layout;
 
 import appeng.client.Point;
-import appeng.menu.implementations.IOBusMenu;
 
 public enum SlotGridLayout {
-
-    /**
-     * This layout is used for the peculiar grid of slots used in {@link IOBusMenu}.
-     */
-    IO_BUS_CONFIG {
-
-        /**
-         * Slots are laid out around the center slot 0. Slots 1-4 in the cardinal directions. Slots 5-8 in the diagonal
-         * directions.
-         */
-        private final Point[] OFFSETS = new Point[] {
-                new Point(0, 0),
-                new Point(-18, 0),
-                new Point(18, 0),
-                new Point(0, -18),
-                new Point(0, 18),
-                new Point(-18, -18),
-                new Point(18, -18),
-                new Point(-18, 18),
-                new Point(18, 18)
-        };
-
-        @Override
-        public Point getPosition(int x, int y, int semanticIdx) {
-            return OFFSETS[Math.max(semanticIdx, 0) % OFFSETS.length].move(x, y);
-        }
-
-    },
 
     BREAK_AFTER_9COLS {
         @Override

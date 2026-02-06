@@ -206,7 +206,6 @@ public final class AEItemIds {
     public static final ResourceLocation ENGINEERING_PROCESSOR = id("engineering_processor");
     public static final ResourceLocation BASIC_CARD = id("basic_card");
     public static final ResourceLocation REDSTONE_CARD = id("redstone_card");
-    public static final ResourceLocation CAPACITY_CARD = id("capacity_card");
     public static final ResourceLocation VOID_CARD = id("void_card");
     public static final ResourceLocation ADVANCED_CARD = id("advanced_card");
     public static final ResourceLocation FUZZY_CARD = id("fuzzy_card");

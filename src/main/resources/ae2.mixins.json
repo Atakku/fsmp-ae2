@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_11",
   "plugin": "appeng.mixins.ConfigPlugin",
   "mixins": [
-    "AnvilMenuMixin",
     "EnchantmentHelperMixin",
     "ItemEntityMixin",
     "tests.StructureUtilsMixin",

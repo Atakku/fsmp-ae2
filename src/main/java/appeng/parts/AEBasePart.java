@@ -68,8 +68,6 @@ import appeng.api.parts.IPartItem;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.util.AECableType;
 import appeng.api.util.AEColor;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEParts;
 import appeng.items.tools.MemoryCardItem;
 import appeng.util.IDebugExportable;
 import appeng.util.InteractionUtil;
@@ -346,12 +344,6 @@ public abstract class AEBasePart
         }
 
         Item partItem = getPartItem().asItem();
-
-        // Blocks and parts share the same soul!
-        if (AEParts.INTERFACE.asItem() == partItem) {
-            partItem = AEBlocks.INTERFACE.asItem();
-        }
-
         var name = partItem.getDescription();
 
         if (InteractionUtil.isInAlternateUseMode(player)) {

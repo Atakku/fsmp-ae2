@@ -233,12 +233,8 @@ public final class AEPartIds {
     public static final ResourceLocation TOGGLE_BUS = id("toggle_bus");
     public static final ResourceLocation INVERTED_TOGGLE_BUS = id("inverted_toggle_bus");
     public static final ResourceLocation CABLE_ANCHOR = id("cable_anchor");
-    public static final ResourceLocation STORAGE_BUS = id("storage_bus");
-    public static final ResourceLocation IMPORT_BUS = id("import_bus");
-    public static final ResourceLocation EXPORT_BUS = id("export_bus");
     public static final ResourceLocation LEVEL_EMITTER = id("level_emitter");
     public static final ResourceLocation ENERGY_LEVEL_EMITTER = id("energy_level_emitter");
-    public static final ResourceLocation INTERFACE = id("cable_interface");
     public static final ResourceLocation CONVERSION_MONITOR = id("conversion_monitor");
     public static final ResourceLocation ENERGY_ACCEPTOR = id("cable_energy_acceptor");
 
@@ -251,12 +247,6 @@ public final class AEPartIds {
     public static final ResourceLocation TERMINAL = id("terminal");
     public static final ResourceLocation CRAFTING_TERMINAL = id("crafting_terminal");
     public static final ResourceLocation STORAGE_MONITOR = id("storage_monitor");
-
-    ///
-    /// Planes
-    ///
-    public static final ResourceLocation FORMATION_PLANE = id("formation_plane");
-    public static final ResourceLocation ANNIHILATION_PLANE = id("annihilation_plane");
 
     ///
     /// P2P

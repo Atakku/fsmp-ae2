@@ -28,7 +28,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
 
 /**
  * Tags that AE uses for functional purposes. For recipe tags that you may use in your recipe data generation, please
@@ -38,24 +37,6 @@ public final class AETags {
 
     private AETags() {
     }
-
-    /**
-     * Contains blocks that are blacklisted from being picked up by an item annihilation plane.
-     */
-    public static final TagKey<Block> ANNIHILATION_PLANE_BLOCK_BLACKLIST = blockTag(
-            "ae2:blacklisted/annihilation_plane");
-
-    /**
-     * Contains items that are blacklisted from being picked up by an item annihilation plane.
-     */
-    public static final TagKey<Item> ANNIHILATION_PLANE_ITEM_BLACKLIST = itemTag(
-            "ae2:blacklisted/annihilation_plane");
-
-    /**
-     * Contains items that are blacklisted from being picked up by a fluid annihilation plane.
-     */
-    public static final TagKey<Fluid> ANNIHILATION_PLANE_FLUID_BLACKLIST = fluidTag(
-            "ae2:blacklisted/annihilation_plane");
 
     /**
      * Used by the quartz knife to decide which ingots can be crafted into nameplates, as well as the crafting recipe
@@ -71,10 +52,6 @@ public final class AETags {
 
     private static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, ResourceLocation.parse(name));
-    }
-
-    private static TagKey<Fluid> fluidTag(String name) {
-        return TagKey.create(Registries.FLUID, ResourceLocation.parse(name));
     }
 
     private static TagKey<Block> blockTag(String name) {

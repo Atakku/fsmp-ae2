@@ -56,7 +56,6 @@ import appeng.datagen.providers.recipes.UpgradeRecipes;
 import appeng.datagen.providers.tags.BiomeTagsProvider;
 import appeng.datagen.providers.tags.BlockTagsProvider;
 import appeng.datagen.providers.tags.DataComponentTypeTagProvider;
-import appeng.datagen.providers.tags.FluidTagsProvider;
 import appeng.datagen.providers.tags.ItemTagsProvider;
 import appeng.init.worldgen.InitStructures;
 
@@ -84,7 +83,6 @@ public class AE2DataGenerators {
         pack.addProvider(
                 packOutput -> new ItemTagsProvider(packOutput, registries, blockTagsProvider.contentsGetter(),
                         existingFileHelper));
-        pack.addProvider(packOutput -> new FluidTagsProvider(packOutput, registries, existingFileHelper));
         pack.addProvider(packOutput -> new BiomeTagsProvider(packOutput, registries, existingFileHelper));
         pack.addProvider(packOutput -> new DataComponentTypeTagProvider(packOutput, registries, existingFileHelper,
                 localization));

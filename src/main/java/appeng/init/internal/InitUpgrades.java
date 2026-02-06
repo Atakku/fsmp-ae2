@@ -35,14 +35,9 @@ public final class InitUpgrades {
         // Block and part interface have different translation keys, but support the
         // same upgrades
         String interfaceGroup = GuiText.Interface.getTranslationKey();
-        String itemIoBusGroup = GuiText.IOBuses.getTranslationKey();
         String storageCellGroup = GuiText.StorageCells.getTranslationKey();
         String portableCellGroup = GuiText.PortableCells.getTranslationKey();
         String wirelessTerminalGroup = GuiText.WirelessTerminals.getTranslationKey();
-
-        // Interface
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.INTERFACE, 1, interfaceGroup);
-        Upgrades.add(AEItems.FUZZY_CARD, AEBlocks.INTERFACE, 1, interfaceGroup);
 
         // IO Port!
         Upgrades.add(AEItems.SPEED_CARD, AEBlocks.IO_PORT, 3);
@@ -50,19 +45,6 @@ public final class InitUpgrades {
 
         // Level Emitter!
         Upgrades.add(AEItems.FUZZY_CARD, AEParts.LEVEL_EMITTER, 1);
-
-        // Import Bus
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.IMPORT_BUS, 1, itemIoBusGroup);
-        Upgrades.add(AEItems.REDSTONE_CARD, AEParts.IMPORT_BUS, 1, itemIoBusGroup);
-        Upgrades.add(AEItems.CAPACITY_CARD, AEParts.IMPORT_BUS, 5, itemIoBusGroup);
-        Upgrades.add(AEItems.SPEED_CARD, AEParts.IMPORT_BUS, 4, itemIoBusGroup);
-        Upgrades.add(AEItems.INVERTER_CARD, AEParts.IMPORT_BUS, 1, itemIoBusGroup);
-
-        // Export Bus
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.EXPORT_BUS, 1, itemIoBusGroup);
-        Upgrades.add(AEItems.REDSTONE_CARD, AEParts.EXPORT_BUS, 1, itemIoBusGroup);
-        Upgrades.add(AEItems.CAPACITY_CARD, AEParts.EXPORT_BUS, 5, itemIoBusGroup);
-        Upgrades.add(AEItems.SPEED_CARD, AEParts.EXPORT_BUS, 4, itemIoBusGroup);
 
         // Storage Cells
         var itemCells = List.of(
@@ -112,17 +94,6 @@ public final class InitUpgrades {
         // View Cell
         Upgrades.add(AEItems.FUZZY_CARD, AEItems.VIEW_CELL, 1);
         Upgrades.add(AEItems.INVERTER_CARD, AEItems.VIEW_CELL, 1);
-
-        // Storage Bus
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.STORAGE_BUS, 1);
-        Upgrades.add(AEItems.INVERTER_CARD, AEParts.STORAGE_BUS, 1);
-        Upgrades.add(AEItems.CAPACITY_CARD, AEParts.STORAGE_BUS, 5);
-        Upgrades.add(AEItems.VOID_CARD, AEParts.STORAGE_BUS, 1);
-
-        // Formation Plane
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.FORMATION_PLANE, 1);
-        Upgrades.add(AEItems.INVERTER_CARD, AEParts.FORMATION_PLANE, 1);
-        Upgrades.add(AEItems.CAPACITY_CARD, AEParts.FORMATION_PLANE, 5);
 
         // Color Applicator
         Upgrades.add(AEItems.ENERGY_CARD, AEItems.COLOR_APPLICATOR, 2);

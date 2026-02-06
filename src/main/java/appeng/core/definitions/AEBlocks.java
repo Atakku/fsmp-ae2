@@ -57,7 +57,6 @@ import appeng.block.misc.ChargerBlock;
 import appeng.block.misc.CondenserBlock;
 import appeng.block.misc.CrankBlock;
 import appeng.block.misc.InscriberBlock;
-import appeng.block.misc.InterfaceBlock;
 import appeng.block.misc.LightDetectorBlock;
 import appeng.block.misc.MysteriousCubeBlock;
 import appeng.block.misc.QuartzFixtureBlock;
@@ -151,7 +150,6 @@ public final class AEBlocks {
     public static final BlockDefinition<ControllerBlock> CONTROLLER = block("ME Controller", AEBlockIds.CONTROLLER, ControllerBlock::new);
     public static final BlockDefinition<DriveBlock> DRIVE = block("ME Drive", AEBlockIds.DRIVE, DriveBlock::new);
     public static final BlockDefinition<MEChestBlock> ME_CHEST = block("ME Chest", AEBlockIds.ME_CHEST, MEChestBlock::new);
-    public static final BlockDefinition<InterfaceBlock> INTERFACE = block("ME Interface", AEBlockIds.INTERFACE, InterfaceBlock::new);
     public static final BlockDefinition<CellWorkbenchBlock> CELL_WORKBENCH = block("Cell Workbench", AEBlockIds.CELL_WORKBENCH, CellWorkbenchBlock::new);
     public static final BlockDefinition<IOPortBlock> IO_PORT = block("ME IO Port", AEBlockIds.IO_PORT, IOPortBlock::new);
     public static final BlockDefinition<CondenserBlock> CONDENSER = block("Matter Condenser", AEBlockIds.CONDENSER, CondenserBlock::new);

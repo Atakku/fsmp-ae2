@@ -28,7 +28,6 @@ import appeng.core.definitions.ItemDefinition;
 import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
 import appeng.items.tools.powered.powersink.PoweredItemCapabilities;
-import appeng.parts.misc.InterfacePart;
 import appeng.parts.networking.EnergyAcceptorPart;
 import appeng.parts.p2p.FEP2PTunnelPart;
 import appeng.parts.p2p.FluidP2PTunnelPart;
@@ -61,7 +60,6 @@ public final class InitCapabilityProviders {
         ModLoader.postEvent(partEvent);
         RegisterPartCapabilitiesEventInternal.register(partEvent, event);
 
-        initInterface(event);
         initCondenser(event);
         initMEChest(event);
         initMisc(event);
@@ -111,20 +109,6 @@ public final class InitCapabilityProviders {
                     return null;
                 },
                 block);
-    }
-
-    private static void initInterface(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                AECapabilities.GENERIC_INTERNAL_INV,
-                AEBlockEntities.INTERFACE.get(),
-                (be, context) -> be.getInterfaceLogic().getStorage());
-
-        event.registerBlockEntity(
-                AECapabilities.ME_STORAGE,
-                AEBlockEntities.INTERFACE.get(),
-                (blockEntity, context) -> {
-                    return blockEntity.getInterfaceLogic().getInventory();
-                });
     }
 
     private static void initCondenser(RegisterCapabilitiesEvent event) {
@@ -200,12 +184,6 @@ public final class InitCapabilityProviders {
     }
 
     private static void registerPartCapabilities(RegisterPartCapabilitiesEvent event) {
-        event.register(AECapabilities.GENERIC_INTERNAL_INV,
-                (part, context) -> part.getInterfaceLogic().getStorage(),
-                InterfacePart.class);
-        event.register(AECapabilities.ME_STORAGE,
-                (part, context) -> part.getInterfaceLogic().getInventory(), InterfacePart.class);
-
         event.register(Capabilities.ItemHandler.BLOCK, (part, context) -> part.getExposedApi(),
                 ItemP2PTunnelPart.class);
         event.register(Capabilities.EnergyStorage.BLOCK, (part, context) -> part.getExposedApi(),

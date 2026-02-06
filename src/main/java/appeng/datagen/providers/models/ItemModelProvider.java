@@ -40,7 +40,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR, "item/calculation_processor");
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR_PRESS, "item/calculation_processor_press");
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR_PRINT, "item/printed_calculation_processor");
-        flatSingleLayer(AEItems.CAPACITY_CARD, "item/card_capacity");
         storageCell(AEItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
         storageCell(AEItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
         storageCell(AEItems.ITEM_CELL_16K, "item/item_storage_cell_16k");

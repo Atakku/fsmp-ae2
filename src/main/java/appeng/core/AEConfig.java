@@ -187,10 +187,6 @@ public final class AEConfig {
         return common.debugTools.get();
     }
 
-    public int getFormationPlaneEntityLimit() {
-        return common.formationPlaneEntityLimit.get();
-    }
-
     public boolean isEnableEffects() {
         return client.enableEffects.getAsBoolean();
     }
@@ -248,10 +244,6 @@ public final class AEConfig {
 
     public boolean isSpawnFlawlessOnlyEnabled() {
         return common.spawnFlawlessOnly.get();
-    }
-
-    public boolean isAnnihilationPlaneSkyDustGenerationEnabled() {
-        return common.annihilationPlaneSkyDustGeneration.get();
     }
 
     public boolean isBlockUpdateLogEnabled() {
@@ -446,15 +438,11 @@ public final class AEConfig {
         private final ModConfigSpec spec;
 
         // Misc
-        public final IntValue formationPlaneEntityLimit;
         public final BooleanValue debugTools;
         public final EnumValue<ChannelMode> channels;
 
-        public final BooleanValue annihilationPlaneSkyDustGeneration;
-
         // Logging
         public final BooleanValue blockUpdateLog;
-        public final BooleanValue craftingLog;
         public final BooleanValue debugLog;
         public final BooleanValue gridLog;
         public final BooleanValue chunkLoggerTrace;
@@ -497,18 +485,8 @@ public final class AEConfig {
                     "Changes the channel capacity that cables provide in AE2.");
             builder.pop();
 
-            builder.push("automation");
-            formationPlaneEntityLimit = define(builder, "formationPlaneEntityLimit", 128);
-            builder.pop();
-
-            builder.push("crafting");
-            annihilationPlaneSkyDustGeneration = define(builder, "annihilationPlaneSkyDustGeneration", true,
-                    "If enabled, an annihilation placed face up at the maximum world height will generate sky stone passively.");
-            builder.pop();
-
             builder.push("logging");
             blockUpdateLog = define(builder, "blockUpdateLog", false);
-            craftingLog = define(builder, "craftingLog", false);
             debugLog = define(builder, "debugLog", false);
             gridLog = define(builder, "gridLog", false);
             chunkLoggerTrace = define(builder, "chunkLoggerTrace", false,

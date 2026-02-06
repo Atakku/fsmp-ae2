@@ -10,14 +10,10 @@ import org.apache.commons.lang3.mutable.MutableShort;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
 
 import appeng.blockentity.networking.EnergyCellBlockEntity;
-import appeng.blockentity.storage.SkyStoneTankBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEParts;
 import appeng.parts.p2p.MEP2PTunnelPart;
@@ -27,76 +23,6 @@ import appeng.server.testworld.PlotBuilder;
 
 @TestPlotClass
 public class P2PTestPlots {
-    @TestPlot("p2p_me")
-    public static void me(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        placeTunnel(plot, AEParts.ME_P2P_TUNNEL);
-
-        // Import bus to import from a chest and place it into storage bus.
-        // this tests that the import bus on one end can see the storage bus
-        // on the other of the P2P tunnel
-        plot.cable(origin.west().west())
-                .part(Direction.WEST, AEParts.IMPORT_BUS);
-        plot.chest(origin.west().west().west(),
-                new ItemStack(Items.BEDROCK));
-
-        // Storage bus for the import bus on the P2P
-        plot.cable(origin.east().east())
-                .part(Direction.EAST, AEParts.STORAGE_BUS);
-        plot.chest(origin.east().east().east());
-
-        // High-priority storage bus on the main network to make sure the import bus
-        // cannot see the carrier network
-        plot.part(origin, Direction.UP, AEParts.STORAGE_BUS, storageBus -> {
-            storageBus.setPriority(1);
-        });
-        plot.chest(origin.above());
-
-        // Energy connection between the P2P-net and the carrier net
-        plot.cable(origin.east().above());
-        plot.cable(origin.east().east().above())
-                .part(Direction.WEST, AEParts.QUARTZ_FIBER);
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                helper.assertContainerEmpty(origin.west().west().west());
-                helper.assertContainerContains(origin.east().east().east(), Items.BEDROCK);
-            });
-        });
-    }
-
-    /**
-     * Builds a system that uses an export bus to export fluids into a tank via a P2P fluid tunnel.
-     */
-    @TestPlot("p2p_fluids")
-    public static void fluid(PlotBuilder plot) {
-        var origin = BlockPos.ZERO;
-        placeTunnel(plot, AEParts.FLUID_P2P_TUNNEL);
-
-        var outputPos = origin.east().east();
-        plot.block(outputPos, AEBlocks.SKY_STONE_TANK);
-        plot.cable(origin.west().west())
-                .part(Direction.EAST, AEParts.EXPORT_BUS, part -> {
-                    part.getConfig().addFilter(Fluids.WATER);
-                });
-        plot.creativeEnergyCell(origin.west().west().below());
-        plot.drive(origin.west().west().above())
-                .addCreativeCell()
-                .add(Fluids.WATER);
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                var tank = (SkyStoneTankBlockEntity) helper.getBlockEntity(outputPos);
-                var storage = tank.getTank();
-                helper.check(
-                        storage.getFluid().is(Fluids.WATER),
-                        "No water stored");
-                helper.check(
-                        storage.getFluidAmount() > 0,
-                        "No amount >0 stored");
-            });
-        });
-    }
-
     @TestPlot("p2p_energy")
     public static void energy(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
