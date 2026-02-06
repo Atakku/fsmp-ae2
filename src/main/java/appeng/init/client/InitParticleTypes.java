@@ -30,9 +30,6 @@ public final class InitParticleTypes {
     }
 
     public static void init(Registry<ParticleType<?>> registry) {
-        register(registry, ParticleTypes.ENERGY, "energy_fx");
-        register(registry, ParticleTypes.LIGHTNING_ARC, "lightning_arc_fx");
-        register(registry, ParticleTypes.LIGHTNING, "lightning_fx");
         register(registry, ParticleTypes.VIBRANT, "vibrant_fx");
     }
 

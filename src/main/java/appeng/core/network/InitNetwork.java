@@ -8,10 +8,8 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import appeng.core.AppEng;
 import appeng.core.network.bidirectional.ConfigValuePacket;
-import appeng.core.network.clientbound.BlockTransitionEffectPacket;
 import appeng.core.network.clientbound.ExportedGridContent;
 import appeng.core.network.clientbound.GuiDataSyncPacket;
-import appeng.core.network.clientbound.ItemTransitionEffectPacket;
 import appeng.core.network.clientbound.LightningPacket;
 import appeng.core.network.clientbound.MEInventoryUpdatePacket;
 import appeng.core.network.clientbound.SetLinkStatusPacket;
@@ -34,9 +32,7 @@ public class InitNetwork {
         var registrar = event.registrar(AppEng.MOD_ID);
 
         // Clientbound
-        clientbound(registrar, BlockTransitionEffectPacket.TYPE, BlockTransitionEffectPacket.STREAM_CODEC);
         clientbound(registrar, GuiDataSyncPacket.TYPE, GuiDataSyncPacket.STREAM_CODEC);
-        clientbound(registrar, ItemTransitionEffectPacket.TYPE, ItemTransitionEffectPacket.STREAM_CODEC);
         clientbound(registrar, LightningPacket.TYPE, LightningPacket.STREAM_CODEC);
         clientbound(registrar, MEInventoryUpdatePacket.TYPE, MEInventoryUpdatePacket.STREAM_CODEC);
         clientbound(registrar, SetLinkStatusPacket.TYPE, SetLinkStatusPacket.STREAM_CODEC);

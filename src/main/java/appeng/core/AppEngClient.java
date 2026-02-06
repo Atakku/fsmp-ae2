@@ -77,9 +77,6 @@ import appeng.client.gui.style.StyleManager;
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.client.guidebook.PartAnnotationStrategy;
 import appeng.client.render.StorageCellClientTooltipComponent;
-import appeng.client.render.effects.EnergyFx;
-import appeng.client.render.effects.EnergyParticleData;
-import appeng.client.render.effects.LightningArcFX;
 import appeng.client.render.effects.LightningFX;
 import appeng.client.render.effects.ParticleTypes;
 import appeng.client.render.effects.VibrantFX;
@@ -225,8 +222,6 @@ public class AppEngClient extends AppEngBase {
     }
 
     public void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ParticleTypes.ENERGY, EnergyFx.Factory::new);
-        event.registerSpriteSet(ParticleTypes.LIGHTNING_ARC, LightningArcFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.LIGHTNING, LightningFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.VIBRANT, VibrantFX.Factory::new);
     }
@@ -358,9 +353,6 @@ public class AppEngClient extends AppEngBase {
                 case Vibrant:
                     this.spawnVibrant(level, posX, posY, posZ);
                     return;
-                case Energy:
-                    this.spawnEnergy(level, posX, posY, posZ);
-                    return;
                 case Lightning:
                     this.spawnLightning(level, posX, posY, posZ);
                     return;
@@ -379,17 +371,6 @@ public class AppEngClient extends AppEngBase {
                     0.0D,
                     0.0D);
         }
-    }
-
-    private void spawnEnergy(Level level, double posX, double posY, double posZ) {
-        var random = level.getRandom();
-        final float x = (float) (Math.abs(random.nextInt()) % 100 * 0.01 - 0.5) * 0.7f;
-        final float y = (float) (Math.abs(random.nextInt()) % 100 * 0.01 - 0.5) * 0.7f;
-        final float z = (float) (Math.abs(random.nextInt()) % 100 * 0.01 - 0.5) * 0.7f;
-
-        Minecraft.getInstance().particleEngine.createParticle(EnergyParticleData.FOR_BLOCK, posX + x, posY + y,
-                posZ + z,
-                -x * 0.1, -y * 0.1, -z * 0.1);
     }
 
     private void spawnLightning(Level level, double posX, double posY, double posZ) {

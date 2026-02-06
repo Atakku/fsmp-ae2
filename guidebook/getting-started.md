@@ -10,34 +10,23 @@ navigation:
 
 # Getting Started
 
-## Getting The Initial Materials)
+## Getting The Initial Materials
+
+To get started with Applied Energistics 2, one must first find an amethyst geode. These are fairly common and tend to spawn frequently underground, so you've probably encountered one in your travels.
+
+Mine the amethyst clusters and any amethyst blocks you find. Do not break any budding amethyst, as even with silk touch they will not drop.
+
+## Growing Amethyst
 
 <GameScene zoom="4" background="transparent">
-  <ImportStructure src="assets/assemblies/meteor_interior.snbt" />
-</GameScene>
-
-To get started with Applied Energistics 2, one must first find a [meteorite](ae2-mechanics/meteorites.md). These are fairly common and tend to leave massive holes in the terrain, so you've probably encountered one in your travels.
-If you haven't, you can craft a <ItemLink id="meteorite_compass" />, which will point toward the nearest <ItemLink id="mysterious_cube" />.
-
-Once you have found a meteorite, mine into its center. You will find certus quartz clusters, certus quartz buds, [budding certus blocks](items-blocks-machines/budding_certus.md) of various types, and a Mysterious Cube in the center.
-
-Mine the certus quartz clusters and any certus quartz blocks you find. You can also pick up the budding certus blocks, but without silk touch they will degrade by 1 tier.
-
-Do not break any flawless budding certus, as even with silk touch they will degrade to flawed budding certus, and it is impossible to repair them back to flawless.
-
-Also mine the Mysterious Cube in the center of the meteorite to gain all 4 inscriber presses.
-
-## Growing Certus Quartz
-
-<GameScene zoom="4" background="transparent">
-<ImportStructure src="assets/assemblies/budding_certus_1.snbt" />
+<ImportStructure src="assets/assemblies/budding_amethyst_1.snbt" />
 </GameScene>
 
 Certus quartz buds will sprout from [budding certus blocks](items-blocks-machines/budding_certus.md), similar to amethyst. If you break a bud that is not finished
 growing, it will drop one <ItemLink id="certus_quartz_dust" />, unchanged by fortune. If you break a fully grown cluster, it will drop four
 <ItemLink id="certus_quartz_crystal" />s, and fortune will increase this number.
 
-There are 4 tiers of budding certus blocks: Flawless, Flawed, Chipped, and Damaged.
+Amethyst grows in 4 distinct stages:
 
 <GameScene zoom="4" background="transparent">
 <ImportStructure src="assets/assemblies/budding_blocks.snbt" />
@@ -54,7 +43,7 @@ Flawless budding certus blocks will not degrade and will generate certus infinit
 with a pickaxe, even with silk touch.
 
 <GameScene zoom="4" background="transparent">
-<ImportStructure src="assets/assemblies/budding_certus_2.snbt" />
+<ImportStructure src="assets/assemblies/budding_amethyst_2.snbt" />
 <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
@@ -65,9 +54,7 @@ Harvesting the certus automatically is [described here](example-setups/simple-ce
 
 ## A Quick Aside on Fluix
 
-Another material you will need is Fluix which is made by throwing charged certus, redstone, and nether quartz in water. Doing this automatically is "left as an exercise for the reader."
-
-The <ItemLink id="charger" /> is required to produce <ItemLink id="charged_certus_quartz_crystal" />., if you haven't made one already.
+Another material you will need is Fluix which is made by throwing amethyst, redstone, and nether quartz in water. Doing this automatically is "left as an exercise for the reader."
 
 ## Inscribing Some Processors
 
