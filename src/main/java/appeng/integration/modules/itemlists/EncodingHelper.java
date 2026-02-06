@@ -19,11 +19,10 @@ public final class EncodingHelper {
     }
 
     /**
-     * Order of priority: - Craftable Items - Undamaged Items - Items the player has the most of
+     * Order of priority: - Undamaged Items - Items the player has the most of
      */
     static final Comparator<GridInventoryEntry> ENTRY_COMPARATOR = Comparator
-            .comparing(GridInventoryEntry::isCraftable)
-            .thenComparing(EncodingHelper::isUndamaged)
+            .comparing(EncodingHelper::isUndamaged)
             .thenComparing(GridInventoryEntry::getStoredAmount);
 
     private static Boolean isUndamaged(GridInventoryEntry entry) {

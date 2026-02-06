@@ -81,13 +81,13 @@ public final class BlockEntityRenderHelper {
     public static void renderItem2dWithAmount(PoseStack poseStack,
             MultiBufferSource buffers,
             AEKey what,
-            long amount, boolean canCraft,
+            long amount,
             float itemScale,
             float spacing,
             int textColor, Level level) {
         renderItem2d(poseStack, buffers, what, itemScale, LightTexture.FULL_BRIGHT, level);
 
-        var renderedStackSize = amount == 0 && canCraft ? "Craft" : what.formatAmount(amount, AmountFormat.SLOT);
+        var renderedStackSize = what.formatAmount(amount, AmountFormat.SLOT);
 
         // Render the item count
         var fr = Minecraft.getInstance().font;

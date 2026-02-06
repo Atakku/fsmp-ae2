@@ -66,7 +66,6 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
     @Nullable
     private AEKey configuredItem;
     private long amount;
-    private boolean canCraft;
     private String lastHumanReadableText;
     private boolean isLocked;
     private IStackWatcher storageWatcher;
@@ -87,8 +86,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
                 if (what.equals(configuredItem)) {
                     AbstractMonitorPart.this.amount = amount;
 
-                    var humanReadableText = amount == 0 && canCraft ? "Craft"
-                            : what.formatAmount(amount, AmountFormat.SLOT);
+                    var humanReadableText = what.formatAmount(amount, AmountFormat.SLOT);
 
                     // Try throttling to only relevant updates
                     if (!humanReadableText.equals(lastHumanReadableText)) {
@@ -133,7 +131,6 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         if (this.configuredItem != null) {
             AEKey.writeKey(data, this.configuredItem);
             data.writeVarLong(this.amount);
-            data.writeBoolean(this.canCraft);
         }
     }
 
@@ -150,11 +147,9 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         if (data.readBoolean()) {
             this.configuredItem = AEKey.readKey(data);
             this.amount = data.readVarLong();
-            this.canCraft = data.readBoolean();
         } else {
             this.configuredItem = null;
             this.amount = 0;
-            this.canCraft = false;
         }
 
         return needRedraw;
@@ -164,14 +159,12 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
     public void writeVisualStateToNBT(CompoundTag data) {
         super.writeVisualStateToNBT(data);
         data.putLong("amount", this.amount);
-        data.putBoolean("canCraft", this.canCraft);
     }
 
     @Override
     public void readVisualStateFromNBT(CompoundTag data) {
         super.readVisualStateFromNBT(data);
         this.amount = data.getLong("amount");
-        this.canCraft = data.getBoolean("canCraft");
     }
 
     @Override
@@ -252,10 +245,8 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         this.lastHumanReadableText = null;
         if (this.configuredItem != null) {
             this.amount = grid.getStorageService().getCachedInventory().get(this.configuredItem);
-            this.canCraft = false; // AKUTODO
         } else {
             this.amount = 0;
-            this.canCraft = false;
         }
         getHost().markForUpdate();
     }
@@ -281,7 +272,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         BlockEntityRenderHelper.rotateToFace(poseStack, orientation);
         poseStack.translate(0, 0.05, 0.5);
 
-        BlockEntityRenderHelper.renderItem2dWithAmount(poseStack, buffers, getDisplayed(), amount, canCraft,
+        BlockEntityRenderHelper.renderItem2dWithAmount(poseStack, buffers, getDisplayed(), amount,
                 0.4f, -0.23f, getColor().contrastTextColor, getLevel());
 
         poseStack.popPose();
@@ -307,10 +298,6 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
     @Override
     public long getAmount() {
         return amount;
-    }
-
-    public boolean canCraft() {
-        return canCraft; // AKUTODO
     }
 
     @Override

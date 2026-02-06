@@ -140,8 +140,7 @@ public class Repo implements IClientRepo {
                     serverEntry.getSerial(),
                     localEntry.getWhat(),
                     serverEntry.getStoredAmount(),
-                    serverEntry.getRequestableAmount(),
-                    serverEntry.isCraftable()));
+                    serverEntry.getRequestableAmount()));
         } else {
             entries.put(serverEntry.getSerial(), serverEntry);
         }
@@ -243,7 +242,7 @@ public class Repo implements IClientRepo {
                 if (info.reason != PinnedKeys.PinReason.CRAFTING
                         && pinnedRow.stream().noneMatch(r -> pinnedKey.equals(r.getWhat()))) {
                     this.pinnedRow.add(new GridInventoryEntry(
-                            -1, pinnedKey, 0, 0, false));
+                            -1, pinnedKey, 0, 0));
                 }
             }
         }
@@ -262,8 +261,7 @@ public class Repo implements IClientRepo {
                         entry.getSerial(),
                         entry.getWhat(),
                         0,
-                        0,
-                        false);
+                        0);
             } else {
                 entry = serverEntry;
             }
@@ -454,17 +452,5 @@ public class Repo implements IClientRepo {
 
     public final void setUpdateViewListener(Runnable updateViewListener) {
         this.updateViewListener = updateViewListener;
-    }
-
-    /**
-     * Checks if the repo knows that the given key can be crafted.
-     */
-    public boolean isCraftable(AEKey what) {
-        for (var entry : entries.values()) {
-            if (entry.isCraftable() && what.equals(entry.getWhat())) {
-                return true;
-            }
-        }
-        return false;
     }
 }

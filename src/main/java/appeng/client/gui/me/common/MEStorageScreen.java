@@ -432,15 +432,6 @@ public class MEStorageScreen<C extends MEStorageMenu>
             // Don't return immediately to also grab focus.
         }
 
-        // handler for middle mouse button crafting in survival mode
-        if (Minecraft.getInstance().options.keyPickItem.matchesMouse(btn)) {
-            Slot slot = this.findSlot(xCoord, yCoord);
-            if (slot instanceof RepoSlot repoSlot && repoSlot.isCraftable()) {
-                handleGridInventoryEntryMouseClick(repoSlot.getEntry(), btn, ClickType.CLONE);
-                return true;
-            }
-        }
-
         return super.mouseClicked(xCoord, yCoord, btn);
     }
 
@@ -540,19 +531,11 @@ public class MEStorageScreen<C extends MEStorageMenu>
                     // If a view mode is selected that only shows craftable items, display the "craftable" text
                     // regardless of stack size
                     long storedAmount = entry.getStoredAmount();
-                    boolean craftable = entry.isCraftable();
                     var useLargeFonts = config.isUseLargeFonts();
-                    if (craftable && storedAmount <= 0) {
-                        StackSizeRenderer.renderSizeLabel(guiGraphics, this.font, s.x, s.y, "+");
-                    } else {
-                        AmountFormat format = useLargeFonts ? AmountFormat.SLOT_LARGE_FONT
-                                : AmountFormat.SLOT;
-                        var text = entry.getWhat().formatAmount(storedAmount, format);
-                        StackSizeRenderer.renderSizeLabel(guiGraphics, this.font, s.x, s.y, text, useLargeFonts);
-                        if (craftable) {
-                            StackSizeRenderer.renderSizeLabel(guiGraphics, this.font, s.x - 11, s.y - 11, "+", false);
-                        }
-                    }
+                    AmountFormat format = useLargeFonts ? AmountFormat.SLOT_LARGE_FONT
+                            : AmountFormat.SLOT;
+                    var text = entry.getWhat().formatAmount(storedAmount, format);
+                    StackSizeRenderer.renderSizeLabel(guiGraphics, this.font, s.x, s.y, text, useLargeFonts);
                 }
             }
 

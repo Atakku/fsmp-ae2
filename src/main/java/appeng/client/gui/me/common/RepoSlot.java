@@ -58,11 +58,6 @@ public class RepoSlot extends ClientReadOnlySlot {
         return entry != null ? entry.getRequestableAmount() : 0;
     }
 
-    public boolean isCraftable() {
-        GridInventoryEntry entry = getEntry();
-        return entry != null && entry.isCraftable();
-    }
-
     @Override
     public ItemStack getItem() {
         GridInventoryEntry entry = getEntry();

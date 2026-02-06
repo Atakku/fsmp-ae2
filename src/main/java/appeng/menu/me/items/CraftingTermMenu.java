@@ -44,7 +44,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import appeng.api.inventories.ISegmentedInventory;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.energy.IEnergySource;
-import appeng.api.stacks.AEItemKey;
 import appeng.api.storage.ITerminalHost;
 import appeng.core.network.serverbound.InventoryActionPacket;
 import appeng.helpers.ICraftingGridMenu;
@@ -230,17 +229,6 @@ public class CraftingTermMenu extends MEStorageMenu implements ICraftingGridMenu
                 }
             }
 
-            // Check the terminal once again, but this time for craftable items
-            if (!found) {
-                for (var stack : ingredient.getItems()) {
-                    if (isCraftable(stack)) {
-                        craftableSlots.add(entry.getKey());
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
             if (!found) {
                 missingSlots.add(entry.getKey());
             }
@@ -265,20 +253,6 @@ public class CraftingTermMenu extends MEStorageMenu implements ICraftingGridMenu
         public boolean anyCraftable() {
             return !craftableSlots.isEmpty();
         }
-    }
-
-    protected boolean isCraftable(ItemStack itemStack) {
-        var clientRepo = getClientRepo();
-
-        if (clientRepo != null) {
-            for (var stack : clientRepo.getAllEntries()) {
-                if (AEItemKey.matches(stack.getWhat(), itemStack) && stack.isCraftable()) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     public void clearToPlayerInventory() {

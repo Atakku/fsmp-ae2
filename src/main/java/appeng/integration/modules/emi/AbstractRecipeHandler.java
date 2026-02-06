@@ -26,13 +26,11 @@ import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.recipe.handler.EmiCraftContext;
 import dev.emi.emi.api.recipe.handler.StandardRecipeHandler;
-import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.Widget;
 
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
 import appeng.core.AEConfig;
 import appeng.integration.modules.itemlists.EncodingHelper;
@@ -237,60 +235,6 @@ abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRe
                 renderMissingAndCraftableSlotOverlays(getRecipeInputSlots(recipe, widgets), guiGraphics,
                         missingSlots.missingSlots(),
                         missingSlots.craftableSlots());
-            }
-        }
-
-        /**
-         * Indicates that some of the slots can already be crafted by the auto-crafting system.
-         */
-        static final class EncodeWithCraftables extends Result {
-            private final Set<AEKey> craftableKeys;
-
-            /**
-             * @param craftableKeys All keys that the current system can auto-craft.
-             */
-            public EncodeWithCraftables(Set<AEKey> craftableKeys) {
-                this.craftableKeys = craftableKeys;
-            }
-
-            @Override
-            boolean canCraft() {
-                return true;
-            }
-
-            @Override
-            List<Component> getTooltip(EmiRecipe emiRecipe, EmiCraftContext<?> context) {
-                var anyCraftable = emiRecipe.getInputs().stream()
-                        .anyMatch(ing -> isCraftable(craftableKeys, ing));
-                if (anyCraftable) {
-                    return TransferHelper.createEncodingTooltip(true, false);
-                }
-                return null;
-            }
-
-            @Override
-            void render(EmiRecipe recipe, EmiCraftContext<? extends AEBaseMenu> context, List<Widget> widgets,
-                    GuiGraphics guiGraphics) {
-                for (var widget : widgets) {
-                    if (widget instanceof SlotWidget slot && isInputSlot(slot)) {
-                        if (isCraftable(craftableKeys, slot.getStack())) {
-                            var poseStack = guiGraphics.pose();
-                            poseStack.pushPose();
-                            poseStack.translate(0, 0, 400);
-                            var bounds = getInnerBounds(slot);
-                            guiGraphics.fill(bounds.x(), bounds.y(), bounds.right(), bounds.bottom(),
-                                    BLUE_SLOT_HIGHLIGHT_COLOR);
-                            poseStack.popPose();
-                        }
-                    }
-                }
-            }
-
-            private static boolean isCraftable(Set<AEKey> craftableKeys, EmiIngredient ingredient) {
-                return ingredient.getEmiStacks().stream().anyMatch(emiIngredient -> {
-                    var stack = EmiStackHelper.toGenericStack(emiIngredient);
-                    return stack != null && craftableKeys.contains(stack.what());
-                });
             }
         }
 

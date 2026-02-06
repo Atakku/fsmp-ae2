@@ -171,7 +171,6 @@ public enum GuiText implements LocalizationEnum {
     Set("Set"),
     ShowingOf("Showing %d of %d"),
     SkyChest("Sky Stone Chest"),
-    // Used in a terminal to indicate that an item is craftable
     Start("Start"),
     StorageBus("Storage Bus"),
     StorageBusFluids("Fluid Storage Bus"),

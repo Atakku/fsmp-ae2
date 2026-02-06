@@ -22,12 +22,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 
 import org.jetbrains.annotations.Nullable;
@@ -138,10 +135,6 @@ public class MEStorageMenu extends AEBaseMenu
     @Nullable
     private IClientRepo clientRepo;
 
-    /**
-     * The last set of craftables sent to the client.
-     */
-    private Set<AEKey> previousCraftables = Collections.emptySet();
     private KeyCounter previousAvailableStacks = new KeyCounter();
 
     public MEStorageMenu(MenuType<?> menuType, int id, Inventory ip, ITerminalHost host) {
@@ -239,19 +232,12 @@ public class MEStorageMenu extends AEBaseMenu
                 this.searchKeyTypes = new SyncedKeyTypes(keyTypeSelectionHost.getKeyTypeSelection().enabled());
             }
 
-            var craftables = getCraftablesFromGrid();
             var availableStacks = storage.getAvailableStacks();
 
             // This is currently not supported/backed by any network service
             var requestables = new KeyCounter();
 
             try {
-                // Craftables
-                // Newly craftable
-                Sets.difference(previousCraftables, craftables).forEach(updateHelper::addChange);
-                // No longer craftable
-                Sets.difference(craftables, previousCraftables).forEach(updateHelper::addChange);
-
                 // Available changes
                 previousAvailableStacks.removeAll(availableStacks);
                 previousAvailableStacks.removeZeros();
@@ -261,7 +247,7 @@ public class MEStorageMenu extends AEBaseMenu
                     var builder = MEInventoryUpdatePacket
                             .builder(containerId, updateHelper.isFullUpdate(), getPlayer().registryAccess());
                     builder.setFilter(this::isKeyVisible);
-                    builder.addChanges(updateHelper, availableStacks, craftables, requestables);
+                    builder.addChanges(updateHelper, availableStacks, requestables);
                     builder.buildAndSend(this::sendPacketToClient);
                     updateHelper.commitChanges();
                 }
@@ -270,7 +256,6 @@ public class MEStorageMenu extends AEBaseMenu
                 AELog.warn(e, "Failed to send incremental inventory update to client");
             }
 
-            previousCraftables = ImmutableSet.copyOf(craftables);
             previousAvailableStacks = availableStacks;
 
             super.broadcastChanges();
@@ -292,19 +277,6 @@ public class MEStorageMenu extends AEBaseMenu
 
     protected boolean showsCraftables() {
         return true;
-    }
-
-    private Set<AEKey> getCraftablesFromGrid() {
-        IGridNode hostNode = getGridNode();
-        // Wireless terminals do not directly expose the target grid (even though they have one)
-        if (hostNode == null && host instanceof IActionHost actionHost) {
-            hostNode = actionHost.getActionableNode();
-        }
-        if (!showsCraftables()) {
-            return Collections.emptySet();
-        }
-        // AKUTODO
-        return Collections.emptySet();
     }
 
     private void onSettingChanged(IConfigManager manager, Setting<?> setting) {

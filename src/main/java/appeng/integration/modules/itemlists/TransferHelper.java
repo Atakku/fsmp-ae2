@@ -35,15 +35,4 @@ public class TransferHelper {
         }
         return tooltip;
     }
-
-    public static List<Component> createEncodingTooltip(boolean hasEncoded, boolean withTitle) {
-        List<Component> tooltip = new ArrayList<>();
-        if (withTitle) {
-            tooltip.add(ItemModText.ENCODE_PATTERN.text());
-        }
-        if (hasEncoded) {
-            tooltip.add(ItemModText.HAS_ENCODED_INGREDIENTS.text().withStyle(ChatFormatting.BLUE));
-        }
-        return tooltip;
-    }
 }
