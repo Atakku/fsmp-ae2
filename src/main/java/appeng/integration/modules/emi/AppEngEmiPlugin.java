@@ -21,12 +21,9 @@ import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.stack.EmiStack;
 
-import appeng.api.config.CondenserOutput;
 import appeng.api.integrations.emi.EmiStackConverters;
 import appeng.api.upgrades.Upgrades;
-import appeng.core.AEConfig;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.core.definitions.ItemDefinition;
@@ -69,11 +66,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
 
         // Special upgrade recipes
         adaptSpecialRecipes(registry, StorageCellUpgradeRecipe.class, this::convertStorageCellUpgradeRecipe);
-
-        // Condenser
-        registry.addCategory(EmiCondenserRecipe.CATEGORY);
-        registry.addWorkstation(EmiCondenserRecipe.CATEGORY, EmiStack.of(AEBlocks.CONDENSER));
-        registry.addRecipe(new EmiCondenserRecipe(CondenserOutput.MATTER_BALLS));
 
         // In-World Transformation
         registry.addCategory(EmiTransformRecipe.CATEGORY);
@@ -120,15 +112,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
     private void registerDescriptions(EmiRegistry registry) {
 
         addDescription(registry, AEItems.CERTUS_QUARTZ_CRYSTAL, GuiText.CertusQuartzObtain);
-
-        if (AEConfig.instance().isSpawnPressesInMeteoritesEnabled()) {
-            addDescription(registry, AEItems.LOGIC_PROCESSOR_PRESS, GuiText.inWorldCraftingPresses);
-            addDescription(registry, AEItems.CALCULATION_PROCESSOR_PRESS,
-                    GuiText.inWorldCraftingPresses);
-            addDescription(registry, AEItems.ENGINEERING_PROCESSOR_PRESS,
-                    GuiText.inWorldCraftingPresses);
-            addDescription(registry, AEItems.SILICON_PRESS, GuiText.inWorldCraftingPresses);
-        }
     }
 
     private void addDescription(EmiRegistry registry, ItemDefinition<?> item, LocalizationEnum... lines) {

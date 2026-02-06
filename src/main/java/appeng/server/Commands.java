@@ -20,12 +20,10 @@ package appeng.server;
 
 import java.util.Locale;
 
-import appeng.server.services.compass.TestCompassCommand;
 import appeng.server.subcommands.ChannelModeCommand;
 import appeng.server.subcommands.ChunkLogger;
 import appeng.server.subcommands.GridsCommand;
 import appeng.server.subcommands.SetupTestWorldCommand;
-import appeng.server.subcommands.TestMeteoritesCommand;
 import appeng.server.subcommands.TickMonitoring;
 
 public enum Commands {
@@ -36,8 +34,6 @@ public enum Commands {
     GRIDS(4, "grids", new GridsCommand()),
 
     // Testing
-    COMPASS(4, "compass", new TestCompassCommand(), true),
-    TEST_METEORITES(4, "testmeteorites", new TestMeteoritesCommand(), true),
     SETUP_TEST_WORLD(4, "setuptestworld", new SetupTestWorldCommand(), true);
 
     public final int level;

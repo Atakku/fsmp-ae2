@@ -38,8 +38,6 @@ import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.ClientTickingBlockEntity;
 import appeng.blockentity.ServerTickingBlockEntity;
 import appeng.blockentity.misc.CellWorkbenchBlockEntity;
-import appeng.blockentity.misc.CondenserBlockEntity;
-import appeng.blockentity.misc.MysteriousCubeBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
@@ -74,9 +72,6 @@ public final class AEBlockEntities {
             CellWorkbenchBlockEntity.class, CellWorkbenchBlockEntity::new, AEBlocks.CELL_WORKBENCH);
     public static final DeferredBlockEntityType<IOPortBlockEntity> IO_PORT = create("io_port", IOPortBlockEntity.class,
             IOPortBlockEntity::new, AEBlocks.IO_PORT);
-    public static final DeferredBlockEntityType<CondenserBlockEntity> CONDENSER = create("condenser",
-            CondenserBlockEntity.class,
-            CondenserBlockEntity::new, AEBlocks.CONDENSER);
     public static final DeferredBlockEntityType<SkyChestBlockEntity> SKY_CHEST = create("sky_chest",
             SkyChestBlockEntity.class,
             SkyChestBlockEntity::new, AEBlocks.SKY_STONE_CHEST, AEBlocks.SMOOTH_SKY_STONE_CHEST);
@@ -88,10 +83,6 @@ public final class AEBlockEntities {
             PhantomNodeBlockEntity.class, PhantomNodeBlockEntity::new, AEBlocks.DEBUG_PHANTOM_NODE);
     public static final DeferredBlockEntityType<CubeGeneratorBlockEntity> DEBUG_CUBE_GEN = create("debug_cube_gen",
             CubeGeneratorBlockEntity.class, CubeGeneratorBlockEntity::new, AEBlocks.DEBUG_CUBE_GEN);
-
-    public static final DeferredBlockEntityType<MysteriousCubeBlockEntity> MYSTERIOUS_CUBE = create("mysterious_cube",
-            MysteriousCubeBlockEntity.class,
-            MysteriousCubeBlockEntity::new, AEBlocks.MYSTERIOUS_CUBE);
 
     private AEBlockEntities() {
     }

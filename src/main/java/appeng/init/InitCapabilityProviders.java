@@ -45,7 +45,6 @@ public final class InitCapabilityProviders {
         ModLoader.postEvent(partEvent);
         RegisterPartCapabilitiesEventInternal.register(partEvent, event);
 
-        initCondenser(event);
         initMEChest(event);
         initMisc(event);
 
@@ -88,23 +87,6 @@ public final class InitCapabilityProviders {
                     return null;
                 },
                 block);
-    }
-
-    private static void initCondenser(RegisterCapabilitiesEvent event) {
-        // Condenser will always return its external inventory, even when context is null
-        // (unlike the base class it derives from)
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, AEBlockEntities.CONDENSER.get(),
-                (blockEntity, context) -> {
-                    return blockEntity.getExternalInv().toItemHandler();
-                });
-        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, AEBlockEntities.CONDENSER.get(),
-                ((blockEntity, context) -> {
-                    return blockEntity.getFluidHandler();
-                }));
-        event.registerBlockEntity(AECapabilities.ME_STORAGE, AEBlockEntities.CONDENSER.get(),
-                (blockEntity, context) -> {
-                    return blockEntity.getMEStorage();
-                });
     }
 
     private static void initMEChest(RegisterCapabilitiesEvent event) {

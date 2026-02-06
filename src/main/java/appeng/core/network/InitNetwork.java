@@ -9,7 +9,6 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import appeng.core.AppEng;
 import appeng.core.network.bidirectional.ConfigValuePacket;
 import appeng.core.network.clientbound.BlockTransitionEffectPacket;
-import appeng.core.network.clientbound.CompassResponsePacket;
 import appeng.core.network.clientbound.ExportedGridContent;
 import appeng.core.network.clientbound.GuiDataSyncPacket;
 import appeng.core.network.clientbound.ItemTransitionEffectPacket;
@@ -25,7 +24,6 @@ import appeng.core.network.serverbound.InventoryActionPacket;
 import appeng.core.network.serverbound.MEInteractionPacket;
 import appeng.core.network.serverbound.MouseWheelPacket;
 import appeng.core.network.serverbound.PartLeftClickPacket;
-import appeng.core.network.serverbound.RequestClosestMeteoritePacket;
 import appeng.core.network.serverbound.SelectKeyTypePacket;
 import appeng.core.network.serverbound.SwapSlotsPacket;
 import appeng.core.network.serverbound.SwitchGuisPacket;
@@ -37,7 +35,6 @@ public class InitNetwork {
 
         // Clientbound
         clientbound(registrar, BlockTransitionEffectPacket.TYPE, BlockTransitionEffectPacket.STREAM_CODEC);
-        clientbound(registrar, CompassResponsePacket.TYPE, CompassResponsePacket.STREAM_CODEC);
         clientbound(registrar, GuiDataSyncPacket.TYPE, GuiDataSyncPacket.STREAM_CODEC);
         clientbound(registrar, ItemTransitionEffectPacket.TYPE, ItemTransitionEffectPacket.STREAM_CODEC);
         clientbound(registrar, LightningPacket.TYPE, LightningPacket.STREAM_CODEC);
@@ -47,7 +44,6 @@ public class InitNetwork {
 
         // Serverbound
         serverbound(registrar, ColorApplicatorSelectColorPacket.TYPE, ColorApplicatorSelectColorPacket.STREAM_CODEC);
-        serverbound(registrar, RequestClosestMeteoritePacket.TYPE, RequestClosestMeteoritePacket.STREAM_CODEC);
         serverbound(registrar, ConfigButtonPacket.TYPE, ConfigButtonPacket.STREAM_CODEC);
         serverbound(registrar, FillCraftingGridFromRecipePacket.TYPE, FillCraftingGridFromRecipePacket.STREAM_CODEC);
         serverbound(registrar, GuiActionPacket.TYPE, GuiActionPacket.STREAM_CODEC);

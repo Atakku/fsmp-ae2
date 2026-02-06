@@ -26,7 +26,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 
 import appeng.menu.implementations.CellWorkbenchMenu;
-import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.MEChestMenu;
@@ -50,7 +49,6 @@ public final class InitMenuTypes {
                 BasicCellChestMenu.TYPE,
                 CellWorkbenchMenu.TYPE,
                 MEChestMenu.TYPE,
-                CondenserMenu.TYPE,
                 CraftingTermMenu.TYPE,
                 DriveMenu.TYPE,
                 IOPortMenu.TYPE,

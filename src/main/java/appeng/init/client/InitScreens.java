@@ -34,7 +34,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.implementations.CellWorkbenchScreen;
-import appeng.client.gui.implementations.CondenserScreen;
 import appeng.client.gui.implementations.DriveScreen;
 import appeng.client.gui.implementations.IOPortScreen;
 import appeng.client.gui.implementations.MEChestScreen;
@@ -48,7 +47,6 @@ import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.StyleManager;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.CellWorkbenchMenu;
-import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.MEChestMenu;
@@ -79,7 +77,6 @@ public final class InitScreens {
         register(event, MEChestMenu.TYPE, MEChestScreen::new, "/screens/me_chest.json");
         register(event, WirelessAccessPointMenu.TYPE, WirelessAccessPointScreen::new, "/screens/wireless_access_point.json");
         register(event, DriveMenu.TYPE, DriveScreen::new, "/screens/drive.json");
-        register(event, CondenserMenu.TYPE, CondenserScreen::new, "/screens/condenser.json");
         register(event, IOPortMenu.TYPE, IOPortScreen::new, "/screens/io_port.json");
         register(event, PriorityMenu.TYPE, PriorityScreen::new, "/screens/priority.json");
         register(event, StorageLevelEmitterMenu.TYPE, StorageLevelEmitterScreen::new, "/screens/level_emitter.json");

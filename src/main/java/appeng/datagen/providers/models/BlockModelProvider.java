@@ -55,8 +55,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         generateQuartzCluster(AEBlocks.LARGE_QUARTZ_BUD);
         generateQuartzCluster(AEBlocks.QUARTZ_CLUSTER);
 
-        simpleBlockAndItem(AEBlocks.CONDENSER);
-
         simpleBlockAndItem(AEBlocks.DEBUG_ITEM_GEN, "block/debug/item_gen");
         simpleBlockAndItem(AEBlocks.DEBUG_PHANTOM_NODE, "block/debug/phantom_node");
         simpleBlockAndItem(AEBlocks.DEBUG_CUBE_GEN, "block/debug/cube_gen");
@@ -66,10 +64,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                 makeId("block/cell_workbench_side"),
                 makeId("block/generics/bottom"),
                 makeId("block/cell_workbench_top")));
-
-        // Both use the same mysterious cube model
-        simpleBlockAndItem(AEBlocks.MYSTERIOUS_CUBE, models().getExistingFile(makeId("block/mysterious_cube")));
-        simpleBlockAndItem(AEBlocks.NOT_SO_MYSTERIOUS_CUBE, models().getExistingFile(makeId("block/mysterious_cube")));
     }
 
     private void meChest() {

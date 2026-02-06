@@ -40,7 +40,6 @@ public final class ItemPredicates {
                 AEBlocks.DEBUG_PHANTOM_NODE.is(stack) ||
                 AEItems.DEBUG_CARD.is(stack) ||
                 AEItems.DEBUG_ERASER.is(stack) ||
-                AEItems.DEBUG_METEORITE_PLACER.is(stack) ||
                 AEItems.DEBUG_REPLICATOR_CARD.is(stack);
     }
 

@@ -46,7 +46,6 @@ import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
 import appeng.debug.DebugCardItem;
 import appeng.debug.EraserItem;
-import appeng.debug.MeteoritePlacerItem;
 import appeng.debug.ReplicatorCardItem;
 import appeng.items.materials.MaterialItem;
 import appeng.items.materials.StorageComponentItem;
@@ -175,7 +174,6 @@ public final class AEItems {
     ///
 
     public static final ItemDefinition<EraserItem> DEBUG_ERASER = item("Dev.Eraser", AppEng.makeId("debug_eraser"), EraserItem::new);
-    public static final ItemDefinition<MeteoritePlacerItem> DEBUG_METEORITE_PLACER = item("Dev.MeteoritePlacer", AppEng.makeId("debug_meteorite_placer"), MeteoritePlacerItem::new);
     public static final ItemDefinition<DebugCardItem> DEBUG_CARD = item("Dev.DebugCard", AppEng.makeId("debug_card"), DebugCardItem::new);
     public static final ItemDefinition<ReplicatorCardItem> DEBUG_REPLICATOR_CARD = item("Dev.ReplicatorCard", AppEng.makeId("debug_replicator_card"), ReplicatorCardItem::new);
     public static final ItemDefinition<WrappedGenericStack> WRAPPED_GENERIC_STACK = item("Wrapped Generic Stack", AEItemIds.WRAPPED_GENERIC_STACK, WrappedGenericStack::new);

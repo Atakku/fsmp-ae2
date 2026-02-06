@@ -204,9 +204,7 @@ public enum GuiText implements LocalizationEnum {
     WirelessTerminal("Wireless Term"),
     With("with"),
     Yellow("Yellow"),
-    Yes("Yes"),
-    inWorldCraftingPresses(
-            "Crafting Presses are obtained by breaking a Mysterious Cube. Mysterious Cubes are in the center of meteorites which can be found in around the world. They can be located by using a meteorite compass.");
+    Yes("Yes");
 
     private final String root;
 

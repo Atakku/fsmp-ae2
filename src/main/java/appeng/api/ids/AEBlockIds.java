@@ -46,8 +46,6 @@ public final class AEBlockIds {
     public static final ResourceLocation LARGE_QUARTZ_BUD = id("large_quartz_bud");
     public static final ResourceLocation QUARTZ_CLUSTER = id("quartz_cluster");
 
-    public static final ResourceLocation MYSTERIOUS_CUBE = id("mysterious_cube");
-    public static final ResourceLocation NOT_SO_MYSTERIOUS_CUBE = id("not_so_mysterious_cube");
     public static final ResourceLocation SKY_STONE_CHEST = id("sky_stone_chest");
     public static final ResourceLocation SMOOTH_SKY_STONE_CHEST = id("smooth_sky_stone_chest");
 
@@ -60,7 +58,6 @@ public final class AEBlockIds {
     public static final ResourceLocation ME_CHEST = id("chest");
     public static final ResourceLocation CELL_WORKBENCH = id("cell_workbench");
     public static final ResourceLocation IO_PORT = id("io_port");
-    public static final ResourceLocation CONDENSER = id("condenser");
     public static final ResourceLocation CABLE_BUS = id("cable_bus");
 
     ///

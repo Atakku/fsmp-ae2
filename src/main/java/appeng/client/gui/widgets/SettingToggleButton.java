@@ -36,7 +36,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 
 import appeng.api.config.AccessRestriction;
-import appeng.api.config.CondenserOutput;
 import appeng.api.config.FullnessMode;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.InscriberInputCapacity;
@@ -89,12 +88,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
 
         if (appearances == null) {
             appearances = new HashMap<>();
-            registerApp(Icon.CONDENSER_OUTPUT_TRASH, Settings.CONDENSER_OUTPUT, CondenserOutput.TRASH,
-                    ButtonToolTips.CondenserOutput,
-                    ButtonToolTips.Trash);
-            registerApp(Icon.CONDENSER_OUTPUT_MATTER_BALL, Settings.CONDENSER_OUTPUT, CondenserOutput.MATTER_BALLS,
-                    ButtonToolTips.CondenserOutput,
-                    ButtonToolTips.MatterBalls.text(CondenserOutput.MATTER_BALLS.requiredPower));
 
             registerApp(Icon.ACCESS_READ, Settings.ACCESS, AccessRestriction.READ, ButtonToolTips.IOMode,
                     ButtonToolTips.Read);

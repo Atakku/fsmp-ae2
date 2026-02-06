@@ -251,15 +251,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_purified_fluix_crystal", has(AEItems.FLUIX_CRYSTAL))
                 .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
                 .save(consumer, AppEng.makeId("network/blocks/controller"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.CONDENSER)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', ConventionTags.GLASS_CHEAP)
-                .define('c', ConventionTags.FLUIX_DUST)
-                .unlockedBy("has_dusts/fluix", has(ConventionTags.FLUIX_DUST))
-                .save(consumer, AppEng.makeId("network/blocks/io_condenser"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.IO_PORT)
                 .pattern("aaa")
                 .pattern("bcb")

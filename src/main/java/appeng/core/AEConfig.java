@@ -30,7 +30,6 @@ import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
 import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
-import appeng.api.config.CondenserOutput;
 import appeng.api.config.TerminalStyle;
 import appeng.api.networking.pathing.ChannelMode;
 import appeng.core.settings.TickRates;
@@ -176,14 +175,6 @@ public final class AEConfig {
             client.debugGuiOverlays.set(enable);
             client.spec.save();
         }
-    }
-
-    public boolean isSpawnPressesInMeteoritesEnabled() {
-        return common.spawnPressesInMeteorites.get();
-    }
-
-    public boolean isSpawnFlawlessOnlyEnabled() {
-        return common.spawnFlawlessOnly.get();
     }
 
     public boolean isBlockUpdateLogEnabled() {
@@ -367,13 +358,6 @@ public final class AEConfig {
         public final BooleanValue gridLog;
         public final BooleanValue chunkLoggerTrace;
 
-        // Meteors
-        public final BooleanValue spawnPressesInMeteorites;
-        public final BooleanValue spawnFlawlessOnly;
-
-        // Condenser Power Requirement
-        public final IntValue condenserMatterBallsPower;
-
         public final Map<TickRates, IntValue> tickRateMin = new HashMap<>();
         public final Map<TickRates, IntValue> tickRateMax = new HashMap<>();
 
@@ -394,15 +378,6 @@ public final class AEConfig {
                     "Enable stack trace logging for the chunk loading debug command");
             builder.pop();
 
-            builder.push("worldGen");
-            this.spawnPressesInMeteorites = define(builder, "spawnPressesInMeteorites", true);
-            this.spawnFlawlessOnly = define(builder, "spawnFlawlessOnly", false);
-            builder.pop();
-
-            builder.push("condenser");
-            condenserMatterBallsPower = define(builder, "matterBalls", 256);
-            builder.pop();
-
             builder.comment(
                     " Min / Max Tickrates for dynamic ticking, most of these components also use sleeping, to prevent constant ticking, adjust with care, non standard rates are not supported or tested.");
             builder.push("tickRates");
@@ -416,8 +391,6 @@ public final class AEConfig {
         }
 
         public void sync() {
-            CondenserOutput.MATTER_BALLS.requiredPower = condenserMatterBallsPower.get();
-
             for (TickRates tr : TickRates.values()) {
                 tr.setMin(tickRateMin.get(tr).get());
                 tr.setMax(tickRateMax.get(tr).get());

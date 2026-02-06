@@ -59,7 +59,6 @@ public class BlockDropProvider extends BlockLootSubProvider {
     @NotNull
     private ImmutableMap<Block, Function<Block, LootTable.Builder>> createOverrides() {
         return ImmutableMap.<Block, Function<Block, LootTable.Builder>>builder()
-                .put(AEBlocks.MYSTERIOUS_CUBE.block(), this::mysteriousCube)
                 // Flawless budding quartz always degrades by 1.
                 .put(AEBlocks.FLAWLESS_BUDDING_QUARTZ.block(), flawlessBuddingQuartz())
                 // Imperfect budding quartz degrades by 1 without silk touch, and does not degrade with silk touch.

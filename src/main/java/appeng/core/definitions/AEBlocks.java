@@ -51,8 +51,6 @@ import appeng.api.ids.AEBlockIds;
 import appeng.block.AEBaseBlock;
 import appeng.block.AEBaseBlockItem;
 import appeng.block.misc.CellWorkbenchBlock;
-import appeng.block.misc.CondenserBlock;
-import appeng.block.misc.MysteriousCubeBlock;
 import appeng.block.networking.CableBusBlock;
 import appeng.block.networking.ControllerBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
@@ -68,7 +66,6 @@ import appeng.debug.PhantomNodeBlock;
 import appeng.decorative.AEDecorativeBlock;
 import appeng.decorative.solid.BuddingCertusQuartzBlock;
 import appeng.decorative.solid.CertusQuartzClusterBlock;
-import appeng.decorative.solid.NotSoMysteriousCubeBlock;
 import appeng.decorative.solid.QuartzGlassBlock;
 import appeng.decorative.solid.QuartzLampBlock;
 
@@ -123,9 +120,6 @@ public final class AEBlocks {
     public static final BlockDefinition<SkyChestBlock> SKY_STONE_CHEST = block("Sky Stone Chest", AEBlockIds.SKY_STONE_CHEST, () -> new SkyChestBlock(SkyChestBlock.SkyChestType.STONE, SKY_STONE_CHEST_PROPS));
     public static final BlockDefinition<SkyChestBlock> SMOOTH_SKY_STONE_CHEST = block("Sky Stone Block Chest", AEBlockIds.SMOOTH_SKY_STONE_CHEST, () -> new SkyChestBlock(SkyChestBlock.SkyChestType.BLOCK, SKY_STONE_CHEST_PROPS));
 
-    public static final BlockDefinition<MysteriousCubeBlock> MYSTERIOUS_CUBE = block("Mysterious Cube", AEBlockIds.MYSTERIOUS_CUBE, MysteriousCubeBlock::new);
-    public static final BlockDefinition<NotSoMysteriousCubeBlock> NOT_SO_MYSTERIOUS_CUBE = block("Not So Mysterious Cube", AEBlockIds.NOT_SO_MYSTERIOUS_CUBE, NotSoMysteriousCubeBlock::new);
-
     public static final BlockDefinition<WirelessAccessPointBlock> WIRELESS_ACCESS_POINT = block("ME Wireless Access Point", AEBlockIds.WIRELESS_ACCESS_POINT, WirelessAccessPointBlock::new);
 
     public static final BlockDefinition<ControllerBlock> CONTROLLER = block("ME Controller", AEBlockIds.CONTROLLER, ControllerBlock::new);
@@ -133,7 +127,6 @@ public final class AEBlocks {
     public static final BlockDefinition<MEChestBlock> ME_CHEST = block("ME Chest", AEBlockIds.ME_CHEST, MEChestBlock::new);
     public static final BlockDefinition<CellWorkbenchBlock> CELL_WORKBENCH = block("Cell Workbench", AEBlockIds.CELL_WORKBENCH, CellWorkbenchBlock::new);
     public static final BlockDefinition<IOPortBlock> IO_PORT = block("ME IO Port", AEBlockIds.IO_PORT, IOPortBlock::new);
-    public static final BlockDefinition<CondenserBlock> CONDENSER = block("Matter Condenser", AEBlockIds.CONDENSER, CondenserBlock::new);
 
     public static final BlockDefinition<StairBlock> SKY_STONE_STAIRS = block("Sky Stone Stairs", AEBlockIds.SKY_STONE_STAIRS, () -> new StairBlock(SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));
     public static final BlockDefinition<StairBlock> SMOOTH_SKY_STONE_STAIRS = block("Sky Stone Block Stairs", AEBlockIds.SMOOTH_SKY_STONE_STAIRS, () -> new StairBlock(SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));

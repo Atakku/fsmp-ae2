@@ -34,9 +34,7 @@ import net.minecraft.world.level.block.Block;
 
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.BlockDefinition;
-import appeng.datagen.providers.tags.ConventionTags;
 
 public class DecorationRecipes extends AE2RecipeProvider {
 
@@ -74,19 +72,6 @@ public class DecorationRecipes extends AE2RecipeProvider {
             stairRecipe(consumer, block[0], block[2]);
             wallRecipe(consumer, block[0], block[3]);
         }
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.NOT_SO_MYSTERIOUS_CUBE, 4)
-                .pattern("ScS")
-                .pattern("eCl")
-                .pattern("SsS")
-                .define('S', AEBlocks.SMOOTH_SKY_STONE_BLOCK)
-                .define('C', AEBlocks.CONTROLLER)
-                .define('c', AEItems.CALCULATION_PROCESSOR_PRESS)
-                .define('e', AEItems.ENGINEERING_PROCESSOR_PRESS)
-                .define('l', AEItems.LOGIC_PROCESSOR_PRESS)
-                .define('s', AEItems.SILICON_PRESS)
-                .unlockedBy("press", has(ConventionTags.INSCRIBER_PRESSES))
-                .save(consumer, AppEng.makeId("shaped/not_so_mysterious_cube"));
     }
 
     private void slabRecipe(RecipeOutput consumer, BlockDefinition<?> block, BlockDefinition<?> slabs) {

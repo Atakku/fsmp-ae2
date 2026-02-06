@@ -49,12 +49,9 @@ import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomShapelessDisplay;
 
-import appeng.api.config.CondenserOutput;
 import appeng.api.integrations.rei.IngredientConverters;
 import appeng.client.gui.AEBaseScreen;
-import appeng.core.AEConfig;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.core.definitions.ItemDefinition;
@@ -95,7 +92,6 @@ public class ReiPlugin implements REIClientPlugin {
         }
 
         registry.add(new TransformCategory());
-        registry.add(new CondenserCategory());
 
         registerWorkingStations(registry);
     }
@@ -109,8 +105,6 @@ public class ReiPlugin implements REIClientPlugin {
         registry.registerRecipeFiller(TransformRecipe.class, AERecipeTypes.TRANSFORM, TransformRecipeWrapper::new);
         registry.registerRecipeFiller(StorageCellUpgradeRecipe.class, RecipeType.CRAFTING,
                 this::convertStorageCellUpgradeRecipe);
-
-        registry.add(new CondenserOutputDisplay(CondenserOutput.MATTER_BALLS));
 
         registerDescriptions(registry);
     }
@@ -183,9 +177,6 @@ public class ReiPlugin implements REIClientPlugin {
     }
 
     private void registerWorkingStations(CategoryRegistry registry) {
-        var condenser = AEBlocks.CONDENSER.stack();
-        registry.addWorkstations(CondenserCategory.ID, EntryStacks.of(condenser));
-
         var craftingTerminal = AEParts.CRAFTING_TERMINAL.stack();
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(craftingTerminal));
 
@@ -197,15 +188,6 @@ public class ReiPlugin implements REIClientPlugin {
         var all = EntryRegistry.getInstance().getEntryStacks().collect(EntryIngredient.collector());
 
         addDescription(registry, AEItems.CERTUS_QUARTZ_CRYSTAL, GuiText.CertusQuartzObtain.getTranslationKey());
-
-        if (AEConfig.instance().isSpawnPressesInMeteoritesEnabled()) {
-            addDescription(registry, AEItems.LOGIC_PROCESSOR_PRESS, GuiText.inWorldCraftingPresses.getTranslationKey());
-            addDescription(registry, AEItems.CALCULATION_PROCESSOR_PRESS,
-                    GuiText.inWorldCraftingPresses.getTranslationKey());
-            addDescription(registry, AEItems.ENGINEERING_PROCESSOR_PRESS,
-                    GuiText.inWorldCraftingPresses.getTranslationKey());
-            addDescription(registry, AEItems.SILICON_PRESS, GuiText.inWorldCraftingPresses.getTranslationKey());
-        }
     }
 
     private static void addDescription(DisplayRegistry registry, ItemDefinition<?> itemDefinition, String... message) {

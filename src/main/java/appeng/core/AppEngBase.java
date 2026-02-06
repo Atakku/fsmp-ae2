@@ -71,7 +71,6 @@ import appeng.init.internal.InitGridLinkables;
 import appeng.init.internal.InitGridServices;
 import appeng.init.internal.InitStorageCells;
 import appeng.init.internal.InitUpgrades;
-import appeng.init.worldgen.InitStructures;
 import appeng.integration.Integrations;
 import appeng.recipes.AERecipeSerializers;
 import appeng.recipes.AERecipeTypes;
@@ -115,7 +114,6 @@ public abstract class AppEngBase implements AppEng {
         AEComponents.DR.register(modEventBus);
         AERecipeTypes.DR.register(modEventBus);
         AERecipeSerializers.DR.register(modEventBus);
-        InitStructures.register(modEventBus);
         AEAttachmentTypes.register(modEventBus);
 
         modEventBus.addListener(this::registerRegistries);

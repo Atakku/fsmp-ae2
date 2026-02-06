@@ -19,19 +19,15 @@
 package appeng.datagen;
 
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import appeng.core.AppEng;
@@ -49,10 +45,8 @@ import appeng.datagen.providers.recipes.DecorationRecipes;
 import appeng.datagen.providers.recipes.SmeltingRecipes;
 import appeng.datagen.providers.recipes.TransformRecipes;
 import appeng.datagen.providers.recipes.UpgradeRecipes;
-import appeng.datagen.providers.tags.BiomeTagsProvider;
 import appeng.datagen.providers.tags.BlockTagsProvider;
 import appeng.datagen.providers.tags.ItemTagsProvider;
-import appeng.init.worldgen.InitStructures;
 
 @EventBusSubscriber(modid = AppEng.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class AE2DataGenerators {
@@ -65,10 +59,6 @@ public class AE2DataGenerators {
         var pack = generator.getVanillaPack(true);
         var existingFileHelper = event.getExistingFileHelper();
 
-        // Worldgen et al
-        pack.addProvider(output -> new DatapackBuiltinEntriesProvider(output, registries,
-                createDatapackEntriesBuilder(), Set.of(AppEng.MOD_ID)));
-
         // Loot
         pack.addProvider(packOutput -> new AE2LootTableProvider(packOutput, registries));
 
@@ -78,7 +68,6 @@ public class AE2DataGenerators {
         pack.addProvider(
                 packOutput -> new ItemTagsProvider(packOutput, registries, blockTagsProvider.contentsGetter(),
                         existingFileHelper));
-        pack.addProvider(packOutput -> new BiomeTagsProvider(packOutput, registries, existingFileHelper));
 
         // Models
         pack.addProvider(packOutput -> new BlockModelProvider(packOutput, existingFileHelper));
@@ -101,12 +90,6 @@ public class AE2DataGenerators {
 
         // Must run last
         pack.addProvider(packOutput -> localization);
-    }
-
-    private static RegistrySetBuilder createDatapackEntriesBuilder() {
-        return new RegistrySetBuilder()
-                .add(Registries.STRUCTURE, InitStructures::initDatagenStructures)
-                .add(Registries.STRUCTURE_SET, InitStructures::initDatagenStructureSets);
     }
 
     private static <T extends DataProvider> DataProvider.Factory<T> bindRegistries(

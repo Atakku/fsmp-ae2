@@ -49,18 +49,6 @@ class TooltipTest {
     }
 
     @Test
-    void testSplitAtNewlineInTranslationText() {
-        Tooltip tooltip = new Tooltip(
-                Component.translatable("gui.tooltips.ae2.MatterBalls", 256));
-
-        assertThat(tooltip.getContent())
-                .extracting(Component::getString)
-                .containsExactly(
-                        "Condense Into Matter Balls",
-                        "256 per item");
-    }
-
-    @Test
     void testNoLineSplitting() {
         Tooltip tooltip = new Tooltip(
                 Component.translatable("a"),

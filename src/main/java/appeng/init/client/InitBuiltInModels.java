@@ -28,7 +28,6 @@ import appeng.client.render.cablebus.CableBusModel;
 import appeng.client.render.model.ColorApplicatorModel;
 import appeng.client.render.model.DriveModel;
 import appeng.client.render.model.GlassModel;
-import appeng.client.render.model.MeteoriteCompassModel;
 import appeng.core.AppEng;
 import appeng.hooks.BuiltInModelHooks;
 
@@ -40,7 +39,6 @@ public final class InitBuiltInModels {
     public static void init() {
         addBuiltInModel("block/cable_bus", CableBusModel::new);
         addBuiltInModel("block/quartz_glass", GlassModel::new);
-        addBuiltInModel("item/meteorite_compass", MeteoriteCompassModel::new);
         addBuiltInModel("block/drive", DriveModel::new);
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
     }
