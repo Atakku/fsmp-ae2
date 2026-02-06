@@ -119,9 +119,5 @@ public final class InitCapabilityProviders {
                 Capabilities.ItemHandler.BLOCK,
                 AEBlockEntities.DEBUG_ITEM_GEN.get(),
                 (object, context) -> object.getItemHandler());
-        event.registerBlockEntity(
-                Capabilities.EnergyStorage.BLOCK,
-                AEBlockEntities.DEBUG_ENERGY_GEN.get(),
-                (object, context) -> object);
     }
 }

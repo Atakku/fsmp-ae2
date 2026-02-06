@@ -63,7 +63,6 @@ import appeng.block.storage.SkyChestBlock;
 import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
 import appeng.debug.CubeGeneratorBlock;
-import appeng.debug.EnergyGeneratorBlock;
 import appeng.debug.ItemGenBlock;
 import appeng.debug.PhantomNodeBlock;
 import appeng.decorative.AEDecorativeBlock;
@@ -181,7 +180,6 @@ public final class AEBlocks {
     public static final BlockDefinition<ItemGenBlock> DEBUG_ITEM_GEN = block("Dev.ItemGen", AppEng.makeId("debug_item_gen"), ItemGenBlock::new);
     public static final BlockDefinition<PhantomNodeBlock> DEBUG_PHANTOM_NODE = block("Dev.PhantomNode", AppEng.makeId("debug_phantom_node"), PhantomNodeBlock::new);
     public static final BlockDefinition<CubeGeneratorBlock> DEBUG_CUBE_GEN = block("Dev.CubeGen", AppEng.makeId("debug_cube_gen"), CubeGeneratorBlock::new);
-    public static final BlockDefinition<EnergyGeneratorBlock> DEBUG_ENERGY_GEN = block("Dev.EnergyGen", AppEng.makeId("debug_energy_gen"), EnergyGeneratorBlock::new);
 
     // spotless:on
 

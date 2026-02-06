@@ -36,7 +36,6 @@ public final class ItemPredicates {
 
     private static boolean isDeveloperTool(ItemStack stack) {
         return AEBlocks.DEBUG_CUBE_GEN.is(stack) ||
-                AEBlocks.DEBUG_ENERGY_GEN.is(stack) ||
                 AEBlocks.DEBUG_ITEM_GEN.is(stack) ||
                 AEBlocks.DEBUG_PHANTOM_NODE.is(stack) ||
                 AEItems.DEBUG_CARD.is(stack) ||

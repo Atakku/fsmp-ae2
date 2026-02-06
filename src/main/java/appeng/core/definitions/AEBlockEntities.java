@@ -49,7 +49,6 @@ import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.blockentity.storage.SkyChestBlockEntity;
 import appeng.core.AppEng;
 import appeng.debug.CubeGeneratorBlockEntity;
-import appeng.debug.EnergyGeneratorBlockEntity;
 import appeng.debug.ItemGenBlockEntity;
 import appeng.debug.PhantomNodeBlockEntity;
 
@@ -89,9 +88,6 @@ public final class AEBlockEntities {
             PhantomNodeBlockEntity.class, PhantomNodeBlockEntity::new, AEBlocks.DEBUG_PHANTOM_NODE);
     public static final DeferredBlockEntityType<CubeGeneratorBlockEntity> DEBUG_CUBE_GEN = create("debug_cube_gen",
             CubeGeneratorBlockEntity.class, CubeGeneratorBlockEntity::new, AEBlocks.DEBUG_CUBE_GEN);
-    public static final DeferredBlockEntityType<EnergyGeneratorBlockEntity> DEBUG_ENERGY_GEN = create(
-            "debug_energy_gen",
-            EnergyGeneratorBlockEntity.class, EnergyGeneratorBlockEntity::new, AEBlocks.DEBUG_ENERGY_GEN);
 
     public static final DeferredBlockEntityType<MysteriousCubeBlockEntity> MYSTERIOUS_CUBE = create("mysterious_cube",
             MysteriousCubeBlockEntity.class,

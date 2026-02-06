@@ -98,7 +98,6 @@
   "block.ae2.cut_quartz_wall": "Пиленая стена из истинного кварца",
   "block.ae2.damaged_budding_quartz": "Поврежденный цветущий блок истинного кварца",
   "block.ae2.debug_cube_gen": "Генератор куба разработчика",
-  "block.ae2.debug_energy_gen": "Генератор энергии разработчика",
   "block.ae2.debug_item_gen": "Генератор предметов разработчика",
   "block.ae2.debug_phantom_node": "Фантомный узел разработчика",
   "block.ae2.dense_energy_cell": "Плотное энергохранилище",

@@ -98,7 +98,6 @@
   "block.ae2.cut_quartz_wall": "Klipp Certus kvarts vägg",
   "block.ae2.damaged_budding_quartz": "Skadad Budding Certus kvarts",
   "block.ae2.debug_cube_gen": "Dev.CubeGen",
-  "block.ae2.debug_energy_gen": "Dev.EnergiGen",
   "block.ae2.debug_item_gen": "Dev.ItemGen",
   "block.ae2.debug_phantom_node": "Dev.PhantomNode",
   "block.ae2.dense_energy_cell": "Kompakt energicell",
