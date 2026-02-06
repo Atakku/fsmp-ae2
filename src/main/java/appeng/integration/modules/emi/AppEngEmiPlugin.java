@@ -41,7 +41,6 @@ import appeng.core.localization.LocalizationEnum;
 import appeng.integration.abstraction.ItemListMod;
 import appeng.integration.modules.itemlists.ItemPredicates;
 import appeng.menu.me.items.CraftingTermMenu;
-import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
 import appeng.recipes.AERecipeTypes;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
@@ -70,8 +69,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         registerDescriptions(registry);
 
         // Recipe transfer
-        registry.addRecipeHandler(PatternEncodingTermMenu.TYPE,
-                new EmiEncodePatternHandler<>(PatternEncodingTermMenu.class));
         registry.addRecipeHandler(CraftingTermMenu.TYPE, new EmiUseCraftingRecipeHandler<>(CraftingTermMenu.class));
         registry.addRecipeHandler(WirelessCraftingTermMenu.TYPE,
                 new EmiUseCraftingRecipeHandler<>(WirelessCraftingTermMenu.class));

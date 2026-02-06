@@ -71,12 +71,10 @@ import appeng.core.localization.ItemModText;
 import appeng.integration.abstraction.ItemListMod;
 import appeng.integration.modules.itemlists.CompatLayerHelper;
 import appeng.integration.modules.itemlists.ItemPredicates;
-import appeng.integration.modules.rei.transfer.EncodePatternTransferHandler;
 import appeng.integration.modules.rei.transfer.UseCraftingRecipeTransfer;
 import appeng.items.parts.FacadeItem;
 import appeng.items.tools.powered.powersink.AEBasePoweredItem;
 import appeng.menu.me.items.CraftingTermMenu;
-import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.recipes.AERecipeTypes;
 import appeng.recipes.entropy.EntropyRecipe;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
@@ -159,7 +157,6 @@ public class ReiPlugin implements REIClientPlugin {
         }
 
         // Allow recipe transfer from JEI to crafting and pattern terminal
-        registry.register(new EncodePatternTransferHandler<>(PatternEncodingTermMenu.class));
         registry.register(new UseCraftingRecipeTransfer<>(CraftingTermMenu.class));
     }
 

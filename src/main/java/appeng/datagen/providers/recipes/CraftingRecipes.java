@@ -629,7 +629,7 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('c', ConventionTags.ALL_CERTUS_QUARTZ)
                 .define('d', ConventionTags.IRON_INGOT)
                 .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_pattern_encoding_terminal", has(AEParts.PATTERN_ENCODING_TERMINAL))
+                .unlockedBy("has_crafting_terminal", has(AEParts.CRAFTING_TERMINAL))
                 .save(consumer, AppEng.makeId("network/crafting/patterns_blank"));
 
         // ====================================================
@@ -772,11 +772,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(ConventionTags.PATTERN_PROVIDER)
                 .unlockedBy("has_pattern_provider", has(ConventionTags.PATTERN_PROVIDER))
                 .save(consumer, AppEng.makeId("network/parts/terminals_pattern_access"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEParts.PATTERN_ENCODING_TERMINAL)
-                .requires(AEItems.ENGINEERING_PROCESSOR)
-                .requires(AEParts.CRAFTING_TERMINAL)
-                .unlockedBy("has_crafting_terminal", has(AEParts.CRAFTING_TERMINAL))
-                .save(consumer, AppEng.makeId("network/parts/terminals_pattern_encoding"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEParts.TOGGLE_BUS)
                 .pattern(" a ")
                 .pattern("bcb")

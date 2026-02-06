@@ -251,7 +251,6 @@ public final class AEPartIds {
     public static final ResourceLocation DARK_MONITOR = id("dark_monitor");
     public static final ResourceLocation TERMINAL = id("terminal");
     public static final ResourceLocation CRAFTING_TERMINAL = id("crafting_terminal");
-    public static final ResourceLocation PATTERN_ENCODING_TERMINAL = id("pattern_encoding_terminal");
     public static final ResourceLocation PATTERN_ACCESS_TERMINAL = id("pattern_access_terminal");
     public static final ResourceLocation STORAGE_MONITOR = id("storage_monitor");
 

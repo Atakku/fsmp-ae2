@@ -213,24 +213,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(controller)
                 .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.CRAFTING_TERMINAL))
                 .save(consumer, "ae2:main/crafting_terminal");
-
-        var patternTerminal = Advancement.Builder.advancement()
-                .display(
-                        AEParts.PATTERN_ENCODING_TERMINAL,
-                        localization.component("achievement.ae2.PatternTerminal", "Crafting Maestro"),
-                        localization.component("achievement.ae2.PatternTerminal.desc",
-                                "Craft a Pattern Encoding Terminal"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(craftingTerminal)
-                .addCriterion("certus",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.PATTERN_ENCODING_TERMINAL))
-                .save(consumer, "ae2:main/pattern_encoding_terminal");
-
         var craftingCpu = Advancement.Builder.advancement()
                 .display(
                         AEBlocks.CRAFTING_STORAGE_64K,
@@ -241,7 +223,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false,
                         false,
                         false)
-                .parent(patternTerminal)
+                .parent(craftingTerminal)
                 .addCriterion("cu", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.CRAFTING_UNIT))
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .save(consumer, "ae2:main/crafting_cpu");

@@ -44,7 +44,6 @@ import appeng.parts.automation.FormationPlanePart;
 import appeng.parts.automation.ImportBusPart;
 import appeng.parts.automation.StorageLevelEmitterPart;
 import appeng.parts.crafting.PatternProviderPart;
-import appeng.parts.encoding.PatternEncodingTerminalPart;
 import appeng.parts.misc.CableAnchorPart;
 import appeng.parts.misc.InterfacePart;
 import appeng.parts.misc.InvertedToggleBusPart;
@@ -98,7 +97,6 @@ public final class AEParts {
     public static final ItemDefinition<PartItem<EnergyLevelEmitterPart>> ENERGY_LEVEL_EMITTER = createPart("ME Energy Level Emitter", AEPartIds.ENERGY_LEVEL_EMITTER, EnergyLevelEmitterPart.class, EnergyLevelEmitterPart::new);
     public static final ItemDefinition<PartItem<AnnihilationPlanePart>> ANNIHILATION_PLANE = createCustomPartItem("ME Annihilation Plane", AEPartIds.ANNIHILATION_PLANE, AnnihilationPlanePart.class, AnnihilationPlanePartItem::new);
     public static final ItemDefinition<PartItem<FormationPlanePart>> FORMATION_PLANE = createPart("ME Formation Plane", AEPartIds.FORMATION_PLANE, FormationPlanePart.class, FormationPlanePart::new);
-    public static final ItemDefinition<PartItem<PatternEncodingTerminalPart>> PATTERN_ENCODING_TERMINAL = createPart("ME Pattern Encoding Terminal", AEPartIds.PATTERN_ENCODING_TERMINAL, PatternEncodingTerminalPart.class, PatternEncodingTerminalPart::new);
     public static final ItemDefinition<PartItem<CraftingTerminalPart>> CRAFTING_TERMINAL = createPart("ME Crafting Terminal", AEPartIds.CRAFTING_TERMINAL, CraftingTerminalPart.class, CraftingTerminalPart::new);
     public static final ItemDefinition<PartItem<ItemTerminalPart>> TERMINAL = createPart("ME Terminal", AEPartIds.TERMINAL, ItemTerminalPart.class, ItemTerminalPart::new);
     public static final ItemDefinition<PartItem<StorageMonitorPart>> STORAGE_MONITOR = createPart("ME Storage Monitor", AEPartIds.STORAGE_MONITOR, StorageMonitorPart.class, StorageMonitorPart::new);

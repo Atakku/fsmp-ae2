@@ -30,7 +30,6 @@ import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
 import appeng.items.tools.powered.powersink.PoweredItemCapabilities;
 import appeng.parts.crafting.PatternProviderPart;
-import appeng.parts.encoding.PatternEncodingTerminalPart;
 import appeng.parts.misc.InterfacePart;
 import appeng.parts.networking.EnergyAcceptorPart;
 import appeng.parts.p2p.FEP2PTunnelPart;
@@ -222,9 +221,6 @@ public final class InitCapabilityProviders {
     }
 
     private static void registerPartCapabilities(RegisterPartCapabilitiesEvent event) {
-        event.register(Capabilities.ItemHandler.BLOCK,
-                (part, direction) -> part.getLogic().getBlankPatternInv().toItemHandler(),
-                PatternEncodingTerminalPart.class);
         event.register(AECapabilities.GENERIC_INTERNAL_INV, (part, context) -> part.getLogic().getReturnInv(),
                 PatternProviderPart.class);
         event.register(AECapabilities.GENERIC_INTERNAL_INV,

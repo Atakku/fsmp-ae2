@@ -116,12 +116,6 @@ public class LocalizationProvider implements IAE2DataProvider {
         add("death.attack.matter_cannon", "%1$s was shot by %2$s");
         add("death.attack.matter_cannon.item", "%1$s was shot by %2$s using %3$s");
         add("entity.minecraft.villager.ae2.fluix_researcher", "Fluix Researcher");
-        add("gui.ae2.PatternEncoding.primary_processing_result_hint",
-                "Can be requested through the automated crafting system.");
-        add("gui.ae2.PatternEncoding.primary_processing_result_tooltip", "Primary Processing Result");
-        add("gui.ae2.PatternEncoding.secondary_processing_result_hint",
-                "Can not be directly requested through the automated crafting system, but will be used before stored items in multi-step recipes.");
-        add("gui.ae2.PatternEncoding.secondary_processing_result_tooltip", "Secondary Processing Result");
         add("key.ae2.category", "Applied Energistics 2");
         add("key.ae2.portable_fluid_cell", "Open Portable Fluid Cell");
         add("key.ae2.portable_item_cell", "Open Portable Item Cell");

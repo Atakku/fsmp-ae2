@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pattern_encoding_terminal": {
+    "has_crafting_terminal": {
       "conditions": {
         "items": [
           {
-            "items": "ae2:pattern_encoding_terminal"
+            "items": "ae2:crafting_terminal"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_pattern_encoding_terminal"
+      "has_crafting_terminal"
     ]
   ],
   "rewards": {

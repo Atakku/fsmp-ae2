@@ -1,5 +1,5 @@
 {
-  "parent": "ae2:main/pattern_encoding_terminal",
+  "parent": "ae2:main/crafting_terminal",
   "criteria": {
     "cu": {
       "conditions": {

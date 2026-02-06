@@ -66,10 +66,7 @@ public final class AutoCraftingTestPlots {
             drive.getInternalInventory().addItems(CreativeCellItem.ofFluids(Fluids.LAVA));
         });
         plot.block("7 -1 0", AEBlocks.CELL_WORKBENCH);
-        plot.part("6 0 1", Direction.NORTH, AEParts.PATTERN_ENCODING_TERMINAL, term -> {
-            var inv = term.getLogic().getBlankPatternInv();
-            inv.addItems(AEItems.BLANK_PATTERN.stack(64));
-        });
+        plot.part("6 0 1", Direction.NORTH, AEParts.MONITOR);
         plot.part("5 0 1", Direction.NORTH, AEParts.PATTERN_ACCESS_TERMINAL);
         plot.part("4 0 1", Direction.NORTH, AEParts.TERMINAL);
         plot.part("3 0 1", Direction.NORTH, AEParts.CRAFTING_TERMINAL);

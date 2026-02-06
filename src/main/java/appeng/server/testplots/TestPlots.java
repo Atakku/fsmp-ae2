@@ -263,7 +263,7 @@ public final class TestPlots {
             }
             line.part("1 0 0", Direction.NORTH, AEParts.TERMINAL);
             line.part("2 0 0", Direction.NORTH, AEParts.CRAFTING_TERMINAL);
-            line.part("3 0 0", Direction.NORTH, AEParts.PATTERN_ENCODING_TERMINAL);
+            line.part("3 0 0", Direction.NORTH, AEParts.MONITOR);
             line.part("4 0 0", Direction.NORTH, AEParts.PATTERN_ACCESS_TERMINAL);
             line.part("5 0 0", Direction.NORTH, AEParts.STORAGE_MONITOR, monitor -> {
                 var enchantedPickaxe = createEnchantedPickaxe(monitor.getLevel());
