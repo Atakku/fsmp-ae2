@@ -373,7 +373,6 @@
           "CRAFTING_RESULT",
           "PROCESSING_INPUTS",
           "PROCESSING_OUTPUTS",
-          "STONECUTTING_INPUT",
           "MISSING_INGREDIENT"
         ]
       }

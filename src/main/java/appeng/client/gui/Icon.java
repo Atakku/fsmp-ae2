@@ -76,7 +76,6 @@ public enum Icon {
     BACKGROUND_DUST(240, 32),
     TAB_CRAFTING(0, 32),
     TAB_PROCESSING(16, 32),
-    TAB_STONECUTTING(48, 32),
 
     // ROW 3
     ARROW_UP(0, 48),

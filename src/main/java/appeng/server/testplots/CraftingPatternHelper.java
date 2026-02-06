@@ -6,15 +6,11 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 
 import appeng.api.crafting.PatternDetailsHelper;
-import appeng.api.stacks.AEItemKey;
 
 public class CraftingPatternHelper {
 
@@ -78,31 +74,5 @@ public class CraftingPatternHelper {
                 recipe.value().getResultItem(level.registryAccess()),
                 false,
                 false);
-    }
-
-    public static ItemStack encodeStoneCutterPattern(Level level, ItemLike inputItem, ItemLike outputItem,
-            boolean allowSubstitutes) {
-
-        var input = new SingleRecipeInput(new ItemStack(inputItem));
-
-        RecipeHolder<StonecutterRecipe> foundRecipe = null;
-        for (var holder : level.getRecipeManager().getRecipesFor(RecipeType.STONECUTTING, input, level)) {
-            StonecutterRecipe recipe = holder.value();
-            if (recipe.getResultItem(level.registryAccess()).is(outputItem.asItem())) {
-                foundRecipe = holder;
-                break;
-            }
-        }
-
-        if (foundRecipe == null) {
-            throw new RuntimeException(
-                    "No stonecutter recipe found for input=" + inputItem + " and output=" + outputItem);
-        }
-
-        return PatternDetailsHelper.encodeStonecuttingPattern(
-                foundRecipe,
-                AEItemKey.of(inputItem),
-                AEItemKey.of(outputItem),
-                allowSubstitutes);
     }
 }

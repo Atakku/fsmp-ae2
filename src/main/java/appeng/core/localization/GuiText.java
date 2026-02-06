@@ -198,7 +198,6 @@ public enum GuiText implements LocalizationEnum {
     SkyChest("Sky Stone Chest"),
     // Used in a terminal to indicate that an item is craftable
     Start("Start"),
-    StonecuttingPattern("Stonecutting Patterns"),
     StorageBus("Storage Bus"),
     StorageBusFluids("Fluid Storage Bus"),
     StorageCells("ME Storage Cells"),

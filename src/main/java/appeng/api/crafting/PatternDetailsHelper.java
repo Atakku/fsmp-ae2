@@ -34,7 +34,6 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
 
 import appeng.api.stacks.AEItemKey;
@@ -43,7 +42,6 @@ import appeng.core.definitions.AEItems;
 import appeng.crafting.pattern.AECraftingPattern;
 import appeng.crafting.pattern.AEPatternDecoder;
 import appeng.crafting.pattern.AEProcessingPattern;
-import appeng.crafting.pattern.AEStonecuttingPattern;
 
 public final class PatternDetailsHelper {
     private static final List<IPatternDetailsDecoder> DECODERS = new CopyOnWriteArrayList<>();
@@ -140,25 +138,6 @@ public final class PatternDetailsHelper {
         var stack = AEItems.CRAFTING_PATTERN.stack();
         AECraftingPattern.encode(stack, recipe, in, out, allowSubstitutes,
                 allowFluidSubstitutes);
-        return stack;
-    }
-
-    /**
-     * Encodes a stonecutting pattern which represents a Vanilla Stonecutter recipe.
-     *
-     * @param recipe           The Vanilla stonecutter recipe to be encoded.
-     * @param in               The input item for the stonecutter, which is used to determine which item is supplied
-     *                         from the ME system to craft using this pattern.
-     * @param out              The selected output item from the stonecutter recipe. Used to restore the recipe if it is
-     *                         renamed later.
-     * @param allowSubstitutes Controls whether the ME system will allow the use of equivalent items to craft this
-     *                         recipe.
-     */
-    public static ItemStack encodeStonecuttingPattern(RecipeHolder<StonecutterRecipe> recipe, AEItemKey in,
-            AEItemKey out,
-            boolean allowSubstitutes) {
-        var stack = AEItems.STONECUTTING_PATTERN.stack();
-        AEStonecuttingPattern.encode(stack, recipe, in, out, allowSubstitutes);
         return stack;
     }
 }

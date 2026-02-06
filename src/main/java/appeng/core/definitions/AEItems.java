@@ -49,7 +49,6 @@ import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
 import appeng.crafting.pattern.AECraftingPattern;
 import appeng.crafting.pattern.AEProcessingPattern;
-import appeng.crafting.pattern.AEStonecuttingPattern;
 import appeng.debug.DebugCardItem;
 import appeng.debug.EraserItem;
 import appeng.debug.MeteoritePlacerItem;
@@ -178,7 +177,6 @@ public final class AEItems {
     public static final ItemDefinition<MaterialItem> BLANK_PATTERN = item("Blank Pattern", AEItemIds.BLANK_PATTERN, MaterialItem::new);
     public static final ItemDefinition<Item> CRAFTING_PATTERN = item("Crafting Pattern", AEItemIds.CRAFTING_PATTERN, p -> PatternDetailsHelper.encodedPatternItemBuilder(AECraftingPattern::new).invalidPatternTooltip(AECraftingPattern::getInvalidPatternTooltip).build());
     public static final ItemDefinition<Item> PROCESSING_PATTERN = item("Processing Pattern", AEItemIds.PROCESSING_PATTERN, p -> PatternDetailsHelper.encodedPatternItemBuilder(AEProcessingPattern::new).invalidPatternTooltip(AEProcessingPattern::getInvalidPatternTooltip).build());
-    public static final ItemDefinition<Item> STONECUTTING_PATTERN = item("Stonecutting Pattern", AEItemIds.STONECUTTING_PATTERN, p -> PatternDetailsHelper.encodedPatternItemBuilder(AEStonecuttingPattern::new).invalidPatternTooltip(AEStonecuttingPattern::getInvalidTooltip).build());
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", AEItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 

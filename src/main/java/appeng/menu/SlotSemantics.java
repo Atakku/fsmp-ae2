@@ -110,8 +110,6 @@ public final class SlotSemantics {
 
     public static final SlotSemantic PROCESSING_OUTPUTS = register("PROCESSING_OUTPUTS", false);
 
-    public static final SlotSemantic STONECUTTING_INPUT = register("STONECUTTING_INPUT", false);
-
     public static final SlotSemantic CRAFTING_RESULT = register("CRAFTING_RESULT", false);
 
     public static final SlotSemantic MISSING_INGREDIENT = register("MISSING_INGREDIENT", true);

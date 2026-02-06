@@ -33,7 +33,6 @@ import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import appeng.crafting.pattern.EncodedCraftingPattern;
 import appeng.crafting.pattern.EncodedProcessingPattern;
-import appeng.crafting.pattern.EncodedStonecuttingPattern;
 
 public final class AEComponents {
     @ApiStatus.Internal
@@ -191,16 +190,6 @@ public final class AEComponents {
             "encoded_processing_pattern",
             builder -> builder.persistent(EncodedProcessingPattern.CODEC)
                     .networkSynchronized(EncodedProcessingPattern.STREAM_CODEC));
-
-    /**
-     * An encoded stonecutting pattern.
-     *
-     * @see AEItems#STONECUTTING_PATTERN
-     */
-    public static final DataComponentType<EncodedStonecuttingPattern> ENCODED_STONECUTTING_PATTERN = register(
-            "encoded_stonecutting_pattern",
-            builder -> builder.persistent(EncodedStonecuttingPattern.CODEC)
-                    .networkSynchronized(EncodedStonecuttingPattern.STREAM_CODEC));
 
     /**
      * List of AE key types enabled in a terminal

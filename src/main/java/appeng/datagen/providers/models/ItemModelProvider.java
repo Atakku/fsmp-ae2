@@ -107,7 +107,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.SILICON_PRINT, "item/printed_silicon");
         flatSingleLayer(AEItems.SKY_DUST, "item/sky_dust");
         flatSingleLayer(AEItems.SPEED_CARD, "item/card_speed");
-        flatSingleLayer(AEItems.STONECUTTING_PATTERN, "item/stonecutting_pattern");
         flatSingleLayer(AEItemIds.GUIDE, "item/guide");
         flatSingleLayer(AEItems.VIEW_CELL, "item/view_cell");
         flatSingleLayer(AEItems.WIRELESS_CRAFTING_TERMINAL, "item/wireless_crafting_terminal");

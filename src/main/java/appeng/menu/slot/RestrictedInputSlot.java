@@ -107,8 +107,7 @@ public class RestrictedInputSlot extends AppEngSlot {
                 return PatternDetailsHelper.isEncodedPattern(stack);
             case ENCODED_AE_PATTERN:
                 return AEItems.CRAFTING_PATTERN.is(stack)
-                        || AEItems.PROCESSING_PATTERN.is(stack)
-                        || AEItems.STONECUTTING_PATTERN.is(stack);
+                        || AEItems.PROCESSING_PATTERN.is(stack);
             case BLANK_PATTERN:
                 return AEItems.BLANK_PATTERN.is(stack);
 
