@@ -28,7 +28,6 @@ public enum PlayerMessages implements LocalizationEnum {
     DeviceNotLinked("Device is not linked."),
     LinkedNetworkNotFound("Linked network cannot be found"),
     DeviceNotPowered("Device is low on power."),
-    MissingBlankPatterns("Not enough blank pattern to restore patterns (missing %d)."),
     MissingUpgrades("Not enough %s to restore upgrades (missing %d)."),
     InvalidMachine("Could not load configuration from an incompatible device."),
     InvalidMachinePartiallyRestored("Partially loaded configuration: %s."),

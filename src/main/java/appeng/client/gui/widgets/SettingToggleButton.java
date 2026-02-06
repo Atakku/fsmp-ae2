@@ -47,7 +47,6 @@ import appeng.api.config.RelativeDirection;
 import appeng.api.config.SchedulingMode;
 import appeng.api.config.Setting;
 import appeng.api.config.Settings;
-import appeng.api.config.ShowPatternProviders;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
 import appeng.api.config.StorageFilter;
@@ -223,18 +222,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
                     ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractEnabled);
             registerApp(Icon.FILTER_ON_EXTRACT_DISABLED, Settings.FILTER_ON_EXTRACT, YesNo.NO,
                     ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractDisabled);
-
-            registerApp(Icon.PATTERN_TERMINAL_ALL, Settings.TERMINAL_SHOW_PATTERN_PROVIDERS, ShowPatternProviders.ALL,
-                    ButtonToolTips.InterfaceTerminalDisplayMode,
-                    ButtonToolTips.ShowAllProviders);
-            registerApp(Icon.PATTERN_TERMINAL_VISIBLE, Settings.TERMINAL_SHOW_PATTERN_PROVIDERS,
-                    ShowPatternProviders.VISIBLE,
-                    ButtonToolTips.InterfaceTerminalDisplayMode,
-                    ButtonToolTips.ShowVisibleProviders);
-            registerApp(Icon.PATTERN_TERMINAL_NOT_FULL, Settings.TERMINAL_SHOW_PATTERN_PROVIDERS,
-                    ShowPatternProviders.NOT_FULL,
-                    ButtonToolTips.InterfaceTerminalDisplayMode,
-                    ButtonToolTips.ShowNonFullProviders);
 
             registerApp(Icon.INSCRIBER_SEPARATE_SIDES, Settings.INSCRIBER_SEPARATE_SIDES, YesNo.YES,
                     ButtonToolTips.InscriberSideness,
