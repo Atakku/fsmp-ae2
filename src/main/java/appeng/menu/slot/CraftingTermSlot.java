@@ -35,9 +35,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
 import appeng.api.inventories.InternalInventory;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.KeyCounter;
@@ -61,15 +59,13 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
     private final InternalInventory pattern;
 
     private final IActionSource mySrc;
-    private final IEnergySource energySrc;
     private final MEStorage storage;
     private final ICraftingGridMenu menu;
 
-    public CraftingTermSlot(Player player, IActionSource mySrc, IEnergySource energySrc,
+    public CraftingTermSlot(Player player, IActionSource mySrc,
             MEStorage storage, InternalInventory cMatrix, InternalInventory secondMatrix,
             ICraftingGridMenu ccp) {
         super(player, cMatrix);
-        this.energySrc = energySrc;
         this.storage = storage;
         this.mySrc = mySrc;
         this.pattern = cMatrix;
@@ -220,7 +216,7 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
                 var filter = ViewCellItem.createItemFilter(this.menu.getViewCells());
                 for (var x = 0; x < this.getPattern().size(); x++) {
                     if (!this.getPattern().getStackInSlot(x).isEmpty()) {
-                        set[x] = extractItemsByRecipe(this.energySrc, this.mySrc, inv, level, r.value(), is,
+                        set[x] = extractItemsByRecipe(this.mySrc, inv, level, r.value(), is,
                                 recipeInput.width(), recipeInput.height(),
                                 ic,
                                 this.getPattern().getStackInSlot(x), x, all,
@@ -241,7 +237,7 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
         return is;
     }
 
-    private static ItemStack extractItemsByRecipe(IEnergySource energySrc,
+    private static ItemStack extractItemsByRecipe(
             IActionSource mySrc,
             MEStorage src,
             Level level,
@@ -254,41 +250,37 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
             KeyCounter items,
             IPartitionList filter) {
 
-        if (energySrc.extractAEPower(1, Actionable.SIMULATE, PowerMultiplier.CONFIG) > 0.9) {
-            if (providedTemplate == null) {
-                return ItemStack.EMPTY;
+        if (providedTemplate == null) {
+            return ItemStack.EMPTY;
+        }
+
+        var ae_req = AEItemKey.of(providedTemplate);
+
+        if (filter == null || filter.isListed(ae_req)) {
+            var extracted = src.extract(ae_req, 1, Actionable.MODULATE, mySrc);
+            if (extracted > 0) {
+                return ae_req.toStack();
             }
+        }
 
-            var ae_req = AEItemKey.of(providedTemplate);
+        var checkFuzzy = !providedTemplate.getComponents().isEmpty() || providedTemplate.isDamageableItem();
 
-            if (filter == null || filter.isListed(ae_req)) {
-                var extracted = src.extract(ae_req, 1, Actionable.MODULATE, mySrc);
-                if (extracted > 0) {
-                    energySrc.extractAEPower(1, Actionable.MODULATE, PowerMultiplier.CONFIG);
-                    return ae_req.toStack();
-                }
-            }
+        if (items != null && checkFuzzy) {
+            var craftingInputItems = new ArrayList<>(craftingItems);
 
-            var checkFuzzy = !providedTemplate.getComponents().isEmpty() || providedTemplate.isDamageableItem();
+            for (var x : items) {
+                if (x.getKey() instanceof AEItemKey itemKey) {
+                    if (providedTemplate.getItem() == itemKey.getItem() && !itemKey.matches(output)) {
 
-            if (items != null && checkFuzzy) {
-                var craftingInputItems = new ArrayList<>(craftingItems);
-
-                for (var x : items) {
-                    if (x.getKey() instanceof AEItemKey itemKey) {
-                        if (providedTemplate.getItem() == itemKey.getItem() && !itemKey.matches(output)) {
-
-                            craftingInputItems.set(slot, itemKey.toStack());
-                            var adjustedCraftingInput = CraftingInput.of(gridWidth, gridHeight, craftingInputItems);
-                            if (r.matches(adjustedCraftingInput, level)
-                                    && ItemStack.matches(r.assemble(adjustedCraftingInput, level.registryAccess()),
-                                            output)) {
-                                if (filter == null || filter.isListed(itemKey)) {
-                                    var ex = src.extract(itemKey, 1, Actionable.MODULATE, mySrc);
-                                    if (ex > 0) {
-                                        energySrc.extractAEPower(1, Actionable.MODULATE, PowerMultiplier.CONFIG);
-                                        return itemKey.toStack();
-                                    }
+                        craftingInputItems.set(slot, itemKey.toStack());
+                        var adjustedCraftingInput = CraftingInput.of(gridWidth, gridHeight, craftingInputItems);
+                        if (r.matches(adjustedCraftingInput, level)
+                                && ItemStack.matches(r.assemble(adjustedCraftingInput, level.registryAccess()),
+                                        output)) {
+                            if (filter == null || filter.isListed(itemKey)) {
+                                var ex = src.extract(itemKey, 1, Actionable.MODULATE, mySrc);
+                                if (ex > 0) {
+                                    return itemKey.toStack();
                                 }
                             }
                         }

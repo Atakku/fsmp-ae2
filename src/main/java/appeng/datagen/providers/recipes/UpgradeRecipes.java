@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
@@ -69,7 +70,7 @@ public class UpgradeRecipes extends AE2RecipeProvider {
                         new CellUpgradeTier("16k", AEItems.PORTABLE_ITEM_CELL16K, AEItems.CELL_COMPONENT_16K),
                         new CellUpgradeTier("64k", AEItems.PORTABLE_ITEM_CELL64K, AEItems.CELL_COMPONENT_64K),
                         new CellUpgradeTier("256k", AEItems.PORTABLE_ITEM_CELL256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEBlocks.ME_CHEST, AEBlocks.ENERGY_CELL, AEItems.ITEM_CELL_HOUSING));
+                List.of(AEBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, AEItems.ITEM_CELL_HOUSING));
         storageCellUpgradeRecipes(
                 output,
                 List.of(
@@ -78,7 +79,7 @@ public class UpgradeRecipes extends AE2RecipeProvider {
                         new CellUpgradeTier("16k", AEItems.PORTABLE_FLUID_CELL16K, AEItems.CELL_COMPONENT_16K),
                         new CellUpgradeTier("64k", AEItems.PORTABLE_FLUID_CELL64K, AEItems.CELL_COMPONENT_64K),
                         new CellUpgradeTier("256k", AEItems.PORTABLE_FLUID_CELL256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEBlocks.ME_CHEST, AEBlocks.ENERGY_CELL, AEItems.FLUID_CELL_HOUSING));
+                List.of(AEBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, AEItems.FLUID_CELL_HOUSING));
     }
 
     private void storageCellUpgradeRecipes(RecipeOutput output, List<CellUpgradeTier> tiers,

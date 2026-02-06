@@ -315,7 +315,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         return false;
     }
 
-    protected IPartModel selectModel(IPartModel off, IPartModel on, IPartModel hasChannel, IPartModel lockedOff,
+    protected IPartModel selectModel(IPartModel on, IPartModel hasChannel,
             IPartModel lockedOn, IPartModel lockedHasChannel) {
         if (this.isActive()) {
             if (this.isLocked()) {
@@ -323,16 +323,12 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
             } else {
                 return hasChannel;
             }
-        } else if (this.isPowered()) {
+        } else {
             if (this.isLocked()) {
                 return lockedOn;
             } else {
                 return on;
             }
-        } else if (this.isLocked()) {
-            return lockedOff;
-        } else {
-            return off;
         }
     }
 

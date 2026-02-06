@@ -113,7 +113,7 @@ public interface IGridNode {
      * visual state display to avoid the device looking disabled while the grid is booting.
      */
     default boolean isActive() {
-        return isPowered() && hasGridBooted() && meetsChannelRequirements();
+        return hasGridBooted() && meetsChannelRequirements();
     }
 
     /**
@@ -124,7 +124,7 @@ public interface IGridNode {
      * as the channels might still be outdated.
      */
     default boolean isOnline() {
-        return isPowered() && meetsChannelRequirements();
+        return meetsChannelRequirements();
     }
 
     /**
@@ -132,13 +132,6 @@ public interface IGridNode {
      * @see IPathingService#isNetworkBooting()
      */
     boolean hasGridBooted();
-
-    /**
-     * @return True if the node has power from it's connected grid. Can be used to show a machine being powered, even if
-     *         the machine doesn't have it's required channel or the network is still booting.
-     * @see #isActive()
-     */
-    boolean isPowered();
 
     /**
      * @return if the node's channel requirements are currently met, use this for display purposes, use isActive for
@@ -166,11 +159,6 @@ public interface IGridNode {
      */
     @Nullable
     UUID getOwningPlayerProfileId();
-
-    /**
-     * @return The power in AE/t that will be drained by this node. Non-negative.
-     */
-    double getIdlePowerUsage();
 
     /**
      * @return An item that will only be used to represent this grid node in user interfaces. Can return an

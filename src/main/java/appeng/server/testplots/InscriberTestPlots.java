@@ -63,7 +63,7 @@ public final class InscriberTestPlots {
             ItemStack expectedTopSlot, ItemStack expectedMiddleSlot, ItemStack expectedBottomSlot,
             ItemStack expectedResult) {
         tests.add("inscriber_recipe_" + suffix, plot -> {
-            plot.creativeEnergyCell(BlockPos.ZERO.below());
+            plot.cable(BlockPos.ZERO.below());
             plot.blockEntity(BlockPos.ZERO, AEBlocks.INSCRIBER, be -> {
                 be.getUpgrades().addItems(AEItems.SPEED_CARD.stack());
                 be.getUpgrades().addItems(AEItems.SPEED_CARD.stack());

@@ -112,7 +112,6 @@ public record FillCraftingGridFromRecipePacket(
             return;
         }
 
-        var energy = cct.getEnergySource();
         @Nullable
         IStorageService storageService;
         MEStorage networkStorage;
@@ -150,7 +149,7 @@ public record FillCraftingGridFromRecipePacket(
                     continue;
                 } else {
                     var in = AEItemKey.of(currentItem);
-                    var inserted = StorageHelper.poweredInsert(energy, networkStorage, in, currentItem.getCount(),
+                    var inserted = StorageHelper.insert(networkStorage, in, currentItem.getCount(),
                             cct.getActionSource());
                     if (inserted < currentItem.getCount()) {
                         currentItem = currentItem.copy();
@@ -175,7 +174,7 @@ public record FillCraftingGridFromRecipePacket(
             if (currentItem.isEmpty()) {
                 var request = findBestMatchingItemStack(ingredient, filter, cachedStorage);
                 for (var what : request) {
-                    var extracted = StorageHelper.poweredExtraction(energy, networkStorage, what, 1,
+                    var extracted = StorageHelper.extraction(networkStorage, what, 1,
                             cct.getActionSource());
                     if (extracted > 0) {
                         currentItem = what.toStack(Ints.saturatedCast(extracted));

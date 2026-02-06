@@ -24,7 +24,6 @@ import net.minecraft.core.Direction;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 
 import appeng.api.behaviors.GenericInternalInventory;
-import appeng.api.implementations.blockentities.ICrankable;
 import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.storage.MEStorage;
 import appeng.core.AppEng;
@@ -44,8 +43,4 @@ public final class AECapabilities {
 
     public static BlockCapability<IInWorldGridNodeHost, Void> IN_WORLD_GRID_NODE_HOST = BlockCapability
             .createVoid(AppEng.makeId("inworld_gridnode_host"), IInWorldGridNodeHost.class);
-
-    public static BlockCapability<ICrankable, @Nullable Direction> CRANKABLE = BlockCapability
-            .createSided(AppEng.makeId("crankable"), ICrankable.class);
-
 }

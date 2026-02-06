@@ -54,7 +54,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(AEItems.DEBUG_METEORITE_PLACER, "item/debug/meteorite_placer");
         flatSingleLayer(AEItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
-        flatSingleLayer(AEItems.ENERGY_CARD, "item/card_energy");
         flatSingleLayer(AEItems.ENGINEERING_PROCESSOR, "item/engineering_processor");
         flatSingleLayer(AEItems.ENGINEERING_PROCESSOR_PRESS, "item/engineering_processor_press");
         flatSingleLayer(AEItems.ENGINEERING_PROCESSOR_PRINT, "item/printed_engineering_processor");

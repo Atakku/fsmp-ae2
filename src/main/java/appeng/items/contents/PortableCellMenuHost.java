@@ -28,7 +28,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
@@ -44,7 +43,6 @@ import appeng.api.storage.StorageHelper;
 import appeng.api.storage.SupplierStorage;
 import appeng.api.storage.cells.IBasicCellItem;
 import appeng.api.util.IConfigManager;
-import appeng.core.localization.GuiText;
 import appeng.items.tools.powered.AbstractPortableCell;
 import appeng.me.helpers.PlayerSource;
 import appeng.menu.ISubMenu;
@@ -78,7 +76,6 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
     @Override
     public void tick() {
         super.tick();
-        consumeIdlePower(Actionable.MODULATE);
         updateLinkStatus();
     }
 
@@ -90,7 +87,7 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
                 return 0;
             }
 
-            return StorageHelper.poweredInsert(this, inv, what, amount, new PlayerSource(player), mode);
+            return StorageHelper.insert(inv, what, amount, new PlayerSource(player), mode);
         } else {
             var statusText = getLinkStatus().statusDescription();
             if (isClientSide() && statusText != null && !mode.isSimulate()) {
@@ -101,27 +98,12 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
     }
 
     private void updateLinkStatus() {
-        if (!consumeIdlePower(Actionable.SIMULATE)) {
-            this.linkStatus = ILinkStatus.ofDisconnected(GuiText.OutOfPower.text());
-        } else {
-            this.linkStatus = ILinkStatus.ofConnected();
-        }
+        this.linkStatus = ILinkStatus.ofConnected();
     }
 
     @Override
     public ILinkStatus getLinkStatus() {
         return linkStatus;
-    }
-
-    @Override
-    public double extractAEPower(double amt, Actionable mode, PowerMultiplier usePowerMultiplier) {
-        amt = usePowerMultiplier.multiply(amt);
-
-        if (mode == Actionable.SIMULATE) {
-            return usePowerMultiplier.divide(Math.min(amt, this.item.getAECurrentPower(getItemStack())));
-        }
-
-        return usePowerMultiplier.divide(this.item.extractAEPower(getItemStack(), amt, Actionable.MODULATE));
     }
 
     @Override

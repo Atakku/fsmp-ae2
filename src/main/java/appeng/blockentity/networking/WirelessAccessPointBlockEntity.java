@@ -27,7 +27,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import appeng.api.implementations.IPowerChannelState;
+import appeng.api.implementations.IChannelState;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGrid;
@@ -38,10 +38,9 @@ import appeng.api.util.AECableType;
 import appeng.blockentity.grid.AENetworkedBlockEntity;
 
 public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
-        implements IWirelessAccessPoint, IPowerChannelState {
+        implements IWirelessAccessPoint, IChannelState {
 
-    public static final int POWERED_FLAG = 1;
-    public static final int CHANNEL_FLAG = 2;
+    public static final int CHANNEL_FLAG = 1;
 
     private int clientFlags = 0;
 
@@ -77,10 +76,6 @@ public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
         this.setClientFlags(0);
 
         getMainNode().ifPresent((grid, node) -> {
-            if (grid.getEnergyService().isNetworkPowered()) {
-                this.setClientFlags(this.getClientFlags() | POWERED_FLAG);
-            }
-
             if (node.meetsChannelRequirements()) {
                 this.setClientFlags(this.getClientFlags() | CHANNEL_FLAG);
             }
@@ -97,7 +92,7 @@ public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
     @Override
     public boolean isActive() {
         if (isClientSide()) {
-            return this.isPowered() && CHANNEL_FLAG == (this.getClientFlags() & CHANNEL_FLAG);
+            return CHANNEL_FLAG == (this.getClientFlags() & CHANNEL_FLAG);
         }
 
         return this.getMainNode().isOnline();
@@ -106,11 +101,6 @@ public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
     @Override
     public IGrid getGrid() {
         return getMainNode().getGrid();
-    }
-
-    @Override
-    public boolean isPowered() {
-        return POWERED_FLAG == (this.getClientFlags() & POWERED_FLAG);
     }
 
     public int getClientFlags() {

@@ -64,7 +64,7 @@ public class P2PTestPlots {
     public static void testOutOfChannelReconnectBehavior(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
 
-        plot.creativeEnergyCell(origin.below());
+        plot.cable(origin.below());
         plot.block(origin, AEBlocks.CONTROLLER);
 
         // Build the west loop with a power connection into the P2P grid
@@ -72,7 +72,7 @@ public class P2PTestPlots {
         plot.cable(origin.west().north());
         plot.cable(origin.west().north().west());
         plot.cable(origin.west().north().west().south())
-                .part(Direction.NORTH, AEParts.QUARTZ_FIBER);
+                .part(Direction.NORTH, AEParts.CABLE_ANCHOR);
 
         // Build the east loop with the toggleable channel-sink
         // first block uses 4 channels

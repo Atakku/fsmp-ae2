@@ -41,22 +41,14 @@ import appeng.util.inv.PlayerInternalInventory;
 public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMenuHost {
 
     @PartModels
-    public static final ResourceLocation MODEL_OFF = AppEng.makeId(
-            "part/conversion_monitor_off");
-    @PartModels
     public static final ResourceLocation MODEL_ON = AppEng.makeId(
             "part/conversion_monitor_on");
-    @PartModels
-    public static final ResourceLocation MODEL_LOCKED_OFF = AppEng.makeId(
-            "part/conversion_monitor_locked_off");
     @PartModels
     public static final ResourceLocation MODEL_LOCKED_ON = AppEng.makeId(
             "part/conversion_monitor_locked_on");
 
-    public static final IPartModel MODELS_OFF = new PartModel(MODEL_BASE, MODEL_OFF, MODEL_STATUS_OFF);
     public static final IPartModel MODELS_ON = new PartModel(MODEL_BASE, MODEL_ON, MODEL_STATUS_ON);
     public static final IPartModel MODELS_HAS_CHANNEL = new PartModel(MODEL_BASE, MODEL_ON, MODEL_STATUS_HAS_CHANNEL);
-    public static final IPartModel MODELS_LOCKED_OFF = new PartModel(MODEL_BASE, MODEL_LOCKED_OFF, MODEL_STATUS_OFF);
     public static final IPartModel MODELS_LOCKED_ON = new PartModel(MODEL_BASE, MODEL_LOCKED_ON, MODEL_STATUS_ON);
     public static final IPartModel MODELS_LOCKED_HAS_CHANNEL = new PartModel(MODEL_BASE, MODEL_LOCKED_ON,
             MODEL_STATUS_HAS_CHANNEL);
@@ -152,7 +144,6 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
 
     private void insertAllItem(Player player) {
         getMainNode().ifPresent(grid -> {
-            var energy = grid.getEnergyService();
             var cell = grid.getStorageService().getInventory();
 
             if (getDisplayed() instanceof AEItemKey itemKey) {
@@ -163,7 +154,7 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
                     if (itemKey.matches(targetStack)) {
                         var canExtract = inv.extractItem(x, targetStack.getCount(), true);
                         if (!canExtract.isEmpty()) {
-                            var inserted = StorageHelper.poweredInsert(energy, cell, itemKey, canExtract.getCount(),
+                            var inserted = StorageHelper.insert(cell, itemKey, canExtract.getCount(),
                                     new PlayerSource(player, this));
                             inv.extractItem(x, (int) inserted, false);
                         }
@@ -175,10 +166,9 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
 
     private void insertItem(Player player, ItemStack heldItem) {
         getMainNode().ifPresent(grid -> {
-            var energy = grid.getEnergyService();
             var cell = grid.getStorageService().getInventory();
 
-            var inserted = StorageHelper.poweredInsert(energy, cell, AEItemKey.of(heldItem), heldItem.getCount(),
+            var inserted = StorageHelper.insert(cell, AEItemKey.of(heldItem), heldItem.getCount(),
                     new PlayerSource(player, this));
             heldItem.shrink((int) inserted);
         });
@@ -194,10 +184,9 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
         }
 
         getMainNode().ifPresent(grid -> {
-            var energy = grid.getEnergyService();
             var cell = grid.getStorageService().getInventory();
 
-            var retrieved = StorageHelper.poweredExtraction(energy, cell, itemKey, count,
+            var retrieved = StorageHelper.extraction(cell, itemKey, count,
                     new PlayerSource(player, this));
             if (retrieved != 0) {
                 var newItems = itemKey.toStack((int) retrieved);
@@ -214,7 +203,7 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
 
     @Override
     public IPartModel getStaticModels() {
-        return this.selectModel(MODELS_OFF, MODELS_ON, MODELS_HAS_CHANNEL, MODELS_LOCKED_OFF, MODELS_LOCKED_ON,
+        return this.selectModel(MODELS_ON, MODELS_HAS_CHANNEL, MODELS_LOCKED_ON,
                 MODELS_LOCKED_HAS_CHANNEL);
     }
 

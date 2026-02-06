@@ -105,7 +105,6 @@ public enum ButtonToolTips implements LocalizationEnum {
     OverlayModeYes("Shows the loaded area within the world."),
     PartitionStorage("Partition Storage"),
     PartitionStorageHint("Configures Partition based on currently stored items."),
-    PowerUnits("Power Units"),
     Read("Extract Only"),
     ReadWrite("Bi-Directional"),
     RedstoneMode("Redstone Mode"),

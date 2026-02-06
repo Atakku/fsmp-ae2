@@ -51,7 +51,7 @@ import net.minecraft.world.phys.Vec3;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 
 import appeng.api.ids.AEComponents;
-import appeng.api.implementations.IPowerChannelState;
+import appeng.api.implementations.IChannelState;
 import appeng.api.implementations.items.IMemoryCard;
 import appeng.api.implementations.items.MemoryCardMessages;
 import appeng.api.inventories.ISegmentedInventory;
@@ -75,7 +75,7 @@ import appeng.util.JsonStreamUtil;
 import appeng.util.SettingsFrom;
 
 public abstract class AEBasePart
-        implements IPart, IActionHost, ISegmentedInventory, IPowerChannelState, Nameable, IDebugExportable {
+        implements IPart, IActionHost, ISegmentedInventory, IChannelState, Nameable, IDebugExportable {
 
     private final IManagedGridNode mainNode;
     private IPartItem<?> partItem;
@@ -88,7 +88,6 @@ public abstract class AEBasePart
 
     // On the client-side this is the state last sent by the server.
     // On the server it's the state last sent to the client.
-    private boolean clientSidePowered;
     private boolean clientSideMissingChannel;
 
     public AEBasePart(IPartItem<?> partItem) {
@@ -215,15 +214,11 @@ public abstract class AEBasePart
     @MustBeInvokedByOverriders
     @Override
     public void writeToStream(RegistryFriendlyByteBuf data) {
-        this.clientSidePowered = this.isPowered();
         this.clientSideMissingChannel = this.isMissingChannel();
 
         var flags = 0;
-        if (clientSidePowered) {
-            flags |= 1;
-        }
         if (clientSideMissingChannel) {
-            flags |= 2;
+            flags |= 1;
         }
         data.writeByte(flags);
     }
@@ -233,14 +228,11 @@ public abstract class AEBasePart
     public boolean readFromStream(RegistryFriendlyByteBuf data) {
         var flags = data.readByte();
 
-        var wasPowered = this.clientSidePowered;
         var wasMissingChannel = this.clientSideMissingChannel;
 
-        this.clientSidePowered = (flags & 1) != 0;
-        this.clientSideMissingChannel = (flags & 2) != 0;
+        this.clientSideMissingChannel = (flags & 1) != 0;
 
-        return shouldSendPowerStateToClient() && clientSidePowered != wasPowered
-                || shouldSendMissingChannelStateToClient() && clientSideMissingChannel != wasMissingChannel;
+        return shouldSendMissingChannelStateToClient() && clientSideMissingChannel != wasMissingChannel;
     }
 
     /**
@@ -253,7 +245,6 @@ public abstract class AEBasePart
     @MustBeInvokedByOverriders
     @Override
     public void writeVisualStateToNBT(CompoundTag data) {
-        data.putBoolean("powered", this.isPowered());
         data.putBoolean("missingChannel", this.isMissingChannel());
     }
 
@@ -263,7 +254,6 @@ public abstract class AEBasePart
     @MustBeInvokedByOverriders
     @Override
     public void readVisualStateFromNBT(CompoundTag data) {
-        this.clientSidePowered = data.getBoolean("powered");
         this.clientSideMissingChannel = data.getBoolean("missingChannel");
     }
 
@@ -411,15 +401,6 @@ public abstract class AEBasePart
         }
     }
 
-    public boolean isPowered() {
-        if (isClientSide()) {
-            return clientSidePowered;
-        } else {
-            var node = getGridNode();
-            return node != null && node.isPowered();
-        }
-    }
-
     public boolean isMissingChannel() {
         if (isClientSide()) {
             return clientSideMissingChannel;
@@ -431,7 +412,7 @@ public abstract class AEBasePart
 
     @Override
     public boolean isActive() {
-        return isPowered() && !isMissingChannel();
+        return !isMissingChannel();
     }
 
     /**
@@ -439,12 +420,6 @@ public abstract class AEBasePart
      */
     private void markForUpdateIfClientFlagsChanged() {
         var changed = false;
-
-        if (shouldSendPowerStateToClient()) {
-            if (isPowered() != this.clientSidePowered) {
-                changed = true;
-            }
-        }
 
         if (!changed && shouldSendMissingChannelStateToClient()) {
             if (isMissingChannel() != this.clientSideMissingChannel) {
@@ -455,14 +430,6 @@ public abstract class AEBasePart
         if (changed) {
             getHost().markForUpdate();
         }
-    }
-
-    /**
-     * Override and return false if your part has no visual indicator for the power state and doesn't need this info on
-     * the client.
-     */
-    protected boolean shouldSendPowerStateToClient() {
-        return true;
     }
 
     /**

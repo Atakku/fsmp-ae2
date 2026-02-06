@@ -42,9 +42,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
-import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
@@ -53,8 +51,6 @@ import appeng.api.implementations.blockentities.IMEChest;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGridNodeListener;
-import appeng.api.networking.events.GridPowerStorageStateChanged;
-import appeng.api.networking.events.GridPowerStorageStateChanged.PowerEventType;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.AEItemKey;
@@ -74,9 +70,8 @@ import appeng.api.util.IConfigManager;
 import appeng.api.util.KeyTypeSelection;
 import appeng.api.util.KeyTypeSelectionHost;
 import appeng.blockentity.ServerTickingBlockEntity;
-import appeng.blockentity.grid.AENetworkedPoweredBlockEntity;
+import appeng.blockentity.grid.AENetworkedInvBlockEntity;
 import appeng.core.definitions.AEBlocks;
-import appeng.core.localization.GuiText;
 import appeng.core.localization.PlayerMessages;
 import appeng.helpers.IPriorityHost;
 import appeng.me.helpers.MachineSource;
@@ -90,7 +85,7 @@ import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
 import appeng.util.inv.filter.IAEItemFilter;
 
-public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
+public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         implements IMEChest, ITerminalHost, IPriorityHost, IColorableBlockEntity,
         ServerTickingBlockEntity, IStorageProvider, KeyTypeSelectionHost {
 
@@ -110,8 +105,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     private int priority = 0;
     // Client-side cell state or last cell-state sent to client (for update-checking)
     private CellState clientCellState = CellState.ABSENT;
-    // Client-side cached powered state or last powered state sent to client
-    private boolean clientPowered;
     // This is only used on the client to display the right cell model without
     // synchronizing the entire cell's inventory when a chest comes into view.
     private Item cellItem = Items.AIR;
@@ -120,17 +113,12 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     private boolean isCached = false;
     private ChestMonitorHandler cellHandler;
     private IFluidHandler fluidHandler;
-    private double idlePowerUsage;
 
     public MEChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
-        this.setInternalMaxPower(PowerMultiplier.CONFIG.multiply(500));
         this.getMainNode()
                 .addService(IStorageProvider.class, this)
                 .setFlags(GridFlags.REQUIRE_CHANNEL);
-
-        this.setInternalPublicPowerStorage(true);
-        this.setInternalPowerFlow(AccessRestriction.WRITE);
 
         this.inputInventory.setFilter(new InputInventoryFilter());
         this.cellInventory.setFilter(new CellInventoryFilter());
@@ -144,28 +132,12 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
         this.cellInventory.setItemDirect(0, Objects.requireNonNull(stack));
     }
 
-    @Override
-    protected void emitPowerStateEvent(PowerEventType x) {
-        if (x == PowerEventType.RECEIVE_POWER) {
-            this.getMainNode().ifPresent(
-                    grid -> grid.postEvent(new GridPowerStorageStateChanged(this, PowerEventType.RECEIVE_POWER)));
-        } else {
-            this.recalculateDisplay();
-        }
-    }
-
     private void recalculateDisplay() {
         boolean changed = false;
 
         var cellState = this.getCellStatus(0);
         if (clientCellState != cellState) {
             clientCellState = cellState;
-            changed = true;
-        }
-
-        var powered = isPowered();
-        if (clientPowered != powered) {
-            clientPowered = powered;
             changed = true;
         }
 
@@ -189,10 +161,7 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
                 this.isCached = true;
                 var newCell = StorageCells.getCellInventory(is, this::onCellContentChanged);
                 if (newCell != null) {
-                    idlePowerUsage = 1.0 + newCell.getIdleDrain();
                     this.cellHandler = this.wrap(newCell);
-
-                    this.getMainNode().setIdlePowerUsage(idlePowerUsage);
 
                     if (this.cellHandler != null) {
                         this.fluidHandler = new FluidHandler();
@@ -215,10 +184,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
         updateHandler();
         if (cellHandler == null) {
             return ILinkStatus.ofDisconnected(PlayerMessages.ChestCannotReadStorageCell.text());
-        }
-        // The Chest GUI works independently of the grid the chest may be connected to
-        if (!isPowered()) {
-            return ILinkStatus.ofDisconnected(GuiText.OutOfPower.text());
         }
         return ILinkStatus.ofConnected();
     }
@@ -273,50 +238,13 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     }
 
     @Override
-    public boolean isPowered() {
-        if (isClientSide()) {
-            return clientPowered;
-        }
-
-        if (getMainNode().isPowered()) {
-            return true;
-        }
-
-        return getAECurrentPower() > 1;
-    }
-
-    @Override
     public boolean isCellBlinking(int slot) {
         return false;
     }
 
     @Override
-    protected double extractAEPower(double amt, Actionable mode) {
-        double stash = 0.0;
-
-        var grid = getMainNode().getGrid();
-        if (grid != null) {
-            var eg = grid.getEnergyService();
-            stash = eg.extractAEPower(amt, mode, PowerMultiplier.ONE);
-            if (stash >= amt) {
-                return stash;
-            }
-        }
-
-        // local battery!
-        return super.extractAEPower(amt - stash, mode) + stash;
-    }
-
-    @Override
     public void serverTick() {
         var grid = getMainNode().getGrid();
-
-        // Handle energy-use when not grid-powered
-        if (grid == null || !grid.getEnergyService().isNetworkPowered()) {
-            this.extractAEPower(idlePowerUsage, Actionable.MODULATE, PowerMultiplier.CONFIG);
-            this.recalculateDisplay();
-        }
-
         if (!this.inputInventory.isEmpty()) {
             this.tryToStoreContents();
         }
@@ -327,7 +255,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
         super.writeToStream(data);
 
         data.writeEnum(clientCellState = getCellStatus(0));
-        data.writeBoolean(clientPowered = isPowered());
         data.writeByte(paintedColor.ordinal());
 
         // Note that we trust that the change detection in recalculateDisplay will trip
@@ -342,18 +269,15 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
         final boolean c = super.readFromStream(data);
 
         var oldCellState = clientCellState;
-        var oldPowered = clientPowered;
         var oldColor = paintedColor;
         var oldCellItem = cellItem;
 
         clientCellState = data.readEnum(CellState.class);
-        clientPowered = data.readBoolean();
         paintedColor = data.readEnum(AEColor.class);
         cellItem = Item.byId(data.readVarInt());
 
         return c
                 || oldCellState != clientCellState
-                || oldPowered != clientPowered
                 || oldColor != paintedColor
                 || oldCellItem != cellItem;
     }
@@ -362,7 +286,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     protected void saveVisualState(CompoundTag data) {
         super.saveVisualState(data);
 
-        data.putBoolean("powered", isPowered());
         data.putString("cellStatus", getCellStatus(0).name());
         var itemId = BuiltInRegistries.ITEM.getKey(getCell().getItem());
         data.putString("cellId", itemId.toString());
@@ -372,8 +295,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     @Override
     protected void loadVisualState(CompoundTag data) {
         super.loadVisualState(data);
-
-        this.clientPowered = data.getBoolean("powered");
 
         try {
             this.clientCellState = CellState.valueOf(data.getString("cellStatus"));
@@ -479,7 +400,7 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
                     return;
                 }
 
-                var inserted = StorageHelper.poweredInsert(this, this.cellHandler,
+                var inserted = StorageHelper.insert(this.cellHandler,
                         AEItemKey.of(stack), stack.getCount(), this.mySrc);
 
                 if (inserted >= stack.getCount()) {
@@ -670,7 +591,7 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
             if (canAcceptLiquids()) {
                 var what = AEFluidKey.of(resource);
                 if (what != null) {
-                    return (int) StorageHelper.poweredInsert(MEChestBlockEntity.this,
+                    return (int) StorageHelper.insert(
                             MEChestBlockEntity.this.cellHandler,
                             what,
                             resource.getAmount(),
@@ -700,20 +621,17 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
 
         @Override
         public boolean allowInsert(InternalInventory inv, int slot, ItemStack stack) {
-            if (isPowered()) {
-                updateHandler();
-                if (cellHandler == null) {
-                    return false;
-                }
-
-                var what = AEItemKey.of(stack);
-                if (what == null) {
-                    return false;
-                }
-
-                return cellHandler.insert(what, stack.getCount(), Actionable.SIMULATE, mySrc) > 0;
+            updateHandler();
+            if (cellHandler == null) {
+                return false;
             }
-            return false;
+
+            var what = AEItemKey.of(stack);
+            if (what == null) {
+                return false;
+            }
+
+            return cellHandler.insert(what, stack.getCount(), Actionable.SIMULATE, mySrc) > 0;
         }
     }
 

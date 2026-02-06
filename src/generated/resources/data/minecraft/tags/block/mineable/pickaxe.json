@@ -29,18 +29,12 @@
     "ae2:not_so_mysterious_cube",
     "ae2:inscriber",
     "ae2:wireless_access_point",
-    "ae2:charger",
     "ae2:controller",
     "ae2:drive",
     "ae2:chest",
     "ae2:cell_workbench",
     "ae2:io_port",
     "ae2:condenser",
-    "ae2:crystal_resonance_generator",
-    "ae2:vibration_chamber",
-    "ae2:energy_cell",
-    "ae2:dense_energy_cell",
-    "ae2:creative_energy_cell",
     "ae2:light_detector",
     "ae2:sky_stone_stairs",
     "ae2:smooth_sky_stone_stairs",
@@ -79,7 +73,6 @@
     "ae2:debug_item_gen",
     "ae2:debug_phantom_node",
     "ae2:debug_cube_gen",
-    "ae2:debug_energy_gen",
-    "ae2:crank"
+    "ae2:debug_energy_gen"
   ]
 }

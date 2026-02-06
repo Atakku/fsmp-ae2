@@ -26,7 +26,6 @@ import net.minecraft.world.item.ItemStack;
 
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGridNode;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.storage.ILinkStatus;
@@ -44,18 +43,6 @@ public interface ICraftingGridMenu {
      */
     @Nullable
     IGridNode getGridNode();
-
-    /**
-     * @return The energy source to use for grid operations (i.e. when transferring in / out from the network)
-     */
-    default IEnergySource getEnergySource() {
-        var node = getGridNode();
-        if (node == null) {
-            return IEnergySource.empty();
-        } else {
-            return node.getGrid().getEnergyService();
-        }
-    }
 
     /**
      * @return the inventory used for the crafting matrix.

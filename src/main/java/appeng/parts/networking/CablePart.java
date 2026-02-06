@@ -73,7 +73,6 @@ public abstract class CablePart extends AEBasePart implements ICablePart {
         super(partItem);
         this.getMainNode()
                 .setFlags(GridFlags.PREFERRED)
-                .setIdlePowerUsage(0.0)
                 .setInWorldNode(true)
                 .setExposedOnSides(EnumSet.allOf(Direction.class));
         this.getMainNode().setGridColor(partItem.getColor());
@@ -405,9 +404,6 @@ public abstract class CablePart extends AEBasePart implements ICablePart {
     }
 
     public int getChannelsOnSide(Direction side) {
-        if (!this.isPowered()) {
-            return 0;
-        }
         return this.channelsOnSide[side.ordinal()];
     }
 

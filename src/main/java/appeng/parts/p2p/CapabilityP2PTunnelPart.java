@@ -45,11 +45,6 @@ public abstract class CapabilityP2PTunnelPart<P extends CapabilityP2PTunnelPart<
         this.adjacentCapability = new PartAdjacentApi<>(this, capability, this::forwardCapabilityInvalidation);
     }
 
-    @Override
-    protected float getPowerDrainPerTick() {
-        return 2.0f;
-    }
-
     public T getExposedApi() {
         if (isOutput()) {
             return outputHandler;

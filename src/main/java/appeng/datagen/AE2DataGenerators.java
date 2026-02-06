@@ -43,7 +43,6 @@ import appeng.datagen.providers.models.CableModelProvider;
 import appeng.datagen.providers.models.DecorationModelProvider;
 import appeng.datagen.providers.models.ItemModelProvider;
 import appeng.datagen.providers.models.PartModelProvider;
-import appeng.datagen.providers.recipes.ChargerRecipes;
 import appeng.datagen.providers.recipes.CraftingRecipes;
 import appeng.datagen.providers.recipes.DecorationBlockRecipes;
 import appeng.datagen.providers.recipes.DecorationRecipes;
@@ -106,7 +105,6 @@ public class AE2DataGenerators {
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
         pack.addProvider(bindRegistries(SmithingRecipes::new, registries));
         pack.addProvider(bindRegistries(TransformRecipes::new, registries));
-        pack.addProvider(bindRegistries(ChargerRecipes::new, registries));
         pack.addProvider(bindRegistries(QuartzCuttingRecipesProvider::new, registries));
         pack.addProvider(bindRegistries(UpgradeRecipes::new, registries));
 

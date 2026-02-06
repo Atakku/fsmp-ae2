@@ -57,11 +57,6 @@ public class LightP2PTunnelPart extends P2PTunnelPart<LightP2PTunnelPart> implem
     }
 
     @Override
-    protected float getPowerDrainPerTick() {
-        return 0.5f;
-    }
-
-    @Override
     protected void onMainNodeStateChanged(IGridNodeListener.State reason) {
         super.onMainNodeStateChanged(reason);
         if (getMainNode().hasGridBooted()) {
@@ -118,7 +113,7 @@ public class LightP2PTunnelPart extends P2PTunnelPart<LightP2PTunnelPart> implem
 
     @Override
     public int getLightLevel() {
-        if (this.isOutput() && this.isPowered() && this.getInput() != null) {
+        if (this.isOutput() && this.getInput() != null) {
             return this.blockLight(this.lastValue);
         }
 
@@ -184,7 +179,7 @@ public class LightP2PTunnelPart extends P2PTunnelPart<LightP2PTunnelPart> implem
 
     @Override
     public IPartModel getStaticModels() {
-        return MODELS.getModel(this.isPowered(), this.isActive());
+        return MODELS.getModel(this.isActive());
     }
 
 }

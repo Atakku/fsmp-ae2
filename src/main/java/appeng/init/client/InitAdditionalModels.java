@@ -24,7 +24,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ModelEvent;
 
 import appeng.api.parts.PartModelsInternal;
-import appeng.client.render.tesr.CrankRenderer;
 
 /**
  * Registers any JSON model files with Minecraft that are not referenced via blockstates or item IDs
@@ -33,9 +32,6 @@ import appeng.client.render.tesr.CrankRenderer;
 public class InitAdditionalModels {
 
     public static void init(ModelEvent.RegisterAdditional event) {
-        event.register(CrankRenderer.BASE_MODEL);
-        event.register(CrankRenderer.HANDLE_MODEL);
-
         PartModelsInternal.freeze();
         PartModelsInternal.getModels().stream().map(ModelResourceLocation::standalone).forEach(event::register);
     }

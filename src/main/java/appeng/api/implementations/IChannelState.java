@@ -21,39 +21,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package appeng.api.implementations.blockentities;
-
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
-
-import appeng.api.AECapabilities;
+package appeng.api.implementations;
 
 /**
- * Crank/Crankable API,
- * <p>
- * Blocks that expose this interface via Api lookup can receive power from the crank. A block can return this interface
- * only on specific sides to control where it can attach to.
- * <p>
- * Cranks obtain this interface from a block using a Forge capability.
+ * This is intended for use on the client side to provide details to WAILA.
  */
-public interface ICrankable {
-    /**
-     * Test if the crank can turn, return false if there is no work to be done.
-     *
-     * @return if crank should be allowed to turn on the given side.
-     */
-    boolean canTurn();
+public interface IChannelState {
 
     /**
-     * The crank has completed one turn on the given side.
+     * @return true if the part/block isActive
      */
-    void applyTurn();
-
-    @Nullable
-    static ICrankable get(Level level, BlockPos pos, Direction side) {
-        return level.getCapability(AECapabilities.CRANKABLE, pos, side);
-    }
+    boolean isActive();
 }

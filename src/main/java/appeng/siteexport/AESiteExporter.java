@@ -20,7 +20,6 @@ import guideme.internal.siteexport.SiteExporter;
 
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.core.definitions.AEBlocks;
-import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberProcessType;
 import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
@@ -53,7 +52,6 @@ public class AESiteExporter extends SiteExporter {
         return switch (recipe) {
             case InscriberRecipe inscriberRecipe -> addRecipe(inscriberRecipe);
             case TransformRecipe transformRecipe -> addRecipe(transformRecipe);
-            case ChargerRecipe chargerRecipe -> addRecipe(chargerRecipe);
             case null, default -> null;
         };
     }
@@ -90,11 +88,5 @@ public class AESiteExporter extends SiteExporter {
                 "resultItem", recipe.getResultItem(null),
                 "ingredients", recipe.getIngredients(),
                 "circumstance", circumstanceJson);
-    }
-
-    private Map<String, Object> addRecipe(ChargerRecipe recipe) {
-        return Map.of(
-                "resultItem", recipe.getResultItem(),
-                "ingredient", recipe.getIngredient());
     }
 }

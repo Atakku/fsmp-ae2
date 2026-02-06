@@ -36,7 +36,6 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridService;
 import appeng.api.networking.IGridServiceProvider;
 import appeng.api.networking.events.GridBootingStatusChange;
-import appeng.api.networking.events.GridPowerStatusChange;
 import appeng.core.AELog;
 import appeng.parts.p2p.MEP2PTunnelPart;
 import appeng.parts.p2p.P2PTunnelPart;
@@ -48,10 +47,6 @@ public class P2PService implements IGridService, IGridServiceProvider {
                     if (!evt.isBooting()) {
                         service.wakeInputTunnels();
                     }
-                });
-        GridHelper.addGridServiceEventHandler(GridPowerStatusChange.class, P2PService.class,
-                (service, evt) -> {
-                    service.wakeInputTunnels();
                 });
     }
 

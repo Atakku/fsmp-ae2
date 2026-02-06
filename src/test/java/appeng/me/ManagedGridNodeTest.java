@@ -1,6 +1,5 @@
 package appeng.me;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.assertj.core.data.Offset;
@@ -9,9 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-
-import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
 
 class ManagedGridNodeTest extends AbstractGridNodeTest {
     public static final Offset<Double> TOLERANCE = Offset.offset(0.1);
@@ -22,10 +18,6 @@ class ManagedGridNodeTest extends AbstractGridNodeTest {
 
         // Create the NBT tag that contains a fully loaded energy service
         var precursorNode = createAndInitNode();
-        var precursorEnergyService = precursorNode.getGrid().getEnergyService();
-        precursorEnergyService.injectPower(10, Actionable.MODULATE);
-        assertThat(precursorEnergyService.extractAEPower(10, Actionable.SIMULATE, PowerMultiplier.ONE))
-                .isCloseTo(10, Offset.offset(0.1));
         var savedNode = new CompoundTag();
         precursorNode.saveToNBT(savedNode);
         precursorNode.destroy();
@@ -45,8 +37,6 @@ class ManagedGridNodeTest extends AbstractGridNodeTest {
                 null);
 
         assertSame(mgn1.getGrid(), mgn2.getGrid());
-        assertThat(mgn1.getGrid().getEnergyService().extractAEPower(1000, Actionable.SIMULATE, PowerMultiplier.ONE))
-                .isCloseTo(20, TOLERANCE);
     }
 
     @NotNull

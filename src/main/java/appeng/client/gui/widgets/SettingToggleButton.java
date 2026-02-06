@@ -41,7 +41,6 @@ import appeng.api.config.FullnessMode;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.InscriberInputCapacity;
 import appeng.api.config.OperationMode;
-import appeng.api.config.PowerUnit;
 import appeng.api.config.RedstoneMode;
 import appeng.api.config.RelativeDirection;
 import appeng.api.config.SchedulingMode;
@@ -103,13 +102,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
                     ButtonToolTips.Write);
             registerApp(Icon.ACCESS_READ_WRITE, Settings.ACCESS, AccessRestriction.READ_WRITE, ButtonToolTips.IOMode,
                     ButtonToolTips.ReadWrite);
-
-            registerApp(Icon.POWER_UNIT_AE, Settings.POWER_UNITS, PowerUnit.AE, ButtonToolTips.PowerUnits,
-                    PowerUnit.AE.textComponent());
-            // registerApp(Icon.POWER_UNIT_EU, Settings.POWER_UNITS, PowerUnits.EU, ButtonToolTips.PowerUnits,
-            // PowerUnits.EU.textComponent());
-            registerApp(Icon.POWER_UNIT_RF, Settings.POWER_UNITS, PowerUnit.FE, ButtonToolTips.PowerUnits,
-                    PowerUnit.FE.textComponent());
 
             registerApp(Icon.REDSTONE_IGNORE, Settings.REDSTONE_CONTROLLED, RedstoneMode.IGNORE,
                     ButtonToolTips.RedstoneMode,

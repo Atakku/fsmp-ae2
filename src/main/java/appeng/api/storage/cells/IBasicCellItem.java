@@ -109,11 +109,6 @@ public interface IBasicCellItem extends ICellWorkbenchItem {
     }
 
     /**
-     * @return drain in ae/t this storage cell will use.
-     */
-    double getIdleDrain();
-
-    /**
      * Convenient helper to append useful tooltip information.
      */
     default void addCellInformationToTooltip(ItemStack is, List<Component> lines) {

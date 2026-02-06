@@ -229,12 +229,10 @@ public final class AEPartIds {
     ///
     /// Buses
     ///
-    public static final ResourceLocation QUARTZ_FIBER = id("quartz_fiber");
     public static final ResourceLocation TOGGLE_BUS = id("toggle_bus");
     public static final ResourceLocation INVERTED_TOGGLE_BUS = id("inverted_toggle_bus");
     public static final ResourceLocation CABLE_ANCHOR = id("cable_anchor");
     public static final ResourceLocation LEVEL_EMITTER = id("level_emitter");
-    public static final ResourceLocation ENERGY_LEVEL_EMITTER = id("energy_level_emitter");
     public static final ResourceLocation CONVERSION_MONITOR = id("conversion_monitor");
 
     ///

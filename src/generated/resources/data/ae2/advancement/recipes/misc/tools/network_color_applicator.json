@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energy_cell": {
-      "conditions": {
-        "items": [
-          {
-            "items": "ae2:energy_cell"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_formation_core": {
       "conditions": {
         "items": [
           {
             "items": "ae2:formation_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_redstone_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:redstone_block"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_formation_core",
-      "has_energy_cell"
+      "has_redstone_block"
     ]
   ],
   "rewards": {

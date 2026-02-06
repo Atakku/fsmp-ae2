@@ -84,7 +84,7 @@ public class WirelessAccessPointBlock extends AEBaseEntityBlock<WirelessAccessPo
 
         if (be.isActive()) {
             teState = State.HAS_CHANNEL;
-        } else if (be.isPowered()) {
+        } else {
             teState = State.ON;
         }
 

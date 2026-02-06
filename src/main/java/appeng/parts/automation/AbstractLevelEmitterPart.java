@@ -235,11 +235,6 @@ public abstract class AbstractLevelEmitterPart extends UpgradeablePart {
     }
 
     @Override
-    protected boolean shouldSendPowerStateToClient() {
-        return false; // We handle this completely in our enabled flag
-    }
-
-    @Override
     protected boolean shouldSendMissingChannelStateToClient() {
         return false; // We handle this completely in our enabled flag
     }

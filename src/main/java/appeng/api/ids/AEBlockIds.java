@@ -59,21 +59,14 @@ public final class AEBlockIds {
     ///
     public static final ResourceLocation INSCRIBER = id("inscriber");
     public static final ResourceLocation WIRELESS_ACCESS_POINT = id("wireless_access_point");
-    public static final ResourceLocation CHARGER = id("charger");
     public static final ResourceLocation CONTROLLER = id("controller");
     public static final ResourceLocation DRIVE = id("drive");
     public static final ResourceLocation ME_CHEST = id("chest");
     public static final ResourceLocation CELL_WORKBENCH = id("cell_workbench");
     public static final ResourceLocation IO_PORT = id("io_port");
     public static final ResourceLocation CONDENSER = id("condenser");
-    public static final ResourceLocation CRYSTAL_RESONANCE_GENERATOR = id("crystal_resonance_generator");
 
-    public static final ResourceLocation VIBRATION_CHAMBER = id("vibration_chamber");
-    public static final ResourceLocation ENERGY_CELL = id("energy_cell");
-    public static final ResourceLocation DENSE_ENERGY_CELL = id("dense_energy_cell");
     public static final ResourceLocation CABLE_BUS = id("cable_bus");
-
-    public static final ResourceLocation CREATIVE_ENERGY_CELL = id("creative_energy_cell");
 
     ///
     /// DECORATIVE BLOCKS
@@ -136,8 +129,6 @@ public final class AEBlockIds {
     public static final ResourceLocation QUARTZ_BRICK_SLAB = id("quartz_brick_slab");
     public static final ResourceLocation CHISELED_QUARTZ_SLAB = id("chiseled_quartz_slab");
     public static final ResourceLocation QUARTZ_PILLAR_SLAB = id("quartz_pillar_slab");
-
-    public static final ResourceLocation CRANK = id("crank");
 
     private static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(AEConstants.MOD_ID, id);

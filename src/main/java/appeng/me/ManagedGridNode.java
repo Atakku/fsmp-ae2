@@ -64,7 +64,6 @@ public class ManagedGridNode implements IManagedGridNode {
         private Set<Direction> exposedOnSides = EnumSet.allOf(Direction.class);
         private AEItemKey visualRepresentation = null;
         private EnumSet<GridFlags> flags = EnumSet.noneOf(GridFlags.class);
-        private double idlePowerUsage = 1.0;
         private int owner = -1; // ME player id of owner
         private Level level;
         private BlockPos pos;
@@ -87,7 +86,6 @@ public class ManagedGridNode implements IManagedGridNode {
             }
             node.setGridColor(gridColor);
             node.setOwningPlayerId(owner);
-            node.setIdlePowerUsage(idlePowerUsage);
             node.setVisualRepresentation(visualRepresentation);
             if (services != null) {
                 for (var serviceClass : services.keySet()) {
@@ -222,12 +220,6 @@ public class ManagedGridNode implements IManagedGridNode {
     }
 
     @Override
-    public boolean isPowered() {
-        var grid = getGrid();
-        return grid != null && grid.getEnergyService().isNetworkPowered();
-    }
-
-    @Override
     public boolean hasGridBooted() {
         if (this.node == null) {
             return false;
@@ -272,18 +264,6 @@ public class ManagedGridNode implements IManagedGridNode {
     }
 
     @Override
-    public ManagedGridNode setIdlePowerUsage(double usagePerTick) {
-        Preconditions.checkArgument(usagePerTick >= 0, "usagePerTick must be >= 0");
-
-        if (node == null) {
-            getInitData().idlePowerUsage = usagePerTick;
-        } else {
-            node.setIdlePowerUsage(usagePerTick);
-        }
-        return this;
-    }
-
-    @Override
     public ManagedGridNode setVisualRepresentation(@Nullable AEItemKey visualRepresentation) {
         if (node == null) {
             getInitData().visualRepresentation = visualRepresentation;
@@ -301,10 +281,6 @@ public class ManagedGridNode implements IManagedGridNode {
             node.setGridColor(gridColor);
         }
         return this;
-    }
-
-    public double getIdlePowerUsage() {
-        return node != null ? node.getIdlePowerUsage() : getInitData().idlePowerUsage;
     }
 
     private InitData<?> getInitData() {

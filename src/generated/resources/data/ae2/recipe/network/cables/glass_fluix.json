@@ -3,10 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "ae2:quartz_fiber"
-    },
-    {
-      "tag": "ae2:all_fluix"
+      "tag": "ae2:all_quartz_dust"
     },
     {
       "tag": "ae2:all_fluix"

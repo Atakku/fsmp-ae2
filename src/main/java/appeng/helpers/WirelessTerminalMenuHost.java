@@ -28,7 +28,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
 import appeng.api.features.HotkeyAction;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
@@ -45,7 +44,6 @@ import appeng.api.util.IConfigManager;
 import appeng.api.util.KeyTypeSelection;
 import appeng.api.util.KeyTypeSelectionHost;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
-import appeng.core.localization.GuiText;
 import appeng.core.localization.PlayerMessages;
 import appeng.items.contents.StackDependentSupplier;
 import appeng.items.tools.powered.WirelessTerminalItem;
@@ -100,17 +98,6 @@ public class WirelessTerminalMenuHost<T extends WirelessTerminalItem> extends It
     }
 
     @Override
-    public double extractAEPower(double amt, Actionable mode, PowerMultiplier usePowerMultiplier) {
-        final double extracted = Math.min(amt, getItem().getAECurrentPower(getItemStack()));
-
-        if (mode == Actionable.SIMULATE) {
-            return extracted;
-        }
-
-        return getItem().usePower(getPlayer(), extracted, getItemStack()) ? extracted : 0;
-    }
-
-    @Override
     public IConfigManager getConfigManager() {
         return getItem().getConfigManager(this::getItemStack);
     }
@@ -140,7 +127,6 @@ public class WirelessTerminalMenuHost<T extends WirelessTerminalItem> extends It
     @Override
     public void tick() {
         updateConnectedAccessPoint();
-        consumeIdlePower(Actionable.MODULATE);
         updateLinkStatus();
     }
 
@@ -148,10 +134,7 @@ public class WirelessTerminalMenuHost<T extends WirelessTerminalItem> extends It
      * Recalculate the current {@linkplain #getLinkStatus() link status}.
      */
     protected void updateLinkStatus() {
-        // Update the link status after checking for range + power
-        if (!consumeIdlePower(Actionable.SIMULATE)) {
-            this.linkStatus = ILinkStatus.ofDisconnected(GuiText.OutOfPower.text());
-        } else if (currentAccessPoint != null) {
+        if (currentAccessPoint != null) {
             this.linkStatus = ILinkStatus.ofConnected();
         } else {
             MutableObject<Component> errorHolder = new MutableObject<>();
@@ -186,7 +169,7 @@ public class WirelessTerminalMenuHost<T extends WirelessTerminalItem> extends It
         }
 
         if (getLinkStatus().connected()) {
-            return StorageHelper.poweredInsert(this, getInventory(), what, amount, new PlayerSource(player), mode);
+            return StorageHelper.insert(getInventory(), what, amount, new PlayerSource(player), mode);
         } else {
             var statusText = getLinkStatus().statusDescription();
             if (statusText != null && !mode.isSimulate()) {

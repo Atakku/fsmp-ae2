@@ -61,7 +61,6 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.IGridNodeService;
 import appeng.api.networking.IGridVisitor;
-import appeng.api.networking.events.GridPowerIdleChange;
 import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.parts.IPart;
 import appeng.api.stacks.AEItemKey;
@@ -90,10 +89,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
      */
     private boolean ready;
     protected final List<GridConnection> connections = new ArrayList<>();
-    // old power draw, used to diff
-    private double previousDraw = 0.0;
-    // idle power usage per tick in AE
-    private double idlePowerUsage = 1.0;
     @Nullable
     private AEItemKey visualRepresentation = null;
 
@@ -283,16 +278,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
     }
 
     /**
-     * @param usagePerTick The power in AE/t that will be drained by this node.
-     */
-    public void setIdlePowerUsage(double usagePerTick) {
-        this.idlePowerUsage = usagePerTick;
-        if (myGrid != null && ready) {
-            myGrid.postEvent(new GridPowerIdleChange(this));
-        }
-    }
-
-    /**
      * Sets an itemstack that will only be used to represent this grid node in user interfaces. Can be set to
      * <code>null</code> to hide the node from UIs.
      */
@@ -329,14 +314,10 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
             this.myGrid.remove(this);
         }
 
-        boolean wasPowered = isPowered();
         this.myGrid = grid;
         this.myGrid.add(this, savedData);
 
         callListener(IGridNodeListener::onGridChanged);
-        if (wasPowered != isPowered()) {
-            notifyStatusChange(IGridNodeListener.State.POWER);
-        }
     }
 
     public void destroy() {
@@ -439,14 +420,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
         return !myGrid.getPathingService().isNetworkBooting();
     }
 
-    @Override
-    public boolean isPowered() {
-        if (myGrid == null) {
-            return false;
-        }
-        return myGrid.getEnergyService().isNetworkPowered();
-    }
-
     public void loadFromNBT(String name, CompoundTag nodeDataContainer) {
         this.owningPlayerId = -1;
 
@@ -511,11 +484,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
     @Override
     public boolean hasFlag(GridFlags flag) {
         return flags.contains(flag);
-    }
-
-    @Override
-    public double getIdlePowerUsage() {
-        return idlePowerUsage;
     }
 
     @Nullable
@@ -709,14 +677,6 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
                 notifyStatusChange(IGridNodeListener.State.CHANNEL);
             }
         }
-    }
-
-    public double getPreviousDraw() {
-        return this.previousDraw;
-    }
-
-    public void setPreviousDraw(double previousDraw) {
-        this.previousDraw = previousDraw;
     }
 
     @Nullable

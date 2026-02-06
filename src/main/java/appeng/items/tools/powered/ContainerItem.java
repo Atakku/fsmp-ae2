@@ -1,7 +1,5 @@
 package appeng.items.tools.powered;
 
-import java.util.function.DoubleSupplier;
-
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.entity.SlotAccess;
@@ -16,12 +14,12 @@ import appeng.api.implementations.menuobjects.IMenuItem;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AEKeyType;
-import appeng.items.tools.powered.powersink.AEBasePoweredItem;
+import appeng.items.AEBaseItem;
 import appeng.menu.locator.MenuLocators;
 
-public abstract class PoweredContainerItem extends AEBasePoweredItem implements IMenuItem {
-    public PoweredContainerItem(DoubleSupplier powerCapacity, Properties props) {
-        super(powerCapacity, props);
+public abstract class ContainerItem extends AEBaseItem implements IMenuItem {
+    public ContainerItem(Properties props) {
+        super(props);
     }
 
     protected long insert(Player player, ItemStack stack, AEKey what, @Nullable AEKeyType allowed, long amount,

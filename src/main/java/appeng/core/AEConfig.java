@@ -20,7 +20,6 @@ package appeng.core;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.DoubleSupplier;
 
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
@@ -32,22 +31,15 @@ import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
 import appeng.api.config.CondenserOutput;
-import appeng.api.config.PowerMultiplier;
-import appeng.api.config.PowerUnit;
-import appeng.api.config.Settings;
 import appeng.api.config.TerminalStyle;
 import appeng.api.networking.pathing.ChannelMode;
 import appeng.core.settings.TickRates;
-import appeng.util.EnumCycler;
 import appeng.util.Platform;
 
 public final class AEConfig {
 
     private final ClientConfig client = new ClientConfig();
     private final CommonConfig common = new CommonConfig();
-
-    // Default Energy Conversion Rates
-    private static final double DEFAULT_FE_EXCHANGE = 0.5;
 
     private static AEConfig instance;
 
@@ -75,15 +67,6 @@ public final class AEConfig {
 
     public static AEConfig instance() {
         return instance;
-    }
-
-    // Tunnels
-    public double getP2PTunnelEnergyTax() {
-        return common.p2pTunnelEnergyTax.get();
-    }
-
-    public double getP2PTunnelTransportTax() {
-        return common.p2pTunnelTransportTax.get();
     }
 
     public boolean isSearchModNameInTooltips() {
@@ -163,25 +146,6 @@ public final class AEConfig {
         }
     }
 
-    public double getGridEnergyStoragePerNode() {
-        return common.gridEnergyStoragePerNode.get();
-    }
-
-    public double getCrystalResonanceGeneratorRate() {
-        return common.crystalResonanceGeneratorRate.get();
-    }
-
-    public PowerUnit getSelectedEnergyUnit() {
-        return this.client.selectedPowerUnit.get();
-    }
-
-    public void nextEnergyUnit(boolean backwards) {
-        var selected = EnumCycler.rotateEnum(getSelectedEnergyUnit(), backwards,
-                Settings.POWER_UNITS.getValues());
-        client.selectedPowerUnit.set(selected);
-        client.spec.save();
-    }
-
     // Getters
     public boolean isDebugToolsEnabled() {
         return common.debugTools.get();
@@ -209,22 +173,6 @@ public final class AEConfig {
 
     public boolean isExposeNetworkInventoryToEmi() {
         return client.exposeNetworkInventoryToEmi.getAsBoolean();
-    }
-
-    public double getChargerChargeRate() {
-        return common.chargerChargeRate.get();
-    }
-
-    public DoubleSupplier getWirelessTerminalBattery() {
-        return common.wirelessTerminalBattery::get;
-    }
-
-    public DoubleSupplier getPortableCellBattery() {
-        return common.portableCellBattery::get;
-    }
-
-    public DoubleSupplier getColorApplicatorBattery() {
-        return common.colorApplicatorBattery::get;
     }
 
     public boolean isShowDebugGuiOverlays() {
@@ -317,18 +265,6 @@ public final class AEConfig {
         }
     }
 
-    public double getVibrationChamberBaseEnergyPerFuelTick() {
-        return common.vibrationChamberBaseEnergyPerFuelTick.get();
-    }
-
-    public int getVibrationChamberMinEnergyPerGameTick() {
-        return common.vibrationChamberMinEnergyPerTick.get();
-    }
-
-    public int getVibrationChamberMaxEnergyPerGameTick() {
-        return common.vibrationChamberMaxEnergyPerTick.get();
-    }
-
     public int getTerminalMargin() {
         return client.terminalMargin.get();
     }
@@ -348,7 +284,6 @@ public final class AEConfig {
         public final BooleanValue enableFacadesInRecipeViewer;
         public final BooleanValue enableFacadeRecipesInRecipeViewer;
         public final BooleanValue exposeNetworkInventoryToEmi;
-        public final EnumValue<PowerUnit> selectedPowerUnit;
         public final BooleanValue debugGuiOverlays;
         public final BooleanValue showPlacementPreview;
 
@@ -388,7 +323,6 @@ public final class AEConfig {
             builder.push("client");
             this.enableEffects = define(builder, "enableEffects", true);
             this.useLargeFonts = define(builder, "useTerminalUseLargeFont", false);
-            this.selectedPowerUnit = defineEnum(builder, "powerUnit", PowerUnit.AE, "Unit of power shown in AE UIs");
             this.debugGuiOverlays = define(builder, "showDebugGuiOverlays", false, "Show debugging GUI overlays");
             this.showPlacementPreview = define(builder, "showPlacementPreview", true,
                     "Show a preview of part and facade placement");
@@ -447,28 +381,9 @@ public final class AEConfig {
         public final BooleanValue gridLog;
         public final BooleanValue chunkLoggerTrace;
 
-        // Batteries
-        public final DoubleValue chargerChargeRate;
-        public final IntValue wirelessTerminalBattery;
-        public final IntValue portableCellBattery;
-        public final IntValue colorApplicatorBattery;
-
         // Meteors
         public final BooleanValue spawnPressesInMeteorites;
         public final BooleanValue spawnFlawlessOnly;
-
-        // Power Ratios
-        public final DoubleValue powerRatioForgeEnergy;
-        public final DoubleValue powerUsageMultiplier;
-        public final DoubleValue gridEnergyStoragePerNode;
-        public final DoubleValue crystalResonanceGeneratorRate;
-        public final DoubleValue p2pTunnelEnergyTax;
-        public final DoubleValue p2pTunnelTransportTax;
-
-        // Vibration Chamber
-        public final DoubleValue vibrationChamberBaseEnergyPerFuelTick;
-        public final IntValue vibrationChamberMinEnergyPerTick;
-        public final IntValue vibrationChamberMaxEnergyPerTick;
 
         // Condenser Power Requirement
         public final IntValue condenserMatterBallsPower;
@@ -493,31 +408,9 @@ public final class AEConfig {
                     "Enable stack trace logging for the chunk loading debug command");
             builder.pop();
 
-            builder.push("battery");
-            this.chargerChargeRate = define(builder, "chargerChargeRate", 1.0,
-                    0.1, 10.0,
-                    "The chargers charging rate factor, which is applied to the charged items charge rate. 2 means it charges everything twice as fast. 0.5 half as fast.");
-            this.wirelessTerminalBattery = define(builder, "wirelessTerminal", 1600000);
-            this.portableCellBattery = define(builder, "portableCell", 20000);
-            this.colorApplicatorBattery = define(builder, "colorApplicator", 20000);
-            builder.pop();
-
             builder.push("worldGen");
             this.spawnPressesInMeteorites = define(builder, "spawnPressesInMeteorites", true);
             this.spawnFlawlessOnly = define(builder, "spawnFlawlessOnly", false);
-            builder.pop();
-
-            builder.push("powerRatios");
-            powerRatioForgeEnergy = define(builder, "forgeEnergy", DEFAULT_FE_EXCHANGE);
-            powerUsageMultiplier = define(builder, "usageMultiplier", 1.0, 0.01, Double.MAX_VALUE);
-            gridEnergyStoragePerNode = define(builder, "gridEnergyStoragePerNode", 25.0, 1.0, 1000000.0,
-                    "How much energy can the internal grid buffer storage per node attached to the grid.");
-            crystalResonanceGeneratorRate = define(builder, "crystalResonanceGeneratorRate", 20.0, 0.0, 1000000.0,
-                    "How much energy a crystal resonance generator generates per tick.");
-            p2pTunnelEnergyTax = define(builder, "p2pTunnelEnergyTax", 0.025, 0.0, 1.0,
-                    "The cost to transport energy through an energy P2P tunnel expressed as a factor of the transported energy.");
-            p2pTunnelTransportTax = define(builder, "p2pTunnelTransportTax", 0.025, 0.0, 1.0,
-                    "The cost to transport items/fluids/etc. through P2P tunnels, expressed in AE energy per equivalent I/O bus operation for the transported object type (i.e. items=per 1 item, fluids=per 125mb).");
             builder.pop();
 
             builder.push("condenser");
@@ -533,23 +426,10 @@ public final class AEConfig {
             }
             builder.pop();
 
-            builder.comment("Settings for the Vibration Chamber");
-            builder.push("vibrationChamber");
-            vibrationChamberBaseEnergyPerFuelTick = define(builder, "baseEnergyPerFuelTick", 5.0, 0.1, 1000.0,
-                    "AE energy produced per fuel burn tick (reminder: coal = 1600, block of coal = 16000, lava bucket = 20000 burn ticks)");
-            vibrationChamberMinEnergyPerTick = define(builder, "minEnergyPerGameTick", 4, 0, 1000,
-                    "Minimum amount of AE/t the vibration chamber can slow down to when energy is being wasted.");
-            vibrationChamberMaxEnergyPerTick = define(builder, "baseMaxEnergyPerGameTick", 40, 1, 1000,
-                    "Maximum amount of AE/t the vibration chamber can speed up to when generated energy is being fully consumed.");
-            builder.pop();
-
             spec = builder.build();
         }
 
         public void sync() {
-            PowerUnit.FE.conversionRatio = powerRatioForgeEnergy.get();
-            PowerMultiplier.CONFIG.multiplier = powerUsageMultiplier.get();
-
             CondenserOutput.MATTER_BALLS.requiredPower = condenserMatterBallsPower.get();
 
             for (TickRates tr : TickRates.values()) {

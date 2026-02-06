@@ -28,8 +28,6 @@ import java.util.Objects;
 import com.google.common.primitives.Ints;
 
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
@@ -42,45 +40,36 @@ public final class StorageHelper {
     /**
      * Extracts items from a {@link MEStorage} respecting power requirements.
      *
-     * @param energy  Energy source.
      * @param inv     Inventory to extract from.
      * @param request Requested item and count.
      * @param src     Action source.
      * @return extracted items or {@code null} of nothing was extracted.
      */
-    public static long poweredExtraction(IEnergySource energy, MEStorage inv,
+    public static long extraction(MEStorage inv,
             AEKey request, long amount, IActionSource src) {
-        return poweredExtraction(energy, inv, request, amount, src, Actionable.MODULATE);
+        return extraction(inv, request, amount, src, Actionable.MODULATE);
     }
 
     /**
      * Extracts items from a {@link MEStorage} respecting power requirements.
      *
-     * @param energy  Energy source.
      * @param inv     Inventory to extract from.
      * @param request Requested item and count.
      * @param src     Action source.
      * @param mode    Simulate or modulate
      * @return extracted items or {@code null} of nothing was extracted.
      */
-    public static long poweredExtraction(IEnergySource energy, MEStorage inv,
+    public static long extraction(MEStorage inv,
             AEKey request, long amount, IActionSource src, Actionable mode) {
-        Objects.requireNonNull(energy, "energy");
         Objects.requireNonNull(inv, "inv");
         Objects.requireNonNull(request, "request");
         Objects.requireNonNull(src, "src");
         Objects.requireNonNull(mode, "mode");
 
-        var retrieved = inv.extract(request, amount, Actionable.SIMULATE, src);
-
-        var energyFactor = Math.max(1.0, request.getAmountPerOperation());
-        var availablePower = energy.extractAEPower(retrieved / energyFactor, Actionable.SIMULATE,
-                PowerMultiplier.CONFIG);
-        var itemToExtract = Math.min((long) (availablePower * energyFactor + 0.9), retrieved);
+        var itemToExtract = inv.extract(request, amount, Actionable.SIMULATE, src);
 
         if (itemToExtract > 0) {
             if (mode == Actionable.MODULATE) {
-                energy.extractAEPower(retrieved / energyFactor, Actionable.MODULATE, PowerMultiplier.CONFIG);
                 var ret = inv.extract(request, itemToExtract, Actionable.MODULATE, src);
 
                 if (ret != 0 && request instanceof AEItemKey) {
@@ -100,30 +89,27 @@ public final class StorageHelper {
     /**
      * Inserts items into a {@link MEStorage} respecting power requirements.
      *
-     * @param energy Energy source.
-     * @param inv    Inventory to insert into.
-     * @param input  Items to insert.
-     * @param src    Action source.
+     * @param inv   Inventory to insert into.
+     * @param input Items to insert.
+     * @param src   Action source.
      * @return the number of items inserted.
      */
-    public static long poweredInsert(IEnergySource energy, MEStorage inv,
+    public static long insert(MEStorage inv,
             AEKey input, long amount, IActionSource src) {
-        return poweredInsert(energy, inv, input, amount, src, Actionable.MODULATE);
+        return insert(inv, input, amount, src, Actionable.MODULATE);
     }
 
     /**
      * Inserts items into a {@link MEStorage} respecting power requirements.
      *
-     * @param energy Energy source.
-     * @param inv    Inventory to insert into.
-     * @param input  Items to insert.
-     * @param src    Action source.
-     * @param mode   Simulate or modulate
+     * @param inv   Inventory to insert into.
+     * @param input Items to insert.
+     * @param src   Action source.
+     * @param mode  Simulate or modulate
      * @return the number of items inserted.
      */
-    public static long poweredInsert(IEnergySource energy, MEStorage inv, AEKey input, long amount,
+    public static long insert(MEStorage inv, AEKey input, long amount,
             IActionSource src, Actionable mode) {
-        Objects.requireNonNull(energy);
         Objects.requireNonNull(inv);
         Objects.requireNonNull(input);
         Objects.requireNonNull(src);
@@ -134,17 +120,7 @@ public final class StorageHelper {
             return 0;
         }
 
-        final double energyFactor = Math.max(1.0, input.getAmountPerOperation());
-        final double availablePower = energy.extractAEPower(amount / energyFactor, Actionable.SIMULATE,
-                PowerMultiplier.CONFIG);
-        amount = Math.min((long) (availablePower * energyFactor + 0.9), amount);
-
-        if (amount <= 0) {
-            return 0;
-        }
-
         if (mode == Actionable.MODULATE) {
-            energy.extractAEPower(amount / energyFactor, Actionable.MODULATE, PowerMultiplier.CONFIG);
             var inserted = inv.insert(input, amount, Actionable.MODULATE, src);
 
             if (input instanceof AEItemKey) {

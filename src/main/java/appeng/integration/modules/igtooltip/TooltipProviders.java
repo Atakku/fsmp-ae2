@@ -13,18 +13,11 @@ import appeng.api.integrations.igtooltip.PartTooltips;
 import appeng.api.integrations.igtooltip.TooltipProvider;
 import appeng.api.parts.IPart;
 import appeng.block.AEBaseEntityBlock;
-import appeng.block.misc.ChargerBlock;
 import appeng.block.networking.CableBusBlock;
-import appeng.block.networking.CrystalResonanceGeneratorBlock;
 import appeng.blockentity.AEBaseBlockEntity;
-import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
-import appeng.blockentity.networking.CrystalResonanceGeneratorBlockEntity;
 import appeng.core.AppEng;
-import appeng.integration.modules.igtooltip.blocks.ChargerDataProvider;
-import appeng.integration.modules.igtooltip.blocks.CrystalResonanceGeneratorProvider;
 import appeng.integration.modules.igtooltip.blocks.GridNodeStateDataProvider;
-import appeng.integration.modules.igtooltip.blocks.PowerStorageDataProvider;
 import appeng.integration.modules.igtooltip.parts.ChannelDataProvider;
 import appeng.integration.modules.igtooltip.parts.GridNodeStateProvider;
 import appeng.integration.modules.igtooltip.parts.P2PStateDataProvider;
@@ -67,8 +60,6 @@ public final class TooltipProviders implements TooltipProvider {
             LOG.debug("Registering default-data for BE {} and sub-classes", clazz);
             registration.addBlockEntityData(AppEng.makeId("grid_node"), clazz.blockEntity(),
                     new GridNodeStateDataProvider());
-            registration.addBlockEntityData(AppEng.makeId("power_storage"), clazz.blockEntity(),
-                    new PowerStorageDataProvider());
             registration.addBlockEntityData(AppEng.makeId("debug"), clazz.blockEntity(),
                     DebugProvider::provideBlockEntityData);
         }
@@ -92,11 +83,6 @@ public final class TooltipProviders implements TooltipProvider {
 
         for (var clazz : baseClasses.getBaseClasses()) {
             LOG.debug("Registering default client providers for BE {} and sub-classes", clazz);
-            registration.addBlockEntityBody(
-                    clazz.blockEntity(),
-                    clazz.block(),
-                    TooltipIds.POWER_STORAGE,
-                    new PowerStorageDataProvider());
             registration.addBlockEntityBody(
                     clazz.blockEntity(),
                     clazz.block(),
@@ -133,20 +119,6 @@ public final class TooltipProviders implements TooltipProvider {
                     TooltipIds.PART_MOD_NAME,
                     PartHostTooltips::getModName);
         }
-    }
-
-    @Override
-    public void registerClient(ClientRegistration registration) {
-        registration.addBlockEntityBody(
-                CrystalResonanceGeneratorBlockEntity.class,
-                CrystalResonanceGeneratorBlock.class,
-                TooltipIds.CHARGER,
-                new CrystalResonanceGeneratorProvider());
-        registration.addBlockEntityBody(
-                ChargerBlockEntity.class,
-                ChargerBlock.class,
-                TooltipIds.CHARGER,
-                new ChargerDataProvider());
     }
 
     @Override

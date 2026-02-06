@@ -80,11 +80,6 @@ public class MEP2PTunnelPart extends P2PTunnelPart<MEP2PTunnelPart> implements I
     }
 
     @Override
-    protected float getPowerDrainPerTick() {
-        return 2.0f;
-    }
-
-    @Override
     public void readFromNBT(CompoundTag extra, HolderLookup.Provider registries) {
         super.readFromNBT(extra, registries);
         this.outerNode.loadFromNBT(extra);
@@ -216,7 +211,7 @@ public class MEP2PTunnelPart extends P2PTunnelPart<MEP2PTunnelPart> implements I
 
     @Override
     public IPartModel getStaticModels() {
-        return MODELS.getModel(this.isPowered(), this.isActive());
+        return MODELS.getModel(this.isActive());
     }
 
     private enum ConnectionUpdate {

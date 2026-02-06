@@ -53,7 +53,6 @@ import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomShapelessDisplay;
 
-import appeng.api.config.Actionable;
 import appeng.api.config.CondenserOutput;
 import appeng.api.features.P2PTunnelAttunementInternal;
 import appeng.api.integrations.rei.IngredientConverters;
@@ -73,11 +72,9 @@ import appeng.integration.modules.itemlists.CompatLayerHelper;
 import appeng.integration.modules.itemlists.ItemPredicates;
 import appeng.integration.modules.rei.transfer.UseCraftingRecipeTransfer;
 import appeng.items.parts.FacadeItem;
-import appeng.items.tools.powered.powersink.AEBasePoweredItem;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.recipes.AERecipeTypes;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
-import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
 
@@ -111,7 +108,6 @@ public class ReiPlugin implements REIClientPlugin {
         registry.add(new CondenserCategory());
         registry.add(new InscriberRecipeCategory());
         registry.add(new AttunementCategory());
-        registry.add(new ChargerCategory());
 
         registerWorkingStations(registry);
     }
@@ -127,7 +123,6 @@ public class ReiPlugin implements REIClientPlugin {
         }
 
         registry.registerRecipeFiller(InscriberRecipe.class, AERecipeTypes.INSCRIBER, InscriberRecipeDisplay::new);
-        registry.registerRecipeFiller(ChargerRecipe.class, AERecipeTypes.CHARGER, ChargerDisplay::new);
         registry.registerRecipeFiller(TransformRecipe.class, AERecipeTypes.TRANSFORM, TransformRecipeWrapper::new);
         registry.registerRecipeFiller(StorageCellUpgradeRecipe.class, RecipeType.CRAFTING,
                 this::convertStorageCellUpgradeRecipe);
@@ -233,18 +228,8 @@ public class ReiPlugin implements REIClientPlugin {
         var craftingTerminal = AEParts.CRAFTING_TERMINAL.stack();
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(craftingTerminal));
 
-        var wirelessCraftingTerminal = chargeFully(AEItems.WIRELESS_CRAFTING_TERMINAL.stack());
+        var wirelessCraftingTerminal = AEItems.WIRELESS_CRAFTING_TERMINAL.stack();
         registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(wirelessCraftingTerminal));
-
-        registry.addWorkstations(ChargerDisplay.ID, EntryStacks.of(AEBlocks.CHARGER.stack()));
-        registry.addWorkstations(ChargerDisplay.ID, EntryStacks.of(AEBlocks.CRANK.stack()));
-    }
-
-    private static ItemStack chargeFully(ItemStack stack) {
-        if (stack.getItem() instanceof AEBasePoweredItem poweredItem) {
-            poweredItem.injectAEPower(stack, poweredItem.getAEMaxPower(stack), Actionable.MODULATE);
-        }
-        return stack;
     }
 
     private void registerDescriptions(DisplayRegistry registry) {
@@ -285,8 +270,6 @@ public class ReiPlugin implements REIClientPlugin {
                     GuiText.inWorldCraftingPresses.getTranslationKey());
             addDescription(registry, AEItems.SILICON_PRESS, GuiText.inWorldCraftingPresses.getTranslationKey());
         }
-
-        addDescription(registry, AEBlocks.CRANK.item(), ItemModText.CRANK_DESCRIPTION.getTranslationKey());
     }
 
     private static void addDescription(DisplayRegistry registry, ItemDefinition<?> itemDefinition, String... message) {

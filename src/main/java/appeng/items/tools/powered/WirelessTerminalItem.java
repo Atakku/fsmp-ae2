@@ -20,12 +20,9 @@ package appeng.items.tools.powered;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import net.minecraft.core.GlobalPos;
 import net.minecraft.network.chat.Component;
@@ -42,7 +39,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.config.Actionable;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
@@ -51,10 +47,6 @@ import appeng.api.ids.AEComponents;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import appeng.api.implementations.menuobjects.IMenuItem;
 import appeng.api.networking.IGrid;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.IUpgradeableItem;
-import appeng.api.upgrades.UpgradeInventories;
-import appeng.api.upgrades.Upgrades;
 import appeng.api.util.IConfigManager;
 import appeng.core.localization.GuiText;
 import appeng.core.localization.PlayerMessages;
@@ -66,19 +58,11 @@ import appeng.menu.locator.MenuLocators;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.util.Platform;
 
-public class WirelessTerminalItem extends PoweredContainerItem implements IMenuItem, IUpgradeableItem {
-
-    private static final Logger LOG = LoggerFactory.getLogger(WirelessTerminalItem.class);
-
+public class WirelessTerminalItem extends ContainerItem implements IMenuItem {
     public static final IGridLinkableHandler LINKABLE_HANDLER = new LinkableHandler();
 
-    public WirelessTerminalItem(DoubleSupplier powerCapacity, Properties props) {
-        super(powerCapacity, props);
-    }
-
-    @Override
-    public double getChargeRate(ItemStack stack) {
-        return 800d + 800d * Upgrades.getEnergyCardMultiplier(getUpgrades(stack));
+    public WirelessTerminalItem(Properties props) {
+        super(props);
     }
 
     /**
@@ -209,26 +193,6 @@ public class WirelessTerminalItem extends PoweredContainerItem implements IMenuI
     }
 
     /**
-     * use an amount of power, in AE units
-     *
-     * @param amount is in AE units ( 5 per MJ ), if you return false, the item should be dead and return false for
-     *               hasPower
-     * @return true if wireless terminal uses power
-     */
-    public boolean usePower(Player player, double amount, ItemStack is) {
-        return extractAEPower(is, amount, Actionable.MODULATE) >= amount - 0.5;
-    }
-
-    /**
-     * gets the power status of the item.
-     *
-     * @return returns true if there is any power left.
-     */
-    public boolean hasPower(Player player, double amt, ItemStack is) {
-        return getAECurrentPower(is) >= amt;
-    }
-
-    /**
      * Return the config manager for the wireless terminal.
      *
      * @return config manager of wireless terminal
@@ -238,15 +202,6 @@ public class WirelessTerminalItem extends PoweredContainerItem implements IMenuI
                 .registerSetting(Settings.SORT_BY, SortOrder.NAME)
                 .registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING)
                 .build();
-    }
-
-    @Override
-    public IUpgradeInventory getUpgrades(ItemStack stack) {
-        return UpgradeInventories.forItem(stack, 2, this::onUpgradesChanged);
-    }
-
-    private void onUpgradesChanged(ItemStack stack, IUpgradeInventory upgrades) {
-        setAEMaxPowerMultiplier(stack, 1 + Upgrades.getEnergyCardMultiplier(upgrades));
     }
 
     private static class LinkableHandler implements IGridLinkableHandler {

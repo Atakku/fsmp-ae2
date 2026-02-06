@@ -121,7 +121,7 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
     protected void saveVisualState(CompoundTag data) {
         super.saveVisualState(data);
 
-        data.putBoolean("online", isPowered());
+        data.putBoolean("online", isOnline());
 
         for (int i = 0; i < getCellCount(); i++) {
             var cellItem = getCellItem(i);
@@ -246,8 +246,7 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
         return null;
     }
 
-    @Override
-    public boolean isPowered() {
+    private boolean isOnline() {
         if (isClientSide()) {
             return clientSideOnline;
         }
@@ -343,11 +342,9 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
 
     private void updateState() {
         if (!this.isCached) {
-            double power = 2.0;
             for (int slot = 0; slot < this.inv.size(); slot++) {
-                power += updateStateForSlot(slot);
+                updateStateForSlot(slot);
             }
-            this.getMainNode().setIdlePowerUsage(power);
 
             this.isCached = true;
         }
@@ -367,8 +364,6 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
 
                 var driveWatcher = new DriveWatcher(cell, () -> blinkCell(slot));
                 this.invBySlot[slot] = driveWatcher;
-
-                return cell.getIdleDrain();
             }
         }
 

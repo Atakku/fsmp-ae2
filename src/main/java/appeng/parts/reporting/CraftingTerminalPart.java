@@ -44,11 +44,8 @@ public class CraftingTerminalPart extends AbstractTerminalPart {
     public static final ResourceLocation INV_CRAFTING = AppEng.makeId("crafting_terminal_crafting");
 
     @PartModels
-    public static final ResourceLocation MODEL_OFF = AppEng.makeId("part/crafting_terminal_off");
-    @PartModels
     public static final ResourceLocation MODEL_ON = AppEng.makeId("part/crafting_terminal_on");
 
-    public static final IPartModel MODELS_OFF = new PartModel(MODEL_BASE, MODEL_OFF, MODEL_STATUS_OFF);
     public static final IPartModel MODELS_ON = new PartModel(MODEL_BASE, MODEL_ON, MODEL_STATUS_ON);
     public static final IPartModel MODELS_HAS_CHANNEL = new PartModel(MODEL_BASE, MODEL_ON, MODEL_STATUS_HAS_CHANNEL);
 
@@ -102,7 +99,7 @@ public class CraftingTerminalPart extends AbstractTerminalPart {
 
     @Override
     public IPartModel getStaticModels() {
-        return this.selectModel(MODELS_OFF, MODELS_ON, MODELS_HAS_CHANNEL);
+        return this.selectModel(MODELS_ON, MODELS_HAS_CHANNEL);
     }
 
 }

@@ -9,7 +9,7 @@
       "tag": "c:ingots/iron"
     },
     "c": {
-      "item": "ae2:quartz_fiber"
+      "tag": "ae2:all_quartz_dust"
     }
   },
   "pattern": [

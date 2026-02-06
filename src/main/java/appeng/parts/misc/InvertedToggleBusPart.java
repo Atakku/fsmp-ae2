@@ -37,8 +37,6 @@ public class InvertedToggleBusPart extends ToggleBusPart {
 
     public InvertedToggleBusPart(IPartItem<?> partItem) {
         super(partItem);
-        this.getMainNode().setIdlePowerUsage(0.0);
-        this.getOuterNode().setIdlePowerUsage(0.0);
         this.getMainNode().setFlags();
         this.getOuterNode().setFlags();
     }
@@ -50,9 +48,9 @@ public class InvertedToggleBusPart extends ToggleBusPart {
 
     @Override
     public IPartModel getStaticModels() {
-        if (isEnabled() && this.isActive() && this.isPowered()) {
+        if (isEnabled() && this.isActive()) {
             return MODELS_HAS_CHANNEL;
-        } else if (isEnabled() && this.isPowered()) {
+        } else if (isEnabled()) {
             return MODELS_ON;
         } else {
             return MODELS_OFF;

@@ -35,11 +35,6 @@ public interface StorageCell extends MEStorage {
     CellState getStatus();
 
     /**
-     * Return the idle drain of the cell: how many AE/t it uses passively.
-     */
-    double getIdleDrain();
-
-    /**
      * Return whether the cell should be storable in other kinds of cells.
      */
     default boolean canFitInsideCell() {

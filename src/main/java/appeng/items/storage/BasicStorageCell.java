@@ -51,7 +51,6 @@ import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
 public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AEToolItem {
-    protected final double idleDrain;
     protected final int totalBytes;
     protected final int bytesPerType;
     protected final int totalTypes;
@@ -64,7 +63,6 @@ public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AETo
             int totalTypes,
             AEKeyType keyType) {
         super(properties);
-        this.idleDrain = idleDrain;
         this.totalBytes = kilobytes * 1024;
         this.bytesPerType = bytesPerType;
         this.totalTypes = totalTypes;
@@ -99,11 +97,6 @@ public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AETo
     @Override
     public int getTotalTypes(ItemStack cellItem) {
         return totalTypes;
-    }
-
-    @Override
-    public double getIdleDrain() {
-        return idleDrain;
     }
 
     @Override

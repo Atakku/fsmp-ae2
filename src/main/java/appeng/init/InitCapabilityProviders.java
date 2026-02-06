@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.ModLoader;
 import net.neoforged.neoforge.capabilities.BlockCapability;
@@ -13,21 +12,14 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 import appeng.api.AECapabilities;
 import appeng.api.behaviors.GenericInternalInventory;
-import appeng.api.implementations.items.IAEItemPowerStorage;
 import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.parts.RegisterPartCapabilitiesEvent;
 import appeng.api.parts.RegisterPartCapabilitiesEventInternal;
 import appeng.blockentity.AEBaseInvBlockEntity;
-import appeng.blockentity.misc.ChargerBlockEntity;
-import appeng.blockentity.misc.InscriberBlockEntity;
-import appeng.blockentity.powersink.AEBasePoweredBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.core.definitions.AEBlockEntities;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.ItemDefinition;
 import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
-import appeng.items.tools.powered.powersink.PoweredItemCapabilities;
 
 public final class InitCapabilityProviders {
 
@@ -44,8 +36,6 @@ public final class InitCapabilityProviders {
         event.setProxyable(AECapabilities.GENERIC_INTERNAL_INV);
         // Definitely not proxyable, we don't want to connect nodes through a capability tunnel.
         event.setNonProxyable(AECapabilities.IN_WORLD_GRID_NODE_HOST);
-        // It would be weird to crank through a tunnel, and we might miss neighbor updates from the crankable.
-        event.setNonProxyable(AECapabilities.CRANKABLE);
     }
 
     public static void register(RegisterCapabilitiesEvent event) {
@@ -58,16 +48,10 @@ public final class InitCapabilityProviders {
         initCondenser(event);
         initMEChest(event);
         initMisc(event);
-        initPoweredItem(event);
-        initCrankable(event);
 
         for (var type : AEBlockEntities.getSubclassesOf(AEBaseInvBlockEntity.class)) {
             event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type,
                     AEBaseInvBlockEntity::getExposedItemHandler);
-        }
-        for (var type : AEBlockEntities.getSubclassesOf(AEBasePoweredBlockEntity.class)) {
-            event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, type,
-                    AEBasePoweredBlockEntity::getEnergyStorage);
         }
         for (var type : AEBlockEntities.getImplementorsOf(IInWorldGridNodeHost.class)) {
             event.registerBlockEntity(AECapabilities.IN_WORLD_GRID_NODE_HOST, type,
@@ -143,38 +127,5 @@ public final class InitCapabilityProviders {
                 Capabilities.FluidHandler.BLOCK,
                 AEBlockEntities.SKY_STONE_TANK.get(),
                 (object, context) -> object.getFluidHandler());
-    }
-
-    private static void initPoweredItem(RegisterCapabilitiesEvent event) {
-        registerPowerStorageItem(event, AEItems.COLOR_APPLICATOR);
-        registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL1K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL4K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL16K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL64K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL256K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL1K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL4K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL16K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL64K);
-        registerPowerStorageItem(event, AEItems.PORTABLE_FLUID_CELL256K);
-        registerPowerStorageItem(event, AEItems.WIRELESS_TERMINAL);
-        registerPowerStorageItem(event, AEItems.WIRELESS_CRAFTING_TERMINAL);
-    }
-
-    private static <T extends Item & IAEItemPowerStorage> void registerPowerStorageItem(RegisterCapabilitiesEvent event,
-            ItemDefinition<T> definition) {
-        IAEItemPowerStorage powerStorage = definition.get();
-
-        event.registerItem(
-                Capabilities.EnergyStorage.ITEM,
-                (object, context) -> new PoweredItemCapabilities(object, powerStorage),
-                definition);
-    }
-
-    private static void initCrankable(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(AECapabilities.CRANKABLE, AEBlockEntities.CHARGER.get(),
-                ChargerBlockEntity::getCrankable);
-        event.registerBlockEntity(AECapabilities.CRANKABLE, AEBlockEntities.INSCRIBER.get(),
-                InscriberBlockEntity::getCrankable);
     }
 }

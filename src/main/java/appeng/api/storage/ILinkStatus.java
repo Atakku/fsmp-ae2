@@ -39,8 +39,6 @@ public interface ILinkStatus {
     static ILinkStatus ofManagedNode(IManagedGridNode node) {
         if (node.isOnline()) {
             return ofConnected();
-        } else if (!node.isPowered()) {
-            return ofDisconnected(GuiText.OutOfPower.text().withStyle(ChatFormatting.DARK_RED));
         } else if (node.getNode() != null && !node.getNode().meetsChannelRequirements()) {
             return ofDisconnected(GuiText.NoChannel.text().withStyle(ChatFormatting.DARK_RED));
         } else {

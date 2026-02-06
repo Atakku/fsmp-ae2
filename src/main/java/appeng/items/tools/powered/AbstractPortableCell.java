@@ -14,16 +14,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 
-import appeng.api.config.Actionable;
 import appeng.api.implementations.menuobjects.IMenuItem;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.ICellWorkbenchItem;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.UpgradeInventories;
-import appeng.api.upgrades.Upgrades;
-import appeng.block.networking.EnergyCellBlockItem;
-import appeng.core.AEConfig;
 import appeng.core.localization.PlayerMessages;
 import appeng.items.contents.PortableCellMenuHost;
 import appeng.menu.MenuOpener;
@@ -32,14 +26,14 @@ import appeng.menu.locator.MenuLocators;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.util.InteractionUtil;
 
-public abstract class AbstractPortableCell extends PoweredContainerItem
+public abstract class AbstractPortableCell extends ContainerItem
         implements ICellWorkbenchItem, IMenuItem {
 
     private final MenuType<?> menuType;
     private final int defaultColor;
 
     public AbstractPortableCell(MenuType<?> menuType, Properties props, int defaultColor) {
-        super(AEConfig.instance().getPortableCellBattery(), props);
+        super(props);
         this.menuType = menuType;
         this.defaultColor = defaultColor;
     }
@@ -48,9 +42,6 @@ public abstract class AbstractPortableCell extends PoweredContainerItem
      * Gets the recipe ID for crafting this particular cell.
      */
     public abstract ResourceLocation getRecipeId();
-
-    @Override
-    public abstract double getChargeRate(ItemStack stack);
 
     /**
      * Open a Portable Cell from a slot in the player inventory, i.e. activated via hotkey.
@@ -123,15 +114,8 @@ public abstract class AbstractPortableCell extends PoweredContainerItem
 
         playerInventory.setItem(playerInventory.selected, ItemStack.EMPTY);
 
-        double remainingEnergy = getAECurrentPower(stack);
         for (var recipeStack : disassemblyItems) {
-            var droppedStack = recipeStack.copy();
-            // Dump remaining energy into whatever can accept it
-            if (remainingEnergy > 0 && droppedStack.getItem() instanceof EnergyCellBlockItem energyCell) {
-                remainingEnergy = energyCell.injectAEPower(droppedStack, remainingEnergy, Actionable.MODULATE);
-            }
-
-            playerInventory.placeItemBackInInventory(droppedStack);
+            playerInventory.placeItemBackInInventory(recipeStack.copy());
         }
 
         // Drop upgrades
@@ -140,24 +124,8 @@ public abstract class AbstractPortableCell extends PoweredContainerItem
         return true;
     }
 
-    @Override
-    public IUpgradeInventory getUpgrades(ItemStack is) {
-        return UpgradeInventories.forItem(is, 2, this::onUpgradesChanged);
-    }
-
-    public void onUpgradesChanged(ItemStack stack, IUpgradeInventory upgrades) {
-        // The energy card is crafted with a dense energy cell, while the base portable just uses a normal energy cell.
-        // Since the dense cells capacity is 8x the normal capacity, the result should be 9x normal.
-        setAEMaxPowerMultiplier(stack, 1 + Upgrades.getEnergyCardMultiplier(upgrades) * 8);
-    }
-
     public static int getColor(ItemStack stack, int tintIndex) {
-        if (tintIndex == 1 && stack.getItem() instanceof AbstractPortableCell portableCell) {
-            // If the cell is out of power, always display empty
-            if (portableCell.getAECurrentPower(stack) <= 0) {
-                return CellState.ABSENT.getStateColor();
-            }
-
+        if (tintIndex == 1 && stack.getItem() instanceof AbstractPortableCell) {
             // Determine LED color
             var cellInv = StorageCells.getCellInventory(stack, null);
             var cellStatus = cellInv != null ? cellInv.getStatus() : CellState.EMPTY;

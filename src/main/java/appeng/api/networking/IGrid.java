@@ -28,7 +28,6 @@ import java.util.Set;
 
 import com.google.gson.stream.JsonWriter;
 
-import appeng.api.networking.energy.IEnergyService;
 import appeng.api.networking.events.GridEvent;
 import appeng.api.networking.pathing.IPathingService;
 import appeng.api.networking.storage.IStorageService;
@@ -137,16 +136,6 @@ public interface IGrid {
 
     default IStorageService getStorageService() {
         return getService(IStorageService.class);
-    }
-
-    /**
-     * Get this grids {@link IEnergyService}.
-     *
-     * @see #getService(Class)
-     */
-
-    default IEnergyService getEnergyService() {
-        return getService(IEnergyService.class);
     }
 
     /**

@@ -20,7 +20,6 @@ import guideme.render.RenderContext;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.localization.GuiText;
 import appeng.recipes.AERecipeTypes;
-import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberRecipe;
 import appeng.recipes.transform.TransformRecipe;
 import appeng.util.Platform;
@@ -29,17 +28,7 @@ public class RecipeTypeContributions implements RecipeTypeMappingSupplier {
     @Override
     public void collect(RecipeTypeMappings mappings) {
         mappings.add(AERecipeTypes.INSCRIBER, RecipeTypeContributions::inscribing);
-        mappings.add(AERecipeTypes.CHARGER, RecipeTypeContributions::charging);
         mappings.add(AERecipeTypes.TRANSFORM, RecipeTypeContributions::transform);
-    }
-
-    private static LytStandardRecipeBox<ChargerRecipe> charging(RecipeHolder<ChargerRecipe> holder) {
-        return LytStandardRecipeBox.builder()
-                .icon(AEBlocks.CHARGER)
-                .title(AEBlocks.CHARGER.asItem().getDescription().getString())
-                .input(holder.value().getIngredient())
-                .outputFromResultOf(holder)
-                .build(holder);
     }
 
     private static LytStandardRecipeBox<InscriberRecipe> inscribing(RecipeHolder<InscriberRecipe> holder) {

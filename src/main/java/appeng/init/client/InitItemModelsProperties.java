@@ -19,13 +19,11 @@
 package appeng.init.client;
 
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.api.util.AEColor;
-import appeng.block.networking.EnergyCellBlockItem;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import appeng.items.tools.powered.ColorApplicatorItem;
@@ -53,21 +51,6 @@ public final class InitItemModelsProperties {
                     AEColor col = colorApplicatorItem.getActiveColor(itemStack);
                     return col != null ? 1 : 0;
                 });
-
-        // Register the client-only item model property for energy cells
-        BuiltInRegistries.ITEM.forEach(item -> {
-            if (!(item instanceof EnergyCellBlockItem energyCell)) {
-                return;
-            }
-
-            ItemProperties.register(energyCell, ENERGY_FILL_LEVEL_ID,
-                    (is, level, entity, seed) -> {
-                        double curPower = energyCell.getAECurrentPower(is);
-                        double maxPower = energyCell.getAEMaxPower(is);
-
-                        return (float) (curPower / maxPower);
-                    });
-        });
     }
 
 }

@@ -67,7 +67,6 @@ public class ToggleBusPart extends AEBasePart {
             .createManagedNode(this, NodeListener.INSTANCE)
             .setTagName("outer")
             .setInWorldNode(true)
-            .setIdlePowerUsage(0.0)
             .setFlags(GridFlags.PREFERRED);
 
     private IGridConnection connection;
@@ -78,7 +77,6 @@ public class ToggleBusPart extends AEBasePart {
     public ToggleBusPart(IPartItem<?> partItem) {
         super(partItem);
 
-        this.getMainNode().setIdlePowerUsage(0.0);
         this.getMainNode().setFlags(GridFlags.PREFERRED);
     }
 
@@ -200,9 +198,9 @@ public class ToggleBusPart extends AEBasePart {
 
     @Override
     public IPartModel getStaticModels() {
-        if (isEnabled() && this.isActive() && this.isPowered()) {
+        if (isEnabled() && this.isActive()) {
             return MODELS_HAS_CHANNEL;
-        } else if (isEnabled() && this.isPowered()) {
+        } else if (isEnabled()) {
             return MODELS_ON;
         } else {
             return MODELS_OFF;

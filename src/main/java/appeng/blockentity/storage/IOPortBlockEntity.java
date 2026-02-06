@@ -338,7 +338,6 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
             destination = cellInv;
         }
 
-        var energy = grid.getEnergyService();
         boolean didStuff;
 
         do {
@@ -355,7 +354,7 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
 
                         possible = src.extract(what, possible, Actionable.MODULATE, this.mySrc);
                         if (possible > 0) {
-                            var inserted = StorageHelper.poweredInsert(energy, destination, what, possible, this.mySrc);
+                            var inserted = StorageHelper.insert(destination, what, possible, this.mySrc);
 
                             if (inserted < possible) {
                                 src.insert(what, possible - inserted, Actionable.MODULATE, this.mySrc);

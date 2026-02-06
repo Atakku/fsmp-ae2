@@ -73,32 +73,26 @@ import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.IBasicCellItem;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.UpgradeInventories;
-import appeng.api.upgrades.Upgrades;
 import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
 import appeng.block.networking.CableBusBlock;
-import appeng.core.AEConfig;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.GuiText;
 import appeng.datagen.providers.tags.ConventionTags;
 import appeng.helpers.IMouseWheelItem;
 import appeng.hooks.IBlockTool;
+import appeng.items.AEBaseItem;
 import appeng.items.contents.CellConfig;
 import appeng.items.misc.PaintBallItem;
 import appeng.items.storage.StorageTier;
-import appeng.items.tools.powered.powersink.AEBasePoweredItem;
 import appeng.me.cells.BasicCellHandler;
 import appeng.me.helpers.BaseActionSource;
 import appeng.util.ConfigInventory;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
-public class ColorApplicatorItem extends AEBasePoweredItem
+public class ColorApplicatorItem extends AEBaseItem
         implements IBasicCellItem, IBlockTool, IMouseWheelItem {
-
-    private static final double POWER_PER_USE = 100;
 
     private static final Map<TagKey<Item>, AEColor> TAG_TO_COLOR = AEColor.VALID_COLORS.stream()
             .collect(Collectors.toMap(
@@ -127,12 +121,7 @@ public class ColorApplicatorItem extends AEBasePoweredItem
     }
 
     public ColorApplicatorItem(Properties props) {
-        super(AEConfig.instance().getColorApplicatorBattery(), props);
-    }
-
-    @Override
-    public double getChargeRate(ItemStack stack) {
-        return 80d + 80d * Upgrades.getEnergyCardMultiplier(getUpgrades(stack));
+        super(props);
     }
 
     @Override
@@ -176,7 +165,6 @@ public class ColorApplicatorItem extends AEBasePoweredItem
                     // clean cables.
                     if (p != null
                             && level.getBlockEntity(pos) instanceof IColorableBlockEntity colorableBlockEntity
-                            && this.getAECurrentPower(is) > POWER_PER_USE
                             && colorableBlockEntity.getColor() != AEColor.TRANSPARENT) {
                         if (colorableBlockEntity.recolourBlock(side, AEColor.TRANSPARENT, p)) {
                             consumeColor(is, color, false);
@@ -185,8 +173,7 @@ public class ColorApplicatorItem extends AEBasePoweredItem
                     }
                 }
 
-                if (this.getAECurrentPower(is) > POWER_PER_USE
-                        && this.recolourBlock(blk, side, level, pos, color, p)) {
+                if (this.recolourBlock(blk, side, level, pos, color, p)) {
                     consumeColor(is, color, false);
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
@@ -211,7 +198,7 @@ public class ColorApplicatorItem extends AEBasePoweredItem
 
         if (paintBallColor != null && interactionTarget instanceof Sheep sheep) {
             if (sheep.isAlive() && !sheep.isSheared() && sheep.getColor() != paintBallColor.dye) {
-                if (!player.level().isClientSide && this.getAECurrentPower(is) > POWER_PER_USE) {
+                if (!player.level().isClientSide) {
                     sheep.setColor(paintBallColor.dye);
                     sheep.level().playSound(player, sheep, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     this.consumeColor(is, paintBallColor, false);
@@ -270,8 +257,7 @@ public class ColorApplicatorItem extends AEBasePoweredItem
         }
 
         var mode = simulate ? Actionable.SIMULATE : Actionable.MODULATE;
-        var success = inv.extract(key, 1, mode, new BaseActionSource()) >= 1
-                && this.extractAEPower(applicator, POWER_PER_USE, mode) >= POWER_PER_USE;
+        var success = inv.extract(key, 1, mode, new BaseActionSource()) >= 1;
         // Clear the color once we run out
         if (success
                 && !simulate
@@ -468,23 +454,8 @@ public class ColorApplicatorItem extends AEBasePoweredItem
     }
 
     @Override
-    public double getIdleDrain() {
-        return 0.5;
-    }
-
-    @Override
     public AEKeyType getKeyType() {
         return AEKeyType.items();
-    }
-
-    @Override
-    public IUpgradeInventory getUpgrades(ItemStack is) {
-        return UpgradeInventories.forItem(is, 2, this::onUpgradesChanged);
-    }
-
-    private void onUpgradesChanged(ItemStack stack, IUpgradeInventory upgrades) {
-        // Item is crafted with a normal cell, base energy card contains a dense cell (x8)
-        setAEMaxPowerMultiplier(stack, 1 + Upgrades.getEnergyCardMultiplier(upgrades) * 8);
     }
 
     @Override
@@ -530,13 +501,6 @@ public class ColorApplicatorItem extends AEBasePoweredItem
         }
         dyeStorage.insert(AEItemKey.of(Items.SNOWBALL), 128, Actionable.MODULATE, new BaseActionSource());
 
-        // Upgrade energy storage
-        var upgrades = item.getUpgrades(applicator);
-        upgrades.addItems(AEItems.ENERGY_CARD.stack());
-        upgrades.addItems(AEItems.ENERGY_CARD.stack());
-
-        // Fill it up with power
-        item.injectAEPower(applicator, item.getAEMaxPower(applicator), Actionable.MODULATE);
         return applicator;
     }
 

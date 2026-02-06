@@ -28,7 +28,6 @@ import net.minecraft.world.inventory.MenuType;
 import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.implementations.CondenserMenu;
 import appeng.menu.implementations.DriveMenu;
-import appeng.menu.implementations.EnergyLevelEmitterMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.InscriberMenu;
 import appeng.menu.implementations.MEChestMenu;
@@ -36,7 +35,6 @@ import appeng.menu.implementations.PriorityMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
-import appeng.menu.implementations.VibrationChamberMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.BasicCellChestMenu;
@@ -59,7 +57,6 @@ public final class InitMenuTypes {
                 CondenserMenu.TYPE,
                 CraftingTermMenu.TYPE,
                 DriveMenu.TYPE,
-                EnergyLevelEmitterMenu.TYPE,
                 IOPortMenu.TYPE,
                 InscriberMenu.TYPE,
                 MEStorageMenu.TYPE,
@@ -73,7 +70,6 @@ public final class InitMenuTypes {
                 QuartzKnifeMenu.TYPE,
                 SkyChestMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,
-                VibrationChamberMenu.TYPE,
                 WirelessCraftingTermMenu.TYPE,
                 WirelessAccessPointMenu.TYPE);
     }

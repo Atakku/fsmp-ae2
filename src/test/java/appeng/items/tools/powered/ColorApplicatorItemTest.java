@@ -1,7 +1,6 @@
 package appeng.items.tools.powered;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,6 @@ class ColorApplicatorItemTest {
     @Test
     void testCreateFullColorApplicator() {
         var applicator = ColorApplicatorItem.createFullColorApplicator();
-        var item = (ColorApplicatorItem) applicator.getItem();
-
-        assertNotEquals(0, item.getAEMaxPower(applicator));
-        assertEquals(item.getAEMaxPower(applicator), item.getAECurrentPower(applicator));
 
         // Get new storage and list content
         var dyeStorage = BasicCellHandler.INSTANCE.getCellInventory(applicator, null);

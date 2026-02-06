@@ -37,18 +37,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import appeng.api.config.Actionable;
 import appeng.api.config.InscriberInputCapacity;
-import appeng.api.config.PowerMultiplier;
 import appeng.api.config.Setting;
 import appeng.api.config.Settings;
 import appeng.api.config.YesNo;
-import appeng.api.implementations.blockentities.ICrankable;
 import appeng.api.inventories.ISegmentedInventory;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGridNode;
-import appeng.api.networking.energy.IEnergyService;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.ticking.IGridTickable;
 import appeng.api.networking.ticking.TickRateModulation;
 import appeng.api.networking.ticking.TickingRequest;
@@ -60,7 +55,7 @@ import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.util.AECableType;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.blockentity.grid.AENetworkedPoweredBlockEntity;
+import appeng.blockentity.grid.AENetworkedInvBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.settings.TickRates;
@@ -77,7 +72,7 @@ import appeng.util.inv.filter.IAEItemFilter;
  * @version rv2
  * @since rv0
  */
-public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
+public class InscriberBlockEntity extends AENetworkedInvBlockEntity
         implements IGridTickable, IUpgradeableObject, IConfigurableObject {
     private static final int MAX_PROCESSING_STEPS = 200;
 
@@ -121,9 +116,7 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
         super(blockEntityType, pos, blockState);
 
         this.getMainNode()
-                .setIdlePowerUsage(0)
                 .addService(IGridTickable.class, this);
-        this.setInternalMaxPower(1600);
 
         this.upgrades = UpgradeInventories.forMachine(AEBlocks.INSCRIBER, 4, this::saveChanges);
         this.configManager = IConfigManager.builder(this::onConfigChanged)
@@ -139,8 +132,6 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
 
         this.combinedItemHandlerExtern = new CombinedInternalInventory(topItemHandlerExtern, bottomItemHandlerExtern,
                 sideItemHandlerExtern);
-
-        this.setPowerSides(getGridConnectableSides(getOrientation()));
     }
 
     @Override
@@ -217,13 +208,6 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
     @Override
     public Set<Direction> getGridConnectableSides(BlockOrientation orientation) {
         return EnumSet.complementOf(EnumSet.of(orientation.getSide(RelativeSide.FRONT)));
-    }
-
-    @Override
-    protected void onOrientationChanged(BlockOrientation orientation) {
-        super.onOrientationChanged(orientation);
-
-        this.setPowerSides(getGridConnectableSides(orientation));
     }
 
     @Override
@@ -332,9 +316,6 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
             }
         } else if (this.hasCraftWork()) {
             getMainNode().ifPresent(grid -> {
-                IEnergyService eg = grid.getEnergyService();
-                IEnergySource src = this;
-
                 // Note: required ticks = 16 + ceil(MAX_PROCESSING_STEPS / speedFactor)
                 final int speedFactor = switch (this.upgrades.getInstalledUpgrades(AEItems.SPEED_CARD)) {
                     default -> 2; // 116 ticks
@@ -343,19 +324,7 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
                     case 3 -> 10; // 36 ticks
                     case 4 -> 50; // 20 ticks
                 };
-                final int powerConsumption = 10 * speedFactor;
-                final double powerThreshold = powerConsumption - 0.01;
-                double powerReq = this.extractAEPower(powerConsumption, Actionable.SIMULATE, PowerMultiplier.CONFIG);
-
-                if (powerReq <= powerThreshold) {
-                    src = eg;
-                    powerReq = eg.extractAEPower(powerConsumption, Actionable.SIMULATE, PowerMultiplier.CONFIG);
-                }
-
-                if (powerReq > powerThreshold) {
-                    src.extractAEPower(powerConsumption, Actionable.MODULATE, PowerMultiplier.CONFIG);
-                    this.setProcessingTime(this.getProcessingTime() + speedFactor);
-                }
+                this.setProcessingTime(this.getProcessingTime() + speedFactor);
             });
 
             if (this.getProcessingTime() > this.getMaxProcessingTime()) {
@@ -510,17 +479,6 @@ public class InscriberBlockEntity extends AENetworkedPoweredBlockEntity
 
     private void setProcessingTime(int processingTime) {
         this.processingTime = processingTime;
-    }
-
-    /**
-     * Allow cranking from any side other than the front.
-     */
-    @Nullable
-    public ICrankable getCrankable(Direction direction) {
-        if (direction != getFront()) {
-            return new Crankable();
-        }
-        return null;
     }
 
     public class BaseFilter implements IAEItemFilter {

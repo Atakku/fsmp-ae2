@@ -245,11 +245,6 @@ public class BasicCellInventory implements StorageCell {
         }
     }
 
-    @Override
-    public double getIdleDrain() {
-        return this.cellType.getIdleDrain();
-    }
-
     public FuzzyMode getFuzzyMode() {
         return this.cellType.getFuzzyMode(this.i);
     }

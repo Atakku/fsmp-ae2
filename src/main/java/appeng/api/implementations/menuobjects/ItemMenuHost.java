@@ -25,8 +25,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
-import appeng.api.config.PowerMultiplier;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.stacks.AEKey;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
@@ -37,17 +35,10 @@ import appeng.menu.locator.ItemMenuHostLocator;
  */
 public class ItemMenuHost<T extends Item> implements IUpgradeableObject {
 
-    /**
-     * To avoid changing the item stack once every tick, we consume idle power for more than just one tick at a time.
-     * The default is to consume power twice per second.
-     */
-    private static final int BUFFER_ENERGY_TICKS = 10;
-
     private final T item;
     private final Player player;
     private final ItemMenuHostLocator locator;
     private final IUpgradeInventory upgrades;
-    private int remainingEnergyTicks = 0;
 
     public ItemMenuHost(T item, Player player, ItemMenuHostLocator locator) {
         this.player = player;
@@ -112,47 +103,6 @@ public class ItemMenuHost<T extends Item> implements IUpgradeableObject {
     public boolean isValid() {
         var currentItem = getItemStack();
         return !currentItem.isEmpty() && currentItem.is(item);
-    }
-
-    /**
-     * Can only be used with a host that implements {@link IEnergySource}.
-     */
-    public boolean consumeIdlePower(Actionable action) {
-        // Do not drain power for creative players
-        if (player.isCreative()) {
-            return true;
-        }
-
-        // Remaining charge
-        if (remainingEnergyTicks > 0) {
-            if (action == Actionable.MODULATE) {
-                remainingEnergyTicks--;
-            }
-            return true;
-        }
-
-        var powerDrainPerTick = getPowerDrainPerTick();
-        if (powerDrainPerTick > 0 && this instanceof IEnergySource energySource) {
-            var amt = BUFFER_ENERGY_TICKS * powerDrainPerTick;
-            var actualExtracted = energySource.extractAEPower(amt, action, PowerMultiplier.CONFIG);
-            var remainingEnergyTicks = (int) Math.ceil(actualExtracted / powerDrainPerTick);
-            if (action == Actionable.MODULATE) {
-                this.remainingEnergyTicks = remainingEnergyTicks;
-            }
-
-            // Return true if we drained enough energy to last one tick
-            return remainingEnergyTicks > 0;
-        }
-
-        // If no power is being drained, we're never out of power
-        return true;
-    }
-
-    /**
-     * Get power drain per tick.
-     */
-    protected double getPowerDrainPerTick() {
-        return 0.5;
     }
 
     @Override

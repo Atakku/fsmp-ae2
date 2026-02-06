@@ -78,12 +78,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         registry.addWorkstation(EmiInscriberRecipe.CATEGORY, EmiStack.of(AEBlocks.INSCRIBER));
         adaptRecipeType(registry, AERecipeTypes.INSCRIBER, EmiInscriberRecipe::new);
 
-        // Charger
-        registry.addCategory(EmiChargerRecipe.CATEGORY);
-        registry.addWorkstation(EmiChargerRecipe.CATEGORY, EmiStack.of(AEBlocks.CHARGER));
-        registry.addWorkstation(EmiChargerRecipe.CATEGORY, EmiStack.of(AEBlocks.CRANK));
-        adaptRecipeType(registry, AERecipeTypes.CHARGER, EmiChargerRecipe::new);
-
         // Special upgrade recipes
         adaptSpecialRecipes(registry, StorageCellUpgradeRecipe.class, this::convertStorageCellUpgradeRecipe);
 
@@ -155,9 +149,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
                     GuiText.inWorldCraftingPresses);
             addDescription(registry, AEItems.SILICON_PRESS, GuiText.inWorldCraftingPresses);
         }
-
-        addDescription(registry, AEBlocks.CRANK.item(), ItemModText.CRANK_DESCRIPTION);
-
     }
 
     private void addDescription(EmiRegistry registry, ItemDefinition<?> item, LocalizationEnum... lines) {

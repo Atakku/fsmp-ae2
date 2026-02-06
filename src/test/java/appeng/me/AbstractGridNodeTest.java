@@ -1,7 +1,5 @@
 package appeng.me;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +14,9 @@ import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
-import appeng.api.networking.energy.IAEPowerStorage;
 import appeng.api.networking.ticking.IGridTickable;
 import appeng.api.networking.ticking.TickRateModulation;
 import appeng.api.networking.ticking.TickingRequest;
-import appeng.me.service.EnergyService;
 import appeng.util.BootstrapMinecraft;
 import appeng.util.Platform;
 
@@ -49,16 +45,6 @@ public abstract class AbstractGridNodeTest {
 
     protected GridNode makeReadyNode(GridFlags... flags) {
         var node = makeNode(flags);
-        node.markReady();
-        return node;
-    }
-
-    protected GridNode makePoweredNode(GridFlags... flags) {
-        var node = makeNode(flags);
-        node.addService(IAEPowerStorage.class, new InfinitePowerStorage());
-        var grid = node.getInternalGrid();
-        ((EnergyService) grid.getEnergyService()).onServerEndTick();
-        assertTrue(node.isPowered());
         node.markReady();
         return node;
     }

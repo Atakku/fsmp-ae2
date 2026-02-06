@@ -19,7 +19,6 @@
 
 package appeng.util;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -60,12 +59,8 @@ import net.neoforged.fml.util.thread.SidedThreadGroups;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-import appeng.api.config.AccessRestriction;
-import appeng.api.config.PowerUnit;
 import appeng.api.config.SortOrder;
-import appeng.api.implementations.items.IAEItemPowerStorage;
 import appeng.api.util.DimensionalBlockPos;
-import appeng.core.AEConfig;
 import appeng.core.AELog;
 import appeng.hooks.VisualStateSaving;
 import appeng.hooks.ticking.TickHandler;
@@ -124,36 +119,6 @@ public class Platform {
 
     public static P2PHelper p2p() {
         return P2P_HELPER;
-    }
-
-    /**
-     * This displays the value for encoded longs ( double *100 )
-     *
-     * @param n      to be formatted long value
-     * @param isRate if true it adds a /t to the formatted string
-     * @return formatted long value
-     */
-    public static String formatPowerLong(long n, boolean isRate) {
-        return formatPower((double) n / 100, isRate);
-    }
-
-    public static String formatPower(double p, boolean isRate) {
-        var displayUnits = AEConfig.instance().getSelectedEnergyUnit();
-        p = PowerUnit.AE.convertTo(displayUnits, p);
-
-        final String[] preFixes = { "k", "M", "G", "T", "P", "T", "P", "E", "Z", "Y" };
-        var unitName = displayUnits.getSymbolName();
-
-        String level = "";
-        int offset = 0;
-        while (p > 1000 && offset < preFixes.length) {
-            p /= 1000;
-            level = preFixes[offset];
-            offset++;
-        }
-
-        final DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(p) + ' ' + level + unitName + (isRate ? "/t" : "");
     }
 
     public static String formatTimeMeasurement(long nanos) {
@@ -253,17 +218,6 @@ public class Platform {
     public static Component getFluidDisplayName(Fluid fluid) {
         var fluidStack = new FluidStack(fluid, 1);
         return fluidStack.getHoverName();
-    }
-
-    public static boolean isChargeable(ItemStack i) {
-        if (i.isEmpty()) {
-            return false;
-        }
-        if (i.getItem() instanceof IAEItemPowerStorage powerStorage) {
-            return powerStorage.getAEMaxPower(i) > 0 &&
-                    powerStorage.getPowerFlow(i) != AccessRestriction.READ;
-        }
-        return false;
     }
 
     private static final UUID DEFAULT_FAKE_PLAYER_UUID = UUID.fromString("60C173A5-E1E6-4B87-85B1-272CE424521D");

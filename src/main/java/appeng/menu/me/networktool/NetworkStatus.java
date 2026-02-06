@@ -31,9 +31,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
-import appeng.api.networking.energy.IEnergyService;
-import appeng.api.networking.energy.IPassiveEnergyGenerator;
-import appeng.blockentity.misc.VibrationChamberBlockEntity;
 import appeng.client.gui.me.networktool.NetworkStatusScreen;
 
 /**
@@ -43,25 +40,13 @@ import appeng.client.gui.me.networktool.NetworkStatusScreen;
  */
 public class NetworkStatus {
 
-    private double averagePowerInjection;
-    private double averagePowerUsage;
-    private double storedPower;
-    private double maxStoredPower;
-    private double channelPower;
     private int channelsUsed;
 
     private List<MachineGroup> groupedMachines = Collections.emptyList();
 
     public static NetworkStatus fromGrid(IGrid grid) {
-        IEnergyService eg = grid.getEnergyService();
-
         NetworkStatus status = new NetworkStatus();
 
-        status.averagePowerInjection = eg.getAvgPowerInjection();
-        status.averagePowerUsage = eg.getAvgPowerUsage();
-        status.storedPower = eg.getStoredPower();
-        status.maxStoredPower = eg.getMaxStoredPower();
-        status.channelPower = eg.getChannelPowerUsage();
         status.channelsUsed = grid.getPathingService().getUsedChannels();
 
         // This is essentially a groupBy machineRepresentation + count, sum(idlePowerUsage)
@@ -71,20 +56,7 @@ public class NetworkStatus {
                 var key = getKey(machine);
                 if (key != null) {
                     var group = groupedMachines.computeIfAbsent(key, MachineGroup::new);
-
                     group.setCount(group.getCount() + 1);
-                    group.setIdlePowerUsage(group.getIdlePowerUsage() + machine.getIdlePowerUsage());
-
-                    var owner = machine.getOwner();
-                    var passiveEnergyGenerator = machine.getService(IPassiveEnergyGenerator.class);
-                    if (passiveEnergyGenerator != null && !passiveEnergyGenerator.isSuppressed()) {
-                        group.setPowerGenerationCapacity(
-                                group.getPowerGenerationCapacity() + passiveEnergyGenerator.getRate());
-                    }
-                    if (owner instanceof VibrationChamberBlockEntity vibrationChamberBlockEntity) {
-                        group.setPowerGenerationCapacity(
-                                group.getPowerGenerationCapacity() + vibrationChamberBlockEntity.getMaxEnergyRate());
-                    }
                 }
             }
         }
@@ -103,26 +75,6 @@ public class NetworkStatus {
         return new MachineGroupKey(visualRepresentation, !machine.meetsChannelRequirements());
     }
 
-    public double getAveragePowerInjection() {
-        return averagePowerInjection;
-    }
-
-    public double getAveragePowerUsage() {
-        return averagePowerUsage;
-    }
-
-    public double getStoredPower() {
-        return storedPower;
-    }
-
-    public double getMaxStoredPower() {
-        return maxStoredPower;
-    }
-
-    public double getChannelPower() {
-        return channelPower;
-    }
-
     public int getChannelsUsed() {
         return channelsUsed;
     }
@@ -139,11 +91,6 @@ public class NetworkStatus {
      */
     public static NetworkStatus read(RegistryFriendlyByteBuf data) {
         NetworkStatus status = new NetworkStatus();
-        status.averagePowerInjection = data.readDouble();
-        status.averagePowerUsage = data.readDouble();
-        status.storedPower = data.readDouble();
-        status.maxStoredPower = data.readDouble();
-        status.channelPower = data.readDouble();
         status.channelsUsed = data.readVarInt();
 
         int count = data.readVarInt();
@@ -160,11 +107,6 @@ public class NetworkStatus {
      * Writes the contents of this object to a packet buffer. Use {@link #read(RegistryFriendlyByteBuf)} to restore.
      */
     public void write(RegistryFriendlyByteBuf data) {
-        data.writeDouble(averagePowerInjection);
-        data.writeDouble(averagePowerUsage);
-        data.writeDouble(storedPower);
-        data.writeDouble(maxStoredPower);
-        data.writeDouble(channelPower);
         data.writeVarInt(channelsUsed);
         data.writeVarInt(groupedMachines.size());
         for (MachineGroup machine : groupedMachines) {

@@ -63,9 +63,6 @@ public abstract class AbstractReportingPart extends AEBasePart implements IMonit
 
         if (requireChannel) {
             this.getMainNode().setFlags(GridFlags.REQUIRE_CHANNEL);
-            this.getMainNode().setIdlePowerUsage(1.0 / 2.0);
-        } else {
-            this.getMainNode().setIdlePowerUsage(1.0 / 16.0); // lights drain less
         }
     }
 
@@ -114,7 +111,7 @@ public abstract class AbstractReportingPart extends AEBasePart implements IMonit
 
     @Override
     public final int getLightLevel() {
-        return this.blockLight(this.isPowered() ? this.isLightSource() ? 15 : 9 : 0);
+        return this.blockLight(this.isLightSource() ? 15 : 9);
     }
 
     @Override
@@ -152,13 +149,11 @@ public abstract class AbstractReportingPart extends AEBasePart implements IMonit
         return Math.max(0, emit - opacity);
     }
 
-    protected IPartModel selectModel(IPartModel offModels, IPartModel onModels, IPartModel hasChannelModels) {
+    protected IPartModel selectModel(IPartModel onModels, IPartModel hasChannelModels) {
         if (this.isActive()) {
             return hasChannelModels;
-        } else if (this.isPowered()) {
-            return onModels;
         } else {
-            return offModels;
+            return onModels;
         }
     }
 

@@ -33,10 +33,8 @@ import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.upgrades.Upgrades;
 import appeng.blockentity.misc.InscriberRecipes;
-import appeng.blockentity.misc.VibrationChamberBlockEntity;
 import appeng.client.gui.Icon;
 import appeng.core.definitions.AEItems;
-import appeng.util.Platform;
 
 /**
  * @author AlgorithmX2
@@ -116,10 +114,6 @@ public class RestrictedInputSlot extends AppEngSlot {
 
             case VIEW_CELL:
                 return AEItems.VIEW_CELL.is(stack);
-            case FUEL:
-                return VibrationChamberBlockEntity.hasBurnTime(stack);
-            case POWERED_TOOL:
-                return Platform.isChargeable(stack);
 
             case STORAGE_CELLS:
                 return StorageCells.isCellHandled(stack);
@@ -175,8 +169,6 @@ public class RestrictedInputSlot extends AppEngSlot {
          */
         GRID_LINKABLE_ITEM(Icon.BACKGROUND_WIRELESS_TERM),
         TRASH(Icon.BACKGROUND_TRASH),
-        POWERED_TOOL(Icon.BACKGROUND_CHARGABLE),
-        FUEL(Icon.BACKGROUND_FUEL),
         UPGRADES(Icon.BACKGROUND_UPGRADE),
         WORKBENCH_CELL(Icon.BACKGROUND_STORAGE_CELL),
         VIEW_CELL(Icon.BACKGROUND_VIEW_CELL),

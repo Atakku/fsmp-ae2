@@ -14,7 +14,6 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import appeng.api.config.PowerUnit;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.ButtonToolTips;
@@ -53,10 +52,6 @@ public class LocalizationProvider implements IAE2DataProvider {
         addEnum(InGameTooltip.class);
         addEnum(ItemModText.class);
         addEnum(EmiText.class);
-        // Can't implement LocalizationEnum since it's not in the API, but PowerUnits is
-        for (var powerUnit : PowerUnit.values()) {
-            add(powerUnit.unlocalizedName, powerUnit.symbolName);
-        }
 
         generateJadeLocalizations();
         generateLocalizations();
@@ -67,8 +62,6 @@ public class LocalizationProvider implements IAE2DataProvider {
     private void generateJadeLocalizations() {
         addJadeProviderDisplayName(TooltipIds.DEBUG, "AE2 Debug Info");
         addJadeProviderDisplayName(TooltipIds.GRID_NODE_STATE, "AE2 Network State");
-        addJadeProviderDisplayName(TooltipIds.POWER_STORAGE, "AE2 Power State");
-        addJadeProviderDisplayName(TooltipIds.CHARGER, "AE2 Charger");
         addJadeProviderDisplayName(TooltipIds.PART_NAME, "AE2 Part Name");
         addJadeProviderDisplayName(TooltipIds.PART_ICON, "AE2 Part Icon");
         addJadeProviderDisplayName(TooltipIds.PART_MOD_NAME, "AE2 Mod Name");

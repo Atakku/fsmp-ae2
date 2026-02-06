@@ -48,7 +48,6 @@ import appeng.api.config.SortOrder;
 import appeng.api.implementations.blockentities.IViewCellStorage;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
 import appeng.api.networking.IGridNode;
-import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionHost;
 import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.AEItemKey;
@@ -71,7 +70,6 @@ import appeng.core.network.clientbound.MEInventoryUpdatePacket;
 import appeng.core.network.clientbound.SetLinkStatusPacket;
 import appeng.core.network.serverbound.MEInteractionPacket;
 import appeng.helpers.InventoryAction;
-import appeng.me.helpers.ActionHostEnergySource;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
 import appeng.menu.ToolboxMenu;
@@ -124,8 +122,6 @@ public class MEStorageMenu extends AEBaseMenu
 
     protected final MEStorage storage;
 
-    protected final IEnergySource energySource;
-
     private final IncrementalUpdateHelper updateHelper = new IncrementalUpdateHelper();
 
     /**
@@ -145,13 +141,6 @@ public class MEStorageMenu extends AEBaseMenu
         super(menuType, id, ip, host);
 
         this.host = host;
-        if (host instanceof IEnergySource hostEnergySource) {
-            this.energySource = hostEnergySource;
-        } else if (host instanceof IActionHost actionHost) {
-            this.energySource = new ActionHostEnergySource(actionHost);
-        } else {
-            this.energySource = IEnergySource.empty();
-        }
         this.storage = Objects.requireNonNull(host.getInventory(), "host inventory is null");
 
         this.clientCM = IConfigManager.builder(this::onSettingChanged)
@@ -352,12 +341,12 @@ public class MEStorageMenu extends AEBaseMenu
             case FILL_ENTIRE_ITEM_MOVE_TO_PLAYER -> tryFillContainerItem(clickedKey, true, true);
             case EMPTY_ITEM ->
                 handleEmptyHeldItem(
-                        (what, amount, mode) -> StorageHelper.poweredInsert(energySource, storage, what, amount,
+                        (what, amount, mode) -> StorageHelper.insert(storage, what, amount,
                                 getActionSource(), mode),
                         false);
             case EMPTY_ENTIRE_ITEM ->
                 handleEmptyHeldItem(
-                        (what, amount, mode) -> StorageHelper.poweredInsert(energySource, storage, what, amount,
+                        (what, amount, mode) -> StorageHelper.insert(storage, what, amount,
                                 getActionSource(), mode),
                         true);
         }
@@ -385,7 +374,7 @@ public class MEStorageMenu extends AEBaseMenu
                 var carried = getCarried();
                 if (!carried.isEmpty()) {
                     var what = AEItemKey.of(carried);
-                    var inserted = StorageHelper.poweredInsert(energySource, storage, what, 1, this.getActionSource());
+                    var inserted = StorageHelper.insert(storage, what, 1, this.getActionSource());
                     if (inserted > 0) {
                         getCarried().shrink(1);
                     }
@@ -404,7 +393,7 @@ public class MEStorageMenu extends AEBaseMenu
                     }
                 }
 
-                var extracted = StorageHelper.poweredExtraction(energySource, storage, clickedItem, 1,
+                var extracted = StorageHelper.extraction(storage, clickedItem, 1,
                         this.getActionSource());
                 if (extracted > 0) {
                     if (item.isEmpty()) {
@@ -419,8 +408,7 @@ public class MEStorageMenu extends AEBaseMenu
                 if (!getCarried().isEmpty()) {
                     putCarriedItemIntoNetwork(false);
                 } else {
-                    var extracted = StorageHelper.poweredExtraction(
-                            energySource,
+                    var extracted = StorageHelper.extraction(
                             storage,
                             clickedItem,
                             clickedItem.getMaxStackSize(),
@@ -445,7 +433,7 @@ public class MEStorageMenu extends AEBaseMenu
                     if (extracted > 0) {
                         // Half
                         extracted = extracted + 1 >> 1;
-                        extracted = StorageHelper.poweredExtraction(energySource, storage, clickedItem, extracted,
+                        extracted = StorageHelper.extraction(storage, clickedItem, extracted,
                                 this.getActionSource());
                     }
 
@@ -492,7 +480,7 @@ public class MEStorageMenu extends AEBaseMenu
         var carriedBefore = getCarried().getItem();
 
         handleFillingHeldItem(
-                (amount, mode) -> StorageHelper.poweredExtraction(energySource, storage, clickedKey, amount,
+                (amount, mode) -> StorageHelper.extraction(storage, clickedKey, amount,
                         getActionSource(), mode),
                 clickedKey, fillAll);
 
@@ -527,7 +515,7 @@ public class MEStorageMenu extends AEBaseMenu
             amount = 1;
         }
 
-        var inserted = StorageHelper.poweredInsert(energySource, storage, what, amount,
+        var inserted = StorageHelper.insert(storage, what, amount,
                 this.getActionSource());
         setCarried(Platform.getInsertionRemainder(heldStack, inserted));
     }
@@ -546,7 +534,7 @@ public class MEStorageMenu extends AEBaseMenu
                 continue;
             }
 
-            var extracted = StorageHelper.poweredExtraction(energySource, storage, what, amount, getActionSource());
+            var extracted = StorageHelper.extraction(storage, what, amount, getActionSource());
             if (extracted == 0) {
                 return false; // No items available
             }
@@ -608,7 +596,7 @@ public class MEStorageMenu extends AEBaseMenu
             return 0;
         }
 
-        return (int) StorageHelper.poweredInsert(energySource, storage,
+        return (int) StorageHelper.insert(storage,
                 key, input.getCount(),
                 this.getActionSource());
     }

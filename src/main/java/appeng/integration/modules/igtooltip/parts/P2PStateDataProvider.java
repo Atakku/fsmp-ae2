@@ -63,10 +63,6 @@ public final class P2PStateDataProvider implements BodyProvider<P2PTunnelPart>, 
 
     @Override
     public void provideServerData(Player player, P2PTunnelPart part, CompoundTag serverData) {
-        if (!part.isPowered()) {
-            return;
-        }
-
         // Frequency
         serverData.putShort(TAG_P2P_FREQUENCY, part.getFrequency());
 

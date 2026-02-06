@@ -24,7 +24,7 @@ public final class P2PPlotHelper {
 
     public static <T extends P2PTunnelPart<?>> void placeTunnel(PlotBuilder plot, ItemDefinition<PartItem<T>> tunnel) {
         var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
+        plot.cable(origin.below());
         plot.cable(origin);
         plot.cable(origin.west()).part(Direction.WEST, tunnel);
         plot.cable(origin.east()).part(Direction.EAST, tunnel);

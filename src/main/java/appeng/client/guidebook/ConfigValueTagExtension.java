@@ -9,15 +9,11 @@ import guideme.compiler.tags.FlowTagCompiler;
 import guideme.document.flow.LytFlowParent;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
 
-import appeng.core.AEConfig;
-
 /**
  * Provides access to AE2 config values in guide content.
  */
 public class ConfigValueTagExtension extends FlowTagCompiler {
-    public static final Map<String, Supplier<String>> CONFIG_VALUES = Map.of(
-            "crystalResonanceGeneratorRate",
-            () -> String.valueOf(AEConfig.instance().getCrystalResonanceGeneratorRate()));
+    public static final Map<String, Supplier<String>> CONFIG_VALUES = Map.of();
 
     @Override
     public Set<String> getTagNames() {

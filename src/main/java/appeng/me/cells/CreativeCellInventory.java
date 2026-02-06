@@ -72,11 +72,6 @@ class CreativeCellInventory implements StorageCell {
     }
 
     @Override
-    public double getIdleDrain() {
-        return 0;
-    }
-
-    @Override
     public boolean canFitInsideCell() {
         return configured.isEmpty();
     }

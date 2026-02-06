@@ -6,7 +6,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import appeng.api.implementations.IPowerChannelState;
+import appeng.api.implementations.IChannelState;
 import appeng.api.integrations.igtooltip.TooltipBuilder;
 import appeng.api.integrations.igtooltip.TooltipContext;
 import appeng.api.integrations.igtooltip.providers.BodyProvider;
@@ -33,7 +33,7 @@ public final class GridNodeStateDataProvider implements BodyProvider<BlockEntity
     public void provideServerData(Player player, BlockEntity object, CompoundTag serverData) {
         // Some devices can be powered both externally and through the grid.
         // If they are powered externally, they might still be active when the grid itself is down
-        if (object instanceof IPowerChannelState powerChannelState && powerChannelState.isActive()) {
+        if (object instanceof IChannelState powerChannelState && powerChannelState.isActive()) {
             serverData.putByte(TAG_STATE, (byte) GridNodeState.ONLINE.ordinal());
             return;
         }

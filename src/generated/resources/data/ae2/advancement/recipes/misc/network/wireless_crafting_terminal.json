@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dense_energy_cell": {
+    "has_redstone_block": {
       "conditions": {
         "items": [
           {
-            "items": "ae2:dense_energy_cell"
+            "items": "minecraft:redstone_block"
           }
         ]
       },
@@ -42,7 +42,7 @@
     [
       "has_the_recipe",
       "has_terminal",
-      "has_dense_energy_cell",
+      "has_redstone_block",
       "has_wireless_receiver"
     ]
   ],

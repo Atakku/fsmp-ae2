@@ -84,21 +84,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(consumer, "ae2:main/root");
 
-        var charger = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.CHARGER,
-                        localization.component("achievement.ae2.Charger", "It's Chargin' Time !"),
-                        localization.component("achievement.ae2.Charger.desc", "Craft a Charger"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(root)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.CHARGER))
-                .save(consumer, "ae2:main/charger");
-
         var compass = Advancement.Builder.advancement()
                 .display(
                         AEItems.METEORITE_COMPASS,
@@ -110,7 +95,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .parent(charger)
+                .parent(root)
                 .addCriterion("compass", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.METEORITE_COMPASS))
                 .save(consumer, "ae2:main/compass");
 
@@ -125,7 +110,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .parent(charger)
+                .parent(root)
                 .addCriterion("certus",
                         InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
                 .save(consumer, "ae2:main/charged_quartz");

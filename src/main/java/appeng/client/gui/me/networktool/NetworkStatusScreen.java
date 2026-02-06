@@ -32,13 +32,11 @@ import appeng.api.client.AEKeyRendering;
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.style.PaletteColor;
 import appeng.client.gui.style.ScreenStyle;
-import appeng.client.gui.widgets.CommonButtons;
 import appeng.client.gui.widgets.Scrollbar;
 import appeng.core.localization.GuiText;
 import appeng.menu.me.networktool.MachineGroup;
 import appeng.menu.me.networktool.NetworkStatus;
 import appeng.menu.me.networktool.NetworkStatusMenu;
-import appeng.util.Platform;
 
 public class NetworkStatusScreen extends AEBaseScreen<NetworkStatusMenu> {
 
@@ -63,8 +61,6 @@ public class NetworkStatusScreen extends AEBaseScreen<NetworkStatusMenu> {
         super(menu, playerInventory, title, style);
         this.scrollbar = widgets.addScrollBar("scrollbar", Scrollbar.BIG);
 
-        this.addToLeftToolbar(CommonButtons.togglePowerUnit());
-
         exportGridButton = widgets.addButton("export_grid", Component.literal("Export Grid"), menu::exportGrid);
     }
 
@@ -77,14 +73,6 @@ public class NetworkStatusScreen extends AEBaseScreen<NetworkStatusMenu> {
         exportGridButton.visible = menu.canExportGrid();
 
         setTextContent("dialog_title", GuiText.NetworkDetails.text(status.getChannelsUsed()));
-        setTextContent("stored_power", GuiText.StoredPower.text(Platform.formatPower(status.getStoredPower(), false)));
-        setTextContent("max_power", GuiText.MaxPower.text(Platform.formatPower(status.getMaxStoredPower(), false)));
-        setTextContent("power_input_rate",
-                GuiText.PowerInputRate.text(Platform.formatPower(status.getAveragePowerInjection(), true)));
-        setTextContent("power_usage_rate",
-                GuiText.PowerUsageRate.text(Platform.formatPower(status.getAveragePowerUsage(), true)));
-        setTextContent("channel_power_rate",
-                GuiText.ChannelEnergyDrain.text(Platform.formatPower(status.getChannelPower(), true)));
     }
 
     @Override
@@ -127,14 +115,6 @@ public class NetworkStatusScreen extends AEBaseScreen<NetworkStatusMenu> {
                 }
 
                 tooltip.add(GuiText.Installed.text(entry.getCount()));
-                if (entry.getIdlePowerUsage() > 0) {
-                    tooltip.add(GuiText.EnergyDrain
-                            .text(Platform.formatPower(entry.getIdlePowerUsage(), true)));
-                }
-                if (entry.getPowerGenerationCapacity() > 0) {
-                    tooltip.add(GuiText.EnergyGenerationCapacity
-                            .text(Platform.formatPower(entry.getPowerGenerationCapacity(), true)));
-                }
             }
 
             if (++x >= COLUMNS) {

@@ -1,5 +1,5 @@
 {
-  "parent": "ae2:main/charger",
+  "parent": "ae2:main/root",
   "criteria": {
     "compass": {
       "conditions": {

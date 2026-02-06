@@ -194,7 +194,7 @@ public final class TestPlots {
      */
     @TestPlot("all_terminals")
     public static void allTerminals(PlotBuilder plot) {
-        plot.creativeEnergyCell("0 -1 0");
+        plot.cable("0 -1 0");
 
         plot.cable("[-1,0] [0,8] 0", AEParts.COVERED_DENSE_CABLE);
         plot.part("0 [0,8] 0", Direction.WEST, AEParts.CABLE_ANCHOR);
@@ -267,7 +267,7 @@ public final class TestPlots {
             }
             chest.setCell(cellItem);
         });
-        plot.creativeEnergyCell("0 -1 0");
+        plot.cable("0 -1 0");
     }
 
     @TestPlot("fluid_chest")
@@ -288,7 +288,7 @@ public final class TestPlots {
             }
             chest.setCell(cellItem);
         });
-        plot.creativeEnergyCell("0 -1 0");
+        plot.cable("0 -1 0");
     }
 
     @TestPlot("inscriber")
@@ -301,7 +301,7 @@ public final class TestPlots {
     public static void processorInscriber(PlotBuilder plot, ItemLike processorPress, ItemLike processorMaterial) {
         // Set up the inscriber for the processor print
         plot.filledHopper("-1 3 0", Direction.DOWN, processorMaterial);
-        plot.creativeEnergyCell("-1 2 1");
+        plot.cable("-1 2 1");
         plot.blockEntity("-1 2 0", AEBlocks.INSCRIBER, inscriber -> {
             inscriber.getInternalInventory().setItemDirect(0, new ItemStack(processorPress));
             BlockOrientation.NORTH_WEST.setOn(inscriber);
@@ -309,7 +309,7 @@ public final class TestPlots {
 
         // Set up the inscriber for the silicon print
         plot.filledHopper("1 3 0", Direction.DOWN, AEItems.SILICON);
-        plot.creativeEnergyCell("1 2 1");
+        plot.cable("1 2 1");
         plot.blockEntity("1 2 0", AEBlocks.INSCRIBER, inscriber -> {
             inscriber.getInternalInventory().setItemDirect(0, AEItems.SILICON_PRESS.stack());
             BlockOrientation.NORTH_WEST.setOn(inscriber);
@@ -319,7 +319,7 @@ public final class TestPlots {
         plot.hopper("1 1 0", Direction.WEST);
         plot.hopper("-1 1 0", Direction.EAST);
         plot.filledHopper("0 2 0", Direction.DOWN, Items.REDSTONE);
-        plot.creativeEnergyCell("0 1 1");
+        plot.cable("0 1 1");
         plot.blockEntity("0 1 0", AEBlocks.INSCRIBER, BlockOrientation.NORTH_WEST::setOn);
         plot.hopper("0 0 0", Direction.DOWN);
     }
@@ -330,7 +330,7 @@ public final class TestPlots {
     @TestPlot("insert_item_into_mechest")
     public static void testInsertItemsIntoMEChest(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
+        plot.cable(origin.below());
         plot.blockEntity(origin, AEBlocks.ME_CHEST, chest -> {
             var cell = AEItems.ITEM_CELL_1K.stack();
             AEItems.ITEM_CELL_1K.get().getConfigInventory(cell).addFilter(Items.REDSTONE);
@@ -353,7 +353,7 @@ public final class TestPlots {
     @TestPlot("terminal_fullof_enchanteditems")
     public static void terminalFullOfEnchantedItems(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
-        plot.creativeEnergyCell(origin.below());
+        plot.cable(origin.below());
         plot.cable(origin).part(Direction.NORTH, AEParts.TERMINAL);
         var drive = plot.drive(origin.east());
 

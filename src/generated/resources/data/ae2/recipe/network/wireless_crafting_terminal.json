@@ -9,7 +9,7 @@
       "item": "ae2:crafting_terminal"
     },
     "c": {
-      "item": "ae2:dense_energy_cell"
+      "item": "minecraft:redstone_block"
     }
   },
   "pattern": [

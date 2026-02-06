@@ -34,10 +34,8 @@ public final class InitUpgrades {
     public static void init() {
         // Block and part interface have different translation keys, but support the
         // same upgrades
-        String interfaceGroup = GuiText.Interface.getTranslationKey();
         String storageCellGroup = GuiText.StorageCells.getTranslationKey();
         String portableCellGroup = GuiText.PortableCells.getTranslationKey();
-        String wirelessTerminalGroup = GuiText.WirelessTerminals.getTranslationKey();
 
         // IO Port!
         Upgrades.add(AEItems.SPEED_CARD, AEBlocks.IO_PORT, 3);
@@ -74,7 +72,6 @@ public final class InitUpgrades {
             Upgrades.add(AEItems.INVERTER_CARD, portableCell, 1, portableCellGroup);
             Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, portableCell, 1, portableCellGroup);
             Upgrades.add(AEItems.VOID_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.ENERGY_CARD, portableCell, 2, portableCellGroup);
         }
 
         var portableFluidCells = List.of(
@@ -84,28 +81,18 @@ public final class InitUpgrades {
             Upgrades.add(AEItems.INVERTER_CARD, portableFluidCell, 1, portableCellGroup);
             Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, portableFluidCell, 1, portableCellGroup);
             Upgrades.add(AEItems.VOID_CARD, portableFluidCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.ENERGY_CARD, portableFluidCell, 2, portableCellGroup);
         }
-
-        // Wireless Terminals
-        Upgrades.add(AEItems.ENERGY_CARD, AEItems.WIRELESS_TERMINAL, 2, wirelessTerminalGroup);
-        Upgrades.add(AEItems.ENERGY_CARD, AEItems.WIRELESS_CRAFTING_TERMINAL, 2, wirelessTerminalGroup);
 
         // View Cell
         Upgrades.add(AEItems.FUZZY_CARD, AEItems.VIEW_CELL, 1);
         Upgrades.add(AEItems.INVERTER_CARD, AEItems.VIEW_CELL, 1);
 
         // Color Applicator
-        Upgrades.add(AEItems.ENERGY_CARD, AEItems.COLOR_APPLICATOR, 2);
         Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, AEItems.COLOR_APPLICATOR, 1);
         Upgrades.add(AEItems.VOID_CARD, AEItems.COLOR_APPLICATOR, 1);
 
         // Inscriber
         Upgrades.add(AEItems.SPEED_CARD, AEBlocks.INSCRIBER, 4);
-
-        // Vibration Chamber
-        Upgrades.add(AEItems.ENERGY_CARD, AEBlocks.VIBRATION_CHAMBER, 3);
-        Upgrades.add(AEItems.SPEED_CARD, AEBlocks.VIBRATION_CHAMBER, 3);
     }
 
 }

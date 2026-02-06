@@ -1,7 +1,5 @@
 package appeng.items.tools.powered;
 
-import java.util.function.DoubleSupplier;
-
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.entity.player.Player;
@@ -13,8 +11,8 @@ import appeng.menu.locator.ItemMenuHostLocator;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
 
 public class WirelessCraftingTerminalItem extends WirelessTerminalItem {
-    public WirelessCraftingTerminalItem(DoubleSupplier powerCapacity, Properties props) {
-        super(powerCapacity, props);
+    public WirelessCraftingTerminalItem(Properties props) {
+        super(props);
     }
 
     @Override
