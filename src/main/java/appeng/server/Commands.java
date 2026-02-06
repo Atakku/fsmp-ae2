@@ -25,14 +25,12 @@ import appeng.server.subcommands.ChannelModeCommand;
 import appeng.server.subcommands.ChunkLogger;
 import appeng.server.subcommands.GridsCommand;
 import appeng.server.subcommands.SetupTestWorldCommand;
-import appeng.server.subcommands.SpatialStorageCommand;
 import appeng.server.subcommands.TestMeteoritesCommand;
 import appeng.server.subcommands.TickMonitoring;
 
 public enum Commands {
     // Admin
     CHUNK_LOGGER(4, "chunklogger", new ChunkLogger()),
-    SPATIAL(4, "spatial", new SpatialStorageCommand()),
     CHANNEL_MODE(4, "channelmode", new ChannelModeCommand()),
     TICK_MONITORING(4, "tickmonitor", new TickMonitoring()),
     GRIDS(4, "grids", new GridsCommand()),

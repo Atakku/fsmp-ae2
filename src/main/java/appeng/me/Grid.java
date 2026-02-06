@@ -52,7 +52,6 @@ import appeng.api.networking.crafting.ICraftingService;
 import appeng.api.networking.energy.IEnergyService;
 import appeng.api.networking.events.GridEvent;
 import appeng.api.networking.pathing.IPathingService;
-import appeng.api.networking.spatial.ISpatialService;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.networking.ticking.ITickManager;
 import appeng.core.AELog;
@@ -299,8 +298,6 @@ public class Grid implements IGrid {
     private static String getServiceExportKey(Class<?> service) {
         if (service == IEnergyService.class) {
             return "energyService";
-        } else if (service == ISpatialService.class) {
-            return "spatialService";
         } else if (service == IPathingService.class) {
             return "pathingService";
         } else if (service == IStorageService.class) {

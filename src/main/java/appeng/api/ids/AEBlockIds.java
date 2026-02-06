@@ -76,13 +76,6 @@ public final class AEBlockIds {
     public static final ResourceLocation CABLE_BUS = id("cable_bus");
 
     ///
-    /// SPATIAL
-    ///
-    public static final ResourceLocation MATRIX_FRAME = id("matrix_frame");
-    public static final ResourceLocation SPATIAL_PYLON = id("spatial_pylon");
-    public static final ResourceLocation SPATIAL_IO_PORT = id("spatial_io_port");
-
-    ///
     /// AUTO CRAFTING
     ///
     public static final ResourceLocation CREATIVE_ENERGY_CELL = id("creative_energy_cell");

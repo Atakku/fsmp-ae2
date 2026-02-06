@@ -40,13 +40,6 @@ public final class AETags {
     }
 
     /**
-     * Contains blocks that are blacklisted from being moved in and out of spatial storage.
-     * <p/>
-     * To blacklist block entities from being moved, you need to add the hosting block to this tag.
-     */
-    public static final TagKey<Block> SPATIAL_BLACKLIST = blockTag("ae2:blacklisted/spatial");
-
-    /**
      * Contains blocks that are blacklisted from being picked up by an item annihilation plane.
      */
     public static final TagKey<Block> ANNIHILATION_PLANE_BLOCK_BLACKLIST = blockTag(

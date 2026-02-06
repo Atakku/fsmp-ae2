@@ -25,7 +25,6 @@ import appeng.block.crafting.PatternProviderBlock;
 import appeng.block.misc.VibrationChamberBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
-import appeng.block.spatial.SpatialIOPortBlock;
 import appeng.block.storage.IOPortBlock;
 import appeng.block.storage.MEChestBlock;
 import appeng.core.AppEng;
@@ -41,8 +40,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        emptyModel(AEBlocks.MATRIX_FRAME);
-
         // These models will be overwritten in code
         builtInModel(AEBlocks.QUARTZ_GLASS, true);
         builtInModel(AEBlocks.CABLE_BUS);
@@ -68,9 +65,7 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         vibrationChamber();
         patternProvider();
         ioPort();
-        spatialIoPort();
 
-        builtInBlockModel("spatial_pylon");
         builtInBlockModel("crafting/unit_formed");
         builtInBlockModel("crafting/accelerator_formed");
         builtInBlockModel("crafting/1k_storage_formed");
@@ -78,10 +73,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         builtInBlockModel("crafting/16k_storage_formed");
         builtInBlockModel("crafting/64k_storage_formed");
         builtInBlockModel("crafting/256k_storage_formed");
-
-        // Spatial pylon uses a normal model for the item, special model for block
-        simpleBlock(AEBlocks.SPATIAL_PYLON.block(), models().getBuilder(modelPath(AEBlocks.SPATIAL_PYLON)));
-        itemModels().cubeAll(modelPath(AEBlocks.SPATIAL_PYLON), makeId("block/spatial_pylon/spatial_pylon_item"));
 
         simpleBlockAndItem(AEBlocks.FLAWLESS_BUDDING_QUARTZ);
         simpleBlockAndItem(AEBlocks.FLAWED_BUDDING_QUARTZ);
@@ -276,18 +267,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                         .select(false, Variant.variant().with(VariantProperties.MODEL, offModel.getLocation()))
                         .select(true, Variant.variant().with(VariantProperties.MODEL, onModel.getLocation())));
         itemModels().withExistingParent(modelPath(AEBlocks.IO_PORT), offModel.getLocation());
-    }
-
-    private void spatialIoPort() {
-        var offModel = models().getExistingFile(AppEng.makeId("block/spatial_io_port"));
-        var onModel = models().getExistingFile(AppEng.makeId("block/spatial_io_port_on"));
-
-        multiVariantGenerator(AEBlocks.SPATIAL_IO_PORT)
-                .with(createFacingSpinDispatch())
-                .with(PropertyDispatch.property(SpatialIOPortBlock.POWERED)
-                        .select(false, Variant.variant().with(VariantProperties.MODEL, offModel.getLocation()))
-                        .select(true, Variant.variant().with(VariantProperties.MODEL, onModel.getLocation())));
-        itemModels().withExistingParent(modelPath(AEBlocks.SPATIAL_IO_PORT), offModel.getLocation());
     }
 
     private String modelPath(BlockDefinition<?> block) {

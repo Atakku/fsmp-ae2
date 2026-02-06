@@ -28,7 +28,6 @@ import appeng.api.crafting.PatternDetailsHelper;
 import appeng.api.features.GridLinkables;
 import appeng.api.features.IGridLinkableHandler;
 import appeng.api.ids.AETags;
-import appeng.api.implementations.items.ISpatialStorageCell;
 import appeng.api.implementations.items.IStorageComponent;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.storage.StorageCells;
@@ -138,9 +137,6 @@ public class RestrictedInputSlot extends AppEngSlot {
             case POWERED_TOOL:
                 return Platform.isChargeable(stack);
 
-            case SPATIAL_STORAGE_CELLS:
-                return stack.getItem() instanceof ISpatialStorageCell
-                        && ((ISpatialStorageCell) stack.getItem()).isSpatialStorage(stack);
             case STORAGE_CELLS:
                 return StorageCells.isCellHandled(stack);
             case WORKBENCH_CELL:
@@ -228,8 +224,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         BLANK_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         POWERED_TOOL(Icon.BACKGROUND_CHARGABLE),
-        SPATIAL_STORAGE_CELLS(Icon.BACKGROUND_SPATIAL_CELL),
-        SPATIAL_STORAGE_CELLS_NO_SHADOW(Icon.BACKGROUND_SPATIAL_CELL_NO_SHADOW),
         FUEL(Icon.BACKGROUND_FUEL),
         UPGRADES(Icon.BACKGROUND_UPGRADE),
         WORKBENCH_CELL(Icon.BACKGROUND_STORAGE_CELL),

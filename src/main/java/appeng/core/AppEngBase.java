@@ -82,8 +82,6 @@ import appeng.recipes.AERecipeTypes;
 import appeng.server.AECommand;
 import appeng.server.testworld.GameTestPlotAdapter;
 import appeng.sounds.AppEngSounds;
-import appeng.spatial.SpatialStorageChunkGenerator;
-import appeng.spatial.SpatialStorageDimensionIds;
 
 /**
  * Mod functionality that is common to both dedicated server and client.
@@ -143,9 +141,6 @@ public abstract class AppEngBase implements AppEng {
                 InitParticleTypes.init(event.getRegistry(Registries.PARTICLE_TYPE));
             } else if (event.getRegistryKey() == Registries.MENU) {
                 InitMenuTypes.init(event.getRegistry(Registries.MENU));
-            } else if (event.getRegistryKey() == Registries.CHUNK_GENERATOR) {
-                Registry.register(BuiltInRegistries.CHUNK_GENERATOR, SpatialStorageDimensionIds.CHUNK_GENERATOR_ID,
-                        SpatialStorageChunkGenerator.CODEC);
             } else if (event.getRegistryKey() == AEKeyType.REGISTRY_KEY) {
                 registerKeyTypes(event.getRegistry(AEKeyType.REGISTRY_KEY));
             }

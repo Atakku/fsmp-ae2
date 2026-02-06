@@ -36,7 +36,6 @@ import appeng.client.render.model.DriveModel;
 import appeng.client.render.model.GlassModel;
 import appeng.client.render.model.MemoryCardModel;
 import appeng.client.render.model.MeteoriteCompassModel;
-import appeng.client.render.tesr.spatial.SpatialPylonModel;
 import appeng.core.AppEng;
 import appeng.hooks.BuiltInModelHooks;
 import appeng.parts.automation.PlaneModel;
@@ -53,7 +52,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("item/memory_card", MemoryCardModel::new);
         addBuiltInModel("block/drive", DriveModel::new);
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
-        addBuiltInModel("block/spatial_pylon", SpatialPylonModel::new);
         addBuiltInModel("part/p2p/p2p_tunnel_frequency", P2PTunnelFrequencyModel::new);
         addBuiltInModel("item/facade", FacadeItemModel::new);
 

@@ -411,29 +411,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(AEBlocks.INTERFACE)
                 .unlockedBy("has_interface", has(AEBlocks.INTERFACE))
                 .save(consumer, AppEng.makeId("network/blocks/interfaces_interface_part"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SPATIAL_IO_PORT)
-                .pattern("aaa")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', ConventionTags.GLASS_CHEAP)
-                .define('b', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
-                .define('c', AEBlocks.IO_PORT)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_io_port", has(AEBlocks.IO_PORT))
-                .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
-                .save(consumer, AppEng.makeId("network/blocks/spatial_io_port"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SPATIAL_PYLON)
-                .pattern("aba")
-                .pattern("cdc")
-                .pattern("aba")
-                .define('a', AEBlocks.QUARTZ_GLASS)
-                .define('b', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
-                .define('c', ConventionTags.FLUIX_DUST)
-                .define('d', ConventionTags.ALL_FLUIX)
-                .unlockedBy("has_crystals/fluix", has(ConventionTags.ALL_FLUIX))
-                .unlockedBy("has_glass_cable", has(AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT)))
-                .save(consumer, AppEng.makeId("network/blocks/spatial_io_pylon"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.ME_CHEST)
                 .pattern("aba")
                 .pattern("c c")
@@ -485,7 +462,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
 
         addFluidCells(consumer);
         addItemCells(consumer);
-        addSpatialCells(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.VIEW_CELL)
                 .pattern("aba")
@@ -816,84 +792,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_" + housing.id().getPath(), has(housing))
                 .unlockedBy("has_energy_cell", has(AEBlocks.ENERGY_CELL))
                 .save(consumer, cell.get().getRecipeId());
-    }
-
-    private void addSpatialCells(RecipeOutput consumer) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_2_CELL_COMPONENT)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("aba")
-                .define('a', ConventionTags.GLOWSTONE)
-                .define('b', AEItems.FLUIX_PEARL)
-                .define('c', AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
-                .unlockedBy("has_fluix_pearl", has(AEItems.FLUIX_PEARL))
-                .save(consumer, AppEng.makeId("network/cells/spatial_components"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_16_CELL_COMPONENT)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("aba")
-                .define('a', ConventionTags.GLOWSTONE)
-                .define('b', AEItems.SPATIAL_2_CELL_COMPONENT)
-                .define('c', AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_2_cubed_spatial_cell_component", has(AEItems.SPATIAL_2_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_components_0"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_128_CELL_COMPONENT)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("aba")
-                .define('a', ConventionTags.GLOWSTONE)
-                .define('b', AEItems.SPATIAL_16_CELL_COMPONENT)
-                .define('c', AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_16_cubed_spatial_cell_component", has(AEItems.SPATIAL_16_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_components_1"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_CELL2)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', AEBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.REDSTONE)
-                .define('c', AEItems.SPATIAL_2_CELL_COMPONENT)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_2_cubed_spatial_cell_component", has(AEItems.SPATIAL_2_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_2_cubed"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.SPATIAL_CELL2)
-                .requires(AEItems.ITEM_CELL_HOUSING)
-                .requires(AEItems.SPATIAL_2_CELL_COMPONENT)
-                .unlockedBy("has_2_cubed_spatial_cell_component", has(AEItems.SPATIAL_2_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_2_cubed_storage"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_CELL16)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', AEBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.REDSTONE)
-                .define('c', AEItems.SPATIAL_16_CELL_COMPONENT)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_16_cubed_spatial_cell_component", has(AEItems.SPATIAL_16_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_16_cubed"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.SPATIAL_CELL16)
-                .requires(AEItems.ITEM_CELL_HOUSING)
-                .requires(AEItems.SPATIAL_16_CELL_COMPONENT)
-                .unlockedBy("has_16_cubed_spatial_cell_component", has(AEItems.SPATIAL_16_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_16_cubed_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SPATIAL_CELL128)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', AEBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.REDSTONE)
-                .define('c', AEItems.SPATIAL_128_CELL_COMPONENT)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_128_cubed_spatial_cell_component", has(AEItems.SPATIAL_128_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_128_cubed"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.SPATIAL_CELL128)
-                .requires(AEItems.ITEM_CELL_HOUSING)
-                .requires(AEItems.SPATIAL_128_CELL_COMPONENT)
-                .unlockedBy("has_128_cubed_spatial_cell_component", has(AEItems.SPATIAL_128_CELL_COMPONENT))
-                .save(consumer, AppEng.makeId("network/cells/spatial_storage_cell_128_cubed_storage"));
     }
 
     private void addItemCells(RecipeOutput consumer) {

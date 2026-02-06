@@ -37,10 +37,6 @@ public class AdvancementTriggers {
      */
     public static final PlayerTrigger NETWORK_ADMIN = new PlayerTrigger();
     /**
-     * Entered spatial dimension
-     */
-    public static final PlayerTrigger SPATIAL_EXPLORER = new PlayerTrigger();
-    /**
      * Placed a storage bus on an interface.
      */
     public static final PlayerTrigger RECURSIVE = new PlayerTrigger();
@@ -55,10 +51,6 @@ public class AdvancementTriggers {
 
     public static Criterion<?> networkAdminCriterion() {
         return NETWORK_ADMIN.createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
-    }
-
-    public static Criterion<?> spatialExplorerCriterion() {
-        return SPATIAL_EXPLORER.createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
     }
 
     public static Criterion<?> recursiveCriterion() {

@@ -58,8 +58,6 @@ import appeng.datagen.providers.tags.BlockTagsProvider;
 import appeng.datagen.providers.tags.DataComponentTypeTagProvider;
 import appeng.datagen.providers.tags.FluidTagsProvider;
 import appeng.datagen.providers.tags.ItemTagsProvider;
-import appeng.init.worldgen.InitBiomes;
-import appeng.init.worldgen.InitDimensionTypes;
 import appeng.init.worldgen.InitStructures;
 
 @EventBusSubscriber(modid = AppEng.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
@@ -120,10 +118,8 @@ public class AE2DataGenerators {
 
     private static RegistrySetBuilder createDatapackEntriesBuilder() {
         return new RegistrySetBuilder()
-                .add(Registries.DIMENSION_TYPE, InitDimensionTypes::init)
                 .add(Registries.STRUCTURE, InitStructures::initDatagenStructures)
-                .add(Registries.STRUCTURE_SET, InitStructures::initDatagenStructureSets)
-                .add(Registries.BIOME, InitBiomes::init);
+                .add(Registries.STRUCTURE_SET, InitStructures::initDatagenStructureSets);
     }
 
     private static <T extends DataProvider> DataProvider.Factory<T> bindRegistries(

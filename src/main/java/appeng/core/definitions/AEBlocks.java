@@ -76,9 +76,6 @@ import appeng.block.networking.EnergyAcceptorBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.EnergyCellBlockItem;
 import appeng.block.networking.WirelessAccessPointBlock;
-import appeng.block.spatial.MatrixFrameBlock;
-import appeng.block.spatial.SpatialIOPortBlock;
-import appeng.block.spatial.SpatialPylonBlock;
 import appeng.block.storage.DriveBlock;
 import appeng.block.storage.IOPortBlock;
 import appeng.block.storage.MEChestBlock;
@@ -127,8 +124,6 @@ public final class AEBlocks {
     public static final BlockDefinition<CertusQuartzClusterBlock> LARGE_QUARTZ_BUD = block("Large Certus Quartz Bud", AEBlockIds.LARGE_QUARTZ_BUD, () -> new CertusQuartzClusterBlock(5, 3, QUARTZ_CLUSTER_PROPERTIES.sound(SoundType.LARGE_AMETHYST_BUD).lightLevel(s -> 4)));
     public static final BlockDefinition<CertusQuartzClusterBlock> QUARTZ_CLUSTER = block("Certus Quartz Cluster", AEBlockIds.QUARTZ_CLUSTER, () -> new CertusQuartzClusterBlock(7, 3, QUARTZ_CLUSTER_PROPERTIES.sound(SoundType.AMETHYST_CLUSTER).lightLevel(s -> 5)));
 
-    public static final BlockDefinition<MatrixFrameBlock> MATRIX_FRAME = block("Matrix Frame", AEBlockIds.MATRIX_FRAME, MatrixFrameBlock::new);
-
     public static final BlockDefinition<AEDecorativeBlock> QUARTZ_BLOCK = block("Certus Quartz Block", AEBlockIds.QUARTZ_BLOCK, () -> new AEDecorativeBlock(QUARTZ_PROPERTIES));
     public static final BlockDefinition<AEDecorativeBlock> CUT_QUARTZ_BLOCK = block("Cut Certus Quartz Block", AEBlockIds.CUT_QUARTZ_BLOCK, () -> new AEDecorativeBlock(QUARTZ_PROPERTIES));
     public static final BlockDefinition<AEDecorativeBlock> SMOOTH_QUARTZ_BLOCK = block("Smooth Certus Quartz Block", AEBlockIds.SMOOTH_QUARTZ_BLOCK, () -> new AEDecorativeBlock(QUARTZ_PROPERTIES));
@@ -159,8 +154,6 @@ public final class AEBlocks {
     public static final BlockDefinition<WirelessAccessPointBlock> WIRELESS_ACCESS_POINT = block("ME Wireless Access Point", AEBlockIds.WIRELESS_ACCESS_POINT, WirelessAccessPointBlock::new);
     public static final BlockDefinition<ChargerBlock> CHARGER = block("Charger", AEBlockIds.CHARGER, ChargerBlock::new);
 
-    public static final BlockDefinition<SpatialPylonBlock> SPATIAL_PYLON = block("Spatial Pylon", AEBlockIds.SPATIAL_PYLON, SpatialPylonBlock::new);
-    public static final BlockDefinition<SpatialIOPortBlock> SPATIAL_IO_PORT = block("Spatial IO Port", AEBlockIds.SPATIAL_IO_PORT, SpatialIOPortBlock::new);
     public static final BlockDefinition<ControllerBlock> CONTROLLER = block("ME Controller", AEBlockIds.CONTROLLER, ControllerBlock::new);
     public static final BlockDefinition<DriveBlock> DRIVE = block("ME Drive", AEBlockIds.DRIVE, DriveBlock::new);
     public static final BlockDefinition<MEChestBlock> ME_CHEST = block("ME Chest", AEBlockIds.ME_CHEST, MEChestBlock::new);

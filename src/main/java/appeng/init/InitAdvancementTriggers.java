@@ -30,7 +30,6 @@ public final class InitAdvancementTriggers {
         Registry.register(registry, AppEng.makeId("network_apprentice"), AdvancementTriggers.NETWORK_APPRENTICE);
         Registry.register(registry, AppEng.makeId("network_engineer"), AdvancementTriggers.NETWORK_ENGINEER);
         Registry.register(registry, AppEng.makeId("network_admin"), AdvancementTriggers.NETWORK_ADMIN);
-        Registry.register(registry, AppEng.makeId("spatial_explorer"), AdvancementTriggers.SPATIAL_EXPLORER);
         Registry.register(registry, AppEng.makeId("recursive_networking"), AdvancementTriggers.RECURSIVE);
     }
 

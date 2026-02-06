@@ -377,36 +377,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .save(consumer, "ae2:main/portable_cell");
 
-        var spatialIoport = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.SPATIAL_IO_PORT,
-                        localization.component("achievement.ae2.SpatialIO", "Spatial Coordination"),
-                        localization.component("achievement.ae2.SpatialIO.desc", "Craft a Spatial IO Port"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(ioport)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.SPATIAL_IO_PORT))
-                .save(consumer, "ae2:main/spatial_ioport");
-
-        var spatialExplorer = Advancement.Builder.advancement()
-                .display(
-                        AEItems.SPATIAL_128_CELL_COMPONENT,
-                        localization.component("achievement.ae2.SpatialIOExplorer", "To boldly go"),
-                        localization.component("achievement.ae2.SpatialIOExplorer.desc",
-                                "Get stored in a spatial storage cell"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        false,
-                        false,
-                        false)
-                .parent(spatialIoport)
-                .addCriterion("explorer", AdvancementTriggers.spatialExplorerCriterion())
-                .save(consumer, "ae2:main/spatial_explorer");
-
         var storageBus = Advancement.Builder.advancement()
                 .display(
                         AEParts.STORAGE_BUS,

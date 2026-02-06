@@ -21,12 +21,8 @@ package appeng.debug;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -37,13 +33,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
 
 import appeng.api.networking.GridHelper;
-import appeng.api.networking.IGrid;
-import appeng.api.networking.IGridNode;
-import appeng.api.networking.spatial.ISpatialService;
 import appeng.core.AEConfig;
 import appeng.items.AEBaseItem;
 import appeng.util.InteractionUtil;
@@ -122,103 +113,7 @@ public class ReplicatorCardItem extends AEBaseItem {
                 this.outputMsg(player, "This does not host a grid node");
             }
         } else {
-            var ish = getTag(player.getItemInHand(hand));
-            if (!ish.isEmpty()) {
-                final int src_x = ish.getInt("x");
-                final int src_y = ish.getInt("y");
-                final int src_z = ish.getInt("z");
-                final int src_side = ish.getInt("side");
-                final String worldId = ish.getString("w");
-                final Level src_w = level.getServer()
-                        .getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse(worldId)));
-                final int replications = ish.getInt("r") + 1;
-
-                var gh = GridHelper.getNodeHost(src_w, new BlockPos(src_x, src_y, src_z));
-
-                if (gh != null) {
-                    final Direction sideOff = Direction.values()[src_side];
-                    final Direction currentSideOff = side;
-                    final IGridNode n = gh.getGridNode(sideOff);
-
-                    if (n != null) {
-                        final IGrid g = n.getGrid();
-
-                        final ISpatialService sc = g.getSpatialService();
-
-                        if (sc.isValidRegion()) {
-                            var min = sc.getMin();
-                            var max = sc.getMax();
-
-                            // TODO: Why??? Places it one block up each time...
-                            // x += currentSideOff.getXOffset();
-                            // y += currentSideOff.getYOffset();
-                            // z += currentSideOff.getZOffset();
-
-                            final int sc_size_x = max.getX() - min.getX();
-                            final int sc_size_y = max.getY() - min.getY();
-                            final int sc_size_z = max.getZ() - min.getZ();
-
-                            final int min_x = min.getX();
-                            final int min_y = min.getY();
-                            final int min_z = min.getZ();
-
-                            // Invert to maintain correct sign for west/east
-                            final int x_rot = (int) -Math.signum(Mth.wrapDegrees(player.getYRot()));
-                            // Rotate by 90 degree, so north/south are negative/positive
-                            final int z_rot = (int) Math.signum(Mth.wrapDegrees(player.getYRot() + 90));
-
-                            // Loops for replication in each direction
-                            for (int r_x = 0; r_x < replications; r_x++) {
-                                for (int r_y = 0; r_y < replications; r_y++) {
-                                    for (int r_z = 0; r_z < replications; r_z++) {
-
-                                        // Offset x/z by the rotation index.
-                                        // For sake of simplicity always grow upwards.
-                                        final int rel_x = min.getX() - src_x + x + r_x * sc_size_x * x_rot;
-                                        final int rel_y = min.getY() - src_y + y + r_y * sc_size_y;
-                                        final int rel_z = min.getZ() - src_z + z + r_z * sc_size_z * z_rot;
-
-                                        // Copy a single SC instance completely
-                                        for (int i = 1; i < sc_size_x; i++) {
-                                            for (int j = 1; j < sc_size_y; j++) {
-                                                for (int k = 1; k < sc_size_z; k++) {
-                                                    final BlockPos p = new BlockPos(min_x + i, min_y + j,
-                                                            min_z + k);
-                                                    final BlockPos d = new BlockPos(i + rel_x, j + rel_y,
-                                                            k + rel_z);
-
-                                                    final BlockState state = src_w.getBlockState(p);
-                                                    final BlockState prev = level.getBlockState(d);
-
-                                                    level.setBlockAndUpdate(d, state);
-                                                    if (state.hasBlockEntity()) {
-                                                        final BlockEntity ote = src_w.getBlockEntity(p);
-                                                        var data = ote.saveWithId(level.registryAccess());
-                                                        var newBe = BlockEntity.loadStatic(d, state, data,
-                                                                level.registryAccess());
-                                                        if (newBe != null) {
-                                                            level.setBlockEntity(newBe);
-                                                        }
-                                                    }
-                                                    level.sendBlockUpdated(d, prev, state, 3);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            this.outputMsg(player, "requires valid spatial pylon setup.");
-                        }
-                    } else {
-                        this.outputMsg(player, "No grid node?");
-                    }
-                } else {
-                    this.outputMsg(player, "Src is no longer a grid block?");
-                }
-            } else {
-                this.outputMsg(player, "No Source Defined");
-            }
+            this.outputMsg(player, "No Source Defined");
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
     }

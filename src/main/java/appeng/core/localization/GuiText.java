@@ -198,8 +198,6 @@ public enum GuiText implements LocalizationEnum {
     SkyChest("Sky Stone Chest"),
     // Used in a terminal to indicate that an item is craftable
     SmithingTablePattern("Smithing Table Patterns"),
-    SpatialCapacity("Capacity: %dx%dx%d"),
-    SpatialIOPort("Spatial IO Port"),
     Start("Start"),
     StonecuttingPattern("Stonecutting Patterns"),
     StorageBus("Storage Bus"),
@@ -242,7 +240,6 @@ public enum GuiText implements LocalizationEnum {
     ToastCraftingJobFinishedTitle("Auto-Crafting Complete"),
     ToastCraftingJobFinishedText("%d %s"),
     ToCraft("To Craft: %s"),
-    TransformTypeExplode("Explode"),
     TransformTypeThrowInFluid("Throw in %s"),
     TransparentFacades("Transparent Facades"),
     TransparentFacadesHint("Controls visibility of facades while the network tool is on your toolbar."),

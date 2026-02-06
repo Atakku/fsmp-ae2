@@ -223,14 +223,6 @@ public final class AEConfig {
         return common.craftingCalculationTimePerTick.get();
     }
 
-    public double getSpatialPowerExponent() {
-        return common.spatialPowerExponent.get();
-    }
-
-    public double getSpatialPowerMultiplier() {
-        return common.spatialPowerMultiplier.get();
-    }
-
     public double getChargerChargeRate() {
         return common.chargerChargeRate.get();
     }
@@ -485,10 +477,6 @@ public final class AEConfig {
 
         public final BooleanValue annihilationPlaneSkyDustGeneration;
 
-        // Spatial IO/Dimension
-        public final DoubleValue spatialPowerExponent;
-        public final DoubleValue spatialPowerMultiplier;
-
         // Logging
         public final BooleanValue blockUpdateLog;
         public final BooleanValue craftingLog;
@@ -545,11 +533,6 @@ public final class AEConfig {
             builder.push("crafting");
             annihilationPlaneSkyDustGeneration = define(builder, "annihilationPlaneSkyDustGeneration", true,
                     "If enabled, an annihilation placed face up at the maximum world height will generate sky stone passively.");
-            builder.pop();
-
-            builder.push("spatialio");
-            this.spatialPowerMultiplier = define(builder, "spatialPowerMultiplier", 1250.0);
-            this.spatialPowerExponent = define(builder, "spatialPowerExponent", 1.35);
             builder.pop();
 
             builder.push("logging");

@@ -35,7 +35,6 @@ import appeng.crafting.pattern.EncodedCraftingPattern;
 import appeng.crafting.pattern.EncodedProcessingPattern;
 import appeng.crafting.pattern.EncodedSmithingTablePattern;
 import appeng.crafting.pattern.EncodedStonecuttingPattern;
-import appeng.items.storage.SpatialPlotInfo;
 
 public final class AEComponents {
     @ApiStatus.Internal
@@ -279,9 +278,6 @@ public final class AEComponents {
     public static final DataComponentType<ItemContainerContents> CRAFTING_INV = register("crafting_inv",
             builder -> builder.persistent(ItemContainerContents.CODEC)
                     .networkSynchronized(ItemContainerContents.STREAM_CODEC));
-
-    public static final DataComponentType<SpatialPlotInfo> SPATIAL_PLOT_INFO = register("spatial_plot_info",
-            builder -> builder.persistent(SpatialPlotInfo.CODEC).networkSynchronized(SpatialPlotInfo.STREAM_CODEC));
 
     public static final DataComponentType<CustomData> MISSING_CONTENT_ITEMSTACK_DATA = register(
             "missing_content_itemstack_data",
