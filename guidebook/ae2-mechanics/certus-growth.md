@@ -32,10 +32,7 @@ certus quartz block) in water with one or more <ItemLink id="charged_certus_quar
 <RecipeFor id="damaged_budding_quartz" />
 
 Flawless budding certus blocks will not degrade and will generate certus infinitely. However they cannot be crafted or moved
-with a pickaxe, even with silk touch. (they *can* be moved with [spatial storage](../ae2-mechanics/spatial-io.md) though)
-
-By themselves, certus quartz buds grow very slowly. Luckily the <ItemLink id="growth_accelerator" /> massively
-accelerates this process when placed adjacent to the budding block. You should build a few of these as your first priority.
+with a pickaxe, even with silk touch.
 
 <GameScene zoom="4" background="transparent">
   <ImportStructure src="../assets/assemblies/budding_certus_2.snbt" />

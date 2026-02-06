@@ -160,8 +160,7 @@ the provider and inscriber.
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-To prevent this (useful for many autocrafting setups involving [subnetworks](../ae2-mechanics/subnetworks.md)),
-you can right-click the provider with a <ItemLink id="certus_quartz_wrench" /> to make it directional, in which case it will
+To prevent this you can right-click the provider with a <ItemLink id="certus_quartz_wrench" /> to make it directional, in which case it will
 not pass channels through one side.
 
 <Row gap="40">

@@ -145,5 +145,4 @@ The budding block placer subnet serves to place a new <ItemLink id="flawed_buddi
   high [priority](../ae2-mechanics/import-export-storage.md#storage-priority) so that certus quartz crystals are preferentially
   put back in the barrel instead of in your main storage.
 * The <ItemLink id="interface" /> gives the budding block placer subnet access to a <ItemLink id="flawed_budding_quartz" />, and
-    gives the certus block breaker subnet a way to get the depleted blocks back into the main network. The
-    <ItemLink id="crafting_card" /> allows the interface to request new budding blocks from the main network's [autocrafting](../ae2-mechanics/autocrafting.md).
+    gives the certus block breaker subnet a way to get the depleted blocks back into the main network.

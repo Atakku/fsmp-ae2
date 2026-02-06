@@ -7,7 +7,7 @@ navigation:
 
 # Farming of Amethyst
 
-While the <ItemLink id="growth_accelerator" /> works on amethyst, the usual methods of filtering [certus buds](../items-blocks-machines/budding_certus.md)
+The usual methods of filtering [certus buds](../items-blocks-machines/budding_certus.md)
 with an <ItemLink id="annihilation_plane" /> do not work on amethyst buds. Unlike non-mature certus buds which drop
 <ItemLink id="certus_quartz_dust" />, non-mature amethyst buds drop nothing, so an annihilation plane will always break them
 because a network can always store "nothing".

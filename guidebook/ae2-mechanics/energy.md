@@ -72,7 +72,6 @@ Networks have a built-in energy buffer of 25 AE per cable, machine or part.
 The <ItemLink id="energy_cell" /> can store 200k AE, and just one should be sufficient for most use cases, handling the power surges
 of normal network use with ease.
 
-The <ItemLink id="dense_energy_cell" /> can store 1.6M AE and is for when you want to run a network off of stored power, or
-handle the massive instantaneous energy draw of large [spatial storage](spatial-io.md) setups.
+The <ItemLink id="dense_energy_cell" /> can store 1.6M AE and is for when you want to run a network off of stored power.
 
 The <ItemLink id="creative_energy_cell" /> is a creative item for testing, providing UNLIMITED POWAHHHH or whatever.
