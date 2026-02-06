@@ -200,12 +200,6 @@ public enum GuiText implements LocalizationEnum {
     SkyChest("Sky Stone Chest"),
     // Used in a terminal to indicate that an item is craftable
     SmithingTablePattern("Smithing Table Patterns"),
-    SpatialAnchor("Spatial Anchor"),
-    SpatialAnchorAll("Spanning: %d chunks in %d worlds"),
-    SpatialAnchorAllLoaded("Loading: %d chunks in %d worlds"),
-    SpatialAnchorLoadedChunks("Chunks loaded: %s"),
-    SpatialAnchorStatistics("Network Statistics"),
-    SpatialAnchorUsedPower("Energy Usage: %s"),
     SpatialCapacity("Capacity: %dx%dx%d"),
     SpatialIOPort("Spatial IO Port"),
     Start("Start"),

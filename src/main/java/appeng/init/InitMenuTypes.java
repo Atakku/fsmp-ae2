@@ -43,7 +43,6 @@ import appeng.menu.implementations.QNBMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SetStockAmountMenu;
 import appeng.menu.implementations.SkyChestMenu;
-import appeng.menu.implementations.SpatialAnchorMenu;
 import appeng.menu.implementations.SpatialIOPortMenu;
 import appeng.menu.implementations.StorageBusMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
@@ -100,7 +99,6 @@ public final class InitMenuTypes {
                 QuartzKnifeMenu.TYPE,
                 SetStockAmountMenu.TYPE,
                 SkyChestMenu.TYPE,
-                SpatialAnchorMenu.TYPE,
                 SpatialIOPortMenu.TYPE,
                 StorageBusMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,

@@ -86,7 +86,6 @@ public final class AEBlockIds {
     public static final ResourceLocation TINY_TNT = id("tiny_tnt");
     public static final ResourceLocation SPATIAL_PYLON = id("spatial_pylon");
     public static final ResourceLocation SPATIAL_IO_PORT = id("spatial_io_port");
-    public static final ResourceLocation SPATIAL_ANCHOR = id("spatial_anchor");
 
     ///
     /// AUTO CRAFTING

@@ -453,18 +453,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_logic_processor", has(AEItems.LOGIC_PROCESSOR))
                 .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
                 .save(consumer, AppEng.makeId("network/blocks/quantum_ring"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SPATIAL_ANCHOR)
-                .pattern("aaa")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', AEBlocks.SPATIAL_PYLON)
-                .define('b', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
-                .define('c', AEItems.SPATIAL_128_CELL_COMPONENT)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_128_cubed_spatial_cell_component", has(AEItems.SPATIAL_128_CELL_COMPONENT))
-                .unlockedBy("has_spatial_pylon", has(AEBlocks.SPATIAL_PYLON))
-                .save(consumer, AppEng.makeId("network/blocks/spatial_anchor"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SPATIAL_IO_PORT)
                 .pattern("aaa")
                 .pattern("bcb")

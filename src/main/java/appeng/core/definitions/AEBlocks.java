@@ -82,7 +82,6 @@ import appeng.block.paint.PaintSplotchesBlock;
 import appeng.block.qnb.QuantumLinkChamberBlock;
 import appeng.block.qnb.QuantumRingBlock;
 import appeng.block.spatial.MatrixFrameBlock;
-import appeng.block.spatial.SpatialAnchorBlock;
 import appeng.block.spatial.SpatialIOPortBlock;
 import appeng.block.spatial.SpatialPylonBlock;
 import appeng.block.storage.DriveBlock;
@@ -244,8 +243,6 @@ public final class AEBlocks {
     public static final BlockDefinition<SlabBlock> QUARTZ_BRICK_SLAB = block("Certus Quartz Brick Slab", AEBlockIds.QUARTZ_BRICK_SLAB, () -> new SlabBlock(QUARTZ_PROPERTIES));
     public static final BlockDefinition<SlabBlock> CHISELED_QUARTZ_SLAB = block("Chiseled Certus Quartz Slab", AEBlockIds.CHISELED_QUARTZ_SLAB, () -> new SlabBlock(QUARTZ_PROPERTIES));
     public static final BlockDefinition<SlabBlock> QUARTZ_PILLAR_SLAB = block("Certus Quartz Pillar Slab", AEBlockIds.QUARTZ_PILLAR_SLAB, () -> new SlabBlock(QUARTZ_PROPERTIES));
-
-    public static final BlockDefinition<SpatialAnchorBlock> SPATIAL_ANCHOR = block("Spatial Anchor", AEBlockIds.SPATIAL_ANCHOR, SpatialAnchorBlock::new);
 
     ///
     /// DEBUG BLOCKS

@@ -41,9 +41,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.RegisterGameTestsEvent;
-import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
-import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -74,7 +72,6 @@ import appeng.init.InitMenuTypes;
 import appeng.init.InitStats;
 import appeng.init.InitVillager;
 import appeng.init.client.InitParticleTypes;
-import appeng.init.internal.InitBlockEntityMoveStrategies;
 import appeng.init.internal.InitGridLinkables;
 import appeng.init.internal.InitGridServices;
 import appeng.init.internal.InitP2PAttunements;
@@ -85,7 +82,6 @@ import appeng.integration.Integrations;
 import appeng.recipes.AERecipeSerializers;
 import appeng.recipes.AERecipeTypes;
 import appeng.server.AECommand;
-import appeng.server.services.ChunkLoadingService;
 import appeng.server.testworld.GameTestPlotAdapter;
 import appeng.sounds.AppEngSounds;
 import appeng.spatial.SpatialStorageChunkGenerator;
@@ -119,7 +115,6 @@ public abstract class AppEngBase implements AppEng {
         AEConfig.register(container);
 
         InitGridServices.init();
-        InitBlockEntityMoveStrategies.init();
 
         AEParts.init();
         AEBlocks.DR.register(modEventBus);
@@ -135,7 +130,6 @@ public abstract class AppEngBase implements AppEng {
         modEventBus.addListener(this::registerRegistries);
         modEventBus.addListener(MainCreativeTab::initExternal);
         modEventBus.addListener(InitNetwork::init);
-        modEventBus.addListener(ChunkLoadingService.getInstance()::register);
         modEventBus.addListener(EventPriority.HIGH, InitCapabilityProviders::markProxyableCapabilities);
         modEventBus.addListener(InitCapabilityProviders::register);
         modEventBus.addListener(EventPriority.LOWEST, InitCapabilityProviders::registerGenericAdapters);
@@ -173,9 +167,7 @@ public abstract class AppEngBase implements AppEng {
 
         TickHandler.instance().init();
 
-        NeoForge.EVENT_BUS.addListener(this::onServerAboutToStart);
         NeoForge.EVENT_BUS.addListener(this::serverStopped);
-        NeoForge.EVENT_BUS.addListener(this::serverStopping);
         NeoForge.EVENT_BUS.addListener(this::registerCommands);
 
         NeoForge.EVENT_BUS.addListener(WrenchHook::onPlayerUseBlockEvent);
@@ -226,14 +218,6 @@ public abstract class AppEngBase implements AppEng {
                 .sync(true)
                 .maxId(127));
         AEKeyTypesInternal.setRegistry(registry);
-    }
-
-    private void onServerAboutToStart(final ServerAboutToStartEvent evt) {
-        ChunkLoadingService.getInstance().onServerAboutToStart(evt);
-    }
-
-    private void serverStopping(final ServerStoppingEvent event) {
-        ChunkLoadingService.getInstance().onServerStopping(event);
     }
 
     private void serverStopped(final ServerStoppedEvent event) {

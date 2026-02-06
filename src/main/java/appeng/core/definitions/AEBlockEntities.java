@@ -60,7 +60,6 @@ import appeng.blockentity.networking.EnergyAcceptorBlockEntity;
 import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
 import appeng.blockentity.qnb.QuantumBridgeBlockEntity;
-import appeng.blockentity.spatial.SpatialAnchorBlockEntity;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
 import appeng.blockentity.spatial.SpatialPylonBlockEntity;
 import appeng.blockentity.storage.DriveBlockEntity;
@@ -96,8 +95,6 @@ public final class AEBlockEntities {
             SpatialPylonBlockEntity.class, SpatialPylonBlockEntity::new, AEBlocks.SPATIAL_PYLON);
     public static final DeferredBlockEntityType<SpatialIOPortBlockEntity> SPATIAL_IO_PORT = create("spatial_io_port",
             SpatialIOPortBlockEntity.class, SpatialIOPortBlockEntity::new, AEBlocks.SPATIAL_IO_PORT);
-    public static final DeferredBlockEntityType<SpatialAnchorBlockEntity> SPATIAL_ANCHOR = create("spatial_anchor",
-            SpatialAnchorBlockEntity.class, SpatialAnchorBlockEntity::new, AEBlocks.SPATIAL_ANCHOR);
     public static final DeferredBlockEntityType<CableBusBlockEntity> CABLE_BUS = create("cable_bus",
             CableBusBlockEntity.class,
             CableBusBlockEntity::new, AEBlocks.CABLE_BUS);

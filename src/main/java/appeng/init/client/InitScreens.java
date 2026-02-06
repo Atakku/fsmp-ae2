@@ -49,7 +49,6 @@ import appeng.client.gui.implementations.PriorityScreen;
 import appeng.client.gui.implementations.QNBScreen;
 import appeng.client.gui.implementations.QuartzKnifeScreen;
 import appeng.client.gui.implementations.SkyChestScreen;
-import appeng.client.gui.implementations.SpatialAnchorScreen;
 import appeng.client.gui.implementations.SpatialIOPortScreen;
 import appeng.client.gui.implementations.StorageBusScreen;
 import appeng.client.gui.implementations.StorageLevelEmitterScreen;
@@ -86,7 +85,6 @@ import appeng.menu.implementations.QNBMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SetStockAmountMenu;
 import appeng.menu.implementations.SkyChestMenu;
-import appeng.menu.implementations.SpatialAnchorMenu;
 import appeng.menu.implementations.SpatialIOPortMenu;
 import appeng.menu.implementations.StorageBusMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
@@ -147,7 +145,6 @@ public final class InitScreens {
         register(event, CraftAmountMenu.TYPE, CraftAmountScreen::new, "/screens/craft_amount.json");
         register(event, CraftConfirmMenu.TYPE, CraftConfirmScreen::new, "/screens/craft_confirm.json");
         register(event, CraftingStatusMenu.TYPE, CraftingStatusScreen::new, "/screens/crafting_status.json");
-        register(event, SpatialAnchorMenu.TYPE, SpatialAnchorScreen::new, "/screens/spatial_anchor.json");
 
         // Terminals
         InitScreens.<MEStorageMenu, MEStorageScreen<MEStorageMenu>>register(event,

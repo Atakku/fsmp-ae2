@@ -223,10 +223,6 @@ public final class AEConfig {
         return common.craftingCalculationTimePerTick.get();
     }
 
-    public boolean isSpatialAnchorEnablesRandomTicks() {
-        return common.spatialAnchorEnableRandomTicks.get();
-    }
-
     public double getSpatialPowerExponent() {
         return common.spatialPowerExponent.get();
     }
@@ -508,7 +504,6 @@ public final class AEConfig {
         public final BooleanValue matterCannonBlockDamage;
         public final BooleanValue tinyTntBlockDamage;
         public final EnumValue<ChannelMode> channels;
-        public final BooleanValue spatialAnchorEnableRandomTicks;
 
         public final IntValue growthAcceleratorSpeed;
         public final BooleanValue annihilationPlaneSkyDustGeneration;
@@ -567,8 +562,6 @@ public final class AEConfig {
                     "Enables the ability of Tiny TNT to break blocks.");
             channels = defineEnum(builder, "channels", ChannelMode.DEFAULT,
                     "Changes the channel capacity that cables provide in AE2.");
-            spatialAnchorEnableRandomTicks = define(builder, "spatialAnchorEnableRandomTicks", true,
-                    "Whether Spatial Anchors should force random chunk ticks and entity spawning.");
             builder.pop();
 
             builder.push("automation");

@@ -26,7 +26,6 @@ import appeng.block.misc.GrowthAcceleratorBlock;
 import appeng.block.misc.VibrationChamberBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
-import appeng.block.spatial.SpatialAnchorBlock;
 import appeng.block.spatial.SpatialIOPortBlock;
 import appeng.block.storage.IOPortBlock;
 import appeng.block.storage.MEChestBlock;
@@ -70,7 +69,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         meChest();
         patternProvider();
         vibrationChamber();
-        spatialAnchor();
         patternProvider();
         ioPort();
         spatialIoPort();
@@ -267,19 +265,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                         .select(true, Variant.variant().with(VariantProperties.MODEL, onModel.getLocation())));
 
         itemModels().withExistingParent(modelPath(AEBlocks.VIBRATION_CHAMBER), offModel.getLocation());
-    }
-
-    private void spatialAnchor() {
-        var offModel = getExistingModel("block/spatial_anchor");
-        var onModel = getExistingModel("block/spatial_anchor_on");
-
-        multiVariantGenerator(AEBlocks.SPATIAL_ANCHOR)
-                .with(createFacingDispatch(90, 0))
-                .with(PropertyDispatch.property(SpatialAnchorBlock.POWERED)
-                        .select(false, Variant.variant().with(VariantProperties.MODEL, offModel))
-                        .select(true, Variant.variant().with(VariantProperties.MODEL, onModel)));
-
-        itemModels().withExistingParent(modelPath(AEBlocks.SPATIAL_ANCHOR), offModel);
     }
 
     private void patternProvider() {
