@@ -11,13 +11,12 @@ navigation:
 
 A "Network" is a group of [devices](../ae2-mechanics/devices.md) linked by blocks that can pass [channels](../ae2-mechanics/channels.md),
 like [cables](../items-blocks-machines/cables.md) or fullblock machines and [devices](../ae2-mechanics/devices.md). 
-(<ItemLink id="charger" />, <ItemLink id="interface" />, <ItemLink id="drive" />, etc.)
+(<ItemLink id="charger" />, <ItemLink id="drive" />, etc.)
 Technically a single cable is a network, actually.
 
 ## An Aside On Device Positioning
 
-For [devices](../ae2-mechanics/devices.md) which have some specific network function (like an <ItemLink id="interface" />
-pushing to and pulling from [network storage](../ae2-mechanics/import-export-storage.md), a <ItemLink id="level_emitter" />
+For [devices](../ae2-mechanics/devices.md) which have some specific network function, a <ItemLink id="level_emitter" />
 reading the contents of network storage, an <ItemLink id="drive" /> being network storage, etc.)
 the physical position of the device does not matter.
 

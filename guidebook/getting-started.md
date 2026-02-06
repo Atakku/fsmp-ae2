@@ -58,7 +58,7 @@ with a pickaxe, even with silk touch.
 <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-If you don't have enough quartz to also make an <ItemLink id="energy_acceptor" /> or <ItemLink id="vibration_chamber" />,
+If you don't have enough quartz to also make an <ItemLink id="vibration_chamber" />,
 you can make a <ItemLink id="crank" /> and stick it on the end of your accelerator.
 
 Harvesting the certus automatically is [described here](example-setups/simple-certus-farm.md).
@@ -125,7 +125,6 @@ Now that you have all of the basic materials and machines for Applied Energistic
 *   Your ingredients list:
     * 1x <ItemLink id="drive" />
     * 1x <ItemLink id="terminal" /> or <ItemLink id="crafting_terminal" />
-    * 1x <ItemLink id="energy_acceptor" />
     * A few [cables](items-blocks-machines/cables.md), either glass, covered, or smart, but not dense
     * A few [storage cells](items-blocks-machines/storage_cells.md), recommended of the 4k variety for a good mix of
     capacity and types (it would be more efficient to [partition](items-blocks-machines/cell_workbench.md) a mix of 4k and 1k but that's a complexity we won't go into now)
@@ -139,19 +138,6 @@ Now that you have all of the basic materials and machines for Applied Energistic
 7.  Fiddle with the terminal's settings
 8.  Bask in your ultimate power and ability
 9.  Realize that this network is, in the grand scheme, rather small
-
-### Expanding your Network
-
-So you have some basic storage, and access to that storage, it's a good start, but you'll likely be looking to maybe
-automate some processing.
-
-A great example of this is to place a <ItemLink id="export_bus" /> on the top of a furnace to
-dump in ores, and a <ItemLink id="import_bus" />
-on the bottom of the furnace to extract furnaced ores.
-
-The <ItemLink id="export_bus" /> lets you export items from the network, into the attached
-inventory, while the <ItemLink id="import_bus" /> imports items from the attached inventory into
-the network.
 
 ### Overcoming Limits
 

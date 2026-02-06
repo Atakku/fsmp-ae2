@@ -26,7 +26,6 @@ Here's how you can do it with just 1 channel:
 <BoxAnnotation color="#dddddd" min="1 0 0" max="2 1 1">
         (1) Pattern Provider: The directional variant, via use of a certus quartz wrench, with the relevant processing patterns.
 
-        ![Iron Pattern](../assets/diagrams/furnace_pattern_small.png)
   </BoxAnnotation>
 
 <BoxAnnotation color="#dddddd" min="1 1 0" max="2 1.3 1">
@@ -55,7 +54,6 @@ Here's how you can do it with just 1 channel:
 * The <ItemLink id="pattern_provider" /> (1) is in its default configuration, with the relevant <ItemLink id="processing_pattern" />s.
     It is made directional by using a <ItemLink id="certus_quartz_wrench" /> on it.
 
-  ![Iron Pattern](../assets/diagrams/furnace_pattern.png)
 
 * The <ItemLink id="interface" /> (2) is in its default configuration.
 * The first <ItemLink id="storage_bus" /> (3) is filtered to coal, or whatever fuel you want to use.

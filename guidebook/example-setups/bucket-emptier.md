@@ -19,15 +19,6 @@ vanilla Minecraft has a slightly-less-convenient way, the <ItemLink id="minecraf
 <GameScene zoom="6" interactive={true}>
   <ImportStructure src="../assets/assemblies/bucket_emptier.snbt" />
 
-<BoxAnnotation color="#dddddd" min="2 1 0" max="3 2 1">
-        (1) Pattern Provider: Set to lock crafting "With redstone signal" and blocking mode turned on, with the relevant processing patterns.
-
-        <Row>
-        ![Fill Pattern](../assets/diagrams/water_empty_pattern_small.png)
-        ![Fill Pattern](../assets/diagrams/lava_empty_pattern_small.png)
-        </Row>
-  </BoxAnnotation>
-
 <BoxAnnotation color="#dddddd" min="2.1 2 0.1" max="2.9 2.2 0.9">
         (2) Interface: In its default configuration.
   </BoxAnnotation>
@@ -61,9 +52,6 @@ vanilla Minecraft has a slightly-less-convenient way, the <ItemLink id="minecraf
 * The <ItemLink id="pattern_provider" /> (1) is Set to lock crafting "With redstone signal" and blocking mode turned on,
   with the relevant <ItemLink id="processing_pattern" />s.
   
-    ![Charger Pattern](../assets/diagrams/water_empty_pattern.png)
-    ![Charger Pattern](../assets/diagrams/lava_empty_pattern.png)
-
 * The <ItemLink id="interface" /> (2) is in its default configuration.
 * The first <ItemLink id="storage_bus" /> (3) is in its default configuration.
 * The <ItemLink id="annihilation_plane" /> (4) has no GUI and cannot be configured.

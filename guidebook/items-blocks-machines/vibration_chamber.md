@@ -14,8 +14,7 @@ item_ids:
 
 <BlockImage id="vibration_chamber" p:active="true" scale="8" />
 
-While the primary intended method of providing [energy](../ae2-mechanics/energy.md) to your network is an
-<ItemLink id="energy_acceptor" />, the vibration chamber can directly generate small to middling amounts of AE.
+The vibration chamber can directly generate small to middling amounts of AE.
 
 By default (no [upgrades](upgrade_cards.md) and default configs) it makes 40 AE/t.
 

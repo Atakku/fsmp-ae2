@@ -19,7 +19,6 @@ or other item pipe pushes the result back into the provider.
 <BoxAnnotation color="#dddddd" min="1 0 0" max="2 1 1">
         (1) Pattern Provider: In its default configuration, with the relevant processing patterns. Also provides the charger with power.
 
-        ![Charger Pattern](../assets/diagrams/charger_pattern_small.png)
   </BoxAnnotation>
 
 <BoxAnnotation color="#dddddd" min="0 1 0" max="1 1.3 1">
@@ -42,8 +41,6 @@ or other item pipe pushes the result back into the provider.
 * The <ItemLink id="pattern_provider" /> (1) is in its default configuration, with the relevant <ItemLink id="processing_pattern" />s.
   It also provides the <ItemLink id="charger" /> with [energy](../ae2-mechanics/energy.md) because it acts like a [cable](../items-blocks-machines/cables.md).
   
-    ![Charger Pattern](../assets/diagrams/charger_pattern.png)
-
 * The <ItemLink id="import_bus" /> (2) is in its default configuration.
 * The <ItemLink id="storage_bus" /> (3) is in its default configuration.
 

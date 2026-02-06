@@ -38,11 +38,6 @@ inputs the raw resources and outputs the completed processor, and since the pres
   <BoxAnnotation color="#dddddd" min="5 1 0" max="6 2 1" thickness=".05">
         (1) Pattern Provider: In its default configuration, with the relevant processing patterns.
 
-        <Row>
-            ![Logic Pattern](../assets/diagrams/logic_pattern_small.png)
-            ![Calculation Pattern](../assets/diagrams/calculation_pattern_small.png)
-            ![Engineering Pattern](../assets/diagrams/engineering_pattern_small.png)
-        </Row>
   </BoxAnnotation>
 
   <BoxAnnotation color="#dddddd" min="4.7 2 0" max="5 3 1" thickness=".05">
@@ -152,9 +147,6 @@ inputs the raw resources and outputs the completed processor, and since the pres
 * The <ItemLink id="pattern_provider" /> (1) is in its default configuration, with the relevant <ItemLink id="processing_pattern" />s.
   Note that the patterns go direct from raw resources to the completed processor, and do **NOT** include the [press](../items-blocks-machines/presses.md).
 
-  ![Logic Pattern](../assets/diagrams/logic_pattern.png)
-  ![Calculation Pattern](../assets/diagrams/calculation_pattern.png)
-  ![Engineering Pattern](../assets/diagrams/engineering_pattern.png)
 
 * The <ItemLink id="storage_bus" />ses (2, 17, 18, 20) are in their default configurations.
 * The <ItemLink id="export_bus" />ses (3-7) are filtered to the relevant ingredient. They have 2 <ItemLink id="speed_card" />s.

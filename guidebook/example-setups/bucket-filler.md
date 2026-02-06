@@ -23,14 +23,6 @@ a crafting recipe instead of a bucket.**
 <GameScene zoom="6" interactive={true}>
   <ImportStructure src="../assets/assemblies/bucket_filler.snbt" />
 
-<BoxAnnotation color="#dddddd" min="2 1 0" max="3 2 1">
-        (1) Pattern Provider: Set to lock crafting "With redstone signal", with the relevant processing patterns.
-
-        <Row>
-        ![Fill Pattern](../assets/diagrams/water_fill_pattern_small.png)
-        ![Fill Pattern](../assets/diagrams/lava_fill_pattern_small.png)
-        </Row>
-  </BoxAnnotation>
 
 <BoxAnnotation color="#dddddd" min="3 1.1 0.1" max="3.2 1.9 0.9">
         (2) Interface: In its default configuration.
@@ -65,9 +57,6 @@ a crafting recipe instead of a bucket.**
 
 * The <ItemLink id="pattern_provider" /> (1) is Set to lock crafting "With redstone signal", with the relevant <ItemLink id="processing_pattern" />s.
   
-    ![Charger Pattern](../assets/diagrams/water_fill_pattern.png)
-    ![Charger Pattern](../assets/diagrams/lava_fill_pattern.png)
-
 * The <ItemLink id="interface" /> (2) is in its default configuration.
 * The first <ItemLink id="storage_bus" /> (3) is in its default configuration.
 * The <ItemLink id="formation_plane" /> (4) is filtered to blacklist buckets, using an inverter card.

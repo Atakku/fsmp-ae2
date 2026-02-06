@@ -49,7 +49,6 @@ to clone <ItemLink id="minecraft:netherite_upgrade_smithing_template" />s.
   <BoxAnnotation color="#dddddd" min="3 0 1" max="4 1 2">
         (5) Molecular Assembler: Has in it the pattern for duplicating a smithing template.
 
-        ![Pattern](../assets/diagrams/smithing_template_pattern_small.png)
 
         It also has one smithing template already inserted into it manually when you first build this.
   </BoxAnnotation>
@@ -78,7 +77,6 @@ to clone <ItemLink id="minecraft:netherite_upgrade_smithing_template" />s.
 * The first <ItemLink id="storage_bus" /> (4) is set to a *higher* [priority](../ae2-mechanics/import-export-storage.md#storage-priority) than the second storage bus.
 * The <ItemLink id="molecular_assembler" /> (5) has the pattern for duplicating the smithing template, and one smithing template already inserted manually.
 
-  ![Pattern](../assets/diagrams/smithing_template_pattern.png)
 
 * The second <ItemLink id="import_bus" /> (6) is in its default configuration.
 * The second <ItemLink id="storage_bus" /> (7) is filtered to "netherite smithing template". It has a *lower* [priority](../ae2-mechanics/import-export-storage.md#storage-priority) than the first storage bus.

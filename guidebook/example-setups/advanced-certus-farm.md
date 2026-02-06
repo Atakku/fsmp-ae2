@@ -11,10 +11,6 @@ navigation:
 This is basically just the [Semi-Auto Certus Farm](semiauto-certus-farm.md), except it has been fully integrated into your
 ME system.
 
-Instead of having a big stockpile of budding blocks and manually refreshing them every once in a while,
-this setup uses [Charger Automation](charger-automation.md) and [Throwing-In-Water Automation](throw-in-water-automation.md)
-to do it automatically.
-
 See [Certus Growth](../ae2-mechanics/certus-growth.md) for estimated speeds.
 
 **THIS IS A COMPLEX BUILD WITH STUFF HIDDEN BEHIND OTHER STUFF, PAN AROUND TO VIEW IT FROM ALL ANGLES**
@@ -129,8 +125,6 @@ It works similarly to the cluster breaker.
 1. The <ItemLink id="annihilation_plane" /> attempts to break what is in front of it, but can only break <ItemLink id="quartz_block" />
    because the only storage on the subnet is the <ItemLink id="storage_bus" />, filtered to <ItemLink id="quartz_block" />. 
    The plane needs to have silk touch, so the budding block won't degrade upon being broken, and thus the plane won't break it prematurely.
-2. The <ItemLink id="storage_bus" /> stores the certus quartz block in the <ItemLink id="interface" />, allowing the
-   [Throwing-In-Water Automation](throw-in-water-automation.md) to use it to make a new <ItemLink id="flawed_budding_quartz" />.
 
 ### Budding Block Placer
 
