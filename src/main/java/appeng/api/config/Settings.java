@@ -65,8 +65,6 @@ public final class Settings {
     public static final Setting<RelativeDirection> IO_DIRECTION = register("io_direction", RelativeDirection.LEFT,
             RelativeDirection.RIGHT);
     public static final Setting<YesNo> BLOCKING_MODE = register("blocking_mode", YesNo.YES, YesNo.NO);
-    public static final Setting<LockCraftingMode> LOCK_CRAFTING_MODE = register("lock_crafting_mode",
-            LockCraftingMode.class);
     public static final Setting<OperationMode> OPERATION_MODE = register("operation_mode", OperationMode.class);
     public static final Setting<FullnessMode> FULLNESS_MODE = register("fullness_mode", FullnessMode.class);
     public static final Setting<FuzzyMode> FUZZY_MODE = register("fuzzy_mode", FuzzyMode.class);
