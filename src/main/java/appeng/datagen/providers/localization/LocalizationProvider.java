@@ -115,7 +115,6 @@ public class LocalizationProvider implements IAE2DataProvider {
                 "Commands provided by Applied Energistics 2 - use /ae2 list for a list, and /ae2 help _____ for help with a command.");
         add("death.attack.matter_cannon", "%1$s was shot by %2$s");
         add("death.attack.matter_cannon.item", "%1$s was shot by %2$s using %3$s");
-        add("entity.minecraft.villager.ae2.fluix_researcher", "Fluix Researcher");
         add("key.ae2.category", "Applied Energistics 2");
         add("key.ae2.portable_fluid_cell", "Open Portable Fluid Cell");
         add("key.ae2.portable_item_cell", "Open Portable Item Cell");
