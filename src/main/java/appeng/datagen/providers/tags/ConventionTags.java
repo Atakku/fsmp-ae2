@@ -112,11 +112,6 @@ public final class ConventionTags {
     public static final TagKey<Item> COVERED_DENSE_CABLE = tag("ae2:covered_dense_cable");
     public static final TagKey<Item> SMART_DENSE_CABLE = tag("ae2:smart_dense_cable");
     public static final TagKey<Item> ILLUMINATED_PANEL = tag("ae2:illuminated_panel");
-    public static final TagKey<Item> QUARTZ_AXE = tag("ae2:quartz_axe");
-    public static final TagKey<Item> QUARTZ_HOE = tag("ae2:quartz_hoe");
-    public static final TagKey<Item> QUARTZ_PICK = tag("ae2:quartz_pickaxe");
-    public static final TagKey<Item> QUARTZ_SHOVEL = tag("ae2:quartz_shovel");
-    public static final TagKey<Item> QUARTZ_SWORD = tag("ae2:quartz_sword");
     public static final TagKey<Item> QUARTZ_WRENCH = tag("ae2:quartz_wrench");
     public static final TagKey<Item> QUARTZ_KNIFE = tag("ae2:knife");
     public static final TagKey<Item> PAINT_BALLS = tag("ae2:paint_balls");

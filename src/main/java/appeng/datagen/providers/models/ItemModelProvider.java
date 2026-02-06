@@ -67,7 +67,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.FLUIX_CRYSTAL, "item/fluix_crystal");
         flatSingleLayer(AEItems.FLUIX_DUST, "item/fluix_dust");
         flatSingleLayer(AEItems.FLUIX_PEARL, "item/fluix_pearl");
-        flatSingleLayer(AEItems.FLUIX_UPGRADE_SMITHING_TEMPLATE, "item/fluix_upgrade_smithing_template");
         flatSingleLayer(AEItems.FORMATION_CORE, "item/formation_core");
         flatSingleLayer(AEItems.FUZZY_CARD, "item/card_fuzzy");
         flatSingleLayer(AEItems.INVERTER_CARD, "item/card_inverter");
@@ -134,25 +133,10 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
     }
 
     private void registerHandheld() {
-        handheld(AEItems.CERTUS_QUARTZ_AXE);
-        handheld(AEItems.CERTUS_QUARTZ_HOE);
-        handheld(AEItems.CERTUS_QUARTZ_SHOVEL);
-        handheld(AEItems.CERTUS_QUARTZ_PICK);
-        handheld(AEItems.CERTUS_QUARTZ_SWORD);
         handheld(AEItems.CERTUS_QUARTZ_WRENCH);
         handheld(AEItems.CERTUS_QUARTZ_KNIFE);
-        handheld(AEItems.NETHER_QUARTZ_AXE);
-        handheld(AEItems.NETHER_QUARTZ_HOE);
-        handheld(AEItems.NETHER_QUARTZ_SHOVEL);
-        handheld(AEItems.NETHER_QUARTZ_PICK);
-        handheld(AEItems.NETHER_QUARTZ_SWORD);
         handheld(AEItems.NETHER_QUARTZ_WRENCH);
         handheld(AEItems.NETHER_QUARTZ_KNIFE);
-        handheld(AEItems.FLUIX_AXE);
-        handheld(AEItems.FLUIX_HOE);
-        handheld(AEItems.FLUIX_SHOVEL);
-        handheld(AEItems.FLUIX_PICK);
-        handheld(AEItems.FLUIX_SWORD);
     }
 
     private void handheld(ItemDefinition<?> item) {

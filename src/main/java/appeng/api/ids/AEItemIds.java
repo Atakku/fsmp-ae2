@@ -153,28 +153,11 @@ public final class AEItemIds {
     ///
     /// TOOLS
     ///
-    public static final ResourceLocation CERTUS_QUARTZ_AXE = id("certus_quartz_axe");
-    public static final ResourceLocation CERTUS_QUARTZ_HOE = id("certus_quartz_hoe");
-    public static final ResourceLocation CERTUS_QUARTZ_SHOVEL = id("certus_quartz_shovel");
-    public static final ResourceLocation CERTUS_QUARTZ_PICK = id("certus_quartz_pickaxe");
-    public static final ResourceLocation CERTUS_QUARTZ_SWORD = id("certus_quartz_sword");
     public static final ResourceLocation CERTUS_QUARTZ_WRENCH = id("certus_quartz_wrench");
     public static final ResourceLocation CERTUS_QUARTZ_KNIFE = id("certus_quartz_cutting_knife");
 
-    public static final ResourceLocation NETHER_QUARTZ_AXE = id("nether_quartz_axe");
-    public static final ResourceLocation NETHER_QUARTZ_HOE = id("nether_quartz_hoe");
-    public static final ResourceLocation NETHER_QUARTZ_SHOVEL = id("nether_quartz_shovel");
-    public static final ResourceLocation NETHER_QUARTZ_PICK = id("nether_quartz_pickaxe");
-    public static final ResourceLocation NETHER_QUARTZ_SWORD = id("nether_quartz_sword");
     public static final ResourceLocation NETHER_QUARTZ_WRENCH = id("nether_quartz_wrench");
     public static final ResourceLocation NETHER_QUARTZ_KNIFE = id("nether_quartz_cutting_knife");
-
-    public static final ResourceLocation FLUIX_UPGRADE_SMITHING_TEMPLATE = id("fluix_upgrade_smithing_template");
-    public static final ResourceLocation FLUIX_AXE = id("fluix_axe");
-    public static final ResourceLocation FLUIX_HOE = id("fluix_hoe");
-    public static final ResourceLocation FLUIX_SHOVEL = id("fluix_shovel");
-    public static final ResourceLocation FLUIX_PICK = id("fluix_pickaxe");
-    public static final ResourceLocation FLUIX_SWORD = id("fluix_sword");
 
     public static final ResourceLocation METEORITE_COMPASS = id("meteorite_compass");
 

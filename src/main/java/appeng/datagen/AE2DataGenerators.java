@@ -49,7 +49,6 @@ import appeng.datagen.providers.recipes.DecorationRecipes;
 import appeng.datagen.providers.recipes.InscriberRecipes;
 import appeng.datagen.providers.recipes.QuartzCuttingRecipesProvider;
 import appeng.datagen.providers.recipes.SmeltingRecipes;
-import appeng.datagen.providers.recipes.SmithingRecipes;
 import appeng.datagen.providers.recipes.TransformRecipes;
 import appeng.datagen.providers.recipes.UpgradeRecipes;
 import appeng.datagen.providers.tags.BiomeTagsProvider;
@@ -103,7 +102,6 @@ public class AE2DataGenerators {
         pack.addProvider(bindRegistries(InscriberRecipes::new, registries));
         pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
-        pack.addProvider(bindRegistries(SmithingRecipes::new, registries));
         pack.addProvider(bindRegistries(TransformRecipes::new, registries));
         pack.addProvider(bindRegistries(QuartzCuttingRecipesProvider::new, registries));
         pack.addProvider(bindRegistries(UpgradeRecipes::new, registries));

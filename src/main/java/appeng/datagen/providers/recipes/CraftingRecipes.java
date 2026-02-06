@@ -738,90 +738,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
     }
 
     private void addQuartzTools(RecipeOutput consumer) {
-        // Certus Quartz Vanilla-Like Tools
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_AXE)
-                .pattern("aa")
-                .pattern("ab")
-                .pattern(" b")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_axe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_HOE)
-                .pattern("aa")
-                .pattern(" b")
-                .pattern(" b")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_hoe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_PICK)
-                .pattern("aaa")
-                .pattern(" b ")
-                .pattern(" b ")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_pickaxe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_SHOVEL)
-                .pattern("a")
-                .pattern("b")
-                .pattern("b")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_spade"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_SWORD)
-                .pattern("a")
-                .pattern("a")
-                .pattern("b")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_sword"));
-
-        // Nether Quartz Vanilla-Like Tools
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_AXE)
-                .pattern("aa")
-                .pattern("ab")
-                .pattern(" b")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_axe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_HOE)
-                .pattern("aa")
-                .pattern(" b")
-                .pattern(" b")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_hoe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_PICK)
-                .pattern("aaa")
-                .pattern(" b ")
-                .pattern(" b ")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_pickaxe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_SHOVEL)
-                .pattern("a")
-                .pattern("b")
-                .pattern("b")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_spade"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_SWORD)
-                .pattern("a")
-                .pattern("a")
-                .pattern("b")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .define('b', ConventionTags.WOOD_STICK)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_sword"));
-
         // Knives
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_KNIFE)
                 .pattern("  a")
@@ -857,13 +773,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('a', ConventionTags.NETHER_QUARTZ)
                 .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
                 .save(consumer, AppEng.makeId("tools/nether_quartz_wrench"));
-
-        // Smithing pattern for fluix tools
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.FLUIX_UPGRADE_SMITHING_TEMPLATE)
-                .requires(Items.PAPER)
-                .requires(ConventionTags.FLUIX_CRYSTAL)
-                .unlockedBy("has_fluix_crystal", has(ConventionTags.FLUIX_CRYSTAL))
-                .save(consumer, AppEng.makeId("tools/fluix_upgrade_smithing_template"));
     }
 
     // ====================================================
