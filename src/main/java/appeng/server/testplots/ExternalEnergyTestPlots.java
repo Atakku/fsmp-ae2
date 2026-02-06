@@ -2,11 +2,8 @@ package appeng.server.testplots;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import appeng.api.stacks.AEItemKey;
-import appeng.block.misc.GrowthAcceleratorBlock;
-import appeng.blockentity.misc.GrowthAcceleratorBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
@@ -95,23 +92,6 @@ public class ExternalEnergyTestPlots {
                 .thenSucceed())
                 // due to the chargers randomness, this can take longer than the default time
                 .maxTicks(15 * 20);
-    }
-
-    @TestPlot("fe_growth_accelerator")
-    public static void testGrowthAccelerator(PlotBuilder plot) {
-        placeForgeEnergyGenerator(plot);
-        plot.blockState(ORIGIN, AEBlocks.GROWTH_ACCELERATOR.block().defaultBlockState()
-                .setValue(BlockStateProperties.FACING, Direction.UP));
-        plot.test(helper -> helper.startSequence()
-                .thenWaitUntil(helper::checkAllInitialized)
-                .thenWaitUntil(() -> {
-                    var accel = (GrowthAcceleratorBlockEntity) helper.getBlockEntity(ORIGIN);
-                    helper.check(accel.isPowered(), "should be powered", ORIGIN);
-                })
-                .thenWaitUntil(() -> helper.assertBlockProperty(ORIGIN, GrowthAcceleratorBlock.POWERED, true))
-                // Ensure that after 1 second, the grid still has no energy
-                .thenExecuteAfter(20, () -> checkGridHasNoEnergy(helper))
-                .thenSucceed());
     }
 
     private static void testGridIsReceivingEnergy(PlotBuilder plot) {

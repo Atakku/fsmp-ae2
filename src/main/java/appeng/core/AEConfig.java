@@ -282,10 +282,6 @@ public final class AEConfig {
         return common.tinyTntBlockDamage.get();
     }
 
-    public int getGrowthAcceleratorSpeed() {
-        return common.growthAcceleratorSpeed.get();
-    }
-
     public boolean isAnnihilationPlaneSkyDustGenerationEnabled() {
         return common.annihilationPlaneSkyDustGeneration.get();
     }
@@ -505,7 +501,6 @@ public final class AEConfig {
         public final BooleanValue tinyTntBlockDamage;
         public final EnumValue<ChannelMode> channels;
 
-        public final IntValue growthAcceleratorSpeed;
         public final BooleanValue annihilationPlaneSkyDustGeneration;
 
         // Spatial IO/Dimension
@@ -573,8 +568,6 @@ public final class AEConfig {
             builder.pop();
 
             builder.push("crafting");
-            growthAcceleratorSpeed = define(builder, "growthAccelerator", 10, 1, 100,
-                    "Number of ticks between two crystal growth accelerator ticks");
             annihilationPlaneSkyDustGeneration = define(builder, "annihilationPlaneSkyDustGeneration", true,
                     "If enabled, an annihilation placed face up at the maximum world height will generate sky stone passively.");
             builder.pop();

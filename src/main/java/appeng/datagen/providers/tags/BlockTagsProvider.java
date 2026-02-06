@@ -65,14 +65,6 @@ public class BlockTagsProvider extends IntrinsicHolderTagsProvider<Block> implem
                         AEBlocks.CRAFTING_MONITOR.block(), AEBlocks.CRAFTING_UNIT.block(),
                         AEBlocks.CRAFTING_ACCELERATOR.block())
                 .addOptionalTag(ConventionTags.GLASS_BLOCK.location());
-        tag(AETags.GROWTH_ACCELERATABLE)
-                // TODO: Should all be in some conventional tag
-                .add(Blocks.BAMBOO_SAPLING, Blocks.BAMBOO, Blocks.SUGAR_CANE, Blocks.SUGAR_CANE, Blocks.VINE,
-                        Blocks.TWISTING_VINES, Blocks.WEEPING_VINES, Blocks.CAVE_VINES, Blocks.SWEET_BERRY_BUSH,
-                        Blocks.NETHER_WART, Blocks.KELP, Blocks.COCOA)
-                .addOptionalTag(ConventionTags.CROPS.location())
-                .addOptionalTag(ConventionTags.SAPLINGS.location())
-                .addTag(ConventionTags.BUDDING_BLOCKS_BLOCKS);
 
         tag(ConventionTags.BUDDING_BLOCKS_BLOCKS)
                 .add(AEBlocks.FLAWLESS_BUDDING_QUARTZ.block())

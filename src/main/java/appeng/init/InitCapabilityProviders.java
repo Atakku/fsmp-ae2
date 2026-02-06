@@ -19,7 +19,6 @@ import appeng.api.parts.RegisterPartCapabilitiesEvent;
 import appeng.api.parts.RegisterPartCapabilitiesEventInternal;
 import appeng.blockentity.AEBaseInvBlockEntity;
 import appeng.blockentity.misc.ChargerBlockEntity;
-import appeng.blockentity.misc.GrowthAcceleratorBlockEntity;
 import appeng.blockentity.misc.InscriberBlockEntity;
 import appeng.blockentity.powersink.AEBasePoweredBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
@@ -215,8 +214,6 @@ public final class InitCapabilityProviders {
                 ChargerBlockEntity::getCrankable);
         event.registerBlockEntity(AECapabilities.CRANKABLE, AEBlockEntities.INSCRIBER.get(),
                 InscriberBlockEntity::getCrankable);
-        event.registerBlockEntity(AECapabilities.CRANKABLE, AEBlockEntities.GROWTH_ACCELERATOR.get(),
-                GrowthAcceleratorBlockEntity::getCrankable);
     }
 
     private static void registerPartCapabilities(RegisterPartCapabilitiesEvent event) {

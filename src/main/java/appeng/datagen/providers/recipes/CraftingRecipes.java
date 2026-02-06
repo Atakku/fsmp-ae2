@@ -309,18 +309,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_stick", has(ConventionTags.WOOD_STICK))
                 .unlockedBy("has_copper_ingot", has(ConventionTags.COPPER_INGOT))
                 .save(consumer, AppEng.makeId("network/blocks/crank"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.GROWTH_ACCELERATOR)
-                .pattern("aba")
-                .pattern("cdc")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
-                .define('c', AEBlocks.QUARTZ_GLASS)
-                .define('d', AEBlocks.FLUIX_BLOCK)
-                .unlockedBy("has_fluix_block", has(AEBlocks.FLUIX_BLOCK))
-                .unlockedBy("has_glass_cable", has(AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT)))
-                .unlockedBy("has_quartz_glass", has(AEBlocks.QUARTZ_GLASS))
-                .save(consumer, AppEng.makeId("network/blocks/crystal_processing_growth_accelerator"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.DENSE_ENERGY_CELL)
                 .pattern("aaa")
                 .pattern("aba")

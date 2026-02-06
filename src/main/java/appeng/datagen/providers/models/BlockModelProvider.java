@@ -22,7 +22,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import appeng.api.orientation.BlockOrientation;
 import appeng.block.crafting.AbstractCraftingUnitBlock;
 import appeng.block.crafting.PatternProviderBlock;
-import appeng.block.misc.GrowthAcceleratorBlock;
 import appeng.block.misc.VibrationChamberBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
@@ -65,7 +64,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         crystalResonanceGenerator();
         wirelessAccessPoint();
         craftingMonitor();
-        quartzGrowthAccelerator();
         meChest();
         patternProvider();
         vibrationChamber();
@@ -142,27 +140,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                 multipart,
                 () -> Condition.condition().term(MEChestBlock.LIGHTS_ON, true),
                 Variant.variant().with(VariantProperties.MODEL, AppEng.makeId("block/chest/lights_on")));
-    }
-
-    private void quartzGrowthAccelerator() {
-        var unpoweredModel = models().cubeBottomTop(
-                modelPath(AEBlocks.GROWTH_ACCELERATOR),
-                makeId("block/growth_accelerator_side"),
-                makeId("block/growth_accelerator_bottom"),
-                makeId("block/growth_accelerator_top"));
-        var poweredModel = models().cubeBottomTop(
-                modelPath(AEBlocks.GROWTH_ACCELERATOR) + "_on",
-                makeId("block/growth_accelerator_side_on"),
-                makeId("block/growth_accelerator_bottom"),
-                makeId("block/growth_accelerator_top_on"));
-
-        multiVariantGenerator(AEBlocks.GROWTH_ACCELERATOR)
-                .with(createFacingDispatch(90, 0))
-                .with(PropertyDispatch.property(GrowthAcceleratorBlock.POWERED)
-                        .select(false, Variant.variant().with(VariantProperties.MODEL, unpoweredModel.getLocation()))
-                        .select(true, Variant.variant().with(VariantProperties.MODEL, poweredModel.getLocation())));
-
-        itemModels().withExistingParent(modelPath(AEBlocks.GROWTH_ACCELERATOR), unpoweredModel.getLocation());
     }
 
     private void craftingMonitor() {

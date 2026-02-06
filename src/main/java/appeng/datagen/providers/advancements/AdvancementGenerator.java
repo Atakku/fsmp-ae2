@@ -275,24 +275,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("facade", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.FACADE))
                 .save(consumer, "ae2:main/facade");
 
-        var growthAccelerator = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.GROWTH_ACCELERATOR,
-                        localization.component("achievement.ae2.CrystalGrowthAccelerator",
-                                "Accelerator is an understatement"),
-                        localization.component("achievement.ae2.CrystalGrowthAccelerator.desc",
-                                "Craft a Crystal Growth Accelerator"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(fluix)
-                .addCriterion("certus",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.GROWTH_ACCELERATOR))
-                .save(consumer, "ae2:main/growth_accelerator");
-
         var network1 = Advancement.Builder.advancement()
                 .display(
                         AEParts.COVERED_CABLE.item(AEColor.TRANSPARENT),

@@ -45,7 +45,6 @@ import appeng.blockentity.misc.CellWorkbenchBlockEntity;
 import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.misc.CondenserBlockEntity;
 import appeng.blockentity.misc.CrankBlockEntity;
-import appeng.blockentity.misc.GrowthAcceleratorBlockEntity;
 import appeng.blockentity.misc.InscriberBlockEntity;
 import appeng.blockentity.misc.InterfaceBlockEntity;
 import appeng.blockentity.misc.LightDetectorBlockEntity;
@@ -122,9 +121,6 @@ public final class AEBlockEntities {
     public static final DeferredBlockEntityType<VibrationChamberBlockEntity> VIBRATION_CHAMBER = create(
             "vibration_chamber",
             VibrationChamberBlockEntity.class, VibrationChamberBlockEntity::new, AEBlocks.VIBRATION_CHAMBER);
-    public static final DeferredBlockEntityType<GrowthAcceleratorBlockEntity> GROWTH_ACCELERATOR = create(
-            "growth_accelerator", GrowthAcceleratorBlockEntity.class,
-            GrowthAcceleratorBlockEntity::new, AEBlocks.GROWTH_ACCELERATOR);
     public static final DeferredBlockEntityType<EnergyCellBlockEntity> ENERGY_CELL = create("energy_cell",
             EnergyCellBlockEntity.class, EnergyCellBlockEntity::new, AEBlocks.ENERGY_CELL);
     public static final DeferredBlockEntityType<EnergyCellBlockEntity> DENSE_ENERGY_CELL = create("dense_energy_cell",
