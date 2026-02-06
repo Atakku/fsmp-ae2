@@ -74,8 +74,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
         tag(ConventionTags.CERTUS_QUARTZ_DUST)
                 .add(AEItems.CERTUS_QUARTZ_DUST.asItem());
-        tag(ConventionTags.ENDER_PEARL_DUST)
-                .add(AEItems.ENDER_DUST.asItem());
         tag(ConventionTags.SKY_STONE_DUST)
                 .add(AEItems.SKY_DUST.asItem());
 
@@ -199,7 +197,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
         tag(ConventionTags.DUSTS)
                 .add(AEItems.CERTUS_QUARTZ_DUST.asItem())
-                .add(AEItems.ENDER_DUST.asItem())
                 .add(AEItems.FLUIX_DUST.asItem())
                 .add(AEItems.SKY_DUST.asItem());
 

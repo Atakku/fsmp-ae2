@@ -238,7 +238,6 @@ public final class AEItemIds {
     public static final ResourceLocation ANNIHILATION_CORE = id("annihilation_core");
     public static final ResourceLocation SKY_DUST = id("sky_dust");
     public static final ResourceLocation GUIDE = id("guide");
-    public static final ResourceLocation ENDER_DUST = id("ender_dust");
 
     private static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(AEConstants.MOD_ID, id);
