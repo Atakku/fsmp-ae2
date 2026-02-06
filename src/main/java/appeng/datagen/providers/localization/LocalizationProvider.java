@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import appeng.api.config.PowerUnit;
 import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEEntities;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.GuiText;
@@ -46,9 +45,6 @@ public class LocalizationProvider implements IAE2DataProvider {
         }
         for (var item : AEItems.getItems()) {
             add("item.ae2." + item.id().getPath(), item.getEnglishName());
-        }
-        for (var entry : AEEntities.ENTITY_ENGLISH_NAMES.entrySet()) {
-            add("entity.ae2." + entry.getKey(), entry.getValue());
         }
 
         addEnum(GuiText.class);

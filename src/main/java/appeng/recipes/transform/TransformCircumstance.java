@@ -23,17 +23,11 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 
 public class TransformCircumstance {
-
-    public static final TransformCircumstance EXPLOSION = new TransformCircumstance("explosion");
-
-    private static final MapCodec<TransformCircumstance> EXPLOSION_CODEC = MapCodec.unit(EXPLOSION);
-
     private static final MapCodec<FluidType> FLUID_CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
             TagKey.codec(Registries.FLUID).fieldOf("tag").forGetter(FluidType::getFluidTag))
             .apply(builder, FluidType::new));
 
     public static final Codec<TransformCircumstance> CODEC = Codec.STRING.dispatch(t -> t.type, type -> switch (type) {
-        case "explosion" -> EXPLOSION_CODEC;
         case "fluid" -> FLUID_CODEC;
         default -> throw new IllegalStateException("Invalid type: " + type);
     });
@@ -50,9 +44,7 @@ public class TransformCircumstance {
 
     static TransformCircumstance fromJson(JsonObject obj) {
         String type = obj.get("type").getAsString();
-        if (type.equals("explosion"))
-            return explosion();
-        else if (type.equals("fluid")) {
+        if (type.equals("fluid")) {
             return fluid(TagKey.create(Registries.FLUID, ResourceLocation.parse(obj.get("tag").getAsString())));
         } else
             throw new JsonParseException("Invalid transform recipe type " + type);
@@ -60,9 +52,7 @@ public class TransformCircumstance {
 
     static TransformCircumstance fromNetwork(FriendlyByteBuf buf) {
         String type = buf.readUtf();
-        if (type.equals("explosion"))
-            return explosion();
-        else if (type.equals("fluid")) {
+        if (type.equals("fluid")) {
             return fluid(TagKey.create(Registries.FLUID, buf.readResourceLocation()));
         } else
             throw new DecoderException("Invalid transform recipe type " + type);
@@ -70,10 +60,6 @@ public class TransformCircumstance {
 
     public static TransformCircumstance fluid(TagKey<Fluid> tag) {
         return new FluidType(tag);
-    }
-
-    public static TransformCircumstance explosion() {
-        return EXPLOSION;
     }
 
     public JsonObject toJson() {
@@ -94,10 +80,6 @@ public class TransformCircumstance {
     @Override
     public int hashCode() {
         return type.hashCode();
-    }
-
-    public boolean isExplosion() {
-        return type.equals("explosion");
     }
 
     public boolean isFluid() {

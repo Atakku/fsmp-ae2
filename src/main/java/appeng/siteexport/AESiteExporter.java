@@ -35,7 +35,6 @@ public class AESiteExporter extends SiteExporter {
         referenceItem(AEBlocks.INSCRIBER);
         referenceFluid(Fluids.WATER);
         referenceFluid(Fluids.LAVA);
-        referenceItem(Items.TNT);
         referenceItem(Blocks.SMITHING_TABLE);
     }
 
@@ -76,9 +75,7 @@ public class AESiteExporter extends SiteExporter {
 
         Map<String, Object> circumstanceJson = new HashMap<>();
         var circumstance = recipe.circumstance;
-        if (circumstance.isExplosion()) {
-            circumstanceJson.put("type", "explosion");
-        } else if (circumstance.isFluid()) {
+        if (circumstance.isFluid()) {
             circumstanceJson.put("type", "fluid");
 
             // Special-case water since a lot of mods add their fluids to the tag

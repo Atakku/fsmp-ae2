@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 
@@ -58,10 +57,7 @@ public class RecipeTypeContributions implements RecipeTypeMappingSupplier {
                 .input(LytSlotGrid.column(recipe.getIngredients(), true))
                 .output(LytSlotGrid.column(List.of(Ingredient.of(recipe.getResultItem())), true));
 
-        if (recipe.circumstance.isExplosion()) {
-            builder.icon(Blocks.TNT);
-            builder.title(GuiText.TransformTypeExplode.text().getString());
-        } else if (recipe.circumstance.isFluid()) {
+        if (recipe.circumstance.isFluid()) {
             Fluid fluid = Fluids.EMPTY;
             // Special-case water since a lot of mods add their fluids to the tag
             if (recipe.circumstance.isFluidTag(FluidTags.WATER)) {

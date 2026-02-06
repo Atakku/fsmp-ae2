@@ -20,10 +20,8 @@ package appeng.init;
 
 import net.minecraft.world.level.block.DispenserBlock;
 
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.hooks.BlockToolDispenseItemBehavior;
-import appeng.hooks.TinyTNTDispenseItemBehavior;
 
 /**
  * Registers custom {@link DispenserBlock} behaviors for our items.
@@ -34,7 +32,6 @@ public final class InitDispenserBehavior {
     }
 
     public static void init() {
-        DispenserBlock.registerBehavior(AEBlocks.TINY_TNT, new TinyTNTDispenseItemBehavior());
         DispenserBlock.registerBehavior(AEItems.COLOR_APPLICATOR, new BlockToolDispenseItemBehavior());
     }
 

@@ -266,10 +266,6 @@ public final class AEConfig {
         return common.spawnFlawlessOnly.get();
     }
 
-    public boolean isTinyTntBlockDamageEnabled() {
-        return common.tinyTntBlockDamage.get();
-    }
-
     public boolean isAnnihilationPlaneSkyDustGenerationEnabled() {
         return common.annihilationPlaneSkyDustGeneration.get();
     }
@@ -485,7 +481,6 @@ public final class AEConfig {
         public final IntValue formationPlaneEntityLimit;
         public final IntValue craftingCalculationTimePerTick;
         public final BooleanValue debugTools;
-        public final BooleanValue tinyTntBlockDamage;
         public final EnumValue<ChannelMode> channels;
 
         public final BooleanValue annihilationPlaneSkyDustGeneration;
@@ -535,8 +530,6 @@ public final class AEConfig {
 
             builder.push("general");
             debugTools = define(builder, "unsupportedDeveloperTools", Platform.isDevelopmentEnvironment());
-            tinyTntBlockDamage = define(builder, "tinyTntBlockDamage", true,
-                    "Enables the ability of Tiny TNT to break blocks.");
             channels = defineEnum(builder, "channels", ChannelMode.DEFAULT,
                     "Changes the channel capacity that cables provide in AE2.");
             builder.pop();

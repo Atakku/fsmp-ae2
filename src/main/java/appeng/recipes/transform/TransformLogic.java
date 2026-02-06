@@ -35,10 +35,6 @@ public final class TransformLogic {
         return getTransformableItemsAnyFluid(entity.level()).contains(entity.getItem().getItem());
     }
 
-    public static boolean canTransformInExplosion(ItemEntity entity) {
-        return getTransformableItemsExplosion(entity.level()).contains(entity.getItem().getItem());
-    }
-
     public static boolean tryTransform(ItemEntity entity, Predicate<TransformCircumstance> circumstancePredicate) {
         var level = entity.level();
 
@@ -58,13 +54,8 @@ public final class TransformLogic {
             List<Ingredient> missingIngredients = Lists.newArrayList(recipe.ingredients);
             Reference2IntMap<ItemEntity> consumedItems = new Reference2IntOpenHashMap<>(missingIngredients.size());
 
-            if (recipe.circumstance.isExplosion()) {
-                if (missingIngredients.stream().noneMatch(i -> i.test(entity.getItem())))
-                    continue;
-            } else {
-                if (!missingIngredients.getFirst().test(entity.getItem()))
-                    continue;
-            }
+            if (!missingIngredients.getFirst().test(entity.getItem()))
+                continue;
 
             for (var itemEntity : itemEntities) {
                 var other = itemEntity.getItem();
@@ -115,12 +106,10 @@ public final class TransformLogic {
 
     // not using a Multimap here because we need to cache the empty set
     static Map<Fluid, Set<Item>> fluidCache = new IdentityHashMap<>();
-    static Set<Item> explosionCache = null;
     static Set<Item> anyFluidCache = null;
 
     private static void clearCache() {
         fluidCache.clear();
-        explosionCache = null;
         anyFluidCache = null;
     }
 
@@ -158,26 +147,6 @@ public final class TransformLogic {
                 }
             }
             anyFluidCache = ret;
-        }
-        return ret;
-    }
-
-    private static Set<Item> getTransformableItemsExplosion(Level level) {
-        Set<Item> ret = explosionCache;
-        if (ret == null) {
-            ret = Collections.newSetFromMap(new IdentityHashMap<>());
-            for (var holder : level.getRecipeManager().getAllRecipesFor(TransformRecipe.TYPE)) {
-                var recipe = holder.value();
-                if (!recipe.circumstance.isExplosion())
-                    continue;
-                for (var ingredient : recipe.ingredients) {
-                    for (var stack : ingredient.getItems()) {
-                        ret.add(stack.getItem());
-                    }
-                    // ingredients that aren't processed may be destroyed in the explosion, so process all of them.
-                }
-            }
-            explosionCache = ret;
         }
         return ret;
     }

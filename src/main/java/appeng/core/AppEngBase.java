@@ -55,7 +55,6 @@ import appeng.api.stacks.AEKeyTypesInternal;
 import appeng.core.definitions.AEAttachmentTypes;
 import appeng.core.definitions.AEBlockEntities;
 import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEEntities;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.core.network.ClientboundPacket;
@@ -120,7 +119,6 @@ public abstract class AppEngBase implements AppEng {
         AEItems.DR.register(modEventBus);
         AEBlockEntities.DR.register(modEventBus);
         AEComponents.DR.register(modEventBus);
-        AEEntities.DR.register(modEventBus);
         AERecipeTypes.DR.register(modEventBus);
         AERecipeSerializers.DR.register(modEventBus);
         InitStructures.register(modEventBus);

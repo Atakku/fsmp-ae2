@@ -1,10 +1,7 @@
 package appeng.integration.modules.emi;
 
-import java.util.List;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.Blocks;
 
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -14,7 +11,6 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.TextWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.ItemModText;
 import appeng.recipes.transform.TransformRecipe;
@@ -73,10 +69,6 @@ class EmiTransformRecipe extends BasicEmiRecipe {
                     recipe.circumstance.getFluidsForRendering().stream().map(EmiStack::of).toList());
             widgets.add(new EmiFluidBlockSlot(ingredient, col3 - 1, yOffset - 1)
                     .drawBack(false));
-        } else if (recipe.circumstance.isExplosion()) {
-            var ingredient = EmiIngredient.of(List.of(EmiStack.of(AEBlocks.TINY_TNT), EmiStack.of(Blocks.TNT)));
-            widgets.addSlot(ingredient, col3 - 1, yOffset - 1)
-                    .drawBack(false);
         }
 
         // Fourth column is arrow pointing to results
@@ -87,12 +79,7 @@ class EmiTransformRecipe extends BasicEmiRecipe {
         final int col5 = arrow2.getBounds().right() + 10;
         widgets.addSlot(EmiStack.of(recipe.getResultItem()), col5 - 1, yOffset - 1).recipeContext(this);
 
-        Component circumstanceText;
-        if (recipe.circumstance.isExplosion()) {
-            circumstanceText = ItemModText.EXPLOSION.text();
-        } else {
-            circumstanceText = ItemModText.SUBMERGE_IN.text();
-        }
+        Component circumstanceText = ItemModText.SUBMERGE_IN.text();
 
         widgets.addText(circumstanceText, width / 2, 15, 0x7E7E7E, false)
                 .horizontalAlign(TextWidget.Alignment.CENTER);

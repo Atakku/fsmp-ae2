@@ -47,7 +47,6 @@ public enum ItemModText implements LocalizationEnum {
     CONSUMED("Consumed"),
     FLOWING_FLUID_NAME("%s (flowing)"),
     SUBMERGE_IN("Submerge in"),
-    EXPLOSION("Explosion"),
     ;
 
     private final String englishText;

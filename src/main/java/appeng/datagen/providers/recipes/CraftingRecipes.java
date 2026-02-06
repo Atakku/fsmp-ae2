@@ -197,14 +197,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_dusts/fluix", has(ConventionTags.FLUIX_DUST))
                 .unlockedBy("has_crystals/fluix", has(ConventionTags.ALL_FLUIX))
                 .save(consumer, AppEng.makeId("misc/fluixpearl"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.TINY_TNT)
-                .pattern("ab")
-                .pattern("ba")
-                .define('a', ConventionTags.ALL_QUARTZ_DUST)
-                .define('b', Items.GUNPOWDER)
-                .unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
-                .unlockedBy("has_dusts/quartz", has(ConventionTags.ALL_QUARTZ_DUST))
-                .save(consumer, AppEng.makeId("misc/tiny_tnt"));
 
         // ====================================================
         // recipes/network

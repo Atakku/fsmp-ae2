@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 
 import dev.architectury.fluid.FluidStack;
@@ -20,7 +19,6 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.ItemModText;
 import appeng.recipes.transform.TransformCircumstance;
@@ -107,12 +105,7 @@ public class TransformCategory implements DisplayCategory<TransformRecipeWrapper
                 .markOutput();
         widgets.add(slot);
 
-        Component circumstance;
-        if (display.getTransformCircumstance().isExplosion()) {
-            circumstance = ItemModText.EXPLOSION.text();
-        } else {
-            circumstance = ItemModText.SUBMERGE_IN.text();
-        }
+        Component circumstance = ItemModText.SUBMERGE_IN.text();
 
         widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.y + 15), circumstance)
                 .color(0x7E7E7E)
@@ -127,8 +120,6 @@ public class TransformCategory implements DisplayCategory<TransformRecipeWrapper
         if (circumstance.isFluid()) {
             return circumstance.getFluidsForRendering().stream().map(TransformCategory::makeCustomRenderingFluidEntry)
                     .toList();
-        } else if (circumstance.isExplosion()) {
-            return List.of(EntryStacks.of(AEBlocks.TINY_TNT), EntryStacks.of(Blocks.TNT));
         } else {
             return List.of();
         }

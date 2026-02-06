@@ -24,7 +24,6 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 
 import appeng.client.render.tesr.SkyChestTESR;
-import appeng.core.definitions.AEEntities;
 
 /**
  * Registers custom renderers for our {@link AEEntities}.

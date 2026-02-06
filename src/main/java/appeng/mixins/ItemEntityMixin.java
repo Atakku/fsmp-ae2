@@ -5,12 +5,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -21,7 +18,6 @@ import net.minecraft.world.level.material.FluidState;
 import appeng.client.EffectType;
 import appeng.core.AEConfig;
 import appeng.core.AppEng;
-import appeng.recipes.transform.TransformCircumstance;
 import appeng.recipes.transform.TransformLogic;
 
 /**
@@ -38,20 +34,6 @@ public abstract class ItemEntityMixin extends Entity {
 
     private int ae2_transformTime = 0;
     private int ae2_delay = 0;
-
-    @Inject(at = @At("HEAD"), method = "hurt", cancellable = true)
-    void handleExplosion(DamageSource src, float dmg, CallbackInfoReturnable<Boolean> ci) {
-        if (!level().isClientSide && src.is(DamageTypeTags.IS_EXPLOSION) && !isRemoved()) {
-            var self = (ItemEntity) (Object) this;
-            // Just a hashmap lookup - short-circuit to not cause perf issues by iterating entities / recipes
-            // unnecessarily.
-            if (TransformLogic.canTransformInExplosion(self)
-                    && TransformLogic.tryTransform(self, TransformCircumstance::isExplosion)) {
-                ci.setReturnValue(false);
-                ci.cancel();
-            }
-        }
-    }
 
     @Inject(at = @At("RETURN"), method = "tick")
     void handleEntityTransform(CallbackInfo ci) {
