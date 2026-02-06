@@ -247,10 +247,6 @@ public final class AEConfig {
         return common.colorApplicatorBattery::get;
     }
 
-    public DoubleSupplier getChargedStaffBattery() {
-        return common.chargedStaffBattery::get;
-    }
-
     public boolean isShowDebugGuiOverlays() {
         return client.debugGuiOverlays.get();
     }
@@ -510,7 +506,6 @@ public final class AEConfig {
         public final IntValue wirelessTerminalBattery;
         public final IntValue portableCellBattery;
         public final IntValue colorApplicatorBattery;
-        public final IntValue chargedStaffBattery;
 
         // Meteors
         public final BooleanValue spawnPressesInMeteorites;
@@ -578,7 +573,6 @@ public final class AEConfig {
                     0.1, 10.0,
                     "The chargers charging rate factor, which is applied to the charged items charge rate. 2 means it charges everything twice as fast. 0.5 half as fast.");
             this.wirelessTerminalBattery = define(builder, "wirelessTerminal", 1600000);
-            this.chargedStaffBattery = define(builder, "chargedStaff", 8000);
             this.portableCellBattery = define(builder, "portableCell", 20000);
             this.colorApplicatorBattery = define(builder, "colorApplicator", 20000);
             builder.pop();

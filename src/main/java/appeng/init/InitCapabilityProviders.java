@@ -182,7 +182,6 @@ public final class InitCapabilityProviders {
     }
 
     private static void initPoweredItem(RegisterCapabilitiesEvent event) {
-        registerPowerStorageItem(event, AEItems.CHARGED_STAFF);
         registerPowerStorageItem(event, AEItems.COLOR_APPLICATOR);
         registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL1K);
         registerPowerStorageItem(event, AEItems.PORTABLE_ITEM_CELL4K);

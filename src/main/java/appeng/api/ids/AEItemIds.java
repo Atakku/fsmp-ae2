@@ -46,7 +46,6 @@ public final class AEItemIds {
     public static final ResourceLocation SMITHING_TABLE_PATTERN = id("smithing_table_pattern");
     public static final ResourceLocation STONECUTTING_PATTERN = id("stonecutting_pattern");
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
-    public static final ResourceLocation CHARGED_STAFF = id("charged_staff");
     public static final ResourceLocation COLOR_APPLICATOR = id("color_applicator");
     public static final ResourceLocation WIRELESS_TERMINAL = id("wireless_terminal");
     public static final ResourceLocation WIRELESS_CRAFTING_TERMINAL = id("wireless_crafting_terminal");

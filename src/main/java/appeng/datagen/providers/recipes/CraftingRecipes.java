@@ -759,15 +759,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
 
         addQuartzTools(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CHARGED_STAFF)
-                .pattern("a  ")
-                .pattern(" b ")
-                .pattern("  b")
-                .define('a', AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED)
-                .define('b', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_charged_certus_quartz_crystal", has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
-                .save(consumer, AppEng.makeId("tools/misctools_charged_staff"));
-
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL1K);
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL4K);
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL16K);

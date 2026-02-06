@@ -78,7 +78,6 @@ import appeng.items.tools.fluix.FluixPickaxeItem;
 import appeng.items.tools.fluix.FluixSmithingTemplateItem;
 import appeng.items.tools.fluix.FluixSpadeItem;
 import appeng.items.tools.fluix.FluixSwordItem;
-import appeng.items.tools.powered.ChargedStaffItem;
 import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.items.tools.powered.PortableCellItem;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
@@ -143,7 +142,6 @@ public final class AEItems {
 
     public static final ItemDefinition<WirelessTerminalItem> WIRELESS_TERMINAL = item("Wireless Terminal", AEItemIds.WIRELESS_TERMINAL, p -> new WirelessTerminalItem(AEConfig.instance().getWirelessTerminalBattery(), p.stacksTo(1)));
     public static final ItemDefinition<WirelessTerminalItem> WIRELESS_CRAFTING_TERMINAL = item("Wireless Crafting Terminal", AEItemIds.WIRELESS_CRAFTING_TERMINAL, p -> new WirelessCraftingTerminalItem(AEConfig.instance().getWirelessTerminalBattery(), p.stacksTo(1)));
-    public static final ItemDefinition<ChargedStaffItem> CHARGED_STAFF = item("Charged Staff", AEItemIds.CHARGED_STAFF, p -> new ChargedStaffItem(p.stacksTo(1)));
     public static final ItemDefinition<ColorApplicatorItem> COLOR_APPLICATOR = item("Color Applicator", AEItemIds.COLOR_APPLICATOR, p -> new ColorApplicatorItem(p.stacksTo(1)));
 
     ///

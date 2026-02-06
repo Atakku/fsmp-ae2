@@ -71,7 +71,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         spatialIoPort();
 
         builtInBlockModel("spatial_pylon");
-        builtInBlockModel("qnb/qnb_formed");
         builtInBlockModel("crafting/unit_formed");
         builtInBlockModel("crafting/accelerator_formed");
         builtInBlockModel("crafting/1k_storage_formed");
