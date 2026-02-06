@@ -37,7 +37,6 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEDamageTypes;
 import appeng.datagen.providers.advancements.AdvancementGenerator;
-import appeng.datagen.providers.datamaps.RaidHeroGiftsProvider;
 import appeng.datagen.providers.localization.LocalizationProvider;
 import appeng.datagen.providers.loot.AE2LootTableProvider;
 import appeng.datagen.providers.models.BlockModelProvider;
@@ -61,7 +60,6 @@ import appeng.datagen.providers.tags.BlockTagsProvider;
 import appeng.datagen.providers.tags.DataComponentTypeTagProvider;
 import appeng.datagen.providers.tags.FluidTagsProvider;
 import appeng.datagen.providers.tags.ItemTagsProvider;
-import appeng.datagen.providers.tags.PoiTypeTagsProvider;
 import appeng.init.worldgen.InitBiomes;
 import appeng.init.worldgen.InitDimensionTypes;
 import appeng.init.worldgen.InitStructures;
@@ -92,7 +90,6 @@ public class AE2DataGenerators {
                         existingFileHelper));
         pack.addProvider(packOutput -> new FluidTagsProvider(packOutput, registries, existingFileHelper));
         pack.addProvider(packOutput -> new BiomeTagsProvider(packOutput, registries, existingFileHelper));
-        pack.addProvider(packOutput -> new PoiTypeTagsProvider(packOutput, registries, existingFileHelper));
         pack.addProvider(packOutput -> new DataComponentTypeTagProvider(packOutput, registries, existingFileHelper,
                 localization));
 
@@ -119,9 +116,6 @@ public class AE2DataGenerators {
         pack.addProvider(bindRegistries(ChargerRecipes::new, registries));
         pack.addProvider(bindRegistries(QuartzCuttingRecipesProvider::new, registries));
         pack.addProvider(bindRegistries(UpgradeRecipes::new, registries));
-
-        // DataMaps
-        pack.addProvider(bindRegistries(RaidHeroGiftsProvider::new, registries));
 
         // Must run last
         pack.addProvider(packOutput -> localization);
