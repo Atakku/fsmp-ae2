@@ -57,7 +57,6 @@ import appeng.blockentity.networking.CrystalResonanceGeneratorBlockEntity;
 import appeng.blockentity.networking.EnergyAcceptorBlockEntity;
 import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
-import appeng.blockentity.qnb.QuantumBridgeBlockEntity;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
 import appeng.blockentity.spatial.SpatialPylonBlockEntity;
 import appeng.blockentity.storage.DriveBlockEntity;
@@ -86,9 +85,6 @@ public final class AEBlockEntities {
     public static final DeferredBlockEntityType<ChargerBlockEntity> CHARGER = create("charger",
             ChargerBlockEntity.class,
             ChargerBlockEntity::new, AEBlocks.CHARGER);
-    public static final DeferredBlockEntityType<QuantumBridgeBlockEntity> QUANTUM_BRIDGE = create("quantum_ring",
-            QuantumBridgeBlockEntity.class, QuantumBridgeBlockEntity::new, AEBlocks.QUANTUM_RING,
-            AEBlocks.QUANTUM_LINK);
     public static final DeferredBlockEntityType<SpatialPylonBlockEntity> SPATIAL_PYLON = create("spatial_pylon",
             SpatialPylonBlockEntity.class, SpatialPylonBlockEntity::new, AEBlocks.SPATIAL_PYLON);
     public static final DeferredBlockEntityType<SpatialIOPortBlockEntity> SPATIAL_IO_PORT = create("spatial_io_port",

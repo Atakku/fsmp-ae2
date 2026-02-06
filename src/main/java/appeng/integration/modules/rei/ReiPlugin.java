@@ -133,7 +133,6 @@ public class ReiPlugin implements REIClientPlugin {
                 this::convertStorageCellUpgradeRecipe);
 
         registry.add(new CondenserOutputDisplay(CondenserOutput.MATTER_BALLS));
-        registry.add(new CondenserOutputDisplay(CondenserOutput.SINGULARITY));
 
         registerDescriptions(registry);
     }

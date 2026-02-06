@@ -54,7 +54,6 @@ public class CondenserOutputDisplay implements Display {
     private static ItemStack getOutput(CondenserOutput recipe) {
         return switch (recipe) {
             case MATTER_BALLS -> AEItems.MATTER_BALL.stack();
-            case SINGULARITY -> AEItems.SINGULARITY.stack();
             default -> ItemStack.EMPTY;
         };
     }

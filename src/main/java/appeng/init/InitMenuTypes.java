@@ -39,7 +39,6 @@ import appeng.menu.implementations.MolecularAssemblerMenu;
 import appeng.menu.implementations.PatternAccessTermMenu;
 import appeng.menu.implementations.PatternProviderMenu;
 import appeng.menu.implementations.PriorityMenu;
-import appeng.menu.implementations.QNBMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
 import appeng.menu.implementations.SetStockAmountMenu;
 import appeng.menu.implementations.SkyChestMenu;
@@ -95,7 +94,6 @@ public final class InitMenuTypes {
                 PatternAccessTermMenu.TYPE,
                 PatternProviderMenu.TYPE,
                 PriorityMenu.TYPE,
-                QNBMenu.TYPE,
                 QuartzKnifeMenu.TYPE,
                 SetStockAmountMenu.TYPE,
                 SkyChestMenu.TYPE,

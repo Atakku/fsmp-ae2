@@ -101,9 +101,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
             registerApp(Icon.CONDENSER_OUTPUT_MATTER_BALL, Settings.CONDENSER_OUTPUT, CondenserOutput.MATTER_BALLS,
                     ButtonToolTips.CondenserOutput,
                     ButtonToolTips.MatterBalls.text(CondenserOutput.MATTER_BALLS.requiredPower));
-            registerApp(Icon.CONDENSER_OUTPUT_SINGULARITY, Settings.CONDENSER_OUTPUT, CondenserOutput.SINGULARITY,
-                    ButtonToolTips.CondenserOutput,
-                    ButtonToolTips.Singularity.text(CondenserOutput.SINGULARITY.requiredPower));
 
             registerApp(Icon.ACCESS_READ, Settings.ACCESS, AccessRestriction.READ, ButtonToolTips.IOMode,
                     ButtonToolTips.Read);

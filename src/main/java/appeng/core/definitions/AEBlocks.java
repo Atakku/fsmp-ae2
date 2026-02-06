@@ -77,8 +77,6 @@ import appeng.block.networking.EnergyAcceptorBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.EnergyCellBlockItem;
 import appeng.block.networking.WirelessAccessPointBlock;
-import appeng.block.qnb.QuantumLinkChamberBlock;
-import appeng.block.qnb.QuantumRingBlock;
 import appeng.block.spatial.MatrixFrameBlock;
 import appeng.block.spatial.SpatialIOPortBlock;
 import appeng.block.spatial.SpatialPylonBlock;
@@ -164,8 +162,6 @@ public final class AEBlocks {
 
     public static final BlockDefinition<TinyTNTBlock> TINY_TNT = block("Tiny TNT", AEBlockIds.TINY_TNT, () -> new TinyTNTBlock(defaultProps(MapColor.FIRE, SoundType.GRAVEL).strength(0).noOcclusion()));
 
-    public static final BlockDefinition<QuantumRingBlock> QUANTUM_RING = block("ME Quantum Ring", AEBlockIds.QUANTUM_RING, QuantumRingBlock::new);
-    public static final BlockDefinition<QuantumLinkChamberBlock> QUANTUM_LINK = block("ME Quantum Link Chamber", AEBlockIds.QUANTUM_LINK, QuantumLinkChamberBlock::new);
     public static final BlockDefinition<SpatialPylonBlock> SPATIAL_PYLON = block("Spatial Pylon", AEBlockIds.SPATIAL_PYLON, SpatialPylonBlock::new);
     public static final BlockDefinition<SpatialIOPortBlock> SPATIAL_IO_PORT = block("Spatial IO Port", AEBlockIds.SPATIAL_IO_PORT, SpatialIOPortBlock::new);
     public static final BlockDefinition<ControllerBlock> CONTROLLER = block("ME Controller", AEBlockIds.CONTROLLER, ControllerBlock::new);

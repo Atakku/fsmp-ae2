@@ -37,7 +37,6 @@ import appeng.api.upgrades.Upgrades;
 import appeng.blockentity.crafting.IMolecularAssemblerSupportedPattern;
 import appeng.blockentity.misc.InscriberRecipes;
 import appeng.blockentity.misc.VibrationChamberBlockEntity;
-import appeng.blockentity.qnb.QuantumBridgeBlockEntity;
 import appeng.client.gui.Icon;
 import appeng.core.definitions.AEItems;
 import appeng.crafting.pattern.EncodedPatternItem;
@@ -138,8 +137,6 @@ public class RestrictedInputSlot extends AppEngSlot {
                 return VibrationChamberBlockEntity.hasBurnTime(stack);
             case POWERED_TOOL:
                 return Platform.isChargeable(stack);
-            case QE_SINGULARITY:
-                return QuantumBridgeBlockEntity.isValidEntangledSingularity(stack);
 
             case SPATIAL_STORAGE_CELLS:
                 return stack.getItem() instanceof ISpatialStorageCell
@@ -231,7 +228,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         BLANK_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         POWERED_TOOL(Icon.BACKGROUND_CHARGABLE),
-        QE_SINGULARITY(Icon.BACKGROUND_SINGULARITY),
         SPATIAL_STORAGE_CELLS(Icon.BACKGROUND_SPATIAL_CELL),
         SPATIAL_STORAGE_CELLS_NO_SHADOW(Icon.BACKGROUND_SPATIAL_CELL_NO_SHADOW),
         FUEL(Icon.BACKGROUND_FUEL),

@@ -162,12 +162,6 @@ public final class AEComponents {
                     .networkSynchronized(ItemContainerContents.STREAM_CODEC));
 
     /**
-     * The unique ID of a pair of {@link appeng.core.definitions.AEItems#QUANTUM_ENTANGLED_SINGULARITY}.
-     */
-    public static final DataComponentType<Long> ENTANGLED_SINGULARITY_ID = register("entangled_singularity_id",
-            builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
-
-    /**
      * Currently stored energy in AE in this item. Usually the capacity will be set by the item, but some items allow it
      * to be overridden by {@link AEComponents#ENERGY_CAPACITY}.
      */

@@ -95,7 +95,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         registry.addCategory(EmiCondenserRecipe.CATEGORY);
         registry.addWorkstation(EmiCondenserRecipe.CATEGORY, EmiStack.of(AEBlocks.CONDENSER));
         registry.addRecipe(new EmiCondenserRecipe(CondenserOutput.MATTER_BALLS));
-        registry.addRecipe(new EmiCondenserRecipe(CondenserOutput.SINGULARITY));
 
         // In-World Transformation
         registry.addCategory(EmiTransformRecipe.CATEGORY);

@@ -32,8 +32,6 @@
     "ae2:wireless_access_point",
     "ae2:charger",
     "ae2:tiny_tnt",
-    "ae2:quantum_ring",
-    "ae2:quantum_link",
     "ae2:spatial_pylon",
     "ae2:spatial_io_port",
     "ae2:controller",

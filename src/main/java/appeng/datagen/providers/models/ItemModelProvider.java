@@ -102,12 +102,10 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         portableCell(AEItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
         portableCell(AEItems.PORTABLE_FLUID_CELL256K, "fluid", "256k");
         flatSingleLayer(AEItems.PROCESSING_PATTERN, "item/processing_pattern");
-        flatSingleLayer(AEItems.QUANTUM_ENTANGLED_SINGULARITY, "item/quantum_entangled_singularity");
         flatSingleLayer(AEItems.REDSTONE_CARD, "item/card_redstone");
         flatSingleLayer(AEItems.SILICON, "item/silicon");
         flatSingleLayer(AEItems.SILICON_PRESS, "item/silicon_press");
         flatSingleLayer(AEItems.SILICON_PRINT, "item/printed_silicon");
-        flatSingleLayer(AEItems.SINGULARITY, "item/singularity");
         flatSingleLayer(AEItems.SKY_DUST, "item/sky_dust");
         flatSingleLayer(AEItems.SPATIAL_2_CELL_COMPONENT, "item/spatial_cell_component_2");
         flatSingleLayer(AEItems.SPATIAL_16_CELL_COMPONENT, "item/spatial_cell_component_16");

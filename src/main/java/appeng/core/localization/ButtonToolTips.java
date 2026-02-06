@@ -139,7 +139,6 @@ public enum ButtonToolTips implements LocalizationEnum {
     SchedulingModeRoundRobin("Export using round robin mode."),
     SearchSettingsTooltip("Show Search Settings"),
     Serial("Serial: %d"),
-    Singularity("Condense Into Singularities\n%s per item"),
     ShowAllProviders("Show all Pattern Providers"),
     ShowNonFullProviders("Show visible Pattern Providers with empty slots"),
     ShowVisibleProviders("Show visible Pattern Providers"),

@@ -377,21 +377,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .save(consumer, "ae2:main/portable_cell");
 
-        var qnb = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.QUANTUM_LINK,
-                        localization.component("achievement.ae2.QNB", "Quantum Tunneling"),
-                        localization.component("achievement.ae2.QNB.desc", "Craft a Quantum Link"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(p2p)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.QUANTUM_LINK))
-                .save(consumer, "ae2:main/qnb");
-
         var spatialIoport = Advancement.Builder.advancement()
                 .display(
                         AEBlocks.SPATIAL_IO_PORT,

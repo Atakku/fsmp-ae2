@@ -60,8 +60,6 @@ class EmiCondenserRecipe extends BasicEmiRecipe {
 
         if (type == CondenserOutput.MATTER_BALLS) {
             widgets.addTexture(statesLocation, 80, 28, 14, 14, 16, 112);
-        } else if (type == CondenserOutput.SINGULARITY) {
-            widgets.addTexture(statesLocation, 80, 28, 14, 14, 32, 112);
         }
         widgets.addTooltipText(getTooltip(type), 80, 28, 16, 16);
 
@@ -73,7 +71,6 @@ class EmiCondenserRecipe extends BasicEmiRecipe {
     private static ItemStack getOutput(CondenserOutput recipe) {
         return switch (recipe) {
             case MATTER_BALLS -> AEItems.MATTER_BALL.stack();
-            case SINGULARITY -> AEItems.SINGULARITY.stack();
             default -> ItemStack.EMPTY;
         };
     }
@@ -106,9 +103,6 @@ class EmiCondenserRecipe extends BasicEmiRecipe {
         switch (type) {
             case MATTER_BALLS:
                 key = ButtonToolTips.MatterBalls.getTranslationKey();
-                break;
-            case SINGULARITY:
-                key = ButtonToolTips.Singularity.getTranslationKey();
                 break;
             default:
                 return Collections.emptyList();

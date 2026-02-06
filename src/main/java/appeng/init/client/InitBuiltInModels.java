@@ -26,7 +26,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.block.crafting.CraftingUnitType;
-import appeng.block.qnb.QnbFormedModel;
 import appeng.client.render.FacadeItemModel;
 import appeng.client.render.cablebus.CableBusModel;
 import appeng.client.render.cablebus.P2PTunnelFrequencyModel;
@@ -55,7 +54,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("block/drive", DriveModel::new);
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
         addBuiltInModel("block/spatial_pylon", SpatialPylonModel::new);
-        addBuiltInModel("block/qnb/qnb_formed", QnbFormedModel::new);
         addBuiltInModel("part/p2p/p2p_tunnel_frequency", P2PTunnelFrequencyModel::new);
         addBuiltInModel("item/facade", FacadeItemModel::new);
 

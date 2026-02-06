@@ -123,7 +123,6 @@ public enum GuiText implements LocalizationEnum {
     IntrinsicEnchant("Always has at least %s"),
     InvalidNumber("Please enter a number or a mathematical expression e.g. : 3*4"),
     InvalidPattern("Invalid Pattern"),
-    InvalidSingularity("Invalid Singularity"),
     Items("Items"),
     LevelEmitter("ME Level Emitter"),
     LightBlue("Light Blue"),
@@ -182,7 +181,6 @@ public enum GuiText implements LocalizationEnum {
     Purple("Purple"),
     PutAQuartzTool("Put a Quartz weapon or tool here"),
     PutAFluixBlock("Put a Fluix Block here"),
-    QuantumLinkChamber("Quantum Link Chamber"),
     QuartzCuttingKnife("Quartz Cutting Knife"),
     QuartzTools("Quartz Tools"),
     Red("Red"),
@@ -261,9 +259,7 @@ public enum GuiText implements LocalizationEnum {
     Yellow("Yellow"),
     Yes("Yes"),
     inWorldCraftingPresses(
-            "Crafting Presses are obtained by breaking a Mysterious Cube. Mysterious Cubes are in the center of meteorites which can be found in around the world. They can be located by using a meteorite compass."),
-    inWorldSingularity(
-            "To create drop 1 Singularity and 1 Ender Dust and cause an explosion within range of the items.");
+            "Crafting Presses are obtained by breaking a Mysterious Cube. Mysterious Cubes are in the center of meteorites which can be found in around the world. They can be located by using a meteorite compass.");
 
     private final String root;
 

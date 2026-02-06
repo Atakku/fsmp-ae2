@@ -25,12 +25,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.datagen.providers.tags.ConventionTags;
 import appeng.recipes.transform.TransformCircumstance;
 import appeng.recipes.transform.TransformRecipeBuilder;
 
@@ -65,14 +63,6 @@ public class TransformRecipes extends AE2RecipeProvider {
         TransformRecipeBuilder.transform(consumer, AppEng.makeId("transform/flawed_budding_quartz"),
                 AEBlocks.FLAWED_BUDDING_QUARTZ, 1, water, AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,
                 AEBlocks.CHIPPED_BUDDING_QUARTZ);
-
-        // Entangled Singularities
-        TransformRecipeBuilder.transform(consumer, AppEng.makeId("transform/entangled_singularity"),
-                AEItems.QUANTUM_ENTANGLED_SINGULARITY, 2, TransformCircumstance.EXPLOSION,
-                Ingredient.of(AEItems.SINGULARITY), Ingredient.of(ConventionTags.ENDER_PEARL_DUST));
-        TransformRecipeBuilder.transform(consumer, AppEng.makeId("transform/entangled_singularity_from_pearl"),
-                AEItems.QUANTUM_ENTANGLED_SINGULARITY, 2, TransformCircumstance.EXPLOSION,
-                Ingredient.of(AEItems.SINGULARITY), Ingredient.of(ConventionTags.ENDER_PEARL));
     }
 
     @Override

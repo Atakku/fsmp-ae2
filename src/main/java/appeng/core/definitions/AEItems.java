@@ -242,8 +242,6 @@ public final class AEItems {
     public static final ItemDefinition<MaterialItem> ANNIHILATION_CORE = item("Annihilation Core", AEItemIds.ANNIHILATION_CORE, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> SKY_DUST = item("Sky Stone Dust", AEItemIds.SKY_DUST, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> ENDER_DUST = item("Ender Dust", AEItemIds.ENDER_DUST, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> SINGULARITY = item("Singularity", AEItemIds.SINGULARITY, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> QUANTUM_ENTANGLED_SINGULARITY = item("Quantum Entangled Singularity", AEItemIds.QUANTUM_ENTANGLED_SINGULARITY, MaterialItem::new);
 
     ///
     /// CELLS

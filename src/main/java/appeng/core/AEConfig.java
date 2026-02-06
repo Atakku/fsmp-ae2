@@ -531,7 +531,6 @@ public final class AEConfig {
 
         // Condenser Power Requirement
         public final IntValue condenserMatterBallsPower;
-        public final IntValue condenserSingularityPower;
 
         public final Map<TickRates, IntValue> tickRateMin = new HashMap<>();
         public final Map<TickRates, IntValue> tickRateMax = new HashMap<>();
@@ -604,7 +603,6 @@ public final class AEConfig {
 
             builder.push("condenser");
             condenserMatterBallsPower = define(builder, "matterBalls", 256);
-            condenserSingularityPower = define(builder, "singularity", 256000);
             builder.pop();
 
             builder.comment(
@@ -634,7 +632,6 @@ public final class AEConfig {
             PowerMultiplier.CONFIG.multiplier = powerUsageMultiplier.get();
 
             CondenserOutput.MATTER_BALLS.requiredPower = condenserMatterBallsPower.get();
-            CondenserOutput.SINGULARITY.requiredPower = condenserSingularityPower.get();
 
             for (TickRates tr : TickRates.values()) {
                 tr.setMin(tickRateMin.get(tr).get());

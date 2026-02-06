@@ -88,8 +88,6 @@ class CondenserCategory implements DisplayCategory<CondenserOutputDisplay> {
 
         if (recipeDisplay.getType() == CondenserOutput.MATTER_BALLS) {
             widgets.add(Widgets.createTexturedWidget(statesLocation, origin.x + 80, origin.y + 28, 16, 112, 14, 14));
-        } else if (recipeDisplay.getType() == CondenserOutput.SINGULARITY) {
-            widgets.add(Widgets.createTexturedWidget(statesLocation, origin.x + 80, origin.y + 28, 32, 112, 14, 14));
         }
         widgets.add(Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, delta) -> {
             Rectangle rect = new Rectangle(origin.x + 80, origin.y + 28, 16, 16);
@@ -128,9 +126,6 @@ class CondenserCategory implements DisplayCategory<CondenserOutputDisplay> {
         switch (type) {
             case MATTER_BALLS:
                 key = "gui.tooltips.ae2.MatterBalls";
-                break;
-            case SINGULARITY:
-                key = "gui.tooltips.ae2.Singularity";
                 break;
             default:
                 return Collections.emptyList();

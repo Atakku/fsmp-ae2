@@ -18,9 +18,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-import appeng.blockentity.qnb.QuantumBridgeBlockEntity;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEItems;
 import appeng.recipes.AERecipeTypes;
 
 public final class TransformRecipe implements Recipe<TransformRecipeInput> {
@@ -82,11 +80,7 @@ public final class TransformRecipe implements Recipe<TransformRecipeInput> {
 
     @Override
     public ItemStack assemble(TransformRecipeInput container, HolderLookup.Provider registries) {
-        ItemStack result = getResultItem(registries).copy();
-        if (AEItems.QUANTUM_ENTANGLED_SINGULARITY.is(result) && result.getCount() > 1) {
-            QuantumBridgeBlockEntity.assignFrequency(result);
-        }
-        return result;
+        return getResultItem(registries).copy();
     }
 
     @Override
