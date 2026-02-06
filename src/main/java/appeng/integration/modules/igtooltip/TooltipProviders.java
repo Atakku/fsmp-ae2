@@ -13,24 +13,17 @@ import appeng.api.integrations.igtooltip.PartTooltips;
 import appeng.api.integrations.igtooltip.TooltipProvider;
 import appeng.api.parts.IPart;
 import appeng.block.AEBaseEntityBlock;
-import appeng.block.crafting.CraftingMonitorBlock;
-import appeng.block.crafting.PatternProviderBlock;
 import appeng.block.misc.ChargerBlock;
 import appeng.block.networking.CableBusBlock;
 import appeng.block.networking.CrystalResonanceGeneratorBlock;
 import appeng.blockentity.AEBaseBlockEntity;
-import appeng.blockentity.crafting.CraftingMonitorBlockEntity;
-import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.CrystalResonanceGeneratorBlockEntity;
 import appeng.core.AppEng;
-import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.integration.modules.igtooltip.blocks.ChargerDataProvider;
-import appeng.integration.modules.igtooltip.blocks.CraftingMonitorDataProvider;
 import appeng.integration.modules.igtooltip.blocks.CrystalResonanceGeneratorProvider;
 import appeng.integration.modules.igtooltip.blocks.GridNodeStateDataProvider;
-import appeng.integration.modules.igtooltip.blocks.PatternProviderDataProvider;
 import appeng.integration.modules.igtooltip.blocks.PowerStorageDataProvider;
 import appeng.integration.modules.igtooltip.parts.AnnihilationPlaneDataProvider;
 import appeng.integration.modules.igtooltip.parts.ChannelDataProvider;
@@ -62,8 +55,6 @@ public final class TooltipProviders implements TooltipProvider {
         PartTooltips.addServerData(IPart.class, new GridNodeStateProvider());
         PartTooltips.addBody(P2PTunnelPart.class, new P2PStateDataProvider());
         PartTooltips.addServerData(P2PTunnelPart.class, new P2PStateDataProvider());
-        PartTooltips.addBody(PatternProviderLogicHost.class, new PatternProviderDataProvider());
-        PartTooltips.addServerData(PatternProviderLogicHost.class, new PatternProviderDataProvider());
         PartTooltips.addBody(AEBasePart.class, DebugProvider::providePartBody, DEBUG_PRIORITY);
         PartTooltips.addServerData(AEBasePart.class, DebugProvider::providePartData, DEBUG_PRIORITY);
     }
@@ -149,14 +140,6 @@ public final class TooltipProviders implements TooltipProvider {
     }
 
     @Override
-    public void registerCommon(CommonRegistration registration) {
-        registration.addBlockEntityData(
-                AppEng.makeId("pattern_provider"),
-                PatternProviderBlockEntity.class,
-                new PatternProviderDataProvider());
-    }
-
-    @Override
     public void registerClient(ClientRegistration registration) {
         registration.addBlockEntityBody(
                 CrystalResonanceGeneratorBlockEntity.class,
@@ -168,16 +151,6 @@ public final class TooltipProviders implements TooltipProvider {
                 ChargerBlock.class,
                 TooltipIds.CHARGER,
                 new ChargerDataProvider());
-        registration.addBlockEntityBody(
-                CraftingMonitorBlockEntity.class,
-                CraftingMonitorBlock.class,
-                TooltipIds.CRAFTING_MONITOR,
-                new CraftingMonitorDataProvider());
-        registration.addBlockEntityBody(
-                PatternProviderBlockEntity.class,
-                PatternProviderBlock.class,
-                TooltipIds.PATTERN_PROVIDER,
-                new PatternProviderDataProvider());
     }
 
     @Override

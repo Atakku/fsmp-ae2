@@ -350,8 +350,6 @@ public abstract class AEBasePart
         // Blocks and parts share the same soul!
         if (AEParts.INTERFACE.asItem() == partItem) {
             partItem = AEBlocks.INTERFACE.asItem();
-        } else if (AEParts.PATTERN_PROVIDER.asItem() == partItem) {
-            partItem = AEBlocks.PATTERN_PROVIDER.asItem();
         }
 
         var name = partItem.getDescription();

@@ -13,11 +13,9 @@ import net.minecraft.world.level.ItemLike;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
 import appeng.core.definitions.BlockDefinition;
 import appeng.core.definitions.ItemDefinition;
 import appeng.recipes.game.AddItemUpgradeRecipe;
-import appeng.recipes.game.CraftingUnitTransformRecipe;
 import appeng.recipes.game.RemoveItemUpgradeRecipe;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
@@ -40,16 +38,6 @@ public class UpgradeRecipes extends AE2RecipeProvider {
     @Override
     public void buildRecipes(RecipeOutput consumer) {
         itemUpgradeRecipe(consumer);
-
-        // Crafting Unit Transformation
-        craftingUnitTransform(consumer, List.of(
-                new UnitTransformTier(AEBlocks.CRAFTING_STORAGE_1K, AEItems.CELL_COMPONENT_1K),
-                new UnitTransformTier(AEBlocks.CRAFTING_STORAGE_4K, AEItems.CELL_COMPONENT_4K),
-                new UnitTransformTier(AEBlocks.CRAFTING_STORAGE_16K, AEItems.CELL_COMPONENT_16K),
-                new UnitTransformTier(AEBlocks.CRAFTING_STORAGE_64K, AEItems.CELL_COMPONENT_64K),
-                new UnitTransformTier(AEBlocks.CRAFTING_STORAGE_256K, AEItems.CELL_COMPONENT_256K),
-                new UnitTransformTier(AEBlocks.CRAFTING_ACCELERATOR, AEItems.ENGINEERING_PROCESSOR),
-                new UnitTransformTier(AEBlocks.CRAFTING_MONITOR, AEParts.STORAGE_MONITOR)));
 
         storageCellUpgradeRecipes(consumer);
     }
@@ -139,17 +127,6 @@ public class UpgradeRecipes extends AE2RecipeProvider {
                         tier.cell.asItem(),
                         results),
                 null);
-    }
-
-    private void craftingUnitTransform(RecipeOutput consumer, List<UnitTransformTier> tiers) {
-        for (UnitTransformTier tier : tiers) {
-            consumer.accept(
-                    tier.baseBlock.id().withPrefix("crafting_unit_upgrade/"),
-                    new CraftingUnitTransformRecipe(
-                            tier.baseBlock.block(),
-                            tier.upgradeItem.asItem()),
-                    null);
-        }
     }
 
     @Override

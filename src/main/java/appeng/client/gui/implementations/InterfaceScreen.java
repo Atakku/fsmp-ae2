@@ -27,13 +27,10 @@ import net.minecraft.world.entity.player.Inventory;
 
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.Settings;
-import appeng.client.gui.Icon;
 import appeng.client.gui.style.ScreenStyle;
-import appeng.client.gui.widgets.IconButton;
 import appeng.client.gui.widgets.ServerSettingToggleButton;
 import appeng.client.gui.widgets.SettingToggleButton;
 import appeng.core.definitions.AEItems;
-import appeng.core.localization.ButtonToolTips;
 import appeng.menu.SlotSemantics;
 import appeng.menu.implementations.InterfaceMenu;
 
@@ -50,19 +47,6 @@ public class InterfaceScreen<C extends InterfaceMenu> extends UpgradeableScreen<
         addToLeftToolbar(this.fuzzyMode);
 
         widgets.addOpenPriorityButton();
-
-        var configSlots = menu.getSlots(SlotSemantics.CONFIG);
-        for (int i = 0; i < configSlots.size(); i++) {
-            var button = new SetAmountButton(btn -> {
-                var idx = amountButtons.indexOf(btn);
-                var configSlot = configSlots.get(idx);
-                menu.openSetAmountMenu(configSlot.slot);
-            });
-            button.setDisableBackground(true);
-            button.setMessage(ButtonToolTips.InterfaceSetStockAmount.text());
-            widgets.add("amtButton" + (1 + i), button);
-            amountButtons.add(button);
-        }
     }
 
     @Override
@@ -77,17 +61,6 @@ public class InterfaceScreen<C extends InterfaceMenu> extends UpgradeableScreen<
             var button = amountButtons.get(i);
             var item = configSlots.get(i).getItem();
             button.visible = !item.isEmpty();
-        }
-    }
-
-    static class SetAmountButton extends IconButton {
-        public SetAmountButton(OnPress onPress) {
-            super(onPress);
-        }
-
-        @Override
-        protected Icon getIcon() {
-            return isHoveredOrFocused() ? Icon.COG : Icon.COG_DISABLED;
         }
     }
 }

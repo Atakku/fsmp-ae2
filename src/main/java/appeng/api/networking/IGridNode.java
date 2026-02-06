@@ -35,7 +35,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import appeng.api.networking.crafting.ICraftingService;
 import appeng.api.networking.pathing.IPathingService;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.util.AEColor;
@@ -50,8 +49,7 @@ import appeng.api.util.AEColor;
 public interface IGridNode {
 
     /**
-     * Tries to get a service that was attached to this grid node when it was created. Used by overlay grids such as the
-     * {@link ICraftingService}.
+     * Tries to get a service that was attached to this grid node when it was created.
      */
     @Nullable
     <T extends IGridNodeService> T getService(Class<T> serviceClass);

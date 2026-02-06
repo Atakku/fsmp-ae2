@@ -38,7 +38,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import appeng.api.crafting.PatternDetailsHelper;
 import appeng.api.ids.AECreativeTabIds;
 import appeng.api.ids.AEItemIds;
 import appeng.api.stacks.AEKeyType;
@@ -47,8 +46,6 @@ import appeng.api.util.AEColor;
 import appeng.core.AEConfig;
 import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
-import appeng.crafting.pattern.AECraftingPattern;
-import appeng.crafting.pattern.AEProcessingPattern;
 import appeng.debug.DebugCardItem;
 import appeng.debug.EraserItem;
 import appeng.debug.MeteoritePlacerItem;
@@ -174,9 +171,6 @@ public final class AEItems {
     public static final ItemDefinition<MemoryCardItem> MEMORY_CARD = item("Memory Card", AEItemIds.MEMORY_CARD, p -> new MemoryCardItem(p.stacksTo(1)));
 
     public static final ItemDefinition<FacadeItem> FACADE = item("Cable Facade", AEItemIds.FACADE, FacadeItem::new);
-    public static final ItemDefinition<MaterialItem> BLANK_PATTERN = item("Blank Pattern", AEItemIds.BLANK_PATTERN, MaterialItem::new);
-    public static final ItemDefinition<Item> CRAFTING_PATTERN = item("Crafting Pattern", AEItemIds.CRAFTING_PATTERN, p -> PatternDetailsHelper.encodedPatternItemBuilder(AECraftingPattern::new).invalidPatternTooltip(AECraftingPattern::getInvalidPatternTooltip).build());
-    public static final ItemDefinition<Item> PROCESSING_PATTERN = item("Processing Pattern", AEItemIds.PROCESSING_PATTERN, p -> PatternDetailsHelper.encodedPatternItemBuilder(AEProcessingPattern::new).invalidPatternTooltip(AEProcessingPattern::getInvalidPatternTooltip).build());
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", AEItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 
@@ -217,7 +211,6 @@ public final class AEItems {
     public static final ItemDefinition<Item> FUZZY_CARD = item("Fuzzy Card", AEItemIds.FUZZY_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> SPEED_CARD = item("Acceleration Card", AEItemIds.SPEED_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> INVERTER_CARD = item("Inverter Card", AEItemIds.INVERTER_CARD, Upgrades::createUpgradeCardItem);
-    public static final ItemDefinition<Item> CRAFTING_CARD = item("Crafting Card", AEItemIds.CRAFTING_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> EQUAL_DISTRIBUTION_CARD = item("Equal Distribution Card", AEItemIds.EQUAL_DISTRIBUTION_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<EnergyCardItem> ENERGY_CARD = item("Energy Card", AEItemIds.ENERGY_CARD, p -> new EnergyCardItem(p, 1));
     public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_1K = item("1k ME Storage Component", AEItemIds.CELL_COMPONENT_1K, p -> new StorageComponentItem(p, 1));

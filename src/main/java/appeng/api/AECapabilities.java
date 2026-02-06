@@ -24,7 +24,6 @@ import net.minecraft.core.Direction;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 
 import appeng.api.behaviors.GenericInternalInventory;
-import appeng.api.implementations.blockentities.ICraftingMachine;
 import appeng.api.implementations.blockentities.ICrankable;
 import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.storage.MEStorage;
@@ -39,9 +38,6 @@ public final class AECapabilities {
 
     public static BlockCapability<MEStorage, @Nullable Direction> ME_STORAGE = BlockCapability
             .createSided(AppEng.makeId("me_storage"), MEStorage.class);
-
-    public static BlockCapability<ICraftingMachine, @Nullable Direction> CRAFTING_MACHINE = BlockCapability
-            .createSided(AppEng.makeId("crafting_machine"), ICraftingMachine.class);
 
     public static BlockCapability<GenericInternalInventory, @Nullable Direction> GENERIC_INTERNAL_INV = BlockCapability
             .createSided(AppEng.makeId("generic_internal_inv"), GenericInternalInventory.class);

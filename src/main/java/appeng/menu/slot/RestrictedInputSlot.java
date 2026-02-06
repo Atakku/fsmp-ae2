@@ -24,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-import appeng.api.crafting.PatternDetailsHelper;
 import appeng.api.features.GridLinkables;
 import appeng.api.features.IGridLinkableHandler;
 import appeng.api.ids.AETags;
@@ -33,12 +32,10 @@ import appeng.api.inventories.InternalInventory;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.upgrades.Upgrades;
-import appeng.blockentity.crafting.IMolecularAssemblerSupportedPattern;
 import appeng.blockentity.misc.InscriberRecipes;
 import appeng.blockentity.misc.VibrationChamberBlockEntity;
 import appeng.client.gui.Icon;
 import appeng.core.definitions.AEItems;
-import appeng.crafting.pattern.EncodedPatternItem;
 import appeng.util.Platform;
 
 /**
@@ -100,17 +97,6 @@ public class RestrictedInputSlot extends AppEngSlot {
 
         // TODO: might need to check for our own patterns in some cases
         switch (this.which) {
-            case MOLECULAR_ASSEMBLER_PATTERN:
-                return PatternDetailsHelper.decodePattern(stack,
-                        getLevel()) instanceof IMolecularAssemblerSupportedPattern;
-            case ENCODED_PATTERN, PROVIDER_PATTERN:
-                return PatternDetailsHelper.isEncodedPattern(stack);
-            case ENCODED_AE_PATTERN:
-                return AEItems.CRAFTING_PATTERN.is(stack)
-                        || AEItems.PROCESSING_PATTERN.is(stack);
-            case BLANK_PATTERN:
-                return AEItems.BLANK_PATTERN.is(stack);
-
             case INSCRIBER_PLATE:
                 if (AEItems.NAME_PRESS.is(stack)) {
                     return true;
@@ -168,22 +154,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         return this.isAllowEdit();
     }
 
-    @Override
-    public ItemStack getDisplayStack() {
-        // If the slot only takes encoded patterns, show the encoded item instead
-        if (isRemote() && (this.which == PlacableItemType.ENCODED_PATTERN
-                || this.which == PlacableItemType.PROVIDER_PATTERN)) {
-            final ItemStack is = super.getDisplayStack();
-            if (!is.isEmpty() && is.getItem() instanceof EncodedPatternItem iep) {
-                final ItemStack out = iep.getOutput(is);
-                if (!out.isEmpty()) {
-                    return out;
-                }
-            }
-        }
-        return super.getDisplayStack();
-    }
-
     public static boolean isMetalIngot(ItemStack i) {
         return i.getItem().builtInRegistryHolder().is(AETags.METAL_INGOTS);
     }
@@ -205,22 +175,6 @@ public class RestrictedInputSlot extends AppEngSlot {
          */
         GRID_LINKABLE_ITEM(Icon.BACKGROUND_WIRELESS_TERM),
         TRASH(Icon.BACKGROUND_TRASH),
-        /**
-         * Accepts {@link AEItems#CRAFTING_PATTERN}, {@link AEItems#PROCESSING_PATTERN},
-         * {@link AEItems#SMITHING_TABLE_PATTERN} or {@link AEItems#STONECUTTING_PATTERN}.
-         */
-        ENCODED_AE_PATTERN(Icon.BACKGROUND_ENCODED_PATTERN),
-        /**
-         * Only accepts {@link AEItems#CRAFTING_PATTERN} and {@link AEItems#STONECUTTING_PATTERN}.
-         */
-        MOLECULAR_ASSEMBLER_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
-        /**
-         * An encoded pattern from any mod (AE2 or otherwise). Delegates to AE2 API to identify such items.
-         */
-        PROVIDER_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
-        ENCODED_PATTERN(Icon.BACKGROUND_ENCODED_PATTERN),
-        PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
-        BLANK_PATTERN(Icon.BACKGROUND_BLANK_PATTERN),
         POWERED_TOOL(Icon.BACKGROUND_CHARGABLE),
         FUEL(Icon.BACKGROUND_FUEL),
         UPGRADES(Icon.BACKGROUND_UPGRADE),

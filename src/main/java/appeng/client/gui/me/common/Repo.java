@@ -44,7 +44,6 @@ import it.unimi.dsi.fastutil.longs.LongSet;
 
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import appeng.client.gui.me.search.RepoSearch;
@@ -207,7 +206,6 @@ public class Repo implements IClientRepo {
     }
 
     private void addEntriesToView(Collection<GridInventoryEntry> entries) {
-        var viewMode = this.sortSrc.getSortDisplay();
         var typeFilter = this.sortSrc.getSortKeyTypes();
 
         var hasPinnedRow = !PinnedKeys.isEmpty();
@@ -223,11 +221,7 @@ public class Repo implements IClientRepo {
                 continue;
             }
 
-            if (viewMode == ViewItems.CRAFTABLE && !entry.isCraftable()) {
-                continue;
-            }
-
-            if (viewMode == ViewItems.STORED && entry.getStoredAmount() == 0) {
+            if (entry.getStoredAmount() == 0) {
                 continue;
             }
 

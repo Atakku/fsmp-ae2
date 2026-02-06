@@ -46,7 +46,6 @@ import appeng.api.config.Actionable;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.features.IGridLinkableHandler;
 import appeng.api.ids.AEComponents;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
@@ -237,7 +236,6 @@ public class WirelessTerminalItem extends PoweredContainerItem implements IMenuI
     public IConfigManager getConfigManager(Supplier<ItemStack> target) {
         return IConfigManager.builder(target)
                 .registerSetting(Settings.SORT_BY, SortOrder.NAME)
-                .registerSetting(Settings.VIEW_MODE, ViewItems.ALL)
                 .registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING)
                 .build();
     }

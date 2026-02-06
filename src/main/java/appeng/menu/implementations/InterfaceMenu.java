@@ -18,7 +18,6 @@
 
 package appeng.menu.implementations;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 
@@ -34,17 +33,12 @@ import appeng.menu.slot.FakeSlot;
  * @see InterfaceScreen
  */
 public class InterfaceMenu extends UpgradeableMenu<InterfaceLogicHost> {
-
-    public static final String ACTION_OPEN_SET_AMOUNT = "setAmount";
-
     public static final MenuType<InterfaceMenu> TYPE = MenuTypeBuilder
             .create(InterfaceMenu::new, InterfaceLogicHost.class)
             .build("interface");
 
     public InterfaceMenu(MenuType<? extends InterfaceMenu> menuType, int id, Inventory ip, InterfaceLogicHost host) {
         super(menuType, id, ip, host);
-
-        registerClientAction(ACTION_OPEN_SET_AMOUNT, Integer.class, this::openSetAmountMenu);
 
         var logic = host.getInterfaceLogic();
 
@@ -62,22 +56,5 @@ public class InterfaceMenu extends UpgradeableMenu<InterfaceLogicHost> {
     @Override
     protected void loadSettingsFromHost(IConfigManager cm) {
         this.setFuzzyMode(cm.getSetting(Settings.FUZZY_MODE));
-    }
-
-    /**
-     * Opens a sub-menu to enter the amount for a config-slot
-     *
-     * @param configSlot The config slot to enter the amount for.
-     */
-    public void openSetAmountMenu(int configSlot) {
-        if (isClientSide()) {
-            sendClientAction(ACTION_OPEN_SET_AMOUNT, configSlot);
-        } else {
-            var stack = getHost().getConfig().getStack(configSlot);
-            if (stack != null) {
-                SetStockAmountMenu.open((ServerPlayer) getPlayer(), getLocator(), configSlot,
-                        stack.what(), (int) stack.amount());
-            }
-        }
     }
 }

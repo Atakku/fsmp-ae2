@@ -25,7 +25,6 @@ import appeng.api.config.FuzzyMode;
 import appeng.api.config.RedstoneMode;
 import appeng.api.config.SchedulingMode;
 import appeng.api.config.Settings;
-import appeng.api.config.YesNo;
 import appeng.api.util.KeyTypeSelectionHost;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.KeyTypeSelectionButton;
@@ -39,7 +38,6 @@ public class IOBusScreen extends UpgradeableScreen<IOBusMenu> {
 
     private final SettingToggleButton<RedstoneMode> redstoneMode;
     private final SettingToggleButton<FuzzyMode> fuzzyMode;
-    private final SettingToggleButton<YesNo> craftMode;
     private final SettingToggleButton<SchedulingMode> schedulingMode;
 
     public IOBusScreen(IOBusMenu menu, Inventory playerInventory, Component title,
@@ -57,13 +55,6 @@ public class IOBusScreen extends UpgradeableScreen<IOBusMenu> {
                 FuzzyMode.IGNORE_ALL);
         addToLeftToolbar(this.fuzzyMode);
 
-        if (menu.getHost().getConfigManager().hasSetting(Settings.CRAFT_ONLY)) {
-            this.craftMode = new ServerSettingToggleButton<>(Settings.CRAFT_ONLY, YesNo.NO);
-            addToLeftToolbar(this.craftMode);
-        } else {
-            this.craftMode = null;
-        }
-
         if (menu.getHost().getConfigManager().hasSetting(Settings.SCHEDULING_MODE)) {
             this.schedulingMode = new ServerSettingToggleButton<>(Settings.SCHEDULING_MODE, SchedulingMode.DEFAULT);
             addToLeftToolbar(this.schedulingMode);
@@ -80,10 +71,6 @@ public class IOBusScreen extends UpgradeableScreen<IOBusMenu> {
         this.redstoneMode.setVisibility(menu.hasUpgrade(AEItems.REDSTONE_CARD));
         this.fuzzyMode.set(menu.getFuzzyMode());
         this.fuzzyMode.setVisibility(menu.hasUpgrade(AEItems.FUZZY_CARD));
-        if (this.craftMode != null) {
-            this.craftMode.set(menu.getCraftingMode());
-            this.craftMode.setVisibility(menu.hasUpgrade(AEItems.CRAFTING_CARD));
-        }
         if (this.schedulingMode != null) {
             this.schedulingMode.set(menu.getSchedulingMode());
         }

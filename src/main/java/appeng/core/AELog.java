@@ -41,7 +41,6 @@ public final class AELog {
 
     private static final String DEFAULT_EXCEPTION_MESSAGE = "Exception: ";
 
-    private static boolean craftingLogEnabled;
     private static boolean debugLogEnabled;
     private static boolean gridLogEnabled;
 
@@ -225,54 +224,6 @@ public final class AELog {
     }
 
     /**
-     * Use to check for an enabled crafting log.
-     * <p>
-     * Can be used to prevent the execution of unneeded logic.
-     *
-     * @return true when the crafting log is enabled.
-     */
-    public static boolean isCraftingLogEnabled() {
-        return craftingLogEnabled;
-    }
-
-    /**
-     * Logging for autocrafting.
-     * <p>
-     * Off by default, can be enabled inside the configuration file.
-     *
-     * @see AELog#log(Level, String, Object...)
-     */
-    public static void crafting(String message, Object... params) {
-        if (AELog.isCraftingLogEnabled()) {
-            log(Level.INFO, message, params);
-        }
-    }
-
-    /**
-     * Use to check for an enabled crafting debug log.
-     * <p>
-     * Can be used to prevent the execution of unneeded logic.
-     *
-     * @return true when the crafting debug log is enabled.
-     */
-    public static boolean isCraftingDebugLogEnabled() {
-        return isCraftingLogEnabled() && isDebugLogEnabled();
-    }
-
-    /**
-     * Debug logging for autocrafting.
-     * <p>
-     * Off by default, can be enabled inside the configuration file.
-     *
-     * @see AELog#log(Level, String, Object...)
-     */
-    public static void craftingDebug(String message, Object... params) {
-        if (AELog.isCraftingDebugLogEnabled()) {
-            log(Level.DEBUG, message, params);
-        }
-    }
-
-    /**
      * Use to check for an enabled grid log.
      * <p>
      * Can be used to prevent the execution of unneeded logic.
@@ -294,10 +245,6 @@ public final class AELog {
         if (AELog.isGridLogEnabled()) {
             log(Level.INFO, "[AE2 Grid Log] " + message, params);
         }
-    }
-
-    public static void setCraftingLogEnabled(boolean newValue) {
-        craftingLogEnabled = newValue;
     }
 
     public static void setDebugLogEnabled(boolean newValue) {

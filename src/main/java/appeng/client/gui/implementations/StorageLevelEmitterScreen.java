@@ -24,18 +24,15 @@ import net.minecraft.world.entity.player.Inventory;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.RedstoneMode;
 import appeng.api.config.Settings;
-import appeng.api.config.YesNo;
 import appeng.client.gui.NumberEntryType;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.NumberEntryWidget;
 import appeng.client.gui.widgets.ServerSettingToggleButton;
 import appeng.client.gui.widgets.SettingToggleButton;
-import appeng.core.definitions.AEItems;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 
 public class StorageLevelEmitterScreen extends UpgradeableScreen<StorageLevelEmitterMenu> {
 
-    private final SettingToggleButton<YesNo> craftingMode;
     private final SettingToggleButton<RedstoneMode> redstoneMode;
     private final SettingToggleButton<FuzzyMode> fuzzyMode;
     private final NumberEntryWidget level;
@@ -46,9 +43,7 @@ public class StorageLevelEmitterScreen extends UpgradeableScreen<StorageLevelEmi
 
         this.redstoneMode = new ServerSettingToggleButton<>(Settings.REDSTONE_EMITTER, RedstoneMode.LOW_SIGNAL);
         this.fuzzyMode = new ServerSettingToggleButton<>(Settings.FUZZY_MODE, FuzzyMode.IGNORE_ALL);
-        this.craftingMode = new ServerSettingToggleButton<>(Settings.CRAFT_VIA_REDSTONE, YesNo.NO);
         this.addToLeftToolbar(this.redstoneMode);
-        this.addToLeftToolbar(this.craftingMode);
         this.addToLeftToolbar(this.fuzzyMode);
 
         this.level = widgets.addNumberEntryWidget("level", NumberEntryType.of(menu.getConfiguredFilter()));
@@ -69,15 +64,12 @@ public class StorageLevelEmitterScreen extends UpgradeableScreen<StorageLevelEmi
         this.fuzzyMode.setVisibility(menu.supportsFuzzySearch());
 
         // configure enabled status...
-        final boolean notCraftingMode = !menu.hasUpgrade(AEItems.CRAFTING_CARD);
+        final boolean notCraftingMode = true;
         this.level.setActive(notCraftingMode);
 
         this.redstoneMode.active = notCraftingMode;
         this.redstoneMode.set(menu.getRedStoneMode());
         this.redstoneMode.setVisibility(notCraftingMode);
-
-        this.craftingMode.set(this.menu.getCraftingMode());
-        this.craftingMode.setVisibility(!notCraftingMode);
     }
 
     private void saveReportingValue() {

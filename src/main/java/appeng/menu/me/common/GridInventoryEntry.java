@@ -86,7 +86,7 @@ public class GridInventoryEntry {
      * Indicates that {@link #what} can be automatically crafted.
      */
     public boolean isCraftable() {
-        return craftable;
+        return craftable; // AKUTODO
     }
 
     /**

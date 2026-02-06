@@ -57,8 +57,6 @@ public class TerminalStyle {
 
     private boolean sortable = true;
 
-    private boolean supportsAutoCrafting = false;
-
     /**
      * Should the terminal show item tooltips for the network inventory even if the player has an item in their hand?
      * Useful for showing fluid tooltips when the player has a bucket in hand.
@@ -161,14 +159,6 @@ public class TerminalStyle {
         result += lastRow.getSrcHeight();
         result += bottom.getSrcHeight();
         return result;
-    }
-
-    public boolean isSupportsAutoCrafting() {
-        return supportsAutoCrafting;
-    }
-
-    public void setSupportsAutoCrafting(boolean supportsAutoCrafting) {
-        this.supportsAutoCrafting = supportsAutoCrafting;
     }
 
     public boolean isShowTooltipsWithItemInHand() {

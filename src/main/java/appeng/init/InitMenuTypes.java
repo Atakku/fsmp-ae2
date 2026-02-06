@@ -35,22 +35,14 @@ import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.InscriberMenu;
 import appeng.menu.implementations.InterfaceMenu;
 import appeng.menu.implementations.MEChestMenu;
-import appeng.menu.implementations.MolecularAssemblerMenu;
-import appeng.menu.implementations.PatternAccessTermMenu;
-import appeng.menu.implementations.PatternProviderMenu;
 import appeng.menu.implementations.PriorityMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
-import appeng.menu.implementations.SetStockAmountMenu;
 import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageBusMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.VibrationChamberMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.me.common.MEStorageMenu;
-import appeng.menu.me.crafting.CraftAmountMenu;
-import appeng.menu.me.crafting.CraftConfirmMenu;
-import appeng.menu.me.crafting.CraftingCPUMenu;
-import appeng.menu.me.crafting.CraftingStatusMenu;
 import appeng.menu.me.items.BasicCellChestMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
@@ -69,10 +61,6 @@ public final class InitMenuTypes {
                 CellWorkbenchMenu.TYPE,
                 MEChestMenu.TYPE,
                 CondenserMenu.TYPE,
-                CraftAmountMenu.TYPE,
-                CraftConfirmMenu.TYPE,
-                CraftingCPUMenu.TYPE,
-                CraftingStatusMenu.TYPE,
                 CraftingTermMenu.TYPE,
                 DriveMenu.TYPE,
                 EnergyLevelEmitterMenu.TYPE,
@@ -86,15 +74,11 @@ public final class InitMenuTypes {
                 MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
                 MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
                 MEStorageMenu.WIRELESS_TYPE,
-                MolecularAssemblerMenu.TYPE,
                 NetworkStatusMenu.NETWORK_TOOL_TYPE,
                 NetworkStatusMenu.CONTROLLER_TYPE,
                 NetworkToolMenu.TYPE,
-                PatternAccessTermMenu.TYPE,
-                PatternProviderMenu.TYPE,
                 PriorityMenu.TYPE,
                 QuartzKnifeMenu.TYPE,
-                SetStockAmountMenu.TYPE,
                 SkyChestMenu.TYPE,
                 StorageBusMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,

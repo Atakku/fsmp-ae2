@@ -6,7 +6,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.core.AppEng;
-import appeng.recipes.game.CraftingUnitTransformRecipe;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberRecipe;
@@ -24,8 +23,6 @@ public final class AERecipeTypes {
     public static final RecipeType<InscriberRecipe> INSCRIBER = register("inscriber");
     public static final RecipeType<ChargerRecipe> CHARGER = register("charger");
     public static final RecipeType<QuartzCuttingRecipe> QUARTZ_CUTTING = register("quartz_cutting");
-    public static final RecipeType<CraftingUnitTransformRecipe> CRAFTING_UNIT_TRANSFORM = register(
-            "crafting_unit_transform");
     public static final RecipeType<StorageCellDisassemblyRecipe> CELL_DISASSEMBLY = register(
             "storage_cell_disassembly");
 

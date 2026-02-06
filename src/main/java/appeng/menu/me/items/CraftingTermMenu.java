@@ -20,7 +20,6 @@ package appeng.menu.me.items;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -29,7 +28,6 @@ import com.google.common.base.Preconditions;
 
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
@@ -55,7 +53,6 @@ import appeng.me.storage.LinkStatusRespectingInventory;
 import appeng.menu.SlotSemantics;
 import appeng.menu.implementations.MenuTypeBuilder;
 import appeng.menu.me.common.MEStorageMenu;
-import appeng.menu.me.crafting.CraftConfirmMenu;
 import appeng.menu.slot.CraftingMatrixSlot;
 import appeng.menu.slot.CraftingTermSlot;
 import appeng.parts.reporting.CraftingTerminalPart;
@@ -149,11 +146,6 @@ public class CraftingTermMenu extends MEStorageMenu implements ICraftingGridMenu
     @Override
     public InternalInventory getCraftingMatrix() {
         return this.craftingInventoryHost.getSubInventory(CraftingTerminalPart.INV_CRAFTING);
-    }
-
-    @Override
-    public void startAutoCrafting(List<AutoCraftEntry> toCraft) {
-        CraftConfirmMenu.openWithCraftingList(getActionHost(), (ServerPlayer) getPlayer(), getLocator(), toCraft);
     }
 
     public RecipeHolder<CraftingRecipe> getCurrentRecipe() {

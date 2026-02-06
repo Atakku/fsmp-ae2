@@ -20,8 +20,6 @@ import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import appeng.api.orientation.BlockOrientation;
-import appeng.block.crafting.AbstractCraftingUnitBlock;
-import appeng.block.crafting.PatternProviderBlock;
 import appeng.block.misc.VibrationChamberBlock;
 import appeng.block.networking.EnergyCellBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
@@ -59,11 +57,8 @@ public class BlockModelProvider extends AE2BlockStateProvider {
 
         crystalResonanceGenerator();
         wirelessAccessPoint();
-        craftingMonitor();
         meChest();
-        patternProvider();
         vibrationChamber();
-        patternProvider();
         ioPort();
 
         builtInBlockModel("crafting/unit_formed");
@@ -93,14 +88,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         simpleBlockAndItem(AEBlocks.DEBUG_CUBE_GEN, "block/debug/cube_gen");
         simpleBlockAndItem(AEBlocks.DEBUG_ENERGY_GEN, "block/debug/energy_gen");
 
-        craftingModel(AEBlocks.CRAFTING_ACCELERATOR, "accelerator");
-        craftingModel(AEBlocks.CRAFTING_UNIT, "unit");
-        craftingModel(AEBlocks.CRAFTING_STORAGE_1K, "1k_storage");
-        craftingModel(AEBlocks.CRAFTING_STORAGE_4K, "4k_storage");
-        craftingModel(AEBlocks.CRAFTING_STORAGE_16K, "16k_storage");
-        craftingModel(AEBlocks.CRAFTING_STORAGE_64K, "64k_storage");
-        craftingModel(AEBlocks.CRAFTING_STORAGE_256K, "256k_storage");
-
         simpleBlockAndItem(AEBlocks.CELL_WORKBENCH, models().cubeBottomTop(
                 modelPath(AEBlocks.CELL_WORKBENCH),
                 makeId("block/cell_workbench_side"),
@@ -129,23 +116,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                 multipart,
                 () -> Condition.condition().term(MEChestBlock.LIGHTS_ON, true),
                 Variant.variant().with(VariantProperties.MODEL, AppEng.makeId("block/chest/lights_on")));
-    }
-
-    private void craftingMonitor() {
-        var formedModel = AppEng.makeId("block/crafting/monitor_formed");
-        var unformedModel = AppEng.makeId("block/crafting/monitor");
-
-        multiVariantGenerator(AEBlocks.CRAFTING_MONITOR)
-                .with(PropertyDispatch.properties(AbstractCraftingUnitBlock.FORMED, BlockStateProperties.FACING)
-                        .generate((formed, facing) -> {
-                            if (formed) {
-                                return Variant.variant().with(VariantProperties.MODEL, formedModel);
-                            } else {
-                                return applyOrientation(
-                                        Variant.variant().with(VariantProperties.MODEL, unformedModel),
-                                        BlockOrientation.get(facing));
-                            }
-                        }));
     }
 
     private void crystalResonanceGenerator() {
@@ -233,30 +203,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         itemModels().withExistingParent(modelPath(AEBlocks.VIBRATION_CHAMBER), offModel.getLocation());
     }
 
-    private void patternProvider() {
-        var def = AEBlocks.PATTERN_PROVIDER;
-        var normalModel = cubeAll(def.block());
-        simpleBlockItem(def.block(), normalModel);
-        // the block state and the oriented model are in manually written json files
-
-        var orientedModel = models().getExistingFile(AppEng.makeId("block/pattern_provider_oriented"));
-        multiVariantGenerator(AEBlocks.PATTERN_PROVIDER, Variant.variant())
-                .with(PropertyDispatch.property(PatternProviderBlock.PUSH_DIRECTION).generate(pushDirection -> {
-                    var forward = pushDirection.getDirection();
-                    if (forward == null) {
-                        return Variant.variant().with(VariantProperties.MODEL, normalModel.getLocation());
-                    } else {
-                        var orientation = BlockOrientation.get(forward);
-                        return applyRotation(
-                                Variant.variant().with(VariantProperties.MODEL, orientedModel.getLocation()),
-                                // + 90 because the default model is oriented UP, while block orientation assumes NORTH
-                                orientation.getAngleX() + 90,
-                                orientation.getAngleY(),
-                                0);
-                    }
-                }));
-    }
-
     private void ioPort() {
         var offModel = models().getExistingFile(AppEng.makeId("block/io_port"));
         var onModel = models().getExistingFile(AppEng.makeId("block/io_port_on"));
@@ -316,17 +262,6 @@ public class BlockModelProvider extends AE2BlockStateProvider {
                     .predicate(InitItemModelsProperties.ENERGY_FILL_LEVEL_ID, fillFactor)
                     .model(models.get(i));
         }
-    }
-
-    private void craftingModel(BlockDefinition<?> block, String name) {
-        var blockModel = models().cubeAll("block/crafting/" + name, makeId("block/crafting/" + name));
-        getVariantBuilder(block.block())
-                .partialState().with(AbstractCraftingUnitBlock.FORMED, false).setModels(
-                        new ConfiguredModel(blockModel))
-                .partialState().with(AbstractCraftingUnitBlock.FORMED, true).setModels(
-                        // Empty model, will be replaced dynamically
-                        new ConfiguredModel(models().getBuilder("block/crafting/" + name + "_formed")));
-        simpleBlockItem(block.block(), blockModel);
     }
 
     private void generateQuartzCluster(BlockDefinition<?> quartz) {

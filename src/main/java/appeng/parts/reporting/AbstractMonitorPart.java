@@ -39,7 +39,6 @@ import appeng.api.behaviors.ContainerItemStrategies;
 import appeng.api.implementations.parts.IStorageMonitorPart;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IStackWatcher;
-import appeng.api.networking.crafting.ICraftingWatcherNode;
 import appeng.api.networking.storage.IStorageWatcherNode;
 import appeng.api.orientation.BlockOrientation;
 import appeng.api.parts.IPartItem;
@@ -97,23 +96,6 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
                         getHost().markForUpdate();
                     }
                 }
-            }
-        });
-
-        getMainNode().addService(ICraftingWatcherNode.class, new ICraftingWatcherNode() {
-            @Override
-            public void updateWatcher(IStackWatcher newWatcher) {
-                craftingWatcher = newWatcher;
-                configureWatchers();
-            }
-
-            @Override
-            public void onRequestChange(AEKey what) {
-            }
-
-            @Override
-            public void onCraftableChange(AEKey what) {
-                getMainNode().ifPresent(AbstractMonitorPart.this::updateReportingValue);
             }
         });
     }
@@ -270,7 +252,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         this.lastHumanReadableText = null;
         if (this.configuredItem != null) {
             this.amount = grid.getStorageService().getCachedInventory().get(this.configuredItem);
-            this.canCraft = grid.getCraftingService().isCraftable(this.configuredItem);
+            this.canCraft = false; // AKUTODO
         } else {
             this.amount = 0;
             this.canCraft = false;
@@ -328,7 +310,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
     }
 
     public boolean canCraft() {
-        return canCraft;
+        return canCraft; // AKUTODO
     }
 
     @Override

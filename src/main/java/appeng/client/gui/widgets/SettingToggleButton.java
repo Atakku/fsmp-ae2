@@ -37,7 +37,6 @@ import net.minecraft.world.level.ItemLike;
 
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.CondenserOutput;
-import appeng.api.config.CpuSelectionMode;
 import appeng.api.config.FullnessMode;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.InscriberInputCapacity;
@@ -54,11 +53,9 @@ import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
 import appeng.api.config.StorageFilter;
 import appeng.api.config.TerminalStyle;
-import appeng.api.config.ViewItems;
 import appeng.api.config.YesNo;
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.Icon;
-import appeng.core.definitions.AEParts;
 import appeng.core.localization.ButtonToolTips;
 import appeng.util.EnumCycler;
 
@@ -174,13 +171,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
                     ButtonToolTips.NumberOfItems);
             registerApp(Icon.SORT_BY_MOD, Settings.SORT_BY, SortOrder.MOD, ButtonToolTips.SortBy, ButtonToolTips.Mod);
 
-            registerApp(Icon.VIEW_MODE_STORED, Settings.VIEW_MODE, ViewItems.STORED, ButtonToolTips.View,
-                    ButtonToolTips.StoredItems);
-            registerApp(Icon.VIEW_MODE_ALL, Settings.VIEW_MODE, ViewItems.ALL, ButtonToolTips.View,
-                    ButtonToolTips.StoredCraftable);
-            registerApp(Icon.VIEW_MODE_CRAFTING, Settings.VIEW_MODE, ViewItems.CRAFTABLE, ButtonToolTips.View,
-                    ButtonToolTips.Craftable);
-
             registerApp(Icon.FUZZY_PERCENT_25, Settings.FUZZY_MODE, FuzzyMode.PERCENT_25, ButtonToolTips.FuzzyMode,
                     ButtonToolTips.FZPercent_25);
             registerApp(Icon.FUZZY_PERCENT_50, Settings.FUZZY_MODE, FuzzyMode.PERCENT_50, ButtonToolTips.FuzzyMode,
@@ -203,16 +193,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
                     ButtonToolTips.Blocking);
             registerApp(Icon.BLOCKING_MODE_NO, Settings.BLOCKING_MODE, YesNo.NO, ButtonToolTips.InterfaceBlockingMode,
                     ButtonToolTips.NonBlocking);
-
-            registerApp(Icon.VIEW_MODE_CRAFTING, Settings.CRAFT_ONLY, YesNo.YES, ButtonToolTips.Craft,
-                    ButtonToolTips.CraftOnly);
-            registerApp(Icon.VIEW_MODE_ALL, Settings.CRAFT_ONLY, YesNo.NO, ButtonToolTips.Craft,
-                    ButtonToolTips.CraftEither);
-
-            registerApp(Icon.CRAFT_HAMMER, Settings.CRAFT_VIA_REDSTONE, YesNo.YES, ButtonToolTips.EmitterMode,
-                    ButtonToolTips.CraftViaRedstone);
-            registerApp(Icon.ACCESS_READ, Settings.CRAFT_VIA_REDSTONE, YesNo.NO, ButtonToolTips.EmitterMode,
-                    ButtonToolTips.EmitWhenCrafting);
 
             registerApp(Icon.STORAGE_FILTER_EXTRACTABLE_ONLY, Settings.STORAGE_FILTER, StorageFilter.EXTRACTABLE_ONLY,
                     ButtonToolTips.ReportInaccessibleItems, ButtonToolTips.ReportInaccessibleItemsNo);
@@ -244,13 +224,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
                     ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractEnabled);
             registerApp(Icon.FILTER_ON_EXTRACT_DISABLED, Settings.FILTER_ON_EXTRACT, YesNo.NO,
                     ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractDisabled);
-
-            registerApp(Icon.CRAFT_HAMMER, Settings.CPU_SELECTION_MODE, CpuSelectionMode.ANY,
-                    ButtonToolTips.CpuSelectionMode, ButtonToolTips.CpuSelectionModeAny);
-            registerApp(AEParts.TERMINAL, Settings.CPU_SELECTION_MODE, CpuSelectionMode.PLAYER_ONLY,
-                    ButtonToolTips.CpuSelectionMode, ButtonToolTips.CpuSelectionModePlayersOnly.text());
-            registerApp(AEParts.EXPORT_BUS, Settings.CPU_SELECTION_MODE, CpuSelectionMode.MACHINE_ONLY,
-                    ButtonToolTips.CpuSelectionMode, ButtonToolTips.CpuSelectionModeAutomationOnly.text());
 
             registerApp(Icon.PATTERN_TERMINAL_ALL, Settings.TERMINAL_SHOW_PATTERN_PROVIDERS, ShowPatternProviders.ALL,
                     ButtonToolTips.InterfaceTerminalDisplayMode,

@@ -28,7 +28,6 @@ import appeng.core.definitions.ItemDefinition;
 import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
 import appeng.items.tools.powered.powersink.PoweredItemCapabilities;
-import appeng.parts.crafting.PatternProviderPart;
 import appeng.parts.misc.InterfacePart;
 import appeng.parts.networking.EnergyAcceptorPart;
 import appeng.parts.p2p.FEP2PTunnelPart;
@@ -46,8 +45,6 @@ public final class InitCapabilityProviders {
     public static void markProxyableCapabilities(RegisterCapabilitiesEvent event) {
         // Definitely proxyable - this is a storage capability.
         event.setProxyable(AECapabilities.ME_STORAGE);
-        // Why not - in principle a crafting machine could be behind a tunnel.
-        event.setProxyable(AECapabilities.CRAFTING_MACHINE);
         // Why not - this is a storage capability, albeit in principle not exposed directly.
         event.setProxyable(AECapabilities.GENERIC_INTERNAL_INV);
         // Definitely not proxyable, we don't want to connect nodes through a capability tunnel.
@@ -65,7 +62,6 @@ public final class InitCapabilityProviders {
         RegisterPartCapabilitiesEventInternal.register(partEvent, event);
 
         initInterface(event);
-        initPatternProvider(event);
         initCondenser(event);
         initMEChest(event);
         initMisc(event);
@@ -131,13 +127,6 @@ public final class InitCapabilityProviders {
                 });
     }
 
-    private static void initPatternProvider(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                AECapabilities.GENERIC_INTERNAL_INV,
-                AEBlockEntities.PATTERN_PROVIDER.get(),
-                (blockEntity, context) -> blockEntity.getLogic().getReturnInv());
-    }
-
     private static void initCondenser(RegisterCapabilitiesEvent event) {
         // Condenser will always return its external inventory, even when context is null
         // (unlike the base class it derives from)
@@ -163,10 +152,6 @@ public final class InitCapabilityProviders {
     }
 
     private static void initMisc(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                AECapabilities.CRAFTING_MACHINE,
-                AEBlockEntities.MOLECULAR_ASSEMBLER.get(),
-                (object, context) -> object);
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 AEBlockEntities.DEBUG_ITEM_GEN.get(),
@@ -215,8 +200,6 @@ public final class InitCapabilityProviders {
     }
 
     private static void registerPartCapabilities(RegisterPartCapabilitiesEvent event) {
-        event.register(AECapabilities.GENERIC_INTERNAL_INV, (part, context) -> part.getLogic().getReturnInv(),
-                PatternProviderPart.class);
         event.register(AECapabilities.GENERIC_INTERNAL_INV,
                 (part, context) -> part.getInterfaceLogic().getStorage(),
                 InterfacePart.class);

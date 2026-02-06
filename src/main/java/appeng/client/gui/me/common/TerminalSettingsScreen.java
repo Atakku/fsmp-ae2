@@ -14,7 +14,6 @@ import appeng.menu.me.common.MEStorageMenu;
 public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen<C, MEStorageScreen<C>> {
 
     private final AECheckbox pinAutoCraftedItemsCheckbox;
-    private final AECheckbox notifyForFinishedCraftingJobsCheckbox;
     private final AECheckbox clearGridOnCloseCheckbox;
 
     private final AECheckbox useInternalSearchRadio;
@@ -43,8 +42,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
 
         pinAutoCraftedItemsCheckbox = widgets.addCheckbox("pinAutoCraftedItemsCheckbox",
                 GuiText.TerminalSettingsPinAutoCraftedItems.text(), this::save);
-        notifyForFinishedCraftingJobsCheckbox = widgets.addCheckbox("notifyForFinishedCraftingJobsCheckbox",
-                GuiText.TerminalSettingsNotifyForFinishedJobs.text(), this::save);
         clearGridOnCloseCheckbox = widgets.addCheckbox("clearGridOnCloseCheckbox",
                 GuiText.TerminalSettingsClearGridOnClose.text(), this::save);
 
@@ -97,7 +94,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
 
     private void updateState() {
         pinAutoCraftedItemsCheckbox.setSelected(config.isPinAutoCraftedItems());
-        notifyForFinishedCraftingJobsCheckbox.setSelected(config.isNotifyForFinishedCraftingJobs());
         clearGridOnCloseCheckbox.setSelected(config.isClearGridOnClose());
 
         useInternalSearchRadio.setSelected(!config.isUseExternalSearch());
@@ -121,7 +117,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
         config.setSyncWithExternalSearch(syncWithExternalCheckbox.isSelected());
         config.setClearExternalSearchOnOpen(clearExternalCheckbox.isSelected());
         config.setPinAutoCraftedItems(pinAutoCraftedItemsCheckbox.isSelected());
-        config.setNotifyForFinishedCraftingJobs(notifyForFinishedCraftingJobsCheckbox.isSelected());
         config.setClearGridOnClose(clearGridOnCloseCheckbox.isSelected());
 
         updateState();

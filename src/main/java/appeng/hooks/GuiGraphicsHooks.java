@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -30,11 +29,8 @@ import appeng.api.client.AEKeyRendering;
 import appeng.api.stacks.AmountFormat;
 import appeng.api.stacks.GenericStack;
 import appeng.client.gui.me.common.StackSizeRenderer;
-import appeng.crafting.pattern.EncodedPatternItem;
 
 public final class GuiGraphicsHooks {
-    // Prevents recursion in the hook below
-    private static final ThreadLocal<ItemStack> OVERRIDING_FOR = new ThreadLocal<>();
 
     private GuiGraphicsHooks() {
     }
@@ -46,22 +42,6 @@ public final class GuiGraphicsHooks {
     public static boolean onRenderGuiItem(GuiGraphics guiGraphics, @Nullable LivingEntity livingEntity,
             @Nullable Level level, ItemStack stack, int x, int y, int seed, int z) {
         var minecraft = Minecraft.getInstance();
-
-        if (stack.getItem() instanceof EncodedPatternItem encodedPattern) {
-            if (OVERRIDING_FOR.get() == stack) {
-                return false; // Don't allow recursive model replacements
-            }
-
-            boolean shiftHeld = Screen.hasShiftDown();
-            if (shiftHeld && level != null) {
-                var output = encodedPattern.getOutput(stack);
-                // If output would be identical to stack, we'd infinitely loop
-                if (!output.isEmpty() && output != stack) {
-                    renderInstead(guiGraphics, livingEntity, level, output, x, y, seed, z);
-                    return true;
-                }
-            }
-        }
 
         var unwrapped = GenericStack.unwrapItemStack(stack);
         if (unwrapped != null) {
@@ -80,15 +60,5 @@ public final class GuiGraphicsHooks {
         }
 
         return false;
-    }
-
-    private static void renderInstead(GuiGraphics guiGraphics, @Nullable LivingEntity livingEntity,
-            @Nullable Level level, ItemStack stack, int x, int y, int seed, int z) {
-        OVERRIDING_FOR.set(stack);
-        try {
-            guiGraphics.renderItem(livingEntity, level, stack, x, y, seed, z);
-        } finally {
-            OVERRIDING_FOR.remove();
-        }
     }
 }

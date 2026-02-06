@@ -73,13 +73,6 @@ public interface ICraftingGridMenu {
     List<ItemStack> getViewCells();
 
     /**
-     * Autocraft the passed keys, in order. Will likely open the craft confirm menu, so this menu should not be used
-     * afterwards.
-     */
-    default void startAutoCrafting(List<AutoCraftEntry> toCraft) {
-    }
-
-    /**
      * @return True if the given player inventory slot is locked by the current menu and should not be used for
      *         crafting. (i.e. the wireless terminal itself in case of a wireless crafting terminal).
      */

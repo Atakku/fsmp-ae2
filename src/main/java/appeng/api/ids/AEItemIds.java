@@ -40,9 +40,6 @@ public final class AEItemIds {
     public static final ResourceLocation VIEW_CELL = id("view_cell");
     public static final ResourceLocation MEMORY_CARD = id("memory_card");
 
-    public static final ResourceLocation BLANK_PATTERN = id("blank_pattern");
-    public static final ResourceLocation CRAFTING_PATTERN = id("crafting_pattern");
-    public static final ResourceLocation PROCESSING_PATTERN = id("processing_pattern");
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
     public static final ResourceLocation COLOR_APPLICATOR = id("color_applicator");
     public static final ResourceLocation WIRELESS_TERMINAL = id("wireless_terminal");
@@ -215,7 +212,6 @@ public final class AEItemIds {
     public static final ResourceLocation FUZZY_CARD = id("fuzzy_card");
     public static final ResourceLocation SPEED_CARD = id("speed_card");
     public static final ResourceLocation INVERTER_CARD = id("inverter_card");
-    public static final ResourceLocation CRAFTING_CARD = id("crafting_card");
     public static final ResourceLocation ENERGY_CARD = id("energy_card");
     public static final ResourceLocation EQUAL_DISTRIBUTION_CARD = id("equal_distribution_card");
     public static final ResourceLocation CELL_COMPONENT_1K = id("cell_component_1k");

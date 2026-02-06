@@ -90,7 +90,6 @@ public class StorageLevelEmitterMenu extends UpgradeableMenu<StorageLevelEmitter
 
     @Override
     protected void loadSettingsFromHost(IConfigManager cm) {
-        this.setCraftingMode(cm.getSetting(Settings.CRAFT_VIA_REDSTONE));
         if (cm.hasSetting(Settings.FUZZY_MODE)) {
             this.setFuzzyMode(cm.getSetting(Settings.FUZZY_MODE));
         }

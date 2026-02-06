@@ -171,10 +171,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .addOptionalTag(ResourceLocation.parse("c:ingots/nickel"))
                 .addOptionalTag(ResourceLocation.parse("c:ingots/aluminium"));
 
-        tag(ConventionTags.PATTERN_PROVIDER)
-                .add(AEParts.PATTERN_PROVIDER.asItem())
-                .add(AEBlocks.PATTERN_PROVIDER.asItem());
-
         tag(ConventionTags.INTERFACE)
                 .add(AEParts.INTERFACE.asItem())
                 .add(AEBlocks.INTERFACE.asItem());

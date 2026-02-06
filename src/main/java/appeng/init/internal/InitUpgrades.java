@@ -41,8 +41,6 @@ public final class InitUpgrades {
         String wirelessTerminalGroup = GuiText.WirelessTerminals.getTranslationKey();
 
         // Interface
-        Upgrades.add(AEItems.CRAFTING_CARD, AEParts.INTERFACE, 1, interfaceGroup);
-        Upgrades.add(AEItems.CRAFTING_CARD, AEBlocks.INTERFACE, 1, interfaceGroup);
         Upgrades.add(AEItems.FUZZY_CARD, AEParts.INTERFACE, 1, interfaceGroup);
         Upgrades.add(AEItems.FUZZY_CARD, AEBlocks.INTERFACE, 1, interfaceGroup);
 
@@ -52,7 +50,6 @@ public final class InitUpgrades {
 
         // Level Emitter!
         Upgrades.add(AEItems.FUZZY_CARD, AEParts.LEVEL_EMITTER, 1);
-        Upgrades.add(AEItems.CRAFTING_CARD, AEParts.LEVEL_EMITTER, 1);
 
         // Import Bus
         Upgrades.add(AEItems.FUZZY_CARD, AEParts.IMPORT_BUS, 1, itemIoBusGroup);
@@ -66,7 +63,6 @@ public final class InitUpgrades {
         Upgrades.add(AEItems.REDSTONE_CARD, AEParts.EXPORT_BUS, 1, itemIoBusGroup);
         Upgrades.add(AEItems.CAPACITY_CARD, AEParts.EXPORT_BUS, 5, itemIoBusGroup);
         Upgrades.add(AEItems.SPEED_CARD, AEParts.EXPORT_BUS, 4, itemIoBusGroup);
-        Upgrades.add(AEItems.CRAFTING_CARD, AEParts.EXPORT_BUS, 1, itemIoBusGroup);
 
         // Storage Cells
         var itemCells = List.of(
@@ -132,9 +128,6 @@ public final class InitUpgrades {
         Upgrades.add(AEItems.ENERGY_CARD, AEItems.COLOR_APPLICATOR, 2);
         Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, AEItems.COLOR_APPLICATOR, 1);
         Upgrades.add(AEItems.VOID_CARD, AEItems.COLOR_APPLICATOR, 1);
-
-        // Molecular Assembler
-        Upgrades.add(AEItems.SPEED_CARD, AEBlocks.MOLECULAR_ASSEMBLER, 5);
 
         // Inscriber
         Upgrades.add(AEItems.SPEED_CARD, AEBlocks.INSCRIBER, 4);

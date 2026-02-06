@@ -44,13 +44,6 @@
       "left": 175,
       "top": 18
     },
-    "craftingStatus": {
-      "left": 171,
-      "top": -5,
-      "hideEdge": false,
-      "width": 20,
-      "height": 20
-    },
     "viewCells": {
       "right": 800,
       "top": 0

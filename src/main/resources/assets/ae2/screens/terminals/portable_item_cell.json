@@ -13,7 +13,6 @@
     }
   },
   "terminalStyle": {
-    "maxRows": 3,
-    "supportsAutoCrafting": false
+    "maxRows": 3
   }
 }

@@ -18,9 +18,6 @@
 
 package appeng.parts.automation;
 
-import java.util.List;
-import java.util.Set;
-
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.HolderLookup;
@@ -31,17 +28,12 @@ import net.minecraft.world.phys.Vec3;
 
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.Settings;
-import appeng.api.config.YesNo;
-import appeng.api.crafting.IPatternDetails;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IStackWatcher;
-import appeng.api.networking.crafting.ICraftingProvider;
-import appeng.api.networking.crafting.ICraftingWatcherNode;
 import appeng.api.networking.storage.IStorageWatcherNode;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
 import appeng.api.stacks.AEKey;
-import appeng.api.stacks.KeyCounter;
 import appeng.api.util.IConfigManagerBuilder;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
@@ -58,7 +50,7 @@ import appeng.util.ConfigInventory;
  * Abstract level emitter logic for storage-based level emitters (item and fluid).
  */
 public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
-        implements IConfigInvHost, ICraftingProvider {
+        implements IConfigInvHost {
     @PartModels
     public static final ResourceLocation MODEL_BASE_OFF = AppEng.makeId(
             "part/level_emitter_base_off");
@@ -110,35 +102,16 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
             }
         }
     };
-    private final ICraftingWatcherNode craftingWatcherNode = new ICraftingWatcherNode() {
-        @Override
-        public void updateWatcher(IStackWatcher newWatcher) {
-            craftingWatcher = newWatcher;
-            configureWatchers();
-        }
-
-        @Override
-        public void onRequestChange(AEKey what) {
-            updateState();
-        }
-
-        @Override
-        public void onCraftableChange(AEKey what) {
-        }
-    };
 
     public StorageLevelEmitterPart(IPartItem<?> partItem) {
         super(partItem);
 
         getMainNode().addService(IStorageWatcherNode.class, stackWatcherNode);
-        getMainNode().addService(ICraftingWatcherNode.class, craftingWatcherNode);
-        getMainNode().addService(ICraftingProvider.class, this);
     }
 
     @Override
     protected void registerSettings(IConfigManagerBuilder builder) {
         super.registerSettings(builder);
-        builder.registerSetting(Settings.CRAFT_VIA_REDSTONE, YesNo.NO);
         builder.registerSetting(Settings.FUZZY_MODE, FuzzyMode.IGNORE_ALL);
     }
 
@@ -159,47 +132,12 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
 
     @Override
     protected boolean hasDirectOutput() {
-        return isUpgradedWith(AEItems.CRAFTING_CARD);
+        return false;
     }
 
     @Override
     protected boolean getDirectOutput() {
-        var grid = getMainNode().getGrid();
-        if (grid != null) {
-            if (getConfiguredKey() != null) {
-                return grid.getCraftingService().isRequesting(getConfiguredKey());
-            } else {
-                return grid.getCraftingService().isRequestingAny();
-            }
-        }
-
         return false;
-    }
-
-    @Override
-    public List<IPatternDetails> getAvailablePatterns() {
-        return List.of();
-    }
-
-    @Override
-    public boolean pushPattern(IPatternDetails patternDetails, KeyCounter[] inputHolder) {
-        return false;
-    }
-
-    @Override
-    public boolean isBusy() {
-        return true;
-    }
-
-    @Override
-    public Set<AEKey> getEmitableItems() {
-        if (isUpgradedWith(AEItems.CRAFTING_CARD)
-                && getConfigManager().getSetting(Settings.CRAFT_VIA_REDSTONE) == YesNo.YES) {
-            if (getConfiguredKey() != null) {
-                return Set.of(getConfiguredKey());
-            }
-        }
-        return Set.of();
     }
 
     @Override
@@ -221,27 +159,15 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
             this.craftingWatcher.reset();
         }
 
-        ICraftingProvider.requestUpdate(getMainNode());
-
-        if (isUpgradedWith(AEItems.CRAFTING_CARD)) {
-            if (this.craftingWatcher != null) {
-                if (myStack == null) {
-                    this.craftingWatcher.setWatchAll(true);
-                } else {
-                    this.craftingWatcher.add(myStack);
-                }
+        if (this.storageWatcher != null) {
+            if (isUpgradedWith(AEItems.FUZZY_CARD) || myStack == null) {
+                this.storageWatcher.setWatchAll(true);
+            } else {
+                this.storageWatcher.add(myStack);
             }
-        } else {
-            if (this.storageWatcher != null) {
-                if (isUpgradedWith(AEItems.FUZZY_CARD) || myStack == null) {
-                    this.storageWatcher.setWatchAll(true);
-                } else {
-                    this.storageWatcher.add(myStack);
-                }
-            }
-
-            getMainNode().ifPresent(this::updateReportingValue);
         }
+
+        getMainNode().ifPresent(this::updateReportingValue);
 
         updateState();
     }

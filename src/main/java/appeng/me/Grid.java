@@ -48,7 +48,6 @@ import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.IGridService;
-import appeng.api.networking.crafting.ICraftingService;
 import appeng.api.networking.energy.IEnergyService;
 import appeng.api.networking.events.GridEvent;
 import appeng.api.networking.pathing.IPathingService;
@@ -306,8 +305,6 @@ public class Grid implements IGrid {
             return "tickManager";
         } else if (service == P2PService.class) {
             return "p2pService";
-        } else if (service == ICraftingService.class) {
-            return "craftingService";
         } else {
             return service.getName();
         }

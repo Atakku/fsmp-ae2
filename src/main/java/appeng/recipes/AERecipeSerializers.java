@@ -6,7 +6,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.core.AppEng;
 import appeng.recipes.game.AddItemUpgradeRecipeSerializer;
-import appeng.recipes.game.CraftingUnitTransformRecipeSerializer;
 import appeng.recipes.game.FacadeRecipe;
 import appeng.recipes.game.RemoveItemUpgradeRecipeSerializer;
 import appeng.recipes.game.StorageCellDisassemblyRecipeSerializer;
@@ -32,7 +31,6 @@ public final class AERecipeSerializers {
         register("add_item_upgrade", AddItemUpgradeRecipeSerializer.INSTANCE);
         register("remove_item_upgrade", RemoveItemUpgradeRecipeSerializer.INSTANCE);
         register("quartz_cutting", QuartzCuttingRecipeSerializer.INSTANCE);
-        register("crafting_unit_transform", CraftingUnitTransformRecipeSerializer.INSTANCE);
         register("storage_cell_disassembly", StorageCellDisassemblyRecipeSerializer.INSTANCE);
     }
 

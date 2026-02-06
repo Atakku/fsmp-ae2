@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-import com.google.common.collect.ImmutableSet;
-
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.Direction;
@@ -39,8 +37,6 @@ import appeng.api.config.Settings;
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IManagedGridNode;
-import appeng.api.networking.crafting.ICraftingLink;
-import appeng.api.networking.crafting.ICraftingRequester;
 import appeng.api.networking.energy.IEnergyService;
 import appeng.api.networking.security.IActionHost;
 import appeng.api.networking.security.IActionSource;
@@ -67,7 +63,7 @@ import appeng.util.ConfigInventory;
 /**
  * Contains behavior for interface blocks and parts, which is independent of the storage channel.
  */
-public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, IConfigurableObject {
+public class InterfaceLogic implements IUpgradeableObject, IConfigurableObject {
     @Nullable
     private InterfaceInventory localInvHandler;
     @Nullable
@@ -77,7 +73,6 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
     protected final IManagedGridNode mainNode;
     protected final IActionSource actionSource;
     protected final IActionSource interfaceRequestSource;
-    private final MultiCraftingTracker craftingTracker;
     private final IUpgradeInventory upgrades;
     private final IConfigManager cm;
     /**
@@ -112,9 +107,7 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
 
         this.interfaceRequestSource = new InterfaceRequestSource(mainNode::getNode);
 
-        gridNode.addService(ICraftingRequester.class, this);
         this.upgrades = UpgradeInventories.forMachine(is, 1, this::onUpgradesChanged);
-        this.craftingTracker = new MultiCraftingTracker(this, slots);
         cm = IConfigManager.builder(this::onConfigChanged)
                 .registerSetting(Settings.FUZZY_MODE, FuzzyMode.IGNORE_ALL)
                 .build();
@@ -159,12 +152,10 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
         this.storage.writeToChildTag(tag, "storage", registries);
         this.upgrades.writeToNBT(tag, "upgrades", registries);
         this.cm.writeToNBT(tag, registries);
-        this.craftingTracker.writeToNBT(tag);
         tag.putInt("priority", this.priority);
     }
 
     public void readFromNBT(CompoundTag tag, HolderLookup.Provider registries) {
-        this.craftingTracker.readFromNBT(tag);
         this.upgrades.readFromNBT(tag, "upgrades", registries);
         this.config.readFromChildTag(tag, "config", registries);
         this.storage.readFromChildTag(tag, "storage", registries);
@@ -318,30 +309,8 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
     }
 
     @Override
-    public ImmutableSet<ICraftingLink> getRequestedJobs() {
-        return this.craftingTracker.getRequestedJobs();
-    }
-
-    @Override
-    public long insertCraftedItems(ICraftingLink link, AEKey what, long amount, Actionable mode) {
-        int slot = this.craftingTracker.getSlot(link);
-        return storage.insert(slot, what, amount, mode);
-    }
-
-    @Override
-    public void jobStateChange(ICraftingLink link) {
-        this.craftingTracker.jobStateChange(link);
-    }
-
-    @Override
     public IUpgradeInventory getUpgrades() {
         return upgrades;
-    }
-
-    @Override
-    @Nullable
-    public IGridNode getActionableNode() {
-        return mainNode.getNode();
     }
 
     /**
@@ -439,10 +408,7 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
             return inserted > 0;
         }
 
-        if (this.craftingTracker.isBusy(slot)) {
-            // We are already waiting for a crafting result for this slot
-            return this.handleCrafting(slot, what, amount);
-        } else if (amount > 0) {
+        if (amount > 0) {
             // Move from network into interface
             // Ensure the plan isn't outdated
             if (storage.insert(slot, what, amount, Actionable.SIMULATE) != amount) {
@@ -466,7 +432,7 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
                 }
             }
 
-            return this.handleCrafting(slot, what, amount);
+            return false;
         }
 
         // else wtf?
@@ -491,22 +457,6 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
         }
     }
 
-    private boolean handleCrafting(int x, AEKey key, long amount) {
-        var grid = mainNode.getGrid();
-        if (grid != null && upgrades.isInstalled(AEItems.CRAFTING_CARD) && key != null) {
-            return this.craftingTracker.handleCrafting(x, key, amount,
-                    this.host.getBlockEntity().getLevel(),
-                    grid.getCraftingService(),
-                    this.actionSource);
-        }
-
-        return false;
-    }
-
-    private void cancelCrafting() {
-        this.craftingTracker.cancel();
-    }
-
     private void onConfigChanged() {
         this.host.saveChanges();
         updatePlan(); // update plan in case fuzzy mode changed
@@ -514,12 +464,6 @@ public class InterfaceLogic implements ICraftingRequester, IUpgradeableObject, I
 
     private void onUpgradesChanged() {
         this.host.saveChanges();
-
-        if (!upgrades.isInstalled(AEItems.CRAFTING_CARD)) {
-            // Cancel crafting if the crafting card is removed
-            this.cancelCrafting();
-        }
-
         // Update plan in case fuzzy card was inserted or removed
         updatePlan();
     }

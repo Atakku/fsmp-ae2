@@ -25,7 +25,6 @@ public enum PlayerMessages implements LocalizationEnum {
     ChannelModeCurrent("Current channel mode: %s"),
     ClickToShowDetails("Click to show details"),
     CommunicationError("Error Communicating with Network."),
-    CraftingCpuBusy("This crafting CPU is busy!"),
     DeviceNotLinked("Device is not linked."),
     LinkedNetworkNotFound("Linked network cannot be found"),
     DeviceNotPowered("Device is low on power."),

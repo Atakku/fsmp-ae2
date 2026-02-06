@@ -238,7 +238,6 @@ public final class AEPartIds {
     public static final ResourceLocation EXPORT_BUS = id("export_bus");
     public static final ResourceLocation LEVEL_EMITTER = id("level_emitter");
     public static final ResourceLocation ENERGY_LEVEL_EMITTER = id("energy_level_emitter");
-    public static final ResourceLocation PATTERN_PROVIDER = id("cable_pattern_provider");
     public static final ResourceLocation INTERFACE = id("cable_interface");
     public static final ResourceLocation CONVERSION_MONITOR = id("conversion_monitor");
     public static final ResourceLocation ENERGY_ACCEPTOR = id("cable_energy_acceptor");
@@ -251,7 +250,6 @@ public final class AEPartIds {
     public static final ResourceLocation DARK_MONITOR = id("dark_monitor");
     public static final ResourceLocation TERMINAL = id("terminal");
     public static final ResourceLocation CRAFTING_TERMINAL = id("crafting_terminal");
-    public static final ResourceLocation PATTERN_ACCESS_TERMINAL = id("pattern_access_terminal");
     public static final ResourceLocation STORAGE_MONITOR = id("storage_monitor");
 
     ///

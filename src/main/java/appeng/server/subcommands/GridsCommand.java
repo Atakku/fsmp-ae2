@@ -46,7 +46,6 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 import appeng.api.networking.GridHelper;
 import appeng.core.network.clientbound.ExportedGridContent;
-import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.Grid;
 import appeng.me.service.StatisticsService;
@@ -107,14 +106,6 @@ public class GridsCommand implements ISubCommand {
             for (var node : grid.getNodes()) {
                 if (node.getOwner() instanceof AEBasePart basePart) {
                     visitGridInFrontOfPart(basePart, reachableGrids, openSet);
-                } else if (node.getOwner() instanceof PatternProviderLogicHost patternProvider) {
-                    for (var targetSide : patternProvider.getTargets()) {
-                        visitGridAt(
-                                patternProvider.getBlockEntity().getLevel(),
-                                patternProvider.getBlockEntity().getBlockPos().relative(targetSide),
-                                reachableGrids,
-                                openSet);
-                    }
                 } else if (node.getOwner() instanceof MEP2PTunnelPart meTunnel) {
                     var tunnelGrid = (Grid) meTunnel.getMainNode().getGrid();
                     if (tunnelGrid != null && reachableGrids.add(tunnelGrid)) {

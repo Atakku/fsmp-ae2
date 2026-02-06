@@ -43,13 +43,11 @@ public class DataComponentTypeTagProvider extends TagsProvider<DataComponentType
         }
 
         addExportedComponentCategory("Filter", AEComponents.EXPORTED_CONFIG_INV);
-        addExportedComponentCategory("Patterns", AEComponents.EXPORTED_PATTERNS);
         addExportedComponentCategory("Custom Name", AEComponents.EXPORTED_CUSTOM_NAME);
         addExportedComponentCategory("Level Emitter Value", AEComponents.EXPORTED_LEVEL_EMITTER_VALUE);
         addExportedComponentCategory("P2P Frequency", AEComponents.EXPORTED_P2P_FREQUENCY);
         addExportedComponentCategory("P2P Type", AEComponents.EXPORTED_P2P_TYPE);
         addExportedComponentCategory("Priority", AEComponents.EXPORTED_PRIORITY);
-        addExportedComponentCategory("Push Direction", AEComponents.EXPORTED_PUSH_DIRECTION);
         addExportedComponentCategory("Settings", AEComponents.EXPORTED_SETTINGS);
         addExportedComponentCategory("Upgrades", AEComponents.EXPORTED_UPGRADES);
 

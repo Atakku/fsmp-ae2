@@ -32,7 +32,6 @@ import appeng.api.config.PowerMultiplier;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.features.HotkeyAction;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
 import appeng.api.implementations.menuobjects.ItemMenuHost;
@@ -72,7 +71,6 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
         this.updateLinkStatus();
         this.configManager = IConfigManager.builder(this::getItemStack)
                 .registerSetting(Settings.SORT_BY, SortOrder.NAME)
-                .registerSetting(Settings.VIEW_MODE, ViewItems.ALL)
                 .registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING)
                 .build();
     }

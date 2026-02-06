@@ -27,34 +27,16 @@ import java.util.Objects;
 
 import com.google.common.primitives.Ints;
 
-import net.minecraft.nbt.CompoundTag;
-
 import appeng.api.config.Actionable;
 import appeng.api.config.PowerMultiplier;
-import appeng.api.networking.crafting.ICraftingLink;
-import appeng.api.networking.crafting.ICraftingRequester;
 import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import appeng.core.stats.AeStats;
-import appeng.crafting.CraftingLink;
 
 public final class StorageHelper {
     private StorageHelper() {
-    }
-
-    /**
-     * load a crafting link from nbt data.
-     *
-     * @param data to be loaded data
-     * @return crafting link
-     */
-    public static ICraftingLink loadCraftingLink(CompoundTag data, ICraftingRequester req) {
-        Objects.requireNonNull(data);
-        Objects.requireNonNull(req);
-
-        return new CraftingLink(data, req);
     }
 
     /**

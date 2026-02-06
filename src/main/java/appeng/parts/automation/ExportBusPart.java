@@ -19,7 +19,6 @@
 package appeng.parts.automation;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,25 +31,18 @@ import net.minecraft.world.inventory.MenuType;
 
 import appeng.api.behaviors.StackExportStrategy;
 import appeng.api.behaviors.StackTransferContext;
-import appeng.api.config.Actionable;
 import appeng.api.config.SchedulingMode;
 import appeng.api.config.Settings;
-import appeng.api.config.YesNo;
 import appeng.api.networking.IGrid;
-import appeng.api.networking.crafting.ICraftingLink;
-import appeng.api.networking.crafting.ICraftingRequester;
-import appeng.api.networking.crafting.ICraftingService;
 import appeng.api.networking.energy.IEnergyService;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.api.stacks.AEKey;
 import appeng.api.util.IConfigManagerBuilder;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import appeng.core.settings.TickRates;
-import appeng.helpers.MultiCraftingTracker;
 import appeng.items.parts.PartModels;
 import appeng.menu.implementations.IOBusMenu;
 import appeng.parts.PartModel;
@@ -60,7 +52,7 @@ import appeng.util.prioritylist.DefaultPriorityList;
  * Generalized base class for export buses that move stacks from network storage to an adjacent block using a non-AE
  * API.
  */
-public class ExportBusPart extends IOBusPart implements ICraftingRequester {
+public class ExportBusPart extends IOBusPart {
 
     public static final ResourceLocation MODEL_BASE = AppEng.makeId("part/export_bus_base");
 
@@ -76,35 +68,29 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
     public static final IPartModel MODELS_HAS_CHANNEL = new PartModel(MODEL_BASE,
             AppEng.makeId("part/export_bus_has_channel"));
 
-    private final MultiCraftingTracker craftingTracker;
     private int nextSlot = 0;
     @Nullable
     private StackExportStrategy exportStrategy;
 
     public ExportBusPart(IPartItem<?> partItem) {
         super(TickRates.ExportBus, StackWorldBehaviors.withExportStrategy(), partItem);
-        this.craftingTracker = new MultiCraftingTracker(this, getConfig().size());
-        getMainNode().addService(ICraftingRequester.class, this);
     }
 
     @Override
     protected void registerSettings(IConfigManagerBuilder builder) {
         super.registerSettings(builder);
-        builder.registerSetting(Settings.CRAFT_ONLY, YesNo.NO);
         builder.registerSetting(Settings.SCHEDULING_MODE, SchedulingMode.DEFAULT);
     }
 
     @Override
     public void readFromNBT(CompoundTag extra, HolderLookup.Provider registries) {
         super.readFromNBT(extra, registries);
-        this.craftingTracker.readFromNBT(extra);
         this.nextSlot = extra.getInt("nextSlot");
     }
 
     @Override
     public void writeToNBT(CompoundTag extra, HolderLookup.Provider registries) {
         super.writeToNBT(extra, registries);
-        this.craftingTracker.writeToNBT(extra);
         extra.putInt("nextSlot", this.nextSlot);
     }
 
@@ -121,7 +107,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
     @Override
     protected boolean doBusWork(IGrid grid) {
         var storageService = grid.getStorageService();
-        var cg = grid.getCraftingService();
         var fzMode = this.getConfigManager().getSetting(Settings.FUZZY_MODE);
         var schedulingMode = this.getConfigManager().getSetting(Settings.SCHEDULING_MODE);
 
@@ -133,11 +118,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
             var what = getConfig().getKey(slotToExport);
 
             if (what == null) {
-                continue;
-            }
-
-            if (this.craftOnly()) {
-                attemptCrafting(context, cg, slotToExport, what);
                 continue;
             }
 
@@ -166,10 +146,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
                     context.reduceOperationsRemaining(Math.max(1, amount / transferFactor));
                 }
             }
-
-            if (before == context.getOperationsRemaining() && this.isCraftingEnabled()) {
-                attemptCrafting(context, cg, slotToExport, what);
-            }
         }
 
         // Round-robin should only advance if something was actually exported
@@ -180,31 +156,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
         return context.hasDoneWork();
     }
 
-    private void attemptCrafting(StackTransferContext context, ICraftingService cg, int slotToExport, AEKey what) {
-        // don't bother crafting / checking or result, if target cannot accept at least 1 of requested item
-        var maxAmount = context.getOperationsRemaining() * what.getAmountPerOperation();
-        var amount = getExportStrategy().push(what, maxAmount, Actionable.SIMULATE);
-        if (amount > 0) {
-            requestCrafting(cg, slotToExport, what, amount);
-            context.reduceOperationsRemaining(Math.max(1, amount / what.getAmountPerOperation()));
-        }
-    }
-
-    protected final boolean requestCrafting(ICraftingService cg, int configSlot, AEKey what, long amount) {
-        return this.craftingTracker.handleCrafting(configSlot, what, amount,
-                this.getBlockEntity().getLevel(), cg, this.source);
-    }
-
-    @Override
-    public long insertCraftedItems(ICraftingLink link, AEKey what, long amount, Actionable mode) {
-        var grid = getMainNode().getGrid();
-        if (grid != null && getMainNode().isActive()) {
-            return getExportStrategy().push(what, amount, mode);
-        }
-
-        return 0;
-    }
-
     @NotNull
     private StackTransferContext createTransferContext(IStorageService storageService, IEnergyService energyService) {
         return new StackTransferContextImpl(
@@ -213,16 +164,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
                 this.source,
                 getOperationsPerTick(),
                 DefaultPriorityList.INSTANCE);
-    }
-
-    @Override
-    public void jobStateChange(ICraftingLink link) {
-        this.craftingTracker.jobStateChange(link);
-    }
-
-    @Override
-    public ImmutableSet<ICraftingLink> getRequestedJobs() {
-        return this.craftingTracker.getRequestedJobs();
     }
 
     protected int getStartingSlot(SchedulingMode schedulingMode, int x) {
@@ -241,14 +182,6 @@ public class ExportBusPart extends IOBusPart implements ICraftingRequester {
         if (schedulingMode == SchedulingMode.ROUNDROBIN) {
             this.nextSlot = (this.nextSlot + x) % this.availableSlots();
         }
-    }
-
-    private boolean craftOnly() {
-        return isCraftingEnabled() && this.getConfigManager().getSetting(Settings.CRAFT_ONLY) == YesNo.YES;
-    }
-
-    private boolean isCraftingEnabled() {
-        return isUpgradedWith(AEItems.CRAFTING_CARD);
     }
 
     @Override

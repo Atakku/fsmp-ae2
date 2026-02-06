@@ -8,31 +8,23 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
-
-import com.google.common.collect.Sets;
 
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -48,19 +40,13 @@ import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;
 import appeng.api.config.RedstoneMode;
 import appeng.api.config.Settings;
-import appeng.api.config.YesNo;
-import appeng.api.crafting.PatternDetailsHelper;
-import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.orientation.BlockOrientation;
 import appeng.api.parts.PartHelper;
 import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.GenericStack;
-import appeng.api.stacks.KeyCounter;
 import appeng.api.storage.StorageCells;
 import appeng.api.util.AEColor;
-import appeng.blockentity.crafting.MolecularAssemblerBlockEntity;
-import appeng.blockentity.storage.DriveBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.blockentity.storage.SkyStoneTankBlockEntity;
 import appeng.core.AELog;
@@ -70,12 +56,8 @@ import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import appeng.items.storage.CreativeCellItem;
 import appeng.me.helpers.BaseActionSource;
-import appeng.me.service.PathingService;
-import appeng.parts.crafting.PatternProviderPart;
 import appeng.server.testworld.Plot;
 import appeng.server.testworld.PlotBuilder;
-import appeng.server.testworld.TestCraftingJob;
-import appeng.util.CraftingRecipeUtil;
 import appeng.util.Platform;
 
 @TestPlotClass
@@ -258,7 +240,7 @@ public final class TestPlots {
             line.part("1 0 0", Direction.NORTH, AEParts.TERMINAL);
             line.part("2 0 0", Direction.NORTH, AEParts.CRAFTING_TERMINAL);
             line.part("3 0 0", Direction.NORTH, AEParts.MONITOR);
-            line.part("4 0 0", Direction.NORTH, AEParts.PATTERN_ACCESS_TERMINAL);
+            line.part("4 0 0", Direction.NORTH, AEParts.MONITOR);
             line.part("5 0 0", Direction.NORTH, AEParts.STORAGE_MONITOR, monitor -> {
                 var enchantedPickaxe = createEnchantedPickaxe(monitor.getLevel());
                 monitor.setConfiguredItem(enchantedPickaxe);
@@ -403,38 +385,6 @@ public final class TestPlots {
         plot.creativeEnergyCell("0 1 1");
         plot.blockEntity("0 1 0", AEBlocks.INSCRIBER, BlockOrientation.NORTH_WEST::setOn);
         plot.hopper("0 0 0", Direction.DOWN);
-    }
-
-    /**
-     * Reproduces an issue with Fabric Transactions found in
-     * https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/5798
-     */
-    @TestPlot("import_and_export_in_one_tick")
-    public static void importAndExportInOneTick(PlotBuilder plot) {
-        plot.creativeEnergyCell("-1 0 0");
-        plot.chest("0 0 1"); // Output Chest
-        plot.cable("0 0 0")
-                .part(Direction.SOUTH, AEParts.EXPORT_BUS, exportBus -> {
-                    exportBus.getUpgrades().addItems(AEItems.CRAFTING_CARD.stack());
-                    exportBus.getConfig().addFilter(Items.OAK_PLANKS);
-                });
-        plot.cable("0 1 0");
-        plot.cable("0 1 -1")
-                .craftingEmitter(Direction.DOWN, Items.OAK_PLANKS);
-        plot.cable("0 0 -1")
-                .part(Direction.NORTH, AEParts.IMPORT_BUS, part -> {
-                    part.getUpgrades().addItems(AEItems.REDSTONE_CARD.stack());
-                    part.getConfigManager().putSetting(Settings.REDSTONE_CONTROLLED, RedstoneMode.HIGH_SIGNAL);
-                });
-        plot.block("1 0 0", AEBlocks.CRAFTING_STORAGE_1K);
-        plot.chest("0 0 -2", new ItemStack(Items.OAK_PLANKS, 1)); // Input Chest
-
-        plot.test(helper -> {
-            helper.succeedWhen(() -> {
-                helper.assertContainerContains(new BlockPos(0, 0, 1), Items.OAK_PLANKS);
-                helper.assertContainerEmpty(new BlockPos(0, 0, -2));
-            });
-        });
     }
 
     /**
@@ -624,149 +574,6 @@ public final class TestPlots {
         }));
     }
 
-    @TestPlot("maxchannels_adhoctest")
-    public static void maxChannelsAdHocTest(PlotBuilder plot) {
-        plot.creativeEnergyCell("0 -1 0");
-        plot.block("[-3,3] -2 [-3,3]", AEBlocks.DRIVE);
-        plot.cable("[-3,3] 0 [-3,3]", AEParts.SMART_DENSE_CABLE);
-        plot.cable("[-3,3] [1,64] [-3,2]")
-                .part(Direction.EAST, AEParts.TERMINAL)
-                .part(Direction.NORTH, AEParts.TERMINAL)
-                .part(Direction.WEST, AEParts.TERMINAL)
-                .part(Direction.WEST, AEParts.TERMINAL);
-        plot.cable("[-3,3] [1,64] 3")
-                .part(Direction.NORTH, AEParts.PATTERN_PROVIDER)
-                .part(Direction.SOUTH, AEParts.PATTERN_PROVIDER)
-                .part(Direction.EAST, AEParts.PATTERN_PROVIDER)
-                .part(Direction.WEST, AEParts.PATTERN_PROVIDER);
-
-        plot.afterGridExistsAt(BlockPos.ZERO, (grid, node) -> {
-            // This has so many nodes it needs infinite mode
-            ((PathingService) grid.getPathingService()).setForcedChannelMode(ChannelMode.INFINITE);
-
-            var patternProviders = grid.getMachines(PatternProviderPart.class).iterator();
-            PatternProviderPart current = patternProviders.next();
-            var craftingRecipes = node.getLevel().getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING);
-
-            Set<AEItemKey> neededIngredients = new HashSet<>();
-            Set<AEItemKey> providedResults = new HashSet<>();
-
-            for (var holder : craftingRecipes) {
-                var recipe = holder.value();
-                if (recipe.isSpecial()) {
-                    continue;
-                }
-
-                ItemStack craftingPattern;
-                try {
-                    var ingredients = CraftingRecipeUtil.ensure3by3CraftingMatrix(recipe).stream()
-                            .map(i -> {
-                                if (i.isEmpty()) {
-                                    return ItemStack.EMPTY;
-                                } else {
-                                    return i.getItems()[0];
-                                }
-                            }).toArray(ItemStack[]::new);
-                    craftingPattern = PatternDetailsHelper.encodeCraftingPattern(
-                            holder,
-                            ingredients,
-                            recipe.getResultItem(node.getLevel().registryAccess()),
-                            false,
-                            false);
-
-                    for (ItemStack ingredient : ingredients) {
-                        var key = AEItemKey.of(ingredient);
-                        if (key != null) {
-                            neededIngredients.add(key);
-                        }
-                    }
-                    if (!recipe.getResultItem(node.getLevel().registryAccess()).isEmpty()) {
-                        providedResults.add(AEItemKey.of(recipe.getResultItem(node.getLevel().registryAccess())));
-                    }
-                } catch (Exception e) {
-                    AELog.warn(e);
-                    continue;
-                }
-
-                if (!current.getLogic().getPatternInv().addItems(craftingPattern).isEmpty()) {
-                    if (!patternProviders.hasNext()) {
-                        break;
-                    }
-                    current = patternProviders.next();
-                    current.getLogic().getPatternInv().addItems(craftingPattern);
-                }
-            }
-
-            // Add creative cells for anything that's not provided as a recipe result
-            var keysToAdd = Sets.difference(neededIngredients, providedResults).iterator();
-            drives: for (var drive : grid.getMachines(DriveBlockEntity.class)) {
-
-                var cellInv = drive.getInternalInventory();
-                for (int i = 0; i < cellInv.size(); i++) {
-                    var creativeCell = AEItems.CREATIVE_CELL.stack();
-                    var configInv = AEItems.CREATIVE_CELL.get().getConfigInventory(creativeCell);
-
-                    for (int j = 0; j < configInv.size(); j++) {
-                        if (!keysToAdd.hasNext()) {
-                            cellInv.addItems(creativeCell);
-                            break drives;
-                        }
-
-                        var keyToAdd = keysToAdd.next();
-                        configInv.setStack(j, new GenericStack(keyToAdd, 1));
-                    }
-                    cellInv.addItems(creativeCell);
-
-                }
-            }
-        });
-    }
-
-    /**
-     * Regression test for https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/5860.
-     */
-    @TestPlot("blockingmode_subnetwork_chesttest")
-    public static void blockingModeSubnetworkChestTest(PlotBuilder plot) {
-        // Network itself
-        plot.creativeEnergyCell("0 -1 0");
-        plot.block("[0,1] [0,1] [0,1]", AEBlocks.CRAFTING_ACCELERATOR);
-        plot.block("0 0 0", AEBlocks.CRAFTING_STORAGE_64K);
-        var input = GenericStack.fromItemStack(new ItemStack(Items.GOLD_INGOT));
-        var output = GenericStack.fromItemStack(new ItemStack(Items.DIAMOND));
-        plot.cable("2 0 0")
-                .part(Direction.EAST, AEParts.PATTERN_PROVIDER, pp -> {
-                    pp.getLogic().getPatternInv().addItems(
-                            PatternDetailsHelper.encodeProcessingPattern(
-                                    List.of(input),
-                                    List.of(output)));
-                    pp.getLogic().getConfigManager().putSetting(Settings.BLOCKING_MODE, YesNo.YES);
-                });
-        plot.drive(new BlockPos(2, 0, -1))
-                .addCreativeCell()
-                .add(input);
-        // Subnetwork
-        plot.creativeEnergyCell("3 -1 0");
-        plot.cable("3 0 0")
-                .part(Direction.WEST, AEParts.INTERFACE)
-                .part(Direction.EAST, AEParts.STORAGE_BUS);
-        plot.block("4 0 0", Blocks.CHEST);
-        // Crafting operation
-        plot.test(helper -> {
-            var craftingJob = new TestCraftingJob(helper, BlockPos.ZERO, output.what(), 64);
-            helper.startSequence()
-                    .thenWaitUntil(craftingJob::tickUntilStarted)
-                    .thenWaitUntil(() -> {
-                        var grid = helper.getGrid(BlockPos.ZERO);
-                        var requesting = grid.getCraftingService().getRequestedAmount(output.what());
-                        helper.check(requesting > 0, "not yet requesting items");
-                        if (requesting != 1) {
-                            helper.fail("blocking mode failed, requesting: " + requesting);
-                        }
-                    })
-                    .thenSucceed();
-        });
-    }
-
     /**
      * Simple terminal full of enchanted items to test rendering performance.
      */
@@ -810,67 +617,6 @@ public final class TestPlots {
                         "Less than a bucket stored");
                 helper.check(tank.getTank().getFluid().getFluid() == Fluids.LAVA,
                         "Something other than lava stored");
-            });
-        });
-    }
-
-    /**
-     * Regression test for https://github.com/AppliedEnergistics/Applied-Energistics-2/issues/6104. Ensures that
-     * repairing tools properly checks for damage values.
-     */
-    @TestPlot("tool_repair_recipe")
-    public static void toolRepairRecipe(PlotBuilder plot) {
-        var undamaged = AEItemKey.of(Items.DIAMOND_PICKAXE);
-        var maxDamage = undamaged.getFuzzySearchMaxValue();
-        var damaged = Util.make(() -> {
-            var is = undamaged.toStack();
-            is.setDamageValue(maxDamage - 1);
-            return AEItemKey.of(is);
-        });
-        var correctResult = Util.make(() -> {
-            var is = undamaged.toStack();
-            var usesLeft = 2 + maxDamage * 5 / 100;
-            is.setDamageValue(maxDamage - usesLeft);
-            return AEItemKey.of(is);
-        });
-
-        plot.creativeEnergyCell("0 0 0");
-        var molecularAssemblerPos = new BlockPos(0, 1, 0);
-        plot.blockEntity(molecularAssemblerPos, AEBlocks.MOLECULAR_ASSEMBLER, molecularAssembler -> {
-            // Get repair recipe
-            var items = NonNullList.withSize(9, ItemStack.EMPTY);
-            items.set(0, undamaged.toStack());
-            items.set(1, undamaged.toStack());
-            var input = CraftingInput.of(3, 3, items);
-
-            var level = molecularAssembler.getLevel();
-            var recipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level).get();
-
-            // Encode pattern
-            var sparseInputs = new ItemStack[9];
-            sparseInputs[0] = undamaged.toStack();
-            sparseInputs[1] = undamaged.toStack();
-            for (int i = 2; i < 9; ++i)
-                sparseInputs[i] = ItemStack.EMPTY;
-            var encodedPattern = PatternDetailsHelper.encodeCraftingPattern(recipe, sparseInputs, undamaged.toStack(),
-                    true, false);
-            var patternDetails = PatternDetailsHelper.decodePattern(encodedPattern, level);
-
-            // Push it to the assembler
-            var table = new KeyCounter[] { new KeyCounter() };
-            table[0].add(damaged, 2);
-            molecularAssembler.pushPattern(patternDetails, table, Direction.UP);
-        });
-
-        plot.test(helper -> {
-            helper.runAfterDelay(40, () -> {
-                var molecularAssembler = (MolecularAssemblerBlockEntity) helper.getBlockEntity(molecularAssemblerPos);
-                var outputItem = molecularAssembler.getInternalInventory().getStackInSlot(9);
-                if (correctResult.matches(outputItem)) {
-                    helper.succeed();
-                } else if (undamaged.matches(outputItem)) {
-                    helper.fail("created undamaged item");
-                }
             });
         });
     }

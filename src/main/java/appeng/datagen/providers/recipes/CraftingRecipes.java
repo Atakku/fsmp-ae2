@@ -58,11 +58,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(AEItems.BASIC_CARD)
                 .unlockedBy("has_basic_card", has(AEItems.BASIC_CARD))
                 .save(consumer, AppEng.makeId("materials/cardcapacity"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.CRAFTING_CARD)
-                .requires(Items.CRAFTING_TABLE)
-                .requires(AEItems.BASIC_CARD)
-                .unlockedBy("has_basic_card", has(AEItems.BASIC_CARD))
-                .save(consumer, AppEng.makeId("materials/cardcrafting"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.REDSTONE_CARD)
                 .requires(Items.REDSTONE_TORCH)
                 .requires(AEItems.BASIC_CARD)
@@ -373,25 +368,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('e', AEItems.LOGIC_PROCESSOR)
                 .unlockedBy("has_drive", has(AEBlocks.DRIVE))
                 .save(consumer, AppEng.makeId("network/blocks/io_port"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.PATTERN_PROVIDER)
-                .pattern("aba")
-                .pattern("c d")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', Items.CRAFTING_TABLE)
-                .define('c', AEItems.ANNIHILATION_CORE)
-                .define('d', AEItems.FORMATION_CORE)
-                .unlockedBy("has_annihilation_core", has(AEItems.ANNIHILATION_CORE))
-                .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
-                .save(consumer, AppEng.makeId("network/blocks/pattern_providers_interface"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.PATTERN_PROVIDER)
-                .requires(AEParts.PATTERN_PROVIDER)
-                .unlockedBy("has_cable_pattern_provider", has(AEParts.PATTERN_PROVIDER))
-                .save(consumer, AppEng.makeId("network/blocks/pattern_providers_interface_alt"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEParts.PATTERN_PROVIDER)
-                .requires(AEBlocks.PATTERN_PROVIDER)
-                .unlockedBy("has_pattern_provider", has(AEBlocks.PATTERN_PROVIDER))
-                .save(consumer, AppEng.makeId("network/blocks/pattern_providers_interface_part"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.INTERFACE)
                 .pattern("aba")
                 .pattern("c d")
@@ -478,81 +454,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(ConventionTags.ALL_CERTUS_QUARTZ)
                 .unlockedBy("has_terminal", has(AEParts.TERMINAL))
                 .save(consumer, AppEng.makeId("network/cells/view_cell_storage"));
-
-        // ====================================================
-        // recipes/network/crafting
-        // ====================================================
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.CRAFTING_UNIT)
-                .pattern("aba")
-                .pattern("cdc")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEItems.CALCULATION_PROCESSOR)
-                .define('c', AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT))
-                .define('d', AEItems.LOGIC_PROCESSOR)
-                .unlockedBy("has_calculation_processor", has(AEItems.CALCULATION_PROCESSOR))
-                .save(consumer, AppEng.makeId("network/crafting/cpu_crafting_unit"));
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_STORAGE_1K)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.CELL_COMPONENT_1K)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/1k_cpu_crafting_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_STORAGE_4K)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.CELL_COMPONENT_4K)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/4k_cpu_crafting_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_STORAGE_16K)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.CELL_COMPONENT_16K)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/16k_cpu_crafting_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_STORAGE_64K)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.CELL_COMPONENT_64K)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/64k_cpu_crafting_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_STORAGE_256K)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.CELL_COMPONENT_256K)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/256k_cpu_crafting_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_ACCELERATOR)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/cpu_crafting_accelerator"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEBlocks.CRAFTING_MONITOR)
-                .requires(AEBlocks.CRAFTING_UNIT)
-                .requires(AEParts.STORAGE_MONITOR)
-                .unlockedBy("has_crafting_unit", has(AEBlocks.CRAFTING_UNIT))
-                .save(consumer, AppEng.makeId("network/crafting/cpu_crafting_monitor"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.MOLECULAR_ASSEMBLER)
-                .pattern("aba")
-                .pattern("cde")
-                .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEBlocks.QUARTZ_GLASS)
-                .define('c', AEItems.ANNIHILATION_CORE)
-                .define('d', Items.CRAFTING_TABLE)
-                .define('e', AEItems.FORMATION_CORE)
-                .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
-                .unlockedBy("has_annihilation_core", has(AEItems.ANNIHILATION_CORE))
-                .save(consumer, AppEng.makeId("network/crafting/molecular_assembler"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.BLANK_PATTERN, 2)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', AEBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.GLOWSTONE)
-                .define('c', ConventionTags.ALL_CERTUS_QUARTZ)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_crafting_terminal", has(AEParts.CRAFTING_TERMINAL))
-                .save(consumer, AppEng.makeId("network/crafting/patterns_blank"));
 
         // ====================================================
         // recipes/network/parts
@@ -688,12 +589,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_terminal", has(AEParts.TERMINAL))
                 .unlockedBy("has_calculation_processor", has(AEItems.CALCULATION_PROCESSOR))
                 .save(consumer, AppEng.makeId("network/parts/terminals_crafting"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEParts.PATTERN_ACCESS_TERMINAL)
-                .requires(ConventionTags.ILLUMINATED_PANEL)
-                .requires(AEItems.ENGINEERING_PROCESSOR)
-                .requires(ConventionTags.PATTERN_PROVIDER)
-                .unlockedBy("has_pattern_provider", has(ConventionTags.PATTERN_PROVIDER))
-                .save(consumer, AppEng.makeId("network/parts/terminals_pattern_access"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEParts.TOGGLE_BUS)
                 .pattern(" a ")
                 .pattern("bcb")

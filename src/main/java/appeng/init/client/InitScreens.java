@@ -43,8 +43,6 @@ import appeng.client.gui.implementations.IOPortScreen;
 import appeng.client.gui.implementations.InscriberScreen;
 import appeng.client.gui.implementations.InterfaceScreen;
 import appeng.client.gui.implementations.MEChestScreen;
-import appeng.client.gui.implementations.MolecularAssemblerScreen;
-import appeng.client.gui.implementations.PatternProviderScreen;
 import appeng.client.gui.implementations.PriorityScreen;
 import appeng.client.gui.implementations.QuartzKnifeScreen;
 import appeng.client.gui.implementations.SkyChestScreen;
@@ -53,15 +51,9 @@ import appeng.client.gui.implementations.StorageLevelEmitterScreen;
 import appeng.client.gui.implementations.VibrationChamberScreen;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
 import appeng.client.gui.me.common.MEStorageScreen;
-import appeng.client.gui.me.crafting.CraftAmountScreen;
-import appeng.client.gui.me.crafting.CraftConfirmScreen;
-import appeng.client.gui.me.crafting.CraftingCPUScreen;
-import appeng.client.gui.me.crafting.CraftingStatusScreen;
-import appeng.client.gui.me.crafting.SetStockAmountScreen;
 import appeng.client.gui.me.items.CraftingTermScreen;
 import appeng.client.gui.me.networktool.NetworkStatusScreen;
 import appeng.client.gui.me.networktool.NetworkToolScreen;
-import appeng.client.gui.me.patternaccess.PatternAccessTermScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.StyleManager;
 import appeng.menu.AEBaseMenu;
@@ -75,22 +67,14 @@ import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.InscriberMenu;
 import appeng.menu.implementations.InterfaceMenu;
 import appeng.menu.implementations.MEChestMenu;
-import appeng.menu.implementations.MolecularAssemblerMenu;
-import appeng.menu.implementations.PatternAccessTermMenu;
-import appeng.menu.implementations.PatternProviderMenu;
 import appeng.menu.implementations.PriorityMenu;
 import appeng.menu.implementations.QuartzKnifeMenu;
-import appeng.menu.implementations.SetStockAmountMenu;
 import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageBusMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.VibrationChamberMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.me.common.MEStorageMenu;
-import appeng.menu.me.crafting.CraftAmountMenu;
-import appeng.menu.me.crafting.CraftConfirmMenu;
-import appeng.menu.me.crafting.CraftingCPUMenu;
-import appeng.menu.me.crafting.CraftingStatusMenu;
 import appeng.menu.me.items.BasicCellChestMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
@@ -116,7 +100,6 @@ public final class InitScreens {
         register(event, WirelessAccessPointMenu.TYPE, WirelessAccessPointScreen::new, "/screens/wireless_access_point.json");
         register(event, NetworkStatusMenu.NETWORK_TOOL_TYPE, NetworkStatusScreen::new, "/screens/network_status.json");
         register(event, NetworkStatusMenu.CONTROLLER_TYPE, NetworkStatusScreen::new, "/screens/network_status.json");
-        register(event, CraftingCPUMenu.TYPE, CraftingCPUScreen<CraftingCPUMenu>::new, "/screens/crafting_cpu.json");
         register(event, NetworkToolMenu.TYPE, NetworkToolScreen::new, "/screens/network_tool.json");
         register(event, QuartzKnifeMenu.TYPE, QuartzKnifeScreen::new, "/screens/quartz_knife.json");
         register(event, DriveMenu.TYPE, DriveScreen::new, "/screens/drive.json");
@@ -127,18 +110,12 @@ public final class InitScreens {
         register(event, IOBusMenu.IMPORT_TYPE, IOBusScreen::new, "/screens/import_bus.json");
         register(event, IOPortMenu.TYPE, IOPortScreen::new, "/screens/io_port.json");
         register(event, StorageBusMenu.TYPE, StorageBusScreen::new, "/screens/storage_bus.json");
-        register(event, SetStockAmountMenu.TYPE, SetStockAmountScreen::new, "/screens/set_stock_amount.json");
         register(event, FormationPlaneMenu.TYPE, FormationPlaneScreen::new, "/screens/formation_plane.json");
         register(event, PriorityMenu.TYPE, PriorityScreen::new, "/screens/priority.json");
         register(event, StorageLevelEmitterMenu.TYPE, StorageLevelEmitterScreen::new, "/screens/level_emitter.json");
         register(event, EnergyLevelEmitterMenu.TYPE, EnergyLevelEmitterScreen::new, "/screens/energy_level_emitter.json");
         register(event, InscriberMenu.TYPE, InscriberScreen::new, "/screens/inscriber.json");
         register(event, CellWorkbenchMenu.TYPE, CellWorkbenchScreen::new, "/screens/cell_workbench.json");
-        register(event, PatternProviderMenu.TYPE, PatternProviderScreen<PatternProviderMenu>::new, "/screens/pattern_provider.json");
-        register(event, MolecularAssemblerMenu.TYPE, MolecularAssemblerScreen::new, "/screens/molecular_assembler.json");
-        register(event, CraftAmountMenu.TYPE, CraftAmountScreen::new, "/screens/craft_amount.json");
-        register(event, CraftConfirmMenu.TYPE, CraftConfirmScreen::new, "/screens/craft_confirm.json");
-        register(event, CraftingStatusMenu.TYPE, CraftingStatusScreen::new, "/screens/crafting_status.json");
 
         // Terminals
         InitScreens.<MEStorageMenu, MEStorageScreen<MEStorageMenu>>register(event,
@@ -169,9 +146,6 @@ public final class InitScreens {
                 WirelessCraftingTermMenu.TYPE,
                 CraftingTermScreen::new,
                 "/screens/terminals/crafting_terminal.json");
-        InitScreens.<PatternAccessTermMenu, PatternAccessTermScreen<PatternAccessTermMenu>>register(event,
-                PatternAccessTermMenu.TYPE, PatternAccessTermScreen::new,
-                "/screens/terminals/pattern_access_terminal.json");
         // spotless:on
     }
 

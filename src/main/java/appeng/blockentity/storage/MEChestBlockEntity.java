@@ -48,7 +48,6 @@ import appeng.api.config.PowerMultiplier;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.implementations.blockentities.IColorableBlockEntity;
 import appeng.api.implementations.blockentities.IMEChest;
 import appeng.api.inventories.InternalInventory;
@@ -105,7 +104,6 @@ public class MEChestBlockEntity extends AENetworkedPoweredBlockEntity
     private final IActionSource mySrc = new MachineSource(this);
     private final IConfigManager config = IConfigManager.builder(this::saveChanges)
             .registerSetting(Settings.SORT_BY, SortOrder.NAME)
-            .registerSetting(Settings.VIEW_MODE, ViewItems.ALL)
             .registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING)
             .build();
     private final KeyTypeSelection keyTypeSelection = new KeyTypeSelection(this::saveChanges, keyType -> true);

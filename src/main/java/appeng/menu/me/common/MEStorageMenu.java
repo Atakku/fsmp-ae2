@@ -48,10 +48,8 @@ import appeng.api.config.Setting;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.implementations.blockentities.IViewCellStorage;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
-import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionHost;
@@ -84,7 +82,6 @@ import appeng.menu.guisync.GuiSync;
 import appeng.menu.guisync.LinkStatusAwareMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
 import appeng.menu.interfaces.KeyTypeSelectionMenu;
-import appeng.menu.me.crafting.CraftAmountMenu;
 import appeng.menu.slot.AppEngSlot;
 import appeng.menu.slot.RestrictedInputSlot;
 import appeng.util.Platform;
@@ -116,11 +113,6 @@ public class MEStorageMenu extends AEBaseMenu
     private final ToolboxMenu toolboxMenu;
     private final ITerminalHost host;
 
-    /**
-     * The number of active crafting jobs in the network. -1 means unknown and will hide the label on the screen.
-     */
-    @GuiSync(100)
-    public int activeCraftingJobs = -1;
     private static final short SEARCH_KEY_TYPES_ID = 101;
     @GuiSync(SEARCH_KEY_TYPES_ID)
     public SyncedKeyTypes searchKeyTypes = new SyncedKeyTypes();
@@ -171,7 +163,6 @@ public class MEStorageMenu extends AEBaseMenu
 
         this.clientCM = IConfigManager.builder(this::onSettingChanged)
                 .registerSetting(Settings.SORT_BY, SortOrder.NAME)
-                .registerSetting(Settings.VIEW_MODE, ViewItems.ALL)
                 .registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING)
                 .build();
 
@@ -233,8 +224,6 @@ public class MEStorageMenu extends AEBaseMenu
 
         if (isServerSide()) {
             this.updateLinkStatus();
-
-            this.updateActiveCraftingJobs();
 
             for (var set : this.serverCM.getSettings()) {
                 var sideLocal = this.serverCM.getSetting(set);
@@ -314,33 +303,8 @@ public class MEStorageMenu extends AEBaseMenu
         if (!showsCraftables()) {
             return Collections.emptySet();
         }
-
-        if (hostNode != null && hostNode.isActive()) {
-            return hostNode.getGrid().getCraftingService().getCraftables(this::isKeyVisible);
-        }
+        // AKUTODO
         return Collections.emptySet();
-    }
-
-    private void updateActiveCraftingJobs() {
-        IGridNode hostNode = getGridNode();
-        IGrid grid = null;
-        if (hostNode != null) {
-            grid = hostNode.getGrid();
-        }
-
-        if (grid == null) {
-            // No grid to query crafting jobs from
-            this.activeCraftingJobs = -1;
-            return;
-        }
-
-        int activeJobs = 0;
-        for (var cpus : grid.getCraftingService().getCpus()) {
-            if (cpus.isBusy()) {
-                activeJobs++;
-            }
-        }
-        this.activeCraftingJobs = activeJobs;
     }
 
     private void onSettingChanged(IConfigManager manager, Setting<?> setting) {
@@ -405,15 +369,6 @@ public class MEStorageMenu extends AEBaseMenu
     protected void handleNetworkInteraction(ServerPlayer player, @Nullable AEKey clickedKey, InventoryAction action) {
 
         if (!canInteractWithGrid()) {
-            return;
-        }
-
-        // Handle auto-crafting requests
-        if (action == InventoryAction.AUTO_CRAFT) {
-            var locator = getLocator();
-            if (locator != null && clickedKey != null) {
-                CraftAmountMenu.open(player, locator, clickedKey, clickedKey.getAmountPerUnit());
-            }
             return;
         }
 

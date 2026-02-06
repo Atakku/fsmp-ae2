@@ -32,7 +32,6 @@ import net.minecraft.world.phys.Vec3;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.config.ViewItems;
 import appeng.api.implementations.blockentities.IViewCellStorage;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.parts.IPartItem;
@@ -80,7 +79,6 @@ public abstract class AbstractTerminalPart extends AbstractDisplayPart
     @MustBeInvokedByOverriders
     protected void registerSettings(IConfigManagerBuilder builder) {
         builder.registerSetting(Settings.SORT_BY, SortOrder.NAME);
-        builder.registerSetting(Settings.VIEW_MODE, ViewItems.ALL);
         builder.registerSetting(Settings.SORT_DIRECTION, SortDir.ASCENDING);
     }
 

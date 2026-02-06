@@ -37,7 +37,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.VOID_CARD, "item/card_void");
         flatSingleLayer(AEItems.ANNIHILATION_CORE, "item/annihilation_core");
         flatSingleLayer(AEItems.BASIC_CARD, "item/basic_card");
-        flatSingleLayer(AEItems.BLANK_PATTERN, "item/blank_pattern");
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR, "item/calculation_processor");
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR_PRESS, "item/calculation_processor_press");
         flatSingleLayer(AEItems.CALCULATION_PROCESSOR_PRINT, "item/printed_calculation_processor");
@@ -52,8 +51,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.CERTUS_QUARTZ_DUST, "item/certus_quartz_dust");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_KNIFE, "item/certus_quartz_cutting_knife");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_WRENCH, "item/certus_quartz_wrench");
-        flatSingleLayer(AEItems.CRAFTING_CARD, "item/card_crafting");
-        flatSingleLayer(AEItems.CRAFTING_PATTERN, "item/crafting_pattern");
         flatSingleLayer(AEItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(AEItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(AEItems.DEBUG_METEORITE_PLACER, "item/debug/meteorite_placer");
@@ -100,7 +97,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         portableCell(AEItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
         portableCell(AEItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
         portableCell(AEItems.PORTABLE_FLUID_CELL256K, "fluid", "256k");
-        flatSingleLayer(AEItems.PROCESSING_PATTERN, "item/processing_pattern");
         flatSingleLayer(AEItems.REDSTONE_CARD, "item/card_redstone");
         flatSingleLayer(AEItems.SILICON, "item/silicon");
         flatSingleLayer(AEItems.SILICON_PRESS, "item/silicon_press");

@@ -37,10 +37,6 @@ import appeng.block.AEBaseEntityBlock;
 import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.ClientTickingBlockEntity;
 import appeng.blockentity.ServerTickingBlockEntity;
-import appeng.blockentity.crafting.CraftingBlockEntity;
-import appeng.blockentity.crafting.CraftingMonitorBlockEntity;
-import appeng.blockentity.crafting.MolecularAssemblerBlockEntity;
-import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.misc.CellWorkbenchBlockEntity;
 import appeng.blockentity.misc.ChargerBlockEntity;
 import appeng.blockentity.misc.CondenserBlockEntity;
@@ -117,22 +113,6 @@ public final class AEBlockEntities {
     public static final DeferredBlockEntityType<CreativeEnergyCellBlockEntity> CREATIVE_ENERGY_CELL = create(
             "creative_energy_cell",
             CreativeEnergyCellBlockEntity.class, CreativeEnergyCellBlockEntity::new, AEBlocks.CREATIVE_ENERGY_CELL);
-    public static final DeferredBlockEntityType<CraftingBlockEntity> CRAFTING_UNIT = create("crafting_unit",
-            CraftingBlockEntity.class, CraftingBlockEntity::new, AEBlocks.CRAFTING_UNIT,
-            AEBlocks.CRAFTING_ACCELERATOR);
-    public static final DeferredBlockEntityType<CraftingBlockEntity> CRAFTING_STORAGE = create("crafting_storage",
-            CraftingBlockEntity.class, CraftingBlockEntity::new, AEBlocks.CRAFTING_STORAGE_1K,
-            AEBlocks.CRAFTING_STORAGE_4K, AEBlocks.CRAFTING_STORAGE_16K, AEBlocks.CRAFTING_STORAGE_64K,
-            AEBlocks.CRAFTING_STORAGE_256K);
-    public static final DeferredBlockEntityType<CraftingMonitorBlockEntity> CRAFTING_MONITOR = create(
-            "crafting_monitor",
-            CraftingMonitorBlockEntity.class, CraftingMonitorBlockEntity::new, AEBlocks.CRAFTING_MONITOR);
-    public static final DeferredBlockEntityType<PatternProviderBlockEntity> PATTERN_PROVIDER = create(
-            "pattern_provider",
-            PatternProviderBlockEntity.class, PatternProviderBlockEntity::new, AEBlocks.PATTERN_PROVIDER);
-    public static final DeferredBlockEntityType<MolecularAssemblerBlockEntity> MOLECULAR_ASSEMBLER = create(
-            "molecular_assembler",
-            MolecularAssemblerBlockEntity.class, MolecularAssemblerBlockEntity::new, AEBlocks.MOLECULAR_ASSEMBLER);
     public static final DeferredBlockEntityType<LightDetectorBlockEntity> LIGHT_DETECTOR = create("light_detector",
             LightDetectorBlockEntity.class, LightDetectorBlockEntity::new, AEBlocks.LIGHT_DETECTOR);
     public static final DeferredBlockEntityType<SkyChestBlockEntity> SKY_CHEST = create("sky_chest",

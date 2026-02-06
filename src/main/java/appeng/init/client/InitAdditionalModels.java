@@ -24,7 +24,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ModelEvent;
 
 import appeng.api.parts.PartModelsInternal;
-import appeng.client.render.crafting.MolecularAssemblerRenderer;
 import appeng.client.render.tesr.CrankRenderer;
 
 /**
@@ -34,7 +33,6 @@ import appeng.client.render.tesr.CrankRenderer;
 public class InitAdditionalModels {
 
     public static void init(ModelEvent.RegisterAdditional event) {
-        event.register(MolecularAssemblerRenderer.LIGHTS_MODEL);
         event.register(CrankRenderer.BASE_MODEL);
         event.register(CrankRenderer.HANDLE_MODEL);
 

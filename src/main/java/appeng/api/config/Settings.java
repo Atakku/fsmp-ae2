@@ -62,7 +62,6 @@ public final class Settings {
     public static final Setting<SortDir> SORT_DIRECTION = register("sort_direction", SortDir.class);
     public static final Setting<SortOrder> SORT_BY = register("sort_by", SortOrder.class);
     public static final Setting<YesNo> SEARCH_TOOLTIPS = register("search_tooltips", YesNo.YES, YesNo.NO);
-    public static final Setting<ViewItems> VIEW_MODE = register("view_mode", ViewItems.class);
     public static final Setting<RelativeDirection> IO_DIRECTION = register("io_direction", RelativeDirection.LEFT,
             RelativeDirection.RIGHT);
     public static final Setting<YesNo> BLOCKING_MODE = register("blocking_mode", YesNo.YES, YesNo.NO);
@@ -70,7 +69,6 @@ public final class Settings {
             LockCraftingMode.class);
     public static final Setting<OperationMode> OPERATION_MODE = register("operation_mode", OperationMode.class);
     public static final Setting<FullnessMode> FULLNESS_MODE = register("fullness_mode", FullnessMode.class);
-    public static final Setting<YesNo> CRAFT_ONLY = register("craft_only", YesNo.YES, YesNo.NO);
     public static final Setting<FuzzyMode> FUZZY_MODE = register("fuzzy_mode", FuzzyMode.class);
     public static final Setting<TerminalStyle> TERMINAL_STYLE = register("terminal_style", TerminalStyle.SMALL,
             TerminalStyle.MEDIUM, TerminalStyle.TALL, TerminalStyle.FULL);
@@ -80,14 +78,11 @@ public final class Settings {
     public static final Setting<CopyMode> COPY_MODE = register("copy_mode", CopyMode.class);
     public static final Setting<YesNo> PATTERN_ACCESS_TERMINAL = register("pattern_access_terminal", YesNo.YES,
             YesNo.NO);
-    public static final Setting<YesNo> CRAFT_VIA_REDSTONE = register("craft_via_redstone", YesNo.YES, YesNo.NO);
     public static final Setting<StorageFilter> STORAGE_FILTER = register("storage_filter", StorageFilter.class);
     public static final Setting<YesNo> PLACE_BLOCK = register("place_block", YesNo.YES, YesNo.NO);
     public static final Setting<SchedulingMode> SCHEDULING_MODE = register("scheduling_mode", SchedulingMode.class);
     public static final Setting<YesNo> OVERLAY_MODE = register("overlay_mode", YesNo.YES, YesNo.NO);
     public static final Setting<YesNo> FILTER_ON_EXTRACT = register("filter_on_extract", YesNo.YES, YesNo.NO);
-    public static final Setting<CpuSelectionMode> CPU_SELECTION_MODE = register("crafting_scheduling_mode",
-            CpuSelectionMode.class);
     public static final Setting<YesNo> INSCRIBER_SEPARATE_SIDES = register("inscriber_separate_sides", YesNo.NO,
             YesNo.YES);
     public static final Setting<YesNo> AUTO_EXPORT = register("auto_export", YesNo.NO, YesNo.YES);

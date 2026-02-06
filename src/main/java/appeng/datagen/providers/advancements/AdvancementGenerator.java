@@ -213,20 +213,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(controller)
                 .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.CRAFTING_TERMINAL))
                 .save(consumer, "ae2:main/crafting_terminal");
-        var craftingCpu = Advancement.Builder.advancement()
-                .display(
-                        AEBlocks.CRAFTING_STORAGE_64K,
-                        localization.component("achievement.ae2.CraftingCPU", "Next Gen Crafting"),
-                        localization.component("achievement.ae2.CraftingCPU.desc", "Craft a Crafting Unit"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        false,
-                        false,
-                        false)
-                .parent(craftingTerminal)
-                .addCriterion("cu", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.CRAFTING_UNIT))
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .save(consumer, "ae2:main/crafting_cpu");
 
         var fluix = Advancement.Builder.advancement()
                 .display(

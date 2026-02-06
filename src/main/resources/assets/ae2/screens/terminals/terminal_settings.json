@@ -37,11 +37,6 @@
       "top": 25,
       "width": 180
     },
-    "notifyForFinishedCraftingJobsCheckbox": {
-      "left": 10,
-      "top": 50,
-      "width": 180
-    },
     "clearGridOnCloseCheckbox": {
       "left": 10,
       "top": 82,

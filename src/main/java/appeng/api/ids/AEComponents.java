@@ -28,11 +28,8 @@ import appeng.api.implementations.items.MemoryCardColors;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
 import appeng.api.util.AEColor;
-import appeng.block.crafting.PushDirection;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
-import appeng.crafting.pattern.EncodedCraftingPattern;
-import appeng.crafting.pattern.EncodedProcessingPattern;
 
 public final class AEComponents {
     @ApiStatus.Internal
@@ -129,22 +126,6 @@ public final class AEComponents {
             builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 
     /**
-     * Exported patterns
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     * @see appeng.helpers.patternprovider.PatternProviderLogic
-     */
-    public static final DataComponentType<ItemContainerContents> EXPORTED_PATTERNS = register("exported_patterns",
-            builder -> builder.persistent(ItemContainerContents.CODEC)
-                    .networkSynchronized(ItemContainerContents.STREAM_CODEC));
-
-    /**
-     * Exported push direction of pattern providers or similar machines.
-     */
-    public static final DataComponentType<PushDirection> EXPORTED_PUSH_DIRECTION = register("exported_push_direction",
-            builder -> builder.persistent(PushDirection.CODEC).networkSynchronized(PushDirection.STREAM_CODEC));
-
-    /**
      * The name inscribed by a {@link appeng.items.materials.NamePressItem}
      */
     public static final DataComponentType<Component> NAME_PRESS_NAME = register("name_press_name",
@@ -170,26 +151,6 @@ public final class AEComponents {
      */
     public static final DataComponentType<Double> ENERGY_CAPACITY = register("energy_capacity",
             builder -> builder.persistent(Codec.DOUBLE).networkSynchronized(ByteBufCodecs.DOUBLE));
-
-    /**
-     * An encoded crafting pattern.
-     *
-     * @see AEItems#CRAFTING_PATTERN
-     */
-    public static final DataComponentType<EncodedCraftingPattern> ENCODED_CRAFTING_PATTERN = register(
-            "encoded_crafting_pattern",
-            builder -> builder.persistent(EncodedCraftingPattern.CODEC)
-                    .networkSynchronized(EncodedCraftingPattern.STREAM_CODEC));
-
-    /**
-     * An encoded processing pattern.
-     *
-     * @see AEItems#PROCESSING_PATTERN
-     */
-    public static final DataComponentType<EncodedProcessingPattern> ENCODED_PROCESSING_PATTERN = register(
-            "encoded_processing_pattern",
-            builder -> builder.persistent(EncodedProcessingPattern.CODEC)
-                    .networkSynchronized(EncodedProcessingPattern.STREAM_CODEC));
 
     /**
      * List of AE key types enabled in a terminal

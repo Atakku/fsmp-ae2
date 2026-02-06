@@ -19,7 +19,6 @@
 package appeng.parts.reporting;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,8 +33,6 @@ import appeng.core.AppEng;
 import appeng.items.parts.PartModels;
 import appeng.me.helpers.PlayerSource;
 import appeng.menu.ISubMenu;
-import appeng.menu.locator.MenuLocators;
-import appeng.menu.me.crafting.CraftAmountMenu;
 import appeng.parts.PartModel;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
@@ -193,12 +190,6 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
         }
 
         if (!this.getMainNode().isActive()) {
-            return;
-        }
-
-        if (getAmount() == 0 && canCraft()) {
-            CraftAmountMenu.open((ServerPlayer) player, MenuLocators.forPart(this), itemKey,
-                    itemKey.getAmountPerUnit());
             return;
         }
 

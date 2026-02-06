@@ -75,14 +75,11 @@ import appeng.blockentity.networking.CableBusTESR;
 import appeng.client.EffectType;
 import appeng.client.Hotkeys;
 import appeng.client.commands.ClientCommands;
-import appeng.client.gui.me.common.PendingCraftingJobs;
 import appeng.client.gui.me.common.PinnedKeys;
 import appeng.client.gui.style.StyleManager;
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.client.guidebook.PartAnnotationStrategy;
 import appeng.client.render.StorageCellClientTooltipComponent;
-import appeng.client.render.crafting.CraftingMonitorRenderer;
-import appeng.client.render.crafting.MolecularAssemblerRenderer;
 import appeng.client.render.effects.CraftingFx;
 import appeng.client.render.effects.EnergyFx;
 import appeng.client.render.effects.EnergyParticleData;
@@ -179,7 +176,6 @@ public class AppEngClient extends AppEngBase {
         INSTANCE = this;
 
         NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingIn evt) -> {
-            PendingCraftingJobs.clearPendingJobs();
             PinnedKeys.clearPinnedKeys();
         });
 
@@ -291,8 +287,6 @@ public class AppEngClient extends AppEngBase {
         event.registerBlockEntityRenderer(AEBlockEntities.CHARGER.get(), ChargerBlockEntityRenderer.FACTORY);
         event.registerBlockEntityRenderer(AEBlockEntities.DRIVE.get(), DriveLedBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(AEBlockEntities.ME_CHEST.get(), ChestBlockEntityRenderer::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.CRAFTING_MONITOR.get(), CraftingMonitorRenderer::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.MOLECULAR_ASSEMBLER.get(), MolecularAssemblerRenderer::new);
         event.registerBlockEntityRenderer(AEBlockEntities.CABLE_BUS.get(), CableBusTESR::new);
         event.registerBlockEntityRenderer(AEBlockEntities.SKY_STONE_TANK.get(), SkyStoneTankBlockEntityRenderer::new);
     }

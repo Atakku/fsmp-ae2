@@ -12,7 +12,5 @@
       }
     }
   },
-  "terminalStyle": {
-    "supportsAutoCrafting": true
-  }
+  "terminalStyle": {}
 }

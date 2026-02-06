@@ -75,20 +75,7 @@ public final class AEBlockIds {
     public static final ResourceLocation DENSE_ENERGY_CELL = id("dense_energy_cell");
     public static final ResourceLocation CABLE_BUS = id("cable_bus");
 
-    ///
-    /// AUTO CRAFTING
-    ///
     public static final ResourceLocation CREATIVE_ENERGY_CELL = id("creative_energy_cell");
-    public static final ResourceLocation CRAFTING_UNIT = id("crafting_unit");
-    public static final ResourceLocation CRAFTING_ACCELERATOR = id("crafting_accelerator");
-    public static final ResourceLocation CRAFTING_STORAGE_1K = id("1k_crafting_storage");
-    public static final ResourceLocation CRAFTING_STORAGE_4K = id("4k_crafting_storage");
-    public static final ResourceLocation CRAFTING_STORAGE_16K = id("16k_crafting_storage");
-    public static final ResourceLocation CRAFTING_STORAGE_64K = id("64k_crafting_storage");
-    public static final ResourceLocation CRAFTING_STORAGE_256K = id("256k_crafting_storage");
-    public static final ResourceLocation CRAFTING_MONITOR = id("crafting_monitor");
-    public static final ResourceLocation PATTERN_PROVIDER = id("pattern_provider");
-    public static final ResourceLocation MOLECULAR_ASSEMBLER = id("molecular_assembler");
 
     ///
     /// DECORATIVE BLOCKS

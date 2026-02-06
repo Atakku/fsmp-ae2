@@ -199,10 +199,6 @@ public final class AEConfig {
         return client.useLargeFonts.getAsBoolean();
     }
 
-    public boolean isUseColoredCraftingStatus() {
-        return client.useColoredCraftingStatus.getAsBoolean();
-    }
-
     public boolean isDisableColoredCableRecipesInRecipeViewer() {
         return client.disableColoredCableRecipesInRecipeViewer.getAsBoolean();
     }
@@ -217,10 +213,6 @@ public final class AEConfig {
 
     public boolean isExposeNetworkInventoryToEmi() {
         return client.exposeNetworkInventoryToEmi.getAsBoolean();
-    }
-
-    public int getCraftingCalculationTimePerTick() {
-        return common.craftingCalculationTimePerTick.get();
     }
 
     public double getChargerChargeRate() {
@@ -322,17 +314,6 @@ public final class AEConfig {
         }
     }
 
-    public boolean isNotifyForFinishedCraftingJobs() {
-        return client.notifyForFinishedCraftingJobs.get();
-    }
-
-    public void setNotifyForFinishedCraftingJobs(boolean enabled) {
-        if (enabled != client.notifyForFinishedCraftingJobs.getAsBoolean()) {
-            client.notifyForFinishedCraftingJobs.set(enabled);
-            client.spec.save();
-        }
-    }
-
     public boolean isClearGridOnClose() {
         return client.clearGridOnClose.get();
     }
@@ -371,7 +352,6 @@ public final class AEConfig {
         // Misc
         public final BooleanValue enableEffects;
         public final BooleanValue useLargeFonts;
-        public final BooleanValue useColoredCraftingStatus;
         public final BooleanValue disableColoredCableRecipesInRecipeViewer;
         public final BooleanValue enableFacadesInRecipeViewer;
         public final BooleanValue enableFacadeRecipesInRecipeViewer;
@@ -379,7 +359,6 @@ public final class AEConfig {
         public final EnumValue<PowerUnit> selectedPowerUnit;
         public final BooleanValue debugGuiOverlays;
         public final BooleanValue showPlacementPreview;
-        public final BooleanValue notifyForFinishedCraftingJobs;
 
         // Terminal Settings
         public final EnumValue<TerminalStyle> terminalStyle;
@@ -417,13 +396,10 @@ public final class AEConfig {
             builder.push("client");
             this.enableEffects = define(builder, "enableEffects", true);
             this.useLargeFonts = define(builder, "useTerminalUseLargeFont", false);
-            this.useColoredCraftingStatus = define(builder, "useColoredCraftingStatus", true);
             this.selectedPowerUnit = defineEnum(builder, "powerUnit", PowerUnit.AE, "Unit of power shown in AE UIs");
             this.debugGuiOverlays = define(builder, "showDebugGuiOverlays", false, "Show debugging GUI overlays");
             this.showPlacementPreview = define(builder, "showPlacementPreview", true,
                     "Show a preview of part and facade placement");
-            this.notifyForFinishedCraftingJobs = define(builder, "notifyForFinishedCraftingJobs", true,
-                    "Show toast when long-running crafting jobs finish.");
             builder.pop();
 
             var terminals = builder.push("terminals");
@@ -471,7 +447,6 @@ public final class AEConfig {
 
         // Misc
         public final IntValue formationPlaneEntityLimit;
-        public final IntValue craftingCalculationTimePerTick;
         public final BooleanValue debugTools;
         public final EnumValue<ChannelMode> channels;
 
@@ -524,10 +499,6 @@ public final class AEConfig {
 
             builder.push("automation");
             formationPlaneEntityLimit = define(builder, "formationPlaneEntityLimit", 128);
-            builder.pop();
-
-            builder.push("craftingCPU");
-            this.craftingCalculationTimePerTick = define(builder, "craftingCalculationTimePerTick", 5);
             builder.pop();
 
             builder.push("crafting");
@@ -608,7 +579,6 @@ public final class AEConfig {
                 tr.setMax(tickRateMax.get(tr).get());
             }
 
-            AELog.setCraftingLogEnabled(craftingLog.get());
             AELog.setDebugLogEnabled(debugLog.get());
             AELog.setGridLogEnabled(gridLog.get());
         }

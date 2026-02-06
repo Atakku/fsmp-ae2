@@ -2,10 +2,7 @@
 package appeng.core.network.serverbound;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
@@ -21,11 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import it.unimi.dsi.fastutil.ints.IntArrayList;
-import it.unimi.dsi.fastutil.ints.IntList;
-
 import appeng.api.config.FuzzyMode;
-import appeng.api.networking.crafting.ICraftingService;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.KeyCounter;
@@ -121,8 +114,6 @@ public record FillCraftingGridFromRecipePacket(
 
         var energy = cct.getEnergySource();
         @Nullable
-        ICraftingService craftingService;
-        @Nullable
         IStorageService storageService;
         MEStorage networkStorage;
         KeyCounter cachedStorage;
@@ -130,12 +121,10 @@ public record FillCraftingGridFromRecipePacket(
         @Nullable
         var node = cct.getGridNode();
         if (node != null && cct.getLinkStatus().connected()) {
-            craftingService = node.getGrid().getCraftingService();
             storageService = node.getGrid().getStorageService();
             networkStorage = storageService.getInventory();
             cachedStorage = storageService.getCachedInventory();
         } else {
-            craftingService = null;
             storageService = null;
             networkStorage = NullInventory.of();
             cachedStorage = new KeyCounter();
@@ -147,10 +136,6 @@ public record FillCraftingGridFromRecipePacket(
 
         var filter = ViewCellItem.createItemFilter(cct.getViewCells());
         var ingredients = getDesiredIngredients(player);
-
-        // Prepare to autocraft some stuff
-        var toAutoCraft = new LinkedHashMap<AEItemKey, IntList>();
-        boolean touchedGridStorage = false;
 
         // Handle each slot
         for (var x = 0; x < craftMatrix.size(); x++) {
@@ -167,9 +152,6 @@ public record FillCraftingGridFromRecipePacket(
                     var in = AEItemKey.of(currentItem);
                     var inserted = StorageHelper.poweredInsert(energy, networkStorage, in, currentItem.getCount(),
                             cct.getActionSource());
-                    if (inserted > 0) {
-                        touchedGridStorage = true;
-                    }
                     if (inserted < currentItem.getCount()) {
                         currentItem = currentItem.copy();
                         currentItem.shrink((int) inserted);
@@ -196,7 +178,6 @@ public record FillCraftingGridFromRecipePacket(
                     var extracted = StorageHelper.poweredExtraction(energy, networkStorage, what, 1,
                             cct.getActionSource());
                     if (extracted > 0) {
-                        touchedGridStorage = true;
                         currentItem = what.toStack(Ints.saturatedCast(extracted));
                         break;
                     }
@@ -209,30 +190,9 @@ public record FillCraftingGridFromRecipePacket(
             }
 
             craftMatrix.setItemDirect(x, currentItem);
-
-            // If we couldn't find the item, schedule its autocrafting
-            if (currentItem.isEmpty() && craftMissing && craftingService != null) {
-                int slot = x;
-                findCraftableKey(ingredient, craftingService).ifPresent(key -> {
-                    toAutoCraft.computeIfAbsent(key, k -> new IntArrayList()).add(slot);
-                });
-            }
         }
 
         menu.slotsChanged(craftMatrix.toContainer());
-
-        if (!toAutoCraft.isEmpty()) {
-            // Invalidate the grid storage cache if we modified it. The crafting plan will use
-            // the outdated cached inventory otherwise.
-            if (touchedGridStorage) {
-                storageService.invalidateCache();
-            }
-
-            // This must be the last call since it changes the menu!
-            var stacks = toAutoCraft.entrySet().stream()
-                    .map(e -> new ICraftingGridMenu.AutoCraftEntry(e.getKey(), e.getValue())).toList();
-            cct.startAutoCrafting(stacks);
-        }
     }
 
     private ItemStack takeIngredientFromPlayer(ICraftingGridMenu cct, ServerPlayer player, Ingredient ingredient) {
@@ -307,14 +267,5 @@ public record FillCraftingGridFromRecipePacket(
                 .sorted((a, b) -> Long.compare(b.getLongValue(), a.getLongValue()))//
                 .map(e -> (AEItemKey) e.getKey())//
                 .toList();
-    }
-
-    private Optional<AEItemKey> findCraftableKey(Ingredient ingredient, ICraftingService craftingService) {
-        return Arrays.stream(ingredient.getItems())//
-                .map(AEItemKey::of)//
-                .map(s -> (AEItemKey) craftingService.getFuzzyCraftable(s,
-                        key -> ((AEItemKey) key).matches(ingredient)))//
-                .filter(Objects::nonNull)//
-                .findAny();//
     }
 }

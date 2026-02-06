@@ -499,11 +499,6 @@
           "type": "boolean",
           "default": true
         },
-        "supportsAutoCrafting": {
-          "description": "Defines if this terminal supports auto-crafting. If not, the button to show only craftable items is hidden.",
-          "type": "boolean",
-          "default": false
-        },
         "stackSizeStyle": {
           "description": "The type of stack size rendering to use.",
           "type": "string",
