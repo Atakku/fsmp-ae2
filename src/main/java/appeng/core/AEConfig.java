@@ -243,10 +243,6 @@ public final class AEConfig {
         return common.wirelessTerminalBattery::get;
     }
 
-    public DoubleSupplier getEntropyManipulatorBattery() {
-        return common.entropyManipulatorBattery::get;
-    }
-
     public DoubleSupplier getMatterCannonBattery() {
         return common.matterCannonBattery::get;
     }
@@ -531,7 +527,6 @@ public final class AEConfig {
         // Batteries
         public final DoubleValue chargerChargeRate;
         public final IntValue wirelessTerminalBattery;
-        public final IntValue entropyManipulatorBattery;
         public final IntValue matterCannonBattery;
         public final IntValue portableCellBattery;
         public final IntValue colorApplicatorBattery;
@@ -540,10 +535,6 @@ public final class AEConfig {
         // Meteors
         public final BooleanValue spawnPressesInMeteorites;
         public final BooleanValue spawnFlawlessOnly;
-
-        // Wireless
-        public final DoubleValue wirelessBaseCost;
-        public final DoubleValue wirelessTerminalDrainMultiplier;
 
         // Power Ratios
         public final DoubleValue powerRatioForgeEnergy;
@@ -615,7 +606,6 @@ public final class AEConfig {
                     "The chargers charging rate factor, which is applied to the charged items charge rate. 2 means it charges everything twice as fast. 0.5 half as fast.");
             this.wirelessTerminalBattery = define(builder, "wirelessTerminal", 1600000);
             this.chargedStaffBattery = define(builder, "chargedStaff", 8000);
-            this.entropyManipulatorBattery = define(builder, "entropyManipulator", 200000);
             this.portableCellBattery = define(builder, "portableCell", 20000);
             this.colorApplicatorBattery = define(builder, "colorApplicator", 20000);
             this.matterCannonBattery = define(builder, "matterCannon", 200000);
@@ -624,11 +614,6 @@ public final class AEConfig {
             builder.push("worldGen");
             this.spawnPressesInMeteorites = define(builder, "spawnPressesInMeteorites", true);
             this.spawnFlawlessOnly = define(builder, "spawnFlawlessOnly", false);
-            builder.pop();
-
-            builder.push("wireless");
-            this.wirelessBaseCost = define(builder, "wirelessBaseCost", 8.0);
-            this.wirelessTerminalDrainMultiplier = define(builder, "wirelessTerminalDrainMultiplier", 1.0);
             builder.pop();
 
             builder.push("powerRatios");

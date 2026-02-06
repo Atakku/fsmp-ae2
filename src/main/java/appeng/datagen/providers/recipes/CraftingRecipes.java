@@ -823,16 +823,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('b', ConventionTags.IRON_INGOT)
                 .unlockedBy("has_charged_certus_quartz_crystal", has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
                 .save(consumer, AppEng.makeId("tools/misctools_charged_staff"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.ENTROPY_MANIPULATOR)
-                .pattern("ab ")
-                .pattern("cd ")
-                .pattern("  d")
-                .define('a', ConventionTags.ALL_FLUIX)
-                .define('b', AEBlocks.ENERGY_CELL)
-                .define('c', AEItems.ENGINEERING_PROCESSOR)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
-                .save(consumer, AppEng.makeId("tools/misctools_entropy_manipulator"));
 
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL1K);
         portableCell(consumer, AEItems.PORTABLE_ITEM_CELL4K);

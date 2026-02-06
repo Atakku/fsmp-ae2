@@ -6,7 +6,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.core.AppEng;
-import appeng.recipes.entropy.EntropyRecipe;
 import appeng.recipes.game.CraftingUnitTransformRecipe;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.recipes.handlers.ChargerRecipe;
@@ -23,7 +22,6 @@ public final class AERecipeTypes {
             .create(Registries.RECIPE_TYPE, AppEng.MOD_ID);
 
     public static final RecipeType<TransformRecipe> TRANSFORM = register("transform");
-    public static final RecipeType<EntropyRecipe> ENTROPY = register("entropy");
     public static final RecipeType<InscriberRecipe> INSCRIBER = register("inscriber");
     public static final RecipeType<ChargerRecipe> CHARGER = register("charger");
     public static final RecipeType<MatterCannonAmmo> MATTER_CANNON_AMMO = register("matter_cannon");

@@ -3,7 +3,6 @@ package appeng.siteexport;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,6 @@ import guideme.internal.siteexport.SiteExporter;
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.core.definitions.AEBlocks;
 import appeng.items.tools.powered.MatterCannonItem;
-import appeng.recipes.entropy.EntropyRecipe;
 import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberProcessType;
 import appeng.recipes.handlers.InscriberRecipe;
@@ -60,7 +58,6 @@ public class AESiteExporter extends SiteExporter {
         return switch (recipe) {
             case InscriberRecipe inscriberRecipe -> addRecipe(inscriberRecipe);
             case TransformRecipe transformRecipe -> addRecipe(transformRecipe);
-            case EntropyRecipe entropyRecipe -> addRecipe(entropyRecipe);
             case MatterCannonAmmo ammoRecipe -> addRecipe(ammoRecipe);
             case ChargerRecipe chargerRecipe -> addRecipe(chargerRecipe);
             case null, default -> null;
@@ -101,11 +98,6 @@ public class AESiteExporter extends SiteExporter {
                 "resultItem", recipe.getResultItem(null),
                 "ingredients", recipe.getIngredients(),
                 "circumstance", circumstanceJson);
-    }
-
-    private Map<String, Object> addRecipe(EntropyRecipe recipe) {
-        return Map.of(
-                "mode", recipe.getMode().name().toLowerCase(Locale.ROOT));
     }
 
     private Map<String, Object> addRecipe(MatterCannonAmmo recipe) {

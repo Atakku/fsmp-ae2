@@ -97,11 +97,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         registry.addRecipe(new EmiCondenserRecipe(CondenserOutput.MATTER_BALLS));
         registry.addRecipe(new EmiCondenserRecipe(CondenserOutput.SINGULARITY));
 
-        // Entropy Manipulator
-        registry.addCategory(EmiEntropyRecipe.CATEGORY);
-        registry.addWorkstation(EmiEntropyRecipe.CATEGORY, EmiStack.of(AEItems.ENTROPY_MANIPULATOR));
-        adaptRecipeType(registry, AERecipeTypes.ENTROPY, EmiEntropyRecipe::new);
-
         // In-World Transformation
         registry.addCategory(EmiTransformRecipe.CATEGORY);
         adaptRecipeType(registry, AERecipeTypes.TRANSFORM, EmiTransformRecipe::new);

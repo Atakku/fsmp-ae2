@@ -5,7 +5,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.core.AppEng;
-import appeng.recipes.entropy.EntropyRecipeSerializer;
 import appeng.recipes.game.AddItemUpgradeRecipeSerializer;
 import appeng.recipes.game.CraftingUnitTransformRecipeSerializer;
 import appeng.recipes.game.FacadeRecipe;
@@ -28,7 +27,6 @@ public final class AERecipeSerializers {
     static {
         register("inscriber", InscriberRecipeSerializer.INSTANCE);
         register("facade", FacadeRecipe.SERIALIZER);
-        register("entropy", EntropyRecipeSerializer.INSTANCE);
         register("matter_cannon", MatterCannonAmmoSerializer.INSTANCE);
         register("transform", TransformRecipeSerializer.INSTANCE);
         register("charger", ChargerRecipeSerializer.INSTANCE);

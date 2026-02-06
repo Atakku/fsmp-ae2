@@ -49,7 +49,6 @@ import appeng.datagen.providers.recipes.ChargerRecipes;
 import appeng.datagen.providers.recipes.CraftingRecipes;
 import appeng.datagen.providers.recipes.DecorationBlockRecipes;
 import appeng.datagen.providers.recipes.DecorationRecipes;
-import appeng.datagen.providers.recipes.EntropyRecipes;
 import appeng.datagen.providers.recipes.InscriberRecipes;
 import appeng.datagen.providers.recipes.MatterCannonAmmoProvider;
 import appeng.datagen.providers.recipes.QuartzCuttingRecipesProvider;
@@ -112,7 +111,6 @@ public class AE2DataGenerators {
         pack.addProvider(bindRegistries(DecorationRecipes::new, registries));
         pack.addProvider(bindRegistries(DecorationBlockRecipes::new, registries));
         pack.addProvider(bindRegistries(MatterCannonAmmoProvider::new, registries));
-        pack.addProvider(bindRegistries(EntropyRecipes::new, registries));
         pack.addProvider(bindRegistries(InscriberRecipes::new, registries));
         pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));

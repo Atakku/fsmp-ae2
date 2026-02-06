@@ -76,7 +76,6 @@ import appeng.items.parts.FacadeItem;
 import appeng.items.tools.powered.powersink.AEBasePoweredItem;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.recipes.AERecipeTypes;
-import appeng.recipes.entropy.EntropyRecipe;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
 import appeng.recipes.handlers.ChargerRecipe;
 import appeng.recipes.handlers.InscriberRecipe;
@@ -113,7 +112,6 @@ public class ReiPlugin implements REIClientPlugin {
         registry.add(new InscriberRecipeCategory());
         registry.add(new AttunementCategory());
         registry.add(new ChargerCategory());
-        registry.add(new EntropyRecipeCategory());
 
         registerWorkingStations(registry);
     }
@@ -131,7 +129,6 @@ public class ReiPlugin implements REIClientPlugin {
         registry.registerRecipeFiller(InscriberRecipe.class, AERecipeTypes.INSCRIBER, InscriberRecipeDisplay::new);
         registry.registerRecipeFiller(ChargerRecipe.class, AERecipeTypes.CHARGER, ChargerDisplay::new);
         registry.registerRecipeFiller(TransformRecipe.class, AERecipeTypes.TRANSFORM, TransformRecipeWrapper::new);
-        registry.registerRecipeFiller(EntropyRecipe.class, AERecipeTypes.ENTROPY, EntropyRecipeDisplay::new);
         registry.registerRecipeFiller(StorageCellUpgradeRecipe.class, RecipeType.CRAFTING,
                 this::convertStorageCellUpgradeRecipe);
 
@@ -242,9 +239,6 @@ public class ReiPlugin implements REIClientPlugin {
 
         registry.addWorkstations(ChargerDisplay.ID, EntryStacks.of(AEBlocks.CHARGER.stack()));
         registry.addWorkstations(ChargerDisplay.ID, EntryStacks.of(AEBlocks.CRANK.stack()));
-
-        var entropyManipulator = chargeFully(chargeFully(AEItems.ENTROPY_MANIPULATOR.stack()));
-        registry.addWorkstations(EntropyRecipeCategory.ID, EntryStacks.of(entropyManipulator));
     }
 
     private static ItemStack chargeFully(ItemStack stack) {

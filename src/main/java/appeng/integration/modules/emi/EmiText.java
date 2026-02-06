@@ -10,7 +10,6 @@ import appeng.core.localization.LocalizationEnum;
 public enum EmiText implements LocalizationEnum {
     CATEGORY_CHARGER("Charger"),
     CATEGORY_CONDENSER("Condenser"),
-    CATEGORY_ENTROPY_MANIPULATOR("Entropy Manipulator"),
     CATEGORY_INSCRIBER("Inscriber");
 
     private final String englishText;

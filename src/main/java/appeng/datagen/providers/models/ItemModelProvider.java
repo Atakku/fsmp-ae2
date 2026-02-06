@@ -170,7 +170,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         handheld(AEItems.FLUIX_SHOVEL);
         handheld(AEItems.FLUIX_PICK);
         handheld(AEItems.FLUIX_SWORD);
-        handheld(AEItems.ENTROPY_MANIPULATOR);
         handheld(AEItems.CHARGED_STAFF);
     }
 
