@@ -114,12 +114,6 @@ public interface PlotBuilder {
         addBuildAction(new PartCustomizer<>(bb(bb), side, part, partCustomizer));
     }
 
-    default <T extends IPart> void facade(String bb,
-            Direction side,
-            ItemLike item) {
-        addBuildAction(new PlaceFacade(bb(bb), item.asItem().getDefaultInstance(), side));
-    }
-
     /**
      * place a lever on the side of the given block. returns the levers position.
      */

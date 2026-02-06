@@ -44,7 +44,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED, "item/certus_quartz_crystal_charged");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_DUST, "item/certus_quartz_dust");
         flatSingleLayer(AEItems.CERTUS_QUARTZ_KNIFE, "item/certus_quartz_cutting_knife");
-        flatSingleLayer(AEItems.CERTUS_QUARTZ_WRENCH, "item/certus_quartz_wrench");
         flatSingleLayer(AEItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(AEItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(AEItems.DEBUG_METEORITE_PLACER, "item/debug/meteorite_placer");
@@ -78,7 +77,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(AEItems.MATTER_BALL, "item/matter_ball");
         flatSingleLayer(AEItems.NAME_PRESS, "item/name_press");
         flatSingleLayer(AEItems.NETHER_QUARTZ_KNIFE, "item/nether_quartz_cutting_knife");
-        flatSingleLayer(AEItems.NETHER_QUARTZ_WRENCH, "item/nether_quartz_wrench");
         portableCell(AEItems.PORTABLE_ITEM_CELL1K, "item", "1k");
         portableCell(AEItems.PORTABLE_ITEM_CELL4K, "item", "4k");
         portableCell(AEItems.PORTABLE_ITEM_CELL16K, "item", "16k");
@@ -128,9 +126,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
     }
 
     private void registerHandheld() {
-        handheld(AEItems.CERTUS_QUARTZ_WRENCH);
         handheld(AEItems.CERTUS_QUARTZ_KNIFE);
-        handheld(AEItems.NETHER_QUARTZ_WRENCH);
         handheld(AEItems.NETHER_QUARTZ_KNIFE);
     }
 

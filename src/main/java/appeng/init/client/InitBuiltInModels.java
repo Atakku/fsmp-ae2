@@ -24,9 +24,7 @@ import net.minecraft.client.resources.model.UnbakedModel;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.client.render.FacadeItemModel;
 import appeng.client.render.cablebus.CableBusModel;
-import appeng.client.render.cablebus.P2PTunnelFrequencyModel;
 import appeng.client.render.model.ColorApplicatorModel;
 import appeng.client.render.model.DriveModel;
 import appeng.client.render.model.GlassModel;
@@ -45,8 +43,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("item/meteorite_compass", MeteoriteCompassModel::new);
         addBuiltInModel("block/drive", DriveModel::new);
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
-        addBuiltInModel("part/p2p/p2p_tunnel_frequency", P2PTunnelFrequencyModel::new);
-        addBuiltInModel("item/facade", FacadeItemModel::new);
     }
 
     private static <T extends UnbakedModel> void addBuiltInModel(String id,

@@ -105,17 +105,9 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
         tag(ConventionTags.SILICON)
                 .add(AEItems.SILICON.asItem());
 
-        tag(ConventionTags.QUARTZ_WRENCH)
-                .add(AEItems.CERTUS_QUARTZ_WRENCH.asItem())
-                .add(AEItems.NETHER_QUARTZ_WRENCH.asItem());
         tag(ConventionTags.QUARTZ_KNIFE)
                 .add(AEItems.CERTUS_QUARTZ_KNIFE.asItem())
                 .add(AEItems.NETHER_QUARTZ_KNIFE.asItem());
-
-        tag(ConventionTags.WRENCH).add(
-                AEItems.CERTUS_QUARTZ_WRENCH.asItem(),
-                AEItems.NETHER_QUARTZ_WRENCH.asItem(),
-                AEItems.NETWORK_TOOL.asItem());
 
         tag(AETags.METAL_INGOTS)
                 .addOptionalTag(ResourceLocation.parse("c:ingots/copper"))
@@ -151,12 +143,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .add(AEItems.CERTUS_QUARTZ_CRYSTAL.asItem())
                 .add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
                 .add(AEItems.FLUIX_CRYSTAL.asItem());
-
-        // Fabric replacement for ToolActions for now
-        tag(ConventionTags.WRENCH).add(
-                AEItems.CERTUS_QUARTZ_WRENCH.asItem(),
-                AEItems.NETHER_QUARTZ_WRENCH.asItem(),
-                AEItems.NETWORK_TOOL.asItem());
 
         tag(ConventionTags.CURIOS).add(
                 AEItems.WIRELESS_TERMINAL.asItem(),

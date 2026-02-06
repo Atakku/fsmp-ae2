@@ -129,29 +129,6 @@ public class DecorationBlockRecipes extends AE2RecipeProvider {
                 .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
                 .save(consumer, AppEng.makeId("decorative/chiseled_quartz_block_from_stonecutting"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.LIGHT_DETECTOR)
-                .pattern("ab")
-                .define('a', ConventionTags.ALL_NETHER_QUARTZ)
-                .define('b', AEParts.CABLE_ANCHOR)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.ALL_NETHER_QUARTZ))
-                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .save(consumer, AppEng.makeId("decorative/light_detector"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_FIXTURE, 2)
-                .pattern("ab")
-                .define('a', AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED)
-                .define('b', Items.IRON_INGOT)
-                .unlockedBy(criterionName(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED),
-                        has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
-                .save(consumer, AppEng.makeId("decorative/quartz_fixture"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_FIXTURE, 2)
-                .pattern("ab")
-                .define('a', AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED)
-                .define('b', AEParts.CABLE_ANCHOR)
-                .unlockedBy(criterionName(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED),
-                        has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
-                .save(consumer, AppEng.makeId("decorative/quartz_fixture_from_anchors"));
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_GLASS, 4)
                 .pattern("aba")
                 .pattern("bab")

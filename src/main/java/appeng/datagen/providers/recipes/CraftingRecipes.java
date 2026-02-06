@@ -462,18 +462,7 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
                 .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
                 .save(consumer, AppEng.makeId("tools/network_color_applicator"));
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.NETWORK_TOOL)
-                .requires(ConventionTags.ILLUMINATED_PANEL)
-                .requires(ConventionTags.CHEST)
-                .requires(ConventionTags.QUARTZ_WRENCH)
-                .requires(AEItems.CALCULATION_PROCESSOR)
-                .unlockedBy("has_quartz_wrench", has(ConventionTags.QUARTZ_WRENCH))
-                .unlockedBy("has_calculation_processor", has(AEItems.CALCULATION_PROCESSOR))
-                .save(consumer, AppEng.makeId("tools/network_tool"));
-
         addPaintBalls(consumer);
-
     }
 
     private void portableCell(RecipeOutput consumer, ItemDefinition<PortableCellItem> cell) {
@@ -738,22 +727,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .define('c', ConventionTags.NETHER_QUARTZ)
                 .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
                 .save(consumer, AppEng.makeId("tools/nether_quartz_cutting_knife"));
-
-        // Wrenches
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.CERTUS_QUARTZ_WRENCH)
-                .pattern("a a")
-                .pattern(" a ")
-                .pattern("a a")
-                .define('a', ConventionTags.CERTUS_QUARTZ)
-                .unlockedBy("has_certus_quartz", has(ConventionTags.CERTUS_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/certus_quartz_wrench"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.NETHER_QUARTZ_WRENCH)
-                .pattern("a a")
-                .pattern(" a ")
-                .pattern("a a")
-                .define('a', ConventionTags.NETHER_QUARTZ)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.NETHER_QUARTZ))
-                .save(consumer, AppEng.makeId("tools/nether_quartz_wrench"));
     }
 
     // ====================================================

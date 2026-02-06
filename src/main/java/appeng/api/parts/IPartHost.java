@@ -46,11 +46,6 @@ import appeng.api.util.DimensionalBlockPos;
 public interface IPartHost extends ICustomCableConnection {
 
     /**
-     * @return the facade container
-     */
-    IFacadeContainer getFacadeContainer();
-
-    /**
      * Get a part attached to the host based on the location it's attached to.
      *
      * @param side side of host or null for center.

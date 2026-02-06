@@ -56,20 +56,17 @@ import appeng.items.misc.MeteoriteCompassItem;
 import appeng.items.misc.MissingContentItem;
 import appeng.items.misc.PaintBallItem;
 import appeng.items.misc.WrappedGenericStack;
-import appeng.items.parts.FacadeItem;
 import appeng.items.storage.BasicStorageCell;
 import appeng.items.storage.CreativeCellItem;
 import appeng.items.storage.StorageTier;
 import appeng.items.storage.ViewCellItem;
 import appeng.items.tools.GuideItem;
-import appeng.items.tools.NetworkToolItem;
 import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.items.tools.powered.PortableCellItem;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
 import appeng.items.tools.powered.WirelessTerminalItem;
 import appeng.items.tools.quartz.QuartzCuttingKnifeItem;
 import appeng.items.tools.quartz.QuartzToolType;
-import appeng.items.tools.quartz.QuartzWrenchItem;
 import appeng.menu.me.common.MEStorageMenu;
 
 /**
@@ -85,14 +82,12 @@ public final class AEItems {
     /// CERTUS QUARTZ TOOLS
     ///
 
-    public static final ItemDefinition<QuartzWrenchItem> CERTUS_QUARTZ_WRENCH = item("Certus Quartz Wrench", AEItemIds.CERTUS_QUARTZ_WRENCH, p -> new QuartzWrenchItem(p.stacksTo(1)), CreativeModeTabs.TOOLS_AND_UTILITIES);
     public static final ItemDefinition<QuartzCuttingKnifeItem> CERTUS_QUARTZ_KNIFE = item("Certus Quartz Cutting Knife", AEItemIds.CERTUS_QUARTZ_KNIFE, p -> new QuartzCuttingKnifeItem(p.durability(50), QuartzToolType.CERTUS), CreativeModeTabs.TOOLS_AND_UTILITIES);
 
     ///
     /// NETHER QUARTZ TOOLS
     ///
 
-    public static final ItemDefinition<QuartzWrenchItem> NETHER_QUARTZ_WRENCH = item("Nether Quartz Wrench", AEItemIds.NETHER_QUARTZ_WRENCH, p -> new QuartzWrenchItem(p.stacksTo(1)), CreativeModeTabs.TOOLS_AND_UTILITIES);
     public static final ItemDefinition<QuartzCuttingKnifeItem> NETHER_QUARTZ_KNIFE = item("Nether Quartz Cutting Knife", AEItemIds.NETHER_QUARTZ_KNIFE, p -> new QuartzCuttingKnifeItem(p.stacksTo(1).durability(50), QuartzToolType.NETHER), CreativeModeTabs.TOOLS_AND_UTILITIES);
 
     ///
@@ -128,13 +123,6 @@ public final class AEItems {
     public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL64K = makePortableFluidCell(AEItemIds.PORTABLE_FLUID_CELL64K, StorageTier.SIZE_64K);
     public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL256K = makePortableFluidCell(AEItemIds.PORTABLE_FLUID_CELL256K, StorageTier.SIZE_256K);
 
-    ///
-    /// NETWORK RELATED TOOLS
-    ///
-
-    public static final ItemDefinition<NetworkToolItem> NETWORK_TOOL = item("Network Tool", AEItemIds.NETWORK_TOOL, p -> new NetworkToolItem(p.stacksTo(1)));
-
-    public static final ItemDefinition<FacadeItem> FACADE = item("Cable Facade", AEItemIds.FACADE, FacadeItem::new);
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", AEItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 

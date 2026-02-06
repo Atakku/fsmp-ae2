@@ -32,7 +32,6 @@ import net.minecraft.world.phys.HitResult;
 import guideme.PageAnchor;
 
 import appeng.api.ids.AEConstants;
-import appeng.api.parts.CableRenderMode;
 import appeng.client.EffectType;
 import appeng.core.network.ClientboundPacket;
 
@@ -74,8 +73,6 @@ public interface AppEng {
      * @param player Null to revert to the default cable render mode.
      */
     void setPartInteractionPlayer(Player player);
-
-    CableRenderMode getCableRenderMode();
 
     /**
      * Can be used to get the current level the client is in.

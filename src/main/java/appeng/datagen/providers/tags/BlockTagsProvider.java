@@ -49,15 +49,6 @@ public class BlockTagsProvider extends IntrinsicHolderTagsProvider<Block> implem
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        // Black- and whitelist tags
-        tag(AETags.FACADE_BLOCK_WHITELIST)
-                .add(AEBlocks.QUARTZ_GLASS.block(), AEBlocks.QUARTZ_VIBRANT_GLASS.block(),
-                        Blocks.CHISELED_BOOKSHELF, Blocks.JUKEBOX, Blocks.FURNACE, Blocks.BLAST_FURNACE, Blocks.DROPPER,
-                        Blocks.DISPENSER, Blocks.CRAFTER, Blocks.BARREL, Blocks.BEE_NEST, Blocks.BEEHIVE,
-                        Blocks.SCULK_CATALYST, Blocks.SOUL_SAND, Blocks.HONEY_BLOCK,
-                        AEBlocks.CONTROLLER.block())
-                .addOptionalTag(ConventionTags.GLASS_BLOCK.location());
-
         tag(ConventionTags.BUDDING_BLOCKS_BLOCKS)
                 .add(AEBlocks.FLAWLESS_BUDDING_QUARTZ.block())
                 .add(AEBlocks.FLAWED_BUDDING_QUARTZ.block())
@@ -91,9 +82,6 @@ public class BlockTagsProvider extends IntrinsicHolderTagsProvider<Block> implem
 
         tag(Tags.Blocks.CHESTS).add(AEBlocks.SKY_STONE_CHEST.block(), AEBlocks.SMOOTH_SKY_STONE_CHEST.block());
         tag(ConventionTags.GLASS_BLOCK).add(AEBlocks.QUARTZ_GLASS.block(), AEBlocks.QUARTZ_VIBRANT_GLASS.block());
-
-        // Fixtures should cause walls to have posts
-        tag(BlockTags.WALL_POST_OVERRIDE).add(AEBlocks.QUARTZ_FIXTURE.block(), AEBlocks.LIGHT_DETECTOR.block());
 
         addEffectiveTools();
     }

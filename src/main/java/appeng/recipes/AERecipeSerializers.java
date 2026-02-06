@@ -6,7 +6,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.core.AppEng;
 import appeng.recipes.game.AddItemUpgradeRecipeSerializer;
-import appeng.recipes.game.FacadeRecipe;
 import appeng.recipes.game.RemoveItemUpgradeRecipeSerializer;
 import appeng.recipes.game.StorageCellDisassemblyRecipeSerializer;
 import appeng.recipes.game.StorageCellUpgradeRecipeSerializer;
@@ -23,7 +22,6 @@ public final class AERecipeSerializers {
 
     static {
         register("inscriber", InscriberRecipeSerializer.INSTANCE);
-        register("facade", FacadeRecipe.SERIALIZER);
         register("transform", TransformRecipeSerializer.INSTANCE);
         register("storage_cell_upgrade", StorageCellUpgradeRecipeSerializer.INSTANCE);
         register("add_item_upgrade", AddItemUpgradeRecipeSerializer.INSTANCE);

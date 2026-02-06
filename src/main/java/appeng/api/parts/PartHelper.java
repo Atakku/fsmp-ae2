@@ -36,7 +36,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import appeng.core.AppEng;
 import appeng.core.definitions.AEBlockEntities;
 import appeng.core.definitions.AEBlocks;
 import appeng.parts.PartPlacement;
@@ -179,12 +178,4 @@ public final class PartHelper {
 
         return null;
     }
-
-    /**
-     * @return the render mode
-     */
-    public static CableRenderMode getCableRenderMode() {
-        return AppEng.instance().getCableRenderMode();
-    }
-
 }

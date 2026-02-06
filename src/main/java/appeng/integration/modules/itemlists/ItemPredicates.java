@@ -8,7 +8,6 @@ import appeng.core.AEConfig;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
-import appeng.items.parts.FacadeItem;
 
 public final class ItemPredicates {
     private ItemPredicates() {
@@ -23,10 +22,6 @@ public final class ItemPredicates {
             return true;
         }
 
-        if (!AEConfig.instance().isEnableFacadesInRecipeViewer() && isFacade(stack)) {
-            return true;
-        }
-
         if (AEConfig.instance().isDisableColoredCableRecipesInRecipeViewer() && isColoredCable(stack)) {
             return true;
         }
@@ -37,16 +32,7 @@ public final class ItemPredicates {
     private static boolean isInternal(ItemStack stack) {
         return AEItems.WRAPPED_GENERIC_STACK.is(stack)
                 || AEItems.MISSING_CONTENT.is(stack)
-                || isBrokenFacade(stack) // REI will add a broken facade with no NBT
                 || AEBlocks.CABLE_BUS.is(stack);
-    }
-
-    private static boolean isBrokenFacade(ItemStack stack) {
-        return stack.getItem() instanceof FacadeItem && !stack.has(AEComponents.FACADE_ITEM);
-    }
-
-    private static boolean isFacade(ItemStack stack) {
-        return stack.getItem() instanceof FacadeItem;
     }
 
     private static boolean isDeveloperTool(ItemStack stack) {

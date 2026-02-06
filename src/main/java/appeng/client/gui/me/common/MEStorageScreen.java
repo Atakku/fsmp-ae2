@@ -75,7 +75,6 @@ import appeng.client.gui.widgets.ISortSource;
 import appeng.client.gui.widgets.KeyTypeSelectionButton;
 import appeng.client.gui.widgets.Scrollbar;
 import appeng.client.gui.widgets.SettingToggleButton;
-import appeng.client.gui.widgets.ToolboxPanel;
 import appeng.client.gui.widgets.UpgradesPanel;
 import appeng.core.AEConfig;
 import appeng.core.AELog;
@@ -173,9 +172,6 @@ public class MEStorageScreen<C extends MEStorageMenu>
         this.widgets.add("upgrades", new UpgradesPanel(
                 menu.getSlots(SlotSemantics.UPGRADE),
                 menu.getHost()));
-        if (menu.getToolbox().isPresent()) {
-            this.widgets.add("toolbox", new ToolboxPanel(style, menu.getToolbox().getName()));
-        }
 
         // Restore previous search term
         if ((menu.isReturnedFromSubScreen() || config.isRememberLastSearch()) && rememberedSearch != null

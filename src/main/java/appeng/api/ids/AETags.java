@@ -27,7 +27,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 /**
  * Tags that AE uses for functional purposes. For recipe tags that you may use in your recipe data generation, please
@@ -44,18 +43,7 @@ public final class AETags {
      */
     public static TagKey<Item> METAL_INGOTS = itemTag("ae2:metal_ingots");
 
-    /**
-     * Block tag used to explicitly whitelist blocks for use in facades, even if they don't meet the general criteria
-     * for being used in facades.
-     */
-    public static final TagKey<Block> FACADE_BLOCK_WHITELIST = blockTag("ae2:whitelisted/facades");
-
     private static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, ResourceLocation.parse(name));
     }
-
-    private static TagKey<Block> blockTag(String name) {
-        return TagKey.create(Registries.BLOCK, ResourceLocation.parse(name));
-    }
-
 }

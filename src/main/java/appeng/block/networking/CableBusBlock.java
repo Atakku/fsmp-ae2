@@ -33,7 +33,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -45,7 +44,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -71,21 +69,17 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
-import net.neoforged.neoforge.client.model.data.ModelData;
 
-import appeng.api.parts.IFacadeContainer;
-import appeng.api.parts.IFacadePart;
 import appeng.api.util.AEColor;
 import appeng.block.AEBaseEntityBlock;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.client.render.cablebus.CableBusBakedModel;
 import appeng.client.render.cablebus.CableBusBreakingParticle;
 import appeng.client.render.cablebus.CableBusRenderState;
-import appeng.integration.abstraction.IAEFacade;
 import appeng.parts.ICableBusContainer;
 import appeng.parts.NullCableBusContainer;
 
-public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implements IAEFacade, SimpleWaterloggedBlock {
+public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implements SimpleWaterloggedBlock {
 
     private static final ICableBusContainer NULL_CABLE_BUS = new NullCableBusContainer();
 
@@ -185,8 +179,6 @@ public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implem
 
         if (sp.part != null) {
             return new ItemStack(sp.part.getPartItem());
-        } else if (sp.facade != null) {
-            return sp.facade.getItemStack();
         }
 
         return ItemStack.EMPTY;
@@ -209,18 +201,6 @@ public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implem
         }
 
         return out == null ? NULL_CABLE_BUS : out;
-    }
-
-    @Nullable
-    private IFacadeContainer fc(BlockGetter level, BlockPos pos) {
-        final BlockEntity te = level.getBlockEntity(pos);
-        IFacadeContainer out = null;
-
-        if (te instanceof CableBusBlockEntity) {
-            out = ((CableBusBlockEntity) te).getCableBus().getFacadeContainer();
-        }
-
-        return out;
     }
 
     @Override
@@ -256,20 +236,6 @@ public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implem
 
     public void addToMainCreativeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         // do nothing
-    }
-
-    @Override
-    public BlockState getFacadeState(BlockGetter level, BlockPos pos, Direction side) {
-        if (side != null) {
-            IFacadeContainer container = this.fc(level, pos);
-            if (container != null) {
-                IFacadePart facade = container.getFacade(side);
-                if (facade != null) {
-                    return facade.getBlockState();
-                }
-            }
-        }
-        return level.getBlockState(pos);
     }
 
     @Override
@@ -429,51 +395,5 @@ public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implem
                 return true;
             }
         });
-    }
-
-    /**
-     * WTF does this do you ask?
-     * <p>
-     * Well, this is needed to properly handle adjacent facades, as we need to know on which side the source facade is.
-     * The cases to handle are:
-     * <ul>
-     * <li>Not rendering a facade: then we just look at the facade on the requested side.</li>
-     * <li>Rendering a facade and the requested side is the opposite: then this is likely an interior quad of the
-     * facade, so we actually check the rendering side instead of the requested side.</li>
-     * <li>Rendering a facade in other cases: check requested side first, otherwise check rendering side since we might
-     * also connect to a facade in another direction due to the 2 extra pixels on the side of a facade.</li>
-     * </ul>
-     */
-    public static ThreadLocal<Direction> RENDERING_FACADE_DIRECTION = new ThreadLocal<>();
-
-    @Override
-    public BlockState getAppearance(BlockState state, BlockAndTintGetter renderView, BlockPos pos, Direction side,
-            @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
-        ModelData modelData;
-        if (renderView instanceof ServerLevel serverLevel) {
-            // We're on the server, use BE directly
-            BlockEntity be = renderView.getBlockEntity(pos);
-            modelData = be != null ? be.getModelData() : ModelData.EMPTY;
-        } else {
-            modelData = renderView.getModelData(pos);
-        }
-
-        CableBusRenderState cableBusRenderState = modelData.get(CableBusRenderState.PROPERTY);
-        if (cableBusRenderState != null) {
-            var renderingFacadeDir = RENDERING_FACADE_DIRECTION.get();
-            var facades = cableBusRenderState.getFacades();
-
-            if (side.getOpposite() != renderingFacadeDir) {
-                var facadeState = facades.get(side);
-                if (facadeState != null) {
-                    return facadeState.getSourceBlock();
-                }
-            }
-
-            if (renderingFacadeDir != null && facades.containsKey(renderingFacadeDir)) {
-                return facades.get(renderingFacadeDir).getSourceBlock();
-            }
-        }
-        return state;
     }
 }

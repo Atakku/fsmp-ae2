@@ -15,7 +15,6 @@ import appeng.core.network.clientbound.GuiDataSyncPacket;
 import appeng.core.network.clientbound.ItemTransitionEffectPacket;
 import appeng.core.network.clientbound.LightningPacket;
 import appeng.core.network.clientbound.MEInventoryUpdatePacket;
-import appeng.core.network.clientbound.NetworkStatusPacket;
 import appeng.core.network.clientbound.SetLinkStatusPacket;
 import appeng.core.network.serverbound.ColorApplicatorSelectColorPacket;
 import appeng.core.network.serverbound.ConfigButtonPacket;
@@ -43,7 +42,6 @@ public class InitNetwork {
         clientbound(registrar, ItemTransitionEffectPacket.TYPE, ItemTransitionEffectPacket.STREAM_CODEC);
         clientbound(registrar, LightningPacket.TYPE, LightningPacket.STREAM_CODEC);
         clientbound(registrar, MEInventoryUpdatePacket.TYPE, MEInventoryUpdatePacket.STREAM_CODEC);
-        clientbound(registrar, NetworkStatusPacket.TYPE, NetworkStatusPacket.STREAM_CODEC);
         clientbound(registrar, SetLinkStatusPacket.TYPE, SetLinkStatusPacket.STREAM_CODEC);
         clientbound(registrar, ExportedGridContent.TYPE, ExportedGridContent.STREAM_CODEC);
 

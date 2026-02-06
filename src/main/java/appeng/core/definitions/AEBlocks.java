@@ -54,9 +54,7 @@ import appeng.block.AEBaseBlockItem;
 import appeng.block.misc.CellWorkbenchBlock;
 import appeng.block.misc.CondenserBlock;
 import appeng.block.misc.InscriberBlock;
-import appeng.block.misc.LightDetectorBlock;
 import appeng.block.misc.MysteriousCubeBlock;
-import appeng.block.misc.QuartzFixtureBlock;
 import appeng.block.networking.CableBusBlock;
 import appeng.block.networking.ControllerBlock;
 import appeng.block.networking.WirelessAccessPointBlock;
@@ -119,7 +117,6 @@ public final class AEBlocks {
     public static final BlockDefinition<QuartzLampBlock> QUARTZ_VIBRANT_GLASS = block("Vibrant Quartz Glass", AEBlockIds.QUARTZ_VIBRANT_GLASS, () -> new QuartzLampBlock(glassProps().lightLevel(b -> 15).noOcclusion()
             .isValidSpawn(NEVER_ALLOW_SPAWN)));
 
-    public static final BlockDefinition<QuartzFixtureBlock> QUARTZ_FIXTURE = block("Charged Quartz Fixture", AEBlockIds.QUARTZ_FIXTURE, QuartzFixtureBlock::new);
     public static final BlockDefinition<AEDecorativeBlock> FLUIX_BLOCK = block("Fluix Block", AEBlockIds.FLUIX_BLOCK, () -> new AEDecorativeBlock(FLUIX_PROPERTIES));
     public static final BlockDefinition<AEDecorativeBlock> SKY_STONE_BLOCK = block("Sky Stone", AEBlockIds.SKY_STONE_BLOCK, () -> new AEDecorativeBlock(stoneProps().strength(50, 150).requiresCorrectToolForDrops()));
 
@@ -143,8 +140,6 @@ public final class AEBlocks {
     public static final BlockDefinition<CellWorkbenchBlock> CELL_WORKBENCH = block("Cell Workbench", AEBlockIds.CELL_WORKBENCH, CellWorkbenchBlock::new);
     public static final BlockDefinition<IOPortBlock> IO_PORT = block("ME IO Port", AEBlockIds.IO_PORT, IOPortBlock::new);
     public static final BlockDefinition<CondenserBlock> CONDENSER = block("Matter Condenser", AEBlockIds.CONDENSER, CondenserBlock::new);
-
-    public static final BlockDefinition<LightDetectorBlock> LIGHT_DETECTOR = block("Light Detecting Fixture", AEBlockIds.LIGHT_DETECTOR, LightDetectorBlock::new);
 
     public static final BlockDefinition<StairBlock> SKY_STONE_STAIRS = block("Sky Stone Stairs", AEBlockIds.SKY_STONE_STAIRS, () -> new StairBlock(SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));
     public static final BlockDefinition<StairBlock> SMOOTH_SKY_STONE_STAIRS = block("Sky Stone Block Stairs", AEBlockIds.SMOOTH_SKY_STONE_STAIRS, () -> new StairBlock(SMOOTH_SKY_STONE_BLOCK.block().defaultBlockState(), SKYSTONE_PROPERTIES));

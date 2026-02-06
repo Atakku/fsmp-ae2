@@ -39,7 +39,6 @@ import appeng.blockentity.networking.ControllerBlockEntity;
 import appeng.core.definitions.AEBlocks;
 import appeng.menu.MenuOpener;
 import appeng.menu.locator.MenuLocators;
-import appeng.menu.me.networktool.NetworkStatusMenu;
 
 public class ControllerBlock extends AEBaseEntityBlock<ControllerBlockEntity> {
 
@@ -150,9 +149,6 @@ public class ControllerBlock extends AEBaseEntityBlock<ControllerBlockEntity> {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof ControllerBlockEntity be) {
-            if (!level.isClientSide) {
-                MenuOpener.open(NetworkStatusMenu.CONTROLLER_TYPE, player, MenuLocators.forBlockEntity(be));
-            }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
 

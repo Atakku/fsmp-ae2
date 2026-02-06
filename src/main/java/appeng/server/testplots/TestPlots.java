@@ -197,7 +197,6 @@ public final class TestPlots {
         plot.cable("0 -1 0");
 
         plot.cable("[-1,0] [0,8] 0", AEParts.COVERED_DENSE_CABLE);
-        plot.part("0 [0,8] 0", Direction.WEST, AEParts.CABLE_ANCHOR);
         plot.block("[-1,0] 5 0", AEBlocks.CONTROLLER);
         plot.storageDrive(new BlockPos(0, 5, 1));
         plot.afterGridInitAt(new BlockPos(0, 5, 1), (grid, gridNode) -> {
@@ -223,9 +222,6 @@ public final class TestPlots {
             }
             y++;
             line.cable("[1,9] 0 0", AEParts.GLASS_CABLE, color);
-            if (color == AEColor.TRANSPARENT) {
-                line.part("[1,9] 0 0", Direction.UP, AEParts.CABLE_ANCHOR);
-            }
             line.part("1 0 0", Direction.NORTH, AEParts.TERMINAL);
             line.part("2 0 0", Direction.NORTH, AEParts.CRAFTING_TERMINAL);
             line.part("3 0 0", Direction.NORTH, AEParts.MONITOR);

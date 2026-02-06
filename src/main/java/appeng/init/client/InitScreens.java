@@ -46,8 +46,6 @@ import appeng.client.gui.implementations.StorageLevelEmitterScreen;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.client.gui.me.items.CraftingTermScreen;
-import appeng.client.gui.me.networktool.NetworkStatusScreen;
-import appeng.client.gui.me.networktool.NetworkToolScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.StyleManager;
 import appeng.menu.AEBaseMenu;
@@ -66,8 +64,6 @@ import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.BasicCellChestMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
-import appeng.menu.me.networktool.NetworkStatusMenu;
-import appeng.menu.me.networktool.NetworkToolMenu;
 
 /**
  * The server sends the client a menu identifier, which the client then maps onto a screen using {@link MenuScreens}.
@@ -86,9 +82,6 @@ public final class InitScreens {
         register(event, SkyChestMenu.TYPE, SkyChestScreen::new, "/screens/sky_chest.json");
         register(event, MEChestMenu.TYPE, MEChestScreen::new, "/screens/me_chest.json");
         register(event, WirelessAccessPointMenu.TYPE, WirelessAccessPointScreen::new, "/screens/wireless_access_point.json");
-        register(event, NetworkStatusMenu.NETWORK_TOOL_TYPE, NetworkStatusScreen::new, "/screens/network_status.json");
-        register(event, NetworkStatusMenu.CONTROLLER_TYPE, NetworkStatusScreen::new, "/screens/network_status.json");
-        register(event, NetworkToolMenu.TYPE, NetworkToolScreen::new, "/screens/network_tool.json");
         register(event, QuartzKnifeMenu.TYPE, QuartzKnifeScreen::new, "/screens/quartz_knife.json");
         register(event, DriveMenu.TYPE, DriveScreen::new, "/screens/drive.json");
         register(event, CondenserMenu.TYPE, CondenserScreen::new, "/screens/condenser.json");

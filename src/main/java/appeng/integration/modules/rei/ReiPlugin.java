@@ -59,7 +59,6 @@ import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.implementations.InscriberScreen;
 import appeng.core.AEConfig;
 import appeng.core.AppEng;
-import appeng.core.FacadeCreativeTab;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
@@ -70,7 +69,6 @@ import appeng.integration.abstraction.ItemListMod;
 import appeng.integration.modules.itemlists.CompatLayerHelper;
 import appeng.integration.modules.itemlists.ItemPredicates;
 import appeng.integration.modules.rei.transfer.UseCraftingRecipeTransfer;
-import appeng.items.parts.FacadeItem;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.recipes.AERecipeTypes;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
@@ -112,10 +110,6 @@ public class ReiPlugin implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        if (AEConfig.instance().isEnableFacadeRecipesInRecipeViewer()) {
-            registry.registerGlobalDisplayGenerator(new FacadeRegistryGenerator());
-        }
-
         if (CompatLayerHelper.IS_LOADED) {
             return;
         }
@@ -180,20 +174,6 @@ public class ReiPlugin implements REIClientPlugin {
     @Override
     public void registerEntries(EntryRegistry registry) {
         registry.removeEntryIf(this::shouldEntryBeHidden);
-
-        if (AEConfig.instance().isEnableFacadesInRecipeViewer()) {
-            registry.addEntries(
-                    EntryIngredients.ofItemStacks(FacadeCreativeTab.getDisplayItems()));
-        }
-    }
-
-    @Override
-    public void registerCollapsibleEntries(CollapsibleEntryRegistry registry) {
-        if (AEConfig.instance().isEnableFacadesInRecipeViewer()) {
-            FacadeItem facadeItem = AEItems.FACADE.get();
-            registry.group(AppEng.makeId("facades"), GuiText.CreativeTabFacades.text(),
-                    stack -> stack.getType() == VanillaEntryTypes.ITEM && stack.<ItemStack>castValue().is(facadeItem));
-        }
     }
 
     @SuppressWarnings("unchecked")

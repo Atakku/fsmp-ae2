@@ -49,7 +49,6 @@ import net.neoforged.neoforge.registries.RegistryBuilder;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import appeng.api.ids.AEComponents;
-import appeng.api.parts.CableRenderMode;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.AEKeyTypesInternal;
 import appeng.core.definitions.AEAttachmentTypes;
@@ -207,7 +206,6 @@ public abstract class AppEngBase implements AppEng {
 
     public void registerCreativeTabs(Registry<CreativeModeTab> registry) {
         MainCreativeTab.init(registry);
-        FacadeCreativeTab.init(registry);
     }
 
     @Override
@@ -238,26 +236,10 @@ public abstract class AppEngBase implements AppEng {
         this.partInteractionPlayer.set(player);
     }
 
-    @Override
-    public CableRenderMode getCableRenderMode() {
-        return this.getCableRenderModeForPlayer(partInteractionPlayer.get());
-    }
-
     @Nullable
     @Override
     public MinecraftServer getCurrentServer() {
         return ServerLifecycleHooks.getCurrentServer();
-    }
-
-    protected final CableRenderMode getCableRenderModeForPlayer(@Nullable Player player) {
-        if (player != null) {
-            if (AEItems.NETWORK_TOOL.is(player.getItemInHand(InteractionHand.MAIN_HAND))
-                    || AEItems.NETWORK_TOOL.is(player.getItemInHand(InteractionHand.OFF_HAND))) {
-                return CableRenderMode.CABLE_VIEW;
-            }
-        }
-
-        return CableRenderMode.STANDARD;
     }
 
     private void registerTests(RegisterGameTestsEvent e) {

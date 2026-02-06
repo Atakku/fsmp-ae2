@@ -70,7 +70,6 @@ import guideme.PageAnchor;
 import guideme.compiler.TagCompiler;
 import guideme.scene.ImplicitAnnotationStrategy;
 
-import appeng.api.parts.CableRenderMode;
 import appeng.blockentity.networking.CableBusTESR;
 import appeng.client.EffectType;
 import appeng.client.Hotkeys;
@@ -124,12 +123,6 @@ public class AppEngClient extends AppEngBase {
     private static AppEngClient INSTANCE;
 
     /**
-     * Last known cable render mode. Used to update all rendered blocks once at the end of the tick when the mode is
-     * changed.
-     */
-    private CableRenderMode prevCableRenderMode = CableRenderMode.STANDARD;
-
-    /**
      * This modifier key has to be held to activate mouse wheel items.
      */
     private static final KeyMapping MOUSE_WHEEL_ITEM_MODIFIER = new KeyMapping(
@@ -163,10 +156,6 @@ public class AppEngClient extends AppEngBase {
         BlockAttackHook.install();
         RenderBlockOutlineHook.install();
         guide = createGuide();
-
-        NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, (ClientTickEvent.Pre e) -> {
-            updateCableRenderMode();
-        });
 
         modEventBus.addListener(this::clientSetup);
 
@@ -415,51 +404,6 @@ public class AppEngClient extends AppEngBase {
         Minecraft.getInstance().particleEngine.createParticle(ParticleTypes.LIGHTNING, posX, posY + 0.3f, posZ, 0.0f,
                 0.0f,
                 0.0f);
-    }
-
-    private void updateCableRenderMode() {
-        var currentMode = getCableRenderMode();
-
-        // Handle changes to the cable-rendering mode
-        if (currentMode == this.prevCableRenderMode) {
-            return;
-        }
-
-        this.prevCableRenderMode = currentMode;
-
-        var mc = Minecraft.getInstance();
-        if (mc.player == null || mc.level == null) {
-            return;
-        }
-
-        // Invalidate all sections that contain a cable bus within view distance
-        // This should asynchronously update the chunk meshes and as part of that use the new facade render mode
-        var viewDistance = (int) Math.ceil(mc.levelRenderer.getLastViewDistance());
-        ChunkPos.rangeClosed(mc.player.chunkPosition(), viewDistance).forEach(chunkPos -> {
-            var chunk = mc.level.getChunkSource().getChunkNow(chunkPos.x, chunkPos.z);
-            if (chunk != null) {
-                for (var i = 0; i < chunk.getSectionsCount(); i++) {
-                    var section = chunk.getSection(i);
-                    if (section.maybeHas(state -> state.is(AEBlocks.CABLE_BUS.block()))) {
-                        mc.levelRenderer.setSectionDirty(chunkPos.x, chunk.getSectionYFromSectionIndex(i), chunkPos.z);
-                    }
-                }
-            }
-        });
-    }
-
-    @Override
-    public CableRenderMode getCableRenderMode() {
-        if (Platform.isServer()) {
-            return super.getCableRenderMode();
-        }
-
-        var mc = Minecraft.getInstance();
-        if (mc.player == null) {
-            return CableRenderMode.STANDARD;
-        }
-
-        return this.getCableRenderModeForPlayer(mc.player);
     }
 
     @Override

@@ -48,7 +48,6 @@ import net.neoforged.neoforge.client.model.data.ModelData;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 
 import appeng.api.networking.IGridNode;
-import appeng.api.parts.IFacadeContainer;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.SelectedPart;
@@ -186,11 +185,6 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
         }
     }
 
-    @Override
-    public IFacadeContainer getFacadeContainer() {
-        return this.getCableBus().getFacadeContainer();
-    }
-
     @Nullable
     @Override
     public IPart getPart(@Nullable Direction side) {
@@ -322,9 +316,7 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
         }
 
         CableBusRenderState renderState = this.cb.getRenderState();
-        renderState.setPos(worldPosition);
         return ModelData.builder().with(CableBusRenderState.PROPERTY, renderState).build();
-
     }
 
     @Override
@@ -350,24 +342,7 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
                     sp.part.clearContent();
                 }
 
-                // All facades will be dropped to the ground when the cable is removed,
-                // do it manually here, so they are moved to the player inv too
-                if (sp.side == null) {
-                    var facades = getFacadeContainer();
-                    for (var side : Direction.values()) {
-                        var facade = facades.getFacade(side);
-                        if (facade != null) {
-                            is.add(facade.getItemStack());
-                            facades.removeFacade(cb, side);
-                        }
-                    }
-                }
-
                 cb.removePartFromSide(sp.side);
-            } else if (sp.facade != null) {
-                is.add(sp.facade.getItemStack());
-                cb.getFacadeContainer().removeFacade(cb, sp.side);
-                Platform.notifyBlocksOfNeighbors(level, getBlockPos());
             }
 
             for (var item : is) {

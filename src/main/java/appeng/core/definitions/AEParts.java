@@ -36,7 +36,6 @@ import appeng.items.parts.ColoredPartItem;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import appeng.parts.automation.StorageLevelEmitterPart;
-import appeng.parts.misc.CableAnchorPart;
 import appeng.parts.misc.InvertedToggleBusPart;
 import appeng.parts.misc.ToggleBusPart;
 import appeng.parts.networking.CoveredCablePart;
@@ -66,7 +65,6 @@ public final class AEParts {
     public static final ColoredItemDefinition<ColoredPartItem<SmartDenseCablePart>> SMART_DENSE_CABLE = constructColoredDefinition("ME Dense Smart Cable", "smart_dense_cable", SmartDenseCablePart.class, SmartDenseCablePart::new);
     public static final ItemDefinition<PartItem<ToggleBusPart>> TOGGLE_BUS = createPart("ME Toggle Bus", AEPartIds.TOGGLE_BUS, ToggleBusPart.class, ToggleBusPart::new);
     public static final ItemDefinition<PartItem<InvertedToggleBusPart>> INVERTED_TOGGLE_BUS = createPart("ME Inverted Toggle Bus", AEPartIds.INVERTED_TOGGLE_BUS, InvertedToggleBusPart.class, InvertedToggleBusPart::new);
-    public static final ItemDefinition<PartItem<CableAnchorPart>> CABLE_ANCHOR = createPart("Cable Anchor", AEPartIds.CABLE_ANCHOR, CableAnchorPart.class, CableAnchorPart::new);
     public static final ItemDefinition<PartItem<PanelPart>> MONITOR = createPart("Bright Illuminated Panel", AEPartIds.MONITOR, PanelPart.class, PanelPart::new);
     public static final ItemDefinition<PartItem<SemiDarkPanelPart>> SEMI_DARK_MONITOR = createPart("Illuminated Panel", AEPartIds.SEMI_DARK_MONITOR, SemiDarkPanelPart.class, SemiDarkPanelPart::new);
     public static final ItemDefinition<PartItem<DarkPanelPart>> DARK_MONITOR = createPart("Dark Illuminated Panel", AEPartIds.DARK_MONITOR, DarkPanelPart.class, DarkPanelPart::new);

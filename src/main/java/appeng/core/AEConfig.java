@@ -163,14 +163,6 @@ public final class AEConfig {
         return client.disableColoredCableRecipesInRecipeViewer.getAsBoolean();
     }
 
-    public boolean isEnableFacadesInRecipeViewer() {
-        return client.enableFacadesInRecipeViewer.getAsBoolean();
-    }
-
-    public boolean isEnableFacadeRecipesInRecipeViewer() {
-        return client.enableFacadeRecipesInRecipeViewer.getAsBoolean();
-    }
-
     public boolean isExposeNetworkInventoryToEmi() {
         return client.exposeNetworkInventoryToEmi.getAsBoolean();
     }
@@ -281,8 +273,6 @@ public final class AEConfig {
         public final BooleanValue enableEffects;
         public final BooleanValue useLargeFonts;
         public final BooleanValue disableColoredCableRecipesInRecipeViewer;
-        public final BooleanValue enableFacadesInRecipeViewer;
-        public final BooleanValue enableFacadeRecipesInRecipeViewer;
         public final BooleanValue exposeNetworkInventoryToEmi;
         public final BooleanValue debugGuiOverlays;
         public final BooleanValue showPlacementPreview;
@@ -312,10 +302,6 @@ public final class AEConfig {
             builder.push("recipeViewers");
             this.disableColoredCableRecipesInRecipeViewer = define(builder, "disableColoredCableRecipesInRecipeViewer",
                     true);
-            this.enableFacadesInRecipeViewer = define(builder, "enableFacadesInRecipeViewer", false,
-                    "Show facades in REI/JEI/EMI item list");
-            this.enableFacadeRecipesInRecipeViewer = define(builder, "enableFacadeRecipesInRecipeViewer", true,
-                    "Show facade recipes in REI/JEI/EMI for supported blocks");
             this.exposeNetworkInventoryToEmi = define(builder, "provideNetworkInventoryToEmi", false,
                     "Expose the full network inventory to EMI, which might cause performance problems.");
             builder.pop();

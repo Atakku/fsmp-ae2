@@ -72,7 +72,6 @@ import appeng.core.network.serverbound.MEInteractionPacket;
 import appeng.helpers.InventoryAction;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
-import appeng.menu.ToolboxMenu;
 import appeng.menu.guisync.GuiSync;
 import appeng.menu.guisync.LinkStatusAwareMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
@@ -105,7 +104,6 @@ public class MEStorageMenu extends AEBaseMenu
 
     private final List<RestrictedInputSlot> viewCellSlots;
     private final IConfigManager clientCM;
-    private final ToolboxMenu toolboxMenu;
     private final ITerminalHost host;
 
     private static final short SEARCH_KEY_TYPES_ID = 101;
@@ -166,17 +164,11 @@ public class MEStorageMenu extends AEBaseMenu
             this.viewCellSlots = Collections.emptyList();
         }
 
-        this.toolboxMenu = new ToolboxMenu(this);
-
         setupUpgrades(host.getUpgrades());
 
         if (bindInventory) {
             this.createPlayerInventorySlots(ip);
         }
-    }
-
-    public ToolboxMenu getToolbox() {
-        return toolboxMenu;
     }
 
     protected boolean hideViewCells() {
@@ -202,8 +194,6 @@ public class MEStorageMenu extends AEBaseMenu
 
     @Override
     public void broadcastChanges() {
-        toolboxMenu.tick();
-
         if (isServerSide()) {
             this.updateLinkStatus();
 

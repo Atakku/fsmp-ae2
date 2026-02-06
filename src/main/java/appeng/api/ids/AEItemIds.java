@@ -36,7 +36,6 @@ import appeng.api.util.AEColor;
  */
 @SuppressWarnings("unused")
 public final class AEItemIds {
-    public static final ResourceLocation NETWORK_TOOL = id("network_tool");
     public static final ResourceLocation VIEW_CELL = id("view_cell");
 
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
@@ -44,7 +43,6 @@ public final class AEItemIds {
     public static final ResourceLocation WIRELESS_TERMINAL = id("wireless_terminal");
     public static final ResourceLocation WIRELESS_CRAFTING_TERMINAL = id("wireless_crafting_terminal");
     public static final ResourceLocation WRAPPED_GENERIC_STACK = id("wrapped_generic_stack");
-    public static final ResourceLocation FACADE = id("facade");
 
     ///
     /// STORAGE CELLS
@@ -152,10 +150,8 @@ public final class AEItemIds {
     ///
     /// TOOLS
     ///
-    public static final ResourceLocation CERTUS_QUARTZ_WRENCH = id("certus_quartz_wrench");
     public static final ResourceLocation CERTUS_QUARTZ_KNIFE = id("certus_quartz_cutting_knife");
 
-    public static final ResourceLocation NETHER_QUARTZ_WRENCH = id("nether_quartz_wrench");
     public static final ResourceLocation NETHER_QUARTZ_KNIFE = id("nether_quartz_cutting_knife");
 
     public static final ResourceLocation METEORITE_COMPASS = id("meteorite_compass");

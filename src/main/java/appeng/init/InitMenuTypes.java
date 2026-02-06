@@ -40,8 +40,6 @@ import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.BasicCellChestMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
-import appeng.menu.me.networktool.NetworkStatusMenu;
-import appeng.menu.me.networktool.NetworkToolMenu;
 
 public final class InitMenuTypes {
     private static final Map<ResourceLocation, MenuType<?>> REGISTRATION_QUEUE = new HashMap<>();
@@ -63,9 +61,6 @@ public final class InitMenuTypes {
                 MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
                 MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
                 MEStorageMenu.WIRELESS_TYPE,
-                NetworkStatusMenu.NETWORK_TOOL_TYPE,
-                NetworkStatusMenu.CONTROLLER_TYPE,
-                NetworkToolMenu.TYPE,
                 PriorityMenu.TYPE,
                 QuartzKnifeMenu.TYPE,
                 SkyChestMenu.TYPE,

@@ -29,9 +29,4 @@ public class CableBuilder {
         plotBuilder.part(bb, side, part, partCustomizer);
         return this;
     }
-
-    public <T extends IPart> CableBuilder facade(Direction side, ItemLike item) {
-        plotBuilder.facade(bb, side, item);
-        return this;
-    }
 }

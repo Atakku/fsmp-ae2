@@ -20,7 +20,6 @@ import guideme.scene.level.GuidebookLevel;
 
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartHost;
-import appeng.core.localization.GuiText;
 import appeng.parts.BusCollisionHelper;
 
 public class PartAnnotationStrategy implements ImplicitAnnotationStrategy {
@@ -36,15 +35,11 @@ public class PartAnnotationStrategy implements ImplicitAnnotationStrategy {
         var partResult = partHost.selectPartWorld(blockHitResult.getLocation());
         if (partResult != null) {
             var part = partResult.part;
-            var facade = partResult.facade;
             AABB aabb = null;
             Component description = Component.empty();
             if (part != null) {
                 aabb = getAABB(partResult.side, partResult.part::getBoxes);
                 description = partResult.part.getPartItem().asItem().getDescription();
-            } else if (facade != null) {
-                aabb = getAABB(partResult.side, bch -> partResult.facade.getBoxes(bch, false));
-                description = GuiText.Facade.text(partResult.facade.getItem().getDescription());
             }
 
             if (aabb != null) {

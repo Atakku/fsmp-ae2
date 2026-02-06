@@ -37,20 +37,16 @@ import appeng.api.parts.PartModelsInternal;
 import appeng.api.util.AEColor;
 import appeng.client.render.BasicUnbakedModel;
 import appeng.core.AELog;
-import appeng.core.AppEng;
 
 /**
  * The built-in model for the cable bus block.
  */
 public class CableBusModel implements BasicUnbakedModel {
 
-    public static final ResourceLocation TRANSLUCENT_FACADE_MODEL = AppEng.makeId("part/translucent_facade");
-
     @Override
     public Collection<ResourceLocation> getDependencies() {
         PartModelsInternal.freeze();
         var models = new ArrayList<>(PartModelsInternal.getModels());
-        models.add(TRANSLUCENT_FACADE_MODEL);
         return models;
     }
 
@@ -65,17 +61,12 @@ public class CableBusModel implements BasicUnbakedModel {
 
         CableBuilder cableBuilder = new CableBuilder(spriteGetter);
 
-        BakedModel translucentFacadeModel = baker.bake(TRANSLUCENT_FACADE_MODEL, modelState,
-                spriteGetter);
-
-        FacadeBuilder facadeBuilder = new FacadeBuilder(baker, translucentFacadeModel);
-
         // This should normally not be used, but we *have* to provide a particle texture
         // or otherwise damage models will
         // crash
         TextureAtlasSprite particleTexture = cableBuilder.getCoreTexture(CableCoreType.GLASS, AEColor.TRANSPARENT);
 
-        return new CableBusBakedModel(cableBuilder, facadeBuilder, partModels, particleTexture);
+        return new CableBusBakedModel(cableBuilder, partModels, particleTexture);
     }
 
     private Map<ResourceLocation, BakedModel> loadPartModels(ModelBaker baker,

@@ -29,7 +29,6 @@ import appeng.api.integrations.emi.EmiStackConverters;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.AEConfig;
 import appeng.core.AppEng;
-import appeng.core.FacadeCreativeTab;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
@@ -88,11 +87,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         // In-World Transformation
         registry.addCategory(EmiTransformRecipe.CATEGORY);
         adaptRecipeType(registry, AERecipeTypes.TRANSFORM, EmiTransformRecipe::new);
-
-        // Facades
-        if (AEConfig.instance().isEnableFacadeRecipesInRecipeViewer()) {
-            registry.addDeferredRecipes(this::registerFacades);
-        }
 
         // Simple item upgrades
         for (var entry : Upgrades.getUpgradableItems().entrySet()) {
@@ -173,12 +167,5 @@ public class AppEngEmiPlugin implements EmiPlugin {
                 .filter(r -> recipeClass.isInstance(r.value()))
                 .map(r -> adapter.apply(new RecipeHolder<>(r.id(), recipeClass.cast(r.value()))))
                 .forEach(registry::addRecipe);
-    }
-
-    private void registerFacades(Consumer<EmiRecipe> recipeConsumer) {
-        var generator = new EmiFacadeGenerator();
-        for (var facade : FacadeCreativeTab.getDisplayItems()) {
-            generator.getRecipeFor(facade).ifPresent(recipeConsumer);
-        }
     }
 }

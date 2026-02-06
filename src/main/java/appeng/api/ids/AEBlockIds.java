@@ -48,11 +48,9 @@ public final class AEBlockIds {
 
     public static final ResourceLocation MYSTERIOUS_CUBE = id("mysterious_cube");
     public static final ResourceLocation NOT_SO_MYSTERIOUS_CUBE = id("not_so_mysterious_cube");
-    public static final ResourceLocation QUARTZ_FIXTURE = id("quartz_fixture");
     public static final ResourceLocation SKY_STONE_CHEST = id("sky_stone_chest");
     public static final ResourceLocation SMOOTH_SKY_STONE_CHEST = id("smooth_sky_stone_chest");
     public static final ResourceLocation SKY_STONE_TANK = id("sky_stone_tank");
-    public static final ResourceLocation LIGHT_DETECTOR = id("light_detector");
 
     ///
     /// ME NETWORK

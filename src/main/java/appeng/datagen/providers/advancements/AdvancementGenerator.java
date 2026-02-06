@@ -231,21 +231,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                                 .hasItems(ItemPredicate.Builder.item().of(ConventionTags.GLASS_CABLE).build()))
                 .save(consumer, "ae2:main/glass_cable");
 
-        var facade = Advancement.Builder.advancement()
-                .display(
-                        AEItems.FACADE.get().createFacadeForItemUnchecked(new ItemStack(Items.STONE)),
-                        localization.component("achievement.ae2.Facade", "Network Aesthetics"),
-                        localization.component("achievement.ae2.Facade.desc", "Craft a Cable Facade"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(glassCable)
-                .addCriterion("facade", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.FACADE))
-                .save(consumer, "ae2:main/facade");
-
         var network1 = Advancement.Builder.advancement()
                 .display(
                         AEParts.COVERED_CABLE.item(AEColor.TRANSPARENT),
@@ -293,21 +278,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(network2)
                 .addCriterion("cable", AdvancementTriggers.networkAdminCriterion())
                 .save(consumer, "ae2:main/network3");
-
-        var networkTool = Advancement.Builder.advancement()
-                .display(
-                        AEItems.NETWORK_TOOL,
-                        localization.component("achievement.ae2.NetworkTool", "Network Diagnostics"),
-                        localization.component("achievement.ae2.NetworkTool.desc", "Craft a Network Tool"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(controller)
-                .addCriterion("network_tool", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.NETWORK_TOOL))
-                .save(consumer, "ae2:main/network_tool");
 
         var portableCell = Advancement.Builder.advancement()
                 .display(
