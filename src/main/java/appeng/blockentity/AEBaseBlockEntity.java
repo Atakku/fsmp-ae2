@@ -80,7 +80,6 @@ import appeng.client.render.model.AEModelData;
 import appeng.core.AELog;
 import appeng.hooks.VisualStateSaving;
 import appeng.hooks.ticking.TickHandler;
-import appeng.items.tools.MemoryCardItem;
 import appeng.util.IDebugExportable;
 import appeng.util.JsonStreamUtil;
 import appeng.util.SettingsFrom;
@@ -335,13 +334,6 @@ public class AEBaseBlockEntity extends BlockEntity
     public void exportSettings(SettingsFrom mode, DataComponentMap.Builder builder, @Nullable Player player) {
         if (mode == SettingsFrom.DISMANTLE_ITEM) {
             builder.set(DataComponents.CUSTOM_NAME, this.customName);
-        } else if (mode == SettingsFrom.MEMORY_CARD) {
-            builder.set(AEComponents.EXPORTED_CUSTOM_NAME, this.customName);
-        }
-
-        if (mode == SettingsFrom.MEMORY_CARD) {
-            MemoryCardItem.exportGenericSettings(this, builder);
-            builder.set(AEComponents.EXPORTED_SETTINGS_SOURCE, getItemFromBlockEntity().getDescription());
         }
     }
 
@@ -355,11 +347,7 @@ public class AEBaseBlockEntity extends BlockEntity
     public void importSettings(SettingsFrom mode, DataComponentMap input, @Nullable Player player) {
         if (mode == SettingsFrom.DISMANTLE_ITEM) {
             this.customName = input.get(DataComponents.CUSTOM_NAME);
-        } else if (mode == SettingsFrom.MEMORY_CARD) {
-            this.customName = input.get(AEComponents.EXPORTED_CUSTOM_NAME);
         }
-
-        MemoryCardItem.importGenericSettings(this, input, player);
     }
 
     /**

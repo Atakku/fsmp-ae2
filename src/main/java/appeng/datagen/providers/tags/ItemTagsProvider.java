@@ -32,7 +32,6 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import appeng.api.features.P2PTunnelAttunement;
 import appeng.api.ids.AETags;
 import appeng.api.util.AEColor;
 import appeng.core.AppEng;
@@ -177,8 +176,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
         // Manually add tags for mods that are unlikely to do it themselves since we don't want to force users to craft
         tag(ConventionTags.WRENCH).addOptional(ResourceLocation.parse("immersiveengineering:hammer"));
-
-        addP2pAttunementTags();
     }
 
     // Copy the entries AE2 added to certain block tags over to item tags of the same name
@@ -193,17 +190,5 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
     private void mirrorBlockTag(ResourceLocation tagName) {
         copy(TagKey.create(Registries.BLOCK, tagName), TagKey.create(Registries.ITEM, tagName));
-    }
-
-    private void addP2pAttunementTags() {
-        tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.LIGHT_TUNNEL))
-                .add(Items.TORCH, Items.GLOWSTONE);
-
-        tag(P2PTunnelAttunement.getAttunementTag(P2PTunnelAttunement.ME_TUNNEL))
-                .addTag(ConventionTags.COVERED_CABLE)
-                .addTag(ConventionTags.COVERED_DENSE_CABLE)
-                .addTag(ConventionTags.GLASS_CABLE)
-                .addTag(ConventionTags.SMART_CABLE)
-                .addTag(ConventionTags.SMART_DENSE_CABLE);
     }
 }

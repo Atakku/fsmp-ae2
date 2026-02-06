@@ -50,7 +50,6 @@ import appeng.hooks.ticking.TickHandler;
 import appeng.me.Grid;
 import appeng.me.service.StatisticsService;
 import appeng.parts.AEBasePart;
-import appeng.parts.p2p.MEP2PTunnelPart;
 import appeng.server.ISubCommand;
 import appeng.util.Platform;
 
@@ -106,11 +105,6 @@ public class GridsCommand implements ISubCommand {
             for (var node : grid.getNodes()) {
                 if (node.getOwner() instanceof AEBasePart basePart) {
                     visitGridInFrontOfPart(basePart, reachableGrids, openSet);
-                } else if (node.getOwner() instanceof MEP2PTunnelPart meTunnel) {
-                    var tunnelGrid = (Grid) meTunnel.getMainNode().getGrid();
-                    if (tunnelGrid != null && reachableGrids.add(tunnelGrid)) {
-                        openSet.add(tunnelGrid);
-                    }
                 }
             }
         }

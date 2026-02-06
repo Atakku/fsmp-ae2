@@ -38,7 +38,6 @@ import appeng.api.util.AEColor;
 public final class AEItemIds {
     public static final ResourceLocation NETWORK_TOOL = id("network_tool");
     public static final ResourceLocation VIEW_CELL = id("view_cell");
-    public static final ResourceLocation MEMORY_CARD = id("memory_card");
 
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
     public static final ResourceLocation COLOR_APPLICATOR = id("color_applicator");

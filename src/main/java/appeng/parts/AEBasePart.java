@@ -52,8 +52,6 @@ import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 
 import appeng.api.ids.AEComponents;
 import appeng.api.implementations.IChannelState;
-import appeng.api.implementations.items.IMemoryCard;
-import appeng.api.implementations.items.MemoryCardMessages;
 import appeng.api.inventories.ISegmentedInventory;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.GridHelper;
@@ -68,7 +66,6 @@ import appeng.api.parts.IPartItem;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.util.AECableType;
 import appeng.api.util.AEColor;
-import appeng.items.tools.MemoryCardItem;
 import appeng.util.IDebugExportable;
 import appeng.util.InteractionUtil;
 import appeng.util.JsonStreamUtil;
@@ -296,11 +293,7 @@ public abstract class AEBasePart
     public void importSettings(SettingsFrom mode, DataComponentMap input, @Nullable Player player) {
         if (mode == SettingsFrom.DISMANTLE_ITEM) {
             this.customName = input.get(DataComponents.CUSTOM_NAME);
-        } else if (mode == SettingsFrom.MEMORY_CARD) {
-            this.customName = input.get(AEComponents.EXPORTED_CUSTOM_NAME);
         }
-
-        MemoryCardItem.importGenericSettings(this, input, player);
     }
 
     @Override
@@ -308,13 +301,6 @@ public abstract class AEBasePart
     public void exportSettings(SettingsFrom mode, DataComponentMap.Builder builder) {
         if (mode == SettingsFrom.DISMANTLE_ITEM) {
             builder.set(DataComponents.CUSTOM_NAME, this.customName);
-        } else if (mode == SettingsFrom.MEMORY_CARD) {
-            builder.set(AEComponents.EXPORTED_CUSTOM_NAME, this.customName);
-        }
-
-        if (mode == SettingsFrom.MEMORY_CARD) {
-            MemoryCardItem.exportGenericSettings(this, builder);
-            builder.set(AEComponents.EXPORTED_SETTINGS_SOURCE, getPartItem().asItem().getDescription());
         }
     }
 
@@ -328,38 +314,8 @@ public abstract class AEBasePart
         return true;
     }
 
-    private boolean useMemoryCard(ItemStack memCardIS, Player player) {
-        if (!this.useStandardMemoryCard() || !(memCardIS.getItem() instanceof IMemoryCard memoryCard)) {
-            return false;
-        }
-
-        Item partItem = getPartItem().asItem();
-        var name = partItem.getDescription();
-
-        if (InteractionUtil.isInAlternateUseMode(player)) {
-            var settings = exportSettings(SettingsFrom.MEMORY_CARD);
-            if (!settings.isEmpty()) {
-                MemoryCardItem.clearCard(memCardIS);
-                memCardIS.applyComponents(settings);
-                memoryCard.notifyUser(player, MemoryCardMessages.SETTINGS_SAVED);
-            }
-        } else {
-            var storedName = memCardIS.get(AEComponents.EXPORTED_SETTINGS_SOURCE);
-            if (name.equals(storedName)) {
-                importSettings(SettingsFrom.MEMORY_CARD, memCardIS.getComponents(), player);
-                memoryCard.notifyUser(player, MemoryCardMessages.SETTINGS_LOADED);
-            } else {
-                MemoryCardItem.importGenericSettingsAndNotify(this, memCardIS.getComponents(), player);
-            }
-        }
-        return true;
-    }
-
     @Override
     public boolean onUseItemOn(ItemStack heldItem, Player player, InteractionHand hand, Vec3 pos) {
-        if (useMemoryCard(heldItem, player)) {
-            return true;
-        }
         return IPart.super.onUseItemOn(heldItem, player, hand, pos);
     }
 

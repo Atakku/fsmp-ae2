@@ -216,25 +216,6 @@ public abstract class AbstractLevelEmitterPart extends UpgradeablePart {
     }
 
     @Override
-    public void importSettings(SettingsFrom mode, DataComponentMap input, @Nullable Player player) {
-        super.importSettings(mode, input, player);
-
-        var reportingValue = input.get(AEComponents.EXPORTED_LEVEL_EMITTER_VALUE);
-        if (reportingValue != null) {
-            setReportingValue(reportingValue);
-        }
-    }
-
-    @Override
-    public void exportSettings(SettingsFrom mode, DataComponentMap.Builder builder) {
-        super.exportSettings(mode, builder);
-
-        if (mode == SettingsFrom.MEMORY_CARD) {
-            builder.set(AEComponents.EXPORTED_LEVEL_EMITTER_VALUE, reportingValue);
-        }
-    }
-
-    @Override
     protected boolean shouldSendMissingChannelStateToClient() {
         return false; // We handle this completely in our enabled flag
     }

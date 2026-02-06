@@ -46,12 +46,9 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 
 import appeng.api.ids.AEComponents;
-import appeng.api.implementations.items.IMemoryCard;
-import appeng.api.implementations.items.MemoryCardMessages;
 import appeng.block.networking.CableBusBlock;
 import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.AEBaseInvBlockEntity;
-import appeng.items.tools.MemoryCardItem;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 import appeng.util.SettingsFrom;
@@ -188,43 +185,6 @@ public abstract class AEBaseEntityBlock<T extends AEBaseBlockEntity> extends AEB
             player = (Player) placer;
         }
         blockEntity.importSettings(SettingsFrom.DISMANTLE_ITEM, is.getComponents(), player);
-    }
-
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos,
-            Player player,
-            InteractionHand hand, BlockHitResult hit) {
-        if (heldItem.getItem() instanceof IMemoryCard memoryCard && !(this instanceof CableBusBlock)) {
-            final AEBaseBlockEntity blockEntity = this.getBlockEntity(level, pos);
-
-            if (blockEntity == null) {
-                return ItemInteractionResult.FAIL;
-            }
-
-            if (InteractionUtil.isInAlternateUseMode(player)) {
-                var builder = DataComponentMap.builder();
-                blockEntity.exportSettings(SettingsFrom.MEMORY_CARD, builder, player);
-                var settings = builder.build();
-                if (!settings.isEmpty()) {
-                    MemoryCardItem.clearCard(heldItem);
-                    heldItem.applyComponents(settings);
-                    memoryCard.notifyUser(player, MemoryCardMessages.SETTINGS_SAVED);
-                }
-            } else {
-                var savedName = heldItem.get(AEComponents.EXPORTED_SETTINGS_SOURCE);
-
-                if (this.getName().equals(savedName)) {
-                    blockEntity.importSettings(SettingsFrom.MEMORY_CARD, heldItem.getComponents(), player);
-                    memoryCard.notifyUser(player, MemoryCardMessages.SETTINGS_LOADED);
-                } else {
-                    MemoryCardItem.importGenericSettingsAndNotify(blockEntity, heldItem.getComponents(), player);
-                }
-            }
-
-            return ItemInteractionResult.sidedSuccess(level.isClientSide());
-        }
-
-        return super.useItemOn(heldItem, state, level, pos, player, hand, hit);
     }
 
     @Override

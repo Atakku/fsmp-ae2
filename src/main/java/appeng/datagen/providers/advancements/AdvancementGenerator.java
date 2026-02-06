@@ -309,21 +309,6 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("network_tool", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.NETWORK_TOOL))
                 .save(consumer, "ae2:main/network_tool");
 
-        var p2p = Advancement.Builder.advancement()
-                .display(
-                        AEParts.ME_P2P_TUNNEL,
-                        localization.component("achievement.ae2.P2P", "Point to Point Networking"),
-                        localization.component("achievement.ae2.P2P.desc", "Craft a P2P Tunnel"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(glassCable)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.ME_P2P_TUNNEL))
-                .save(consumer, "ae2:main/p2p");
-
         var portableCell = Advancement.Builder.advancement()
                 .display(
                         AEItems.PORTABLE_ITEM_CELL1K,

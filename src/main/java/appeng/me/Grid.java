@@ -55,7 +55,6 @@ import appeng.api.networking.ticking.ITickManager;
 import appeng.core.AELog;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.helpers.GridServiceContainer;
-import appeng.me.service.P2PService;
 import appeng.parts.AEBasePart;
 import appeng.util.IDebugExportable;
 import appeng.util.JsonStreamUtil;
@@ -300,8 +299,6 @@ public class Grid implements IGrid {
             return "storageService";
         } else if (service == ITickManager.class) {
             return "tickManager";
-        } else if (service == P2PService.class) {
-            return "p2pService";
         } else {
             return service.getName();
         }

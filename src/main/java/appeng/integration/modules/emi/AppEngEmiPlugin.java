@@ -25,7 +25,6 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 
 import appeng.api.config.CondenserOutput;
-import appeng.api.features.P2PTunnelAttunementInternal;
 import appeng.api.integrations.emi.EmiStackConverters;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.AEConfig;
@@ -80,10 +79,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
 
         // Special upgrade recipes
         adaptSpecialRecipes(registry, StorageCellUpgradeRecipe.class, this::convertStorageCellUpgradeRecipe);
-
-        // P2P attunement
-        registry.addCategory(EmiP2PAttunementRecipe.CATEGORY);
-        registry.addDeferredRecipes(this::registerP2PAttunements);
 
         // Condenser
         registry.addCategory(EmiCondenserRecipe.CATEGORY);
@@ -178,35 +173,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
                 .filter(r -> recipeClass.isInstance(r.value()))
                 .map(r -> adapter.apply(new RecipeHolder<>(r.id(), recipeClass.cast(r.value()))))
                 .forEach(registry::addRecipe);
-    }
-
-    private void registerP2PAttunements(Consumer<EmiRecipe> recipeConsumer) {
-
-        var all = EmiApi.getIndexStacks();
-        for (var entry : P2PTunnelAttunementInternal.getApiTunnels()) {
-            var inputs = all.stream().filter(stack -> entry.stackPredicate().test(stack.getItemStack()))
-                    .toList();
-            if (inputs.isEmpty()) {
-                continue;
-            }
-            recipeConsumer.accept(
-                    new EmiP2PAttunementRecipe(
-                            EmiIngredient.of(inputs),
-                            EmiStack.of(entry.tunnelType()),
-                            ItemModText.P2P_API_ATTUNEMENT.text().append("\n").append(entry.description())));
-        }
-
-        for (var entry : P2PTunnelAttunementInternal.getTagTunnels().entrySet()) {
-            var ingredient = EmiIngredient.of(entry.getKey());
-            if (ingredient.isEmpty()) {
-                continue;
-            }
-            recipeConsumer.accept(
-                    new EmiP2PAttunementRecipe(
-                            ingredient,
-                            EmiStack.of(entry.getValue()),
-                            ItemModText.P2P_TAG_ATTUNEMENT.text()));
-        }
     }
 
     private void registerFacades(Consumer<EmiRecipe> recipeConsumer) {

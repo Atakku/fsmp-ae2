@@ -62,7 +62,6 @@ import appeng.items.storage.CreativeCellItem;
 import appeng.items.storage.StorageTier;
 import appeng.items.storage.ViewCellItem;
 import appeng.items.tools.GuideItem;
-import appeng.items.tools.MemoryCardItem;
 import appeng.items.tools.NetworkToolItem;
 import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.items.tools.powered.PortableCellItem;
@@ -134,7 +133,6 @@ public final class AEItems {
     ///
 
     public static final ItemDefinition<NetworkToolItem> NETWORK_TOOL = item("Network Tool", AEItemIds.NETWORK_TOOL, p -> new NetworkToolItem(p.stacksTo(1)));
-    public static final ItemDefinition<MemoryCardItem> MEMORY_CARD = item("Memory Card", AEItemIds.MEMORY_CARD, p -> new MemoryCardItem(p.stacksTo(1)));
 
     public static final ItemDefinition<FacadeItem> FACADE = item("Cable Facade", AEItemIds.FACADE, FacadeItem::new);
     // Used to represent missing content if a mod got uninstalled

@@ -114,9 +114,7 @@ public interface IConfigManager {
      * Get a builder for configuration manager that stores its settings in a block entity.
      */
     static IConfigManagerBuilder builder(Supplier<ItemStack> stack) {
-        var manager = new ConfigManager((mgr, settingName) -> {
-            stack.get().set(AEComponents.EXPORTED_SETTINGS, mgr.exportSettings());
-        });
+        var manager = new ConfigManager((mgr, settingName) -> {});
 
         return new IConfigManagerBuilder() {
             @Override
@@ -127,7 +125,6 @@ public interface IConfigManager {
 
             @Override
             public IConfigManager build() {
-                manager.importSettings(stack.get().getOrDefault(AEComponents.EXPORTED_SETTINGS, Map.of()));
                 return manager;
             }
         };

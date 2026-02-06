@@ -7,7 +7,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import appeng.api.ids.AEItemIds;
 import appeng.api.util.AEColor;
-import appeng.client.render.model.MemoryCardModel;
 import appeng.core.AppEng;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
@@ -25,10 +24,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         registerPaintballs();
 
         flatSingleLayer(AEItems.MISSING_CONTENT, "minecraft:item/barrier");
-
-        flatSingleLayer(MemoryCardModel.MODEL_BASE, "item/memory_card_base")
-                .texture("layer1", "item/memory_card_led");
-        builtInItemModel("memory_card");
 
         builtInItemModel("facade");
         builtInItemModel("meteorite_compass");

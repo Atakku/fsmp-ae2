@@ -65,14 +65,12 @@ import appeng.hooks.ticking.TickHandler;
 import appeng.hotkeys.HotkeyActions;
 import appeng.init.InitAdvancementTriggers;
 import appeng.init.InitCapabilityProviders;
-import appeng.init.InitCauldronInteraction;
 import appeng.init.InitDispenserBehavior;
 import appeng.init.InitMenuTypes;
 import appeng.init.InitStats;
 import appeng.init.client.InitParticleTypes;
 import appeng.init.internal.InitGridLinkables;
 import appeng.init.internal.InitGridServices;
-import appeng.init.internal.InitP2PAttunements;
 import appeng.init.internal.InitStorageCells;
 import appeng.init.internal.InitUpgrades;
 import appeng.init.worldgen.InitStructures;
@@ -178,9 +176,6 @@ public abstract class AppEngBase implements AppEng {
         InitGridLinkables.init();
         InitStorageCells.init();
 
-        InitP2PAttunements.init();
-
-        InitCauldronInteraction.init();
         InitDispenserBehavior.init();
 
         InitUpgrades.init();

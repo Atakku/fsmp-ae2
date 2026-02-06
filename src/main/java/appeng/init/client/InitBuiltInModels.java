@@ -30,7 +30,6 @@ import appeng.client.render.cablebus.P2PTunnelFrequencyModel;
 import appeng.client.render.model.ColorApplicatorModel;
 import appeng.client.render.model.DriveModel;
 import appeng.client.render.model.GlassModel;
-import appeng.client.render.model.MemoryCardModel;
 import appeng.client.render.model.MeteoriteCompassModel;
 import appeng.core.AppEng;
 import appeng.hooks.BuiltInModelHooks;
@@ -44,7 +43,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("block/cable_bus", CableBusModel::new);
         addBuiltInModel("block/quartz_glass", GlassModel::new);
         addBuiltInModel("item/meteorite_compass", MeteoriteCompassModel::new);
-        addBuiltInModel("item/memory_card", MemoryCardModel::new);
         addBuiltInModel("block/drive", DriveModel::new);
         addBuiltInModel("color_applicator", ColorApplicatorModel::new);
         addBuiltInModel("part/p2p/p2p_tunnel_frequency", P2PTunnelFrequencyModel::new);

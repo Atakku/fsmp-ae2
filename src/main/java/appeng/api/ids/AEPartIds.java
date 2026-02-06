@@ -245,12 +245,6 @@ public final class AEPartIds {
     public static final ResourceLocation CRAFTING_TERMINAL = id("crafting_terminal");
     public static final ResourceLocation STORAGE_MONITOR = id("storage_monitor");
 
-    ///
-    /// P2P
-    ///
-    public static final ResourceLocation ME_P2P_TUNNEL = id("me_p2p_tunnel");
-    public static final ResourceLocation LIGHT_P2P_TUNNEL = id("light_p2p_tunnel");
-
     private static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(AEConstants.MOD_ID, id);
     }

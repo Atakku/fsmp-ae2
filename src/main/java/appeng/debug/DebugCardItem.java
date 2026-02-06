@@ -51,7 +51,6 @@ import appeng.me.GridNode;
 import appeng.me.helpers.IGridConnectedBlockEntity;
 import appeng.me.service.TickManagerService;
 import appeng.parts.networking.CablePart;
-import appeng.parts.p2p.P2PTunnelPart;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
@@ -188,10 +187,6 @@ public class DebugCardItem extends AEBaseItem {
                     }
 
                     this.outputSecondaryMessage(player, "Cable Distance", Integer.toString(length));
-                }
-
-                if (center.getOwner() instanceof P2PTunnelPart<?> tunnelPart) {
-                    this.outputSecondaryMessage(player, "Freq", Integer.toString(tunnelPart.getFrequency()));
                 }
             } else {
                 this.outputMessage(player, "No Node Available.");

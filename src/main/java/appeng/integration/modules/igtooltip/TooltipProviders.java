@@ -20,12 +20,10 @@ import appeng.core.AppEng;
 import appeng.integration.modules.igtooltip.blocks.GridNodeStateDataProvider;
 import appeng.integration.modules.igtooltip.parts.ChannelDataProvider;
 import appeng.integration.modules.igtooltip.parts.GridNodeStateProvider;
-import appeng.integration.modules.igtooltip.parts.P2PStateDataProvider;
 import appeng.integration.modules.igtooltip.parts.PartHostTooltips;
 import appeng.integration.modules.igtooltip.parts.StorageMonitorDataProvider;
 import appeng.parts.AEBasePart;
 import appeng.parts.networking.IUsedChannelProvider;
-import appeng.parts.p2p.P2PTunnelPart;
 import appeng.parts.reporting.AbstractMonitorPart;
 
 public final class TooltipProviders implements TooltipProvider {
@@ -42,8 +40,6 @@ public final class TooltipProviders implements TooltipProvider {
         PartTooltips.addBody(AbstractMonitorPart.class, new StorageMonitorDataProvider());
         PartTooltips.addBody(IPart.class, new GridNodeStateProvider());
         PartTooltips.addServerData(IPart.class, new GridNodeStateProvider());
-        PartTooltips.addBody(P2PTunnelPart.class, new P2PStateDataProvider());
-        PartTooltips.addServerData(P2PTunnelPart.class, new P2PStateDataProvider());
         PartTooltips.addBody(AEBasePart.class, DebugProvider::providePartBody, DEBUG_PRIORITY);
         PartTooltips.addServerData(AEBasePart.class, DebugProvider::providePartData, DEBUG_PRIORITY);
     }

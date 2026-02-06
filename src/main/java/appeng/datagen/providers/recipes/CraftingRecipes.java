@@ -433,15 +433,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .requires(AEParts.TOGGLE_BUS)
                 .unlockedBy("has_toggle_bus", has(AEParts.TOGGLE_BUS))
                 .save(consumer, AppEng.makeId("network/parts/toggle_bus_inverted_alt"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEParts.ME_P2P_TUNNEL)
-                .pattern(" a ")
-                .pattern("aba")
-                .pattern("ccc")
-                .define('a', ConventionTags.IRON_INGOT)
-                .define('b', AEItems.ENGINEERING_PROCESSOR)
-                .define('c', ConventionTags.ALL_FLUIX)
-                .unlockedBy("has_engineering_processor", has(AEItems.ENGINEERING_PROCESSOR))
-                .save(consumer, AppEng.makeId("network/parts/tunnels_me"));
 
         // ====================================================
         // recipes/tools
@@ -471,16 +462,6 @@ public class CraftingRecipes extends AE2RecipeProvider {
                 .unlockedBy("has_formation_core", has(AEItems.FORMATION_CORE))
                 .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
                 .save(consumer, AppEng.makeId("tools/network_color_applicator"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.MEMORY_CARD)
-                .pattern("abb")
-                .pattern("cdc")
-                .define('a', AEItems.CALCULATION_PROCESSOR)
-                .define('b', ConventionTags.IRON_INGOT)
-                .define('c', ConventionTags.GOLD_INGOT)
-                .define('d', ConventionTags.REDSTONE)
-                .unlockedBy("has_calculation_processor", has(AEItems.CALCULATION_PROCESSOR))
-                .save(consumer, AppEng.makeId("tools/network_memory_card"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AEItems.NETWORK_TOOL)
                 .requires(ConventionTags.ILLUMINATED_PANEL)

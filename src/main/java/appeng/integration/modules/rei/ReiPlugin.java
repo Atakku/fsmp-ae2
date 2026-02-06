@@ -54,7 +54,6 @@ import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCustomShapelessDisplay;
 
 import appeng.api.config.CondenserOutput;
-import appeng.api.features.P2PTunnelAttunementInternal;
 import appeng.api.integrations.rei.IngredientConverters;
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.implementations.InscriberScreen;
@@ -107,7 +106,6 @@ public class ReiPlugin implements REIClientPlugin {
         registry.add(new TransformCategory());
         registry.add(new CondenserCategory());
         registry.add(new InscriberRecipeCategory());
-        registry.add(new AttunementCategory());
 
         registerWorkingStations(registry);
     }
@@ -234,31 +232,6 @@ public class ReiPlugin implements REIClientPlugin {
 
     private void registerDescriptions(DisplayRegistry registry) {
         var all = EntryRegistry.getInstance().getEntryStacks().collect(EntryIngredient.collector());
-
-        for (var entry : P2PTunnelAttunementInternal.getApiTunnels()) {
-            var inputs = List.of(all.filter(
-                    stack -> stack.getValue() instanceof ItemStack s && entry.stackPredicate().test(s)));
-            if (inputs.isEmpty()) {
-                continue;
-            }
-
-            registry.add(new AttunementDisplay(
-                    inputs,
-                    List.of(EntryIngredient.of(EntryStacks.of(entry.tunnelType()))),
-                    ItemModText.P2P_API_ATTUNEMENT.text(),
-                    entry.description()));
-        }
-
-        for (var entry : P2PTunnelAttunementInternal.getTagTunnels().entrySet()) {
-            var ingredient = Ingredient.of(entry.getKey());
-            if (ingredient.isEmpty()) {
-                continue;
-            }
-
-            registry.add(new AttunementDisplay(List.of(EntryIngredients.ofIngredient(ingredient)),
-                    List.of(EntryIngredient.of(EntryStacks.of(entry.getValue()))),
-                    ItemModText.P2P_TAG_ATTUNEMENT.text()));
-        }
 
         addDescription(registry, AEItems.CERTUS_QUARTZ_CRYSTAL, GuiText.CertusQuartzObtain.getTranslationKey());
 

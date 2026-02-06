@@ -24,7 +24,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import appeng.api.components.ExportedUpgrades;
 import appeng.api.config.FuzzyMode;
-import appeng.api.implementations.items.MemoryCardColors;
 import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
 import appeng.api.util.AEColor;
@@ -47,83 +46,6 @@ public final class AEComponents {
     public static final DataComponentType<Component> EXPORTED_SETTINGS_SOURCE = register("exported_settings_source",
             builder -> builder.persistent(ComponentSerialization.CODEC)
                     .networkSynchronized(ComponentSerialization.STREAM_CODEC));
-
-    /**
-     * An export custom machine name.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Component> EXPORTED_CUSTOM_NAME = register("exported_custom_name",
-            builder -> builder.persistent(ComponentSerialization.CODEC)
-                    .networkSynchronized(ComponentSerialization.STREAM_CODEC));
-
-    /**
-     * Exported machine upgrades.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<ExportedUpgrades> EXPORTED_UPGRADES = register("exported_upgrades",
-            builder -> builder.persistent(ExportedUpgrades.CODEC).networkSynchronized(ExportedUpgrades.STREAM_CODEC));
-
-    /**
-     * Exported machine configuration.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Map<String, String>> EXPORTED_SETTINGS = register("exported_settings",
-            builder -> builder.persistent(Codec.unboundedMap(Codec.STRING, Codec.STRING))
-                    .networkSynchronized(ByteBufCodecs.map(
-                            Maps::newHashMapWithExpectedSize,
-                            ByteBufCodecs.STRING_UTF8,
-                            ByteBufCodecs.STRING_UTF8)));
-
-    /**
-     * Exported machine priority.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Integer> EXPORTED_PRIORITY = register("exported_priority",
-            builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
-
-    /**
-     * Exported subtype of a {@link appeng.parts.p2p.P2PTunnelPart}.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Item> EXPORTED_P2P_TYPE = register("exported_p2p_type",
-            builder -> builder.persistent(BuiltInRegistries.ITEM.byNameCodec())
-                    .networkSynchronized(ByteBufCodecs.registry(Registries.ITEM)));
-
-    /**
-     * Exported {@link appeng.parts.p2p.P2PTunnelPart} frequency.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<Short> EXPORTED_P2P_FREQUENCY = register("exported_p2p_frequency",
-            builder -> builder.persistent(Codec.SHORT).networkSynchronized(ByteBufCodecs.SHORT));
-
-    /**
-     * Specifies a color code consisting of 8 colors to display on the memory card item.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<MemoryCardColors> MEMORY_CARD_COLORS = register("memory_card_colors",
-            builder -> builder.persistent(MemoryCardColors.CODEC).networkSynchronized(MemoryCardColors.STREAM_CODEC));
-
-    /**
-     * Exported configuration inventory.
-     *
-     * @see appeng.items.tools.MemoryCardItem
-     */
-    public static final DataComponentType<List<GenericStack>> EXPORTED_CONFIG_INV = register("exported_config_inv",
-            builder -> builder.persistent(GenericStack.FAULT_TOLERANT_NULLABLE_LIST_CODEC)
-                    .networkSynchronized(GenericStack.STREAM_CODEC.apply(ByteBufCodecs.list())));
-
-    /**
-     * Exported reporting value for level emitters.
-     */
-    public static final DataComponentType<Long> EXPORTED_LEVEL_EMITTER_VALUE = register("exported_level_emitter_value",
-            builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 
     /**
      * The name inscribed by a {@link appeng.items.materials.NamePressItem}
