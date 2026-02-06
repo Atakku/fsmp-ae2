@@ -34,7 +34,6 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
 
@@ -44,7 +43,6 @@ import appeng.core.definitions.AEItems;
 import appeng.crafting.pattern.AECraftingPattern;
 import appeng.crafting.pattern.AEPatternDecoder;
 import appeng.crafting.pattern.AEProcessingPattern;
-import appeng.crafting.pattern.AESmithingTablePattern;
 import appeng.crafting.pattern.AEStonecuttingPattern;
 
 public final class PatternDetailsHelper {
@@ -161,31 +159,6 @@ public final class PatternDetailsHelper {
             boolean allowSubstitutes) {
         var stack = AEItems.STONECUTTING_PATTERN.stack();
         AEStonecuttingPattern.encode(stack, recipe, in, out, allowSubstitutes);
-        return stack;
-    }
-
-    /**
-     * Encodes a smithing table pattern which represents a Vanilla Smithing Table recipe.
-     *
-     * @param recipe           The Vanilla smithing table recipe to be encoded.
-     * @param template         The template item for the smithing table.
-     * @param base             The base item for the smithing table, which is used to determine which item is supplied
-     *                         from the ME system to craft using this pattern.
-     * @param addition         The additional item for the smithing table, which is used to determine which item is
-     *                         supplied from the ME system to craft using this pattern.
-     * @param out              The selected output item from the smithing table recipe. Used to restore the recipe if it
-     *                         is renamed later.
-     * @param allowSubstitutes Controls whether the ME system will allow the use of equivalent items to craft this
-     *                         recipe.
-     */
-    public static ItemStack encodeSmithingTablePattern(RecipeHolder<SmithingRecipe> recipe,
-            AEItemKey template,
-            AEItemKey base,
-            AEItemKey addition,
-            AEItemKey out,
-            boolean allowSubstitutes) {
-        var stack = AEItems.SMITHING_TABLE_PATTERN.stack();
-        AESmithingTablePattern.encode(stack, recipe, template, base, addition, out, allowSubstitutes);
         return stack;
     }
 }

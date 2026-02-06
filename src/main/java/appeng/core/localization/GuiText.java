@@ -197,7 +197,6 @@ public enum GuiText implements LocalizationEnum {
     ShowingOf("Showing %d of %d"),
     SkyChest("Sky Stone Chest"),
     // Used in a terminal to indicate that an item is craftable
-    SmithingTablePattern("Smithing Table Patterns"),
     Start("Start"),
     StonecuttingPattern("Stonecutting Patterns"),
     StorageBus("Storage Bus"),

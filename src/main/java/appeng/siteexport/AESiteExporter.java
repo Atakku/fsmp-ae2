@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 
 import guideme.Guide;
@@ -35,7 +34,6 @@ public class AESiteExporter extends SiteExporter {
         referenceItem(AEBlocks.INSCRIBER);
         referenceFluid(Fluids.WATER);
         referenceFluid(Fluids.LAVA);
-        referenceItem(Blocks.SMITHING_TABLE);
     }
 
     protected Map<String, Object> getModData() {

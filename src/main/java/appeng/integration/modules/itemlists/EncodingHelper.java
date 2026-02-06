@@ -37,8 +37,7 @@ public final class EncodingHelper {
         var recipeType = recipe.getType();
 
         return recipeType == RecipeType.CRAFTING
-                || recipeType == RecipeType.STONECUTTING
-                || recipeType == RecipeType.SMITHING;
+                || recipeType == RecipeType.STONECUTTING;
     }
 
     /**

@@ -373,10 +373,6 @@
           "CRAFTING_RESULT",
           "PROCESSING_INPUTS",
           "PROCESSING_OUTPUTS",
-          "SMITHING_TABLE_TEMPLATE",
-          "SMITHING_TABLE_BASE",
-          "SMITHING_TABLE_ADDITION",
-          "SMITHING_TABLE_RESULT",
           "STONECUTTING_INPUT",
           "MISSING_INGREDIENT"
         ]

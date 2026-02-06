@@ -9,7 +9,6 @@ import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -106,28 +105,4 @@ public class CraftingPatternHelper {
                 AEItemKey.of(outputItem),
                 allowSubstitutes);
     }
-
-    public static ItemStack encodeSmithingPattern(Level level, ItemLike template, ItemLike base, ItemLike addition,
-            boolean allowSubstitutes) {
-
-        var input = new SmithingRecipeInput(new ItemStack(template), new ItemStack(base), new ItemStack(addition));
-
-        var foundRecipe = level.getRecipeManager().getRecipeFor(RecipeType.SMITHING, input, level).orElse(null);
-        if (foundRecipe == null) {
-            throw new RuntimeException(
-                    "No stonecutter recipe found for template=" + template + " and base=" + base + " and addition="
-                            + addition);
-        }
-
-        var result = foundRecipe.value().assemble(input, level.registryAccess());
-
-        return PatternDetailsHelper.encodeSmithingTablePattern(
-                foundRecipe,
-                AEItemKey.of(template),
-                AEItemKey.of(base),
-                AEItemKey.of(addition),
-                AEItemKey.of(result),
-                allowSubstitutes);
-    }
-
 }

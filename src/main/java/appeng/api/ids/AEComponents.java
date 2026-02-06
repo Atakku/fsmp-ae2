@@ -33,7 +33,6 @@ import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import appeng.crafting.pattern.EncodedCraftingPattern;
 import appeng.crafting.pattern.EncodedProcessingPattern;
-import appeng.crafting.pattern.EncodedSmithingTablePattern;
 import appeng.crafting.pattern.EncodedStonecuttingPattern;
 
 public final class AEComponents {
@@ -202,16 +201,6 @@ public final class AEComponents {
             "encoded_stonecutting_pattern",
             builder -> builder.persistent(EncodedStonecuttingPattern.CODEC)
                     .networkSynchronized(EncodedStonecuttingPattern.STREAM_CODEC));
-
-    /**
-     * An encoded smithing table pattern.
-     *
-     * @see AEItems#SMITHING_TABLE_PATTERN
-     */
-    public static final DataComponentType<EncodedSmithingTablePattern> ENCODED_SMITHING_TABLE_PATTERN = register(
-            "encoded_smithing_table_pattern",
-            builder -> builder.persistent(EncodedSmithingTablePattern.CODEC)
-                    .networkSynchronized(EncodedSmithingTablePattern.STREAM_CODEC));
 
     /**
      * List of AE key types enabled in a terminal
