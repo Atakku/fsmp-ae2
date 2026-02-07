@@ -898,7 +898,7 @@ public class CableBusContainer implements TLMultiBlockEntity, ICableBusContainer
             var desiredType = part.getDesiredConnectionType();
             if (renderState.getCoreType() == CableCoreType.GLASS
                     && desiredType == TLCableType.SMART) {
-                renderState.setCoreType(CableCoreType.COVERED);
+                renderState.setCoreType(CableCoreType.SMART);
             }
 
             int length = (int) part.getCableConnectionLength(null);

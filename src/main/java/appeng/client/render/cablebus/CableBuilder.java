@@ -98,10 +98,10 @@ class CableBuilder {
                 this.addCableCore(CableCoreType.GLASS, color, quadsOut);
                 break;
             case SMART:
-                this.addCableCore(CableCoreType.COVERED, color, quadsOut);
+                this.addCableCore(CableCoreType.SMART, color, quadsOut);
                 break;
             case DENSE_SMART:
-                this.addCableCore(CableCoreType.DENSE, color, quadsOut);
+                this.addCableCore(CableCoreType.DENSE_SMART, color, quadsOut);
                 break;
             default:
         }
@@ -115,8 +115,8 @@ class CableBuilder {
 
         switch (coreType) {
             case GLASS -> cubeBuilder.addCube(6, 6, 6, 10, 10, 10);
-            case COVERED -> cubeBuilder.addCube(5, 5, 5, 11, 11, 11);
-            case DENSE -> cubeBuilder.addCube(3, 3, 3, 13, 13, 13);
+            case SMART -> cubeBuilder.addCube(5, 5, 5, 11, 11, 11);
+            case DENSE_SMART -> cubeBuilder.addCube(3, 3, 3, 13, 13, 13);
         }
     }
 

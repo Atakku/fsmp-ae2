@@ -656,14 +656,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
         }
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(ConventionTags.REDSTONE)
-                .requires(ConventionTags.GLOWSTONE)
-                .unlockedBy("has_dense_cable", has(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT)))
-                .unlockedBy("has_dusts/glowstone", has(ConventionTags.GLOWSTONE))
-                .unlockedBy("has_dusts/redstone", has(ConventionTags.REDSTONE))
-                .save(consumer, AppEng.makeId("network/cables/dense_smart_fluix"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
                 .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
                 .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
                 .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))

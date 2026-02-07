@@ -24,7 +24,7 @@
 package appeng.api.util;
 
 public enum TLCableVariant {
-    NONE, GLASS, COVERED, SMART;
+    NONE, GLASS, SMART;
 
     public static TLCableVariant min(TLCableVariant a, TLCableVariant b) {
         return a.compareTo(b) < 0 ? a : b;
