@@ -25,7 +25,6 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 
 import appeng.api.features.IPlayerRegistry;
 import appeng.api.networking.GridFlags;
@@ -38,12 +37,9 @@ import appeng.api.networking.IGridServiceProvider;
 import appeng.api.networking.events.GridBootingStatusChange;
 import appeng.api.networking.events.GridChannelRequirementChanged;
 import appeng.api.networking.events.GridControllerChange;
-import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.networking.pathing.ControllerState;
 import appeng.api.networking.pathing.IPathingService;
 import appeng.blockentity.networking.ControllerBlockEntity;
-import appeng.core.TLConfig;
-import appeng.core.TLLog;
 import appeng.core.stats.AdvancementTriggers;
 import appeng.me.Grid;
 import appeng.me.pathfinding.AdHocChannelUpdater;
@@ -52,8 +48,6 @@ import appeng.me.pathfinding.ControllerValidator;
 import appeng.me.pathfinding.PathingCalculation;
 
 public class PathingService implements IPathingService, IGridServiceProvider {
-    private static final String TAG_CHANNEL_MODE = "cm";
-
     static {
         GridHelper.addGridServiceEventHandler(GridChannelRequirementChanged.class,
                 IPathingService.class,
@@ -76,12 +70,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
     private AdHocNetworkError adHocNetworkError;
     private ControllerState controllerState = ControllerState.NO_CONTROLLER;
     private int lastChannels = 0;
-    /**
-     * This can be used for testing to set a specific channel mode on this grid that will not be overwritten by
-     * repathing.
-     */
-    private boolean channelModeLocked;
-    private ChannelMode channelMode = TLConfig.instance().getChannelMode();
 
     public PathingService(IGrid g) {
         this.grid = (Grid) g;
@@ -162,10 +150,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
 
     @Override
     public void addNode(IGridNode gridNode, @Nullable CompoundTag savedData) {
-        if (savedData != null) {
-            restoreChannelMode(savedData);
-        }
-
         if (gridNode.getOwner() instanceof ControllerBlockEntity controller) {
             this.controllers.add(controller);
             this.recalculateControllerNextTick = true;
@@ -176,25 +160,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
         }
 
         this.repath();
-    }
-
-    private void restoreChannelMode(CompoundTag savedData) {
-        // Adding a node to the grid will restore its saved channel mode to the grid
-        // in case of conflict (i.e. merging two grids with conflicting modes),
-        // the more relaxed mode will win.
-        if (savedData.contains(TAG_CHANNEL_MODE, Tag.TAG_STRING)) {
-            var channelModeName = savedData.getString(TAG_CHANNEL_MODE);
-            try {
-                var nodeChannelMode = ChannelMode.valueOf(channelModeName);
-                if (!this.channelModeLocked
-                        || nodeChannelMode.getAdHocNetworkChannels() > channelMode.getAdHocNetworkChannels()) {
-                    channelModeLocked = true;
-                    channelMode = nodeChannelMode;
-                }
-            } catch (IllegalArgumentException e) {
-                TLLog.warn("Invalid channel mode stored on grid node: %s", channelModeName);
-            }
-        }
     }
 
     private void updateControllerState() {
@@ -237,7 +202,7 @@ public class PathingService implements IPathingService, IGridServiceProvider {
             }
         }
 
-        if (channels > channelMode.getAdHocNetworkChannels()) {
+        if (channels > 8) {
             this.adHocNetworkError = AdHocNetworkError.TOO_MANY_CHANNELS;
             return 0;
         }
@@ -303,10 +268,6 @@ public class PathingService implements IPathingService, IGridServiceProvider {
 
     @Override
     public void repath() {
-        if (!this.channelModeLocked) {
-            this.channelMode = TLConfig.instance().getChannelMode();
-        }
-
         this.channelsByBlocks = 0;
         this.reboot = true;
     }
@@ -319,34 +280,8 @@ public class PathingService implements IPathingService, IGridServiceProvider {
         this.channelPowerUsage = channelPowerUsage;
     }
 
-    public ChannelMode getChannelMode() {
-        return channelMode;
-    }
-
-    public void setForcedChannelMode(@Nullable ChannelMode forcedChannelMode) {
-        if (forcedChannelMode == null) {
-            if (this.channelModeLocked) {
-                this.channelModeLocked = false;
-                repath();
-            }
-        } else {
-            this.channelModeLocked = true;
-            if (this.channelMode != forcedChannelMode) {
-                this.channelMode = forcedChannelMode;
-                this.repath();
-            }
-        }
-    }
-
     @Override
     public int getUsedChannels() {
         return channelsInUse;
-    }
-
-    @Override
-    public void saveNodeData(IGridNode gridNode, CompoundTag savedData) {
-        if (channelModeLocked) {
-            savedData.putString(TAG_CHANNEL_MODE, channelMode.name());
-        }
     }
 }

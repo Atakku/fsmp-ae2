@@ -44,7 +44,6 @@ import appeng.api.networking.GridHelper;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.IManagedGridNode;
-import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.parts.BusSupport;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
@@ -293,11 +292,6 @@ public abstract class CablePart extends TLBasePart implements ICablePart {
             case GLASS, SMART, COVERED -> 8;
             case DENSE_COVERED, DENSE_SMART -> 32;
         };
-
-        // In infinite mode, we either return 0 or full strength
-        if (node.getGrid().getPathingService().getChannelMode() == ChannelMode.INFINITE) {
-            return channels <= 0 ? 0 : visualMaxChannels;
-        }
 
         int gridMaxChannels = node.getMaxChannels();
         if (visualMaxChannels == 0 || gridMaxChannels == 0) {

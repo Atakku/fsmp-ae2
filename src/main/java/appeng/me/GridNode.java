@@ -61,7 +61,6 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.IGridNodeService;
 import appeng.api.networking.IGridVisitor;
-import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.parts.IPart;
 import appeng.api.stacks.TLItemKey;
 import appeng.api.util.TLColor;
@@ -613,15 +612,10 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
             return 0;
         }
 
-        var channelMode = myGrid.getPathingService().getChannelMode();
-        if (channelMode == ChannelMode.INFINITE) {
-            return Integer.MAX_VALUE;
-        }
-
         if (!flags.contains(GridFlags.DENSE_CAPACITY)) {
-            return 8 * channelMode.getCableCapacityFactor();
+            return 8;
         } else {
-            return 32 * channelMode.getCableCapacityFactor();
+            return 32;
         }
     }
 

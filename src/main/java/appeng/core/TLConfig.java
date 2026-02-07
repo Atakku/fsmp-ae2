@@ -31,7 +31,6 @@ import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
 import appeng.api.config.TerminalStyle;
-import appeng.api.networking.pathing.ChannelMode;
 import appeng.core.settings.TickRates;
 import appeng.util.Platform;
 
@@ -185,17 +184,6 @@ public final class TLConfig {
         return common.chunkLoggerTrace.get();
     }
 
-    public ChannelMode getChannelMode() {
-        return common.channels.get();
-    }
-
-    public void setChannelModel(ChannelMode mode) {
-        if (mode != common.channels.get()) {
-            common.channels.set(mode);
-            client.spec.save();
-        }
-    }
-
     /**
      * @return True if an in-world preview of parts and facade placement should be shown when holding one in hand.
      */
@@ -336,7 +324,6 @@ public final class TLConfig {
 
         // Misc
         public final BooleanValue debugTools;
-        public final EnumValue<ChannelMode> channels;
 
         // Logging
         public final BooleanValue blockUpdateLog;
@@ -352,8 +339,6 @@ public final class TLConfig {
 
             builder.push("general");
             debugTools = define(builder, "unsupportedDeveloperTools", Platform.isDevelopmentEnvironment());
-            channels = defineEnum(builder, "channels", ChannelMode.DEFAULT,
-                    "Changes the channel capacity that cables provide in TL2.");
             builder.pop();
 
             builder.push("logging");
