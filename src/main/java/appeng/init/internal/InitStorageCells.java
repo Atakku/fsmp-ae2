@@ -43,8 +43,6 @@ public final class InitStorageCells {
             "tl2:block/drive/cells/16k_item_cell");
     private static final ResourceLocation MODEL_CELL_ITEMS_64K = ResourceLocation.parse(
             "tl2:block/drive/cells/64k_item_cell");
-    private static final ResourceLocation MODEL_CELL_ITEMS_256K = ResourceLocation.parse(
-            "tl2:block/drive/cells/256k_item_cell");
     private static final ResourceLocation MODEL_CELL_FLUIDS_1K = ResourceLocation.parse(
             "tl2:block/drive/cells/1k_fluid_cell");
     private static final ResourceLocation MODEL_CELL_FLUIDS_4K = ResourceLocation.parse(
@@ -53,16 +51,14 @@ public final class InitStorageCells {
             "tl2:block/drive/cells/16k_fluid_cell");
     private static final ResourceLocation MODEL_CELL_FLUIDS_64K = ResourceLocation.parse(
             "tl2:block/drive/cells/64k_fluid_cell");
-    private static final ResourceLocation MODEL_CELL_FLUIDS_256K = ResourceLocation.parse(
-            "tl2:block/drive/cells/256k_fluid_cell");
     private static final ResourceLocation MODEL_CELL_CREATIVE = ResourceLocation.parse(
             "tl2:block/drive/cells/creative_cell");
 
     private static final ResourceLocation[] MODELS = { MODEL_BASE, MODEL_CELL_EMPTY,
             StorageCellModels.getDefaultModel(),
-            MODEL_CELL_ITEMS_1K, MODEL_CELL_ITEMS_4K, MODEL_CELL_ITEMS_16K, MODEL_CELL_ITEMS_64K, MODEL_CELL_ITEMS_256K,
+            MODEL_CELL_ITEMS_1K, MODEL_CELL_ITEMS_4K, MODEL_CELL_ITEMS_16K, MODEL_CELL_ITEMS_64K,
             MODEL_CELL_FLUIDS_1K, MODEL_CELL_FLUIDS_4K, MODEL_CELL_FLUIDS_16K, MODEL_CELL_FLUIDS_64K,
-            MODEL_CELL_FLUIDS_256K, MODEL_CELL_CREATIVE };
+            MODEL_CELL_CREATIVE };
 
     public static Collection<ResourceLocation> getModels() {
         return Arrays.asList(MODELS);
@@ -79,24 +75,20 @@ public final class InitStorageCells {
         StorageCellModels.registerModel(TLItems.ITEM_CELL_4K, MODEL_CELL_ITEMS_4K);
         StorageCellModels.registerModel(TLItems.ITEM_CELL_16K, MODEL_CELL_ITEMS_16K);
         StorageCellModels.registerModel(TLItems.ITEM_CELL_64K, MODEL_CELL_ITEMS_64K);
-        StorageCellModels.registerModel(TLItems.ITEM_CELL_256K, MODEL_CELL_ITEMS_256K);
         StorageCellModels.registerModel(TLItems.FLUID_CELL_1K, MODEL_CELL_FLUIDS_1K);
         StorageCellModels.registerModel(TLItems.FLUID_CELL_4K, MODEL_CELL_FLUIDS_4K);
         StorageCellModels.registerModel(TLItems.FLUID_CELL_16K, MODEL_CELL_FLUIDS_16K);
         StorageCellModels.registerModel(TLItems.FLUID_CELL_64K, MODEL_CELL_FLUIDS_64K);
-        StorageCellModels.registerModel(TLItems.FLUID_CELL_256K, MODEL_CELL_FLUIDS_256K);
         StorageCellModels.registerModel(TLItems.CREATIVE_CELL, MODEL_CELL_CREATIVE);
 
         StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL1K, MODEL_CELL_ITEMS_1K);
         StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL4K, MODEL_CELL_ITEMS_4K);
         StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL16K, MODEL_CELL_ITEMS_16K);
         StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL64K, MODEL_CELL_ITEMS_64K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL256K, MODEL_CELL_ITEMS_256K);
         StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL1K, MODEL_CELL_FLUIDS_1K);
         StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL4K, MODEL_CELL_FLUIDS_4K);
         StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL16K, MODEL_CELL_FLUIDS_16K);
         StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL64K, MODEL_CELL_FLUIDS_64K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL256K, MODEL_CELL_FLUIDS_256K);
     }
 
 }

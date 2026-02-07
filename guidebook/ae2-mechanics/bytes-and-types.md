@@ -15,8 +15,6 @@ navigation:
     <ItemImage id="item_storage_cell_16k" scale="4" />
 
     <ItemImage id="item_storage_cell_64k" scale="4" />
-
-    <ItemImage id="item_storage_cell_256k" scale="4" />
   </Row>
 
 [Storage Cells](../items-blocks-machines/storage_cells.md) are defined by both *bytes* and *types*. Bytes, like in
@@ -59,7 +57,6 @@ a rough estimate of their cost.
 | <ItemLink id="item_storage_cell_4k" />   |   4,096 |    63 |             32 |  14.25 |       20 |    3 |         0 |
 | <ItemLink id="item_storage_cell_16k" />  |  16,384 |    63 |            128 |     45 |       61 |    9 |         4 |
 | <ItemLink id="item_storage_cell_64k" />  |  65,536 |    63 |            512 | 137.25 |      184 |   27 |        16 |
-| <ItemLink id="item_storage_cell_256k" /> | 262,144 |    63 |           2048 |    414 |      553 |   81 |        48 |
 
 ## Storage Capacity with Varying Type Count
 
@@ -71,7 +68,6 @@ The upfront cost of types is such that a cell holding 1 type can hold 2x as much
 | <ItemLink id="item_storage_cell_4k" />   |                                    32,512 |                                      16,640 |
 | <ItemLink id="item_storage_cell_16k" />  |                                   130,048 |                                      66,560 |
 | <ItemLink id="item_storage_cell_64k" />  |                                   520,192 |                                     266,240 |
-| <ItemLink id="item_storage_cell_256k" /> |                                 2,080,768 |                                   1,064,960 |
 
 ![A Cell With 1 Type](../assets/diagrams/1_type_cell.png)
 

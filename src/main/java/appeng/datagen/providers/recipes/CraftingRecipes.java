@@ -377,12 +377,10 @@ public class CraftingRecipes extends TL2RecipeProvider {
         portableCell(consumer, TLItems.PORTABLE_ITEM_CELL4K);
         portableCell(consumer, TLItems.PORTABLE_ITEM_CELL16K);
         portableCell(consumer, TLItems.PORTABLE_ITEM_CELL64K);
-        portableCell(consumer, TLItems.PORTABLE_ITEM_CELL256K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL1K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL4K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL16K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL64K);
-        portableCell(consumer, TLItems.PORTABLE_FLUID_CELL256K);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.COLOR_APPLICATOR)
                 .pattern("ab ")
@@ -458,16 +456,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('d', TLBlocks.QUARTZ_GLASS)
                 .unlockedBy("has_cell_component_16k", has(TLItems.CELL_COMPONENT_16K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_components_cell_64k_part"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.CELL_COMPONENT_256K)
-                .pattern("aba")
-                .pattern("cdc")
-                .pattern("aca")
-                .define('a', Items.NETHER_STAR) // todo
-                .define('b', TLItems.CALCULATION_PROCESSOR)
-                .define('c', TLItems.CELL_COMPONENT_64K)
-                .define('d', TLBlocks.QUARTZ_GLASS)
-                .unlockedBy("has_cell_component_64k", has(TLItems.CELL_COMPONENT_64K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_components_cell_256k_part"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_1K)
                 .pattern("aba")
@@ -537,23 +525,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(TLItems.CELL_COMPONENT_64K)
                 .unlockedBy("has_cell_component_64k", has(TLItems.CELL_COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_64k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_256K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.REDSTONE)
-                .define('c', TLItems.CELL_COMPONENT_256K)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_256k", has(TLItems.CELL_COMPONENT_256K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_256k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_256K)
-                .requires(TLItems.ITEM_CELL_HOUSING)
-                .requires(TLItems.CELL_COMPONENT_256K)
-                .unlockedBy("has_cell_component_256k", has(TLItems.CELL_COMPONENT_256K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_256k_storage"));
     }
 
     private void addFluidCells(RecipeOutput consumer) {
@@ -621,22 +592,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(TLItems.CELL_COMPONENT_64K)
                 .unlockedBy("has_cell_component_64k", has(TLItems.CELL_COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_64k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_256K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.REDSTONE)
-                .define('c', TLItems.CELL_COMPONENT_256K)
-                .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_256k", has(TLItems.CELL_COMPONENT_256K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_256k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_256K)
-                .requires(TLItems.FLUID_CELL_HOUSING)
-                .requires(TLItems.CELL_COMPONENT_256K)
-                .unlockedBy("has_cell_component_256k", has(TLItems.CELL_COMPONENT_256K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_256k_storage"));
     }
 
     // ====================================================

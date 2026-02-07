@@ -35,7 +35,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         storageCell(TLItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
         storageCell(TLItems.ITEM_CELL_16K, "item/item_storage_cell_16k");
         storageCell(TLItems.ITEM_CELL_64K, "item/item_storage_cell_64k");
-        storageCell(TLItems.ITEM_CELL_256K, "item/item_storage_cell_256k");
         flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(TLItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
@@ -46,7 +45,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         storageCell(TLItems.FLUID_CELL_4K, "item/fluid_storage_cell_4k");
         storageCell(TLItems.FLUID_CELL_16K, "item/fluid_storage_cell_16k");
         storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
-        storageCell(TLItems.FLUID_CELL_256K, "item/fluid_storage_cell_256k");
         flatSingleLayer(TLItems.FLUID_CELL_HOUSING, "item/fluid_cell_housing");
         flatSingleLayer(TLItems.FLUIX_CRYSTAL, "item/fluix_crystal");
         flatSingleLayer(TLItems.FLUIX_DUST, "item/fluix_dust");
@@ -58,7 +56,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.CELL_COMPONENT_1K, "item/cell_component_1k");
         flatSingleLayer(TLItems.CELL_COMPONENT_4K, "item/cell_component_4k");
         flatSingleLayer(TLItems.CELL_COMPONENT_64K, "item/cell_component_64k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_256K, "item/cell_component_256k");
         flatSingleLayer(TLItems.CREATIVE_CELL, "item/creative_storage_cell");
         flatSingleLayer(TLItems.ITEM_CELL_HOUSING, "item/item_cell_housing");
         flatSingleLayer(TLItems.LOGIC_PROCESSOR, "item/logic_processor");
@@ -67,12 +64,10 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         portableCell(TLItems.PORTABLE_ITEM_CELL4K, "item", "4k");
         portableCell(TLItems.PORTABLE_ITEM_CELL16K, "item", "16k");
         portableCell(TLItems.PORTABLE_ITEM_CELL64K, "item", "64k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL256K, "item", "256k");
         portableCell(TLItems.PORTABLE_FLUID_CELL1K, "fluid", "1k");
         portableCell(TLItems.PORTABLE_FLUID_CELL4K, "fluid", "4k");
         portableCell(TLItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
         portableCell(TLItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL256K, "fluid", "256k");
         flatSingleLayer(TLItems.REDSTONE_CARD, "item/card_redstone");
         flatSingleLayer(TLItems.SILICON, "item/silicon");
         flatSingleLayer(TLItems.SILICON_PRINT, "item/printed_silicon");

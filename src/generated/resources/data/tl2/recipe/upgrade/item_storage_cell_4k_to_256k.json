@@ -1,7 +1,0 @@
-{
-  "type": "tl2:storage_cell_upgrade",
-  "input_cell": "tl2:item_storage_cell_4k",
-  "input_component": "tl2:cell_component_256k",
-  "result_cell": "tl2:item_storage_cell_256k",
-  "result_component": "tl2:cell_component_4k"
-}

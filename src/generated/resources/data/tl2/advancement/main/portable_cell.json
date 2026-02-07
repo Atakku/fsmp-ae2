@@ -21,16 +21,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "pc_256k": {
-      "conditions": {
-        "items": [
-          {
-            "items": "tl2:portable_item_cell_256k"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "pc_4k": {
       "conditions": {
         "items": [
@@ -71,8 +61,7 @@
       "pc_1k",
       "pc_4k",
       "pc_16k",
-      "pc_64k",
-      "pc_256k"
+      "pc_64k"
     ]
   ],
   "sends_telemetry_event": true

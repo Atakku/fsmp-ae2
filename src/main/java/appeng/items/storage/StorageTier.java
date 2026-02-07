@@ -16,6 +16,4 @@ public record StorageTier(int index, String namePrefix, int bytes, Supplier<Item
             () -> BuiltInRegistries.ITEM.get(TLItemIds.CELL_COMPONENT_16K));
     public static final StorageTier SIZE_64K = new StorageTier(4, "64k", 65536,
             () -> BuiltInRegistries.ITEM.get(TLItemIds.CELL_COMPONENT_64K));
-    public static final StorageTier SIZE_256K = new StorageTier(5, "256k", 262144,
-            () -> BuiltInRegistries.ITEM.get(TLItemIds.CELL_COMPONENT_256K));
 }

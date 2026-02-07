@@ -6,11 +6,9 @@
     "tl2:portable_item_cell_4k",
     "tl2:portable_item_cell_16k",
     "tl2:portable_item_cell_64k",
-    "tl2:portable_item_cell_256k",
     "tl2:portable_fluid_cell_1k",
     "tl2:portable_fluid_cell_4k",
     "tl2:portable_fluid_cell_16k",
-    "tl2:portable_fluid_cell_64k",
-    "tl2:portable_fluid_cell_256k"
+    "tl2:portable_fluid_cell_64k"
   ]
 }

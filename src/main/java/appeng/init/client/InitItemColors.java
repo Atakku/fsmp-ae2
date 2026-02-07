@@ -59,14 +59,12 @@ public final class InitItemColors {
         registrar.register(PortableCellItem::getColor, TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_FLUID_CELL1K,
                 TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_FLUID_CELL4K,
                 TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_FLUID_CELL16K,
-                TLItems.PORTABLE_ITEM_CELL64K, TLItems.PORTABLE_FLUID_CELL64K,
-                TLItems.PORTABLE_ITEM_CELL256K, TLItems.PORTABLE_FLUID_CELL256K);
+                TLItems.PORTABLE_ITEM_CELL64K, TLItems.PORTABLE_FLUID_CELL64K);
 
         registrar.register(BasicStorageCell::getColor, TLItems.ITEM_CELL_1K, TLItems.FLUID_CELL_1K,
                 TLItems.ITEM_CELL_4K, TLItems.FLUID_CELL_4K,
                 TLItems.ITEM_CELL_16K, TLItems.FLUID_CELL_16K,
-                TLItems.ITEM_CELL_64K, TLItems.FLUID_CELL_64K,
-                TLItems.ITEM_CELL_256K, TLItems.FLUID_CELL_256K);
+                TLItems.ITEM_CELL_64K, TLItems.FLUID_CELL_64K);
 
         // Automatically register colors for certain items we register
         for (ItemDefinition<?> definition : TLItems.getItems()) {

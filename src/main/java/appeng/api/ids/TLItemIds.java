@@ -45,28 +45,23 @@ public final class TLItemIds {
     public static final ResourceLocation STORAGE_CELL_4K = id("storage_cell_4k");
     public static final ResourceLocation STORAGE_CELL_16K = id("storage_cell_16k");
     public static final ResourceLocation STORAGE_CELL_64K = id("storage_cell_64k");
-    public static final ResourceLocation STORAGE_CELL_256K = id("storage_cell_256k");
     public static final ResourceLocation ITEM_CELL_1K = id("item_storage_cell_1k");
     public static final ResourceLocation ITEM_CELL_4K = id("item_storage_cell_4k");
     public static final ResourceLocation ITEM_CELL_16K = id("item_storage_cell_16k");
     public static final ResourceLocation ITEM_CELL_64K = id("item_storage_cell_64k");
-    public static final ResourceLocation ITEM_CELL_256K = id("item_storage_cell_256k");
     public static final ResourceLocation FLUID_CELL_1K = id("fluid_storage_cell_1k");
     public static final ResourceLocation FLUID_CELL_4K = id("fluid_storage_cell_4k");
     public static final ResourceLocation FLUID_CELL_16K = id("fluid_storage_cell_16k");
     public static final ResourceLocation FLUID_CELL_64K = id("fluid_storage_cell_64k");
-    public static final ResourceLocation FLUID_CELL_256K = id("fluid_storage_cell_256k");
     public static final ResourceLocation CREATIVE_CELL = id("creative_storage_cell");
     public static final ResourceLocation PORTABLE_ITEM_CELL1K = id("portable_item_cell_1k");
     public static final ResourceLocation PORTABLE_ITEM_CELL4K = id("portable_item_cell_4k");
     public static final ResourceLocation PORTABLE_ITEM_CELL16K = id("portable_item_cell_16k");
     public static final ResourceLocation PORTABLE_ITEM_CELL64K = id("portable_item_cell_64k");
-    public static final ResourceLocation PORTABLE_ITEM_CELL256K = id("portable_item_cell_256k");
     public static final ResourceLocation PORTABLE_FLUID_CELL1K = id("portable_fluid_cell_1k");
     public static final ResourceLocation PORTABLE_FLUID_CELL4K = id("portable_fluid_cell_4k");
     public static final ResourceLocation PORTABLE_FLUID_CELL16K = id("portable_fluid_cell_16k");
     public static final ResourceLocation PORTABLE_FLUID_CELL64K = id("portable_fluid_cell_64k");
-    public static final ResourceLocation PORTABLE_FLUID_CELL256K = id("portable_fluid_cell_256k");
 
     ///
     /// The following items were previously part of ApiItems
@@ -97,7 +92,6 @@ public final class TLItemIds {
     public static final ResourceLocation CELL_COMPONENT_4K = id("cell_component_4k");
     public static final ResourceLocation CELL_COMPONENT_16K = id("cell_component_16k");
     public static final ResourceLocation CELL_COMPONENT_64K = id("cell_component_64k");
-    public static final ResourceLocation CELL_COMPONENT_256K = id("cell_component_256k");
     public static final ResourceLocation ITEM_CELL_HOUSING = id("item_cell_housing");
     public static final ResourceLocation FLUID_CELL_HOUSING = id("fluid_cell_housing");
     public static final ResourceLocation WIRELESS_RECEIVER = id("wireless_receiver");

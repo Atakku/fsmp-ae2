@@ -87,12 +87,10 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 TLItems.PORTABLE_ITEM_CELL4K.asItem(),
                 TLItems.PORTABLE_ITEM_CELL16K.asItem(),
                 TLItems.PORTABLE_ITEM_CELL64K.asItem(),
-                TLItems.PORTABLE_ITEM_CELL256K.asItem(),
                 TLItems.PORTABLE_FLUID_CELL1K.asItem(),
                 TLItems.PORTABLE_FLUID_CELL4K.asItem(),
                 TLItems.PORTABLE_FLUID_CELL16K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL64K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL256K.asItem());
+                TLItems.PORTABLE_FLUID_CELL64K.asItem());
 
         tag(ConventionTags.CAN_REMOVE_COLOR).add(Items.WATER_BUCKET, Items.SNOWBALL);
 

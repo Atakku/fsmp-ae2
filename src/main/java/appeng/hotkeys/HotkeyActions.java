@@ -35,13 +35,11 @@ public class HotkeyActions {
         registerPortableCell(TLItems.PORTABLE_ITEM_CELL4K, PORTABLE_ITEM_CELL);
         registerPortableCell(TLItems.PORTABLE_ITEM_CELL16K, PORTABLE_ITEM_CELL);
         registerPortableCell(TLItems.PORTABLE_ITEM_CELL64K, PORTABLE_ITEM_CELL);
-        registerPortableCell(TLItems.PORTABLE_ITEM_CELL256K, PORTABLE_ITEM_CELL);
 
         registerPortableCell(TLItems.PORTABLE_FLUID_CELL1K, PORTABLE_FLUID_CELL);
         registerPortableCell(TLItems.PORTABLE_FLUID_CELL4K, PORTABLE_FLUID_CELL);
         registerPortableCell(TLItems.PORTABLE_FLUID_CELL16K, PORTABLE_FLUID_CELL);
         registerPortableCell(TLItems.PORTABLE_FLUID_CELL64K, PORTABLE_FLUID_CELL);
-        registerPortableCell(TLItems.PORTABLE_FLUID_CELL256K, PORTABLE_FLUID_CELL);
     }
 
     /**
