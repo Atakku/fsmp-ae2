@@ -48,9 +48,7 @@ public enum CableCoreType {
         Map<TLCableType, CableCoreType> result = new EnumMap<>(TLCableType.class);
 
         result.put(TLCableType.GLASS, CableCoreType.GLASS);
-        result.put(TLCableType.COVERED, CableCoreType.COVERED);
         result.put(TLCableType.SMART, CableCoreType.COVERED);
-        result.put(TLCableType.DENSE_COVERED, CableCoreType.DENSE);
         result.put(TLCableType.DENSE_SMART, CableCoreType.DENSE);
 
         return ImmutableMap.copyOf(result);

@@ -88,8 +88,6 @@ public final class ConventionTags {
 
     public static final TagKey<Item> GLASS_CABLE = tag("tl2:glass_cable");
     public static final TagKey<Item> SMART_CABLE = tag("tl2:smart_cable");
-    public static final TagKey<Item> COVERED_CABLE = tag("tl2:covered_cable");
-    public static final TagKey<Item> COVERED_DENSE_CABLE = tag("tl2:covered_dense_cable");
     public static final TagKey<Item> SMART_DENSE_CABLE = tag("tl2:smart_dense_cable");
     public static final TagKey<Item> ILLUMINATED_PANEL = tag("tl2:illuminated_panel");
     /**

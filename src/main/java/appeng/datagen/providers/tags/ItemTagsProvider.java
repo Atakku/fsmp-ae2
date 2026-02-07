@@ -49,8 +49,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
             tag(ConventionTags.SMART_DENSE_CABLE).add(TLParts.SMART_DENSE_CABLE.item(color));
             tag(ConventionTags.SMART_CABLE).add(TLParts.SMART_CABLE.item(color));
             tag(ConventionTags.GLASS_CABLE).add(TLParts.GLASS_CABLE.item(color));
-            tag(ConventionTags.COVERED_CABLE).add(TLParts.COVERED_CABLE.item(color));
-            tag(ConventionTags.COVERED_DENSE_CABLE).add(TLParts.COVERED_DENSE_CABLE.item(color));
         }
 
         tag(ConventionTags.SILICON)

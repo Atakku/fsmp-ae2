@@ -644,55 +644,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
     // ====================================================
     private static void addCables(RecipeOutput consumer) {
         for (var color : TLColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.COVERED_CABLE.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_fluix_covered_cable", has(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT)))
-                    .save(consumer, AppEng.makeId("network/cables/covered_" + color.registryPrefix));
-        }
-        // Remove color from any colored cable
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .requires(tagExcept(ConventionTags.COVERED_CABLE, TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT)))
-                .requires(ConventionTags.CAN_REMOVE_COLOR)
-                .unlockedBy("has_covered_cable", has(ConventionTags.COVERED_CABLE))
-                .save(consumer, AppEng.makeId("network/cables/covered_fluix_clean"));
-        // Craft the actual colored cable initially
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .requires(ItemTags.WOOL)
-                .requires(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .unlockedBy("has_glass_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
-                .save(consumer, AppEng.makeId("network/cables/covered_fluix"));
-
-        for (var color : TLColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.COVERED_DENSE_CABLE.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_fluix_covered_dense_cable",
-                            has(TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT)))
-                    .unlockedBy("has_dyes/black", has(ConventionTags.dye(color.dye)))
-                    .save(consumer, AppEng.makeId("network/cables/dense_covered_" + color.registryPrefix));
-        }
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
-                .unlockedBy("has_fluix_covered_cable", has(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT)))
-                .save(consumer, AppEng.makeId("network/cables/dense_covered_fluix"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(tagExcept(ConventionTags.COVERED_DENSE_CABLE,
-                        TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT)))
-                .requires(ConventionTags.CAN_REMOVE_COLOR)
-                .unlockedBy("has_covered_dense_cable", has(ConventionTags.COVERED_DENSE_CABLE))
-                .save(consumer, AppEng.makeId("network/cables/dense_covered_fluix_clean"));
-
-        for (var color : TLColor.VALID_COLORS) {
             ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(color), 8)
                     .pattern("aaa")
                     .pattern("aba")
@@ -703,11 +654,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                     .unlockedBy("has_fluix_smart_dense_cable", has(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT)))
                     .save(consumer, AppEng.makeId("network/cables/dense_smart_" + color.registryPrefix));
         }
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT))
+                .requires(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
                 .requires(ConventionTags.REDSTONE)
                 .requires(ConventionTags.GLOWSTONE)
-                .unlockedBy("has_fluix_covered_dense_cable", has(TLParts.COVERED_DENSE_CABLE.item(TLColor.TRANSPARENT)))
+                .unlockedBy("has_dense_cable", has(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT)))
                 .unlockedBy("has_dusts/glowstone", has(ConventionTags.GLOWSTONE))
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.REDSTONE))
                 .save(consumer, AppEng.makeId("network/cables/dense_smart_fluix"));
@@ -762,12 +714,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
         }
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT))
+                .requires(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
                 .requires(ConventionTags.REDSTONE)
                 .requires(ConventionTags.GLOWSTONE)
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.REDSTONE))
                 .unlockedBy("has_dusts/glowstone", has(ConventionTags.GLOWSTONE))
-                .unlockedBy("has_fluix_covered_cable", has(TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT)))
+                .unlockedBy("has_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
                 .save(consumer, AppEng.makeId("network/cables/smart_fluix"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
                 .requires(tagExcept(ConventionTags.SMART_CABLE, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT)))

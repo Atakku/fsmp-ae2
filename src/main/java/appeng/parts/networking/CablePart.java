@@ -187,12 +187,8 @@ public abstract class CablePart extends TLBasePart implements ICablePart {
 
             if (this.getCableConnectionType() == TLCableType.GLASS) {
                 newPart = TLParts.GLASS_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == TLCableType.COVERED) {
-                newPart = TLParts.COVERED_CABLE.item(newColor);
             } else if (this.getCableConnectionType() == TLCableType.SMART) {
                 newPart = TLParts.SMART_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == TLCableType.DENSE_COVERED) {
-                newPart = TLParts.COVERED_DENSE_CABLE.item(newColor);
             } else if (this.getCableConnectionType() == TLCableType.DENSE_SMART) {
                 newPart = TLParts.SMART_DENSE_CABLE.item(newColor);
             }
@@ -289,8 +285,8 @@ public abstract class CablePart extends TLBasePart implements ICablePart {
 
         byte visualMaxChannels = switch (getCableConnectionType()) {
             case NONE -> 0;
-            case GLASS, SMART, COVERED -> 8;
-            case DENSE_COVERED, DENSE_SMART -> 32;
+            case GLASS, SMART -> 8;
+            case DENSE_SMART -> 32;
         };
 
         int gridMaxChannels = node.getMaxChannels();

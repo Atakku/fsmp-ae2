@@ -48,9 +48,7 @@ public final class ItemPredicates {
             if (color == TLColor.TRANSPARENT) {
                 continue; // Keep the Fluix variant
             }
-            if (stack.getItem() == TLParts.COVERED_CABLE.item(color) ||
-                    stack.getItem() == TLParts.COVERED_DENSE_CABLE.item(color) ||
-                    stack.getItem() == TLParts.GLASS_CABLE.item(color) ||
+            if (stack.getItem() == TLParts.GLASS_CABLE.item(color) ||
                     stack.getItem() == TLParts.SMART_CABLE.item(color) ||
                     stack.getItem() == TLParts.SMART_DENSE_CABLE.item(color)) {
                 return true;

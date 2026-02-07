@@ -78,9 +78,7 @@ class CableBuilder {
     static Material getConnectionTexture(TLCableType cableType, TLColor color) {
         String textureFolder = switch (cableType) {
             case GLASS -> "part/cable/glass/";
-            case COVERED -> "part/cable/covered/";
             case SMART -> "part/cable/smart/";
-            case DENSE_COVERED -> "part/cable/dense_covered/";
             case DENSE_SMART -> "part/cable/dense_smart/";
             default -> throw new IllegalStateException("Cable type " + cableType + " does not support connections.");
         };
@@ -99,11 +97,9 @@ class CableBuilder {
             case GLASS:
                 this.addCableCore(CableCoreType.GLASS, color, quadsOut);
                 break;
-            case COVERED:
             case SMART:
                 this.addCableCore(CableCoreType.COVERED, color, quadsOut);
                 break;
-            case DENSE_COVERED:
             case DENSE_SMART:
                 this.addCableCore(CableCoreType.DENSE, color, quadsOut);
                 break;
@@ -133,7 +129,7 @@ class CableBuilder {
 
         // For to-machine connections, use a thicker end-cap for the connection
         if (connectionType != TLCableType.GLASS && !cableBusAdjacent) {
-            TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.COVERED).get(cableColor);
+            TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.GLASS).get(cableColor); //akutodo
             cubeBuilder.setTexture(texture);
 
             this.addBigCoveredCableSizedCube(facing, cubeBuilder);
@@ -193,36 +189,6 @@ class CableBuilder {
         }
     }
 
-    public void addCoveredConnection(Direction facing, TLColor cableColor, TLCableType connectionType,
-            boolean cableBusAdjacent, List<BakedQuad> quadsOut) {
-
-        CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
-
-        // We render all faces except the one on the connection side
-        cubeBuilder.setDrawFaces(EnumSet.complementOf(EnumSet.of(facing)));
-
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.COVERED).get(cableColor);
-        cubeBuilder.setTexture(texture);
-
-        // Draw a covered connection, if anything but glass is requested
-        if (connectionType != TLCableType.GLASS && !cableBusAdjacent) {
-            this.addBigCoveredCableSizedCube(facing, cubeBuilder);
-        }
-
-        addCoveredCableSizedCube(facing, cubeBuilder);
-    }
-
-    public void addStraightCoveredConnection(Direction facing, TLColor cableColor, List<BakedQuad> quadsOut) {
-        CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
-
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.COVERED).get(cableColor);
-        cubeBuilder.setTexture(texture);
-
-        setStraightCableUVs(cubeBuilder, facing, 5 / 16f, 11 / 16f);
-
-        addStraightCoveredCableSizedCube(facing, cubeBuilder);
-    }
-
     private static void setStraightCableUVs(CubeBuilder cubeBuilder, Direction facing, float x, float y) {
         switch (facing) {
             case DOWN, UP -> {
@@ -246,26 +212,10 @@ class CableBuilder {
         }
     }
 
-    public void addConstrainedCoveredConnection(Direction facing, TLColor cableColor, int distanceFromEdge,
-            List<BakedQuad> quadsOut) {
-        // The core of a covered cable reaches up to 5 voxels from the block edge, so
-        // drawing a connection can only occur from there onwards
-        if (distanceFromEdge >= 5) {
-            return;
-        }
-
-        CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
-
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.COVERED).get(cableColor);
-        cubeBuilder.setTexture(texture);
-
-        addCoveredCableSizedCube(facing, distanceFromEdge, cubeBuilder);
-    }
-
     public void addSmartConnection(Direction facing, TLColor cableColor, TLCableType connectionType,
             boolean cableBusAdjacent, int channels, List<BakedQuad> quadsOut) {
-        if (connectionType == TLCableType.COVERED || connectionType == TLCableType.GLASS) {
-            this.addCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);
+        if (connectionType == TLCableType.GLASS) {
+            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut); //akutodo
             return;
         }
 
@@ -416,31 +366,6 @@ class CableBuilder {
         cubeBuilder.setEmissiveMaterial(false);
     }
 
-    public void addDenseCoveredConnection(Direction facing, TLColor cableColor, TLCableType connectionType,
-            boolean cableBusAdjacent, List<BakedQuad> quadsOut) {
-        // Dense cables only render their connections as dense if the adjacent blocks
-        // actually wants that
-        if (connectionType == TLCableType.COVERED || connectionType == TLCableType.SMART
-                || connectionType == TLCableType.GLASS) {
-            this.addCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);
-            return;
-        }
-
-        CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
-
-        // We render all faces except the one on the connection side
-        cubeBuilder.setDrawFaces(EnumSet.complementOf(EnumSet.of(facing)));
-
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE_COVERED).get(cableColor);
-        cubeBuilder.setTexture(texture);
-
-        addDenseCableSizedCube(facing, cubeBuilder);
-
-        // Reset back to normal rendering for the rest
-        cubeBuilder.setEmissiveMaterial(false);
-        cubeBuilder.setTexture(texture);
-    }
-
     public void addDenseSmartConnection(Direction facing, TLColor cableColor, TLCableType connectionType,
             boolean cableBusAdjacent, int channels, List<BakedQuad> quadsOut) {
         // Dense cables only render their connections as dense if the adjacent blocks
@@ -448,14 +373,10 @@ class CableBuilder {
         if (connectionType == TLCableType.SMART) {
             this.addSmartConnection(facing, cableColor, connectionType, cableBusAdjacent, channels, quadsOut);
             return;
-        } else if (connectionType == TLCableType.COVERED || connectionType == TLCableType.GLASS) {
-            this.addCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);
-            return;
-        } else if (connectionType == TLCableType.DENSE_COVERED) {
-            this.addDenseCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);
+        } else if (connectionType == TLCableType.GLASS) {
+            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);  //akutodo
             return;
         }
-
         CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
 
         // We render all faces except the one on the connection side
@@ -495,17 +416,6 @@ class CableBuilder {
         // Reset back to normal rendering for the rest
         cubeBuilder.setEmissiveMaterial(false);
         cubeBuilder.setTexture(texture);
-    }
-
-    public void addStraightDenseCoveredConnection(Direction facing, TLColor cableColor, List<BakedQuad> quadsOut) {
-        CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
-
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE_COVERED).get(cableColor);
-        cubeBuilder.setTexture(texture);
-
-        setStraightCableUVs(cubeBuilder, facing, 3 / 16f, 13 / 16f);
-
-        addStraightDenseCableSizedCube(facing, cubeBuilder);
     }
 
     public void addStraightDenseSmartConnection(Direction facing, TLColor cableColor, int channels,

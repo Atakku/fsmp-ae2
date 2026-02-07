@@ -897,7 +897,7 @@ public class CableBusContainer implements TLMultiBlockEntity, ICableBusContainer
             // Some attachments want a thicker cable than glass, account for that
             var desiredType = part.getDesiredConnectionType();
             if (renderState.getCoreType() == CableCoreType.GLASS
-                    && (desiredType == TLCableType.SMART || desiredType == TLCableType.COVERED)) {
+                    && desiredType == TLCableType.SMART) {
                 renderState.setCoreType(CableCoreType.COVERED);
             }
 

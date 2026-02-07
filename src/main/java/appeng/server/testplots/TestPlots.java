@@ -194,7 +194,7 @@ public final class TestPlots {
     public static void allTerminals(PlotBuilder plot) {
         plot.cable("0 -1 0");
 
-        plot.cable("[-1,0] [0,8] 0", TLParts.COVERED_DENSE_CABLE);
+        plot.cable("[-1,0] [0,8] 0", TLParts.SMART_DENSE_CABLE);
         plot.block("[-1,0] 5 0", TLBlocks.CONTROLLER);
         plot.storageDrive(new BlockPos(0, 5, 1));
         plot.afterGridInitAt(new BlockPos(0, 5, 1), (grid, gridNode) -> {

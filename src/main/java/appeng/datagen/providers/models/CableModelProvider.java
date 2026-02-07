@@ -21,8 +21,6 @@ public class CableModelProvider extends TL2BlockStateProvider {
     protected void registerStatesAndModels() {
 
         buildCableItems(TLParts.GLASS_CABLE, "item/glass_cable_base", "part/cable/glass/");
-        buildCableItems(TLParts.COVERED_CABLE, "item/covered_cable_base", "part/cable/covered/");
-        buildCableItems(TLParts.COVERED_DENSE_CABLE, "item/covered_dense_cable_base", "part/cable/dense_covered/");
         buildCableItems(TLParts.SMART_CABLE, "item/smart_cable_base", "part/cable/smart/");
         buildCableItems(TLParts.SMART_DENSE_CABLE, "item/smart_dense_cable_base", "part/cable/dense_smart/");
 

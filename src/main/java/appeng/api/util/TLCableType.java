@@ -35,11 +35,6 @@ public enum TLCableType {
     GLASS(TLCableVariant.GLASS, TLCableSize.NORMAL),
 
     /**
-     * Connections to this block should render as covered.
-     */
-    COVERED(TLCableVariant.COVERED, TLCableSize.NORMAL),
-
-    /**
      * Connections to this block should render as smart.
      */
     SMART(TLCableVariant.SMART, TLCableSize.NORMAL),
@@ -47,14 +42,9 @@ public enum TLCableType {
     /**
      * Smart Dense Cable, represents a tier 2 block that can carry 32 channels.
      */
-    DENSE_COVERED(TLCableVariant.COVERED, TLCableSize.DENSE),
-
-    /**
-     * Smart Dense Cable, represents a tier 2 block that can carry 32 channels.
-     */
     DENSE_SMART(TLCableVariant.SMART, TLCableSize.DENSE);
 
-    public static final TLCableType[] VALIDCABLES = { GLASS, COVERED, SMART, DENSE_COVERED, DENSE_SMART };
+    public static final TLCableType[] VALIDCABLES = { GLASS, SMART, DENSE_SMART };
 
     private final TLCableVariant variant;
     private final TLCableSize size;
@@ -104,17 +94,6 @@ public enum TLCableType {
                 switch (size) {
                     case NORMAL:
                         return GLASS;
-                    default:
-                        break;
-                }
-
-                break;
-            case COVERED:
-                switch (size) {
-                    case NORMAL:
-                        return COVERED;
-                    case DENSE:
-                        return DENSE_COVERED;
                     default:
                         break;
                 }

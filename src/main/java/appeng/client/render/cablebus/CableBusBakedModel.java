@@ -203,15 +203,9 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                 case GLASS:
                     this.cableBuilder.addStraightGlassConnection(facing, cableColor, quadsOut);
                     break;
-                case COVERED:
-                    this.cableBuilder.addStraightCoveredConnection(facing, cableColor, quadsOut);
-                    break;
                 case SMART:
                     this.cableBuilder.addStraightSmartConnection(facing, cableColor,
                             renderState.getChannelsOnSide().get(facing), quadsOut);
-                    break;
-                case DENSE_COVERED:
-                    this.cableBuilder.addStraightDenseCoveredConnection(facing, cableColor, quadsOut);
                     break;
                 case DENSE_SMART:
                     this.cableBuilder.addStraightDenseSmartConnection(facing, cableColor,
@@ -236,13 +230,9 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                 case GLASS:
                     this.cableBuilder.addConstrainedGlassConnection(facing, cableColor, distance, quadsOut);
                     break;
-                case COVERED:
-                    this.cableBuilder.addConstrainedCoveredConnection(facing, cableColor, distance, quadsOut);
-                    break;
                 case SMART:
                     this.cableBuilder.addConstrainedSmartConnection(facing, cableColor, distance, channels, quadsOut);
                     break;
-                case DENSE_COVERED:
                 case DENSE_SMART:
                     // Dense cables do not render connections to parts since none can be attached
                     break;
@@ -263,16 +253,8 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                     this.cableBuilder.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent,
                             quadsOut);
                     break;
-                case COVERED:
-                    this.cableBuilder.addCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent,
-                            quadsOut);
-                    break;
                 case SMART:
                     this.cableBuilder.addSmartConnection(facing, cableColor, connectionType, cableBusAdjacent, channels,
-                            quadsOut);
-                    break;
-                case DENSE_COVERED:
-                    this.cableBuilder.addDenseCoveredConnection(facing, cableColor, connectionType, cableBusAdjacent,
                             quadsOut);
                     break;
                 case DENSE_SMART:

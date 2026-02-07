@@ -78,43 +78,6 @@ public final class TLPartIds {
             .put(TLColor.TRANSPARENT, CABLE_GLASS_TRANSPARENT)
             .build();
 
-    public static final ResourceLocation CABLE_COVERED_WHITE = id("white_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_ORANGE = id("orange_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_MAGENTA = id("magenta_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_LIGHT_BLUE = id("light_blue_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_YELLOW = id("yellow_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_LIME = id("lime_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_PINK = id("pink_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_GRAY = id("gray_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_LIGHT_GRAY = id("light_gray_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_CYAN = id("cyan_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_PURPLE = id("purple_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_BLUE = id("blue_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_BROWN = id("brown_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_GREEN = id("green_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_RED = id("red_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_BLACK = id("black_covered_cable");
-    public static final ResourceLocation CABLE_COVERED_TRANSPARENT = id("fluix_covered_cable");
-    public static final Map<TLColor, ResourceLocation> CABLE_COVERED = ImmutableMap.<TLColor, ResourceLocation>builder()
-            .put(TLColor.WHITE, CABLE_COVERED_WHITE)
-            .put(TLColor.ORANGE, CABLE_COVERED_ORANGE)
-            .put(TLColor.MAGENTA, CABLE_COVERED_MAGENTA)
-            .put(TLColor.LIGHT_BLUE, CABLE_COVERED_LIGHT_BLUE)
-            .put(TLColor.YELLOW, CABLE_COVERED_YELLOW)
-            .put(TLColor.LIME, CABLE_COVERED_LIME)
-            .put(TLColor.PINK, CABLE_COVERED_PINK)
-            .put(TLColor.GRAY, CABLE_COVERED_GRAY)
-            .put(TLColor.LIGHT_GRAY, CABLE_COVERED_LIGHT_GRAY)
-            .put(TLColor.CYAN, CABLE_COVERED_CYAN)
-            .put(TLColor.PURPLE, CABLE_COVERED_PURPLE)
-            .put(TLColor.BLUE, CABLE_COVERED_BLUE)
-            .put(TLColor.BROWN, CABLE_COVERED_BROWN)
-            .put(TLColor.GREEN, CABLE_COVERED_GREEN)
-            .put(TLColor.RED, CABLE_COVERED_RED)
-            .put(TLColor.BLACK, CABLE_COVERED_BLACK)
-            .put(TLColor.TRANSPARENT, CABLE_COVERED_TRANSPARENT)
-            .build();
-
     public static final ResourceLocation CABLE_SMART_WHITE = id("white_smart_cable");
     public static final ResourceLocation CABLE_SMART_ORANGE = id("orange_smart_cable");
     public static final ResourceLocation CABLE_SMART_MAGENTA = id("magenta_smart_cable");
@@ -150,43 +113,6 @@ public final class TLPartIds {
             .put(TLColor.RED, CABLE_SMART_RED)
             .put(TLColor.BLACK, CABLE_SMART_BLACK)
             .put(TLColor.TRANSPARENT, CABLE_SMART_TRANSPARENT)
-            .build();
-
-    public static final ResourceLocation CABLE_DENSE_COVERED_WHITE = id("white_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_ORANGE = id("orange_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_MAGENTA = id("magenta_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_LIGHT_BLUE = id("light_blue_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_YELLOW = id("yellow_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_LIME = id("lime_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_PINK = id("pink_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_GRAY = id("gray_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_LIGHT_GRAY = id("light_gray_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_CYAN = id("cyan_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_PURPLE = id("purple_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_BLUE = id("blue_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_BROWN = id("brown_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_GREEN = id("green_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_RED = id("red_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_BLACK = id("black_covered_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_COVERED_TRANSPARENT = id("fluix_covered_dense_cable");
-    public static final Map<TLColor, ResourceLocation> CABLE_DENSE_COVERED = ImmutableMap
-            .<TLColor, ResourceLocation>builder().put(TLColor.WHITE, CABLE_DENSE_COVERED_WHITE)
-            .put(TLColor.ORANGE, CABLE_DENSE_COVERED_ORANGE)
-            .put(TLColor.MAGENTA, CABLE_DENSE_COVERED_MAGENTA)
-            .put(TLColor.LIGHT_BLUE, CABLE_DENSE_COVERED_LIGHT_BLUE)
-            .put(TLColor.YELLOW, CABLE_DENSE_COVERED_YELLOW)
-            .put(TLColor.LIME, CABLE_DENSE_COVERED_LIME)
-            .put(TLColor.PINK, CABLE_DENSE_COVERED_PINK)
-            .put(TLColor.GRAY, CABLE_DENSE_COVERED_GRAY)
-            .put(TLColor.LIGHT_GRAY, CABLE_DENSE_COVERED_LIGHT_GRAY)
-            .put(TLColor.CYAN, CABLE_DENSE_COVERED_CYAN)
-            .put(TLColor.PURPLE, CABLE_DENSE_COVERED_PURPLE)
-            .put(TLColor.BLUE, CABLE_DENSE_COVERED_BLUE)
-            .put(TLColor.BROWN, CABLE_DENSE_COVERED_BROWN)
-            .put(TLColor.GREEN, CABLE_DENSE_COVERED_GREEN)
-            .put(TLColor.RED, CABLE_DENSE_COVERED_RED)
-            .put(TLColor.BLACK, CABLE_DENSE_COVERED_BLACK)
-            .put(TLColor.TRANSPARENT, CABLE_DENSE_COVERED_TRANSPARENT)
             .build();
 
     public static final ResourceLocation CABLE_DENSE_SMART_WHITE = id("white_smart_dense_cable");

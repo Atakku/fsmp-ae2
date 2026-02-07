@@ -163,7 +163,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
 
         var network1 = Advancement.Builder.advancement()
                 .display(
-                        TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT),
+                        TLParts.SMART_CABLE.item(TLColor.TRANSPARENT),
                         localization.component("achievement.tl2.Networking1", "Network Apprentice"),
                         localization.component("achievement.tl2.Networking1.desc",
                                 "Reach 8 channels using devices on a network."),
