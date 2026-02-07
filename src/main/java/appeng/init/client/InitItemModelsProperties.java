@@ -23,9 +23,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.items.tools.powered.ColorApplicatorItem;
 
 /**
@@ -41,14 +41,14 @@ public final class InitItemModelsProperties {
     }
 
     public static void init() {
-        ColorApplicatorItem colorApplicatorItem = AEItems.COLOR_APPLICATOR.get();
+        ColorApplicatorItem colorApplicatorItem = TLItems.COLOR_APPLICATOR.get();
         ItemProperties.register(colorApplicatorItem, COLORED_PREDICATE_ID,
                 (itemStack, level, entity, seed) -> {
                     // If the stack has no color, don't use the colored model since the impact of
                     // calling getColor for every quad is extremely high, if the stack tries to
                     // re-search its
                     // inventory for a new paintball everytime
-                    AEColor col = colorApplicatorItem.getActiveColor(itemStack);
+                    TLColor col = colorApplicatorItem.getActiveColor(itemStack);
                     return col != null ? 1 : 0;
                 });
     }

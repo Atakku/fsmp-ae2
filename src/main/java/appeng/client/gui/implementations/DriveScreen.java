@@ -21,11 +21,11 @@ package appeng.client.gui.implementations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.menu.implementations.DriveMenu;
 
-public class DriveScreen extends AEBaseScreen<DriveMenu> {
+public class DriveScreen extends TLBaseScreen<DriveMenu> {
 
     public DriveScreen(DriveMenu menu, Inventory playerInventory, Component title,
             ScreenStyle style) {

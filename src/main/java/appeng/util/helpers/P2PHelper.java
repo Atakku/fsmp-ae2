@@ -23,17 +23,17 @@ import com.google.common.base.Preconditions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 public class P2PHelper {
 
-    public AEColor[] toColors(short frequency) {
-        final AEColor[] colors = new AEColor[4];
+    public TLColor[] toColors(short frequency) {
+        final TLColor[] colors = new TLColor[4];
 
         for (int i = 0; i < 4; i++) {
             int nibble = getFrequencyNibble(frequency, i);
 
-            colors[i] = AEColor.values()[nibble];
+            colors[i] = TLColor.values()[nibble];
         }
 
         return colors;
@@ -43,7 +43,7 @@ public class P2PHelper {
         return frequency >> 4 * (3 - i) & 0xF;
     }
 
-    public short fromColors(AEColor[] colors) {
+    public short fromColors(TLColor[] colors) {
         Preconditions.checkArgument(colors.length == 4);
 
         int t = 0;
@@ -57,7 +57,7 @@ public class P2PHelper {
         return (short) (t & 0xFFFF);
     }
 
-    public String toHexDigit(AEColor color) {
+    public String toHexDigit(TLColor color) {
         return String.format("%01X", color.ordinal());
     }
 
@@ -75,7 +75,7 @@ public class P2PHelper {
         for (var i = 0; i < 4; i++) {
             var nibble = getFrequencyNibble(frequency, i);
             parent.append(Component.literal(HEX_DIGITS[nibble])
-                    .withColor(AEColor.values()[nibble].whiteVariant));
+                    .withColor(TLColor.values()[nibble].whiteVariant));
         }
 
         return parent;

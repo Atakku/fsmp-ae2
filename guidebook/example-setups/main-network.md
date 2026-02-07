@@ -7,7 +7,7 @@ navigation:
 
 # An Example "Main Network"
 
-Many other setups reference a "Main Network". You might also ask how all these [devices](../ae2-mechanics/devices.md) come
+Many other setups reference a "Main Network". You might also ask how all these devices come
 together into a functional system. Here is an example:
 
 <GameScene zoom="2.5" interactive={true}>
@@ -31,7 +31,7 @@ together into a functional system. Here is an example:
     
     <BoxAnnotation color="#33dd33" min="2 1 10" max="4 4 13" thickness="0.05">
         You probably want to use some other mod's power source, a reactor or solar panel or generator or
-        whatever. Vibration Chambers are ok-ish but AE2 is designed to be used in a modpack and use your 
+        whatever. Vibration Chambers are ok-ish but TL2 is designed to be used in a modpack and use your 
         base's main power generator.
     </BoxAnnotation>
 

@@ -20,7 +20,7 @@ package appeng.init;
 
 import net.minecraft.world.level.block.DispenserBlock;
 
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.hooks.BlockToolDispenseItemBehavior;
 
 /**
@@ -32,7 +32,7 @@ public final class InitDispenserBehavior {
     }
 
     public static void init() {
-        DispenserBlock.registerBehavior(AEItems.COLOR_APPLICATOR, new BlockToolDispenseItemBehavior());
+        DispenserBlock.registerBehavior(TLItems.COLOR_APPLICATOR, new BlockToolDispenseItemBehavior());
     }
 
 }

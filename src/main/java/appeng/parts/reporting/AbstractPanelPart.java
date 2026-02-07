@@ -21,7 +21,7 @@ package appeng.parts.reporting;
 import net.minecraft.resources.ResourceLocation;
 
 import appeng.api.parts.IPartItem;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.core.AppEng;
 import appeng.items.parts.PartModels;
 
@@ -50,7 +50,7 @@ public abstract class AbstractPanelPart extends AbstractReportingPart {
     }
 
     /**
-     * How bright the color the panel should appear. Usually it depends on a {@link AEColor} variant. This does not
+     * How bright the color the panel should appear. Usually it depends on a {@link TLColor} variant. This does not
      * affect the actual light level of the part.
      *
      * @return the brightness to be used.

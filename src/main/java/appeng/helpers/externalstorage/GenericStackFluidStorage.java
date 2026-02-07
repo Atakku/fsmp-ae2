@@ -9,8 +9,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import appeng.api.behaviors.GenericInternalInventory;
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLKeyType;
 
 /**
  * Exposes a {@link GenericInternalInventory} as the platforms external fluid storage interface.
@@ -30,7 +30,7 @@ public class GenericStackFluidStorage implements IFluidHandler {
     @NotNull
     @Override
     public FluidStack getFluidInTank(int tank) {
-        if (inv.getKey(tank) instanceof AEFluidKey what) {
+        if (inv.getKey(tank) instanceof TLFluidKey what) {
             var amount = Ints.saturatedCast(inv.getAmount(tank));
             return what.toStack(amount);
         }
@@ -39,7 +39,7 @@ public class GenericStackFluidStorage implements IFluidHandler {
 
     @Override
     public int getTankCapacity(int tank) {
-        return Ints.saturatedCast(inv.getCapacity(AEKeyType.fluids()));
+        return Ints.saturatedCast(inv.getCapacity(TLKeyType.fluids()));
     }
 
     @Override
@@ -47,13 +47,13 @@ public class GenericStackFluidStorage implements IFluidHandler {
         if (stack.isEmpty()) {
             return true;
         }
-        var what = AEFluidKey.of(stack);
+        var what = TLFluidKey.of(stack);
         return what != null && inv.isAllowedIn(tank, what);
     }
 
     @Override
     public int fill(FluidStack resource, FluidAction action) {
-        var what = AEFluidKey.of(resource);
+        var what = TLFluidKey.of(resource);
         if (what == null) {
             return 0;
         }
@@ -68,7 +68,7 @@ public class GenericStackFluidStorage implements IFluidHandler {
     @NotNull
     @Override
     public FluidStack drain(FluidStack resource, FluidAction action) {
-        var what = AEFluidKey.of(resource);
+        var what = TLFluidKey.of(resource);
         if (what == null) {
             return FluidStack.EMPTY;
         }
@@ -82,14 +82,14 @@ public class GenericStackFluidStorage implements IFluidHandler {
         // Find first fluid in tanks
         for (int i = 0; i < inv.size(); i++) {
             var what = inv.getKey(i);
-            if (inv.getKey(i) instanceof AEFluidKey fluidKey) {
+            if (inv.getKey(i) instanceof TLFluidKey fluidKey) {
                 return extract(fluidKey, maxDrain, action);
             }
         }
         return FluidStack.EMPTY;
     }
 
-    private FluidStack extract(AEFluidKey what, int amount, FluidAction action) {
+    private FluidStack extract(TLFluidKey what, int amount, FluidAction action) {
         int extracted = 0;
         for (int i = 0; i < inv.size() && extracted < amount; ++i) {
             extracted += (int) inv.extract(i, what, amount - extracted, Actionable.of(action));

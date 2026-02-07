@@ -40,7 +40,7 @@ import net.minecraft.world.level.Level;
  */
 public interface IPlayerRegistry {
     /**
-     * Gets the mapping between {@link GameProfile} ids and AE2's player ids for the given server.
+     * Gets the mapping between {@link GameProfile} ids and TL2's player ids for the given server.
      */
     static IPlayerRegistry getMapping(MinecraftServer server) {
         return PlayerRegistryInternal.get(server);
@@ -81,7 +81,7 @@ public interface IPlayerRegistry {
     }
 
     /**
-     * Queries AE2's internal player ID for the given {@link GameProfile}. If AE2 has not assigned an ID to that player
+     * Queries TL2's internal player ID for the given {@link GameProfile}. If TL2 has not assigned an ID to that player
      * yet, it will be automatically assigned.
      * <p/>
      *
@@ -98,7 +98,7 @@ public interface IPlayerRegistry {
     }
 
     /**
-     * Queries AE2's internal player ID for the given {@link GameProfile#getId() profile UUID}. If AE2 has not assigned
+     * Queries TL2's internal player ID for the given {@link GameProfile#getId() profile UUID}. If TL2 has not assigned
      * an ID to that player yet, it will be automatically assigned.
      */
     int getPlayerId(UUID profileId);

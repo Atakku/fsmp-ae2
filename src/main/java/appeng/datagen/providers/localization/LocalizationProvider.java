@@ -14,19 +14,19 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.GuiText;
 import appeng.core.localization.InGameTooltip;
 import appeng.core.localization.ItemModText;
 import appeng.core.localization.LocalizationEnum;
 import appeng.core.localization.PlayerMessages;
-import appeng.datagen.providers.IAE2DataProvider;
+import appeng.datagen.providers.ITL2DataProvider;
 import appeng.integration.modules.emi.EmiText;
 import appeng.integration.modules.igtooltip.TooltipIds;
 
-public class LocalizationProvider implements IAE2DataProvider {
+public class LocalizationProvider implements ITL2DataProvider {
     private final Map<String, String> localizations = new HashMap<>();
 
     private final DataGenerator generator;
@@ -39,11 +39,11 @@ public class LocalizationProvider implements IAE2DataProvider {
 
     @Override
     public final CompletableFuture<?> run(CachedOutput cache) {
-        for (var block : AEBlocks.getBlocks()) {
-            add("block.ae2." + block.id().getPath(), block.getEnglishName());
+        for (var block : TLBlocks.getBlocks()) {
+            add("block.tl2." + block.id().getPath(), block.getEnglishName());
         }
-        for (var item : AEItems.getItems()) {
-            add("item.ae2." + item.id().getPath(), item.getEnglishName());
+        for (var item : TLItems.getItems()) {
+            add("item.tl2." + item.id().getPath(), item.getEnglishName());
         }
 
         addEnum(GuiText.class);
@@ -60,12 +60,12 @@ public class LocalizationProvider implements IAE2DataProvider {
     }
 
     private void generateJadeLocalizations() {
-        addJadeProviderDisplayName(TooltipIds.DEBUG, "AE2 Debug Info");
-        addJadeProviderDisplayName(TooltipIds.GRID_NODE_STATE, "AE2 Network State");
-        addJadeProviderDisplayName(TooltipIds.PART_NAME, "AE2 Part Name");
-        addJadeProviderDisplayName(TooltipIds.PART_ICON, "AE2 Part Icon");
-        addJadeProviderDisplayName(TooltipIds.PART_MOD_NAME, "AE2 Mod Name");
-        addJadeProviderDisplayName(TooltipIds.PART_TOOLTIP, "AE2 Part Tooltip");
+        addJadeProviderDisplayName(TooltipIds.DEBUG, "TL2 Debug Info");
+        addJadeProviderDisplayName(TooltipIds.GRID_NODE_STATE, "TL2 Network State");
+        addJadeProviderDisplayName(TooltipIds.PART_NAME, "TL2 Part Name");
+        addJadeProviderDisplayName(TooltipIds.PART_ICON, "TL2 Part Icon");
+        addJadeProviderDisplayName(TooltipIds.PART_MOD_NAME, "TL2 Mod Name");
+        addJadeProviderDisplayName(TooltipIds.PART_TOOLTIP, "TL2 Part Tooltip");
     }
 
     private void addJadeProviderDisplayName(ResourceLocation providerId, String name) {
@@ -92,45 +92,45 @@ public class LocalizationProvider implements IAE2DataProvider {
     }
 
     private void generateLocalizations() {
-        add("ae2.permission_denied", "You lack permission to access this.");
-        add("commands.ae2.ChunkLoggerOff", "Chunk Logging is now off");
-        add("commands.ae2.ChunkLoggerOn", "Chunk Logging is now on");
-        add("commands.ae2.permissions", "You do not have adequate permissions to run this command.");
-        add("commands.ae2.usage",
-                "Commands provided by Applied Energistics 2 - use /ae2 list for a list, and /ae2 help _____ for help with a command.");
-        add("key.ae2.category", "Applied Energistics 2");
-        add("key.ae2.portable_fluid_cell", "Open Portable Fluid Cell");
-        add("key.ae2.portable_item_cell", "Open Portable Item Cell");
-        add("key.ae2.wireless_terminal", "Open Wireless Terminal");
-        add("key.ae2.guide", "Open Guide for Items");
-        add("key.ae2.mouse_wheel_item_modifier", "Modifier for Mouse-Wheel Items");
-        add("key.ae2.part_placement_opposite", "Place Parts on Opposite Side");
+        add("tl2.permission_denied", "You lack permission to access this.");
+        add("commands.tl2.ChunkLoggerOff", "Chunk Logging is now off");
+        add("commands.tl2.ChunkLoggerOn", "Chunk Logging is now on");
+        add("commands.tl2.permissions", "You do not have adequate permissions to run this command.");
+        add("commands.tl2.usage",
+                "Commands provided by Applied Energistics 2 - use /tl2 list for a list, and /tl2 help _____ for help with a command.");
+        add("key.tl2.category", "Applied Energistics 2");
+        add("key.tl2.portable_fluid_cell", "Open Portable Fluid Cell");
+        add("key.tl2.portable_item_cell", "Open Portable Item Cell");
+        add("key.tl2.wireless_terminal", "Open Wireless Terminal");
+        add("key.tl2.guide", "Open Guide for Items");
+        add("key.tl2.mouse_wheel_item_modifier", "Modifier for Mouse-Wheel Items");
+        add("key.tl2.part_placement_opposite", "Place Parts on Opposite Side");
         add("key.toggle_focus.desc", "Toggle search box focus");
-        add("stat.ae2.items_extracted", "Items extracted from ME Storage");
-        add("stat.ae2.items_inserted", "Items added to ME Storage");
-        add("theoneprobe.ae2.channels", "%1$d Channels");
-        add("theoneprobe.ae2.channels_of", "%1$d of %2$d Channels");
-        add("theoneprobe.ae2.contains", "Contains");
-        add("theoneprobe.ae2.crafting", "Crafting: %1$s");
-        add("theoneprobe.ae2.device_missing_channel", "Device Missing Channel");
-        add("theoneprobe.ae2.device_offline", "Device Offline");
-        add("theoneprobe.ae2.device_online", "Device Online");
-        add("theoneprobe.ae2.locked", "Locked");
-        add("theoneprobe.ae2.nested_p2p_tunnel", "Error: Nested P2P Tunnel");
-        add("theoneprobe.ae2.p2p_frequency", "Frequency: %1$s");
-        add("theoneprobe.ae2.p2p_input_many_outputs", "Linked (Input Side) - %d Outputs");
-        add("theoneprobe.ae2.p2p_input_one_output", "Linked (Input Side)");
-        add("theoneprobe.ae2.p2p_output", "Linked (Output Side)");
-        add("theoneprobe.ae2.p2p_unlinked", "Unlinked");
-        add("theoneprobe.ae2.showing", "Showing");
-        add("theoneprobe.ae2.stored_energy", "%1$d / %2$d");
-        add("theoneprobe.ae2.unlocked", "Unlocked");
+        add("stat.tl2.items_extracted", "Items extracted from ME Storage");
+        add("stat.tl2.items_inserted", "Items added to ME Storage");
+        add("theoneprobe.tl2.channels", "%1$d Channels");
+        add("theoneprobe.tl2.channels_of", "%1$d of %2$d Channels");
+        add("theoneprobe.tl2.contains", "Contains");
+        add("theoneprobe.tl2.crafting", "Crafting: %1$s");
+        add("theoneprobe.tl2.device_missing_channel", "Device Missing Channel");
+        add("theoneprobe.tl2.device_offline", "Device Offline");
+        add("theoneprobe.tl2.device_online", "Device Online");
+        add("theoneprobe.tl2.locked", "Locked");
+        add("theoneprobe.tl2.nested_p2p_tunnel", "Error: Nested P2P Tunnel");
+        add("theoneprobe.tl2.p2p_frequency", "Frequency: %1$s");
+        add("theoneprobe.tl2.p2p_input_many_outputs", "Linked (Input Side) - %d Outputs");
+        add("theoneprobe.tl2.p2p_input_one_output", "Linked (Input Side)");
+        add("theoneprobe.tl2.p2p_output", "Linked (Output Side)");
+        add("theoneprobe.tl2.p2p_unlinked", "Unlinked");
+        add("theoneprobe.tl2.showing", "Showing");
+        add("theoneprobe.tl2.stored_energy", "%1$d / %2$d");
+        add("theoneprobe.tl2.unlocked", "Unlocked");
     }
 
     private CompletableFuture<?> save(CachedOutput cache, Map<String, String> localizations) {
         wasSaved = true;
 
-        var path = this.generator.getPackOutput().getOutputFolder().resolve("assets/ae2/lang/en_us.json");
+        var path = this.generator.getPackOutput().getOutputFolder().resolve("assets/tl2/lang/en_us.json");
 
         // Dump the translation in ascending order
         var sorted = new TreeMap<>(localizations);

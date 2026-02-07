@@ -8,9 +8,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 
 /**
  * Strategy to interact with the non-item keys held by container items, for example the fluid contained in a bucket.
@@ -19,7 +19,7 @@ import appeng.api.stacks.GenericStack;
  *            such as {@code Storage<FluidVariant> on fabric}.
  */
 @ApiStatus.Experimental
-public interface ContainerItemStrategy<T extends AEKey, C> {
+public interface ContainerItemStrategy<T extends TLKey, C> {
     @Nullable
     GenericStack getContainedStack(ItemStack stack);
 
@@ -42,7 +42,7 @@ public interface ContainerItemStrategy<T extends AEKey, C> {
     @Nullable
     GenericStack getExtractableContent(C context);
 
-    static <T extends AEKey> void register(AEKeyType keyType, Class<T> keyClass, ContainerItemStrategy<T, ?> strategy) {
+    static <T extends TLKey> void register(TLKeyType keyType, Class<T> keyClass, ContainerItemStrategy<T, ?> strategy) {
         ContainerItemStrategies.register(keyType, keyClass, strategy);
     }
 

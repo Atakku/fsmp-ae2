@@ -30,13 +30,13 @@ import appeng.api.networking.GridHelper;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.events.GridControllerChange;
 import appeng.api.networking.pathing.ControllerState;
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 import appeng.block.networking.ControllerBlock;
 import appeng.block.networking.ControllerBlock.ControllerBlockState;
-import appeng.blockentity.grid.AENetworkedInvBlockEntity;
+import appeng.blockentity.grid.TLNetworkedInvBlockEntity;
 import appeng.util.Platform;
 
-public class ControllerBlockEntity extends AENetworkedInvBlockEntity {
+public class ControllerBlockEntity extends TLNetworkedInvBlockEntity {
 
     static {
         GridHelper.addNodeOwnerEventHandler(
@@ -51,8 +51,8 @@ public class ControllerBlockEntity extends AENetworkedInvBlockEntity {
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction dir) {
-        return AECableType.DENSE_SMART;
+    public TLCableType getCableConnectionType(Direction dir) {
+        return TLCableType.DENSE_SMART;
     }
 
     @Override

@@ -1,0 +1,29 @@
+{
+  "$schema": "schema.json",
+  "includes": ["common/common.json", "common/player_inventory.json"],
+  "background": {
+    "texture": "guis/wireless_access_point.png",
+    "srcRect": [0, 0, 176, 168]
+  },
+  "slots": {
+    "MACHINE_INPUT": {
+      "left": 62,
+      "top": 48
+    },
+    "MACHINE_OUTPUT": {
+      "left": 98,
+      "top": 48
+    }
+  },
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "gui.tl2.Wireless"
+      },
+      "position": {
+        "left": 8,
+        "top": 7
+      }
+    }
+  }
+}

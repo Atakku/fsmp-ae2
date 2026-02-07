@@ -51,7 +51,7 @@ public final class ItemComparisonHelper {
     /**
      * recursive test for NBT Equality, this was faster then trying to compare / generate hashes, its also more reliable
      * then the vanilla version which likes to fail when NBT Compound data changes order, it is pretty expensive
-     * performance wise, so try an use shared tag compounds as long as the system remains in AE.
+     * performance wise, so try an use shared tag compounds as long as the system remains in TL.
      */
     public boolean isNbtTagEqual(@Nullable CompoundTag left, @Nullable CompoundTag right) {
         if (left == right) {

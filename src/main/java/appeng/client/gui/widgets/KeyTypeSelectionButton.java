@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.ISubMenuHost;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.Icon;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.implementations.KeyTypeSelectionScreen;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.interfaces.KeyTypeSelectionMenu;
 
 public class KeyTypeSelectionButton extends IconButton {
-    public static <C extends AEBaseMenu & KeyTypeSelectionMenu, P extends AEBaseScreen<C>> KeyTypeSelectionButton create(
+    public static <C extends TLBaseMenu & KeyTypeSelectionMenu, P extends TLBaseScreen<C>> KeyTypeSelectionButton create(
             P parentScreen,
             ISubMenuHost subMenuHost,
             Component title) {
@@ -38,9 +38,9 @@ public class KeyTypeSelectionButton extends IconButton {
                 });
     }
 
-    private static <C extends AEBaseMenu & KeyTypeSelectionMenu> void handleShiftClick(C menu) {
+    private static <C extends TLBaseMenu & KeyTypeSelectionMenu> void handleShiftClick(C menu) {
         // Compute new selection
-        Set<AEKeyType> newSelection = getNextSelection(menu.getClientKeyTypeSelection());
+        Set<TLKeyType> newSelection = getNextSelection(menu.getClientKeyTypeSelection());
 
         // First enable new keys
         for (var keyType : newSelection) {
@@ -54,7 +54,7 @@ public class KeyTypeSelectionButton extends IconButton {
         }
     }
 
-    private static Set<AEKeyType> getNextSelection(KeyTypeSelectionMenu.SyncedKeyTypes keyTypes) {
+    private static Set<TLKeyType> getNextSelection(KeyTypeSelectionMenu.SyncedKeyTypes keyTypes) {
         int totalCount = keyTypes.keyTypes().size();
         int enabledCount = keyTypes.enabledSet().size();
 
@@ -66,7 +66,7 @@ public class KeyTypeSelectionButton extends IconButton {
             return Set.copyOf(keyTypes.keyTypes().keySet());
         } else {
             // Switch to next key
-            AEKeyType currentKey = keyTypes.enabledSet().get(0);
+            TLKeyType currentKey = keyTypes.enabledSet().get(0);
             boolean foundCurrent = false;
 
             for (var keyType : keyTypes.keyTypes().keySet()) {

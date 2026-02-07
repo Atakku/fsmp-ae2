@@ -79,6 +79,6 @@ public class WorldGenProvider implements DataProvider {
     }
 
     public String getName() {
-        return "AE2 Worldgen";
+        return "TL2 Worldgen";
     }
 }

@@ -26,8 +26,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.client.render.effects.ParticleTypes;
-import appeng.core.AEConfig;
 import appeng.core.AppEngClient;
+import appeng.core.TLConfig;
 
 public class QuartzLampBlock extends QuartzGlassBlock {
 
@@ -38,7 +38,7 @@ public class QuartzLampBlock extends QuartzGlassBlock {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource r) {
-        if (!AEConfig.instance().isEnableEffects()) {
+        if (!TLConfig.instance().isEnableEffects()) {
             return;
         }
 

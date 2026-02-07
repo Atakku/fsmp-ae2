@@ -18,8 +18,8 @@
 
 package appeng.util.prioritylist;
 
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 
 public class PrecisePriorityList implements IPartitionList {
 
@@ -30,7 +30,7 @@ public class PrecisePriorityList implements IPartitionList {
     }
 
     @Override
-    public boolean isListed(AEKey input) {
+    public boolean isListed(TLKey input) {
         return this.list.get(input) > 0;
     }
 
@@ -40,7 +40,7 @@ public class PrecisePriorityList implements IPartitionList {
     }
 
     @Override
-    public Iterable<AEKey> getItems() {
+    public Iterable<TLKey> getItems() {
         return this.list.keySet();
     }
 }

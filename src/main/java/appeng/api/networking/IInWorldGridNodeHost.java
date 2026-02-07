@@ -28,13 +28,13 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 
 /**
  * Implement to create a networked {@link BlockEntity}. Must be implemented for a block entity to be available for
  * in-world connection attempts by adjacent grid nodes.
  * <p>
- * Must be provided via the {@link appeng.api.AECapabilities#IN_WORLD_GRID_NODE_HOST} capability.
+ * Must be provided via the {@link appeng.api.TLCapabilities#IN_WORLD_GRID_NODE_HOST} capability.
  */
 public interface IInWorldGridNodeHost {
     /**
@@ -53,8 +53,8 @@ public interface IInWorldGridNodeHost {
      * @param dir direction
      */
 
-    default AECableType getCableConnectionType(Direction dir) {
-        return AECableType.GLASS;
+    default TLCableType getCableConnectionType(Direction dir) {
+        return TLCableType.GLASS;
     }
 
 }

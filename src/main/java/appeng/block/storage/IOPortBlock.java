@@ -30,13 +30,13 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.OrientationStrategies;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.storage.IOPortBlockEntity;
 import appeng.menu.MenuOpener;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.locator.MenuLocators;
 
-public class IOPortBlock extends AEBaseEntityBlock<IOPortBlockEntity> {
+public class IOPortBlock extends TLBaseEntityBlock<IOPortBlockEntity> {
 
     public final static BooleanProperty POWERED = BooleanProperty.create("powered");
 

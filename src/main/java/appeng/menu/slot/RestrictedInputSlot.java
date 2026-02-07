@@ -26,14 +26,14 @@ import net.minecraft.world.level.Level;
 
 import appeng.api.features.GridLinkables;
 import appeng.api.features.IGridLinkableHandler;
-import appeng.api.ids.AETags;
+import appeng.api.ids.TLTags;
 import appeng.api.implementations.items.IStorageComponent;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.upgrades.Upgrades;
 import appeng.client.gui.Icon;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 
 /**
  * @author AlgorithmX2
@@ -98,7 +98,7 @@ public class RestrictedInputSlot extends AppEngSlot {
                 return isMetalIngot(stack);
 
             case VIEW_CELL:
-                return AEItems.VIEW_CELL.is(stack);
+                return TLItems.VIEW_CELL.is(stack);
 
             case STORAGE_CELLS:
                 return StorageCells.isCellHandled(stack);
@@ -134,7 +134,7 @@ public class RestrictedInputSlot extends AppEngSlot {
     }
 
     public static boolean isMetalIngot(ItemStack i) {
-        return i.getItem().builtInRegistryHolder().is(AETags.METAL_INGOTS);
+        return i.getItem().builtInRegistryHolder().is(TLTags.METAL_INGOTS);
     }
 
     private boolean isAllowEdit() {

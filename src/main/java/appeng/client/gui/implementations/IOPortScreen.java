@@ -29,8 +29,8 @@ import appeng.api.config.Settings;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.ServerSettingToggleButton;
 import appeng.client.gui.widgets.SettingToggleButton;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 import appeng.menu.implementations.IOPortMenu;
 
 public class IOPortScreen extends UpgradeableScreen<IOPortMenu> {
@@ -59,7 +59,7 @@ public class IOPortScreen extends UpgradeableScreen<IOPortMenu> {
         super.updateBeforeRender();
 
         this.redstoneMode.set(this.menu.getRedStoneMode());
-        this.redstoneMode.setVisibility(menu.hasUpgrade(AEItems.REDSTONE_CARD));
+        this.redstoneMode.setVisibility(menu.hasUpgrade(TLItems.REDSTONE_CARD));
         this.operationMode.set(this.menu.getOperationMode());
         this.fullMode.set(this.menu.getFullMode());
     }
@@ -69,8 +69,8 @@ public class IOPortScreen extends UpgradeableScreen<IOPortMenu> {
             int mouseY, float partialTicks) {
         super.drawBG(guiGraphics, offsetX, offsetY, mouseX, mouseY, partialTicks);
 
-        this.drawItem(guiGraphics, offsetX + 66 - 8, offsetY + 17, AEItems.ITEM_CELL_1K.stack());
-        this.drawItem(guiGraphics, offsetX + 94 + 8, offsetY + 17, AEBlocks.DRIVE.stack());
+        this.drawItem(guiGraphics, offsetX + 66 - 8, offsetY + 17, TLItems.ITEM_CELL_1K.stack());
+        this.drawItem(guiGraphics, offsetX + 94 + 8, offsetY + 17, TLBlocks.DRIVE.stack());
     }
 
 }

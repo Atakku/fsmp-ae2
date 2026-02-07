@@ -26,7 +26,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.TLFluidKey;
 
 /**
  * Creates a {@link Blitter} to draw fluids into the user interface.
@@ -36,7 +36,7 @@ public final class FluidBlitter {
     private FluidBlitter() {
     }
 
-    public static Blitter create(AEFluidKey fluidKey) {
+    public static Blitter create(TLFluidKey fluidKey) {
         return create(fluidKey.toStack(1));
     }
 

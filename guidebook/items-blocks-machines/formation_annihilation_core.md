@@ -7,8 +7,8 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:formation_core
-- ae2:annihilation_core
+- tl2:formation_core
+- tl2:annihilation_core
 ---
 
 # Formation and Annihilation Cores
@@ -19,7 +19,7 @@ item_ids:
   <ItemImage id="annihilation_core" scale="4" />
 </Row>
 
-These are the primary components of AE2 input and output [devices](../ae2-mechanics/devices.md). Using the power of <ItemLink id="fluix_crystal" /> and
+These are the primary components of TL2 input and output devices. Using the power of <ItemLink id="fluix_crystal" /> and
 a [logic processor](processors.md) it allows devices to input and output items, blocks, fluids, etc. (No actual function, just
 a crafting intermediate)
 

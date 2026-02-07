@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "tl2:quartz_glass"
+    },
+    "b": {
+      "tag": "c:dusts/redstone"
+    },
+    "c": {
+      "item": "tl2:fluix_crystal"
+    },
+    "d": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "pattern": [
+    "aba",
+    "bcb",
+    "ddd"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:view_cell"
+  }
+}

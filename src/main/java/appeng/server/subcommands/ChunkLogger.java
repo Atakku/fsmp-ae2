@@ -30,8 +30,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 
-import appeng.core.AEConfig;
-import appeng.core.AELog;
+import appeng.core.TLConfig;
+import appeng.core.TLLog;
 import appeng.server.ISubCommand;
 
 public class ChunkLogger implements ISubCommand {
@@ -39,11 +39,11 @@ public class ChunkLogger implements ISubCommand {
     private boolean enabled = false;
 
     private void displayStack() {
-        if (AEConfig.instance().isChunkLoggerTraceEnabled()) {
+        if (TLConfig.instance().isChunkLoggerTraceEnabled()) {
             boolean output = false;
             for (StackTraceElement e : Thread.currentThread().getStackTrace()) {
                 if (output) {
-                    AELog.info(
+                    TLLog.info(
                             "		" + e.getClassName() + '.' + e.getMethodName() + " (" + e.getLineNumber() + ')');
                 } else {
                     output = e.getClassName().contains("EventBus") && e.getMethodName().contains("post");
@@ -58,7 +58,7 @@ public class ChunkLogger implements ISubCommand {
             var chunk = event.getChunk();
             var chunkPos = chunk.getPos();
             var center = getCenter(chunk);
-            AELog.info("Loaded chunk " + chunkPos.x + "," + chunkPos.z + " [center: " + center + "] in "
+            TLLog.info("Loaded chunk " + chunkPos.x + "," + chunkPos.z + " [center: " + center + "] in "
                     + level.dimension().location());
             this.displayStack();
         }
@@ -70,7 +70,7 @@ public class ChunkLogger implements ISubCommand {
             var chunk = event.getChunk();
             var chunkPos = chunk.getPos();
             var center = getCenter(chunk);
-            AELog.info("Unloaded chunk " + chunkPos.x + "," + chunkPos.z + " [center: " + center + "] in "
+            TLLog.info("Unloaded chunk " + chunkPos.x + "," + chunkPos.z + " [center: " + center + "] in "
                     + level.dimension().location());
             this.displayStack();
         }
@@ -91,10 +91,10 @@ public class ChunkLogger implements ISubCommand {
 
         if (this.enabled) {
             NeoForge.EVENT_BUS.register(this);
-            sender.sendSuccess(() -> Component.translatable("commands.ae2.ChunkLoggerOn"), true);
+            sender.sendSuccess(() -> Component.translatable("commands.tl2.ChunkLoggerOn"), true);
         } else {
             NeoForge.EVENT_BUS.unregister(this);
-            sender.sendSuccess(() -> Component.translatable("commands.ae2.ChunkLoggerOff"), true);
+            sender.sendSuccess(() -> Component.translatable("commands.tl2.ChunkLoggerOff"), true);
         }
     }
 }

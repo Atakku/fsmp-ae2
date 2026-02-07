@@ -33,7 +33,7 @@ public class LoadTranslationsExtension implements Extension, BeforeAllCallback {
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
 
-        // Load AE2 translations to test translated texts
+        // Load TL2 translations to test translated texts
         ClientLanguage languageMap = ClientLanguage.loadFrom(MockResourceManager.create(), List.of("en_us"), false);
         Language.inject(languageMap);
     }

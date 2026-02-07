@@ -11,15 +11,15 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 
 import appeng.api.networking.pathing.ChannelMode;
-import appeng.core.AEConfig;
-import appeng.core.AELog;
+import appeng.core.TLConfig;
+import appeng.core.TLLog;
 import appeng.core.localization.PlayerMessages;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.Grid;
 import appeng.server.ISubCommand;
 
 /**
- * Command to easily change {@link AEConfig#getChannelMode()} at runtime.
+ * Command to easily change {@link TLConfig#getChannelMode()} at runtime.
  */
 public class ChannelModeCommand implements ISubCommand {
     @Override
@@ -34,15 +34,15 @@ public class ChannelModeCommand implements ISubCommand {
 
     @Override
     public void call(MinecraftServer srv, CommandContext<CommandSourceStack> ctx, CommandSourceStack sender) {
-        var mode = AEConfig.instance().getChannelMode();
+        var mode = TLConfig.instance().getChannelMode();
         sender.sendSuccess(() -> PlayerMessages.ChannelModeCurrent.text(mode.name().toLowerCase(Locale.ROOT)), true);
     }
 
     private void setChannelMode(CommandContext<CommandSourceStack> ctx, ChannelMode mode) {
-        AELog.info("%s is changing channel mode to %s", ctx.getSource(), mode);
+        TLLog.info("%s is changing channel mode to %s", ctx.getSource(), mode);
 
-        AEConfig.instance().setChannelModel(mode);
-        AEConfig.instance().save();
+        TLConfig.instance().setChannelModel(mode);
+        TLConfig.instance().save();
 
         var gridCount = 0;
         for (Grid grid : TickHandler.instance().getGridList()) {

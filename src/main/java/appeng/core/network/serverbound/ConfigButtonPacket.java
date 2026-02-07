@@ -9,10 +9,10 @@ import appeng.api.config.Setting;
 import appeng.api.config.Settings;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 import appeng.util.EnumCycler;
 
 public record ConfigButtonPacket(Setting<?> option, boolean rotationDirection) implements ServerboundPacket {
@@ -41,13 +41,13 @@ public record ConfigButtonPacket(Setting<?> option, boolean rotationDirection) i
 
     @Override
     public void handleOnServer(ServerPlayer player) {
-        if (player.containerMenu instanceof AEBaseMenu baseMenu) {
+        if (player.containerMenu instanceof TLBaseMenu baseMenu) {
             if (baseMenu.getTarget() instanceof IConfigurableObject configurableObject) {
                 var cm = configurableObject.getConfigManager();
                 if (cm.hasSetting(option)) {
                     cycleSetting(cm, option);
                 } else {
-                    AELog.info("Ignoring unsupported setting %s sent by client on %s", option,
+                    TLLog.info("Ignoring unsupported setting %s sent by client on %s", option,
                             baseMenu.getTarget());
                 }
             }

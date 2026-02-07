@@ -39,11 +39,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 
-import appeng.api.client.AEKeyRenderHandler;
-import appeng.api.client.AEKeyRendering;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.client.TLKeyRenderHandler;
+import appeng.api.client.TLKeyRendering;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.client.gui.style.FluidBlitter;
 import appeng.util.Platform;
 
@@ -52,13 +52,13 @@ public class InitStackRenderHandlers {
     }
 
     public static void init() {
-        AEKeyRendering.register(AEKeyType.items(), AEItemKey.class, new ItemKeyRenderHandler());
-        AEKeyRendering.register(AEKeyType.fluids(), AEFluidKey.class, new FluidKeyRenderHandler());
+        TLKeyRendering.register(TLKeyType.items(), TLItemKey.class, new ItemKeyRenderHandler());
+        TLKeyRendering.register(TLKeyType.fluids(), TLFluidKey.class, new FluidKeyRenderHandler());
     }
 
-    private static class ItemKeyRenderHandler implements AEKeyRenderHandler<AEItemKey> {
+    private static class ItemKeyRenderHandler implements TLKeyRenderHandler<TLItemKey> {
         @Override
-        public void drawInGui(Minecraft minecraft, GuiGraphics guiGraphics, int x, int y, AEItemKey stack) {
+        public void drawInGui(Minecraft minecraft, GuiGraphics guiGraphics, int x, int y, TLItemKey stack) {
             var poseStack = guiGraphics.pose();
             poseStack.pushPose();
 
@@ -70,7 +70,7 @@ public class InitStackRenderHandlers {
         }
 
         @Override
-        public void drawOnBlockFace(PoseStack poseStack, MultiBufferSource buffers, AEItemKey what, float scale,
+        public void drawOnBlockFace(PoseStack poseStack, MultiBufferSource buffers, TLItemKey what, float scale,
                 int combinedLight, Level level) {
             poseStack.pushPose();
             // Push it out of the block face a bit to avoid z-fighting
@@ -89,12 +89,12 @@ public class InitStackRenderHandlers {
         }
 
         @Override
-        public Component getDisplayName(AEItemKey stack) {
+        public Component getDisplayName(TLItemKey stack) {
             return stack.getDisplayName();
         }
 
         @Override
-        public List<Component> getTooltip(AEItemKey stack) {
+        public List<Component> getTooltip(TLItemKey stack) {
             return stack.getReadOnlyStack().getTooltipLines(
                     Item.TooltipContext.of(Minecraft.getInstance().level),
                     Minecraft.getInstance().player,
@@ -103,16 +103,16 @@ public class InitStackRenderHandlers {
         }
     }
 
-    private static class FluidKeyRenderHandler implements AEKeyRenderHandler<AEFluidKey> {
+    private static class FluidKeyRenderHandler implements TLKeyRenderHandler<TLFluidKey> {
         @Override
-        public void drawInGui(Minecraft minecraft, GuiGraphics guiGraphics, int x, int y, AEFluidKey what) {
+        public void drawInGui(Minecraft minecraft, GuiGraphics guiGraphics, int x, int y, TLFluidKey what) {
             FluidBlitter.create(what)
                     .dest(x, y, 16, 16)
                     .blit(guiGraphics);
         }
 
         @Override
-        public void drawOnBlockFace(PoseStack poseStack, MultiBufferSource buffers, AEFluidKey what, float scale,
+        public void drawOnBlockFace(PoseStack poseStack, MultiBufferSource buffers, TLFluidKey what, float scale,
                 int combinedLight, Level level) {
 
             var fluidStack = what.toStack(1);
@@ -167,12 +167,12 @@ public class InitStackRenderHandlers {
         }
 
         @Override
-        public Component getDisplayName(AEFluidKey stack) {
+        public Component getDisplayName(TLFluidKey stack) {
             return stack.getDisplayName();
         }
 
         @Override
-        public List<Component> getTooltip(AEFluidKey stack) {
+        public List<Component> getTooltip(TLFluidKey stack) {
             var tooltip = new ArrayList<Component>();
             tooltip.add(stack.toStack(1).getHoverName());
 

@@ -1,14 +1,14 @@
 ---
 navigation:
-  parent: ae2-mechanics/ae2-mechanics-index.md
+  parent: tl2-mechanics/tl2-mechanics-index.md
   title: Channels
   icon: controller
 ---
 
 # Channels
 
-Applied Energistics 2's [ME Networks](me-network-connections.md) require
-Channels to support [devices](../ae2-mechanics/devices.md) which use networked storage, or other network
+Theoretical Lethargics 2's [ME Networks](me-network-connections.md) require
+Channels to support devices which use networked storage, or other network
 services. Think of channels like USB cables to all your devices. A computer only has so many USB ports and can only support
 so many devices connected to it. Most machines, full-block devices, and standard cables can only pass through
 up to 8 channels. You can think of full-block devices and standard cables as a bundle of 8 "channel wires". However, [dense cables](../items-blocks-machines/cables.md#dense-cable) can support up
@@ -145,7 +145,7 @@ shortest route.
 ## Design
 
 As mentioned before in [channel routing](channels.md#channel-routing), it's best to design your network in a treelike structure, with dense cables branching out from the controller, regular cables
-branching out from the dense, and [devices](../ae2-mechanics/devices.md) in clusters of 8 or fewer on the regular cables.
+branching out from the dense, and devices in clusters of 8 or fewer on the regular cables.
 
 Here is an example of what not to do:
 
@@ -270,10 +270,10 @@ Here is an example of a good structure:
 
 ## Channel Modes
 
-AE2 10.0.0 for Minecraft 1.18 introduces new options to change how AE2 channels behave in your world.
+TL2 10.0.0 for Minecraft 1.18 introduces new options to change how TL2 channels behave in your world.
 There's a new configuration option in the general section (`channels`) which controls this option, and a new in-game
-command for operators to change the mode and the config from inside the game. The command is `/ae2 channelmode <mode>`
-to change it and `/ae2 channelmode` to show the current mode. When the mode is changed in-game, all existing grids will
+command for operators to change the mode and the config from inside the game. The command is `/tl2 channelmode <mode>`
+to change it and `/tl2 channelmode` to show the current mode. When the mode is changed in-game, all existing grids will
 reboot and use the new mode immediately.
 
 This resurrects and improves upon the option that was available in Minecraft 1.12 and introduces better options for

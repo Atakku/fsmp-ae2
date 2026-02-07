@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
-import appeng.api.ids.AEComponents;
+import appeng.api.ids.TLComponents;
 import appeng.util.inv.AppEngInternalInventory;
 
 /**
@@ -41,12 +41,12 @@ final class ItemUpgradeInventory extends UpgradeInventory {
         this.stack = stack;
         this.changeCallback = changeCallback;
 
-        fromItemContainerContents(stack.getOrDefault(AEComponents.UPGRADES, ItemContainerContents.EMPTY));
+        fromItemContainerContents(stack.getOrDefault(TLComponents.UPGRADES, ItemContainerContents.EMPTY));
     }
 
     @Override
     public void saveChangedInventory(AppEngInternalInventory inv) {
-        stack.set(AEComponents.UPGRADES, toItemContainerContents());
+        stack.set(TLComponents.UPGRADES, toItemContainerContents());
 
         super.saveChangedInventory(inv);
     }

@@ -8,7 +8,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
 import appeng.items.tools.powered.ColorApplicatorItem;
@@ -16,7 +16,7 @@ import appeng.items.tools.powered.ColorApplicatorItem;
 /**
  * Switches the color of any held color applicator to the desired color.
  */
-public record ColorApplicatorSelectColorPacket(@Nullable AEColor color) implements ServerboundPacket {
+public record ColorApplicatorSelectColorPacket(@Nullable TLColor color) implements ServerboundPacket {
     public static final StreamCodec<RegistryFriendlyByteBuf, ColorApplicatorSelectColorPacket> STREAM_CODEC = StreamCodec
             .ofMember(
                     ColorApplicatorSelectColorPacket::write,
@@ -31,9 +31,9 @@ public record ColorApplicatorSelectColorPacket(@Nullable AEColor color) implemen
     }
 
     public static ColorApplicatorSelectColorPacket decode(RegistryFriendlyByteBuf stream) {
-        AEColor color = null;
+        TLColor color = null;
         if (stream.readBoolean()) {
-            color = stream.readEnum(AEColor.class);
+            color = stream.readEnum(TLColor.class);
         }
         return new ColorApplicatorSelectColorPacket(color);
     }
@@ -53,7 +53,7 @@ public record ColorApplicatorSelectColorPacket(@Nullable AEColor color) implemen
         switchColor(player.getOffhandItem(), color);
     }
 
-    private static void switchColor(ItemStack stack, AEColor color) {
+    private static void switchColor(ItemStack stack, TLColor color) {
         if (!stack.isEmpty() && stack.getItem() instanceof ColorApplicatorItem colorApplicator) {
             colorApplicator.setActiveColor(stack, color);
         }

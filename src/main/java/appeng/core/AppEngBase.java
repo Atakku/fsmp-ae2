@@ -47,17 +47,16 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypesInternal;
-import appeng.core.definitions.AEAttachmentTypes;
-import appeng.core.definitions.AEBlockEntities;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.api.ids.TLComponents;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypesInternal;
+import appeng.core.definitions.TLAttachmentTypes;
+import appeng.core.definitions.TLBlockEntities;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.core.network.ClientboundPacket;
 import appeng.core.network.InitNetwork;
-import appeng.hooks.SkyStoneBreakSpeed;
 import appeng.hooks.WrenchHook;
 import appeng.hooks.ticking.TickHandler;
 import appeng.hotkeys.HotkeyActions;
@@ -72,9 +71,9 @@ import appeng.init.internal.InitGridServices;
 import appeng.init.internal.InitStorageCells;
 import appeng.init.internal.InitUpgrades;
 import appeng.integration.Integrations;
-import appeng.recipes.AERecipeSerializers;
-import appeng.recipes.AERecipeTypes;
-import appeng.server.AECommand;
+import appeng.recipes.TLRecipeSerializers;
+import appeng.recipes.TLRecipeTypes;
+import appeng.server.TLCommand;
 import appeng.server.testworld.GameTestPlotAdapter;
 import appeng.sounds.AppEngSounds;
 
@@ -103,18 +102,18 @@ public abstract class AppEngBase implements AppEng {
         }
         INSTANCE = this;
 
-        AEConfig.register(container);
+        TLConfig.register(container);
 
         InitGridServices.init();
 
-        AEParts.init();
-        AEBlocks.DR.register(modEventBus);
-        AEItems.DR.register(modEventBus);
-        AEBlockEntities.DR.register(modEventBus);
-        AEComponents.DR.register(modEventBus);
-        AERecipeTypes.DR.register(modEventBus);
-        AERecipeSerializers.DR.register(modEventBus);
-        AEAttachmentTypes.register(modEventBus);
+        TLParts.init();
+        TLBlocks.DR.register(modEventBus);
+        TLItems.DR.register(modEventBus);
+        TLBlockEntities.DR.register(modEventBus);
+        TLComponents.DR.register(modEventBus);
+        TLRecipeTypes.DR.register(modEventBus);
+        TLRecipeSerializers.DR.register(modEventBus);
+        TLAttachmentTypes.register(modEventBus);
 
         modEventBus.addListener(this::registerRegistries);
         modEventBus.addListener(MainCreativeTab::initExternal);
@@ -135,8 +134,8 @@ public abstract class AppEngBase implements AppEng {
                 InitParticleTypes.init(event.getRegistry(Registries.PARTICLE_TYPE));
             } else if (event.getRegistryKey() == Registries.MENU) {
                 InitMenuTypes.init(event.getRegistry(Registries.MENU));
-            } else if (event.getRegistryKey() == AEKeyType.REGISTRY_KEY) {
-                registerKeyTypes(event.getRegistry(AEKeyType.REGISTRY_KEY));
+            } else if (event.getRegistryKey() == TLKeyType.REGISTRY_KEY) {
+                registerKeyTypes(event.getRegistry(TLKeyType.REGISTRY_KEY));
             }
         });
 
@@ -151,7 +150,6 @@ public abstract class AppEngBase implements AppEng {
         NeoForge.EVENT_BUS.addListener(this::registerCommands);
 
         NeoForge.EVENT_BUS.addListener(WrenchHook::onPlayerUseBlockEvent);
-        NeoForge.EVENT_BUS.addListener(SkyStoneBreakSpeed::handleBreakFaster);
 
         HotkeyActions.init();
     }
@@ -159,7 +157,7 @@ public abstract class AppEngBase implements AppEng {
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(this::postRegistrationInitialization).whenComplete((res, err) -> {
             if (err != null) {
-                AELog.warn(err);
+                TLLog.warn(err);
             }
         });
     }
@@ -177,13 +175,13 @@ public abstract class AppEngBase implements AppEng {
         InitUpgrades.init();
     }
 
-    public void registerKeyTypes(Registry<AEKeyType> registry) {
-        Registry.register(registry, AEKeyType.items().getId(), AEKeyType.items());
-        Registry.register(registry, AEKeyType.fluids().getId(), AEKeyType.fluids());
+    public void registerKeyTypes(Registry<TLKeyType> registry) {
+        Registry.register(registry, TLKeyType.items().getId(), TLKeyType.items());
+        Registry.register(registry, TLKeyType.fluids().getId(), TLKeyType.fluids());
     }
 
     public void registerCommands(RegisterCommandsEvent evt) {
-        new AECommand().register(evt.getDispatcher());
+        new TLCommand().register(evt.getDispatcher());
     }
 
     public void registerSounds(Registry<SoundEvent> registry) {
@@ -191,10 +189,10 @@ public abstract class AppEngBase implements AppEng {
     }
 
     public void registerRegistries(NewRegistryEvent e) {
-        var registry = e.create(new RegistryBuilder<>(AEKeyType.REGISTRY_KEY)
+        var registry = e.create(new RegistryBuilder<>(TLKeyType.REGISTRY_KEY)
                 .sync(true)
                 .maxId(127));
-        AEKeyTypesInternal.setRegistry(registry);
+        TLKeyTypesInternal.setRegistry(registry);
     }
 
     private void serverStopped(final ServerStoppedEvent event) {

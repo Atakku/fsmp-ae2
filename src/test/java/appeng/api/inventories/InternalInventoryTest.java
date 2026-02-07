@@ -30,7 +30,7 @@ import net.minecraft.world.item.Items;
 
 import appeng.util.BootstrapMinecraft;
 import appeng.util.inv.AppEngInternalInventory;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
 @BootstrapMinecraft
 class InternalInventoryTest {
@@ -550,7 +550,7 @@ class InternalInventoryTest {
             // When actual extraction for a slot is denied, the extraction does not lock onto the item type
             @Test
             void testReadOnlySlotsAreSkipped() {
-                inv.setFilter(new IAEItemFilter() {
+                inv.setFilter(new ITLItemFilter() {
                     @Override
                     public boolean allowExtract(InternalInventory inv, int slot, int amount) {
                         return slot != 1;
@@ -608,7 +608,7 @@ class InternalInventoryTest {
 
             @Test
             void testNotCalledWhenInventoryDisallowsExtraction() {
-                inv.setFilter(new IAEItemFilter() {
+                inv.setFilter(new ITLItemFilter() {
                     @Override
                     public boolean allowExtract(InternalInventory inv, int slot, int amount) {
                         return false;

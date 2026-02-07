@@ -7,8 +7,8 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:wireless_booster
-- ae2:wireless_access_point
+- tl2:wireless_booster
+- tl2:wireless_access_point
 ---
 
 # The Wireless Access Point
@@ -22,7 +22,7 @@ A network can have any number of wireless access points with any number
 of <ItemLink id="wireless_booster" /> in each one, allowing you to optimize power usage
 and range by altering your setup.
 
-Requires a [channel](../ae2-mechanics/channels.md).
+Requires a [channel](../tl2-mechanics/channels.md).
 
 Also used to bind [wireless terminals](wireless_terminals.md)
 

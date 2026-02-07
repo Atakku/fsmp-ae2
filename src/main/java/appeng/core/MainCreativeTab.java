@@ -29,13 +29,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
-import appeng.api.ids.AECreativeTabIds;
-import appeng.block.AEBaseBlock;
-import appeng.block.AEBaseBlockItem;
-import appeng.core.definitions.AEBlocks;
+import appeng.api.ids.TLCreativeTabIds;
+import appeng.block.TLBaseBlock;
+import appeng.block.TLBaseBlockItem;
 import appeng.core.definitions.ItemDefinition;
+import appeng.core.definitions.TLBlocks;
 import appeng.core.localization.GuiText;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 
 public final class MainCreativeTab {
 
@@ -46,10 +46,10 @@ public final class MainCreativeTab {
     public static void init(Registry<CreativeModeTab> registry) {
         var tab = CreativeModeTab.builder()
                 .title(GuiText.CreativeTab.text())
-                .icon(() -> AEBlocks.CONTROLLER.stack(1))
+                .icon(() -> TLBlocks.CONTROLLER.stack(1))
                 .displayItems(MainCreativeTab::buildDisplayItems)
                 .build();
-        Registry.register(registry, AECreativeTabIds.MAIN, tab);
+        Registry.register(registry, TLCreativeTabIds.MAIN, tab);
     }
 
     public static void initExternal(BuildCreativeModeTabContentsEvent contents) {
@@ -72,10 +72,10 @@ public final class MainCreativeTab {
             var item = itemDef.asItem();
 
             // For block items, the block controls the creative tab
-            if (item instanceof AEBaseBlockItem baseItem
-                    && baseItem.getBlock() instanceof AEBaseBlock baseBlock) {
+            if (item instanceof TLBaseBlockItem baseItem
+                    && baseItem.getBlock() instanceof TLBaseBlock baseBlock) {
                 baseBlock.addToMainCreativeTab(itemDisplayParameters, output);
-            } else if (item instanceof AEBaseItem baseItem) {
+            } else if (item instanceof TLBaseItem baseItem) {
                 baseItem.addToMainCreativeTab(itemDisplayParameters, output);
             } else {
                 output.accept(itemDef);

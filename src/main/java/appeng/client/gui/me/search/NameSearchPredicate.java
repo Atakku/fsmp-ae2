@@ -3,7 +3,7 @@ package appeng.client.gui.me.search;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.menu.me.common.GridInventoryEntry;
 
 final class NameSearchPredicate implements Predicate<GridInventoryEntry> {
@@ -15,7 +15,7 @@ final class NameSearchPredicate implements Predicate<GridInventoryEntry> {
 
     @Override
     public boolean test(GridInventoryEntry gridInventoryEntry) {
-        AEKey entryInfo = Objects.requireNonNull(gridInventoryEntry.getWhat());
+        TLKey entryInfo = Objects.requireNonNull(gridInventoryEntry.getWhat());
         String displayName = entryInfo.getDisplayName().getString();
         return displayName.toLowerCase().contains(term);
     }

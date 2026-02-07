@@ -26,7 +26,7 @@ import net.minecraft.core.Direction;
 
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.parts.IPartCollisionHelper;
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 import appeng.items.parts.ColoredPartItem;
 
 public class SmartCablePart extends CablePart implements IUsedChannelProvider {
@@ -45,8 +45,8 @@ public class SmartCablePart extends CablePart implements IUsedChannelProvider {
     }
 
     @Override
-    public AECableType getCableConnectionType() {
-        return AECableType.SMART;
+    public TLCableType getCableConnectionType() {
+        return TLCableType.SMART;
     }
 
     @Override

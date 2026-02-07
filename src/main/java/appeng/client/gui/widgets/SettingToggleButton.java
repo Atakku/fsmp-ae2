@@ -38,11 +38,9 @@ import net.minecraft.world.level.ItemLike;
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.FullnessMode;
 import appeng.api.config.FuzzyMode;
-import appeng.api.config.InscriberInputCapacity;
 import appeng.api.config.OperationMode;
 import appeng.api.config.RedstoneMode;
 import appeng.api.config.RelativeDirection;
-import appeng.api.config.SchedulingMode;
 import appeng.api.config.Setting;
 import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
@@ -50,8 +48,8 @@ import appeng.api.config.SortOrder;
 import appeng.api.config.StorageFilter;
 import appeng.api.config.TerminalStyle;
 import appeng.api.config.YesNo;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.Icon;
+import appeng.client.gui.TLBaseScreen;
 import appeng.core.localization.ButtonToolTips;
 import appeng.util.EnumCycler;
 
@@ -172,11 +170,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
             registerApp(Icon.FULLNESS_FULL, Settings.FULLNESS_MODE, FullnessMode.FULL, ButtonToolTips.OperationMode,
                     ButtonToolTips.MoveWhenFull);
 
-            registerApp(Icon.BLOCKING_MODE_YES, Settings.BLOCKING_MODE, YesNo.YES, ButtonToolTips.InterfaceBlockingMode,
-                    ButtonToolTips.Blocking);
-            registerApp(Icon.BLOCKING_MODE_NO, Settings.BLOCKING_MODE, YesNo.NO, ButtonToolTips.InterfaceBlockingMode,
-                    ButtonToolTips.NonBlocking);
-
             registerApp(Icon.STORAGE_FILTER_EXTRACTABLE_ONLY, Settings.STORAGE_FILTER, StorageFilter.EXTRACTABLE_ONLY,
                     ButtonToolTips.ReportInaccessibleItems, ButtonToolTips.ReportInaccessibleItemsNo);
             registerApp(Icon.STORAGE_FILTER_EXTRACTABLE_NONE, Settings.STORAGE_FILTER, StorageFilter.NONE,
@@ -188,49 +181,10 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
             registerApp(Icon.PLACEMENT_ITEM, Settings.PLACE_BLOCK, YesNo.NO, ButtonToolTips.BlockPlacement,
                     ButtonToolTips.BlockPlacementNo);
 
-            registerApp(Icon.SCHEDULING_DEFAULT, Settings.SCHEDULING_MODE, SchedulingMode.DEFAULT,
-                    ButtonToolTips.SchedulingMode,
-                    ButtonToolTips.SchedulingModeDefault);
-            registerApp(Icon.SCHEDULING_ROUND_ROBIN, Settings.SCHEDULING_MODE, SchedulingMode.ROUNDROBIN,
-                    ButtonToolTips.SchedulingMode,
-                    ButtonToolTips.SchedulingModeRoundRobin);
-            registerApp(Icon.SCHEDULING_RANDOM, Settings.SCHEDULING_MODE, SchedulingMode.RANDOM,
-                    ButtonToolTips.SchedulingMode,
-                    ButtonToolTips.SchedulingModeRandom);
-
             registerApp(Icon.OVERLAY_OFF, Settings.OVERLAY_MODE, YesNo.NO, ButtonToolTips.OverlayMode,
                     ButtonToolTips.OverlayModeNo);
             registerApp(Icon.OVERLAY_ON, Settings.OVERLAY_MODE, YesNo.YES, ButtonToolTips.OverlayMode,
                     ButtonToolTips.OverlayModeYes);
-
-            registerApp(Icon.FILTER_ON_EXTRACT_ENABLED, Settings.FILTER_ON_EXTRACT, YesNo.YES,
-                    ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractEnabled);
-            registerApp(Icon.FILTER_ON_EXTRACT_DISABLED, Settings.FILTER_ON_EXTRACT, YesNo.NO,
-                    ButtonToolTips.FilterOnExtract, ButtonToolTips.FilterOnExtractDisabled);
-
-            registerApp(Icon.INSCRIBER_SEPARATE_SIDES, Settings.INSCRIBER_SEPARATE_SIDES, YesNo.YES,
-                    ButtonToolTips.InscriberSideness,
-                    ButtonToolTips.InscriberSidenessSeparate);
-            registerApp(Icon.INSCRIBER_COMBINED_SIDES, Settings.INSCRIBER_SEPARATE_SIDES, YesNo.NO,
-                    ButtonToolTips.InscriberSideness,
-                    ButtonToolTips.InscriberSidenessCombined);
-
-            registerApp(Icon.AUTO_EXPORT_ON, Settings.AUTO_EXPORT, YesNo.YES,
-                    ButtonToolTips.AutoExport,
-                    ButtonToolTips.AutoExportOn);
-            registerApp(Icon.AUTO_EXPORT_OFF, Settings.AUTO_EXPORT, YesNo.NO,
-                    ButtonToolTips.AutoExport,
-                    ButtonToolTips.AutoExportOff);
-
-            registerApp(Icon.INSCRIBER_BUFFER_64, Settings.INSCRIBER_INPUT_CAPACITY, InscriberInputCapacity.SIXTY_FOUR,
-                    ButtonToolTips.InscriberBufferSize,
-                    ButtonToolTips.InscriberBufferHigh);
-            registerApp(Icon.INSCRIBER_BUFFER_4, Settings.INSCRIBER_INPUT_CAPACITY, InscriberInputCapacity.FOUR,
-                    ButtonToolTips.InscriberBufferSize,
-                    ButtonToolTips.InscriberBufferLow);
-            registerApp(Icon.INSCRIBER_BUFFER_1, Settings.INSCRIBER_INPUT_CAPACITY, InscriberInputCapacity.ONE,
-                    ButtonToolTips.InscriberBufferSize,
-                    ButtonToolTips.InscriberBufferVeryLow);
         }
     }
 
@@ -245,8 +199,8 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
         // This isn't great, but we don't get any information about right-clicks
         // otherwise
         Screen currentScreen = Minecraft.getInstance().screen;
-        if (currentScreen instanceof AEBaseScreen) {
-            backwards = ((AEBaseScreen<?>) currentScreen).isHandlingRightClick();
+        if (currentScreen instanceof TLBaseScreen) {
+            backwards = ((TLBaseScreen<?>) currentScreen).isHandlingRightClick();
         }
         onPress.handle(this, backwards);
     }

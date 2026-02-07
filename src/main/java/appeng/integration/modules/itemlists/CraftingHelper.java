@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import appeng.api.stacks.AEItemKey;
-import appeng.core.AELog;
+import appeng.api.stacks.TLItemKey;
+import appeng.core.TLLog;
 import appeng.core.network.ServerboundPacket;
 import appeng.core.network.serverbound.FillCraftingGridFromRecipePacket;
 import appeng.menu.me.common.GridInventoryEntry;
@@ -36,7 +36,7 @@ public final class CraftingHelper {
         // Don't transmit a recipe id to the server in case the recipe is not actually resolvable
         // this is the case for recipes synthetically generated for JEI
         if (recipeId != null && menu.getPlayer().level().getRecipeManager().byKey(recipeId).isEmpty()) {
-            AELog.debug("Cannot send recipe id %s to server because it's transient", recipeId);
+            TLLog.debug("Cannot send recipe id %s to server because it's transient", recipeId);
             recipeId = null;
         }
 
@@ -56,9 +56,9 @@ public final class CraftingHelper {
                 // player doesn't actually have
                 var stack = ingredientPriorities.entrySet()
                         .stream()
-                        .filter(e -> e.getKey() instanceof AEItemKey itemKey && itemKey.matches(ingredient))
+                        .filter(e -> e.getKey() instanceof TLItemKey itemKey && itemKey.matches(ingredient))
                         .max(Comparator.comparingInt(Map.Entry::getValue))
-                        .map(e -> ((AEItemKey) e.getKey()).toStack())
+                        .map(e -> ((TLItemKey) e.getKey()).toStack())
                         .orElse(ingredient.getItems()[0]);
 
                 templateItems.set(i, stack);

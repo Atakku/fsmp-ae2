@@ -11,8 +11,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import appeng.integration.modules.curios.CuriosIntegration;
 
 /**
- * Event fired when AE2 is looking for ItemStacks in a player inventory. By default, AE2 only looks at the 36 usual
- * slots of the player inventory, use this event to make AE2 consider more stacks. AE2 will check after the event if
+ * Event fired when TL2 is looking for ItemStacks in a player inventory. By default, TL2 only looks at the 36 usual
+ * slots of the player inventory, use this event to make TL2 consider more stacks. TL2 will check after the event if
  * they contain the item it is searching.
  */
 public class SearchInventoryEvent extends PlayerEvent {

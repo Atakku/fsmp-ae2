@@ -7,7 +7,7 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:chest
+- tl2:chest
 ---
 
 # The ME Chest
@@ -21,7 +21,7 @@ While it can be used as a tiny storage network, its capacity for just one single
 means it has limited utility as such.
 
 Instead, it is useful for interacting with specifically the storage cell mounted inside it. Its integrated terminal can only see and access
-the items in the mounted drive, while [devices](../ae2-mechanics/devices.md) on the general network can access items in any [network storage](../ae2-mechanics/import-export-storage.md),
+the items in the mounted drive, while devices on the general network can access items in any [network storage](../tl2-mechanics/import-export-storage.md),
 including ME chests.
 
 It has 2 different GUIs and is sided for item transport. Interacting with the top terminal opens the integrated terminal. Items can be inserted into
@@ -30,7 +30,7 @@ and the priority settings. The cell can be inserted and removed by item logistic
 
 It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
 
-It has a small AE energy storage buffer, so if not on a network with an [energy cell](../items-blocks-machines/energy_cells.md),
+It has a small TL energy storage buffer, so if not on a network with an [energy cell](../items-blocks-machines/energy_cells.md),
 inserting or extracting too many items at once may cause it to brown out.
 
 The terminal can be colored with a <ItemLink id="color_applicator" />.
@@ -53,9 +53,9 @@ The cells in the chest have an LED on them which shows their status:
 | :----- | :------------------------------------------------------------------------------- |
 | Green  | Empty                                                                            |
 | Blue   | Has some contents                                                                |
-| Orange | [Types](../ae2-mechanics/bytes-and-types.md) full, no new types can be added     |
-| Red    | [Bytes](../ae2-mechanics/bytes-and-types.md) full, no more items can be inserted |
-| Black  | No power or drive has no [channel](../ae2-mechanics/channels.md)                 |
+| Orange | [Types](../tl2-mechanics/bytes-and-types.md) full, no new types can be added     |
+| Red    | [Bytes](../tl2-mechanics/bytes-and-types.md) full, no more items can be inserted |
+| Black  | No power or drive has no [channel](../tl2-mechanics/channels.md)                 |
 
 ## Priority
 

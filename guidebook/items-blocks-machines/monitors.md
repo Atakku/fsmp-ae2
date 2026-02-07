@@ -7,8 +7,8 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:storage_monitor
-- ae2:conversion_monitor
+- tl2:storage_monitor
+- tl2:conversion_monitor
 ---
 
 # Monitors
@@ -24,13 +24,13 @@ Monitors will inherit the color of the [cable](cables.md) they are mounted on.
 
 If the monitor is on the floor or ceiling, you can rotate it with a <ItemLink id="certus_quartz_wrench" />.
 
-They are [cable subparts](../ae2-mechanics/cable-subparts.md).
+They are [cable subparts](../tl2-mechanics/cable-subparts.md).
 
 # Storage Monitor
 
 Will show an item or fluid and its quantity. Put them next to your farms or something...
 
-Does *not* require a [channel](../ae2-mechanics/channels.md).
+Does *not* require a [channel](../tl2-mechanics/channels.md).
 
 Keybinds:
 
@@ -46,10 +46,10 @@ Keybinds:
 
 The Conversion Monitor is similar to a storage monitor, but allows you to insert or extract its configured item.
 
-If the configured item is [autocraftable](../ae2-mechanics/autocrafting.md) and none are in storage, attemping to take an
+If the configured item is [autocraftable](../tl2-mechanics/autocrafting.md) and none are in storage, attemping to take an
 item will instead open a UI to specify the amount to be crafted.
 
-*Does* require a [channel](../ae2-mechanics/channels.md).
+*Does* require a [channel](../tl2-mechanics/channels.md).
 
 Additional keybinds:
 

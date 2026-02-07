@@ -9,14 +9,14 @@ import net.minecraft.client.gui.screens.Screen;
 import dev.emi.emi.api.EmiDragDropHandler;
 import dev.emi.emi.api.stack.EmiIngredient;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.integration.modules.itemlists.DropTargets;
 
 class EmiAeBaseScreenDragDropHandler implements EmiDragDropHandler<Screen> {
 
     @Override
     public boolean dropStack(Screen screen, EmiIngredient emiIngredient, int x, int y) {
-        if (!(screen instanceof AEBaseScreen<?> aeScreen)) {
+        if (!(screen instanceof TLBaseScreen<?> aeScreen)) {
             return false;
         }
 
@@ -39,7 +39,7 @@ class EmiAeBaseScreenDragDropHandler implements EmiDragDropHandler<Screen> {
 
     @Override
     public void render(Screen screen, EmiIngredient dragged, GuiGraphics draw, int mouseX, int mouseY, float delta) {
-        if (!(screen instanceof AEBaseScreen<?> aeScreen)) {
+        if (!(screen instanceof TLBaseScreen<?> aeScreen)) {
             return;
         }
 

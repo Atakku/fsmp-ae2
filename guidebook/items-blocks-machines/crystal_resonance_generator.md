@@ -7,7 +7,7 @@ navigation:
 categories:
 - network infrastructure
 item_ids:
-- ae2:crystal_resonance_generator
+- tl2:crystal_resonance_generator
 ---
 
 # The Crystal Resonance Generator
@@ -16,7 +16,7 @@ item_ids:
 
 This device generates energy for your ME network without the need for fuel. Because of the crystal vibrations this device generates, only one can be used in each network. These vibrations even pass through <ItemLink id="quartz_fiber" />.
 
-**Generation Rate:** <ae2:ConfigValue name="crystalResonanceGeneratorRate"/> AE/t
+**Generation Rate:** <tl2:ConfigValue name="crystalResonanceGeneratorRate"/> TL/t
 
 ## Recipes
 

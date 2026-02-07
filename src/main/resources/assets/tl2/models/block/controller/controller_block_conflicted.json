@@ -1,0 +1,7 @@
+{
+  "parent": "tl2:block/controller/controller_block_lights",
+  "textures": {
+    "block": "tl2:block/controller_powered",
+    "lights": "tl2:block/controller_conflict"
+  }
+}

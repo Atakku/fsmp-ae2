@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import it.unimi.dsi.fastutil.longs.Long2BooleanMap;
 import it.unimi.dsi.fastutil.longs.Long2BooleanOpenHashMap;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.menu.me.common.GridInventoryEntry;
 
 public class RepoSearch {
@@ -19,7 +19,7 @@ public class RepoSearch {
     // Cached information
     private final Long2BooleanMap cache = new Long2BooleanOpenHashMap();
     private Predicate<GridInventoryEntry> search = (e) -> true;
-    final Map<AEKey, String> tooltipCache = new WeakHashMap<>();
+    final Map<TLKey, String> tooltipCache = new WeakHashMap<>();
 
     public RepoSearch() {
     }

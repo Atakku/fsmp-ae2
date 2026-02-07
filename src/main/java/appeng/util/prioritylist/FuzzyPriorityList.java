@@ -19,8 +19,8 @@
 package appeng.util.prioritylist;
 
 import appeng.api.config.FuzzyMode;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 
 public class FuzzyPriorityList implements IPartitionList {
 
@@ -33,7 +33,7 @@ public class FuzzyPriorityList implements IPartitionList {
     }
 
     @Override
-    public boolean isListed(AEKey input) {
+    public boolean isListed(TLKey input) {
         return !this.list.findFuzzy(input, this.mode).isEmpty();
     }
 
@@ -43,7 +43,7 @@ public class FuzzyPriorityList implements IPartitionList {
     }
 
     @Override
-    public Iterable<AEKey> getItems() {
+    public Iterable<TLKey> getItems() {
         return this.list.keySet();
     }
 }

@@ -29,12 +29,12 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.ServerTickingBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.core.AppEng;
 import appeng.util.InteractionUtil;
 
-public class CubeGeneratorBlockEntity extends AEBaseBlockEntity implements ServerTickingBlockEntity {
+public class CubeGeneratorBlockEntity extends TLBaseBlockEntity implements ServerTickingBlockEntity {
 
     private int size = 3;
     private ItemStack is = ItemStack.EMPTY;

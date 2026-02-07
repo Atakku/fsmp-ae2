@@ -21,7 +21,7 @@ package appeng.client.gui.style;
 import net.minecraft.network.chat.Component;
 
 /**
- * Text that will be drawn on top of a {@link appeng.client.gui.AEBaseScreen}.
+ * Text that will be drawn on top of a {@link appeng.client.gui.TLBaseScreen}.
  */
 public class Text {
 

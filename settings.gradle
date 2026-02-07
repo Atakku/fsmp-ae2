@@ -66,6 +66,20 @@ dependencyResolutionManagement {
                 includeGroup 'mezz.jei'
             }
         }
+        maven {
+            url = 'https://maven.createmod.net'
+            content {
+                includeGroup "net.createmod.ponder"
+                includeGroup "dev.engine-room.flywheel"
+                includeGroup "com.simibubi.create"
+            }
+        }
+        maven {
+            url = 'https://mvn.devos.one/snapshots'
+            content {
+                includeGroup "com.tterrag.registrate"
+            }
+        }
         mavenLocal() {
             content {
                 includeModule('org.appliedenergistics', 'guideme')
@@ -75,4 +89,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'ae2';
+rootProject.name = 'tl2';

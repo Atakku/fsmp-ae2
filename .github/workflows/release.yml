@@ -32,12 +32,12 @@ jobs:
       - name: Prepare artifact metadata. Note that VERSION is set by the gradle script.
         id: prepare_artifact_metadata
         run: |
-          echo ARTIFACT_PATH=./build/libs/appliedenergistics2-${VERSION}.jar >> $GITHUB_OUTPUT
-          echo ARTIFACT_NAME=appliedenergistics2-${VERSION}.jar >> $GITHUB_OUTPUT
-          echo JAVADOC_PATH=./build/libs/appliedenergistics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
-          echo JAVADOC_NAME=appliedenergistics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
-          echo API_PATH=./build/libs/appliedenergistics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
-          echo API_NAME=appliedenergistics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
+          echo ARTIFACT_PATH=./build/libs/theoreticallethargics2-${VERSION}.jar >> $GITHUB_OUTPUT
+          echo ARTIFACT_NAME=theoreticallethargics2-${VERSION}.jar >> $GITHUB_OUTPUT
+          echo JAVADOC_PATH=./build/libs/theoreticallethargics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
+          echo JAVADOC_NAME=theoreticallethargics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
+          echo API_PATH=./build/libs/theoreticallethargics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
+          echo API_NAME=theoreticallethargics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
           echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       - name: Archive build results
         # It is important to  archive .gradle as well since gradle stores the incremental build state there
@@ -148,7 +148,7 @@ jobs:
       - name: Upload to Curseforge
         uses: Kir-Antipov/mc-publish@995edadc13559a8b28d0b7e6571229f067ec7659
         with:
-          name: AE2 ${{ needs.build.outputs.VERSION }} [NEOFORGE]
+          name: TL2 ${{ needs.build.outputs.VERSION }} [NEOFORGE]
           version: ${{ needs.build.outputs.VERSION }}
           files: ${{ needs.build.outputs.ARTIFACT_PATH }}
           dependencies: |
@@ -179,7 +179,7 @@ jobs:
       - name: Upload to Modrinth
         uses: Kir-Antipov/mc-publish@995edadc13559a8b28d0b7e6571229f067ec7659
         with:
-          name: AE2 ${{ needs.build.outputs.VERSION }} [NEOFORGE]
+          name: TL2 ${{ needs.build.outputs.VERSION }} [NEOFORGE]
           version: ${{ needs.build.outputs.VERSION }}
           files: ${{ needs.build.outputs.ARTIFACT_PATH }}
           dependencies: |

@@ -7,8 +7,8 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:level_emitter
-- ae2:energy_level_emitter
+- tl2:level_emitter
+- tl2:energy_level_emitter
 ---
 
 # The Level Emitter
@@ -18,18 +18,18 @@ item_ids:
 </GameScene>
 
 The Level Emitter emits a redstone signal depending on the quantity of an item in
-[network storage](../ae2-mechanics/import-export-storage.md).
+[network storage](../tl2-mechanics/import-export-storage.md).
 
-There is also a version that emits a redstone signal depending on the [energy](../ae2-mechanics/energy.md) stored
+There is also a version that emits a redstone signal depending on the [energy](../tl2-mechanics/energy.md) stored
 in your network.
 
 Items and fluids can be dragged into the slot from JEI/REI even if you don't actually have any of that item.
 
 Right-click with a fluid container (like a bucket or fluid tank) to set that fluid as a filter instead of the bucket or tank item.
 
-They are [cable subparts](../ae2-mechanics/cable-subparts.md).
+They are [cable subparts](../tl2-mechanics/cable-subparts.md).
 
-Unlike other [devices](../ae2-mechanics/devices.md), level emitters *do not* require a [channel](../ae2-mechanics/channels.md).
+Unlike other devices, level emitters *do not* require a [channel](../tl2-mechanics/channels.md).
 
 ## Settings
 
@@ -50,13 +50,13 @@ If a <ItemLink id="crafting_card" /> is inserted, the emitter will be switched i
 
 This enables two options:
 
-The first option, "emit redstone while item is crafting", makes the emitter emit a redstone signal while your [autocrafting](../ae2-mechanics/autocrafting.md)
+The first option, "emit redstone while item is crafting", makes the emitter emit a redstone signal while your [autocrafting](../tl2-mechanics/autocrafting.md)
 is crafting some specific item through <ItemLink id="pattern_provider" />s. This is useful for only turning on specific
 power-hungry automation setups while they are actually being used.
 
 The second option, "emit redstone to craft item", is extremely useful for specific use cases like infinite farms and
 automation setups that only have a chance of making an output, instead of a guaranteed output.
-This setting creates a virtual [pattern](patterns.md) for [autocrafting](../ae2-mechanics/autocrafting.md) to use, for whatever item
+This setting creates a virtual [pattern](patterns.md) for [autocrafting](../tl2-mechanics/autocrafting.md) to use, for whatever item
 is in the emitter's filter slot.
 (For correct functionality, an actual pattern for the same item **should not exist** in your <ItemLink id="pattern_provider" />s)
 

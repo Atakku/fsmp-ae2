@@ -12,11 +12,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypesInternal;
+import appeng.api.ids.TLComponents;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypesInternal;
 
 public class MissingContentItem extends Item {
     public MissingContentItem(Properties properties) {
@@ -26,8 +26,8 @@ public class MissingContentItem extends Item {
     @Nullable
     public BrokenStackInfo getBrokenStackInfo(ItemStack stack) {
         // This is a broken pattern entry, try to recover the ID and use it as the tooltip line
-        var itemStackData = stack.get(AEComponents.MISSING_CONTENT_ITEMSTACK_DATA);
-        var genericStackData = stack.get(AEComponents.MISSING_CONTENT_AEKEY_DATA);
+        var itemStackData = stack.get(TLComponents.MISSING_CONTENT_ITEMSTACK_DATA);
+        var genericStackData = stack.get(TLComponents.MISSING_CONTENT_TLKEY_DATA);
 
         // "id" is just the most common ID field for key types
         if (itemStackData != null && itemStackData.contains("id")) {
@@ -44,7 +44,7 @@ public class MissingContentItem extends Item {
                 amount = 1;
             }
 
-            return new BrokenStackInfo(Component.literal(missingId), AEKeyType.items(), amount);
+            return new BrokenStackInfo(Component.literal(missingId), TLKeyType.items(), amount);
         } else if (genericStackData != null && genericStackData.contains("id")) {
             var brokenDataTag = genericStackData.getUnsafe();
             if (!brokenDataTag.contains("id", Tag.TAG_STRING)) {
@@ -52,11 +52,11 @@ public class MissingContentItem extends Item {
             }
             var missingId = Component.literal(brokenDataTag.getString("id"));
 
-            // Try figuring out which AEKeyType it may have been. If that fails just default to item
-            AEKeyType keyType = null;
+            // Try figuring out which TLKeyType it may have been. If that fails just default to item
+            TLKeyType keyType = null;
             try {
-                var keyTypeString = brokenDataTag.getString(AEKey.TYPE_FIELD);
-                keyType = AEKeyTypesInternal.getRegistry().get(ResourceLocation.parse(keyTypeString));
+                var keyTypeString = brokenDataTag.getString(TLKey.TYPE_FIELD);
+                keyType = TLKeyTypesInternal.getRegistry().get(ResourceLocation.parse(keyTypeString));
                 if (keyType == null) {
                     missingId.append(" (").append(keyTypeString).append(")");
                 }
@@ -80,12 +80,12 @@ public class MissingContentItem extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag advanced) {
         super.appendHoverText(stack, context, lines, advanced);
 
-        var error = stack.get(AEComponents.MISSING_CONTENT_ERROR);
+        var error = stack.get(TLComponents.MISSING_CONTENT_ERROR);
         if (error != null) {
             lines.add(Component.literal(error).withStyle(ChatFormatting.GRAY));
         }
     }
 
-    public record BrokenStackInfo(Component displayName, @Nullable AEKeyType keyType, long amount) {
+    public record BrokenStackInfo(Component displayName, @Nullable TLKeyType keyType, long amount) {
     }
 }

@@ -42,7 +42,7 @@ public class FuzzySearchTest {
     void testOrderForDamagedItems() {
         // Diamond Sword @ 100% durability
         ItemStack undamagedSword = new ItemStack(Items.DIAMOND_SWORD);
-        AEItemKey undamagedStack = AEItemKey.of(undamagedSword);
+        TLItemKey undamagedStack = TLItemKey.of(undamagedSword);
 
         // Unbreakable Diamond Sword @ 50% durability
         ItemStack unbreakableSword = new ItemStack(
@@ -50,15 +50,15 @@ public class FuzzySearchTest {
         unbreakableSword.setDamageValue(unbreakableSword.getMaxDamage() / 2);
         unbreakableSword.set(DataComponents.UNBREAKABLE, new Unbreakable(true));
         assertFalse(unbreakableSword.isDamageableItem());
-        AEItemKey unbreakableStack = AEItemKey.of(unbreakableSword);
+        TLItemKey unbreakableStack = TLItemKey.of(unbreakableSword);
 
         // Unenchanted Diamond Sword @ 0% durability
         ItemStack damagedSword = new ItemStack(Items.DIAMOND_SWORD);
         damagedSword.setDamageValue(damagedSword.getMaxDamage());
-        AEItemKey damagedStack = AEItemKey.of(damagedSword);
+        TLItemKey damagedStack = TLItemKey.of(damagedSword);
 
         // Create a list of stacks and sort by their natural order
-        AEItemKey[] stacks = new AEItemKey[] {
+        TLItemKey[] stacks = new TLItemKey[] {
                 damagedStack, undamagedStack, unbreakableStack
         };
         Arrays.sort(stacks, FuzzySearch.COMPARATOR);
@@ -67,13 +67,13 @@ public class FuzzySearchTest {
 
     @Nested
     class Bounds {
-        AEItemKey stack = AEItemKey.of(Items.DIAMOND_SWORD);
-        AEItemKey damagedStack;
+        TLItemKey stack = TLItemKey.of(Items.DIAMOND_SWORD);
+        TLItemKey damagedStack;
 
         {
             var tempStack = stack.toStack();
             tempStack.setDamageValue(tempStack.getMaxDamage());
-            damagedStack = AEItemKey.of(tempStack);
+            damagedStack = TLItemKey.of(tempStack);
         }
 
         @Test
@@ -92,7 +92,7 @@ public class FuzzySearchTest {
             unbreakableStack.set(DataComponents.UNBREAKABLE, new Unbreakable(true));
             assertFalse(unbreakableStack.isDamageableItem());
 
-            DamageBounds bounds = new DamageBounds(AEItemKey.of(unbreakableStack), FuzzyMode.PERCENT_99);
+            DamageBounds bounds = new DamageBounds(TLItemKey.of(unbreakableStack), FuzzyMode.PERCENT_99);
             assertEquals(stack.toStack().getMaxDamage(), bounds.lower.itemDamage());
             assertEquals(0, bounds.upper.itemDamage());
         }
@@ -191,7 +191,7 @@ public class FuzzySearchTest {
         final FuzzySearch.FuzzyBound lower;
         final FuzzySearch.FuzzyBound upper;
 
-        public DamageBounds(AEKey what, FuzzyMode mode) {
+        public DamageBounds(TLKey what, FuzzyMode mode) {
             lower = FuzzySearch.makeLowerBound(what, mode);
             upper = FuzzySearch.makeUpperBound(what, mode);
 

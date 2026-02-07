@@ -32,15 +32,15 @@ import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.Widget;
 
 import appeng.api.stacks.GenericStack;
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 import appeng.integration.modules.itemlists.EncodingHelper;
 import appeng.integration.modules.itemlists.TransferHelper;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.CraftingTermMenu;
 
-abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRecipeHandler<T> {
+abstract class AbstractRecipeHandler<T extends TLBaseMenu> implements StandardRecipeHandler<T> {
     protected static final int CRAFTING_GRID_WIDTH = 3;
     protected static final int CRAFTING_GRID_HEIGHT = 3;
 
@@ -74,7 +74,7 @@ abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRe
 
     @Override
     public EmiPlayerInventory getInventory(AbstractContainerScreen<T> screen) {
-        if (!AEConfig.instance().isExposeNetworkInventoryToEmi()) {
+        if (!TLConfig.instance().isExposeNetworkInventoryToEmi()) {
             return StandardRecipeHandler.super.getInventory(screen);
         }
 
@@ -197,7 +197,7 @@ abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRe
 
         abstract boolean canCraft();
 
-        void render(EmiRecipe recipe, EmiCraftContext<? extends AEBaseMenu> context, List<Widget> widgets,
+        void render(EmiRecipe recipe, EmiCraftContext<? extends TLBaseMenu> context, List<Widget> widgets,
                 GuiGraphics draw) {
         }
 
@@ -230,7 +230,7 @@ abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRe
             }
 
             @Override
-            void render(EmiRecipe recipe, EmiCraftContext<? extends AEBaseMenu> context, List<Widget> widgets,
+            void render(EmiRecipe recipe, EmiCraftContext<? extends TLBaseMenu> context, List<Widget> widgets,
                     GuiGraphics guiGraphics) {
                 renderMissingAndCraftableSlotOverlays(getRecipeInputSlots(recipe, widgets), guiGraphics,
                         missingSlots.missingSlots(),
@@ -264,7 +264,7 @@ abstract class AbstractRecipeHandler<T extends AEBaseMenu> implements StandardRe
             }
 
             @Override
-            void render(EmiRecipe recipe, EmiCraftContext<? extends AEBaseMenu> context, List<Widget> widgets,
+            void render(EmiRecipe recipe, EmiCraftContext<? extends TLBaseMenu> context, List<Widget> widgets,
                     GuiGraphics guiGraphics) {
 
                 renderMissingAndCraftableSlotOverlays(getRecipeInputSlots(recipe, widgets), guiGraphics, missingSlots,

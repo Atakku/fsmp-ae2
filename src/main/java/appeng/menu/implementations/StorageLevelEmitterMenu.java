@@ -25,11 +25,11 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 
 import appeng.api.config.Settings;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLKey;
 import appeng.api.util.IConfigManager;
 import appeng.client.gui.implementations.StorageLevelEmitterScreen;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.menu.SlotSemantics;
 import appeng.menu.slot.FakeSlot;
 import appeng.parts.automation.StorageLevelEmitterPart;
@@ -97,11 +97,11 @@ public class StorageLevelEmitterMenu extends UpgradeableMenu<StorageLevelEmitter
     }
 
     public boolean supportsFuzzySearch() {
-        return getHost().getConfigManager().hasSetting(Settings.FUZZY_MODE) && hasUpgrade(AEItems.FUZZY_CARD);
+        return getHost().getConfigManager().hasSetting(Settings.FUZZY_MODE) && hasUpgrade(TLItems.FUZZY_CARD);
     }
 
     @Nullable
-    public AEKey getConfiguredFilter() {
+    public TLKey getConfiguredFilter() {
         return getHost().getConfig().getKey(0);
     }
 }

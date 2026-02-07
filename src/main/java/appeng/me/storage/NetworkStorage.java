@@ -32,8 +32,8 @@ import net.minecraft.network.chat.Component;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.MEStorage;
 import appeng.core.localization.GuiText;
 
@@ -90,7 +90,7 @@ public class NetworkStorage implements MEStorage {
         }
     }
 
-    public long insert(AEKey what, long amount, Actionable type, IActionSource src) {
+    public long insert(TLKey what, long amount, Actionable type, IActionSource src) {
         if (mountsInUse) {
             return 0; // Prevent recursive use
         }
@@ -170,7 +170,7 @@ public class NetworkStorage implements MEStorage {
         return false;
     }
 
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         if (mountsInUse) {
             return 0; // Prevent recursive use
         }

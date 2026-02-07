@@ -51,18 +51,18 @@ import appeng.api.networking.IGridNode;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.SelectedPart;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.client.render.cablebus.CableBusRenderState;
 import appeng.core.AppEng;
-import appeng.helpers.AEMultiBlockEntity;
+import appeng.helpers.TLMultiBlockEntity;
 import appeng.parts.CableBusContainer;
 import appeng.util.IDebugExportable;
 import appeng.util.Platform;
 
-public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlockEntity {
+public class CableBusBlockEntity extends TLBaseBlockEntity implements TLMultiBlockEntity {
 
     private CableBusContainer cb = new CableBusContainer(this);
 
@@ -131,12 +131,12 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction side) {
+    public TLCableType getCableConnectionType(Direction side) {
         return this.getCableBus().getCableConnectionType(side);
     }
 
     @Override
-    public float getCableConnectionLength(AECableType cable) {
+    public float getCableConnectionLength(TLCableType cable) {
         return this.getCableBus().getCableConnectionLength(cable);
     }
 
@@ -226,7 +226,7 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
     }
 
     @Override
-    public AEColor getColor() {
+    public TLColor getColor() {
         return this.getCableBus().getColor();
     }
 
@@ -296,7 +296,7 @@ public class CableBusBlockEntity extends AEBaseBlockEntity implements AEMultiBlo
     }
 
     @Override
-    public boolean recolourBlock(Direction side, AEColor colour, Player who) {
+    public boolean recolourBlock(Direction side, TLColor colour, Player who) {
         return this.getCableBus().recolourBlock(side, colour, who);
     }
 

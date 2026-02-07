@@ -32,15 +32,15 @@ import appeng.api.networking.IGridNode;
 import appeng.api.orientation.BlockOrientation;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
-import appeng.api.util.AEColor;
-import appeng.block.AEBaseEntityBlock;
-import appeng.blockentity.AEBaseBlockEntity;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.api.util.TLColor;
+import appeng.block.TLBaseEntityBlock;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.core.definitions.BlockDefinition;
 import appeng.core.definitions.ColoredItemDefinition;
 import appeng.core.definitions.ItemDefinition;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.items.parts.PartItem;
 
 public interface PlotBuilder {
@@ -67,14 +67,14 @@ public interface PlotBuilder {
     }
 
     default CableBuilder cable(String bb) {
-        return cable(bb, AEParts.SMART_CABLE, AEColor.TRANSPARENT);
+        return cable(bb, TLParts.SMART_CABLE, TLColor.TRANSPARENT);
     }
 
     default CableBuilder cable(String bb, ColoredItemDefinition<? extends IPartItem<?>> definition) {
-        return cable(bb, definition, AEColor.TRANSPARENT);
+        return cable(bb, definition, TLColor.TRANSPARENT);
     }
 
-    default CableBuilder cable(String bb, ColoredItemDefinition<? extends IPartItem<?>> definition, AEColor color) {
+    default CableBuilder cable(String bb, ColoredItemDefinition<? extends IPartItem<?>> definition, TLColor color) {
         return cable(bb, definition.item(color));
     }
 
@@ -88,7 +88,7 @@ public interface PlotBuilder {
     }
 
     default CableBuilder denseCable(String bb) {
-        return cable(bb, AEParts.SMART_DENSE_CABLE.item(AEColor.TRANSPARENT));
+        return cable(bb, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT));
     }
 
     default void part(String bb, Direction side, ItemDefinition<? extends PartItem<?>> part) {
@@ -162,8 +162,8 @@ public interface PlotBuilder {
         blockState(bb, block.block().defaultBlockState());
     }
 
-    default <T extends AEBaseBlockEntity> void blockEntity(BlockPos pos,
-            BlockDefinition<? extends AEBaseEntityBlock<T>> block,
+    default <T extends TLBaseBlockEntity> void blockEntity(BlockPos pos,
+            BlockDefinition<? extends TLBaseEntityBlock<T>> block,
             Consumer<T> postProcessor) {
         blockEntity(posToBb(pos), block, postProcessor);
     }
@@ -171,8 +171,8 @@ public interface PlotBuilder {
     /**
      * Place a block that has a block entity and customize it after it has been placed.
      */
-    default <T extends AEBaseBlockEntity> void blockEntity(String bb,
-            BlockDefinition<? extends AEBaseEntityBlock<T>> block,
+    default <T extends TLBaseBlockEntity> void blockEntity(String bb,
+            BlockDefinition<? extends TLBaseEntityBlock<T>> block,
             Consumer<T> postProcessor) {
         blockState(bb, block.block().defaultBlockState());
         var type = block.block().getBlockEntityType();
@@ -319,11 +319,11 @@ public interface PlotBuilder {
      * Creates a drive with an empty item and fluid cell.
      */
     default void storageDrive(BlockPos pos, Direction facing) {
-        blockEntity(posToBb(pos), AEBlocks.DRIVE, drive -> {
+        blockEntity(posToBb(pos), TLBlocks.DRIVE, drive -> {
             BlockOrientation.get(facing).setOn(drive);
             var cells = drive.getInternalInventory();
-            cells.addItems(AEItems.ITEM_CELL_64K.stack());
-            cells.addItems(AEItems.FLUID_CELL_64K.stack());
+            cells.addItems(TLItems.ITEM_CELL_64K.stack());
+            cells.addItems(TLItems.FLUID_CELL_64K.stack());
         });
     }
 
@@ -333,7 +333,7 @@ public interface PlotBuilder {
     default DriveBuilder drive(BlockPos pos) {
         var cells = new ArrayList<ItemStack>(10);
 
-        blockEntity(posToBb(pos), AEBlocks.DRIVE, drive -> {
+        blockEntity(posToBb(pos), TLBlocks.DRIVE, drive -> {
             var cellInv = drive.getInternalInventory();
             for (ItemStack cell : cells) {
                 cellInv.addItems(cell);

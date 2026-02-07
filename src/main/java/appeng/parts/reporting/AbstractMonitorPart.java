@@ -30,7 +30,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -43,9 +42,9 @@ import appeng.api.networking.storage.IStorageWatcherNode;
 import appeng.api.orientation.BlockOrientation;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AmountFormat;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.client.render.BlockEntityRenderHelper;
 import appeng.core.localization.PlayerMessages;
 import appeng.util.InteractionUtil;
@@ -64,7 +63,7 @@ import appeng.util.InteractionUtil;
 public abstract class AbstractMonitorPart extends AbstractDisplayPart
         implements IStorageMonitorPart {
     @Nullable
-    private AEKey configuredItem;
+    private TLKey configuredItem;
     private long amount;
     private String lastHumanReadableText;
     private boolean isLocked;
@@ -82,7 +81,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
             }
 
             @Override
-            public void onStackChange(AEKey what, long amount) {
+            public void onStackChange(TLKey what, long amount) {
                 if (what.equals(configuredItem)) {
                     AbstractMonitorPart.this.amount = amount;
 
@@ -105,7 +104,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         this.isLocked = data.getBoolean("isLocked");
 
         if (data.contains("configuredItem", Tag.TAG_COMPOUND)) {
-            this.configuredItem = AEKey.fromTagGeneric(registries, data.getCompound("configuredItem"));
+            this.configuredItem = TLKey.fromTagGeneric(registries, data.getCompound("configuredItem"));
         } else {
             this.configuredItem = null;
         }
@@ -129,7 +128,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
         data.writeBoolean(this.isLocked);
         data.writeBoolean(this.configuredItem != null);
         if (this.configuredItem != null) {
-            AEKey.writeKey(data, this.configuredItem);
+            TLKey.writeKey(data, this.configuredItem);
             data.writeVarLong(this.amount);
         }
     }
@@ -145,7 +144,7 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
 
         // This item is rendered dynamically and doesn't need to trigger a chunk update
         if (data.readBoolean()) {
-            this.configuredItem = AEKey.readKey(data);
+            this.configuredItem = TLKey.readKey(data);
             this.amount = data.readVarLong();
         } else {
             this.configuredItem = null;
@@ -200,14 +199,14 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
                 return false;
             }
 
-            if (AEItemKey.matches(this.configuredItem, heldItem)) {
+            if (TLItemKey.matches(this.configuredItem, heldItem)) {
                 // Already matches: try to swap to key contained in the item.
                 var containedStack = ContainerItemStrategies.getContainedStack(heldItem);
                 if (containedStack != null) {
                     this.configuredItem = containedStack.what();
                 }
             } else {
-                this.configuredItem = AEItemKey.of(heldItem);
+                this.configuredItem = TLItemKey.of(heldItem);
             }
             this.configureWatchers();
             this.getHost().markForSave();
@@ -286,11 +285,11 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
 
     @Nullable
     @Override
-    public AEKey getDisplayed() {
+    public TLKey getDisplayed() {
         return this.configuredItem;
     }
 
-    public void setConfiguredItem(@Nullable AEKey configuredItem) {
+    public void setConfiguredItem(@Nullable TLKey configuredItem) {
         this.configuredItem = configuredItem;
         getHost().markForUpdate();
     }
@@ -308,11 +307,6 @@ public abstract class AbstractMonitorPart extends AbstractDisplayPart
     public void setLocked(boolean locked) {
         isLocked = locked;
         getHost().markForUpdate();
-    }
-
-    @Override
-    public boolean showNetworkInfo(UseOnContext context) {
-        return false;
     }
 
     protected IPartModel selectModel(IPartModel on, IPartModel hasChannel,

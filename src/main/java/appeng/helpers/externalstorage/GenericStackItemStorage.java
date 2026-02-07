@@ -9,8 +9,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 import appeng.api.behaviors.GenericInternalInventory;
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.util.Platform;
 
 /**
@@ -31,7 +31,7 @@ public class GenericStackItemStorage implements IItemHandler {
     @NotNull
     @Override
     public ItemStack getStackInSlot(int slot) {
-        if (inv.getKey(slot) instanceof AEItemKey what) {
+        if (inv.getKey(slot) instanceof TLItemKey what) {
             var amount = Ints.saturatedCast(inv.getAmount(slot));
             return what.toStack(amount);
         }
@@ -41,7 +41,7 @@ public class GenericStackItemStorage implements IItemHandler {
     @NotNull
     @Override
     public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-        var what = AEItemKey.of(stack);
+        var what = TLItemKey.of(stack);
         if (what == null) {
             return stack;
         }
@@ -54,7 +54,7 @@ public class GenericStackItemStorage implements IItemHandler {
     @NotNull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (!(inv.getKey(slot) instanceof AEItemKey what)) {
+        if (!(inv.getKey(slot) instanceof TLItemKey what)) {
             return ItemStack.EMPTY;
         }
 
@@ -65,7 +65,7 @@ public class GenericStackItemStorage implements IItemHandler {
 
     @Override
     public int getSlotLimit(int slot) {
-        return Ints.saturatedCast(inv.getCapacity(AEKeyType.items()));
+        return Ints.saturatedCast(inv.getCapacity(TLKeyType.items()));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class GenericStackItemStorage implements IItemHandler {
         if (stack.isEmpty()) {
             return true;
         }
-        var what = AEItemKey.of(stack);
+        var what = TLItemKey.of(stack);
         return what != null && inv.isAllowedIn(slot, what);
     }
 }

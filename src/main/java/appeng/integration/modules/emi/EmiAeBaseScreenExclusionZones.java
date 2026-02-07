@@ -7,12 +7,12 @@ import net.minecraft.client.gui.screens.Screen;
 import dev.emi.emi.api.EmiExclusionArea;
 import dev.emi.emi.api.widget.Bounds;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 
 class EmiAeBaseScreenExclusionZones implements EmiExclusionArea<Screen> {
     @Override
     public void addExclusionArea(Screen screen, Consumer<Bounds> consumer) {
-        if (!(screen instanceof AEBaseScreen<?> aeScreen)) {
+        if (!(screen instanceof TLBaseScreen<?> aeScreen)) {
             return;
         }
 

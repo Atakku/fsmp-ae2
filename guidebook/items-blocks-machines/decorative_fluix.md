@@ -7,9 +7,9 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:fluix_stairs
-- ae2:fluix_wall
-- ae2:fluix_slab
+- tl2:fluix_stairs
+- tl2:fluix_wall
+- tl2:fluix_slab
 ---
 
 # Decorative Fluix

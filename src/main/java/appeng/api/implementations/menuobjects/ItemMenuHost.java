@@ -25,7 +25,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.menu.locator.ItemMenuHostLocator;
@@ -116,7 +116,7 @@ public class ItemMenuHost<T extends Item> implements IUpgradeableObject {
      *
      * @return The amount that was inserted.
      */
-    public long insert(Player player, AEKey what, long amount, Actionable mode) {
+    public long insert(Player player, TLKey what, long amount, Actionable mode) {
         return 0;
     }
 }

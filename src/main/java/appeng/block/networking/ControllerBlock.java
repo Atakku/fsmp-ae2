@@ -34,11 +34,11 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.networking.ControllerBlockEntity;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.TLBlocks;
 
-public class ControllerBlock extends AEBaseEntityBlock<ControllerBlockEntity> {
+public class ControllerBlock extends TLBaseEntityBlock<ControllerBlockEntity> {
 
     public enum ControllerBlockState implements StringRepresentable {
         offline, online, conflicted;
@@ -140,13 +140,13 @@ public class ControllerBlock extends AEBaseEntityBlock<ControllerBlockEntity> {
         // Do NOT query block entity:
         // - in Spatial IO movement, block entity might have been removed but block might still be there
         // - if we call getBlockEntity a new block entity will be loaded even though it has already been removed (bad!)
-        return level.getBlockState(new BlockPos(x, y, z)).is(AEBlocks.CONTROLLER.block());
+        return level.getBlockState(new BlockPos(x, y, z)).is(TLBlocks.CONTROLLER.block());
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof ControllerBlockEntity be) {
+        if (level.getBlockEntity(pos) instanceof ControllerBlockEntity) {
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
 

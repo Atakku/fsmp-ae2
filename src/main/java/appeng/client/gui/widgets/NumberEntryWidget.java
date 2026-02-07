@@ -45,11 +45,11 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 
 import appeng.client.Point;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.ICompositeWidget;
 import appeng.client.gui.MathExpressionParser;
 import appeng.client.gui.NumberEntryType;
 import appeng.client.gui.Rects;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.style.PaletteColor;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.WidgetStyle;
@@ -215,19 +215,19 @@ public class NumberEntryWidget implements ICompositeWidget {
     }
 
     @Override
-    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
         int left = bounds.getX() + this.bounds.getX();
         int top = bounds.getY() + this.bounds.getY();
 
         List<Button> buttons = new ArrayList<>(9);
 
-        buttons.add(new AE2Button(left, top, 22, 20, components1000[0],
+        buttons.add(new TL2Button(left, top, 22, 20, components1000[0],
                 btn -> addQty(hasShiftOrControlDown() ? STEPS_64[0] : STEPS_1000[0])));
-        buttons.add(new AE2Button(left + 28, top, 28, 20, components1000[1],
+        buttons.add(new TL2Button(left + 28, top, 28, 20, components1000[1],
                 btn -> addQty(hasShiftOrControlDown() ? STEPS_64[1] : STEPS_1000[1])));
-        buttons.add(new AE2Button(left + 62, top, 32, 20, components1000[2],
+        buttons.add(new TL2Button(left + 62, top, 32, 20, components1000[2],
                 btn -> addQty(hasShiftOrControlDown() ? STEPS_64[2] : STEPS_1000[2])));
-        buttons.add(new AE2Button(left + 100, top, 38, 20, components1000[3],
+        buttons.add(new TL2Button(left + 100, top, 38, 20, components1000[3],
                 btn -> addQty(hasShiftOrControlDown() ? STEPS_64[3] : STEPS_1000[3])));
 
         // Need to add these now for sensible tab-order
@@ -239,13 +239,13 @@ public class NumberEntryWidget implements ICompositeWidget {
         screen.setInitialFocus(this.textField);
         addWidget.accept(this.textField);
 
-        buttons.add(new AE2Button(left, top + 42, 22, 20, components1000[4],
+        buttons.add(new TL2Button(left, top + 42, 22, 20, components1000[4],
                 btn -> addQty(hasShiftOrControlDown() ? -STEPS_64[0] : -STEPS_1000[0])));
-        buttons.add(new AE2Button(left + 28, top + 42, 28, 20, components1000[5],
+        buttons.add(new TL2Button(left + 28, top + 42, 28, 20, components1000[5],
                 btn -> addQty(hasShiftOrControlDown() ? -STEPS_64[1] : -STEPS_1000[1])));
-        buttons.add(new AE2Button(left + 62, top + 42, 32, 20, components1000[6],
+        buttons.add(new TL2Button(left + 62, top + 42, 32, 20, components1000[6],
                 btn -> addQty(hasShiftOrControlDown() ? -STEPS_64[2] : -STEPS_1000[2])));
-        buttons.add(new AE2Button(left + 100, top + 42, 38, 20, components1000[7],
+        buttons.add(new TL2Button(left + 100, top + 42, 38, 20, components1000[7],
                 btn -> addQty(hasShiftOrControlDown() ? -STEPS_64[3] : -STEPS_1000[3])));
 
         // copy plus and minus buttons here to modify them easily when switching to different step size

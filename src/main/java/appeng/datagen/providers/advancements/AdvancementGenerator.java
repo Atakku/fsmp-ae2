@@ -45,15 +45,13 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import appeng.api.util.AEColor;
-import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.api.util.TLColor;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.core.stats.AdvancementTriggers;
 import appeng.datagen.providers.localization.LocalizationProvider;
 import appeng.datagen.providers.tags.ConventionTags;
@@ -70,94 +68,57 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
             ExistingFileHelper existingFileHelper) {
         var root = Advancement.Builder.advancement()
                 .display(
-                        AEItems.CERTUS_QUARTZ_CRYSTAL,
-                        localization.component("achievement.ae2.Root", "Applied Energistics"),
-                        localization.component("achievement.ae2.Root.desc",
-                                "When a chest is simply not enough. Acquire Copper to start your AE2 adventure."),
-                        AppEng.makeId("textures/block/sky_stone_brick.png"),
-                        AdvancementType.TASK,
-                        false /* showToast */,
-                        false /* announceChat */,
-                        false /* hidden */
-                )
-                .addCriterion("copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
-                .save(consumer, "ae2:main/root");
-
-        var chargedQuartz = Advancement.Builder.advancement()
-                .display(
-                        AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED,
-                        localization.component("achievement.ae2.ChargedQuartz", "Shocking"),
-                        localization.component("achievement.ae2.ChargedQuartz.desc", "Charge Quartz with a Charger"),
+                        TLItems.FLUIX_CRYSTAL,
+                        localization.component("achievement.tl2.Fluix", "Unnatural"),
+                        localization.component("achievement.tl2.Fluix.desc", "Create Fluix Crystals"),
                         null /* background */,
                         AdvancementType.TASK,
                         true /* showToast */,
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .parent(root)
-                .addCriterion("certus",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
-                .save(consumer, "ae2:main/charged_quartz");
-
-        var pressesBuilder = Advancement.Builder.advancement()
-                .display(
-                        AEItems.LOGIC_PROCESSOR_PRESS,
-                        localization.component("achievement.ae2.Presses", "Unknown Technology"),
-                        localization.component("achievement.ae2.Presses.desc", "Find all Processor Presses"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(root)
-                .addCriterion("calculation",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.CALCULATION_PROCESSOR_PRESS))
-                .addCriterion("engineering",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ENGINEERING_PROCESSOR_PRESS))
-                .addCriterion("logic", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.LOGIC_PROCESSOR_PRESS))
-                .addCriterion("silicon", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.SILICON_PRESS));
-        var presses = pressesBuilder.save(consumer, "ae2:main/presses");
+                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.FLUIX_CRYSTAL))
+                .save(consumer, "tl2:main/fluix");
 
         var controller = Advancement.Builder.advancement()
                 .display(
-                        AEBlocks.CONTROLLER,
-                        localization.component("achievement.ae2.Controller", "Networking Switchboard"),
-                        localization.component("achievement.ae2.Controller.desc", "Craft a Controller"),
+                        TLBlocks.CONTROLLER,
+                        localization.component("achievement.tl2.Controller", "Networking Switchboard"),
+                        localization.component("achievement.tl2.Controller.desc", "Craft a Controller"),
                         null /* background */,
                         AdvancementType.TASK,
                         true /* showToast */,
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .parent(presses)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.CONTROLLER))
-                .save(consumer, "ae2:main/controller");
+                .parent(root)
+                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLBlocks.CONTROLLER))
+                .save(consumer, "tl2:main/controller");
 
         var storageCell = Advancement.Builder.advancement()
                 .display(
-                        AEItems.ITEM_CELL_64K,
-                        localization.component("achievement.ae2.StorageCell", "Better Than Chests"),
-                        localization.component("achievement.ae2.StorageCell.desc", "Craft a Storage Cell"),
+                        TLItems.ITEM_CELL_64K,
+                        localization.component("achievement.tl2.StorageCell", "Better Than Chests"),
+                        localization.component("achievement.tl2.StorageCell.desc", "Craft a Storage Cell"),
                         null /* background */,
                         AdvancementType.TASK,
                         false,
                         false,
                         false)
                 .parent(controller)
-                .addCriterion("c1k", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ITEM_CELL_1K))
-                .addCriterion("c4k", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ITEM_CELL_4K))
-                .addCriterion("c16k", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ITEM_CELL_16K))
-                .addCriterion("c64k", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ITEM_CELL_64K))
-                .addCriterion("c256k", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.ITEM_CELL_256K))
+                .addCriterion("c1k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_1K))
+                .addCriterion("c4k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_4K))
+                .addCriterion("c16k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_16K))
+                .addCriterion("c64k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_64K))
+                .addCriterion("c256k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_256K))
                 .requirements(AdvancementRequirements.Strategy.OR)
-                .save(consumer, "ae2:main/storage_cell");
+                .save(consumer, "tl2:main/storage_cell");
 
         var ioport = Advancement.Builder.advancement()
                 .display(
-                        AEBlocks.IO_PORT,
-                        localization.component("achievement.ae2.IOPort", "Storage Cell Shuffle"),
-                        localization.component("achievement.ae2.IOPort.desc", "Craft an IO Port"),
+                        TLBlocks.IO_PORT,
+                        localization.component("achievement.tl2.IOPort", "Storage Cell Shuffle"),
+                        localization.component("achievement.tl2.IOPort.desc", "Craft an IO Port"),
                         null /* background */,
                         AdvancementType.TASK,
                         true /* showToast */,
@@ -165,14 +126,14 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false /* hidden */
                 )
                 .parent(storageCell)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEBlocks.IO_PORT))
-                .save(consumer, "ae2:main/ioport");
+                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLBlocks.IO_PORT))
+                .save(consumer, "tl2:main/ioport");
 
         var craftingTerminal = Advancement.Builder.advancement()
                 .display(
-                        AEParts.CRAFTING_TERMINAL,
-                        localization.component("achievement.ae2.CraftingTerminal", "A (Much) Bigger Table"),
-                        localization.component("achievement.ae2.CraftingTerminal.desc", "Craft a Crafting Terminal"),
+                        TLParts.CRAFTING_TERMINAL,
+                        localization.component("achievement.tl2.CraftingTerminal", "A (Much) Bigger Table"),
+                        localization.component("achievement.tl2.CraftingTerminal.desc", "Craft a Crafting Terminal"),
                         null /* background */,
                         AdvancementType.TASK,
                         true /* showToast */,
@@ -180,46 +141,31 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false /* hidden */
                 )
                 .parent(controller)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEParts.CRAFTING_TERMINAL))
-                .save(consumer, "ae2:main/crafting_terminal");
-
-        var fluix = Advancement.Builder.advancement()
-                .display(
-                        AEItems.FLUIX_CRYSTAL,
-                        localization.component("achievement.ae2.Fluix", "Unnatural"),
-                        localization.component("achievement.ae2.Fluix.desc", "Create Fluix Crystals"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(chargedQuartz)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.FLUIX_CRYSTAL))
-                .save(consumer, "ae2:main/fluix");
+                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLParts.CRAFTING_TERMINAL))
+                .save(consumer, "tl2:main/crafting_terminal");
 
         var glassCable = Advancement.Builder.advancement()
                 .display(
-                        AEParts.GLASS_CABLE.item(AEColor.TRANSPARENT),
-                        localization.component("achievement.ae2.GlassCable", "Fluix Energy Connection"),
-                        localization.component("achievement.ae2.GlassCable.desc", "Craft ME Glass Cable"),
+                        TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT),
+                        localization.component("achievement.tl2.GlassCable", "Fluix Energy Connection"),
+                        localization.component("achievement.tl2.GlassCable.desc", "Craft ME Glass Cable"),
                         null /* background */,
                         AdvancementType.TASK,
                         true /* showToast */,
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .parent(fluix)
+                .parent(root)
                 .addCriterion("certus",
                         InventoryChangeTrigger.TriggerInstance
                                 .hasItems(ItemPredicate.Builder.item().of(ConventionTags.GLASS_CABLE).build()))
-                .save(consumer, "ae2:main/glass_cable");
+                .save(consumer, "tl2:main/glass_cable");
 
         var network1 = Advancement.Builder.advancement()
                 .display(
-                        AEParts.COVERED_CABLE.item(AEColor.TRANSPARENT),
-                        localization.component("achievement.ae2.Networking1", "Network Apprentice"),
-                        localization.component("achievement.ae2.Networking1.desc",
+                        TLParts.COVERED_CABLE.item(TLColor.TRANSPARENT),
+                        localization.component("achievement.tl2.Networking1", "Network Apprentice"),
+                        localization.component("achievement.tl2.Networking1.desc",
                                 "Reach 8 channels using devices on a network."),
                         null /* background */,
                         AdvancementType.TASK,
@@ -229,13 +175,13 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 )
                 .parent(glassCable)
                 .addCriterion("cable", AdvancementTriggers.networkApprenticeCriterion())
-                .save(consumer, "ae2:main/network1");
+                .save(consumer, "tl2:main/network1");
 
         var network2 = Advancement.Builder.advancement()
                 .display(
-                        AEParts.SMART_CABLE.item(AEColor.TRANSPARENT),
-                        localization.component("achievement.ae2.Networking2", "Network Engineer"),
-                        localization.component("achievement.ae2.Networking2.desc",
+                        TLParts.SMART_CABLE.item(TLColor.TRANSPARENT),
+                        localization.component("achievement.tl2.Networking2", "Network Engineer"),
+                        localization.component("achievement.tl2.Networking2.desc",
                                 "Reach 128 channels using devices on a network."),
                         null /* background */,
                         AdvancementType.TASK,
@@ -245,13 +191,13 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 )
                 .parent(network1)
                 .addCriterion("cable", AdvancementTriggers.networkEngineerCriterion())
-                .save(consumer, "ae2:main/network2");
+                .save(consumer, "tl2:main/network2");
 
         var network3 = Advancement.Builder.advancement()
                 .display(
-                        AEParts.SMART_DENSE_CABLE.item(AEColor.TRANSPARENT),
-                        localization.component("achievement.ae2.Networking3", "Network Administrator"),
-                        localization.component("achievement.ae2.Networking3.desc",
+                        TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT),
+                        localization.component("achievement.tl2.Networking3", "Network Administrator"),
+                        localization.component("achievement.tl2.Networking3.desc",
                                 "Reach 2048 channels using devices on a network."),
                         null /* background */,
                         AdvancementType.TASK,
@@ -261,13 +207,13 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 )
                 .parent(network2)
                 .addCriterion("cable", AdvancementTriggers.networkAdminCriterion())
-                .save(consumer, "ae2:main/network3");
+                .save(consumer, "tl2:main/network3");
 
         var portableCell = Advancement.Builder.advancement()
                 .display(
-                        AEItems.PORTABLE_ITEM_CELL1K,
-                        localization.component("achievement.ae2.PortableCell", "Storage Nomad"),
-                        localization.component("achievement.ae2.PortableCell.desc", "Craft a Portable Cell"),
+                        TLItems.PORTABLE_ITEM_CELL1K,
+                        localization.component("achievement.tl2.PortableCell", "Storage Nomad"),
+                        localization.component("achievement.tl2.PortableCell.desc", "Craft a Portable Cell"),
                         null /* background */,
                         AdvancementType.TASK,
                         false,
@@ -275,16 +221,16 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false)
                 .parent(storageCell)
                 .addCriterion("pc_1k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL1K))
+                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL1K))
                 .addCriterion("pc_4k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL4K))
+                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL4K))
                 .addCriterion("pc_16k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL16K))
+                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL16K))
                 .addCriterion("pc_64k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL64K))
+                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL64K))
                 .addCriterion("pc_256k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(AEItems.PORTABLE_ITEM_CELL256K))
+                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL256K))
                 .requirements(AdvancementRequirements.Strategy.OR)
-                .save(consumer, "ae2:main/portable_cell");
+                .save(consumer, "tl2:main/portable_cell");
     }
 }

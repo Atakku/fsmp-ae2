@@ -29,10 +29,10 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.OrientationStrategies;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.storage.DriveBlockEntity;
 
-public class DriveBlock extends AEBaseEntityBlock<DriveBlockEntity> {
+public class DriveBlock extends TLBaseEntityBlock<DriveBlockEntity> {
 
     public DriveBlock() {
         super(metalProps());

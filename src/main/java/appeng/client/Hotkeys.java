@@ -23,7 +23,7 @@ public class Hotkeys {
         if (finalized) {
             throw new IllegalStateException("Hotkey registration already finalized!");
         }
-        return new Hotkey(id, new KeyMapping("key.ae2." + id, GLFW.GLFW_KEY_UNKNOWN, "key.ae2.category"));
+        return new Hotkey(id, new KeyMapping("key.tl2." + id, GLFW.GLFW_KEY_UNKNOWN, "key.tl2.category"));
     }
 
     private static void registerHotkey(Hotkey hotkey) {

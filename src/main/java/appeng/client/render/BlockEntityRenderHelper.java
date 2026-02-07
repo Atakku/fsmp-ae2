@@ -29,10 +29,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 
-import appeng.api.client.AEKeyRendering;
+import appeng.api.client.TLKeyRendering;
 import appeng.api.orientation.BlockOrientation;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AmountFormat;
+import appeng.api.stacks.TLKey;
 
 /**
  * Helper methods for rendering block entities.
@@ -61,10 +61,10 @@ public final class BlockEntityRenderHelper {
      */
     public static void renderItem2d(PoseStack poseStack,
             MultiBufferSource buffers,
-            AEKey what,
+            TLKey what,
             float scale,
             int combinedLightIn, Level level) {
-        AEKeyRendering.drawOnBlockFace(
+        TLKeyRendering.drawOnBlockFace(
                 poseStack,
                 buffers,
                 what,
@@ -80,7 +80,7 @@ public final class BlockEntityRenderHelper {
      */
     public static void renderItem2dWithAmount(PoseStack poseStack,
             MultiBufferSource buffers,
-            AEKey what,
+            TLKey what,
             long amount,
             float itemScale,
             float spacing,

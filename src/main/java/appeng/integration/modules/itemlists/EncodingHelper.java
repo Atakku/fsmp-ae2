@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.menu.me.common.GridInventoryEntry;
 import appeng.menu.me.common.MEStorageMenu;
 
@@ -26,7 +26,7 @@ public final class EncodingHelper {
             .thenComparing(GridInventoryEntry::getStoredAmount);
 
     private static Boolean isUndamaged(GridInventoryEntry entry) {
-        return !(entry.getWhat() instanceof AEItemKey itemKey) || !itemKey.isDamaged();
+        return !(entry.getWhat() instanceof TLItemKey itemKey) || !itemKey.isDamaged();
     }
 
     public static boolean isSupportedCraftingRecipe(@Nullable Recipe<?> recipe) {
@@ -44,7 +44,7 @@ public final class EncodingHelper {
      * <p/>
      * Higher means higher priority.
      */
-    public static Map<AEKey, Integer> getIngredientPriorities(MEStorageMenu menu,
+    public static Map<TLKey, Integer> getIngredientPriorities(MEStorageMenu menu,
             Comparator<GridInventoryEntry> comparator) {
         var orderedEntries = menu.getClientRepo().getAllEntries()
                 .stream()
@@ -52,14 +52,14 @@ public final class EncodingHelper {
                 .map(GridInventoryEntry::getWhat)
                 .toList();
 
-        var result = new HashMap<AEKey, Integer>(orderedEntries.size());
+        var result = new HashMap<TLKey, Integer>(orderedEntries.size());
         for (int i = 0; i < orderedEntries.size(); i++) {
             result.put(orderedEntries.get(i), i);
         }
 
         // Also consider the player inventory, but only as the last resort
         for (var item : menu.getPlayerInventory().items) {
-            var key = AEItemKey.of(item);
+            var key = TLItemKey.of(item);
             if (key != null) {
                 // Use -1 as lower priority than the lowest network entry (which start at 0)
                 result.putIfAbsent(key, -1);

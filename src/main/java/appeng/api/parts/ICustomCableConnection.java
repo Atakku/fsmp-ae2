@@ -23,13 +23,13 @@
 
 package appeng.api.parts;
 
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 
 public interface ICustomCableConnection {
 
     /**
      * @return This controls the cable connection to the node. -1 to render connection yourself.
      */
-    float getCableConnectionLength(AECableType cable);
+    float getCableConnectionLength(TLCableType cable);
 
 }

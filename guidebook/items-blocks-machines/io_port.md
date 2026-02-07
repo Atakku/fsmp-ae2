@@ -7,7 +7,7 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:io_port
+- tl2:io_port
 ---
 
 # The ME I/O Port
@@ -15,7 +15,7 @@ item_ids:
 <BlockImage id="io_port" p:powered="true" scale="8" />
 
 The IO Port allows you to rapidly fill or empty [storage cells](../items-blocks-machines/storage_cells.md) to or from
-[network storage](../ae2-mechanics/import-export-storage.md).
+[network storage](../tl2-mechanics/import-export-storage.md).
 
 It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
 
@@ -23,7 +23,7 @@ It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
 
 *   The IO Port can be set to move the cell to the output slots when the cell is empty, full, or when the work is done.
 *   If a <ItemLink id="redstone_card" /> is inserted, there will be options for various redstone conditions
-*   In the center of the GUI, there is an arrow to set which direction to transfer items, from the cell to [network storage](../ae2-mechanics/import-export-storage.md),
+*   In the center of the GUI, there is an arrow to set which direction to transfer items, from the cell to [network storage](../tl2-mechanics/import-export-storage.md),
     or from storage to the cell.
 
 ## Upgrades

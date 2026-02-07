@@ -12,7 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.client.AEKeyRendering;
+import appeng.api.client.TLKeyRendering;
 import appeng.api.stacks.GenericStack;
 
 @Mixin(value = Screen.class, priority = 1001)
@@ -23,7 +23,7 @@ public class WrappedGenericStackTooltipModIdMixin {
             CallbackInfoReturnable<List<Component>> cri) {
         var unwrapped = GenericStack.unwrapItemStack(itemStack);
         if (unwrapped != null) {
-            cri.setReturnValue(AEKeyRendering.getTooltip(unwrapped.what()));
+            cri.setReturnValue(TLKeyRendering.getTooltip(unwrapped.what()));
         }
     }
 

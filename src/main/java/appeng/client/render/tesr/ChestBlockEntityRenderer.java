@@ -46,7 +46,7 @@ import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.client.render.BakedModelUnwrapper;
 import appeng.client.render.DelegateBakedModel;
 import appeng.client.render.model.DriveBakedModel;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.TLBlocks;
 
 /**
  * The block entity renderer for ME chests takes care of rendering the right model for the inserted cell, as well as the
@@ -113,7 +113,7 @@ public class ChestBlockEntityRenderer implements BlockEntityRenderer<MEChestBloc
 
     private DriveBakedModel getDriveModel() {
         BakedModel driveModel = modelManager.getBlockModelShaper()
-                .getBlockModel(AEBlocks.DRIVE.block().defaultBlockState());
+                .getBlockModel(TLBlocks.DRIVE.block().defaultBlockState());
         return BakedModelUnwrapper.unwrap(driveModel, DriveBakedModel.class);
     }
 

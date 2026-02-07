@@ -1,4 +1,4 @@
 
 # Scripts
 
-format_guidebook.mjs: Reformats the Markdown in the AE2 guidebook
+format_guidebook.mjs: Reformats the Markdown in the TL2 guidebook

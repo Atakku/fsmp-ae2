@@ -7,7 +7,7 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:drive
+- tl2:drive
 ---
 
 # The ME Drive
@@ -16,10 +16,10 @@ item_ids:
   <ImportStructure src="../assets/blocks/drive.snbt" />
 </GameScene>
 
-The Drive is the [device](../ae2-mechanics/devices.md) you plug your [storage cells](storage_cells.md) into in order to use them for
-[network storage](../ae2-mechanics/import-export-storage.md). It has 10 slots which each accept a cell.
+The Drive is the [device](../tl2-mechanics/devices.md) you plug your [storage cells](storage_cells.md) into in order to use them for
+[network storage](../tl2-mechanics/import-export-storage.md). It has 10 slots which each accept a cell.
 
-If for some reason you want to, you can push and pull the cells from its inventory with any item logistics like hoppers or ae2 busses.
+If for some reason you want to, you can push and pull the cells from its inventory with any item logistics like hoppers or tl2 busses.
 
 It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
 
@@ -31,9 +31,9 @@ The cells in the drive have an LED on them which shows their status:
 | :----- | :------------------------------------------------------------------------------- |
 | Green  | Empty                                                                            |
 | Blue   | Has some contents                                                                |
-| Orange | [Types](../ae2-mechanics/bytes-and-types.md) full, no new types can be added     |
-| Red    | [Bytes](../ae2-mechanics/bytes-and-types.md) full, no more items can be inserted |
-| Black  | No power or drive has no [channel](../ae2-mechanics/channels.md)                 |
+| Orange | [Types](../tl2-mechanics/bytes-and-types.md) full, no new types can be added     |
+| Red    | [Bytes](../tl2-mechanics/bytes-and-types.md) full, no more items can be inserted |
+| Black  | No power or drive has no [channel](../tl2-mechanics/channels.md)                 |
 
 ## Priority
 

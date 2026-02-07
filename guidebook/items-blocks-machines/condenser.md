@@ -7,7 +7,7 @@ navigation:
 categories:
 - machines
 item_ids:
-- ae2:condenser
+- tl2:condenser
 ---
 
 # The Matter Condenser

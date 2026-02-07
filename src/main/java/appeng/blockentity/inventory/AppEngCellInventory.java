@@ -24,7 +24,7 @@ import appeng.api.inventories.BaseInternalInventory;
 import appeng.api.storage.cells.StorageCell;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.InternalInventoryHost;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
 public class AppEngCellInventory extends BaseInternalInventory {
     private final AppEngInternalInventory inv;
@@ -39,7 +39,7 @@ public class AppEngCellInventory extends BaseInternalInventory {
         this.handlerForSlot[slot] = handler;
     }
 
-    public void setFilter(IAEItemFilter filter) {
+    public void setFilter(ITLItemFilter filter) {
         this.inv.setFilter(filter);
     }
 

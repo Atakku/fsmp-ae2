@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.menu.me.common.GridInventoryEntry;
 
 final class ItemIdSearchPredicate implements Predicate<GridInventoryEntry> {
@@ -16,7 +16,7 @@ final class ItemIdSearchPredicate implements Predicate<GridInventoryEntry> {
 
     @Override
     public boolean test(GridInventoryEntry gridInventoryEntry) {
-        AEKey what = Objects.requireNonNull(gridInventoryEntry.getWhat());
+        TLKey what = Objects.requireNonNull(gridInventoryEntry.getWhat());
         var id = what.getId().toString();
         return id.toLowerCase(Locale.ROOT).contains(term);
     }

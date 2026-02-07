@@ -32,22 +32,22 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.me.cells.BasicCellHandler;
 
 /**
- * Implement this on any item to register a "basic cell", which is a cell that works similarly to AE2's own item and
- * fluid cells. There is no need to register an {@link ICellHandler} for such an item. AE2 automatically handles the
+ * Implement this on any item to register a "basic cell", which is a cell that works similarly to TL2's own item and
+ * fluid cells. There is no need to register an {@link ICellHandler} for such an item. TL2 automatically handles the
  * internals and NBT data, which is both nice, and bad for you!
  * <p/>
- * The standard AE implementation also only provides 1-63 Types.
+ * The standard TL implementation also only provides 1-63 Types.
  */
 public interface IBasicCellItem extends ICellWorkbenchItem {
     /**
-     * Basic cell items are limited to a single {@link AEKeyType}.
+     * Basic cell items are limited to a single {@link TLKeyType}.
      */
-    AEKeyType getKeyType();
+    TLKeyType getKeyType();
 
     /**
      * The number of bytes that can be stored on this type of storage cell.
@@ -77,13 +77,13 @@ public interface IBasicCellItem extends ICellWorkbenchItem {
 
     /**
      * Allows you to fine tune which items are allowed on a given cell, if you don't care, just return false; As the
-     * handler for this type of cell is still the default cells, the normal AE black list is also applied.
+     * handler for this type of cell is still the default cells, the normal TL black list is also applied.
      *
      * @param cellItem          item
      * @param requestedAddition requested addition
      * @return true to preventAdditionOfItem
      */
-    default boolean isBlackListed(ItemStack cellItem, AEKey requestedAddition) {
+    default boolean isBlackListed(ItemStack cellItem, TLKey requestedAddition) {
         return false;
     }
 

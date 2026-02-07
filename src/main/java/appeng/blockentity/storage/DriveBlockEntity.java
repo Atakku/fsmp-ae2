@@ -53,12 +53,12 @@ import appeng.api.storage.MEStorage;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.StorageCell;
-import appeng.api.util.AECableType;
-import appeng.blockentity.grid.AENetworkedInvBlockEntity;
+import appeng.api.util.TLCableType;
+import appeng.blockentity.grid.TLNetworkedInvBlockEntity;
 import appeng.blockentity.inventory.AppEngCellInventory;
 import appeng.client.render.model.DriveModelData;
-import appeng.core.AELog;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.TLLog;
+import appeng.core.definitions.TLBlocks;
 import appeng.helpers.IPriorityHost;
 import appeng.me.storage.DriveWatcher;
 import appeng.menu.ISubMenu;
@@ -66,9 +66,9 @@ import appeng.menu.MenuOpener;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.locator.MenuLocators;
 import appeng.util.inv.AppEngInternalInventory;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
-public class DriveBlockEntity extends AENetworkedInvBlockEntity
+public class DriveBlockEntity extends TLNetworkedInvBlockEntity
         implements IChestOrDrive, IPriorityHost, IStorageProvider {
 
     private final AppEngCellInventory inv = new AppEngCellInventory(this, getCellCount());
@@ -160,7 +160,7 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
             var itemId = data.readVarInt();
             Item item = itemId == 0 ? null : BuiltInRegistries.ITEM.byId(itemId);
             if (itemId != 0 && item == Items.AIR) {
-                AELog.warn("Received unknown item id from server for disk drive %s: %d", this, itemId);
+                TLLog.warn("Received unknown item id from server for disk drive %s: %d", this, itemId);
             }
             if (clientSideCellItems[i] != item) {
                 clientSideCellItems[i] = item;
@@ -191,7 +191,7 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
                 try {
                     clientSideCellState[i] = CellState.valueOf(cellStateName.toUpperCase(Locale.ROOT));
                 } catch (IllegalArgumentException e) {
-                    AELog.warn("Cannot parse cell state for cell %d: %s", i, cellStateName);
+                    TLLog.warn("Cannot parse cell state for cell %d: %s", i, cellStateName);
                 }
             }
         }
@@ -319,8 +319,8 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction dir) {
-        return AECableType.SMART;
+    public TLCableType getCableConnectionType(Direction dir) {
+        return TLCableType.SMART;
     }
 
     @Override
@@ -417,7 +417,7 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
         this.level.blockEntityChanged(this.worldPosition);
     }
 
-    private static class CellValidInventoryFilter implements IAEItemFilter {
+    private static class CellValidInventoryFilter implements ITLItemFilter {
 
         @Override
         public boolean allowExtract(InternalInventory inv, int slot, int amount) {
@@ -451,6 +451,6 @@ public class DriveBlockEntity extends AENetworkedInvBlockEntity
 
     @Override
     public ItemStack getMainMenuIcon() {
-        return AEBlocks.DRIVE.stack();
+        return TLBlocks.DRIVE.stack();
     }
 }

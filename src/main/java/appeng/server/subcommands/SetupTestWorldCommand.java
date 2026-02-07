@@ -24,8 +24,8 @@ import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.levelgen.FlatLevelSource;
 import net.neoforged.neoforge.common.NeoForge;
 
-import appeng.core.AELog;
-import appeng.core.definitions.AEItems;
+import appeng.core.TLLog;
+import appeng.core.definitions.TLItems;
 import appeng.core.localization.PlayerMessages;
 import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.server.ISubCommand;
@@ -35,7 +35,7 @@ import appeng.server.testworld.TestWorldGenerator;
 
 /**
  * This command will verify the user is in creative mode, the world is a flat world with void preset, and then start
- * setting up a testing world for AE2.
+ * setting up a testing world for TL2.
  */
 public class SetupTestWorldCommand implements ISubCommand {
     @Override
@@ -93,7 +93,7 @@ public class SetupTestWorldCommand implements ISubCommand {
 
             sender.sendSuccess(() -> PlayerMessages.TestWorldSetupComplete.text(sw.toString()), true);
         } catch (RuntimeException | CommandSyntaxException e) {
-            AELog.error(e);
+            TLLog.error(e);
             sender.sendFailure(PlayerMessages.TestWorldSetupFailed.text(e.toString()));
         }
     }
@@ -114,7 +114,7 @@ public class SetupTestWorldCommand implements ISubCommand {
     private void kitOutPlayer(ServerPlayer player) {
         var playerInv = player.getInventory();
         var fullApplicator = ColorApplicatorItem.createFullColorApplicator();
-        if (!playerInv.hasAnyOf(Collections.singleton(AEItems.COLOR_APPLICATOR.asItem()))) {
+        if (!playerInv.hasAnyOf(Collections.singleton(TLItems.COLOR_APPLICATOR.asItem()))) {
             playerInv.placeItemBackInInventory(fullApplicator);
         }
         NeoForge.EVENT_BUS.post(new KitOutPlayerEvent(player));

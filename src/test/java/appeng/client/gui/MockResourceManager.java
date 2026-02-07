@@ -38,7 +38,7 @@ import net.minecraft.util.Unit;
 import appeng.core.AppEng;
 
 /**
- * Fake resource manager that more or less loads AE2 resource pack resources.
+ * Fake resource manager that more or less loads TL2 resource pack resources.
  */
 public final class MockResourceManager {
     private MockResourceManager() {
@@ -60,7 +60,7 @@ public final class MockResourceManager {
         }
 
         var packResources = new PathPackResources(
-                new PackLocationInfo("ae2", Component.literal("AE2"), PackSource.BUILT_IN, Optional.empty()),
+                new PackLocationInfo("tl2", Component.literal("TL2"), PackSource.BUILT_IN, Optional.empty()),
                 assetRootPath);
 
         ReloadableResourceManager resourceManager = new ReloadableResourceManager(PackType.CLIENT_RESOURCES);

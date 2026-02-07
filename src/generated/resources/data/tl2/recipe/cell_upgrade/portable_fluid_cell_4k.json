@@ -1,0 +1,22 @@
+{
+  "type": "tl2:storage_cell_disassembly",
+  "cell": "tl2:portable_fluid_cell_4k",
+  "cell_disassembly_items": [
+    {
+      "count": 1,
+      "id": "tl2:chest"
+    },
+    {
+      "count": 1,
+      "id": "minecraft:redstone_block"
+    },
+    {
+      "count": 1,
+      "id": "tl2:fluid_cell_housing"
+    },
+    {
+      "count": 1,
+      "id": "tl2:cell_component_4k"
+    }
+  ]
+}

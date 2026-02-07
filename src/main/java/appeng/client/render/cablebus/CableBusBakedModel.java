@@ -49,9 +49,9 @@ import net.neoforged.neoforge.client.model.IDynamicBakedModel;
 import net.neoforged.neoforge.client.model.data.ModelData;
 
 import appeng.api.parts.IPartModel;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
-import appeng.client.render.model.AEModelData;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
+import appeng.client.render.model.TLModelData;
 import appeng.thirdparty.fabric.MeshBuilderImpl;
 
 public class CableBusBakedModel implements IDynamicBakedModel {
@@ -148,15 +148,15 @@ public class CableBusBakedModel implements IDynamicBakedModel {
 
     // Determines whether a cable is connected to exactly two sides that are
     // opposite each other
-    private static boolean isStraightLine(AECableType cableType, EnumMap<Direction, AECableType> sides) {
-        final Iterator<Entry<Direction, AECableType>> it = sides.entrySet().iterator();
+    private static boolean isStraightLine(TLCableType cableType, EnumMap<Direction, TLCableType> sides) {
+        final Iterator<Entry<Direction, TLCableType>> it = sides.entrySet().iterator();
         if (!it.hasNext()) {
             return false; // No connections
         }
 
-        final Entry<Direction, AECableType> nextConnection = it.next();
+        final Entry<Direction, TLCableType> nextConnection = it.next();
         final Direction firstSide = nextConnection.getKey();
-        final AECableType firstType = nextConnection.getValue();
+        final TLCableType firstType = nextConnection.getValue();
 
         if (!it.hasNext()) {
             return false; // Only a single connection
@@ -168,13 +168,13 @@ public class CableBusBakedModel implements IDynamicBakedModel {
             return false; // Must not have any other connection points
         }
 
-        final AECableType secondType = sides.get(firstSide.getOpposite());
+        final TLCableType secondType = sides.get(firstSide.getOpposite());
 
         return firstType == secondType && cableType == firstType && cableType == secondType;
     }
 
     private static int getPartSpin(ModelData partModelData) {
-        var spin = partModelData.get(AEModelData.SPIN);
+        var spin = partModelData.get(TLModelData.SPIN);
         if (spin != null) {
             return spin;
         }
@@ -183,13 +183,13 @@ public class CableBusBakedModel implements IDynamicBakedModel {
     }
 
     private void addCableQuads(CableBusRenderState renderState, List<BakedQuad> quadsOut) {
-        AECableType cableType = renderState.getCableType();
-        if (cableType == AECableType.NONE) {
+        TLCableType cableType = renderState.getCableType();
+        if (cableType == TLCableType.NONE) {
             return;
         }
 
-        AEColor cableColor = renderState.getCableColor();
-        EnumMap<Direction, AECableType> connectionTypes = renderState.getConnectionTypes();
+        TLColor cableColor = renderState.getCableColor();
+        EnumMap<Direction, TLCableType> connectionTypes = renderState.getConnectionTypes();
 
         // If the connection is straight, no busses are attached, and no covered core
         // has been forced (in case of glass
@@ -252,9 +252,9 @@ public class CableBusBakedModel implements IDynamicBakedModel {
         }
 
         // Render all outgoing connections using the appropriate type
-        for (Entry<Direction, AECableType> connection : connectionTypes.entrySet()) {
+        for (Entry<Direction, TLCableType> connection : connectionTypes.entrySet()) {
             final Direction facing = connection.getKey();
-            final AECableType connectionType = connection.getValue();
+            final TLCableType connectionType = connection.getValue();
             final boolean cableBusAdjacent = renderState.getCableBusAdjacent().contains(facing);
             final int channels = renderState.getChannelsOnSide().get(facing);
 
@@ -290,7 +290,7 @@ public class CableBusBakedModel implements IDynamicBakedModel {
      */
     public List<TextureAtlasSprite> getParticleTextures(CableBusRenderState renderState) {
         CableCoreType coreType = CableCoreType.fromCableType(renderState.getCableType());
-        AEColor cableColor = renderState.getCableColor();
+        TLColor cableColor = renderState.getCableColor();
 
         List<TextureAtlasSprite> result = new ArrayList<>();
 

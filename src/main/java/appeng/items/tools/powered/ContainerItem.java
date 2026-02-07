@@ -11,18 +11,18 @@ import net.minecraft.world.item.ItemStack;
 import appeng.api.behaviors.ContainerItemStrategies;
 import appeng.api.config.Actionable;
 import appeng.api.implementations.menuobjects.IMenuItem;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
-import appeng.items.AEBaseItem;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
+import appeng.items.TLBaseItem;
 import appeng.menu.locator.MenuLocators;
 
-public abstract class ContainerItem extends AEBaseItem implements IMenuItem {
+public abstract class ContainerItem extends TLBaseItem implements IMenuItem {
     public ContainerItem(Properties props) {
         super(props);
     }
 
-    protected long insert(Player player, ItemStack stack, AEKey what, @Nullable AEKeyType allowed, long amount,
+    protected long insert(Player player, ItemStack stack, TLKey what, @Nullable TLKeyType allowed, long amount,
             Actionable mode) {
         if (allowed != null && what.getType() != allowed) {
             return 0;
@@ -83,11 +83,11 @@ public abstract class ContainerItem extends AEBaseItem implements IMenuItem {
         }
 
         // Fall back to inserting as item
-        var key = AEItemKey.of(otherStack);
+        var key = TLItemKey.of(otherStack);
         var inserted = (int) insert(player,
                 cellStack,
                 key,
-                AEKeyType.items(),
+                TLKeyType.items(),
                 otherStack.getCount(),
                 Actionable.MODULATE);
         if (inserted > 0) {
@@ -100,7 +100,7 @@ public abstract class ContainerItem extends AEBaseItem implements IMenuItem {
     protected boolean tryInsertFromPlayerOwnedItem(Player player,
             ItemStack cellStack,
             ItemStack otherStack,
-            AEKeyType keyType) {
+            TLKeyType keyType) {
         var context = ContainerItemStrategies.findOwnedItemContext(keyType, player, otherStack);
         if (context != null) {
             var containedStack = context.getExtractableContent();

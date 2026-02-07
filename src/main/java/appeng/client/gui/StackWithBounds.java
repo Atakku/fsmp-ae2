@@ -12,7 +12,7 @@ import appeng.api.stacks.GenericStack;
  */
 public record StackWithBounds(GenericStack stack, Rect2i bounds) {
     @Nullable
-    public static StackWithBounds fromSlot(AEBaseScreen<?> screen, Slot slot) {
+    public static StackWithBounds fromSlot(TLBaseScreen<?> screen, Slot slot) {
         var item = slot.getItem();
         var stack = GenericStack.unwrapItemStack(item);
         if (stack != null) {

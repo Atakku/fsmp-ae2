@@ -33,10 +33,10 @@ import appeng.api.networking.IStackWatcher;
 import appeng.api.networking.storage.IStorageWatcherNode;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.util.IConfigManagerBuilder;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.helpers.IConfigInvHost;
 import appeng.hooks.ticking.TickHandler;
 import appeng.items.parts.PartModels;
@@ -82,8 +82,8 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
         }
 
         @Override
-        public void onStackChange(AEKey what, long amount) {
-            if (what.equals(getConfiguredKey()) && !isUpgradedWith(AEItems.FUZZY_CARD)) {
+        public void onStackChange(TLKey what, long amount) {
+            if (what.equals(getConfiguredKey()) && !isUpgradedWith(TLItems.FUZZY_CARD)) {
                 lastReportedValue = amount;
                 updateState();
             } else { // either fuzzy upgrade or null filter
@@ -111,7 +111,7 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
     }
 
     @Nullable
-    private AEKey getConfiguredKey() {
+    private TLKey getConfiguredKey() {
         return config.getKey(0);
     }
 
@@ -155,7 +155,7 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
         }
 
         if (this.storageWatcher != null) {
-            if (isUpgradedWith(AEItems.FUZZY_CARD) || myStack == null) {
+            if (isUpgradedWith(TLItems.FUZZY_CARD) || myStack == null) {
                 this.storageWatcher.setWatchAll(true);
             } else {
                 this.storageWatcher.add(myStack);
@@ -180,7 +180,7 @@ public class StorageLevelEmitterPart extends AbstractLevelEmitterPart
                     break;
                 }
             }
-        } else if (isUpgradedWith(AEItems.FUZZY_CARD)) {
+        } else if (isUpgradedWith(TLItems.FUZZY_CARD)) {
             this.lastReportedValue = 0;
             var fzMode = this.getConfigManager().getSetting(Settings.FUZZY_MODE);
             var fuzzyList = stacks.findFuzzy(myStack, fzMode);

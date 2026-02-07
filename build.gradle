@@ -24,10 +24,9 @@ plugins {
 }
 
 apply plugin: ProjectDefaultsPlugin
-apply plugin: CrowdinPlugin
 
 base {
-    archivesName = "appliedenergistics2"
+    archivesName = "theoreticallethargics2"
 }
 
 neoForge.version = project.neoforge_version
@@ -67,6 +66,12 @@ dependencies {
     compileOnly "mcp.mobius.waila:wthit-api:neo-${project.wthit_version}"
     compileOnly "curse.maven:jade-324717:${project.jade_file_id}"
     compileOnly "mcjty.theoneprobe:theoneprobe:${project.top_version}"
+
+    implementation("com.simibubi.create:create-${project.minecraft_version}:${project.create_version}:slim") { transitive = false }
+    implementation("net.createmod.ponder:Ponder-NeoForge-${project.minecraft_version}:${project.ponder_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${project.minecraft_version}:${project.flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${project.minecraft_version}:${project.flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${project.registrate_version}")
 
     switch (project.runtime_itemlist_mod) {
         case "emi":
@@ -115,7 +120,7 @@ test {
     useJUnitPlatform()
 
     // Might not need this anymore...
-    systemProperty "guideme.ae2.guide.sources", file("guidebook").absolutePath
+    systemProperty "guideme.tl2.guide.sources", file("guidebook").absolutePath
 }
 
 dependencies {
@@ -127,7 +132,7 @@ neoForge {
     validateAccessTransformers = true
 
     mods {
-        ae2 {
+        tl2 {
             sourceSet sourceSets.main
         }
     }
@@ -138,7 +143,7 @@ neoForge {
             systemProperty('appeng.tests', 'true')
             // systemProperty('mixin.debug.export', 'true')
             logLevel = org.slf4j.event.Level.INFO
-            systemProperty('guideme.ae2.guide.sources', file('guidebook').absolutePath)
+            systemProperty('guideme.tl2.guide.sources', file('guidebook').absolutePath)
         }
         client {
             client()
@@ -147,14 +152,14 @@ neoForge {
         gametestWorld {
             client()
             programArguments = [
-                    '--username', 'AE2Dev', '--quickPlaySingleplayer', 'GametestWorld'
+                    '--username', 'TL2Dev', '--quickPlaySingleplayer', 'GametestWorld'
             ]
             systemProperty('appeng.tests', 'true')
         }
         guide {
             client()
 
-            systemProperty('guideme.showOnStartup', 'ae2:guide')
+            systemProperty('guideme.showOnStartup', 'tl2:guide')
         }
         server {
             server()
@@ -162,7 +167,7 @@ neoForge {
         data {
             data()
             programArguments = [
-                    '--mod', 'ae2',
+                    '--mod', 'tl2',
                     '--all',
                     '--output', file('src/generated/resources/').absolutePath,
                     '--existing', file('src/main/resources').absolutePath
@@ -182,7 +187,7 @@ neoForge {
 
     unitTest {
         enable()
-        testedMod = mods.ae2
+        testedMod = mods.tl2
     }
 }
 
@@ -217,7 +222,7 @@ neoForge.ideSyncTask generateModMetadata
 tasks.named('jar', Jar) {
     exclude '/.cache'
     from('guidebook') {
-        into 'assets/ae2/ae2guide'
+        into 'assets/tl2/tl2guide'
     }
 }
 
@@ -256,16 +261,16 @@ artifacts {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = "appliedenergistics2"
+            artifactId = "theoreticallethargics2"
             version = project.version
             pom {
-                name = "Applied Energistics 2"
-                description = "A Minecraft mod about Matter, Energy and using them to conquer the world..."
+                name = "Theoretical Lethargics 2"
+                description = "A Minecraft mod about matter..."
                 url = "https://appliedenergistics.org"
                 scm {
-                    connection = "scm:git:git://github.com/AppliedEnergistics/Applied-Energistics-2.git"
-                    developerConnection = "scm:git:ssh://github.com:AppliedEnergistics/Applied-Energistics-2.git"
-                    url = "https://github.com/AppliedEnergistics/Applied-Energistics-2/tree/main"
+                    connection = "scm:git:git://github.com/Atakku/smp-ae2.git"
+                    developerConnection = "scm:git:ssh://github.com:Atakku/smp-ae2.git"
+                    url = "https://github.com/Atakku/smp-ae2/tree/1.21.1"
                 }
                 licenses {
                     license {
@@ -285,6 +290,12 @@ publishing {
                         email = "team@appliedenergistics.org"
                         organization = "Applied Energistics"
                         organizationUrl = "https://github.com/AppliedEnergistics/"
+                    }
+                    developer {
+                        name = "Atakku"
+                        email = "atakkudev@gmail.com"
+                        organization = "Atakku"
+                        organizationUrl = "https://github.com/Atakku/"
                     }
                 }
             }
@@ -313,7 +324,7 @@ spotless {
         removeUnusedImports()
         toggleOffOn()
         eclipse().configFile 'codeformat/codeformat.xml'
-        importOrderFile 'codeformat/ae2.importorder'
+        importOrderFile 'codeformat/tl2.importorder'
 
         // courtesy of diffplug/spotless#240
         // https://github.com/diffplug/spotless/issues/240#issuecomment-385206606

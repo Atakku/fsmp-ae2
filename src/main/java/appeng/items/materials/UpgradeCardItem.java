@@ -38,10 +38,10 @@ import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.PlayerMessages;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 import appeng.util.InteractionUtil;
 
-public class UpgradeCardItem extends AEBaseItem {
+public class UpgradeCardItem extends TLBaseItem {
 
     public UpgradeCardItem(Properties properties) {
         super(properties);

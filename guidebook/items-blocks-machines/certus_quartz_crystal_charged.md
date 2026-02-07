@@ -7,7 +7,7 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:charged_certus_quartz_crystal
+- tl2:charged_certus_quartz_crystal
 ---
 
 # The Charged Certus Quartz Crystal

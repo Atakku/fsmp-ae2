@@ -35,11 +35,11 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import appeng.api.networking.GridHelper;
-import appeng.core.AEConfig;
-import appeng.items.AEBaseItem;
+import appeng.core.TLConfig;
+import appeng.items.TLBaseItem;
 import appeng.util.InteractionUtil;
 
-public class ReplicatorCardItem extends AEBaseItem {
+public class ReplicatorCardItem extends TLBaseItem {
 
     public ReplicatorCardItem(Properties properties) {
         super(properties);
@@ -124,7 +124,7 @@ public class ReplicatorCardItem extends AEBaseItem {
 
     @Override
     public void addToMainCreativeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        if (AEConfig.instance().isDebugToolsEnabled()) {
+        if (TLConfig.instance().isDebugToolsEnabled()) {
             output.accept(this);
         }
     }

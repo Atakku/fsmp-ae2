@@ -45,7 +45,7 @@ public enum InGameTooltip implements LocalizationEnum {
 
     @Override
     public String getTranslationKey() {
-        return "waila.ae2." + name();
+        return "waila.tl2." + name();
     }
 
     @Override

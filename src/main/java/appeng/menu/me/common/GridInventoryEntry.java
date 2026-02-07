@@ -20,7 +20,7 @@ package appeng.menu.me.common;
 
 import org.jetbrains.annotations.Nullable;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 /**
  * Contains information about something that is stored inside of the grid inventory. This is used to synchronize the
@@ -32,13 +32,13 @@ public class GridInventoryEntry {
     private final long serial;
 
     @Nullable
-    private final AEKey what;
+    private final TLKey what;
 
     private final long storedAmount;
 
     private final long requestableAmount;
 
-    public GridInventoryEntry(long serial, @Nullable AEKey what, long storedAmount, long requestableAmount) {
+    public GridInventoryEntry(long serial, @Nullable TLKey what, long storedAmount, long requestableAmount) {
         this.serial = serial;
         this.what = what;
         this.storedAmount = storedAmount;
@@ -60,7 +60,7 @@ public class GridInventoryEntry {
      * that should be updated.
      */
     @Nullable
-    public AEKey getWhat() {
+    public TLKey getWhat() {
         return what;
     }
 

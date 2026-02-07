@@ -11,8 +11,8 @@ import me.shedaniel.rei.api.common.entry.type.EntryType;
 import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
 
 import appeng.api.integrations.rei.IngredientConverter;
-import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLItemKey;
 
 public class ItemIngredientConverter implements IngredientConverter<ItemStack> {
     @Override
@@ -23,7 +23,7 @@ public class ItemIngredientConverter implements IngredientConverter<ItemStack> {
     @Nullable
     @Override
     public EntryStack<ItemStack> getIngredientFromStack(GenericStack stack) {
-        if (stack.what() instanceof AEItemKey itemKey) {
+        if (stack.what() instanceof TLItemKey itemKey) {
             return EntryStack.of(getIngredientType(), itemKey.toStack(
                     Math.max(1, Ints.saturatedCast(stack.amount()))));
         } else {
@@ -36,7 +36,7 @@ public class ItemIngredientConverter implements IngredientConverter<ItemStack> {
     public GenericStack getStackFromIngredient(EntryStack<ItemStack> ingredient) {
         if (ingredient.getType() == getIngredientType()) {
             ItemStack itemStack = ingredient.castValue();
-            var itemKey = AEItemKey.of(itemStack);
+            var itemKey = TLItemKey.of(itemStack);
             if (itemKey != null) {
                 return new GenericStack(itemKey, itemStack.getCount());
             }

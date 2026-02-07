@@ -22,14 +22,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 
 import appeng.blockentity.storage.DriveBlockEntity;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.slot.RestrictedInputSlot;
 
 /**
  * @see appeng.client.gui.implementations.DriveScreen
  */
-public class DriveMenu extends AEBaseMenu {
+public class DriveMenu extends TLBaseMenu {
 
     public static final MenuType<DriveMenu> TYPE = MenuTypeBuilder
             .create(DriveMenu::new, DriveBlockEntity.class)

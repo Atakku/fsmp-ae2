@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.menu.me.common.GridInventoryEntry;
 import appeng.util.Platform;
 
@@ -17,7 +17,7 @@ final class ModSearchPredicate implements Predicate<GridInventoryEntry> {
 
     @Override
     public boolean test(GridInventoryEntry gridInventoryEntry) {
-        AEKey entryInfo = Objects.requireNonNull(gridInventoryEntry.getWhat());
+        TLKey entryInfo = Objects.requireNonNull(gridInventoryEntry.getWhat());
         String modId = entryInfo.getModId();
 
         if (modId != null) {

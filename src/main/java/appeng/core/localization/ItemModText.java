@@ -17,7 +17,7 @@ public enum ItemModText implements LocalizationEnum {
     WILL_CRAFT("Will craft unavailable items"),
     CTRL_CLICK_TO_CRAFT("CTRL + click to craft unavailable items"),
     MOVE_ITEMS("Move items"),
-    // Display of AE2-specific REI/JEI entries
+    // Display of TL2-specific REI/JEI entries
     TRANSFORM_CATEGORY("In-World Transformation"),
     P2P_API_ATTUNEMENT("Attune with any:"),
     P2P_TUNNEL_ATTUNEMENT("P2P Tunnel Attunement"),
@@ -57,6 +57,6 @@ public enum ItemModText implements LocalizationEnum {
 
     @Override
     public String getTranslationKey() {
-        return "ae2.rei_jei_integration." + name().toLowerCase(Locale.ROOT);
+        return "tl2.rei_jei_integration." + name().toLowerCase(Locale.ROOT);
     }
 }

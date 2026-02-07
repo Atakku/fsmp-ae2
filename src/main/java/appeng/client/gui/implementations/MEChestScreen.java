@@ -21,11 +21,11 @@ package appeng.client.gui.implementations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.menu.implementations.MEChestMenu;
 
-public class MEChestScreen extends AEBaseScreen<MEChestMenu> {
+public class MEChestScreen extends TLBaseScreen<MEChestMenu> {
 
     public MEChestScreen(MEChestMenu menu, Inventory playerInventory, Component title,
             ScreenStyle style) {

@@ -10,8 +10,8 @@ import dev.emi.emi.api.neoforge.NeoForgeEmiStack;
 import dev.emi.emi.api.stack.EmiStack;
 
 import appeng.api.integrations.emi.EmiStackConverter;
-import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
 
 class EmiFluidStackConverter implements EmiStackConverter {
     @Override
@@ -21,7 +21,7 @@ class EmiFluidStackConverter implements EmiStackConverter {
 
     @Override
     public @Nullable EmiStack toEmiStack(GenericStack stack) {
-        if (stack.what() instanceof AEFluidKey fluidKey) {
+        if (stack.what() instanceof TLFluidKey fluidKey) {
             return NeoForgeEmiStack.of(fluidKey.toStack(1)).setAmount(stack.amount());
         }
         return null;
@@ -32,7 +32,7 @@ class EmiFluidStackConverter implements EmiStackConverter {
         var fluid = stack.getKeyOfType(Fluid.class);
         if (fluid != null && fluid != Fluids.EMPTY) {
             var fluidStack = new FluidStack(fluid.builtInRegistryHolder(), 1, stack.getComponentChanges());
-            var fluidKey = AEFluidKey.of(fluidStack);
+            var fluidKey = TLFluidKey.of(fluidStack);
             return new GenericStack(fluidKey, stack.getAmount());
         }
         return null;

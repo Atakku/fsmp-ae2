@@ -34,9 +34,9 @@ import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 
 import appeng.api.parts.PartModelsInternal;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.client.render.BasicUnbakedModel;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 
 /**
  * The built-in model for the cable bus block.
@@ -64,7 +64,7 @@ public class CableBusModel implements BasicUnbakedModel {
         // This should normally not be used, but we *have* to provide a particle texture
         // or otherwise damage models will
         // crash
-        TextureAtlasSprite particleTexture = cableBuilder.getCoreTexture(CableCoreType.GLASS, AEColor.TRANSPARENT);
+        TextureAtlasSprite particleTexture = cableBuilder.getCoreTexture(CableCoreType.GLASS, TLColor.TRANSPARENT);
 
         return new CableBusBakedModel(cableBuilder, partModels, particleTexture);
     }
@@ -76,7 +76,7 @@ public class CableBusModel implements BasicUnbakedModel {
         for (ResourceLocation location : PartModelsInternal.getModels()) {
             BakedModel bakedModel = baker.bake(location, transformIn, spriteGetterIn);
             if (bakedModel == null) {
-                AELog.warn("Failed to bake part model {}", location);
+                TLLog.warn("Failed to bake part model {}", location);
             } else {
                 result.put(location, bakedModel);
             }

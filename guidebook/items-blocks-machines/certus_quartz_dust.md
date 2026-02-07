@@ -7,7 +7,7 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:certus_quartz_dust
+- tl2:certus_quartz_dust
 ---
 
 # Certus Quartz Dust
@@ -15,7 +15,7 @@ item_ids:
 <ItemImage id="certus_quartz_dust" scale="4" />
 
 A <ItemLink id="certus_quartz_crystal" /> that has been crushed by an <ItemLink id="inscriber" />. Used in the production of
-several AE2 materials and components.
+several TL2 materials and components.
 
 ## Recipe
 

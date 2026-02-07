@@ -49,7 +49,7 @@ import appeng.core.network.clientbound.ExportedGridContent;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.Grid;
 import appeng.me.service.StatisticsService;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 import appeng.server.ISubCommand;
 import appeng.util.Platform;
 
@@ -57,7 +57,7 @@ public class GridsCommand implements ISubCommand {
     private static final Logger LOG = LoggerFactory.getLogger(GridsCommand.class);
 
     public static String buildExportCommand(int gridSerial) {
-        return "/ae2 grids export " + gridSerial;
+        return "/tl2 grids export " + gridSerial;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class GridsCommand implements ISubCommand {
             var grid = it.next();
             it.remove();
             for (var node : grid.getNodes()) {
-                if (node.getOwner() instanceof AEBasePart basePart) {
+                if (node.getOwner() instanceof TLBasePart basePart) {
                     visitGridInFrontOfPart(basePart, reachableGrids, openSet);
                 }
             }
@@ -112,7 +112,7 @@ public class GridsCommand implements ISubCommand {
         exportGrids(startGrid.getSerialNumber(), reachableGrids, source);
     }
 
-    private static void visitGridInFrontOfPart(AEBasePart part, Set<Grid> reachableGrids, Set<Grid> openSet) {
+    private static void visitGridInFrontOfPart(TLBasePart part, Set<Grid> reachableGrids, Set<Grid> openSet) {
         var partSide = part.getSide();
         if (partSide == null) {
             return;

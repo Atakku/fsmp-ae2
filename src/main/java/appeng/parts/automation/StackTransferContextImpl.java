@@ -7,9 +7,9 @@ import appeng.api.behaviors.StackTransferContext;
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.networking.storage.IStorageService;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.util.prioritylist.IPartitionList;
 
 /**
@@ -19,7 +19,7 @@ class StackTransferContextImpl implements StackTransferContext {
     private final IStorageService internalStorage;
     private final IActionSource actionSource;
     private final IPartitionList filter;
-    private final Set<AEKeyType> keyTypes;
+    private final Set<TLKeyType> keyTypes;
     private final int initialOperations;
     private int operationsRemaining;
     private boolean isInverted;
@@ -34,7 +34,7 @@ class StackTransferContextImpl implements StackTransferContext {
         this.initialOperations = operationsRemaining;
         this.operationsRemaining = operationsRemaining;
         this.keyTypes = new HashSet<>();
-        for (AEKey item : filter.getItems()) {
+        for (TLKey item : filter.getItems()) {
             this.keyTypes.add(item.getType());
         }
     }
@@ -70,12 +70,12 @@ class StackTransferContextImpl implements StackTransferContext {
     }
 
     @Override
-    public boolean isKeyTypeEnabled(AEKeyType space) {
+    public boolean isKeyTypeEnabled(TLKeyType space) {
         return keyTypes.isEmpty() || isInverted || keyTypes.contains(space);
     }
 
     @Override
-    public boolean isInFilter(AEKey key) {
+    public boolean isInFilter(TLKey key) {
         return filter.isEmpty() || filter.isListed(key);
     }
 
@@ -95,7 +95,7 @@ class StackTransferContextImpl implements StackTransferContext {
     }
 
     @Override
-    public boolean canInsert(AEItemKey what, long amount) {
+    public boolean canInsert(TLItemKey what, long amount) {
         return internalStorage.getInventory().insert(
                 what,
                 amount,

@@ -12,9 +12,9 @@ import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 
 import appeng.integration.modules.itemlists.EncodingHelper;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 
-public abstract class AbstractTransferHandler<T extends AEBaseMenu> implements TransferHandler {
+public abstract class AbstractTransferHandler<T extends TLBaseMenu> implements TransferHandler {
     protected static final int CRAFTING_GRID_WIDTH = 3;
     protected static final int CRAFTING_GRID_HEIGHT = 3;
     private static final CategoryIdentifier<?> CRAFTING = CategoryIdentifier.of("minecraft", "plugins/crafting");

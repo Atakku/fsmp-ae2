@@ -46,10 +46,10 @@ navigation:
   # Title shown in the navigation bar
   title: Page Title
   # [OPTIONAL] Item ID for an icon 
-  # defaults to the same namespace as the pages, so ae2 in our guidebook
+  # defaults to the same namespace as the pages, so tl2 in our guidebook
   icon: debug_card
   # [OPTIONAL] The page ID of the parent this page should be sorted under as a child entry
-  # If it's in the same namespace as the current page, the namespace can be omitted, otherwise use "ae2:path/to/file.md"
+  # If it's in the same namespace as the current page, the namespace can be omitted, otherwise use "tl2:path/to/file.md"
   parent: getting-started.md
 ---
 ```
@@ -64,12 +64,12 @@ for an item, list it in the `item_ids` frontmatter as such:
 ```yaml
 ---
 item_ids:
-  - ae2:item_id
-  - ae2:other_item_id
+  - tl2:item_id
+  - tl2:other_item_id
 ---
 ```
 
-Using `<ItemLink id="item_id" />` or `<ItemLink id="ae2:item_id" />` will then link to this page, as will slots
+Using `<ItemLink id="item_id" />` or `<ItemLink id="tl2:item_id" />` will then link to this page, as will slots
 in recipes that show that item.
 
 ### Using Images
@@ -87,7 +87,7 @@ To show an image, just put it (.png or .jpg) in the `guidebook/assets` folder an
 The following custom tags are supported in our Markdown pages.
 
 In all custom tags, item and page ids by default inherit the namespace of the page they're on. So if the
-page is in AE2s guidebook, all ids automatically use the `ae2` namespace, unless specified.
+page is in TL2s guidebook, all ids automatically use the `tl2` namespace, unless specified.
 
 #### Column / Row Layout
 
@@ -107,7 +107,7 @@ Example:
 #### Item Links
 
 To automatically show the translated item name, including an appropriate tooltip, and have the item name link to the
-primary guidebook page for that item, use the  `<ItemLink id="item_id" />` tag. The id can omit the `ae2` namespace.
+primary guidebook page for that item, use the  `<ItemLink id="item_id" />` tag. The id can omit the `tl2` namespace.
 
 [Pages need to be set as the primary target for certain item ids manually](#declaring-pages-as-itemlink-targets).
 
@@ -232,7 +232,7 @@ As explained above, this tag will load a structure from the file supplied in the
 place it in the scene. Both `.nbt` and `.snbt` structure files are supported. The path given in `src`
 can be relative to the current page.
 
-To easily create such structure files, use the AE2 test-world (use `/ae2 setuptestworld` in a single-player creative
+To easily create such structure files, use the TL2 test-world (use `/tl2 setuptestworld` in a single-player creative
 void-world).
 It has a plot that provides LOAD/SAVE/CLEAR functionality in a 16x16 space to more easily author structures for the
 guidebook.
@@ -291,23 +291,23 @@ The tag supports the following attributes:
 
 ## For Addon Authors
 
-The guidebook will automatically load all pages that are in the `ae2guide` subfolder of all resource packs across
+The guidebook will automatically load all pages that are in the `tl2guide` subfolder of all resource packs across
 all namespaces (yes your addon mod id too).
 
-AE2 will merge your pages into the navigation tree as if they were within AE2 itself.
+TL2 will merge your pages into the navigation tree as if they were within TL2 itself.
 
-If you want to develop the guidebook in your development environment where AE2 is only included as a dependency,
-you can do so by passing certain system properties to the game. For an example, you can see AE2s
+If you want to develop the guidebook in your development environment where TL2 is only included as a dependency,
+you can do so by passing certain system properties to the game. For an example, you can see TL2s
 own [build.gradle](./build.gradle).
 
 For the standard client run-configuration you should include:
 
 ```groovy
-property "guideDev.ae2guide.sources", file("guidebook").absolutePath
-property "guideDev.ae2guide.sourcesNamespace", "your-mod-id"
+property "guideDev.tl2guide.sources", file("guidebook").absolutePath
+property "guideDev.tl2guide.sourcesNamespace", "your-mod-id"
 ```
 
-This will load the `guidebook` folder as if it was included in the resource-pack of your mod under the `ae2guide`
+This will load the `guidebook` folder as if it was included in the resource-pack of your mod under the `tl2guide`
 folder.
 It will also automatically reload any pages that are changed in this folder, while the game is running.
 
@@ -321,9 +321,9 @@ loom {
     runs {
         guide {
             client()
-            property "guideDev.ae2guide.sources", file("guidebook").absolutePath
-            property "guideDev.ae2guide.sourcesNamespace", "your-mod-id"
-            property "guideDev.ae2guide.startupPage", "your-mod-id:start-page.md" // or ae2:index.md
+            property "guideDev.tl2guide.sources", file("guidebook").absolutePath
+            property "guideDev.tl2guide.sourcesNamespace", "your-mod-id"
+            property "guideDev.tl2guide.startupPage", "your-mod-id:start-page.md" // or tl2:index.md
         }
     }
 }

@@ -7,7 +7,7 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:sky_dust
+- tl2:sky_dust
 ---
 
 # Sky Stone Dust

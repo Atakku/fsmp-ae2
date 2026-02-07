@@ -32,16 +32,16 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.fml.ModList;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
 import appeng.api.storage.StorageCells;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.blockentity.storage.MEChestBlockEntity;
-import appeng.core.AELog;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.core.TLLog;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.me.helpers.BaseActionSource;
 import appeng.server.testworld.Plot;
 import appeng.server.testworld.PlotBuilder;
@@ -69,7 +69,7 @@ public final class TestPlots {
 
         try {
             for (var clazz : findAllTestPlotClasses()) {
-                AELog.info("Scanning %s for plots", clazz);
+                TLLog.info("Scanning %s for plots", clazz);
 
                 for (var method : clazz.getMethods()) {
                     var annotation = method.getAnnotation(TestPlot.class);
@@ -127,7 +127,7 @@ public final class TestPlots {
                 }
             }
         } catch (Exception e) {
-            AELog.error("Failed to scan for plots: %s", e);
+            TLLog.error("Failed to scan for plots: %s", e);
         }
 
         return plots;
@@ -179,12 +179,12 @@ public final class TestPlots {
         return plot;
     }
 
-    private static AEItemKey createEnchantedPickaxe(Level level) {
+    private static TLItemKey createEnchantedPickaxe(Level level) {
         var enchantmentRegistry = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
 
         var enchantedPickaxe = new ItemStack(Items.DIAMOND_PICKAXE);
         enchantedPickaxe.enchant(enchantmentRegistry.getHolderOrThrow(Enchantments.FORTUNE), 3);
-        return AEItemKey.of(enchantedPickaxe);
+        return TLItemKey.of(enchantedPickaxe);
     }
 
     /**
@@ -194,16 +194,16 @@ public final class TestPlots {
     public static void allTerminals(PlotBuilder plot) {
         plot.cable("0 -1 0");
 
-        plot.cable("[-1,0] [0,8] 0", AEParts.COVERED_DENSE_CABLE);
-        plot.block("[-1,0] 5 0", AEBlocks.CONTROLLER);
+        plot.cable("[-1,0] [0,8] 0", TLParts.COVERED_DENSE_CABLE);
+        plot.block("[-1,0] 5 0", TLBlocks.CONTROLLER);
         plot.storageDrive(new BlockPos(0, 5, 1));
         plot.afterGridInitAt(new BlockPos(0, 5, 1), (grid, gridNode) -> {
             var enchantedPickaxe = createEnchantedPickaxe(gridNode.getLevel());
             var storage = grid.getStorageService().getInventory();
             var src = new BaseActionSource();
-            storage.insert(AEItemKey.of(Items.DIAMOND_PICKAXE), 10, Actionable.MODULATE, src);
+            storage.insert(TLItemKey.of(Items.DIAMOND_PICKAXE), 10, Actionable.MODULATE, src);
             storage.insert(enchantedPickaxe, 1234, Actionable.MODULATE, src);
-            storage.insert(AEItemKey.of(Items.ACACIA_LOG), Integer.MAX_VALUE, Actionable.MODULATE, src);
+            storage.insert(TLItemKey.of(Items.ACACIA_LOG), Integer.MAX_VALUE, Actionable.MODULATE, src);
         });
 
         // Generate a "line" of cable+terminals that extends from the center
@@ -219,43 +219,43 @@ public final class TestPlots {
                 line = plot.offset(0, y, 0);
             }
             y++;
-            line.cable("[1,9] 0 0", AEParts.GLASS_CABLE, color);
-            line.part("1 0 0", Direction.NORTH, AEParts.TERMINAL);
-            line.part("2 0 0", Direction.NORTH, AEParts.CRAFTING_TERMINAL);
-            line.part("3 0 0", Direction.NORTH, AEParts.MONITOR);
-            line.part("4 0 0", Direction.NORTH, AEParts.MONITOR);
-            line.part("5 0 0", Direction.NORTH, AEParts.STORAGE_MONITOR, monitor -> {
+            line.cable("[1,9] 0 0", TLParts.GLASS_CABLE, color);
+            line.part("1 0 0", Direction.NORTH, TLParts.TERMINAL);
+            line.part("2 0 0", Direction.NORTH, TLParts.CRAFTING_TERMINAL);
+            line.part("3 0 0", Direction.NORTH, TLParts.MONITOR);
+            line.part("4 0 0", Direction.NORTH, TLParts.MONITOR);
+            line.part("5 0 0", Direction.NORTH, TLParts.STORAGE_MONITOR, monitor -> {
                 var enchantedPickaxe = createEnchantedPickaxe(monitor.getLevel());
                 monitor.setConfiguredItem(enchantedPickaxe);
                 monitor.setLocked(true);
             });
-            line.part("6 0 0", Direction.NORTH, AEParts.CONVERSION_MONITOR, monitor -> {
-                monitor.setConfiguredItem(AEItemKey.of(Items.ACACIA_LOG));
+            line.part("6 0 0", Direction.NORTH, TLParts.CONVERSION_MONITOR, monitor -> {
+                monitor.setConfiguredItem(TLItemKey.of(Items.ACACIA_LOG));
                 monitor.setLocked(true);
             });
-            line.part("7 0 0", Direction.NORTH, AEParts.MONITOR);
-            line.part("8 0 0", Direction.NORTH, AEParts.SEMI_DARK_MONITOR);
-            line.part("9 0 0", Direction.NORTH, AEParts.DARK_MONITOR);
+            line.part("7 0 0", Direction.NORTH, TLParts.MONITOR);
+            line.part("8 0 0", Direction.NORTH, TLParts.SEMI_DARK_MONITOR);
+            line.part("9 0 0", Direction.NORTH, TLParts.DARK_MONITOR);
         }
     }
 
-    public static ArrayList<AEColor> getColorsTransparentFirst() {
-        var colors = new ArrayList<AEColor>();
-        Collections.addAll(colors, AEColor.values());
-        colors.remove(AEColor.TRANSPARENT);
-        colors.add(0, AEColor.TRANSPARENT);
+    public static ArrayList<TLColor> getColorsTransparentFirst() {
+        var colors = new ArrayList<TLColor>();
+        Collections.addAll(colors, TLColor.values());
+        colors.remove(TLColor.TRANSPARENT);
+        colors.add(0, TLColor.TRANSPARENT);
         return colors;
     }
 
     @TestPlot("item_chest")
     public static void itemChest(PlotBuilder plot) {
-        plot.blockEntity("0 0 0", AEBlocks.ME_CHEST, chest -> {
-            var cellItem = AEItems.ITEM_CELL_1K.stack();
+        plot.blockEntity("0 0 0", TLBlocks.ME_CHEST, chest -> {
+            var cellItem = TLItems.ITEM_CELL_1K.stack();
             var cellInv = StorageCells.getCellInventory(cellItem, null);
             var r = RandomSource.create();
             for (var i = 0; i < 100; i++) {
                 var item = BuiltInRegistries.ITEM.getRandom(r).map(Holder::value).get();
-                if (cellInv.insert(AEItemKey.of(item), 64, Actionable.MODULATE, new BaseActionSource()) == 0) {
+                if (cellInv.insert(TLItemKey.of(item), 64, Actionable.MODULATE, new BaseActionSource()) == 0) {
                     break;
                 }
             }
@@ -266,8 +266,8 @@ public final class TestPlots {
 
     @TestPlot("fluid_chest")
     public static void fluidChest(PlotBuilder plot) {
-        plot.blockEntity("0 0 0", AEBlocks.ME_CHEST, chest -> {
-            var cellItem = AEItems.FLUID_CELL_1K.stack();
+        plot.blockEntity("0 0 0", TLBlocks.ME_CHEST, chest -> {
+            var cellItem = TLItems.FLUID_CELL_1K.stack();
             var cellInv = StorageCells.getCellInventory(cellItem, null);
             var r = RandomSource.create();
             for (var i = 0; i < 100; i++) {
@@ -275,7 +275,7 @@ public final class TestPlots {
                 if (fluid.isSame(Fluids.EMPTY) || !fluid.isSource(fluid.defaultFluidState())) {
                     continue;
                 }
-                if (cellInv.insert(AEFluidKey.of(fluid), 64 * AEFluidKey.AMOUNT_BUCKET,
+                if (cellInv.insert(TLFluidKey.of(fluid), 64 * TLFluidKey.AMOUNT_BUCKET,
                         Actionable.MODULATE, new BaseActionSource()) == 0) {
                     break;
                 }
@@ -292,9 +292,9 @@ public final class TestPlots {
     public static void testInsertItemsIntoMEChest(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
         plot.cable(origin.below());
-        plot.blockEntity(origin, AEBlocks.ME_CHEST, chest -> {
-            var cell = AEItems.ITEM_CELL_1K.stack();
-            AEItems.ITEM_CELL_1K.get().getConfigInventory(cell).addFilter(Items.REDSTONE);
+        plot.blockEntity(origin, TLBlocks.ME_CHEST, chest -> {
+            var cell = TLItems.ITEM_CELL_1K.stack();
+            TLItems.ITEM_CELL_1K.get().getConfigInventory(cell).addFilter(Items.REDSTONE);
             chest.setCell(cell);
         });
         // Hopper to test insertion of stuff. It should try to insert stick first.
@@ -302,7 +302,7 @@ public final class TestPlots {
 
         plot.test(helper -> helper.succeedWhen(() -> {
             var meChest = (MEChestBlockEntity) helper.getBlockEntity(origin);
-            helper.assertContains(meChest.getInventory(), AEItemKey.of(Items.REDSTONE));
+            helper.assertContains(meChest.getInventory(), TLItemKey.of(Items.REDSTONE));
             // The stick should still be in the hopper
             helper.assertContainerContains(origin.above(), Items.STICK);
         }));
@@ -315,7 +315,7 @@ public final class TestPlots {
     public static void terminalFullOfEnchantedItems(PlotBuilder plot) {
         var origin = BlockPos.ZERO;
         plot.cable(origin.below());
-        plot.cable(origin).part(Direction.NORTH, AEParts.TERMINAL);
+        plot.cable(origin).part(Direction.NORTH, TLParts.TERMINAL);
         var drive = plot.drive(origin.east());
 
         plot.addPostBuildAction((level, player, ignored) -> {
@@ -326,7 +326,7 @@ public final class TestPlots {
                 var cell = drive.addItemCell64k();
                 for (var j = 0; j < 63; j++) {
                     pickaxe.setDamageValue(pickaxe.getDamageValue() + 1);
-                    cell.add(AEItemKey.of(pickaxe), 2);
+                    cell.add(TLItemKey.of(pickaxe), 2);
                 }
             }
         });

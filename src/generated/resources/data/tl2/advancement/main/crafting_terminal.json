@@ -1,0 +1,33 @@
+{
+  "parent": "tl2:main/controller",
+  "criteria": {
+    "certus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:crafting_terminal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "achievement.tl2.CraftingTerminal.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tl2:crafting_terminal"
+    },
+    "title": {
+      "translate": "achievement.tl2.CraftingTerminal"
+    }
+  },
+  "requirements": [
+    [
+      "certus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

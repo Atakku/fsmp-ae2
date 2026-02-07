@@ -21,26 +21,20 @@ package appeng.datagen.providers.tags;
 import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import appeng.api.ids.AETags;
-import appeng.api.util.AEColor;
+import appeng.api.ids.TLTags;
+import appeng.api.util.TLColor;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
-import appeng.datagen.providers.IAE2DataProvider;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
+import appeng.datagen.providers.ITL2DataProvider;
 
-public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider implements IAE2DataProvider {
+public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider implements ITL2DataProvider {
 
     public ItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries,
             CompletableFuture<TagLookup<Block>> blockTagsProvider, ExistingFileHelper existingFileHelper) {
@@ -51,56 +45,18 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
     protected void addTags(HolderLookup.Provider registries) {
         copyBlockTags();
 
-        tag(ConventionTags.BUDDING_BLOCKS)
-                .add(AEBlocks.FLAWLESS_BUDDING_QUARTZ.asItem())
-                .add(AEBlocks.FLAWED_BUDDING_QUARTZ.asItem())
-                .add(AEBlocks.CHIPPED_BUDDING_QUARTZ.asItem())
-                .add(AEBlocks.DAMAGED_BUDDING_QUARTZ.asItem());
-        tag(ConventionTags.BUDS)
-                .add(AEBlocks.SMALL_QUARTZ_BUD.asItem())
-                .add(AEBlocks.MEDIUM_QUARTZ_BUD.asItem())
-                .add(AEBlocks.LARGE_QUARTZ_BUD.asItem());
-        tag(ConventionTags.CLUSTERS)
-                .add(AEBlocks.QUARTZ_CLUSTER.asItem());
-
-        tag(ConventionTags.CERTUS_QUARTZ_DUST)
-                .add(AEItems.CERTUS_QUARTZ_DUST.asItem());
-        tag(ConventionTags.SKY_STONE_DUST)
-                .add(AEItems.SKY_DUST.asItem());
-
-        tag(ConventionTags.ALL_QUARTZ_DUST)
-                .addTag(ConventionTags.CERTUS_QUARTZ_DUST);
-
-        tag(ConventionTags.ALL_CERTUS_QUARTZ)
-                .addTag(ConventionTags.CERTUS_QUARTZ)
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem());
-        tag(ConventionTags.ALL_FLUIX)
-                .add(AEItems.FLUIX_CRYSTAL.asItem());
-        tag(ConventionTags.ALL_NETHER_QUARTZ)
-                .addTag(ConventionTags.NETHER_QUARTZ);
-        tag(ConventionTags.ALL_QUARTZ)
-                .addTag(ConventionTags.NETHER_QUARTZ)
-                .addTag(ConventionTags.CERTUS_QUARTZ)
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem());
-
-        for (AEColor color : AEColor.values()) {
-            tag(ConventionTags.SMART_DENSE_CABLE).add(AEParts.SMART_DENSE_CABLE.item(color));
-            tag(ConventionTags.SMART_CABLE).add(AEParts.SMART_CABLE.item(color));
-            tag(ConventionTags.GLASS_CABLE).add(AEParts.GLASS_CABLE.item(color));
-            tag(ConventionTags.COVERED_CABLE).add(AEParts.COVERED_CABLE.item(color));
-            tag(ConventionTags.COVERED_DENSE_CABLE).add(AEParts.COVERED_DENSE_CABLE.item(color));
+        for (TLColor color : TLColor.values()) {
+            tag(ConventionTags.SMART_DENSE_CABLE).add(TLParts.SMART_DENSE_CABLE.item(color));
+            tag(ConventionTags.SMART_CABLE).add(TLParts.SMART_CABLE.item(color));
+            tag(ConventionTags.GLASS_CABLE).add(TLParts.GLASS_CABLE.item(color));
+            tag(ConventionTags.COVERED_CABLE).add(TLParts.COVERED_CABLE.item(color));
+            tag(ConventionTags.COVERED_DENSE_CABLE).add(TLParts.COVERED_DENSE_CABLE.item(color));
         }
 
-        tag(ConventionTags.INSCRIBER_PRESSES)
-                .add(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
-                .add(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
-                .add(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
-                .add(AEItems.SILICON_PRESS.asItem());
-
         tag(ConventionTags.SILICON)
-                .add(AEItems.SILICON.asItem());
+                .add(TLItems.SILICON.asItem());
 
-        tag(AETags.METAL_INGOTS)
+        tag(TLTags.METAL_INGOTS)
                 .addOptionalTag(ResourceLocation.parse("c:ingots/copper"))
                 .addOptionalTag(ResourceLocation.parse("c:ingots/tin"))
                 .addOptionalTag(ResourceLocation.parse("c:ingots/iron"))
@@ -110,44 +66,35 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .addOptionalTag(ResourceLocation.parse("c:ingots/aluminium"));
 
         tag(ConventionTags.ILLUMINATED_PANEL)
-                .add(AEParts.MONITOR.asItem())
-                .add(AEParts.SEMI_DARK_MONITOR.asItem())
-                .add(AEParts.DARK_MONITOR.asItem());
+                .add(TLParts.MONITOR.asItem())
+                .add(TLParts.SEMI_DARK_MONITOR.asItem())
+                .add(TLParts.DARK_MONITOR.asItem());
 
         tag(ConventionTags.FLUIX_DUST)
-                .add(AEItems.FLUIX_DUST.asItem());
-        tag(ConventionTags.CERTUS_QUARTZ_DUST)
-                .add(AEItems.CERTUS_QUARTZ_DUST.asItem());
+                .add(TLItems.FLUIX_DUST.asItem());
 
         tag(ConventionTags.FLUIX_CRYSTAL)
-                .add(AEItems.FLUIX_CRYSTAL.asItem());
-        tag(ConventionTags.CERTUS_QUARTZ)
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL.asItem())
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem());
+                .add(TLItems.FLUIX_CRYSTAL.asItem());
 
         tag(ConventionTags.DUSTS)
-                .add(AEItems.CERTUS_QUARTZ_DUST.asItem())
-                .add(AEItems.FLUIX_DUST.asItem())
-                .add(AEItems.SKY_DUST.asItem());
+                .add(TLItems.FLUIX_DUST.asItem());
 
         tag(ConventionTags.GEMS)
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL.asItem())
-                .add(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .add(AEItems.FLUIX_CRYSTAL.asItem());
+                .add(TLItems.FLUIX_CRYSTAL.asItem());
 
         tag(ConventionTags.CURIOS).add(
-                AEItems.WIRELESS_TERMINAL.asItem(),
-                AEItems.WIRELESS_CRAFTING_TERMINAL.asItem(),
-                AEItems.PORTABLE_ITEM_CELL1K.asItem(),
-                AEItems.PORTABLE_ITEM_CELL4K.asItem(),
-                AEItems.PORTABLE_ITEM_CELL16K.asItem(),
-                AEItems.PORTABLE_ITEM_CELL64K.asItem(),
-                AEItems.PORTABLE_ITEM_CELL256K.asItem(),
-                AEItems.PORTABLE_FLUID_CELL1K.asItem(),
-                AEItems.PORTABLE_FLUID_CELL4K.asItem(),
-                AEItems.PORTABLE_FLUID_CELL16K.asItem(),
-                AEItems.PORTABLE_FLUID_CELL64K.asItem(),
-                AEItems.PORTABLE_FLUID_CELL256K.asItem());
+                TLItems.WIRELESS_TERMINAL.asItem(),
+                TLItems.WIRELESS_CRAFTING_TERMINAL.asItem(),
+                TLItems.PORTABLE_ITEM_CELL1K.asItem(),
+                TLItems.PORTABLE_ITEM_CELL4K.asItem(),
+                TLItems.PORTABLE_ITEM_CELL16K.asItem(),
+                TLItems.PORTABLE_ITEM_CELL64K.asItem(),
+                TLItems.PORTABLE_ITEM_CELL256K.asItem(),
+                TLItems.PORTABLE_FLUID_CELL1K.asItem(),
+                TLItems.PORTABLE_FLUID_CELL4K.asItem(),
+                TLItems.PORTABLE_FLUID_CELL16K.asItem(),
+                TLItems.PORTABLE_FLUID_CELL64K.asItem(),
+                TLItems.PORTABLE_FLUID_CELL256K.asItem());
 
         tag(ConventionTags.CAN_REMOVE_COLOR).add(Items.WATER_BUCKET, Items.SNOWBALL);
 
@@ -155,17 +102,9 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
         tag(ConventionTags.WRENCH).addOptional(ResourceLocation.parse("immersiveengineering:hammer"));
     }
 
-    // Copy the entries AE2 added to certain block tags over to item tags of the same name
+    // Copy the entries TL2 added to certain block tags over to item tags of the same name
     // Assumes that items or item tags generally have the same name as the block equivalent.
     private void copyBlockTags() {
-        mirrorBlockTag(Tags.Blocks.STORAGE_BLOCKS.location());
-        mirrorBlockTag(ResourceLocation.parse("c:storage_blocks/certus_quartz"));
-        copy(BlockTags.WALLS, ItemTags.WALLS);
-        copy(Tags.Blocks.CHESTS, Tags.Items.CHESTS);
         copy(ConventionTags.GLASS_BLOCK, ConventionTags.GLASS);
-    }
-
-    private void mirrorBlockTag(ResourceLocation tagName) {
-        copy(TagKey.create(Registries.BLOCK, tagName), TagKey.create(Registries.ITEM, tagName));
     }
 }

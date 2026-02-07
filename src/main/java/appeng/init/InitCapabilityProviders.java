@@ -10,14 +10,14 @@ import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
-import appeng.api.AECapabilities;
+import appeng.api.TLCapabilities;
 import appeng.api.behaviors.GenericInternalInventory;
 import appeng.api.networking.IInWorldGridNodeHost;
 import appeng.api.parts.RegisterPartCapabilitiesEvent;
 import appeng.api.parts.RegisterPartCapabilitiesEventInternal;
-import appeng.blockentity.AEBaseInvBlockEntity;
+import appeng.blockentity.TLBaseInvBlockEntity;
 import appeng.blockentity.storage.MEChestBlockEntity;
-import appeng.core.definitions.AEBlockEntities;
+import appeng.core.definitions.TLBlockEntities;
 import appeng.helpers.externalstorage.GenericStackFluidStorage;
 import appeng.helpers.externalstorage.GenericStackItemStorage;
 
@@ -31,29 +31,29 @@ public final class InitCapabilityProviders {
      */
     public static void markProxyableCapabilities(RegisterCapabilitiesEvent event) {
         // Definitely proxyable - this is a storage capability.
-        event.setProxyable(AECapabilities.ME_STORAGE);
+        event.setProxyable(TLCapabilities.ME_STORAGE);
         // Why not - this is a storage capability, albeit in principle not exposed directly.
-        event.setProxyable(AECapabilities.GENERIC_INTERNAL_INV);
+        event.setProxyable(TLCapabilities.GENERIC_INTERNAL_INV);
         // Definitely not proxyable, we don't want to connect nodes through a capability tunnel.
-        event.setNonProxyable(AECapabilities.IN_WORLD_GRID_NODE_HOST);
+        event.setNonProxyable(TLCapabilities.IN_WORLD_GRID_NODE_HOST);
     }
 
     public static void register(RegisterCapabilitiesEvent event) {
 
         var partEvent = new RegisterPartCapabilitiesEvent();
-        partEvent.addHostType(AEBlockEntities.CABLE_BUS.get());
+        partEvent.addHostType(TLBlockEntities.CABLE_BUS.get());
         ModLoader.postEvent(partEvent);
         RegisterPartCapabilitiesEventInternal.register(partEvent, event);
 
         initMEChest(event);
         initMisc(event);
 
-        for (var type : AEBlockEntities.getSubclassesOf(AEBaseInvBlockEntity.class)) {
+        for (var type : TLBlockEntities.getSubclassesOf(TLBaseInvBlockEntity.class)) {
             event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type,
-                    AEBaseInvBlockEntity::getExposedItemHandler);
+                    TLBaseInvBlockEntity::getExposedItemHandler);
         }
-        for (var type : AEBlockEntities.getImplementorsOf(IInWorldGridNodeHost.class)) {
-            event.registerBlockEntity(AECapabilities.IN_WORLD_GRID_NODE_HOST, type,
+        for (var type : TLBlockEntities.getImplementorsOf(IInWorldGridNodeHost.class)) {
+            event.registerBlockEntity(TLCapabilities.IN_WORLD_GRID_NODE_HOST, type,
                     (object, context) -> (IInWorldGridNodeHost) object);
         }
     }
@@ -64,7 +64,7 @@ public final class InitCapabilityProviders {
     public static void registerGenericAdapters(RegisterCapabilitiesEvent event) {
 
         for (var block : BuiltInRegistries.BLOCK) {
-            if (event.isBlockRegistered(AECapabilities.GENERIC_INTERNAL_INV, block)) {
+            if (event.isBlockRegistered(TLCapabilities.GENERIC_INTERNAL_INV, block)) {
                 registerGenericInvAdapter(event, block, Capabilities.ItemHandler.BLOCK, GenericStackItemStorage::new);
                 registerGenericInvAdapter(event, block, Capabilities.FluidHandler.BLOCK, GenericStackFluidStorage::new);
             }
@@ -79,7 +79,7 @@ public final class InitCapabilityProviders {
         event.registerBlock(
                 capability,
                 (level, pos, state, blockEntity, context) -> {
-                    var genericInv = level.getCapability(AECapabilities.GENERIC_INTERNAL_INV, pos, state,
+                    var genericInv = level.getCapability(TLCapabilities.GENERIC_INTERNAL_INV, pos, state,
                             blockEntity, context);
                     if (genericInv != null) {
                         return adapter.apply(genericInv);
@@ -90,16 +90,16 @@ public final class InitCapabilityProviders {
     }
 
     private static void initMEChest(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, AEBlockEntities.ME_CHEST.get(),
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, TLBlockEntities.ME_CHEST.get(),
                 MEChestBlockEntity::getFluidHandler);
-        event.registerBlockEntity(AECapabilities.ME_STORAGE, AEBlockEntities.ME_CHEST.get(),
+        event.registerBlockEntity(TLCapabilities.ME_STORAGE, TLBlockEntities.ME_CHEST.get(),
                 MEChestBlockEntity::getMEStorage);
     }
 
     private static void initMisc(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                AEBlockEntities.DEBUG_ITEM_GEN.get(),
+                TLBlockEntities.DEBUG_ITEM_GEN.get(),
                 (object, context) -> object.getItemHandler());
     }
 }

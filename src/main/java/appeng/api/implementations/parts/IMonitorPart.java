@@ -26,7 +26,7 @@ package appeng.api.implementations.parts;
 import appeng.api.parts.IPart;
 
 /**
- * Implemented by all screen like parts provided by AE.
+ * Implemented by all screen like parts provided by TL.
  */
 public interface IMonitorPart extends IPart {
 }

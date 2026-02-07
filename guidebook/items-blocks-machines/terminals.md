@@ -7,10 +7,10 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:terminal
-- ae2:crafting_terminal
-- ae2:pattern_encoding_terminal
-- ae2:pattern_access_terminal
+- tl2:terminal
+- tl2:crafting_terminal
+- tl2:pattern_encoding_terminal
+- tl2:pattern_access_terminal
 ---
 
 # Terminals
@@ -20,15 +20,15 @@ item_ids:
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-Terminals are the primary method by which an AE2 network interacts with *you*. There are several variants with differing functions.
+Terminals are the primary method by which an TL2 network interacts with *you*. There are several variants with differing functions.
 
 Terminals will inherit the color of the [cable](cables.md) they are mounted on.
 
-They are [cable subparts](../ae2-mechanics/cable-subparts.md).
+They are [cable subparts](../tl2-mechanics/cable-subparts.md).
 
 ## Terminal Placement
 
-As a terminal is often the first [subpart](../ae2-mechanics/cable-subparts.md) someone might place,
+As a terminal is often the first [subpart](../tl2-mechanics/cable-subparts.md) someone might place,
 it is common to get it wrong and place the terminal backwards. Here is an example of what to do and what not to do:
 
 <GameScene zoom="6" background="transparent">
@@ -59,7 +59,7 @@ Regex is left as an exercise for the reader.
   <IsometricCamera yaw="180" />
 </GameScene>
 
-Your basic terminal, allowing you to view and access the contents of your [network's storage](../ae2-mechanics/import-export-storage.md).
+Your basic terminal, allowing you to view and access the contents of your [network's storage](../tl2-mechanics/import-export-storage.md).
 
 ## The UI
 
@@ -98,7 +98,7 @@ On the right there are slots for <ItemLink id="view_cell" />s
 </GameScene>
 
 The Crafting Terminal is similar to a regular terminal, with all the same settings and sections, but with an added crafting grid that will be automatically
-refilled from [network storage](../ae2-mechanics/import-export-storage.md). Be careful when shift-clicking the output!
+refilled from [network storage](../tl2-mechanics/import-export-storage.md). Be careful when shift-clicking the output!
 
 You should upgrade your terminal into a crafting terminal ASAP.
 

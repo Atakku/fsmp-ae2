@@ -28,10 +28,10 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.core.Direction;
 
 /**
- * Access to AE's internal grid connections.
+ * Access to TL's internal grid connections.
  * <p>
  * Messing with connection is generally completely unnecessary, you should be able to just use IGridNode.updateState()
- * to have AE manage them for you.
+ * to have TL manage them for you.
  * <p>
  * Don't Implement.
  */

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "b": {
+      "item": "tl2:quartz_glass"
+    }
+  },
+  "pattern": [
+    "aba"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:quartz_vibrant_glass"
+  }
+}

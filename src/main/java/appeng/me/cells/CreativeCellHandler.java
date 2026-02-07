@@ -30,7 +30,7 @@ import appeng.api.stacks.GenericStack;
 import appeng.api.storage.cells.ICellHandler;
 import appeng.api.storage.cells.ISaveProvider;
 import appeng.api.storage.cells.StorageCell;
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 import appeng.items.contents.CellConfig;
 import appeng.items.storage.CreativeCellItem;
 import appeng.items.storage.StorageCellTooltipComponent;
@@ -64,10 +64,10 @@ public class CreativeCellHandler implements ICellHandler {
 
         boolean hasMoreContent;
         List<GenericStack> content;
-        if (AEConfig.instance().isTooltipShowCellContent()) {
+        if (TLConfig.instance().isTooltipShowCellContent()) {
             content = new ArrayList<>();
 
-            var maxCountShown = AEConfig.instance().getTooltipMaxCellContentShown();
+            var maxCountShown = TLConfig.instance().getTooltipMaxCellContentShown();
 
             for (var key : cc.keySet()) {
                 content.add(new GenericStack(key, 1));

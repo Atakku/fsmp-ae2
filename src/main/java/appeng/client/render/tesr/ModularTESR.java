@@ -29,11 +29,11 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.api.orientation.BlockOrientation;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.client.render.renderable.Renderable;
 
 @OnlyIn(Dist.CLIENT)
-public class ModularTESR<T extends AEBaseBlockEntity> implements BlockEntityRenderer<T> {
+public class ModularTESR<T extends TLBaseBlockEntity> implements BlockEntityRenderer<T> {
 
     private final List<Renderable<? super T>> renderables;
 

@@ -25,15 +25,15 @@ import com.google.common.base.Preconditions;
 
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.ids.TLComponents;
+import appeng.api.stacks.TLKeyType;
 import appeng.util.ConfigInventory;
 
 public final class CellConfig {
     private CellConfig() {
     }
 
-    public static ConfigInventory create(Set<AEKeyType> supportedTypes, ItemStack is, int size) {
+    public static ConfigInventory create(Set<TLKeyType> supportedTypes, ItemStack is, int size) {
         Preconditions.checkArgument(size >= 1 && size <= 63,
                 "Config inventory must have between 1 and 63 slots inclusive.");
         var holder = new Holder(is);
@@ -43,7 +43,7 @@ public final class CellConfig {
         return holder.inv;
     }
 
-    public static ConfigInventory create(Set<AEKeyType> supportedTypes, ItemStack is) {
+    public static ConfigInventory create(Set<TLKeyType> supportedTypes, ItemStack is) {
         var holder = new Holder(is);
         holder.inv = ConfigInventory.configTypes(63).supportedTypes(supportedTypes).changeListener(holder::save)
                 .build();
@@ -67,11 +67,11 @@ public final class CellConfig {
         }
 
         public void load() {
-            inv.readFromList(stack.getOrDefault(AEComponents.STORAGE_CELL_CONFIG_INV, List.of()));
+            inv.readFromList(stack.getOrDefault(TLComponents.STORAGE_CELL_CONFIG_INV, List.of()));
         }
 
         public void save() {
-            stack.set(AEComponents.STORAGE_CELL_CONFIG_INV, inv.toList());
+            stack.set(TLComponents.STORAGE_CELL_CONFIG_INV, inv.toList());
         }
     }
 }

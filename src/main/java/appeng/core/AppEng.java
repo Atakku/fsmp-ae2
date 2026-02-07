@@ -31,14 +31,14 @@ import net.minecraft.world.phys.HitResult;
 
 import guideme.PageAnchor;
 
-import appeng.api.ids.AEConstants;
+import appeng.api.ids.TLConstants;
 import appeng.client.EffectType;
 import appeng.core.network.ClientboundPacket;
 
 public interface AppEng {
 
     String MOD_NAME = "Applied Energistics 2";
-    String MOD_ID = AEConstants.MOD_ID;
+    String MOD_ID = TLConstants.MOD_ID;
 
     static AppEng instance() {
         return AppEngBase.INSTANCE;

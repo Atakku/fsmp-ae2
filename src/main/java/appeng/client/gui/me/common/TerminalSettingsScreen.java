@@ -2,27 +2,26 @@ package appeng.client.gui.me.common;
 
 import net.minecraft.network.chat.Component;
 
-import appeng.client.gui.AESubScreen;
 import appeng.client.gui.Icon;
-import appeng.client.gui.widgets.AECheckbox;
+import appeng.client.gui.TLSubScreen;
+import appeng.client.gui.widgets.TLCheckbox;
 import appeng.client.gui.widgets.TabButton;
 import appeng.core.localization.GuiText;
 import appeng.integration.abstraction.ItemListMod;
 import appeng.menu.SlotSemantics;
 import appeng.menu.me.common.MEStorageMenu;
 
-public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen<C, MEStorageScreen<C>> {
+public class TerminalSettingsScreen<C extends MEStorageMenu> extends TLSubScreen<C, MEStorageScreen<C>> {
 
-    private final AECheckbox pinAutoCraftedItemsCheckbox;
-    private final AECheckbox clearGridOnCloseCheckbox;
+    private final TLCheckbox clearGridOnCloseCheckbox;
 
-    private final AECheckbox useInternalSearchRadio;
-    private final AECheckbox useExternalSearchRadio;
+    private final TLCheckbox useInternalSearchRadio;
+    private final TLCheckbox useExternalSearchRadio;
 
-    private final AECheckbox rememberCheckbox;
-    private final AECheckbox autoFocusCheckbox;
-    private final AECheckbox syncWithExternalCheckbox;
-    private final AECheckbox clearExternalCheckbox;
+    private final TLCheckbox rememberCheckbox;
+    private final TLCheckbox autoFocusCheckbox;
+    private final TLCheckbox syncWithExternalCheckbox;
+    private final TLCheckbox clearExternalCheckbox;
 
     public TerminalSettingsScreen(MEStorageScreen<C> parent) {
         super(parent, "/screens/terminals/terminal_settings.json");
@@ -40,8 +39,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
             hasExternalSearch = false;
         }
 
-        pinAutoCraftedItemsCheckbox = widgets.addCheckbox("pinAutoCraftedItemsCheckbox",
-                GuiText.TerminalSettingsPinAutoCraftedItems.text(), this::save);
         clearGridOnCloseCheckbox = widgets.addCheckbox("clearGridOnCloseCheckbox",
                 GuiText.TerminalSettingsClearGridOnClose.text(), this::save);
 
@@ -93,7 +90,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
     }
 
     private void updateState() {
-        pinAutoCraftedItemsCheckbox.setSelected(config.isPinAutoCraftedItems());
         clearGridOnCloseCheckbox.setSelected(config.isClearGridOnClose());
 
         useInternalSearchRadio.setSelected(!config.isUseExternalSearch());
@@ -116,7 +112,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends AESubScreen
         config.setAutoFocusSearch(autoFocusCheckbox.isSelected());
         config.setSyncWithExternalSearch(syncWithExternalCheckbox.isSelected());
         config.setClearExternalSearchOnOpen(clearExternalCheckbox.isSelected());
-        config.setPinAutoCraftedItems(pinAutoCraftedItemsCheckbox.isSelected());
         config.setClearGridOnClose(clearGridOnCloseCheckbox.isSelected());
 
         updateState();

@@ -1,0 +1,33 @@
+{
+  "parent": "tl2:main/storage_cell",
+  "criteria": {
+    "certus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:io_port"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "achievement.tl2.IOPort.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tl2:io_port"
+    },
+    "title": {
+      "translate": "achievement.tl2.IOPort"
+    }
+  },
+  "requirements": [
+    [
+      "certus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

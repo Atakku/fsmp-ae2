@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "tl2:block/controller_column",
+    "end": "tl2:block/controller"
+  }
+}

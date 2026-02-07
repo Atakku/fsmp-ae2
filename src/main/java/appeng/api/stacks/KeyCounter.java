@@ -41,13 +41,13 @@ import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import appeng.api.config.FuzzyMode;
 
 /**
- * Associates a generic value of type T with AE keys and makes key/value pairs searchable with fuzzy mode semantics.
+ * Associates a generic value of type T with TL keys and makes key/value pairs searchable with fuzzy mode semantics.
  */
-public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
-    // First map contains a mapping from AEKey#primaryKey
+public final class KeyCounter implements Iterable<Object2LongMap.Entry<TLKey>> {
+    // First map contains a mapping from TLKey#primaryKey
     private final Reference2ObjectMap<Object, VariantCounter> lists = new Reference2ObjectOpenHashMap<>();
 
-    public Collection<Object2LongMap.Entry<AEKey>> findFuzzy(AEKey key, FuzzyMode fuzzy) {
+    public Collection<Object2LongMap.Entry<TLKey>> findFuzzy(TLKey key, FuzzyMode fuzzy) {
         Objects.requireNonNull(key, "key");
         var subIndex = getSubIndexOrNull(key);
         return subIndex == null ? List.of() : subIndex.findFuzzy(key, fuzzy);
@@ -93,7 +93,7 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         }
     }
 
-    public void add(AEKey key, long amount) {
+    public void add(TLKey key, long amount) {
         Objects.requireNonNull(key, "key");
         getSubIndex(key).add(key, amount);
     }
@@ -101,14 +101,14 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     /**
      * Subtracts the given amount from the value associated with the given key.
      */
-    public void remove(AEKey key, long amount) {
+    public void remove(TLKey key, long amount) {
         add(key, -amount);
     }
 
     /**
      * Removes the given key from this counter, and returns the old value (or 0).
      */
-    public long remove(AEKey key) {
+    public long remove(TLKey key) {
         var subIndex = getSubIndex(key);
         var ret = subIndex.remove(key);
         if (subIndex.isEmpty()) {
@@ -117,11 +117,11 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         return ret;
     }
 
-    public void set(AEKey key, long amount) {
+    public void set(TLKey key, long amount) {
         getSubIndex(key).set(key, amount);
     }
 
-    public long get(AEKey key) {
+    public long get(TLKey key) {
         Objects.requireNonNull(key);
         var subIndex = lists.get(key.getPrimaryKey());
         if (subIndex == null) {
@@ -160,12 +160,12 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     }
 
     @Override
-    public Iterator<Object2LongMap.Entry<AEKey>> iterator() {
+    public Iterator<Object2LongMap.Entry<TLKey>> iterator() {
         return Iterators.concat(
                 Iterators.transform(lists.values().iterator(), VariantCounter::iterator));
     }
 
-    private VariantCounter getSubIndex(AEKey key) {
+    private VariantCounter getSubIndex(TLKey key) {
         // We check before the call to computeIfAbsent, otherwise we'd need a capturing lambda.
         if (key.getFuzzySearchMaxValue() > 0) {
             return lists.computeIfAbsent(key.getPrimaryKey(), k -> new VariantCounter.FuzzyVariantMap());
@@ -175,24 +175,24 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     }
 
     @Nullable
-    private VariantCounter getSubIndexOrNull(AEKey key) {
+    private VariantCounter getSubIndexOrNull(TLKey key) {
         return lists.get(key.getPrimaryKey());
     }
 
     @Nullable
-    public AEKey getFirstKey() {
+    public TLKey getFirstKey() {
         var e = getFirstEntry();
         return e != null ? e.getKey() : null;
     }
 
     @Nullable
-    public <T extends AEKey> T getFirstKey(Class<T> keyClass) {
+    public <T extends TLKey> T getFirstKey(Class<T> keyClass) {
         var e = getFirstEntry(keyClass);
         return e != null ? keyClass.cast(e.getKey()) : null;
     }
 
     @Nullable
-    public Object2LongMap.Entry<AEKey> getFirstEntry() {
+    public Object2LongMap.Entry<TLKey> getFirstEntry() {
         for (var value : lists.values()) {
             var it = value.iterator();
             if (it.hasNext()) {
@@ -203,7 +203,7 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     }
 
     @Nullable
-    public <T extends AEKey> Object2LongMap.Entry<AEKey> getFirstEntry(Class<T> keyClass) {
+    public <T extends TLKey> Object2LongMap.Entry<TLKey> getFirstEntry(Class<T> keyClass) {
         for (var value : lists.values()) {
             var it = value.iterator();
             if (it.hasNext()) {
@@ -216,8 +216,8 @@ public final class KeyCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         return null;
     }
 
-    public Set<AEKey> keySet() {
-        var keys = new HashSet<AEKey>(size());
+    public Set<TLKey> keySet() {
+        var keys = new HashSet<TLKey>(size());
         for (var list : lists.values()) {
             for (var entry : list) {
                 keys.add(entry.getKey());

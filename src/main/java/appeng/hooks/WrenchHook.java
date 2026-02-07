@@ -14,7 +14,7 @@ import appeng.api.orientation.BlockOrientation;
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.RelativeSide;
 import appeng.api.util.DimensionalBlockPos;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
@@ -59,7 +59,7 @@ public final class WrenchHook {
 
         if (InteractionUtil.isInAlternateUseMode(player) && InteractionUtil.canWrenchDisassemble(itemStack)) {
             var be = level.getBlockEntity(hitResult.getBlockPos());
-            if (be instanceof AEBaseBlockEntity baseBlockEntity) {
+            if (be instanceof TLBaseBlockEntity baseBlockEntity) {
                 IS_DISASSEMBLING.set(true);
                 try {
                     if (!Platform.hasPermissions(new DimensionalBlockPos(level, hitResult.getBlockPos()), player)) {

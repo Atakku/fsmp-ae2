@@ -6,7 +6,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 
 import appeng.client.Hotkey;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.core.localization.PlayerMessages;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
@@ -41,8 +41,8 @@ public record HotkeyPacket(String hotkey) implements ServerboundPacket {
         var actions = HotkeyActions.REGISTRY.get(hotkey);
         if (actions == null) {
             player.sendSystemMessage(
-                    PlayerMessages.UnknownHotkey.text().copy().append(Component.translatable("key.ae2." + hotkey)));
-            AELog.warn("Player %s tried using unknown hotkey \"%s\"", player, hotkey);
+                    PlayerMessages.UnknownHotkey.text().copy().append(Component.translatable("key.tl2." + hotkey)));
+            TLLog.warn("Player %s tried using unknown hotkey \"%s\"", player, hotkey);
             return;
         }
 

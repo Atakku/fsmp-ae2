@@ -25,7 +25,6 @@ public final class ParticleTypes {
     private ParticleTypes() {
     }
 
-    public static final SimpleParticleType LIGHTNING = new SimpleParticleType(false);
     public static final SimpleParticleType VIBRANT = new SimpleParticleType(false);
 
 }

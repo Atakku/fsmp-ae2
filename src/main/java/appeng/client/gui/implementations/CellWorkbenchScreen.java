@@ -30,15 +30,15 @@ import appeng.api.config.ActionItems;
 import appeng.api.config.CopyMode;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.Settings;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.client.gui.Icon;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.ActionButton;
 import appeng.client.gui.widgets.SettingToggleButton;
 import appeng.client.gui.widgets.ToggleButton;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.core.localization.GuiText;
 import appeng.menu.implementations.CellWorkbenchMenu;
 
@@ -66,7 +66,7 @@ public class CellWorkbenchScreen extends UpgradeableScreen<CellWorkbenchMenu> {
 
         this.copyMode.setState(this.menu.getCopyMode() == CopyMode.CLEAR_ON_REMOVE);
 
-        boolean hasFuzzy = menu.getUpgrades().isInstalled(AEItems.FUZZY_CARD);
+        boolean hasFuzzy = menu.getUpgrades().isInstalled(TLItems.FUZZY_CARD);
         this.fuzzyMode.set(menu.getFuzzyMode());
         this.fuzzyMode.setVisibility(hasFuzzy);
     }
@@ -88,12 +88,12 @@ public class CellWorkbenchScreen extends UpgradeableScreen<CellWorkbenchMenu> {
             return super.getTooltipFromContainerItem(stack);
         }
 
-        AEKey what;
+        TLKey what;
         var genericStack = GenericStack.unwrapItemStack(stack);
         if (genericStack != null) {
             what = genericStack.what();
         } else {
-            what = AEItemKey.of(stack);
+            what = TLItemKey.of(stack);
         }
 
         if (what == null) {

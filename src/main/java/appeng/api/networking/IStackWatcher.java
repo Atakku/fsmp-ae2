@@ -3,7 +3,7 @@ package appeng.api.networking;
 import org.jetbrains.annotations.ApiStatus;
 
 import appeng.api.networking.storage.IStorageWatcherNode;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 /**
  * DO NOT IMPLEMENT. Will be injected when adding an {@link IStorageWatcherNode} to a grid.
@@ -18,16 +18,16 @@ public interface IStackWatcher {
     void setWatchAll(boolean watchAll);
 
     /**
-     * Add a specific {@link AEKey} to watch.
+     * Add a specific {@link TLKey} to watch.
      *
      * Supports multiple values, duplicate ones will not be added.
      */
-    void add(AEKey stack);
+    void add(TLKey stack);
 
     /**
-     * Remove a specific {@link AEKey} from the watcher.
+     * Remove a specific {@link TLKey} from the watcher.
      */
-    void remove(AEKey stack);
+    void remove(TLKey stack);
 
     /**
      * Removes all watched stacks and resets the watcher to a clean state.

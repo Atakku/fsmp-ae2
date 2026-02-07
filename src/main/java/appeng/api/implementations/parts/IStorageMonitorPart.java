@@ -26,19 +26,18 @@ package appeng.api.implementations.parts;
 import org.jetbrains.annotations.Nullable;
 
 import appeng.api.parts.IPart;
-import appeng.api.stacks.AEKey;
-import appeng.api.util.INetworkToolAware;
+import appeng.api.stacks.TLKey;
 
 /**
  * The Storage monitor is a {@link IPart} located on the sides of a IPartHost
  */
-public interface IStorageMonitorPart extends IMonitorPart, IPart, INetworkToolAware {
+public interface IStorageMonitorPart extends IMonitorPart, IPart {
 
     /**
      * @return what is being shown on the storage monitor
      */
     @Nullable
-    AEKey getDisplayed();
+    TLKey getDisplayed();
 
     /**
      * @return The amount to show.

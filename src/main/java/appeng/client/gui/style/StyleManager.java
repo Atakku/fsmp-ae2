@@ -40,7 +40,7 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import appeng.core.AppEng;
 
 /**
- * Manages AE2 GUI styles found in resource packs.
+ * Manages TL2 GUI styles found in resource packs.
  */
 public final class StyleManager {
 

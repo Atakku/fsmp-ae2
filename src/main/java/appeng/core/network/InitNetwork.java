@@ -10,7 +10,6 @@ import appeng.core.AppEng;
 import appeng.core.network.bidirectional.ConfigValuePacket;
 import appeng.core.network.clientbound.ExportedGridContent;
 import appeng.core.network.clientbound.GuiDataSyncPacket;
-import appeng.core.network.clientbound.LightningPacket;
 import appeng.core.network.clientbound.MEInventoryUpdatePacket;
 import appeng.core.network.clientbound.SetLinkStatusPacket;
 import appeng.core.network.serverbound.ColorApplicatorSelectColorPacket;
@@ -33,7 +32,6 @@ public class InitNetwork {
 
         // Clientbound
         clientbound(registrar, GuiDataSyncPacket.TYPE, GuiDataSyncPacket.STREAM_CODEC);
-        clientbound(registrar, LightningPacket.TYPE, LightningPacket.STREAM_CODEC);
         clientbound(registrar, MEInventoryUpdatePacket.TYPE, MEInventoryUpdatePacket.STREAM_CODEC);
         clientbound(registrar, SetLinkStatusPacket.TYPE, SetLinkStatusPacket.STREAM_CODEC);
         clientbound(registrar, ExportedGridContent.TYPE, ExportedGridContent.STREAM_CODEC);

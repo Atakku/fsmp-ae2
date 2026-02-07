@@ -22,11 +22,11 @@ import net.minecraft.client.color.block.BlockColors;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.block.networking.CableBusColor;
 import appeng.client.render.ColorableBlockEntityBlockColor;
 import appeng.client.render.StaticBlockColor;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.TLBlocks;
 
 @OnlyIn(Dist.CLIENT)
 public final class InitBlockColors {
@@ -35,9 +35,9 @@ public final class InitBlockColors {
     }
 
     public static void init(BlockColors blockColors) {
-        blockColors.register(new StaticBlockColor(AEColor.TRANSPARENT), AEBlocks.WIRELESS_ACCESS_POINT.block());
-        blockColors.register(new CableBusColor(), AEBlocks.CABLE_BUS.block());
-        blockColors.register(ColorableBlockEntityBlockColor.INSTANCE, AEBlocks.ME_CHEST.block());
+        blockColors.register(new StaticBlockColor(TLColor.TRANSPARENT), TLBlocks.WIRELESS_ACCESS_POINT.block());
+        blockColors.register(new CableBusColor(), TLBlocks.CABLE_BUS.block());
+        blockColors.register(ColorableBlockEntityBlockColor.INSTANCE, TLBlocks.ME_CHEST.block());
     }
 
 }

@@ -79,7 +79,7 @@ public interface ICompositeWidget {
      *
      * @param bounds The bounding box of the screen in window coordinates.
      */
-    default void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+    default void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
     }
 
     /**

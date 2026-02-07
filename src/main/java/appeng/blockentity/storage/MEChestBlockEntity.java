@@ -52,9 +52,9 @@ import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.ILinkStatus;
 import appeng.api.storage.IStorageMounts;
 import appeng.api.storage.IStorageProvider;
@@ -65,13 +65,13 @@ import appeng.api.storage.StorageHelper;
 import appeng.api.storage.SupplierStorage;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.StorageCell;
-import appeng.api.util.AEColor;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.KeyTypeSelection;
 import appeng.api.util.KeyTypeSelectionHost;
+import appeng.api.util.TLColor;
 import appeng.blockentity.ServerTickingBlockEntity;
-import appeng.blockentity.grid.AENetworkedInvBlockEntity;
-import appeng.core.definitions.AEBlocks;
+import appeng.blockentity.grid.TLNetworkedInvBlockEntity;
+import appeng.core.definitions.TLBlocks;
 import appeng.core.localization.PlayerMessages;
 import appeng.helpers.IPriorityHost;
 import appeng.me.helpers.MachineSource;
@@ -83,9 +83,9 @@ import appeng.menu.locator.MenuLocators;
 import appeng.menu.me.items.BasicCellChestMenu;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
-public class MEChestBlockEntity extends AENetworkedInvBlockEntity
+public class MEChestBlockEntity extends TLNetworkedInvBlockEntity
         implements IMEChest, ITerminalHost, IPriorityHost, IColorableBlockEntity,
         ServerTickingBlockEntity, IStorageProvider, KeyTypeSelectionHost {
 
@@ -109,7 +109,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
     // synchronizing the entire cell's inventory when a chest comes into view.
     private Item cellItem = Items.AIR;
     private boolean wasOnline = false;
-    private AEColor paintedColor = AEColor.TRANSPARENT;
+    private TLColor paintedColor = TLColor.TRANSPARENT;
     private boolean isCached = false;
     private ChestMonitorHandler cellHandler;
     private IFluidHandler fluidHandler;
@@ -273,7 +273,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         var oldCellItem = cellItem;
 
         clientCellState = data.readEnum(CellState.class);
-        paintedColor = data.readEnum(AEColor.class);
+        paintedColor = data.readEnum(TLColor.class);
         cellItem = Item.byId(data.readVarInt());
 
         return c
@@ -311,10 +311,10 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         }
 
         try {
-            this.paintedColor = AEColor.valueOf(data.getString("color"));
+            this.paintedColor = TLColor.valueOf(data.getString("color"));
         } catch (IllegalArgumentException ignore) {
             LOG.warn("Invalid painted color in visual data for {}: {}", this, data);
-            this.paintedColor = AEColor.TRANSPARENT;
+            this.paintedColor = TLColor.TRANSPARENT;
         }
     }
 
@@ -325,7 +325,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         this.keyTypeSelection.readFromNBT(data, registries);
         this.priority = data.getInt("priority");
         if (data.contains("paintedColor")) {
-            this.paintedColor = AEColor.values()[data.getByte("paintedColor")];
+            this.paintedColor = TLColor.values()[data.getByte("paintedColor")];
         }
     }
 
@@ -401,7 +401,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
                 }
 
                 var inserted = StorageHelper.insert(this.cellHandler,
-                        AEItemKey.of(stack), stack.getCount(), this.mySrc);
+                        TLItemKey.of(stack), stack.getCount(), this.mySrc);
 
                 if (inserted >= stack.getCount()) {
                     this.inputInventory.setItemDirect(0, ItemStack.EMPTY);
@@ -467,12 +467,12 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
     }
 
     @Override
-    public AEColor getColor() {
+    public TLColor getColor() {
         return this.paintedColor;
     }
 
     @Override
-    public boolean recolourBlock(Direction side, AEColor newPaintedColor, Player who) {
+    public boolean recolourBlock(Direction side, TLColor newPaintedColor, Player who) {
         if (this.paintedColor == newPaintedColor) {
             return false;
         }
@@ -503,7 +503,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         }
 
         @Override
-        public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+        public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
             var inserted = super.insert(what, amount, mode, source);
             if (inserted > 0 && mode == Actionable.MODULATE) {
                 blinkCell(0);
@@ -512,7 +512,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         }
 
         @Override
-        public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+        public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
             var extracted = super.extract(what, amount, mode, source);
             if (extracted > 0 && mode == Actionable.MODULATE) {
                 blinkCell(0);
@@ -589,7 +589,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         public int fill(FluidStack resource, FluidAction action) {
             MEChestBlockEntity.this.updateHandler();
             if (canAcceptLiquids()) {
-                var what = AEFluidKey.of(resource);
+                var what = TLFluidKey.of(resource);
                 if (what != null) {
                     return (int) StorageHelper.insert(
                             MEChestBlockEntity.this.cellHandler,
@@ -613,7 +613,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         }
     }
 
-    private class InputInventoryFilter implements IAEItemFilter {
+    private class InputInventoryFilter implements ITLItemFilter {
         @Override
         public boolean allowExtract(InternalInventory inv, int slot, int amount) {
             return false;
@@ -626,7 +626,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
                 return false;
             }
 
-            var what = AEItemKey.of(stack);
+            var what = TLItemKey.of(stack);
             if (what == null) {
                 return false;
             }
@@ -635,7 +635,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
         }
     }
 
-    private static class CellInventoryFilter implements IAEItemFilter {
+    private static class CellInventoryFilter implements ITLItemFilter {
 
         @Override
         public boolean allowExtract(InternalInventory inv, int slot, int amount) {
@@ -651,7 +651,7 @@ public class MEChestBlockEntity extends AENetworkedInvBlockEntity
 
     @Override
     public ItemStack getMainMenuIcon() {
-        return AEBlocks.ME_CHEST.stack();
+        return TLBlocks.ME_CHEST.stack();
     }
 
     @Override

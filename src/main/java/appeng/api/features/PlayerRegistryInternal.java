@@ -32,9 +32,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 
-import appeng.core.AELog;
 import appeng.core.AppEng;
-import appeng.core.worlddata.AESavedData;
+import appeng.core.TLLog;
+import appeng.core.worlddata.TLSavedData;
 
 /**
  * Handles the matching between UUIDs and internal IDs for security systems. This whole system could be replaced by
@@ -44,7 +44,7 @@ import appeng.core.worlddata.AESavedData;
  * @version rv3 - 30.05.2015
  * @since rv3 30.05.2015
  */
-final class PlayerRegistryInternal extends AESavedData implements IPlayerRegistry {
+final class PlayerRegistryInternal extends TLSavedData implements IPlayerRegistry {
 
     private static final String NAME = AppEng.MOD_ID + "_players";
     private static final String TAG_PLAYER_IDS = "playerIds";
@@ -93,7 +93,7 @@ final class PlayerRegistryInternal extends AESavedData implements IPlayerRegistr
 
             var player = server.getPlayerList().getPlayer(profileId);
             var name = player != null ? player.getGameProfile().getName() : "[UNKNOWN]";
-            AELog.info("Assigning ME player id %s to Minecraft profile %s (%s)", playerId, profileId, name);
+            TLLog.info("Assigning ME player id %s to Minecraft profile %s (%s)", playerId, profileId, name);
         }
 
         return playerId;
@@ -115,7 +115,7 @@ final class PlayerRegistryInternal extends AESavedData implements IPlayerRegistr
             UUID profileId = new UUID(profileIds[i * 2], profileIds[i * 2 + 1]);
             highestPlayerId = Math.max(playerId, highestPlayerId);
             result.mapping.put(profileId, playerId);
-            AELog.debug("AE player ID %s is assigned to profile ID %s", playerId, profileId);
+            TLLog.debug("TL player ID %s is assigned to profile ID %s", playerId, profileId);
         }
         result.nextPlayerId = highestPlayerId + 1;
         return result;

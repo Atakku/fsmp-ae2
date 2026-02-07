@@ -7,9 +7,9 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:monitor
-- ae2:semi_dark_monitor
-- ae2:dark_monitor
+- tl2:monitor
+- tl2:semi_dark_monitor
+- tl2:dark_monitor
 ---
 
 # Illuminated Panels
@@ -21,7 +21,7 @@ item_ids:
 
 Illuminated panels are a decorative light source that is also used in the production of [terminals](terminals.md).
 
-They are [cable subparts](../ae2-mechanics/cable-subparts.md).
+They are [cable subparts](../tl2-mechanics/cable-subparts.md).
 
 ## Recipes
 

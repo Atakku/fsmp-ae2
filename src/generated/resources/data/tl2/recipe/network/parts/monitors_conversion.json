@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tl2:formation_core"
+    },
+    {
+      "item": "tl2:storage_monitor"
+    },
+    {
+      "item": "tl2:annihilation_core"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:conversion_monitor"
+  }
+}

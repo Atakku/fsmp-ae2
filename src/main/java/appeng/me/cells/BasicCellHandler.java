@@ -32,7 +32,7 @@ import appeng.api.config.IncludeExclude;
 import appeng.api.stacks.GenericStack;
 import appeng.api.storage.cells.ICellHandler;
 import appeng.api.storage.cells.ISaveProvider;
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 import appeng.core.localization.GuiText;
 import appeng.core.localization.Tooltips;
 import appeng.items.storage.StorageCellTooltipComponent;
@@ -83,7 +83,7 @@ public class BasicCellHandler implements ICellHandler {
         }
 
         var upgradeStacks = new ArrayList<ItemStack>();
-        if (AEConfig.instance().isTooltipShowCellUpgrades()) {
+        if (TLConfig.instance().isTooltipShowCellUpgrades()) {
             for (var upgrade : handler.getUpgradesInventory()) {
                 upgradeStacks.add(upgrade);
             }
@@ -92,10 +92,10 @@ public class BasicCellHandler implements ICellHandler {
         // Find items with the highest stored amount
         boolean hasMoreContent;
         List<GenericStack> content;
-        if (AEConfig.instance().isTooltipShowCellContent()) {
+        if (TLConfig.instance().isTooltipShowCellContent()) {
             content = new ArrayList<>();
 
-            var maxCountShown = AEConfig.instance().getTooltipMaxCellContentShown();
+            var maxCountShown = TLConfig.instance().getTooltipMaxCellContentShown();
 
             var availableStacks = handler.getAvailableStacks();
             for (var entry : availableStacks) {

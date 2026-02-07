@@ -1,0 +1,92 @@
+package appeng.api.stacks;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.JsonOps;
+
+import org.junit.jupiter.api.Test;
+
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
+
+import appeng.util.BootstrapMinecraft;
+import appeng.util.CodecTestUtil;
+
+@BootstrapMinecraft
+class TLKeyTest {
+    private RegistryAccess registries = RegistryAccess.EMPTY;
+
+    @Test
+    void testItemJsonRoundtrip() {
+        var expected = GsonHelper.parse("{\"id\":\"minecraft:diamond\",\"#t\":\"tl2:i\"}");
+
+        var ik = TLItemKey.of(Items.DIAMOND);
+        testKeyTypeRoundtrip(ik, JsonOps.INSTANCE, expected);
+    }
+
+    @Test
+    void testItemJsonRoundtripWithPatchedComponents() {
+        var expected = GsonHelper.parse(
+                "{\"id\":\"minecraft:diamond\",\"components\":{\"minecraft:max_stack_size\":99},\"#t\":\"tl2:i\"}");
+
+        var stack = Items.DIAMOND.getDefaultInstance();
+        stack.set(DataComponents.MAX_STACK_SIZE, 99);
+        var ik = TLItemKey.of(stack);
+        testKeyTypeRoundtrip(ik, JsonOps.INSTANCE, expected);
+    }
+
+    @Test
+    void testFluidJsonRoundtrip() {
+        var expected = GsonHelper.parse("{\"id\":\"minecraft:lava\",\"#t\":\"tl2:f\"}");
+
+        var fk = TLFluidKey.of(Fluids.LAVA);
+        testKeyTypeRoundtrip(fk, JsonOps.INSTANCE, expected);
+    }
+
+    @Test
+    void testFluidJsonRoundtripWithPatchedComponents() {
+        var expected = GsonHelper
+                .parse("{\"id\":\"minecraft:lava\",\"components\":{\"minecraft:max_stack_size\":99},\"#t\":\"tl2:f\"}");
+
+        var stack = new FluidStack(Fluids.LAVA, 1);
+        stack.set(DataComponents.MAX_STACK_SIZE, 99);
+        var ik = TLFluidKey.of(stack);
+        testKeyTypeRoundtrip(ik, JsonOps.INSTANCE, expected);
+    }
+
+    @Test
+    void testToGenericTagItemKey() {
+        var expected = new CompoundTag();
+        expected.putString("#t", "tl2:i");
+        expected.putString("id", "minecraft:diamond");
+
+        var key = TLItemKey.of(Items.DIAMOND);
+        var tag = key.toTagGeneric(registries);
+        assertEquals(expected, tag);
+
+        assertEquals(key, TLKey.fromTagGeneric(registries, tag));
+    }
+
+    @Test
+    void testToGenericTagFluidKey() {
+        var expected = new CompoundTag();
+        expected.putString("#t", "tl2:f");
+        expected.putString("id", "minecraft:water");
+
+        var key = TLFluidKey.of(Fluids.WATER);
+        var tag = key.toTagGeneric(registries);
+        assertEquals(expected, tag);
+
+        assertEquals(key, TLKey.fromTagGeneric(registries, tag));
+    }
+
+    private static <T> void testKeyTypeRoundtrip(TLKey key, DynamicOps<T> ops, T encodedValue) {
+        CodecTestUtil.testRoundtrip(TLKey.CODEC, key, ops, encodedValue);
+    }
+}

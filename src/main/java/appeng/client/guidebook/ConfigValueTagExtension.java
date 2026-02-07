@@ -10,14 +10,14 @@ import guideme.document.flow.LytFlowParent;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
 
 /**
- * Provides access to AE2 config values in guide content.
+ * Provides access to TL2 config values in guide content.
  */
 public class ConfigValueTagExtension extends FlowTagCompiler {
     public static final Map<String, Supplier<String>> CONFIG_VALUES = Map.of();
 
     @Override
     public Set<String> getTagNames() {
-        return Set.of("ae2:ConfigValue");
+        return Set.of("tl2:ConfigValue");
     }
 
     @Override

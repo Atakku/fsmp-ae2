@@ -9,21 +9,21 @@ import appeng.api.parts.IPartHost;
 import appeng.me.helpers.IGridConnectedBlockEntity;
 
 /**
- * Allows add-ons to notify AE2 of their {@link BlockEntity} classes that do derive from AE2 block entity classes. AE2
- * will try to add default tooltip providers for common AE2 API interfaces for these addon block entity classes.
+ * Allows add-ons to notify TL2 of their {@link BlockEntity} classes that do derive from TL2 block entity classes. TL2
+ * will try to add default tooltip providers for common TL2 API interfaces for these addon block entity classes.
  */
 @ApiStatus.Experimental
 @ApiStatus.NonExtendable
 public interface BaseClassRegistration {
     /**
-     * Adds AE2s tooltip providers for the following interfaces to a given block entity/block and their subclasses.
+     * Adds TL2s tooltip providers for the following interfaces to a given block entity/block and their subclasses.
      * <ul>
      * <li>{@link IGridConnectedBlockEntity}</li>
      * </ul>
      * <p/>
-     * Please note that AE2 will already register these providers for its own block entity base class
-     * (AEBaseBlockEntity). This method is only useful if you implement any of the interfaces listed above on your own
-     * block entity class, which does not extend from an internal AE2 block entity base class.
+     * Please note that TL2 will already register these providers for its own block entity base class
+     * (TLBaseBlockEntity). This method is only useful if you implement any of the interfaces listed above on your own
+     * block entity class, which does not extend from an internal TL2 block entity base class.
      * <p/>
      * This method is needed because some tooltip mods only allow registering providers for subclasses of
      * {@link BlockEntity}, and not for arbitrary interfaces.
@@ -34,11 +34,11 @@ public interface BaseClassRegistration {
             Class<? extends Block> blockClass);
 
     /**
-     * Adds AE2s part tooltip providers for third party {@link IPartHost} implementations.
+     * Adds TL2s part tooltip providers for third party {@link IPartHost} implementations.
      * <p/>
-     * Please note that AE2 will already register these providers for its own part host (CableBusBlockEntity). This
+     * Please note that TL2 will already register these providers for its own part host (CableBusBlockEntity). This
      * method is only useful if your addon implements its own {@link IPartHost}, which does not extend from an internal
-     * AE2 block entity base class.
+     * TL2 block entity base class.
      * <p/>
      * This method is needed because some tooltip mods only allow registering providers for subclasses of
      * {@link BlockEntity}, and not for arbitrary interfaces.

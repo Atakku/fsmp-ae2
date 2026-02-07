@@ -29,7 +29,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 /**
  * Allows recoloring a variety of vanilla blocks.
@@ -39,104 +39,104 @@ public final class BlockRecolorer {
     private BlockRecolorer() {
     }
 
-    private static final BiMap<AEColor, Block> STAINED_GLASS_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_STAINED_GLASS)
-            .put(AEColor.ORANGE, Blocks.ORANGE_STAINED_GLASS).put(AEColor.MAGENTA, Blocks.MAGENTA_STAINED_GLASS)
-            .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_STAINED_GLASS).put(AEColor.YELLOW, Blocks.YELLOW_STAINED_GLASS)
-            .put(AEColor.LIME, Blocks.LIME_STAINED_GLASS).put(AEColor.PINK, Blocks.PINK_STAINED_GLASS)
-            .put(AEColor.GRAY, Blocks.GRAY_STAINED_GLASS).put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_STAINED_GLASS)
-            .put(AEColor.CYAN, Blocks.CYAN_STAINED_GLASS).put(AEColor.PURPLE, Blocks.PURPLE_STAINED_GLASS)
-            .put(AEColor.BLUE, Blocks.BLUE_STAINED_GLASS).put(AEColor.BROWN, Blocks.BROWN_STAINED_GLASS)
-            .put(AEColor.GREEN, Blocks.GREEN_STAINED_GLASS).put(AEColor.RED, Blocks.RED_STAINED_GLASS)
-            .put(AEColor.BLACK, Blocks.BLACK_STAINED_GLASS).build());
+    private static final BiMap<TLColor, Block> STAINED_GLASS_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_STAINED_GLASS)
+            .put(TLColor.ORANGE, Blocks.ORANGE_STAINED_GLASS).put(TLColor.MAGENTA, Blocks.MAGENTA_STAINED_GLASS)
+            .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_STAINED_GLASS).put(TLColor.YELLOW, Blocks.YELLOW_STAINED_GLASS)
+            .put(TLColor.LIME, Blocks.LIME_STAINED_GLASS).put(TLColor.PINK, Blocks.PINK_STAINED_GLASS)
+            .put(TLColor.GRAY, Blocks.GRAY_STAINED_GLASS).put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_STAINED_GLASS)
+            .put(TLColor.CYAN, Blocks.CYAN_STAINED_GLASS).put(TLColor.PURPLE, Blocks.PURPLE_STAINED_GLASS)
+            .put(TLColor.BLUE, Blocks.BLUE_STAINED_GLASS).put(TLColor.BROWN, Blocks.BROWN_STAINED_GLASS)
+            .put(TLColor.GREEN, Blocks.GREEN_STAINED_GLASS).put(TLColor.RED, Blocks.RED_STAINED_GLASS)
+            .put(TLColor.BLACK, Blocks.BLACK_STAINED_GLASS).build());
 
-    private static final BiMap<AEColor, Block> STAINED_GLASS_PANE_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_STAINED_GLASS_PANE)
-            .put(AEColor.ORANGE, Blocks.ORANGE_STAINED_GLASS_PANE)
-            .put(AEColor.MAGENTA, Blocks.MAGENTA_STAINED_GLASS_PANE)
-            .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_STAINED_GLASS_PANE)
-            .put(AEColor.YELLOW, Blocks.YELLOW_STAINED_GLASS_PANE).put(AEColor.LIME, Blocks.LIME_STAINED_GLASS_PANE)
-            .put(AEColor.PINK, Blocks.PINK_STAINED_GLASS_PANE).put(AEColor.GRAY, Blocks.GRAY_STAINED_GLASS_PANE)
-            .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE)
-            .put(AEColor.CYAN, Blocks.CYAN_STAINED_GLASS_PANE).put(AEColor.PURPLE, Blocks.PURPLE_STAINED_GLASS_PANE)
-            .put(AEColor.BLUE, Blocks.BLUE_STAINED_GLASS_PANE).put(AEColor.BROWN, Blocks.BROWN_STAINED_GLASS_PANE)
-            .put(AEColor.GREEN, Blocks.GREEN_STAINED_GLASS_PANE).put(AEColor.RED, Blocks.RED_STAINED_GLASS_PANE)
-            .put(AEColor.BLACK, Blocks.BLACK_STAINED_GLASS_PANE).build());
+    private static final BiMap<TLColor, Block> STAINED_GLASS_PANE_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_STAINED_GLASS_PANE)
+            .put(TLColor.ORANGE, Blocks.ORANGE_STAINED_GLASS_PANE)
+            .put(TLColor.MAGENTA, Blocks.MAGENTA_STAINED_GLASS_PANE)
+            .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_STAINED_GLASS_PANE)
+            .put(TLColor.YELLOW, Blocks.YELLOW_STAINED_GLASS_PANE).put(TLColor.LIME, Blocks.LIME_STAINED_GLASS_PANE)
+            .put(TLColor.PINK, Blocks.PINK_STAINED_GLASS_PANE).put(TLColor.GRAY, Blocks.GRAY_STAINED_GLASS_PANE)
+            .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE)
+            .put(TLColor.CYAN, Blocks.CYAN_STAINED_GLASS_PANE).put(TLColor.PURPLE, Blocks.PURPLE_STAINED_GLASS_PANE)
+            .put(TLColor.BLUE, Blocks.BLUE_STAINED_GLASS_PANE).put(TLColor.BROWN, Blocks.BROWN_STAINED_GLASS_PANE)
+            .put(TLColor.GREEN, Blocks.GREEN_STAINED_GLASS_PANE).put(TLColor.RED, Blocks.RED_STAINED_GLASS_PANE)
+            .put(TLColor.BLACK, Blocks.BLACK_STAINED_GLASS_PANE).build());
 
-    private static final BiMap<AEColor, Block> WOOL_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_WOOL).put(AEColor.ORANGE, Blocks.ORANGE_WOOL)
-            .put(AEColor.MAGENTA, Blocks.MAGENTA_WOOL).put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL)
-            .put(AEColor.YELLOW, Blocks.YELLOW_WOOL).put(AEColor.LIME, Blocks.LIME_WOOL)
-            .put(AEColor.PINK, Blocks.PINK_WOOL).put(AEColor.GRAY, Blocks.GRAY_WOOL)
-            .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL).put(AEColor.CYAN, Blocks.CYAN_WOOL)
-            .put(AEColor.PURPLE, Blocks.PURPLE_WOOL).put(AEColor.BLUE, Blocks.BLUE_WOOL)
-            .put(AEColor.BROWN, Blocks.BROWN_WOOL).put(AEColor.GREEN, Blocks.GREEN_WOOL)
-            .put(AEColor.RED, Blocks.RED_WOOL).put(AEColor.BLACK, Blocks.BLACK_WOOL).build());
+    private static final BiMap<TLColor, Block> WOOL_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_WOOL).put(TLColor.ORANGE, Blocks.ORANGE_WOOL)
+            .put(TLColor.MAGENTA, Blocks.MAGENTA_WOOL).put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL)
+            .put(TLColor.YELLOW, Blocks.YELLOW_WOOL).put(TLColor.LIME, Blocks.LIME_WOOL)
+            .put(TLColor.PINK, Blocks.PINK_WOOL).put(TLColor.GRAY, Blocks.GRAY_WOOL)
+            .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL).put(TLColor.CYAN, Blocks.CYAN_WOOL)
+            .put(TLColor.PURPLE, Blocks.PURPLE_WOOL).put(TLColor.BLUE, Blocks.BLUE_WOOL)
+            .put(TLColor.BROWN, Blocks.BROWN_WOOL).put(TLColor.GREEN, Blocks.GREEN_WOOL)
+            .put(TLColor.RED, Blocks.RED_WOOL).put(TLColor.BLACK, Blocks.BLACK_WOOL).build());
 
-    private static final BiMap<AEColor, Block> BANNER_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_BANNER).put(AEColor.ORANGE, Blocks.ORANGE_BANNER)
-            .put(AEColor.MAGENTA, Blocks.MAGENTA_BANNER).put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_BANNER)
-            .put(AEColor.YELLOW, Blocks.YELLOW_BANNER).put(AEColor.LIME, Blocks.LIME_BANNER)
-            .put(AEColor.PINK, Blocks.PINK_BANNER).put(AEColor.GRAY, Blocks.GRAY_BANNER)
-            .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_BANNER).put(AEColor.CYAN, Blocks.CYAN_BANNER)
-            .put(AEColor.PURPLE, Blocks.PURPLE_BANNER).put(AEColor.BLUE, Blocks.BLUE_BANNER)
-            .put(AEColor.BROWN, Blocks.BROWN_BANNER).put(AEColor.GREEN, Blocks.GREEN_BANNER)
-            .put(AEColor.RED, Blocks.RED_BANNER).put(AEColor.BLACK, Blocks.BLACK_BANNER).build());
+    private static final BiMap<TLColor, Block> BANNER_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_BANNER).put(TLColor.ORANGE, Blocks.ORANGE_BANNER)
+            .put(TLColor.MAGENTA, Blocks.MAGENTA_BANNER).put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_BANNER)
+            .put(TLColor.YELLOW, Blocks.YELLOW_BANNER).put(TLColor.LIME, Blocks.LIME_BANNER)
+            .put(TLColor.PINK, Blocks.PINK_BANNER).put(TLColor.GRAY, Blocks.GRAY_BANNER)
+            .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_BANNER).put(TLColor.CYAN, Blocks.CYAN_BANNER)
+            .put(TLColor.PURPLE, Blocks.PURPLE_BANNER).put(TLColor.BLUE, Blocks.BLUE_BANNER)
+            .put(TLColor.BROWN, Blocks.BROWN_BANNER).put(TLColor.GREEN, Blocks.GREEN_BANNER)
+            .put(TLColor.RED, Blocks.RED_BANNER).put(TLColor.BLACK, Blocks.BLACK_BANNER).build());
 
-    private static final BiMap<AEColor, Block> WALL_BANNER_BY_COLOR = EnumHashBiMap
-            .create(ImmutableMap.<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_WALL_BANNER)
-                    .put(AEColor.ORANGE, Blocks.ORANGE_WALL_BANNER).put(AEColor.MAGENTA, Blocks.MAGENTA_WALL_BANNER)
-                    .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WALL_BANNER)
-                    .put(AEColor.YELLOW, Blocks.YELLOW_WALL_BANNER).put(AEColor.LIME, Blocks.LIME_WALL_BANNER)
-                    .put(AEColor.PINK, Blocks.PINK_WALL_BANNER).put(AEColor.GRAY, Blocks.GRAY_WALL_BANNER)
-                    .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WALL_BANNER).put(AEColor.CYAN, Blocks.CYAN_WALL_BANNER)
-                    .put(AEColor.PURPLE, Blocks.PURPLE_WALL_BANNER).put(AEColor.BLUE, Blocks.BLUE_WALL_BANNER)
-                    .put(AEColor.BROWN, Blocks.BROWN_WALL_BANNER).put(AEColor.GREEN, Blocks.GREEN_WALL_BANNER)
-                    .put(AEColor.RED, Blocks.RED_WALL_BANNER).put(AEColor.BLACK, Blocks.BLACK_WALL_BANNER).build());
+    private static final BiMap<TLColor, Block> WALL_BANNER_BY_COLOR = EnumHashBiMap
+            .create(ImmutableMap.<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_WALL_BANNER)
+                    .put(TLColor.ORANGE, Blocks.ORANGE_WALL_BANNER).put(TLColor.MAGENTA, Blocks.MAGENTA_WALL_BANNER)
+                    .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WALL_BANNER)
+                    .put(TLColor.YELLOW, Blocks.YELLOW_WALL_BANNER).put(TLColor.LIME, Blocks.LIME_WALL_BANNER)
+                    .put(TLColor.PINK, Blocks.PINK_WALL_BANNER).put(TLColor.GRAY, Blocks.GRAY_WALL_BANNER)
+                    .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WALL_BANNER).put(TLColor.CYAN, Blocks.CYAN_WALL_BANNER)
+                    .put(TLColor.PURPLE, Blocks.PURPLE_WALL_BANNER).put(TLColor.BLUE, Blocks.BLUE_WALL_BANNER)
+                    .put(TLColor.BROWN, Blocks.BROWN_WALL_BANNER).put(TLColor.GREEN, Blocks.GREEN_WALL_BANNER)
+                    .put(TLColor.RED, Blocks.RED_WALL_BANNER).put(TLColor.BLACK, Blocks.BLACK_WALL_BANNER).build());
 
-    private static final BiMap<AEColor, Block> CARPET_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_CARPET).put(AEColor.ORANGE, Blocks.ORANGE_CARPET)
-            .put(AEColor.MAGENTA, Blocks.MAGENTA_CARPET).put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_CARPET)
-            .put(AEColor.YELLOW, Blocks.YELLOW_CARPET).put(AEColor.LIME, Blocks.LIME_CARPET)
-            .put(AEColor.PINK, Blocks.PINK_CARPET).put(AEColor.GRAY, Blocks.GRAY_CARPET)
-            .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_CARPET).put(AEColor.CYAN, Blocks.CYAN_CARPET)
-            .put(AEColor.PURPLE, Blocks.PURPLE_CARPET).put(AEColor.BLUE, Blocks.BLUE_CARPET)
-            .put(AEColor.BROWN, Blocks.BROWN_CARPET).put(AEColor.GREEN, Blocks.GREEN_CARPET)
-            .put(AEColor.RED, Blocks.RED_CARPET).put(AEColor.BLACK, Blocks.BLACK_CARPET).build());
+    private static final BiMap<TLColor, Block> CARPET_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_CARPET).put(TLColor.ORANGE, Blocks.ORANGE_CARPET)
+            .put(TLColor.MAGENTA, Blocks.MAGENTA_CARPET).put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_CARPET)
+            .put(TLColor.YELLOW, Blocks.YELLOW_CARPET).put(TLColor.LIME, Blocks.LIME_CARPET)
+            .put(TLColor.PINK, Blocks.PINK_CARPET).put(TLColor.GRAY, Blocks.GRAY_CARPET)
+            .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_CARPET).put(TLColor.CYAN, Blocks.CYAN_CARPET)
+            .put(TLColor.PURPLE, Blocks.PURPLE_CARPET).put(TLColor.BLUE, Blocks.BLUE_CARPET)
+            .put(TLColor.BROWN, Blocks.BROWN_CARPET).put(TLColor.GREEN, Blocks.GREEN_CARPET)
+            .put(TLColor.RED, Blocks.RED_CARPET).put(TLColor.BLACK, Blocks.BLACK_CARPET).build());
 
-    private static final BiMap<AEColor, Block> TERRACOTTA_BY_COLOR = EnumHashBiMap
-            .create(ImmutableMap.<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_TERRACOTTA)
-                    .put(AEColor.ORANGE, Blocks.ORANGE_TERRACOTTA).put(AEColor.MAGENTA, Blocks.MAGENTA_TERRACOTTA)
-                    .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_TERRACOTTA).put(AEColor.YELLOW, Blocks.YELLOW_TERRACOTTA)
-                    .put(AEColor.LIME, Blocks.LIME_TERRACOTTA).put(AEColor.PINK, Blocks.PINK_TERRACOTTA)
-                    .put(AEColor.GRAY, Blocks.GRAY_TERRACOTTA).put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_TERRACOTTA)
-                    .put(AEColor.CYAN, Blocks.CYAN_TERRACOTTA).put(AEColor.PURPLE, Blocks.PURPLE_TERRACOTTA)
-                    .put(AEColor.BLUE, Blocks.BLUE_TERRACOTTA).put(AEColor.BROWN, Blocks.BROWN_TERRACOTTA)
-                    .put(AEColor.GREEN, Blocks.GREEN_TERRACOTTA).put(AEColor.RED, Blocks.RED_TERRACOTTA)
-                    .put(AEColor.BLACK, Blocks.BLACK_TERRACOTTA).build());
+    private static final BiMap<TLColor, Block> TERRACOTTA_BY_COLOR = EnumHashBiMap
+            .create(ImmutableMap.<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_TERRACOTTA)
+                    .put(TLColor.ORANGE, Blocks.ORANGE_TERRACOTTA).put(TLColor.MAGENTA, Blocks.MAGENTA_TERRACOTTA)
+                    .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_TERRACOTTA).put(TLColor.YELLOW, Blocks.YELLOW_TERRACOTTA)
+                    .put(TLColor.LIME, Blocks.LIME_TERRACOTTA).put(TLColor.PINK, Blocks.PINK_TERRACOTTA)
+                    .put(TLColor.GRAY, Blocks.GRAY_TERRACOTTA).put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_TERRACOTTA)
+                    .put(TLColor.CYAN, Blocks.CYAN_TERRACOTTA).put(TLColor.PURPLE, Blocks.PURPLE_TERRACOTTA)
+                    .put(TLColor.BLUE, Blocks.BLUE_TERRACOTTA).put(TLColor.BROWN, Blocks.BROWN_TERRACOTTA)
+                    .put(TLColor.GREEN, Blocks.GREEN_TERRACOTTA).put(TLColor.RED, Blocks.RED_TERRACOTTA)
+                    .put(TLColor.BLACK, Blocks.BLACK_TERRACOTTA).build());
 
-    private static final BiMap<AEColor, Block> GLAZED_TERRACOTTA_BY_COLOR = EnumHashBiMap.create(ImmutableMap
-            .<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_GLAZED_TERRACOTTA)
-            .put(AEColor.ORANGE, Blocks.ORANGE_GLAZED_TERRACOTTA).put(AEColor.MAGENTA, Blocks.MAGENTA_GLAZED_TERRACOTTA)
-            .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA)
-            .put(AEColor.YELLOW, Blocks.YELLOW_GLAZED_TERRACOTTA).put(AEColor.LIME, Blocks.LIME_GLAZED_TERRACOTTA)
-            .put(AEColor.PINK, Blocks.PINK_GLAZED_TERRACOTTA).put(AEColor.GRAY, Blocks.GRAY_GLAZED_TERRACOTTA)
-            .put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA)
-            .put(AEColor.CYAN, Blocks.CYAN_GLAZED_TERRACOTTA).put(AEColor.PURPLE, Blocks.PURPLE_GLAZED_TERRACOTTA)
-            .put(AEColor.BLUE, Blocks.BLUE_GLAZED_TERRACOTTA).put(AEColor.BROWN, Blocks.BROWN_GLAZED_TERRACOTTA)
-            .put(AEColor.GREEN, Blocks.GREEN_GLAZED_TERRACOTTA).put(AEColor.RED, Blocks.RED_GLAZED_TERRACOTTA)
-            .put(AEColor.BLACK, Blocks.BLACK_GLAZED_TERRACOTTA).build());
+    private static final BiMap<TLColor, Block> GLAZED_TERRACOTTA_BY_COLOR = EnumHashBiMap.create(ImmutableMap
+            .<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_GLAZED_TERRACOTTA)
+            .put(TLColor.ORANGE, Blocks.ORANGE_GLAZED_TERRACOTTA).put(TLColor.MAGENTA, Blocks.MAGENTA_GLAZED_TERRACOTTA)
+            .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA)
+            .put(TLColor.YELLOW, Blocks.YELLOW_GLAZED_TERRACOTTA).put(TLColor.LIME, Blocks.LIME_GLAZED_TERRACOTTA)
+            .put(TLColor.PINK, Blocks.PINK_GLAZED_TERRACOTTA).put(TLColor.GRAY, Blocks.GRAY_GLAZED_TERRACOTTA)
+            .put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA)
+            .put(TLColor.CYAN, Blocks.CYAN_GLAZED_TERRACOTTA).put(TLColor.PURPLE, Blocks.PURPLE_GLAZED_TERRACOTTA)
+            .put(TLColor.BLUE, Blocks.BLUE_GLAZED_TERRACOTTA).put(TLColor.BROWN, Blocks.BROWN_GLAZED_TERRACOTTA)
+            .put(TLColor.GREEN, Blocks.GREEN_GLAZED_TERRACOTTA).put(TLColor.RED, Blocks.RED_GLAZED_TERRACOTTA)
+            .put(TLColor.BLACK, Blocks.BLACK_GLAZED_TERRACOTTA).build());
 
-    private static final BiMap<AEColor, Block> CONCRETE_BY_COLOR = EnumHashBiMap
-            .create(ImmutableMap.<AEColor, Block>builder().put(AEColor.WHITE, Blocks.WHITE_CONCRETE)
-                    .put(AEColor.ORANGE, Blocks.ORANGE_CONCRETE).put(AEColor.MAGENTA, Blocks.MAGENTA_CONCRETE)
-                    .put(AEColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_CONCRETE).put(AEColor.YELLOW, Blocks.YELLOW_CONCRETE)
-                    .put(AEColor.LIME, Blocks.LIME_CONCRETE).put(AEColor.PINK, Blocks.PINK_CONCRETE)
-                    .put(AEColor.GRAY, Blocks.GRAY_CONCRETE).put(AEColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_CONCRETE)
-                    .put(AEColor.CYAN, Blocks.CYAN_CONCRETE).put(AEColor.PURPLE, Blocks.PURPLE_CONCRETE)
-                    .put(AEColor.BLUE, Blocks.BLUE_CONCRETE).put(AEColor.BROWN, Blocks.BROWN_CONCRETE)
-                    .put(AEColor.GREEN, Blocks.GREEN_CONCRETE).put(AEColor.RED, Blocks.RED_CONCRETE)
-                    .put(AEColor.BLACK, Blocks.BLACK_CONCRETE).build());
+    private static final BiMap<TLColor, Block> CONCRETE_BY_COLOR = EnumHashBiMap
+            .create(ImmutableMap.<TLColor, Block>builder().put(TLColor.WHITE, Blocks.WHITE_CONCRETE)
+                    .put(TLColor.ORANGE, Blocks.ORANGE_CONCRETE).put(TLColor.MAGENTA, Blocks.MAGENTA_CONCRETE)
+                    .put(TLColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_CONCRETE).put(TLColor.YELLOW, Blocks.YELLOW_CONCRETE)
+                    .put(TLColor.LIME, Blocks.LIME_CONCRETE).put(TLColor.PINK, Blocks.PINK_CONCRETE)
+                    .put(TLColor.GRAY, Blocks.GRAY_CONCRETE).put(TLColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_CONCRETE)
+                    .put(TLColor.CYAN, Blocks.CYAN_CONCRETE).put(TLColor.PURPLE, Blocks.PURPLE_CONCRETE)
+                    .put(TLColor.BLUE, Blocks.BLUE_CONCRETE).put(TLColor.BROWN, Blocks.BROWN_CONCRETE)
+                    .put(TLColor.GREEN, Blocks.GREEN_CONCRETE).put(TLColor.RED, Blocks.RED_CONCRETE)
+                    .put(TLColor.BLACK, Blocks.BLACK_CONCRETE).build());
 
     private static final List<RecolorableBlockGroup> BLOCK_GROUPS = ImmutableList.of(
             new RecolorableBlockGroup(Blocks.GLASS, STAINED_GLASS_BY_COLOR),
@@ -149,7 +149,7 @@ public final class BlockRecolorer {
             new RecolorableBlockGroup(null, GLAZED_TERRACOTTA_BY_COLOR),
             new RecolorableBlockGroup(null, CONCRETE_BY_COLOR));
 
-    public static Block recolor(Block block, AEColor newColor) {
+    public static Block recolor(Block block, TLColor newColor) {
         Objects.requireNonNull(block);
 
         for (RecolorableBlockGroup group : BLOCK_GROUPS) {
@@ -173,9 +173,9 @@ public final class BlockRecolorer {
 
         final Block uncoloredVariant;
 
-        final BiMap<AEColor, Block> coloredVariants;
+        final BiMap<TLColor, Block> coloredVariants;
 
-        public RecolorableBlockGroup(Block uncoloredVariant, BiMap<AEColor, Block> coloredVariants) {
+        public RecolorableBlockGroup(Block uncoloredVariant, BiMap<TLColor, Block> coloredVariants) {
             this.uncoloredVariant = uncoloredVariant;
             this.coloredVariants = coloredVariants;
         }

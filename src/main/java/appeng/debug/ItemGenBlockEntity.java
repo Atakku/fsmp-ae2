@@ -33,11 +33,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.InternalInventoryHost;
 
-public class ItemGenBlockEntity extends AEBaseBlockEntity implements InternalInventoryHost {
+public class ItemGenBlockEntity extends TLBaseBlockEntity implements InternalInventoryHost {
 
     private static final Queue<ItemStack> SHARED_POSSIBLE_ITEMS = new ArrayDeque<>();
 

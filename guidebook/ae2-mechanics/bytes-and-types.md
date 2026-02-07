@@ -1,6 +1,6 @@
 ---
 navigation:
-  parent: ae2-mechanics/ae2-mechanics-index.md
+  parent: tl2-mechanics/tl2-mechanics-index.md
   title: Bytes and Types
   icon: creative_storage_cell
 ---

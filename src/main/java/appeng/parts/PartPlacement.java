@@ -20,8 +20,8 @@ import net.minecraft.world.phys.Vec3;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartHelper;
-import appeng.core.AELog;
-import appeng.core.definitions.AEAttachmentTypes;
+import appeng.core.TLLog;
+import appeng.core.definitions.TLAttachmentTypes;
 import appeng.parts.networking.CablePart;
 import appeng.util.Platform;
 import appeng.util.SettingsFrom;
@@ -108,7 +108,7 @@ public class PartPlacement {
             try {
                 addedPart.importSettings(SettingsFrom.DISMANTLE_ITEM, configData, player);
             } catch (Exception e) {
-                AELog.warn(e, "Failed to import part settings during placement.");
+                TLLog.warn(e, "Failed to import part settings during placement.");
             }
         }
 
@@ -137,7 +137,7 @@ public class PartPlacement {
         }
 
         if (player != null) {
-            side = player.getData(AEAttachmentTypes.HOLDING_CTRL) ? side.getOpposite() : side;
+            side = player.getData(TLAttachmentTypes.HOLDING_CTRL) ? side.getOpposite() : side;
         }
 
         if (canPlacePartOnBlock(player, level, partStack, pos, side)) {

@@ -8,9 +8,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.ItemLike;
 
-import appeng.api.client.AEKeyRendering;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
+import appeng.api.client.TLKeyRendering;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.client.gui.Icon;
 
 public class InfoBar {
@@ -50,19 +50,19 @@ public class InfoBar {
         widgets.add(new TextWidget(text, color, scale, xPos, yPos));
     }
 
-    void add(AEKey what, float scale, int xPos, int yPos) {
+    void add(TLKey what, float scale, int xPos, int yPos) {
         widgets.add(new StackWidget(what, scale, xPos, yPos));
     }
 
     void add(ItemLike what, float scale, int xPos, int yPos) {
-        widgets.add(new StackWidget(AEItemKey.of(what), scale, xPos, yPos));
+        widgets.add(new StackWidget(TLItemKey.of(what), scale, xPos, yPos));
     }
 
     void addSpace(int width) {
         widgets.add(new SpaceWidget(width));
     }
 
-    private record StackWidget(AEKey what, float scale, int xPos, int yPos) implements Widget {
+    private record StackWidget(TLKey what, float scale, int xPos, int yPos) implements Widget {
         @Override
         public int getWidth() {
             return Math.round(16 * scale);
@@ -79,7 +79,7 @@ public class InfoBar {
             poseStack.pushPose();
             poseStack.translate(xPos, yPos, 0);
             poseStack.scale(scale, scale, 1);
-            AEKeyRendering.drawInGui(Minecraft.getInstance(), guiGraphics, 0, 0, what);
+            TLKeyRendering.drawInGui(Minecraft.getInstance(), guiGraphics, 0, 0, what);
             poseStack.popPose();
         }
     }

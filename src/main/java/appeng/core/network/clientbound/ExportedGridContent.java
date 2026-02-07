@@ -57,9 +57,9 @@ public record ExportedGridContent(int serialNumber,
         var connection = Minecraft.getInstance().getConnection();
         if (spServer != null) {
             saveDir = spServer.getServerDirectory();
-            filename = "ae2_grid_";
+            filename = "tl2_grid_";
         } else if (connection != null) {
-            filename = "ae2_grid_from_server_";
+            filename = "tl2_grid_from_server_";
         } else {
             LOG.error("Ignoring grid export without a connection to a server.");
             return;

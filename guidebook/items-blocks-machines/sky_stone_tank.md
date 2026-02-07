@@ -7,7 +7,7 @@ navigation:
 categories:
 - machines
 item_ids:
-- ae2:sky_stone_tank
+- tl2:sky_stone_tank
 ---
 
 # The Sky Stone Tank

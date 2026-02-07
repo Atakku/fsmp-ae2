@@ -14,14 +14,14 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.MEStorage;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.core.localization.GuiText;
 
 /**
@@ -47,10 +47,10 @@ public abstract class ExternalStorageFacade implements MEStorage {
     @Nullable
     public abstract GenericStack getStackInSlot(int slot);
 
-    public abstract AEKeyType getKeyType();
+    public abstract TLKeyType getKeyType();
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         var inserted = insertExternal(what, Ints.saturatedCast(amount), mode);
         if (inserted > 0 && mode == Actionable.MODULATE) {
             if (this.changeListener != null) {
@@ -61,7 +61,7 @@ public abstract class ExternalStorageFacade implements MEStorage {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         var extracted = extractExternal(what, Ints.saturatedCast(amount), mode);
         if (extracted > 0 && mode == Actionable.MODULATE) {
             if (this.changeListener != null) {
@@ -73,14 +73,14 @@ public abstract class ExternalStorageFacade implements MEStorage {
 
     @Override
     public Component getDescription() {
-        return GuiText.ExternalStorage.text(AEKeyType.fluids().getDescription());
+        return GuiText.ExternalStorage.text(TLKeyType.fluids().getDescription());
     }
 
-    protected abstract int insertExternal(AEKey what, int amount, Actionable mode);
+    protected abstract int insertExternal(TLKey what, int amount, Actionable mode);
 
-    protected abstract int extractExternal(AEKey what, int amount, Actionable mode);
+    protected abstract int extractExternal(TLKey what, int amount, Actionable mode);
 
-    public abstract boolean containsAnyFuzzy(Set<AEKey> keys);
+    public abstract boolean containsAnyFuzzy(Set<TLKey> keys);
 
     public static ExternalStorageFacade of(IFluidHandler handler) {
         return new FluidHandlerFacade(handler);
@@ -113,13 +113,13 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public AEKeyType getKeyType() {
-            return AEKeyType.items();
+        public TLKeyType getKeyType() {
+            return TLKeyType.items();
         }
 
         @Override
-        public int insertExternal(AEKey what, int amount, Actionable mode) {
-            if (!(what instanceof AEItemKey itemKey)) {
+        public int insertExternal(TLKey what, int amount, Actionable mode) {
+            if (!(what instanceof TLItemKey itemKey)) {
                 return 0;
             }
 
@@ -144,8 +144,8 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public int extractExternal(AEKey what, int amount, Actionable mode) {
-            if (!(what instanceof AEItemKey itemKey)) {
+        public int extractExternal(TLKey what, int amount, Actionable mode) {
+            if (!(what instanceof TLItemKey itemKey)) {
                 return 0;
             }
 
@@ -168,7 +168,7 @@ public abstract class ExternalStorageFacade implements MEStorage {
          * Extracts as much as possible from a single slot of an item handler, ignoring the usual max stack size
          * restriction.
          */
-        private static int extractFromHandler(IItemHandler handler, int slot, AEItemKey itemKey, int maxExtract,
+        private static int extractFromHandler(IItemHandler handler, int slot, TLItemKey itemKey, int maxExtract,
                 Actionable actionable) {
             ItemStack stackInInventorySlot = handler.getStackInSlot(slot);
             if (!itemKey.matches(stackInInventorySlot)) {
@@ -218,7 +218,7 @@ public abstract class ExternalStorageFacade implements MEStorage {
             if (extracted > maxExtract) {
                 // Something broke. It should never return more than we requested...
                 // We're going to silently eat the remainder
-                AELog.warn(
+                TLLog.warn(
                         "Mod that provided item handler %s is broken. Returned %d items while only requesting %d.",
                         handler.getClass().getName(), extracted, maxExtract);
                 return maxExtract;
@@ -228,9 +228,9 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public boolean containsAnyFuzzy(Set<AEKey> keys) {
+        public boolean containsAnyFuzzy(Set<TLKey> keys) {
             for (int i = 0; i < handler.getSlots(); i++) {
-                var what = AEItemKey.of(handler.getStackInSlot(i));
+                var what = TLItemKey.of(handler.getStackInSlot(i));
                 if (what != null) {
                     if (keys.contains(what.dropSecondary())) {
                         return true;
@@ -257,7 +257,7 @@ public abstract class ExternalStorageFacade implements MEStorage {
                     }
                 }
 
-                out.add(AEItemKey.of(stack), stack.getCount());
+                out.add(TLItemKey.of(stack), stack.getCount());
             }
         }
     }
@@ -281,13 +281,13 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public AEKeyType getKeyType() {
-            return AEKeyType.fluids();
+        public TLKeyType getKeyType() {
+            return TLKeyType.fluids();
         }
 
         @Override
-        protected int insertExternal(AEKey what, int amount, Actionable mode) {
-            if (!(what instanceof AEFluidKey fluidKey)) {
+        protected int insertExternal(TLKey what, int amount, Actionable mode) {
+            if (!(what instanceof TLFluidKey fluidKey)) {
                 return 0;
             }
 
@@ -295,8 +295,8 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public int extractExternal(AEKey what, int amount, Actionable mode) {
-            if (!(what instanceof AEFluidKey fluidKey)) {
+        public int extractExternal(TLKey what, int amount, Actionable mode) {
+            if (!(what instanceof TLFluidKey fluidKey)) {
                 return 0;
             }
 
@@ -313,9 +313,9 @@ public abstract class ExternalStorageFacade implements MEStorage {
         }
 
         @Override
-        public boolean containsAnyFuzzy(Set<AEKey> keys) {
+        public boolean containsAnyFuzzy(Set<TLKey> keys) {
             for (int i = 0; i < handler.getTanks(); i++) {
-                var what = AEFluidKey.of(handler.getFluidInTank(i));
+                var what = TLFluidKey.of(handler.getFluidInTank(i));
                 if (what != null) {
                     if (keys.contains(what.dropSecondary())) {
                         return true;
@@ -340,7 +340,7 @@ public abstract class ExternalStorageFacade implements MEStorage {
                     }
                 }
 
-                out.add(AEFluidKey.of(stack), stack.getAmount());
+                out.add(TLFluidKey.of(stack), stack.getAmount());
             }
         }
     }

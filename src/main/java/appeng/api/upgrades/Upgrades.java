@@ -24,7 +24,7 @@ import appeng.core.localization.Tooltips;
 import appeng.items.materials.UpgradeCardItem;
 
 /**
- * Manages available upgrades for AE machines, parts and items.
+ * Manages available upgrades for TL machines, parts and items.
  */
 public final class Upgrades {
     // Key is the upgrade cards item
@@ -112,7 +112,7 @@ public final class Upgrades {
 
     /**
      * Creates a new upgrade item which can be used to receive automated tooltips and allow custom upgrades to be added
-     * to AE2's toolbelt in the network tool.
+     * to TL2's toolbelt in the network tool.
      */
     public static Item createUpgradeCardItem(Item.Properties p) {
         return new UpgradeCardItem(p);

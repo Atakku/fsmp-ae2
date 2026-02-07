@@ -33,9 +33,9 @@ import appeng.api.config.Settings;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
-import appeng.api.util.AECableType;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigManagerBuilder;
+import appeng.api.util.TLCableType;
 import appeng.util.Platform;
 
 public abstract class AbstractLevelEmitterPart extends UpgradeablePart {
@@ -190,7 +190,7 @@ public abstract class AbstractLevelEmitterPart extends UpgradeablePart {
     }
 
     @Override
-    public final float getCableConnectionLength(AECableType cable) {
+    public final float getCableConnectionLength(TLCableType cable) {
         return 16;
     }
 
@@ -200,8 +200,8 @@ public abstract class AbstractLevelEmitterPart extends UpgradeablePart {
     }
 
     @Override
-    public final AECableType getDesiredConnectionType() {
-        return AECableType.SMART;
+    public final TLCableType getDesiredConnectionType() {
+        return TLCableType.SMART;
     }
 
     @Override

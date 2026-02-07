@@ -26,7 +26,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 
 /**
  * @author AlgorithmX2
@@ -55,7 +55,7 @@ public class StackSizeRenderer {
 
     public static void renderSizeLabel(GuiGraphics guiGraphics, Font fontRenderer, float xPos, float yPos,
             String text) {
-        renderSizeLabel(guiGraphics, fontRenderer, xPos, yPos, text, AEConfig.instance().isUseLargeFonts());
+        renderSizeLabel(guiGraphics, fontRenderer, xPos, yPos, text, TLConfig.instance().isUseLargeFonts());
     }
 
     public static void renderSizeLabel(GuiGraphics guiGraphics, Font fontRenderer, float xPos, float yPos, String text,

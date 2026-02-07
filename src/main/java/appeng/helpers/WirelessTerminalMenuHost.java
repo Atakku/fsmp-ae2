@@ -35,7 +35,7 @@ import appeng.api.implementations.menuobjects.ItemMenuHost;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.security.IActionHost;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.ILinkStatus;
 import appeng.api.storage.MEStorage;
 import appeng.api.storage.StorageHelper;
@@ -162,7 +162,7 @@ public class WirelessTerminalMenuHost<T extends WirelessTerminalItem> extends It
     }
 
     @Override
-    public long insert(Player player, AEKey what, long amount, Actionable mode) {
+    public long insert(Player player, TLKey what, long amount, Actionable mode) {
         // We do not know the real link-status on the client-side
         if (isClientSide()) {
             return 0;

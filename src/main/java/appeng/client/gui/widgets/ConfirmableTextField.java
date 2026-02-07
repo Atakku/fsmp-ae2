@@ -24,7 +24,7 @@ import net.minecraft.client.gui.Font;
 
 import appeng.client.gui.style.ScreenStyle;
 
-public class ConfirmableTextField extends AETextField {
+public class ConfirmableTextField extends TLTextField {
 
     private Runnable onConfirm;
 

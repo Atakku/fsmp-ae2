@@ -25,13 +25,13 @@ package appeng.api.networking.storage;
 
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridService;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.IStorageProvider;
 import appeng.api.storage.MEStorage;
 
 /**
- * Grid-wide storage services for all {@link AEKeyType}.
+ * Grid-wide storage services for all {@link TLKeyType}.
  */
 public interface IStorageService extends IGridService {
 

@@ -7,14 +7,14 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:logic_processor
-- ae2:calculation_processor
-- ae2:engineering_processor
-- ae2:printed_silicon
-- ae2:printed_logic_processor
-- ae2:printed_calculation_processor
-- ae2:printed_engineering_processor
-- ae2:silicon
+- tl2:logic_processor
+- tl2:calculation_processor
+- tl2:engineering_processor
+- tl2:printed_silicon
+- tl2:printed_logic_processor
+- tl2:printed_calculation_processor
+- tl2:printed_engineering_processor
+- tl2:silicon
 ---
 
 # Processors
@@ -27,7 +27,7 @@ item_ids:
   <ItemImage id="engineering_processor" scale="4" />
 </Row>
 
-Processors are one of the primary ingredients in AE2 [devices](../ae2-mechanics/devices.md) and machines. They are also one of your first
+Processors are one of the primary ingredients in TL2 devices and machines. They are also one of your first
 big automation challenges. There are three types of processor, made with gold, <ItemLink id="certus_quartz_crystal" />,
 and diamond respectively. They are made using [presses](presses.md) in an <ItemLink id="inscriber" />, in a multi-step
 process (usually achieved via a series of inscribers and filtered piping).

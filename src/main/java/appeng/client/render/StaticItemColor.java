@@ -21,16 +21,16 @@ package appeng.client.render;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 /**
- * Returns the shades of a single AE color for tint indices 0, 1, and 2.
+ * Returns the shades of a single TL color for tint indices 0, 1, and 2.
  */
 public class StaticItemColor implements ItemColor {
 
-    private final AEColor color;
+    private final TLColor color;
 
-    public StaticItemColor(AEColor color) {
+    public StaticItemColor(TLColor color) {
         this.color = color;
     }
 

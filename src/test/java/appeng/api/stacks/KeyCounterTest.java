@@ -135,7 +135,7 @@ public class KeyCounterTest {
         itemList.add(sword, 1);
         var nameTag = nameTag();
         itemList.add(nameTag, 1);
-        var craftingTable = AEItemKey
+        var craftingTable = TLItemKey
                 .of(new ItemStack(Items.CRAFTING_TABLE));
 
         assertThrows(ConcurrentModificationException.class, () -> {
@@ -181,10 +181,10 @@ public class KeyCounterTest {
     class FindFuzzyDamageableItems {
 
         // Swords to cover all durability values
-        AEItemKey[] swords = new AEItemKey[101];
+        TLItemKey[] swords = new TLItemKey[101];
         // Filters for inverting the filter as needed
-        AEItemKey undamagedFilter = diamondSword(100);
-        AEItemKey damagedFilter = diamondSword(0);
+        TLItemKey undamagedFilter = diamondSword(100);
+        TLItemKey damagedFilter = diamondSword(0);
 
         @BeforeEach
         void addItems() {
@@ -245,7 +245,7 @@ public class KeyCounterTest {
             assertReturnedDurabilities(damagedFilter, FuzzyMode.PERCENT_25, 0, 24);
         }
 
-        private void assertReturnedDurabilities(AEItemKey filter, FuzzyMode fuzzyMode, int minDurabilityInclusive,
+        private void assertReturnedDurabilities(TLItemKey filter, FuzzyMode fuzzyMode, int minDurabilityInclusive,
                 int maxDurabilityInclusive) {
             var items = itemList.findFuzzy(filter, fuzzyMode);
 
@@ -266,8 +266,8 @@ public class KeyCounterTest {
             assertEquals(expectedDurabilities, durabilities);
         }
 
-        private int getDurabilityPercent(AEKey stack) {
-            if (stack instanceof AEItemKey itemKey) {
+        private int getDurabilityPercent(TLKey stack) {
+            if (stack instanceof TLItemKey itemKey) {
                 var is = itemKey.toStack();
                 return (int) ((1.0f - is.getDamageValue() / (float) is.getMaxDamage()) * 100);
             } else {
@@ -285,7 +285,7 @@ public class KeyCounterTest {
         var item3 = nameTag("name2");
         itemList.add(item3, 1);
         // Add another item to ensure this is not returned
-        itemList.add(AEItemKey.of(new ItemStack(Items.CRAFTING_TABLE)), 1);
+        itemList.add(TLItemKey.of(new ItemStack(Items.CRAFTING_TABLE)), 1);
 
         for (var fuzzyMode : FuzzyMode.values()) {
             var result = itemList.findFuzzy(nameTag(null), fuzzyMode);
@@ -296,7 +296,7 @@ public class KeyCounterTest {
     }
 
     /**
-     * Unlike previous iterations of item lists in AE, KeyCounter will throw on null arguments.
+     * Unlike previous iterations of item lists in TL, KeyCounter will throw on null arguments.
      */
     @Nested
     class NullArguments {
@@ -316,37 +316,37 @@ public class KeyCounterTest {
         }
     }
 
-    private void assertListContent(AEItemKey... stacks) {
+    private void assertListContent(TLItemKey... stacks) {
         assertEquals(stacks.length == 0, itemList.isEmpty(), "isEmpty");
         assertEquals(stacks.length, itemList.size());
         assertEquals(ImmutableSet.copyOf(stacks), ImmutableSet.copyOf(itemList.keySet()));
     }
 
-    private AEItemKey diamondSword(int durabilityPercent) {
+    private TLItemKey diamondSword(int durabilityPercent) {
         return diamondSword(durabilityPercent, null);
     }
 
-    private AEItemKey diamondSword(int durabilityPercent, String customName) {
+    private TLItemKey diamondSword(int durabilityPercent, String customName) {
         var is = new ItemStack(Items.DIAMOND_SWORD);
         if (customName != null) {
             is.set(DataComponents.CUSTOM_NAME, Component.literal(customName));
         }
         var damage = (int) ((100 - durabilityPercent) / 100.0f * is.getMaxDamage());
         is.setDamageValue(damage);
-        return AEItemKey.of(is);
+        return TLItemKey.of(is);
     }
 
     // customName can be used to create items that differ in NBT
-    private AEItemKey nameTag() {
+    private TLItemKey nameTag() {
         return nameTag(null);
     }
 
-    private AEItemKey nameTag(String customName) {
+    private TLItemKey nameTag(String customName) {
         var is = new ItemStack(Items.NAME_TAG);
         if (customName != null) {
             is.set(DataComponents.CUSTOM_NAME, Component.literal(customName));
         }
-        return AEItemKey.of(is);
+        return TLItemKey.of(is);
     }
 
 }

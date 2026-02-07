@@ -7,23 +7,23 @@ navigation:
 categories:
 - network infrastructure
 item_ids:
-- ae2:vibration_chamber
+- tl2:vibration_chamber
 ---
 
 # The Vibration Chamber
 
 <BlockImage id="vibration_chamber" p:active="true" scale="8" />
 
-The vibration chamber can directly generate small to middling amounts of AE.
+The vibration chamber can directly generate small to middling amounts of TL.
 
-By default (no [upgrades](upgrade_cards.md) and default configs) it makes 40 AE/t.
+By default (no [upgrades](upgrade_cards.md) and default configs) it makes 40 TL/t.
 
-When the network's [energy](../ae2-mechanics/energy.md) storage is full, the vibration chamber throttles down to conserve
+When the network's [energy](../tl2-mechanics/energy.md) storage is full, the vibration chamber throttles down to conserve
 fuel, but cannot fully shut off.
 
 ## Settings
 
-*   The vibration chamber provides access to the global setting to view energy in AE or E/FE.
+*   The vibration chamber provides access to the global setting to view energy in TL or E/FE.
 
 ## Upgrades
 
@@ -34,7 +34,7 @@ The vibration chamber supports the following [upgrades](upgrade_cards.md):
 
 ## Config
 
-The properties of the vibration chamber can be edited in common.json in the ae2 folder in the config folder of your .minecraft\
+The properties of the vibration chamber can be edited in common.json in the tl2 folder in the config folder of your .minecraft\
 directory.
 
 *   baseEnergyPerFuelTick sets the base, un-upgraded efficiency of the vibration chamber.

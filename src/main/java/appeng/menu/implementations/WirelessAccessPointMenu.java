@@ -28,8 +28,8 @@ import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
 import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.Tooltips;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.slot.OutputSlot;
 import appeng.menu.slot.RestrictedInputSlot;
 import appeng.util.inv.AppEngInternalInventory;
@@ -38,7 +38,7 @@ import appeng.util.inv.InternalInventoryHost;
 /**
  * @see WirelessAccessPointScreen
  */
-public class WirelessAccessPointMenu extends AEBaseMenu implements InternalInventoryHost {
+public class WirelessAccessPointMenu extends TLBaseMenu implements InternalInventoryHost {
 
     public static final MenuType<WirelessAccessPointMenu> TYPE = MenuTypeBuilder
             .create(WirelessAccessPointMenu::new, WirelessAccessPointBlockEntity.class)

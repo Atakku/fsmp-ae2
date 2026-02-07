@@ -8,7 +8,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 
 public final class ClientCommands {
 
@@ -26,9 +26,9 @@ public final class ClientCommands {
     private static void highlightGuiAreas(LiteralArgumentBuilder<CommandSourceStack> builder) {
         builder.then(Commands.literal("highlight_gui_areas").executes(context -> {
             var src = context.getSource();
-            var toggle = !AEConfig.instance().isShowDebugGuiOverlays();
-            AEConfig.instance().setShowDebugGuiOverlays(toggle);
-            AEConfig.instance().save();
+            var toggle = !TLConfig.instance().isShowDebugGuiOverlays();
+            TLConfig.instance().setShowDebugGuiOverlays(toggle);
+            TLConfig.instance().save();
             src.sendSystemMessage(Component.literal("GUI Overlays: " + toggle));
             return 0;
         }));

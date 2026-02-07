@@ -8,11 +8,11 @@ import me.shedaniel.rei.api.common.entry.type.EntryType;
 import appeng.api.stacks.GenericStack;
 
 /**
- * Implement this interface to provide AE2s REI integration with a new ingredient type converter for use in:
+ * Implement this interface to provide TL2s REI integration with a new ingredient type converter for use in:
  * <ul>
  * <li>Recipe transfers</li>
- * <li>Pressing R/U on custom stacks in AE2 user interfaces</li>
- * <li>Dragging ghost items of custom types from REI to AE2 interfaces</li>
+ * <li>Pressing R/U on custom stacks in TL2 user interfaces</li>
+ * <li>Dragging ghost items of custom types from REI to TL2 interfaces</li>
  * </ul>
  * <p/>
  * To register your converter, see {@link IngredientConverters}.

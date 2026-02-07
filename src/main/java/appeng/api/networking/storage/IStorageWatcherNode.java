@@ -25,7 +25,7 @@ package appeng.api.networking.storage;
 
 import appeng.api.networking.IGridNodeService;
 import appeng.api.networking.IStackWatcher;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 /**
  * A node that is notified of changes to the currently stored items in the network. Implementors should store the
@@ -47,5 +47,5 @@ public interface IStorageWatcherNode extends IGridNodeService {
      * @param what   What has changed
      * @param amount New amount in the network
      */
-    void onStackChange(AEKey what, long amount);
+    void onStackChange(TLKey what, long amount);
 }

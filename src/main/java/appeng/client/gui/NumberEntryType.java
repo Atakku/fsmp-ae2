@@ -20,12 +20,12 @@ package appeng.client.gui;
 
 import org.jetbrains.annotations.Nullable;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 public record NumberEntryType(int amountPerUnit, @Nullable String unit) {
     public static final NumberEntryType UNITLESS = new NumberEntryType(1, null);
 
-    public static NumberEntryType of(@Nullable AEKey key) {
+    public static NumberEntryType of(@Nullable TLKey key) {
         if (key == null) {
             return UNITLESS;
         }

@@ -23,15 +23,15 @@ import appeng.api.networking.GridHelper;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.parts.IPartHost;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.MEStorage;
-import appeng.blockentity.AEBaseInvBlockEntity;
+import appeng.blockentity.TLBaseInvBlockEntity;
 import appeng.me.helpers.BaseActionSource;
 import appeng.me.helpers.IGridConnectedBlockEntity;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 import appeng.util.Platform;
 
 public class PlotTestHelper extends GameTestHelper {
@@ -66,7 +66,7 @@ public class PlotTestHelper extends GameTestHelper {
                         plotTranslation.getZ());
     }
 
-    public <T extends AEBasePart> T getPart(BlockPos pos, @Nullable Direction side, Class<T> partClass) {
+    public <T extends TLBasePart> T getPart(BlockPos pos, @Nullable Direction side, Class<T> partClass) {
         var be = getBlockEntity(pos);
         if (!(be instanceof IPartHost partHost)) {
             fail("not a part host", pos);
@@ -129,7 +129,7 @@ public class PlotTestHelper extends GameTestHelper {
             } else if (be instanceof IPartHost partHost) {
                 for (var side : Platform.DIRECTIONS_WITH_NULL) {
                     var part = partHost.getPart(side);
-                    if (part instanceof AEBasePart basePart) {
+                    if (part instanceof TLBasePart basePart) {
                         var mainNode = basePart.getMainNode();
                         check(mainNode.isReady(), "Part " + part + " is not ready");
                     }
@@ -140,10 +140,10 @@ public class PlotTestHelper extends GameTestHelper {
 
     public void assertContains(IGrid grid, Item item) {
         var storage = grid.getStorageService().getInventory();
-        assertContains(storage, AEItemKey.of(item));
+        assertContains(storage, TLItemKey.of(item));
     }
 
-    public void assertContains(MEStorage storage, AEKey key) {
+    public void assertContains(MEStorage storage, TLKey key) {
         var count = storage.getAvailableStacks().get(key);
         if (count <= 0) {
             throw new GameTestAssertException("Network storage does not contain " + key + ". Available keys: "
@@ -151,7 +151,7 @@ public class PlotTestHelper extends GameTestHelper {
         }
     }
 
-    public void assertContainsNot(MEStorage storage, AEKey key) {
+    public void assertContainsNot(MEStorage storage, TLKey key) {
         var count = storage.getAvailableStacks().get(key);
         if (count > 0) {
             throw new GameTestAssertException("Network storage contains unexpected " + key + ".");
@@ -159,22 +159,22 @@ public class PlotTestHelper extends GameTestHelper {
     }
 
     public void assertNetworkContains(BlockPos gridPos, ItemLike item) {
-        assertNetworkContains(gridPos, AEItemKey.of(item));
+        assertNetworkContains(gridPos, TLItemKey.of(item));
     }
 
     public void assertNetworkContains(BlockPos gridPos, Fluid fluid) {
-        assertNetworkContains(gridPos, AEFluidKey.of(fluid));
+        assertNetworkContains(gridPos, TLFluidKey.of(fluid));
     }
 
     public void assertNetworkContainsNot(BlockPos gridPos, ItemLike item) {
-        assertNetworkContainsNot(gridPos, AEItemKey.of(item));
+        assertNetworkContainsNot(gridPos, TLItemKey.of(item));
     }
 
     public void assertNetworkContainsNot(BlockPos gridPos, Fluid fluid) {
-        assertNetworkContainsNot(gridPos, AEFluidKey.of(fluid));
+        assertNetworkContainsNot(gridPos, TLFluidKey.of(fluid));
     }
 
-    public void assertNetworkContains(BlockPos gridPos, AEKey key) {
+    public void assertNetworkContains(BlockPos gridPos, TLKey key) {
         var grid = getGrid(gridPos);
         var storage = grid.getStorageService().getInventory().getAvailableStacks();
         var count = storage.get(key);
@@ -184,7 +184,7 @@ public class PlotTestHelper extends GameTestHelper {
         }
     }
 
-    public void assertNetworkContainsNot(BlockPos gridPos, AEKey key) {
+    public void assertNetworkContainsNot(BlockPos gridPos, TLKey key) {
         var grid = getGrid(gridPos);
         var count = grid.getStorageService().getInventory().getAvailableStacks().get(key);
         if (count > 0) {
@@ -239,13 +239,13 @@ public class PlotTestHelper extends GameTestHelper {
             for (int i = 0; i < container.getContainerSize(); i++) {
                 var item = container.getItem(i);
                 if (!item.isEmpty()) {
-                    counter.add(AEItemKey.of(item), item.getCount());
+                    counter.add(TLItemKey.of(item), item.getCount());
                 }
             }
-        } else if (be instanceof AEBaseInvBlockEntity aeBe) {
+        } else if (be instanceof TLBaseInvBlockEntity aeBe) {
             var internalInv = aeBe.getInternalInventory();
             for (var item : internalInv) {
-                counter.add(AEItemKey.of(item), item.getCount());
+                counter.add(TLItemKey.of(item), item.getCount());
             }
         } else {
             throw new RuntimeException("Unsupported BE: " + be);

@@ -10,7 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.util.KeyTypeSelection;
 import appeng.core.network.ServerboundPacket;
 import appeng.core.network.serverbound.SelectKeyTypePacket;
@@ -34,7 +34,7 @@ public interface KeyTypeSelectionMenu {
      * Update a key type on the client side.
      */
     @ApiStatus.NonExtendable
-    default void selectKeyType(AEKeyType keyType, boolean enabled) {
+    default void selectKeyType(TLKeyType keyType, boolean enabled) {
         // Send to server
         ServerboundPacket message = new SelectKeyTypePacket(keyType, enabled);
         PacketDistributor.sendToServer(message);
@@ -42,14 +42,14 @@ public interface KeyTypeSelectionMenu {
         getClientKeyTypeSelection().keyTypes().put(keyType, enabled);
     }
 
-    record SyncedKeyTypes(Map<AEKeyType, Boolean> keyTypes) implements PacketWritable {
+    record SyncedKeyTypes(Map<TLKeyType, Boolean> keyTypes) implements PacketWritable {
         public SyncedKeyTypes() {
             this(new LinkedHashMap<>());
         }
 
         public SyncedKeyTypes(RegistryFriendlyByteBuf buf) {
-            this(buf.<AEKeyType, Boolean, Map<AEKeyType, Boolean>>readMap(LinkedHashMap::new,
-                    b -> AEKeyType.fromRawId(b.readVarInt()), FriendlyByteBuf::readBoolean));
+            this(buf.<TLKeyType, Boolean, Map<TLKeyType, Boolean>>readMap(LinkedHashMap::new,
+                    b -> TLKeyType.fromRawId(b.readVarInt()), FriendlyByteBuf::readBoolean));
         }
 
         @Override
@@ -60,7 +60,7 @@ public interface KeyTypeSelectionMenu {
                     FriendlyByteBuf::writeBoolean);
         }
 
-        public List<AEKeyType> enabledSet() {
+        public List<TLKeyType> enabledSet() {
             return keyTypes.entrySet().stream().filter(Map.Entry::getValue).map(Map.Entry::getKey).toList();
         }
     }

@@ -26,10 +26,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-import appeng.block.AEBaseEntityBlock;
-import appeng.core.AEConfig;
+import appeng.block.TLBaseEntityBlock;
+import appeng.core.TLConfig;
 
-public class PhantomNodeBlock extends AEBaseEntityBlock<PhantomNodeBlockEntity> {
+public class PhantomNodeBlock extends TLBaseEntityBlock<PhantomNodeBlockEntity> {
     public PhantomNodeBlock() {
         super(metalProps());
     }
@@ -43,7 +43,7 @@ public class PhantomNodeBlock extends AEBaseEntityBlock<PhantomNodeBlockEntity> 
 
     @Override
     public void addToMainCreativeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        if (AEConfig.instance().isDebugToolsEnabled()) {
+        if (TLConfig.instance().isDebugToolsEnabled()) {
             output.accept(this);
         }
     }

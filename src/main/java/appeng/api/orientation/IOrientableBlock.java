@@ -26,7 +26,7 @@ package appeng.api.orientation;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * Implemented on many of AEs blocks to control their orientation.
+ * Implemented on many of TLs blocks to control their orientation.
  */
 public interface IOrientableBlock {
     IOrientationStrategy getOrientationStrategy();

@@ -71,7 +71,7 @@ public interface IActionSource {
     }
 
     /**
-     * If present, AE will consider the player being the source for the action.
+     * If present, TL will consider the player being the source for the action.
      *
      * This will take precedence over {@link IActionSource#machine()} in any case.
      *
@@ -97,7 +97,7 @@ public interface IActionSource {
      *
      * It is strongly recommended to limit the uses for absolutely necessary cases.
      *
-     * Currently there are no public contexts made available by AE. An example would be the context interfaces use
+     * Currently there are no public contexts made available by TL. An example would be the context interfaces use
      * internally to avoid looping items between each other.
      */
 

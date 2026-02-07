@@ -12,42 +12,42 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypes;
+import appeng.api.ids.TLComponents;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypes;
 
 /**
  * Helper class to store the selection of key types.
  */
 public class KeyTypeSelection {
     private final Listener listener;
-    private final Map<AEKeyType, Boolean> keyTypes = new LinkedHashMap<>();
+    private final Map<TLKeyType, Boolean> keyTypes = new LinkedHashMap<>();
 
-    public KeyTypeSelection(Runnable listener, Predicate<AEKeyType> allowKeyType) {
+    public KeyTypeSelection(Runnable listener, Predicate<TLKeyType> allowKeyType) {
         this(selection -> listener.run(), allowKeyType);
     }
 
-    public KeyTypeSelection(Listener listener, Predicate<AEKeyType> allowKeyType) {
+    public KeyTypeSelection(Listener listener, Predicate<TLKeyType> allowKeyType) {
         this.listener = listener;
-        for (var keyType : AEKeyTypes.getAll()) {
+        for (var keyType : TLKeyTypes.getAll()) {
             if (allowKeyType.test(keyType)) {
                 keyTypes.put(keyType, true);
             }
         }
     }
 
-    public static KeyTypeSelection forStack(ItemStack stack, Predicate<AEKeyType> allowKeyType) {
+    public static KeyTypeSelection forStack(ItemStack stack, Predicate<TLKeyType> allowKeyType) {
         var out = new KeyTypeSelection(selection -> {
-            stack.set(AEComponents.ENABLED_KEY_TYPES, selection.enabledSet());
+            stack.set(TLComponents.ENABLED_KEY_TYPES, selection.enabledSet());
         }, allowKeyType);
-        var selected = stack.get(AEComponents.ENABLED_KEY_TYPES);
+        var selected = stack.get(TLComponents.ENABLED_KEY_TYPES);
         if (selected != null) {
             out.setEnabledSet(selected);
         }
         return out;
     }
 
-    public void setEnabled(AEKeyType type, boolean enabled) {
+    public void setEnabled(TLKeyType type, boolean enabled) {
         if (!keyTypes.containsKey(type)) {
             throw new IllegalArgumentException("Key type " + type + " is not allowed.");
         }
@@ -61,7 +61,7 @@ public class KeyTypeSelection {
         listener.onKeyTypeSelectionChanged(this);
     }
 
-    public boolean isEnabled(AEKeyType type) {
+    public boolean isEnabled(TLKeyType type) {
         if (!keyTypes.containsKey(type)) {
             throw new IllegalArgumentException("Key type " + type + " is not allowed.");
         }
@@ -69,21 +69,21 @@ public class KeyTypeSelection {
         return keyTypes.get(type);
     }
 
-    public Map<AEKeyType, Boolean> enabled() {
+    public Map<TLKeyType, Boolean> enabled() {
         return new LinkedHashMap<>(keyTypes);
     }
 
-    public List<AEKeyType> enabledSet() {
+    public List<TLKeyType> enabledSet() {
         return keyTypes.entrySet().stream().filter(Map.Entry::getValue).map(Map.Entry::getKey).toList();
     }
 
-    public void setEnabledSet(List<AEKeyType> selected) {
+    public void setEnabledSet(List<TLKeyType> selected) {
         for (var entry : keyTypes.entrySet()) {
             entry.setValue(selected.contains(entry.getKey()));
         }
     }
 
-    public Predicate<AEKeyType> enabledPredicate() {
+    public Predicate<TLKeyType> enabledPredicate() {
         return keyType -> keyTypes.getOrDefault(keyType, Boolean.FALSE);
     }
 
@@ -104,7 +104,7 @@ public class KeyTypeSelection {
         ListTag enabledKeyTypesTag = tag.getList("enabledKeyTypes", 8);
         for (int i = 0; i < enabledKeyTypesTag.size(); i++) {
             try {
-                var keyType = AEKeyTypes.get(ResourceLocation.parse(enabledKeyTypesTag.getString(i)));
+                var keyType = TLKeyTypes.get(ResourceLocation.parse(enabledKeyTypesTag.getString(i)));
                 if (keyTypes.containsKey(keyType)) {
                     keyTypes.put(keyType, true);
                 }

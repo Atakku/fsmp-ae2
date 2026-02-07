@@ -7,17 +7,17 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:basic_card
-- ae2:advanced_card
-- ae2:redstone_card
-- ae2:capacity_card
-- ae2:void_card
-- ae2:fuzzy_card
-- ae2:speed_card
-- ae2:inverter_card
-- ae2:crafting_card
-- ae2:equal_distribution_card
-- ae2:energy_card
+- tl2:basic_card
+- tl2:advanced_card
+- tl2:redstone_card
+- tl2:capacity_card
+- tl2:void_card
+- tl2:fuzzy_card
+- tl2:speed_card
+- tl2:inverter_card
+- tl2:crafting_card
+- tl2:equal_distribution_card
+- tl2:energy_card
 ---
 
 # Upgrade Cards
@@ -42,7 +42,7 @@ item_ids:
   <ItemImage id="energy_card" scale="2" />
 </Row>
 
-Upgrade cards change the behavior of AE2 [devices](../ae2-mechanics/devices.md) and machines, increasing their speed, improving their
+Upgrade cards change the behavior of TL2 devices and machines, increasing their speed, improving their
 filter capacity, enabling redstone control, etc.
 
 ## Card Components
@@ -145,7 +145,7 @@ Inverter cards swap filters in devices and tools from whitelist to blacklist.
 
 <ItemImage id="crafting_card" scale="2" />
 
-Crafting cards let the device send crafting requests to your [autocrafting](../ae2-mechanics/autocrafting.md)
+Crafting cards let the device send crafting requests to your [autocrafting](../tl2-mechanics/autocrafting.md)
 system to get the items it desires.
 
 <RecipeFor id="crafting_card" />

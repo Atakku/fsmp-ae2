@@ -216,7 +216,7 @@ public class CraftingTermMenu extends MEStorageMenu implements ICraftingGridMenu
 
             // Then check the terminal screen's repository of network items
             if (!found) {
-                // We use AE stacks to get an easily comparable item type key that ignores stack size
+                // We use TL stacks to get an easily comparable item type key that ignores stack size
                 if (hasIngredient(ingredient, reservedGridAmounts)) {
                     reservedGridAmounts.merge(ingredient, 1, Integer::sum);
                     found = true;

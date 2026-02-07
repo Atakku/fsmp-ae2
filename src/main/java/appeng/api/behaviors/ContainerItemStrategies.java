@@ -14,36 +14,36 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypes;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypes;
 import appeng.util.CowMap;
 
 /**
- * Manages {@link ContainerItemStrategy} registrations for {@linkplain AEKeyType key types}.
+ * Manages {@link ContainerItemStrategy} registrations for {@linkplain TLKeyType key types}.
  */
 public class ContainerItemStrategies {
-    private static final CowMap<AEKeyType, ContainerItemStrategy<?, ?>> strategies = CowMap.identityHashMap();
+    private static final CowMap<TLKeyType, ContainerItemStrategy<?, ?>> strategies = CowMap.identityHashMap();
 
     static {
-        register(AEKeyType.fluids(), AEFluidKey.class, new FluidContainerItemStrategy());
+        register(TLKeyType.fluids(), TLFluidKey.class, new FluidContainerItemStrategy());
     }
 
-    public static <T extends AEKey> void register(AEKeyType type, Class<T> keyClass,
+    public static <T extends TLKey> void register(TLKeyType type, Class<T> keyClass,
             ContainerItemStrategy<T, ?> strategy) {
         Preconditions.checkArgument(type.getKeyClass() == keyClass, "%s != %s", type.getKeyClass(), keyClass);
-        Preconditions.checkArgument(type != AEKeyType.items(), "Can't register container items for AEItemKey");
+        Preconditions.checkArgument(type != TLKeyType.items(), "Can't register container items for TLItemKey");
 
         strategies.putIfAbsent(type, strategy);
     }
 
-    public static boolean isTypeSupported(AEKeyType type) {
+    public static boolean isTypeSupported(TLKeyType type) {
         return strategies.getMap().containsKey(type);
     }
 
-    public static boolean isKeySupported(@Nullable AEKey key) {
+    public static boolean isKeySupported(@Nullable TLKey key) {
         return key != null && isTypeSupported(key.getType());
     }
 
@@ -53,7 +53,7 @@ public class ContainerItemStrategies {
             return null;
         }
 
-        for (var keyType : AEKeyTypes.getAll()) {
+        for (var keyType : TLKeyTypes.getAll()) {
             var strategy = strategies.getMap().get(keyType);
             if (strategy != null) {
                 var content = strategy.getContainedStack(stack);
@@ -70,7 +70,7 @@ public class ContainerItemStrategies {
      * content of buckets, fluid tanks and other containers.
      */
     @Nullable
-    public static GenericStack getContainedStack(ItemStack stack, AEKeyType keyType) {
+    public static GenericStack getContainedStack(ItemStack stack, TLKeyType keyType) {
         if (stack.isEmpty()) {
             return null;
         }
@@ -93,23 +93,23 @@ public class ContainerItemStrategies {
         return new EmptyingAction(description, contents.what(), contents.amount());
     }
 
-    public static ContainerItemContext findCarriedContextForKey(@Nullable AEKey key, Player player,
+    public static ContainerItemContext findCarriedContextForKey(@Nullable TLKey key, Player player,
             AbstractContainerMenu menu) {
         return findCarriedContext(key == null ? null : key.getType(), player, menu);
     }
 
     @Nullable
-    private static ContainerItemContext findContext(@Nullable AEKeyType keyType,
+    private static ContainerItemContext findContext(@Nullable TLKeyType keyType,
             Function<ContainerItemStrategy<?, ?>, @Nullable Object> contextFinder) {
-        var candidates = keyType == null ? AEKeyTypes.getAll() : List.of(keyType);
-        Map<AEKeyType, ContainerItemContext.Entry<?>> entries = new LinkedHashMap<>();
+        var candidates = keyType == null ? TLKeyTypes.getAll() : List.of(keyType);
+        Map<TLKeyType, ContainerItemContext.Entry<?>> entries = new LinkedHashMap<>();
         for (var type : candidates) {
             var strategy = strategies.getMap().get(type);
             if (strategy != null) {
                 var context = contextFinder.apply(strategy);
                 if (context != null) {
                     // noinspection unchecked
-                    entries.put(type, new ContainerItemContext.Entry<>((ContainerItemStrategy<AEKey, Object>) strategy,
+                    entries.put(type, new ContainerItemContext.Entry<>((ContainerItemStrategy<TLKey, Object>) strategy,
                             context, type));
                 }
             }
@@ -121,12 +121,12 @@ public class ContainerItemStrategies {
      * @param keyType Desired key type, or null if any is ok.
      */
     @Nullable
-    public static ContainerItemContext findCarriedContext(@Nullable AEKeyType keyType, Player player,
+    public static ContainerItemContext findCarriedContext(@Nullable TLKeyType keyType, Player player,
             AbstractContainerMenu menu) {
         return findContext(keyType, strategy -> strategy.findCarriedContext(player, menu));
     }
 
-    public static Set<AEKeyType> getSupportedKeyTypes() {
+    public static Set<TLKeyType> getSupportedKeyTypes() {
         return strategies.getMap().keySet();
     }
 
@@ -137,7 +137,7 @@ public class ContainerItemStrategies {
      * @param keyType Desired key type, or null if any is ok.
      */
     @Nullable
-    public static ContainerItemContext findOwnedItemContext(@Nullable AEKeyType keyType,
+    public static ContainerItemContext findOwnedItemContext(@Nullable TLKeyType keyType,
             Player player,
             ItemStack stack) {
         // Check if the player has an open menu and the stack is the carried stack first

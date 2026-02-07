@@ -51,7 +51,7 @@ public final class GridServices {
     /**
      * Register a new grid service for use during operation, must be called during the loading phase.
      * <p/>
-     * AE will automatically construct instances of the given implementation class by looking up a constructor. There
+     * TL will automatically construct instances of the given implementation class by looking up a constructor. There
      * must be a single constructor.
      * <p/>
      * The following constructor parameter types are allowed:
@@ -94,7 +94,7 @@ public final class GridServices {
     /**
      * Constructs all registered services for the given grid.
      * <p/>
-     * This is used by AE2 internally to initialize the services for a grid.
+     * This is used by TL2 internally to initialize the services for a grid.
      */
     static GridServiceContainer createServices(IGrid g) {
         var services = new IdentityHashMap<Class<?>, IGridServiceProvider>(registry.size());

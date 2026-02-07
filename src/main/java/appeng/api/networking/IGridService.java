@@ -24,7 +24,7 @@
 package appeng.api.networking;
 
 /**
- * Allows you to create a network wise service, AE2 uses these for providing item, spatial, and tunnel services.
+ * Allows you to create a network wise service, TL2 uses these for providing item, spatial, and tunnel services.
  */
 public interface IGridService {
 }

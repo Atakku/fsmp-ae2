@@ -19,7 +19,7 @@
 package appeng.blockentity;
 
 /**
- * Implement this on your block entity subclass of {@link AEBaseBlockEntity} to receive server-side calls each tick.
+ * Implement this on your block entity subclass of {@link TLBaseBlockEntity} to receive server-side calls each tick.
  */
 public interface ServerTickingBlockEntity {
 

@@ -34,34 +34,34 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import appeng.api.config.FuzzyMode;
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.ids.TLComponents;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.IBasicCellItem;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.UpgradeInventories;
 import appeng.core.localization.PlayerMessages;
-import appeng.hooks.AEToolItem;
-import appeng.items.AEBaseItem;
+import appeng.hooks.TLToolItem;
+import appeng.items.TLBaseItem;
 import appeng.items.contents.CellConfig;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.util.ConfigInventory;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
-public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AEToolItem {
+public class BasicStorageCell extends TLBaseItem implements IBasicCellItem, TLToolItem {
     protected final int totalBytes;
     protected final int bytesPerType;
     protected final int totalTypes;
-    private final AEKeyType keyType;
+    private final TLKeyType keyType;
 
     public BasicStorageCell(Properties properties,
             double idleDrain,
             int kilobytes,
             int bytesPerType,
             int totalTypes,
-            AEKeyType keyType) {
+            TLKeyType keyType) {
         super(properties);
         this.totalBytes = kilobytes * 1024;
         this.bytesPerType = bytesPerType;
@@ -85,7 +85,7 @@ public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AETo
     }
 
     @Override
-    public AEKeyType getKeyType() {
+    public TLKeyType getKeyType() {
         return this.keyType;
     }
 
@@ -106,7 +106,7 @@ public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AETo
 
     @Override
     public IUpgradeInventory getUpgrades(ItemStack is) {
-        return UpgradeInventories.forItem(is, keyType == AEKeyType.items() ? 4 : 3);
+        return UpgradeInventories.forItem(is, keyType == TLKeyType.items() ? 4 : 3);
     }
 
     @Override
@@ -116,12 +116,12 @@ public class BasicStorageCell extends AEBaseItem implements IBasicCellItem, AETo
 
     @Override
     public FuzzyMode getFuzzyMode(ItemStack is) {
-        return is.getOrDefault(AEComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
+        return is.getOrDefault(TLComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
     }
 
     @Override
     public void setFuzzyMode(ItemStack is, FuzzyMode fzMode) {
-        is.set(AEComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
+        is.set(TLComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
     }
 
     @Override

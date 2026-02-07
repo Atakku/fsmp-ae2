@@ -21,9 +21,9 @@ package appeng.items.materials;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.implementations.items.IStorageComponent;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 
-public class StorageComponentItem extends AEBaseItem implements IStorageComponent {
+public class StorageComponentItem extends TLBaseItem implements IStorageComponent {
     private final int storageInKb;
 
     public StorageComponentItem(Properties properties, int storageInKb) {

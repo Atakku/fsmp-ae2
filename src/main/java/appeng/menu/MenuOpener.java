@@ -26,7 +26,7 @@ import com.google.common.base.Preconditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.menu.implementations.MenuTypeBuilder;
 import appeng.menu.locator.MenuHostLocator;
 
@@ -38,9 +38,9 @@ public final class MenuOpener {
     private MenuOpener() {
     }
 
-    private static final Map<MenuType<? extends AEBaseMenu>, Opener> registry = new HashMap<>();
+    private static final Map<MenuType<? extends TLBaseMenu>, Opener> registry = new HashMap<>();
 
-    public static <T extends AEBaseMenu> void addOpener(MenuType<T> type, Opener opener) {
+    public static <T extends TLBaseMenu> void addOpener(MenuType<T> type, Opener opener) {
         registry.put(type, opener);
     }
 
@@ -56,7 +56,7 @@ public final class MenuOpener {
         Preconditions.checkArgument(!player.level().isClientSide(), "Menus must be opened on the server.");
         Opener opener = registry.get(type);
         if (opener == null) {
-            AELog.warn("Trying to open menu for unknown menu type {}", type);
+            TLLog.warn("Trying to open menu for unknown menu type {}", type);
             return false;
         }
 

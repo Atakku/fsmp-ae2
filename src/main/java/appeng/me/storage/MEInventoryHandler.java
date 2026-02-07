@@ -21,8 +21,8 @@ package appeng.me.storage;
 import appeng.api.config.Actionable;
 import appeng.api.config.IncludeExclude;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.MEStorage;
 import appeng.util.prioritylist.DefaultPriorityList;
 import appeng.util.prioritylist.IPartitionList;
@@ -77,7 +77,7 @@ public class MEInventoryHandler extends DelegatingMEInventory {
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         if (!this.allowInsertion || !passesBlackOrWhitelist(what)) {
             return 0;
         }
@@ -87,7 +87,7 @@ public class MEInventoryHandler extends DelegatingMEInventory {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         if (this.filterOnExtraction && !canExtract(what)) {
             return 0;
         }
@@ -126,7 +126,7 @@ public class MEInventoryHandler extends DelegatingMEInventory {
     }
 
     @Override
-    public boolean isPreferredStorageFor(AEKey input, IActionSource source) {
+    public boolean isPreferredStorageFor(TLKey input, IActionSource source) {
         if (this.partitionListMode == IncludeExclude.WHITELIST) {
             if (this.partitionList.isListed(input)) {
                 return true;
@@ -142,12 +142,12 @@ public class MEInventoryHandler extends DelegatingMEInventory {
         return super.isPreferredStorageFor(input, source);
     }
 
-    protected boolean canExtract(AEKey request) {
+    protected boolean canExtract(TLKey request) {
         return allowExtraction && passesBlackOrWhitelist(request);
     }
 
     // Applies the black/whitelist, but only if any item is listed at all
-    private boolean passesBlackOrWhitelist(AEKey input) {
+    private boolean passesBlackOrWhitelist(TLKey input) {
         return this.partitionList.matchesFilter(input, this.partitionListMode);
     }
 }

@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.parts.CableBusContainer;
 
@@ -41,7 +41,7 @@ public class CableBusColor implements BlockColor {
     @Override
     public int getColor(BlockState state, @Nullable BlockAndTintGetter level, @Nullable BlockPos pos, int color) {
 
-        AEColor busColor = AEColor.TRANSPARENT;
+        TLColor busColor = TLColor.TRANSPARENT;
 
         if (level != null && pos != null) {
             BlockEntity blockEntity = level.getBlockEntity(pos);

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import appeng.api.networking.IStackWatcher;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 /**
  * Maintain my interests, and a global watch list, they should always be fully synchronized.
@@ -14,7 +14,7 @@ public class StackWatcher<T> implements IStackWatcher {
 
     private final InterestManager<StackWatcher<T>> interestManager;
     private final T myHost;
-    private final Set<AEKey> myInterests = new HashSet<>();
+    private final Set<TLKey> myInterests = new HashSet<>();
     private boolean destroyed = false;
 
     public StackWatcher(InterestManager<StackWatcher<T>> interestManager, T host) {
@@ -34,14 +34,14 @@ public class StackWatcher<T> implements IStackWatcher {
     }
 
     @Override
-    public void add(AEKey e) {
+    public void add(TLKey e) {
         if (!destroyed && this.myInterests.add(e)) {
             interestManager.put(e, this);
         }
     }
 
     @Override
-    public void remove(AEKey o) {
+    public void remove(TLKey o) {
         if (!destroyed && this.myInterests.remove(o)) {
             interestManager.remove(o, this);
         }
@@ -51,7 +51,7 @@ public class StackWatcher<T> implements IStackWatcher {
     public void reset() {
         setWatchAll(false);
 
-        final Iterator<AEKey> i = this.myInterests.iterator();
+        final Iterator<TLKey> i = this.myInterests.iterator();
 
         while (i.hasNext()) {
             interestManager.remove(i.next(), this);

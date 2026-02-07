@@ -34,8 +34,8 @@ import appeng.api.config.SortOrder;
 import appeng.api.features.HotkeyAction;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
 import appeng.api.implementations.menuobjects.ItemMenuHost;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.ILinkStatus;
 import appeng.api.storage.MEStorage;
 import appeng.api.storage.StorageCells;
@@ -80,7 +80,7 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
     }
 
     @Override
-    public long insert(Player player, AEKey what, long amount, Actionable mode) {
+    public long insert(Player player, TLKey what, long amount, Actionable mode) {
         if (getLinkStatus().connected()) {
             var inv = getInventory();
             if (inv == null) {
@@ -128,9 +128,9 @@ public class PortableCellMenuHost<T extends AbstractPortableCell> extends ItemMe
 
     public String getCloseHotkey() {
         if (item instanceof IBasicCellItem cellItem) {
-            if (cellItem.getKeyType().equals(AEKeyType.items())) {
+            if (cellItem.getKeyType().equals(TLKeyType.items())) {
                 return HotkeyAction.PORTABLE_ITEM_CELL;
-            } else if (cellItem.getKeyType().equals(AEKeyType.fluids())) {
+            } else if (cellItem.getKeyType().equals(TLKeyType.fluids())) {
                 return HotkeyAction.PORTABLE_FLUID_CELL;
             }
         }

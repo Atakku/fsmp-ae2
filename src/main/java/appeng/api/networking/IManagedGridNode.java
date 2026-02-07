@@ -38,8 +38,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 
 import appeng.api.networking.pathing.IPathingService;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.util.AEColor;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.util.TLColor;
 
 /**
  * This interface is intended for the host that created this node. It is used to configure the node's properties.
@@ -128,20 +128,20 @@ public interface IManagedGridNode {
      * Sets an itemstack that will only be used to represent this grid node in user interfaces. Can be set to
      * <code>null</code> to hide the node from UIs.
      */
-    IManagedGridNode setVisualRepresentation(@Nullable AEItemKey visualRepresentation);
+    IManagedGridNode setVisualRepresentation(@Nullable TLItemKey visualRepresentation);
 
     /**
-     * Shortcut for {@link #setVisualRepresentation(AEItemKey)} based on an {@link ItemStack}.
+     * Shortcut for {@link #setVisualRepresentation(TLItemKey)} based on an {@link ItemStack}.
      */
     default IManagedGridNode setVisualRepresentation(ItemStack visualRepresentation) {
-        return setVisualRepresentation(AEItemKey.of(visualRepresentation));
+        return setVisualRepresentation(TLItemKey.of(visualRepresentation));
     }
 
     /**
-     * Shortcut for {@link #setVisualRepresentation(AEItemKey)} based on an {@link ItemLike}.
+     * Shortcut for {@link #setVisualRepresentation(TLItemKey)} based on an {@link ItemLike}.
      */
     default IManagedGridNode setVisualRepresentation(ItemLike visualRepresentation) {
-        return setVisualRepresentation(AEItemKey.of(visualRepresentation));
+        return setVisualRepresentation(TLItemKey.of(visualRepresentation));
     }
 
     /**
@@ -156,10 +156,10 @@ public interface IManagedGridNode {
     IManagedGridNode setTagName(String tagName);
 
     /**
-     * Colors can be used to prevent adjacent grid nodes from connecting. {@link AEColor#TRANSPARENT} indicates that the
+     * Colors can be used to prevent adjacent grid nodes from connecting. {@link TLColor#TRANSPARENT} indicates that the
      * node will connect to nodes of any color.
      */
-    IManagedGridNode setGridColor(AEColor gridColor);
+    IManagedGridNode setGridColor(TLColor gridColor);
 
     <T extends IGridNodeService> IManagedGridNode addService(Class<T> serviceClass, T service);
 

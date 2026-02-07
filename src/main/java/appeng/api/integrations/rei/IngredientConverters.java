@@ -14,7 +14,7 @@ public final class IngredientConverters {
     }
 
     /**
-     * Registers a new ingredient converter for handling custom {@link appeng.api.stacks.AEKey key types} in the AE2 JEI
+     * Registers a new ingredient converter for handling custom {@link appeng.api.stacks.TLKey key types} in the TL2 JEI
      * addon.
      *
      * @return false if a converter for the converters type has already been registered.

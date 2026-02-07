@@ -29,7 +29,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 
@@ -39,8 +38,8 @@ import appeng.core.AppEng;
  * Contains various tags:
  * <ul>
  * <li>Convention tags defined by the modding API for mod-compatibility purposes.</li>
- * <li>Tags defined by AE2 itself for recipe use.</li>
- * <li>Tags provided by AE2 for mod compatibility in the convention namespace.</li>
+ * <li>Tags defined by TL2 itself for recipe use.</li>
+ * <li>Tags provided by TL2 for mod compatibility in the convention namespace.</li>
  * </ul>
  */
 public final class ConventionTags {
@@ -61,24 +60,7 @@ public final class ConventionTags {
 
     public static final TagKey<Item> SILICON = tag("c:silicon");
 
-    // Includes purified versions of certus/nether and the natural ones
-    public static final TagKey<Item> ALL_QUARTZ = tag("ae2:all_quartz");
-    // Includes both certus/nether quartz dust
-    public static final TagKey<Item> ALL_QUARTZ_DUST = tag("ae2:all_quartz_dust");
-
-    // Includes charged, synthetic/purified and natural certus quartz
-    public static final TagKey<Item> ALL_CERTUS_QUARTZ = tag("ae2:all_certus_quartz");
-    public static final TagKey<Item> CERTUS_QUARTZ = tag("c:gems/certus_quartz");
-    public static final TagKey<Block> CERTUS_QUARTZ_STORAGE_BLOCK_BLOCK = blockTag(
-            "c:storage_blocks/certus_quartz");
-    public static final TagKey<Item> CERTUS_QUARTZ_DUST = tag("c:dusts/certus_quartz");
-
-    // Includes synthetic/purified
-    public static final TagKey<Item> ALL_NETHER_QUARTZ = tag("ae2:all_nether_quartz");
     public static final TagKey<Item> NETHER_QUARTZ = Tags.Items.GEMS_QUARTZ;
-
-    // Includes synthetic/purified
-    public static final TagKey<Item> ALL_FLUIX = tag("ae2:all_fluix");
     public static final TagKey<Item> FLUIX_DUST = tag("c:dusts/fluix");
     public static final TagKey<Item> FLUIX_CRYSTAL = tag("c:gems/fluix");
 
@@ -96,8 +78,6 @@ public final class ConventionTags {
 
     public static final TagKey<Item> ENDER_PEARL = Tags.Items.ENDER_PEARLS;
 
-    public static final TagKey<Item> SKY_STONE_DUST = tag("c:dusts/sky_stone");
-
     public static final TagKey<Item> WOOD_STICK = Tags.Items.RODS_WOODEN;
     public static final TagKey<Item> CHEST = Tags.Items.CHESTS_WOODEN;
 
@@ -106,36 +86,16 @@ public final class ConventionTags {
     public static final TagKey<Item> GLASS_CHEAP = Tags.Items.GLASS_BLOCKS_CHEAP;
     public static final TagKey<Block> GLASS_BLOCK = Tags.Blocks.GLASS_BLOCKS;
 
-    public static final TagKey<Item> GLASS_CABLE = tag("ae2:glass_cable");
-    public static final TagKey<Item> SMART_CABLE = tag("ae2:smart_cable");
-    public static final TagKey<Item> COVERED_CABLE = tag("ae2:covered_cable");
-    public static final TagKey<Item> COVERED_DENSE_CABLE = tag("ae2:covered_dense_cable");
-    public static final TagKey<Item> SMART_DENSE_CABLE = tag("ae2:smart_dense_cable");
-    public static final TagKey<Item> ILLUMINATED_PANEL = tag("ae2:illuminated_panel");
-    public static final TagKey<Item> QUARTZ_WRENCH = tag("ae2:quartz_wrench");
-    public static final TagKey<Item> INSCRIBER_PRESSES = tag("ae2:inscriber_presses");
+    public static final TagKey<Item> GLASS_CABLE = tag("tl2:glass_cable");
+    public static final TagKey<Item> SMART_CABLE = tag("tl2:smart_cable");
+    public static final TagKey<Item> COVERED_CABLE = tag("tl2:covered_cable");
+    public static final TagKey<Item> COVERED_DENSE_CABLE = tag("tl2:covered_dense_cable");
+    public static final TagKey<Item> SMART_DENSE_CABLE = tag("tl2:smart_dense_cable");
+    public static final TagKey<Item> ILLUMINATED_PANEL = tag("tl2:illuminated_panel");
     /**
      * Items that can be used in recipes to remove color from colored items.
      */
-    public static final TagKey<Item> CAN_REMOVE_COLOR = tag("ae2:can_remove_color");
-
-    // Budding stuff
-    public static final TagKey<Item> BUDDING_BLOCKS = Tags.Items.BUDDING_BLOCKS;
-    public static final TagKey<Item> BUDS = Tags.Items.BUDS;
-    public static final TagKey<Item> CLUSTERS = Tags.Items.CLUSTERS;
-    public static final TagKey<Block> BUDDING_BLOCKS_BLOCKS = Tags.Blocks.BUDDING_BLOCKS;
-    public static final TagKey<Block> BUDS_BLOCKS = Tags.Blocks.BUDS;
-    public static final TagKey<Block> CLUSTERS_BLOCKS = Tags.Blocks.CLUSTERS;
-
-    /**
-     * Platform tags for blocks that should not be moved, i.e. some pipes, chunk loaders, etc...
-     */
-    public static final TagKey<Block> IMMOVABLE_BLOCKS = Tags.Blocks.RELOCATION_NOT_SUPPORTED;
-
-    /**
-     * For Worldgen Biomes
-     */
-    public static final TagKey<Biome> METEORITE_OCEAN = Tags.Biomes.IS_OCEAN;
+    public static final TagKey<Item> CAN_REMOVE_COLOR = tag("tl2:can_remove_color");
 
     /**
      * Used to identify items that act as wrenches.
@@ -156,9 +116,4 @@ public final class ConventionTags {
     private static TagKey<Item> tag(String name) {
         return net.minecraft.tags.TagKey.create(Registries.ITEM, ResourceLocation.parse(name));
     }
-
-    private static TagKey<Block> blockTag(String name) {
-        return net.minecraft.tags.TagKey.create(Registries.BLOCK, ResourceLocation.parse(name));
-    }
-
 }

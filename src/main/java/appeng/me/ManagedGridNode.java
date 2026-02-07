@@ -44,9 +44,9 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.networking.IGridNodeService;
 import appeng.api.networking.IManagedGridNode;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.util.AEColor;
-import appeng.core.AELog;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.util.TLColor;
+import appeng.core.TLLog;
 
 /**
  * Manages the lifecycle of a {@link IGridNode}.
@@ -60,9 +60,9 @@ public class ManagedGridNode implements IManagedGridNode {
         private CompoundTag data = null;
 
         // The following values are used until the node is constructed, and then are applied to the node
-        private AEColor gridColor = AEColor.TRANSPARENT;
+        private TLColor gridColor = TLColor.TRANSPARENT;
         private Set<Direction> exposedOnSides = EnumSet.allOf(Direction.class);
-        private AEItemKey visualRepresentation = null;
+        private TLItemKey visualRepresentation = null;
         private EnumSet<GridFlags> flags = EnumSet.noneOf(GridFlags.class);
         private int owner = -1; // ME player id of owner
         private Level level;
@@ -92,7 +92,7 @@ public class ManagedGridNode implements IManagedGridNode {
                     addService(node, serviceClass);
                 }
             }
-            AELog.grid("Created node %s", node);
+            TLLog.grid("Created node %s", node);
             return node;
         }
 
@@ -264,7 +264,7 @@ public class ManagedGridNode implements IManagedGridNode {
     }
 
     @Override
-    public ManagedGridNode setVisualRepresentation(@Nullable AEItemKey visualRepresentation) {
+    public ManagedGridNode setVisualRepresentation(@Nullable TLItemKey visualRepresentation) {
         if (node == null) {
             getInitData().visualRepresentation = visualRepresentation;
         } else {
@@ -274,7 +274,7 @@ public class ManagedGridNode implements IManagedGridNode {
     }
 
     @Override
-    public ManagedGridNode setGridColor(AEColor gridColor) {
+    public ManagedGridNode setGridColor(TLColor gridColor) {
         if (this.node == null) {
             getInitData().gridColor = gridColor;
         } else {
@@ -301,7 +301,7 @@ public class ManagedGridNode implements IManagedGridNode {
         return this;
     }
 
-    public AEColor getGridColor() {
+    public TLColor getGridColor() {
         if (node == null) {
             return getInitData().gridColor;
         } else {

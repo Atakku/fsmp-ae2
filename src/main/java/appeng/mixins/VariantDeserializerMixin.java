@@ -24,10 +24,10 @@ public class VariantDeserializerMixin {
         var variant = cri.getReturnValue();
 
         JsonObject jsonObject = json.getAsJsonObject();
-        if (jsonObject.has("ae2:z")) {
+        if (jsonObject.has("tl2:z")) {
             var xRot = GsonHelper.getAsInt(jsonObject, "x", 0);
             var yRot = GsonHelper.getAsInt(jsonObject, "y", 0);
-            var zRot = GsonHelper.getAsInt(jsonObject, "ae2:z", 0);
+            var zRot = GsonHelper.getAsInt(jsonObject, "tl2:z", 0);
             cri.setReturnValue(BlockstateDefinitionHook.rotateVariant(variant, xRot, yRot, zRot));
         }
     }

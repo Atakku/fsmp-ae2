@@ -1,22 +1,18 @@
 package appeng.integration.modules.emi;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeType;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiCraftingRecipe;
-import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.stack.EmiStack;
@@ -24,16 +20,12 @@ import dev.emi.emi.api.stack.EmiStack;
 import appeng.api.integrations.emi.EmiStackConverters;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
-import appeng.core.definitions.ItemDefinition;
-import appeng.core.localization.GuiText;
-import appeng.core.localization.LocalizationEnum;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.integration.abstraction.ItemListMod;
 import appeng.integration.modules.itemlists.ItemPredicates;
 import appeng.menu.me.items.CraftingTermMenu;
 import appeng.menu.me.items.WirelessCraftingTermMenu;
-import appeng.recipes.AERecipeTypes;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
 
 @EmiEntrypoint
@@ -56,9 +48,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
         // Additional Workstations
         registerWorkstations(registry);
 
-        // Descriptions
-        registerDescriptions(registry);
-
         // Recipe transfer
         registry.addRecipeHandler(CraftingTermMenu.TYPE, new EmiUseCraftingRecipeHandler<>(CraftingTermMenu.class));
         registry.addRecipeHandler(WirelessCraftingTermMenu.TYPE,
@@ -66,10 +55,6 @@ public class AppEngEmiPlugin implements EmiPlugin {
 
         // Special upgrade recipes
         adaptSpecialRecipes(registry, StorageCellUpgradeRecipe.class, this::convertStorageCellUpgradeRecipe);
-
-        // In-World Transformation
-        registry.addCategory(EmiTransformRecipe.CATEGORY);
-        adaptRecipeType(registry, AERecipeTypes.TRANSFORM, EmiTransformRecipe::new);
 
         // Simple item upgrades
         for (var entry : Upgrades.getUpgradableItems().entrySet()) {
@@ -102,35 +87,11 @@ public class AppEngEmiPlugin implements EmiPlugin {
     }
 
     private void registerWorkstations(EmiRegistry registry) {
-        ItemStack craftingTerminal = AEParts.CRAFTING_TERMINAL.stack();
+        ItemStack craftingTerminal = TLParts.CRAFTING_TERMINAL.stack();
         registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(craftingTerminal));
 
-        ItemStack wirelessCraftingTerminal = AEItems.WIRELESS_CRAFTING_TERMINAL.stack();
+        ItemStack wirelessCraftingTerminal = TLItems.WIRELESS_CRAFTING_TERMINAL.stack();
         registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(wirelessCraftingTerminal));
-    }
-
-    private void registerDescriptions(EmiRegistry registry) {
-
-        addDescription(registry, AEItems.CERTUS_QUARTZ_CRYSTAL, GuiText.CertusQuartzObtain);
-    }
-
-    private void addDescription(EmiRegistry registry, ItemDefinition<?> item, LocalizationEnum... lines) {
-
-        var info = new EmiInfoRecipe(
-                List.of(EmiStack.of(item)),
-                Arrays.stream(lines).<Component>map(LocalizationEnum::text).toList(),
-                null);
-        registry.addRecipe(info);
-
-    }
-
-    private static <C extends RecipeInput, T extends Recipe<C>> void adaptRecipeType(EmiRegistry registry,
-            RecipeType<T> recipeType,
-            Function<RecipeHolder<T>, ? extends EmiRecipe> adapter) {
-        registry.getRecipeManager().getAllRecipesFor(recipeType)
-                .stream()
-                .map(adapter)
-                .forEach(registry::addRecipe);
     }
 
     private static <T extends Recipe<?>> void adaptSpecialRecipes(EmiRegistry registry,

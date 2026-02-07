@@ -12,16 +12,16 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.BlockDefinition;
 import appeng.core.definitions.ItemDefinition;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 import appeng.recipes.game.AddItemUpgradeRecipe;
 import appeng.recipes.game.RemoveItemUpgradeRecipe;
 import appeng.recipes.game.StorageCellDisassemblyRecipe;
 import appeng.recipes.game.StorageCellUpgradeRecipe;
 
-public class UpgradeRecipes extends AE2RecipeProvider {
+public class UpgradeRecipes extends TL2RecipeProvider {
     public UpgradeRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
@@ -47,39 +47,39 @@ public class UpgradeRecipes extends AE2RecipeProvider {
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", AEItems.ITEM_CELL_1K, AEItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", AEItems.ITEM_CELL_4K, AEItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", AEItems.ITEM_CELL_16K, AEItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", AEItems.ITEM_CELL_64K, AEItems.CELL_COMPONENT_64K),
-                        new CellUpgradeTier("256k", AEItems.ITEM_CELL_256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEItems.ITEM_CELL_HOUSING));
+                        new CellUpgradeTier("1k", TLItems.ITEM_CELL_1K, TLItems.CELL_COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.ITEM_CELL_4K, TLItems.CELL_COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.ITEM_CELL_16K, TLItems.CELL_COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.ITEM_CELL_64K, TLItems.CELL_COMPONENT_64K),
+                        new CellUpgradeTier("256k", TLItems.ITEM_CELL_256K, TLItems.CELL_COMPONENT_256K)),
+                List.of(TLItems.ITEM_CELL_HOUSING));
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", AEItems.FLUID_CELL_1K, AEItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", AEItems.FLUID_CELL_4K, AEItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", AEItems.FLUID_CELL_16K, AEItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", AEItems.FLUID_CELL_64K, AEItems.CELL_COMPONENT_64K),
-                        new CellUpgradeTier("256k", AEItems.FLUID_CELL_256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEItems.FLUID_CELL_HOUSING));
+                        new CellUpgradeTier("1k", TLItems.FLUID_CELL_1K, TLItems.CELL_COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.FLUID_CELL_4K, TLItems.CELL_COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.FLUID_CELL_16K, TLItems.CELL_COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.FLUID_CELL_64K, TLItems.CELL_COMPONENT_64K),
+                        new CellUpgradeTier("256k", TLItems.FLUID_CELL_256K, TLItems.CELL_COMPONENT_256K)),
+                List.of(TLItems.FLUID_CELL_HOUSING));
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", AEItems.PORTABLE_ITEM_CELL1K, AEItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", AEItems.PORTABLE_ITEM_CELL4K, AEItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", AEItems.PORTABLE_ITEM_CELL16K, AEItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", AEItems.PORTABLE_ITEM_CELL64K, AEItems.CELL_COMPONENT_64K),
-                        new CellUpgradeTier("256k", AEItems.PORTABLE_ITEM_CELL256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, AEItems.ITEM_CELL_HOUSING));
+                        new CellUpgradeTier("1k", TLItems.PORTABLE_ITEM_CELL1K, TLItems.CELL_COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.PORTABLE_ITEM_CELL4K, TLItems.CELL_COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.PORTABLE_ITEM_CELL16K, TLItems.CELL_COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.PORTABLE_ITEM_CELL64K, TLItems.CELL_COMPONENT_64K),
+                        new CellUpgradeTier("256k", TLItems.PORTABLE_ITEM_CELL256K, TLItems.CELL_COMPONENT_256K)),
+                List.of(TLBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, TLItems.ITEM_CELL_HOUSING));
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", AEItems.PORTABLE_FLUID_CELL1K, AEItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", AEItems.PORTABLE_FLUID_CELL4K, AEItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", AEItems.PORTABLE_FLUID_CELL16K, AEItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", AEItems.PORTABLE_FLUID_CELL64K, AEItems.CELL_COMPONENT_64K),
-                        new CellUpgradeTier("256k", AEItems.PORTABLE_FLUID_CELL256K, AEItems.CELL_COMPONENT_256K)),
-                List.of(AEBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, AEItems.FLUID_CELL_HOUSING));
+                        new CellUpgradeTier("1k", TLItems.PORTABLE_FLUID_CELL1K, TLItems.CELL_COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.PORTABLE_FLUID_CELL4K, TLItems.CELL_COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.PORTABLE_FLUID_CELL16K, TLItems.CELL_COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.PORTABLE_FLUID_CELL64K, TLItems.CELL_COMPONENT_64K),
+                        new CellUpgradeTier("256k", TLItems.PORTABLE_FLUID_CELL256K, TLItems.CELL_COMPONENT_256K)),
+                List.of(TLBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, TLItems.FLUID_CELL_HOUSING));
     }
 
     private void storageCellUpgradeRecipes(RecipeOutput output, List<CellUpgradeTier> tiers,
@@ -132,6 +132,6 @@ public class UpgradeRecipes extends AE2RecipeProvider {
 
     @Override
     public String getName() {
-        return "AE2 Storage Upgrade/Disassembly Recipes";
+        return "TL2 Storage Upgrade/Disassembly Recipes";
     }
 }

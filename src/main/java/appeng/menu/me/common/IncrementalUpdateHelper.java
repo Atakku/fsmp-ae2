@@ -31,24 +31,24 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 /**
- * This utility class helps menus that need to send a list of information that is grouped by {@link AEKey} to the client
- * and keep it updated, without having to resend the {@link AEKey} everytime. This can be especially important if the
+ * This utility class helps menus that need to send a list of information that is grouped by {@link TLKey} to the client
+ * and keep it updated, without having to resend the {@link TLKey} everytime. This can be especially important if the
  * item stack is serialized using it's {@link ItemStack#getShareTag() share tag}, which would not match the server-side
  * stack if it's sent back, or that would group distinct server-side entries together on the client-side if their share
  * tag was equal.
  */
-public class IncrementalUpdateHelper implements Iterable<AEKey> {
+public class IncrementalUpdateHelper implements Iterable<TLKey> {
 
     /**
      * Maps stacks to serial numbers. This relies on the fact that these stacks are equal iff their type is equal, and
      * two stacks with different counts are still equal.
      */
-    private final BiMap<AEKey, Long> mapping;
+    private final BiMap<TLKey, Long> mapping;
 
-    private final Set<AEKey> changes = new HashSet<>();
+    private final Set<TLKey> changes = new HashSet<>();
 
     private long serial;
 
@@ -62,15 +62,15 @@ public class IncrementalUpdateHelper implements Iterable<AEKey> {
     }
 
     @Nullable
-    public Long getSerial(AEKey stack) {
+    public Long getSerial(TLKey stack) {
         return mapping.get(stack);
     }
 
-    public long getOrAssignSerial(AEKey key) {
+    public long getOrAssignSerial(TLKey key) {
         return mapping.computeIfAbsent(key, k -> ++this.serial);
     }
 
-    public AEKey getBySerial(long serial) {
+    public TLKey getBySerial(long serial) {
         return mapping.inverse().get(serial);
     }
 
@@ -94,7 +94,7 @@ public class IncrementalUpdateHelper implements Iterable<AEKey> {
         this.mapping.clear();
     }
 
-    public void addChange(AEKey entry) {
+    public void addChange(TLKey entry) {
         if (!changes.add(entry)) {
             changes.remove(entry);
             changes.add(entry);
@@ -105,7 +105,7 @@ public class IncrementalUpdateHelper implements Iterable<AEKey> {
      * Removes the serial mapping for the given key. Will lead to a new serial being generated the next time this
      * particular key is used.
      */
-    public void removeSerial(AEKey what) {
+    public void removeSerial(TLKey what) {
         mapping.remove(what);
     }
 
@@ -123,17 +123,17 @@ public class IncrementalUpdateHelper implements Iterable<AEKey> {
     }
 
     @Override
-    public Iterator<AEKey> iterator() {
+    public Iterator<TLKey> iterator() {
         return changes.iterator();
     }
 
     @Override
-    public void forEach(Consumer<? super AEKey> action) {
+    public void forEach(Consumer<? super TLKey> action) {
         changes.forEach(action);
     }
 
     @Override
-    public Spliterator<AEKey> spliterator() {
+    public Spliterator<TLKey> spliterator() {
         return changes.spliterator();
     }
 }

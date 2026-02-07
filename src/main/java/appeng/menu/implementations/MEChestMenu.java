@@ -23,14 +23,14 @@ import net.minecraft.world.inventory.MenuType;
 
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.client.gui.implementations.MEChestScreen;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.slot.RestrictedInputSlot;
 
 /**
  * @see MEChestScreen
  */
-public class MEChestMenu extends AEBaseMenu {
+public class MEChestMenu extends TLBaseMenu {
 
     public static final MenuType<MEChestMenu> TYPE = MenuTypeBuilder
             .create(MEChestMenu::new, MEChestBlockEntity.class)

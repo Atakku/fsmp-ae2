@@ -36,8 +36,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 import appeng.api.networking.pathing.IPathingService;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.util.AEColor;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.util.TLColor;
 
 /**
  * Gives you a view into a Nodes connections and information.
@@ -165,14 +165,14 @@ public interface IGridNode {
      *         <code>null</code> to indicate the node should not be shown in the UI.
      */
     @Nullable
-    AEItemKey getVisualRepresentation();
+    TLItemKey getVisualRepresentation();
 
     /**
-     * Colors can be used to prevent adjacent grid nodes from connecting. {@link AEColor#TRANSPARENT} indicates that the
+     * Colors can be used to prevent adjacent grid nodes from connecting. {@link TLColor#TRANSPARENT} indicates that the
      * node will connect to nodes of any color.
      */
 
-    AEColor getGridColor();
+    TLColor getGridColor();
 
     /**
      * Fills in details about this node in the given crash report category.

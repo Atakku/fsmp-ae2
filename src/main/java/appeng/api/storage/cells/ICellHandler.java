@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * Implementations of this interface provide AE2 with a way to interact with storage cells that may be represented by
+ * Implementations of this interface provide TL2 with a way to interact with storage cells that may be represented by
  * arbitrary {@link ItemStack}
  *
  * @see appeng.api.storage.StorageCells
@@ -36,7 +36,7 @@ import net.minecraft.world.item.ItemStack;
 public interface ICellHandler {
 
     /**
-     * return true if the provided item is handled by your cell handler. ( AE May choose to skip this method, and just
+     * return true if the provided item is handled by your cell handler. ( TL May choose to skip this method, and just
      * request a handler )
      *
      * @param is to be checked item

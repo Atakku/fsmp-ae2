@@ -26,11 +26,11 @@ package appeng.api.implementations.blockentities;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 public interface IColorableBlockEntity {
 
-    AEColor getColor();
+    TLColor getColor();
 
-    boolean recolourBlock(Direction side, AEColor colour, Player who);
+    boolean recolourBlock(Direction side, TLColor colour, Player who);
 }

@@ -52,10 +52,10 @@ import appeng.api.networking.events.GridEvent;
 import appeng.api.networking.pathing.IPathingService;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.networking.ticking.ITickManager;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.helpers.GridServiceContainer;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 import appeng.util.IDebugExportable;
 import appeng.util.JsonStreamUtil;
 
@@ -85,7 +85,7 @@ public class Grid implements IGrid {
         TickHandler.instance().addNetwork(grid);
         center.setGrid(grid);
 
-        AELog.grid("Created grid %s with center %s", grid, center);
+        TLLog.grid("Created grid %s with center %s", grid, center);
 
         return grid;
     }
@@ -120,7 +120,7 @@ public class Grid implements IGrid {
                 this.pivot = null;
                 TickHandler.instance().removeNetwork(this);
 
-                AELog.grid("Removed grid %s", this);
+                TLLog.grid("Removed grid %s", this);
             }
         }
     }
@@ -278,7 +278,7 @@ public class Grid implements IGrid {
     public void fillCrashReportCategory(CrashReportCategory category) {
         category.setDetail("Nodes", this.machines.size());
         category.setDetail("Serial number", this.serialNumber);
-        if (AELog.isGridLogEnabled()) {
+        if (TLLog.isGridLogEnabled()) {
             category.setDetail("All GridNodes",
                     this.machines.values().stream().map(Object::toString).collect(Collectors.joining(";")));
         }
@@ -319,7 +319,7 @@ public class Grid implements IGrid {
         for (var node : machines.values()) {
             machineIdMap.put(node.getOwner(), machineIdMap.size());
             // Also assign unique IDs to part hosts
-            if (node.getOwner() instanceof AEBasePart part) {
+            if (node.getOwner() instanceof TLBasePart part) {
                 machineIdMap.put(part.getBlockEntity(), machineIdMap.size());
             }
         }

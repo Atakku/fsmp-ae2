@@ -7,8 +7,8 @@ navigation:
 categories:
 - devices
 item_ids:
-- ae2:interface
-- ae2:cable_interface
+- tl2:interface
+- tl2:cable_interface
 ---
 
 # The Interface
@@ -20,7 +20,7 @@ item_ids:
 </GameScene>
 </Row>
 
-Interfaces act like a small chest and fluid tank that fills itself from and empties to [network storage](../ae2-mechanics/import-export-storage.md)
+Interfaces act like a small chest and fluid tank that fills itself from and empties to [network storage](../tl2-mechanics/import-export-storage.md)
 depending on what you set it to keep a stock of in its slots. It tries to complete this in a single gametick, so it can fill itself with
 or empty itself from up to 9 stacks per gametick, making it a fast method of import or export if you have fast item pipes.
 
@@ -74,9 +74,9 @@ As previously stated, an interface is essentially a chest/tank with some super d
 
 ## Special Interactions
 
-Interfaces also have a few special functionalities with other AE2 [devices](../ae2-mechanics/devices.md):
+Interfaces also have a few special functionalities with other TL2 devices:
 
-A <ItemLink id="storage_bus" /> on an unconfigured interface will present the entirety of the [network storage](../ae2-mechanics/import-export-storage.md)
+A <ItemLink id="storage_bus" /> on an unconfigured interface will present the entirety of the [network storage](../tl2-mechanics/import-export-storage.md)
 of its network to the storage bus' network, as if the interface's network was one big chest the storage bus was placed on.
 Setting an item to be stocked in the interface's filter slots disables this.
 
@@ -85,8 +85,8 @@ Setting an item to be stocked in the interface's filter slots disables this.
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-Pattern providers have a special interaction with interfaces on [subnets](../ae2-mechanics/subnetworks.md): if the interface is unconfigured
-the provider will skip the interface entirely and push directly to that subnet's [storage](../ae2-mechanics/import-export-storage.md),
+Pattern providers have a special interaction with interfaces on [subnets](../tl2-mechanics/subnetworks.md): if the interface is unconfigured
+the provider will skip the interface entirely and push directly to that subnet's [storage](../tl2-mechanics/import-export-storage.md),
 skipping the interface and not filling it with recipe batches, and more importantly, not inserting the next batch until there's space in storage.
 
 <GameScene zoom="6" background="transparent">
@@ -109,13 +109,13 @@ skipping the interface and not filling it with recipe batches, and more importan
 
 ## Variants
 
-Interfaces come in 2 different variants: normal and flat/[subpart](../ae2-mechanics/cable-subparts.md). This affects which specific sides their inventories can be accessed
+Interfaces come in 2 different variants: normal and flat/[subpart](../tl2-mechanics/cable-subparts.md). This affects which specific sides their inventories can be accessed
 from and that they provide a network connection to.
 
-*   Normal interfaces allow things to push to, pull from, and access their inventory from all sides and, like most AE2 machines, act
+*   Normal interfaces allow things to push to, pull from, and access their inventory from all sides and, like most TL2 machines, act
     like a cable providing network connection to all sides.
 
-*   Flat interfaces are [cable subparts](../ae2-mechanics/cable-subparts.md), and so multiple can be placed on the same cable, allowing for compact setups.
+*   Flat interfaces are [cable subparts](../tl2-mechanics/cable-subparts.md), and so multiple can be placed on the same cable, allowing for compact setups.
     They allow things to push to, pull from, and access their inventory from their face but do not provide a network connection on their face.
 
 Interfaces can be swapped between normal and flat in a crafting grid.
@@ -134,7 +134,7 @@ When you set a slot to stocking mode, it will also prevent external machines fro
 The interface supports the following [upgrades](upgrade_cards.md):
 
 *   <ItemLink id="fuzzy_card" /> lets the bus filter by damage level and/or ignore item NBT
-*   <ItemLink id="crafting_card" /> lets the interface send crafting requests to your [autocrafting](../ae2-mechanics/autocrafting.md)
+*   <ItemLink id="crafting_card" /> lets the interface send crafting requests to your [autocrafting](../tl2-mechanics/autocrafting.md)
     system to get the items it desires. It will pull the items from storage if possible, before making a request
     for a new item to be crafted.
 

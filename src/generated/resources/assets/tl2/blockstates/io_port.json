@@ -1,0 +1,224 @@
+{
+  "variants": {
+    "facing=down,powered=false,spin=0": {
+      "model": "tl2:block/io_port",
+      "x": 90
+    },
+    "facing=down,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270,
+      "x": 90
+    },
+    "facing=down,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180,
+      "x": 90
+    },
+    "facing=down,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90,
+      "x": 90
+    },
+    "facing=down,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on",
+      "x": 90
+    },
+    "facing=down,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270,
+      "x": 90
+    },
+    "facing=down,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180,
+      "x": 90
+    },
+    "facing=down,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90,
+      "x": 90
+    },
+    "facing=east,powered=false,spin=0": {
+      "model": "tl2:block/io_port",
+      "y": 90
+    },
+    "facing=east,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270,
+      "y": 90
+    },
+    "facing=east,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180,
+      "y": 90
+    },
+    "facing=east,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90,
+      "y": 90
+    },
+    "facing=east,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on",
+      "y": 90
+    },
+    "facing=east,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270,
+      "y": 90
+    },
+    "facing=east,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180,
+      "y": 90
+    },
+    "facing=east,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90,
+      "y": 90
+    },
+    "facing=north,powered=false,spin=0": {
+      "model": "tl2:block/io_port"
+    },
+    "facing=north,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270
+    },
+    "facing=north,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180
+    },
+    "facing=north,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90
+    },
+    "facing=north,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on"
+    },
+    "facing=north,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270
+    },
+    "facing=north,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180
+    },
+    "facing=north,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90
+    },
+    "facing=south,powered=false,spin=0": {
+      "model": "tl2:block/io_port",
+      "y": 180
+    },
+    "facing=south,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90,
+      "y": 180
+    },
+    "facing=south,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180,
+      "y": 180
+    },
+    "facing=south,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270,
+      "y": 180
+    },
+    "facing=south,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on",
+      "y": 180
+    },
+    "facing=south,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90,
+      "y": 180
+    },
+    "facing=south,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180,
+      "y": 180
+    },
+    "facing=south,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270,
+      "y": 180
+    },
+    "facing=up,powered=false,spin=0": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180,
+      "x": 270
+    },
+    "facing=up,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90,
+      "x": 270
+    },
+    "facing=up,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "x": 270
+    },
+    "facing=up,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270,
+      "x": 270
+    },
+    "facing=up,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180,
+      "x": 270
+    },
+    "facing=up,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90,
+      "x": 270
+    },
+    "facing=up,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "x": 270
+    },
+    "facing=up,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270,
+      "x": 270
+    },
+    "facing=west,powered=false,spin=0": {
+      "model": "tl2:block/io_port",
+      "y": 270
+    },
+    "facing=west,powered=false,spin=1": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 270,
+      "y": 270
+    },
+    "facing=west,powered=false,spin=2": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 180,
+      "y": 270
+    },
+    "facing=west,powered=false,spin=3": {
+      "model": "tl2:block/io_port",
+      "tl2:z": 90,
+      "y": 270
+    },
+    "facing=west,powered=true,spin=0": {
+      "model": "tl2:block/io_port_on",
+      "y": 270
+    },
+    "facing=west,powered=true,spin=1": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 270,
+      "y": 270
+    },
+    "facing=west,powered=true,spin=2": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 180,
+      "y": 270
+    },
+    "facing=west,powered=true,spin=3": {
+      "model": "tl2:block/io_port_on",
+      "tl2:z": 90,
+      "y": 270
+    }
+  }
+}

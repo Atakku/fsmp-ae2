@@ -1,0 +1,167 @@
+/*
+ * This file is part of Applied Energistics 2.
+ * Copyright (c) 2021, TeamAppliedEnergistics, All rights reserved.
+ *
+ * Applied Energistics 2 is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Applied Energistics 2 is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Applied Energistics 2.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ */
+
+package appeng.core.definitions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+import com.google.common.base.Preconditions;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import appeng.block.TLBaseEntityBlock;
+import appeng.blockentity.ClientTickingBlockEntity;
+import appeng.blockentity.ServerTickingBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
+import appeng.blockentity.misc.CellWorkbenchBlockEntity;
+import appeng.blockentity.networking.CableBusBlockEntity;
+import appeng.blockentity.networking.ControllerBlockEntity;
+import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
+import appeng.blockentity.storage.DriveBlockEntity;
+import appeng.blockentity.storage.IOPortBlockEntity;
+import appeng.blockentity.storage.MEChestBlockEntity;
+import appeng.core.AppEng;
+import appeng.debug.CubeGeneratorBlockEntity;
+import appeng.debug.ItemGenBlockEntity;
+import appeng.debug.PhantomNodeBlockEntity;
+
+public final class TLBlockEntities {
+    private static final List<DeferredBlockEntityType<?>> BLOCK_ENTITY_TYPES = new ArrayList<>();
+
+    public static final DeferredRegister<BlockEntityType<?>> DR = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,
+            AppEng.MOD_ID);
+
+    public static final DeferredBlockEntityType<WirelessAccessPointBlockEntity> WIRELESS_ACCESS_POINT = create(
+            "wireless_access_point",
+            WirelessAccessPointBlockEntity.class, WirelessAccessPointBlockEntity::new, TLBlocks.WIRELESS_ACCESS_POINT);
+    public static final DeferredBlockEntityType<CableBusBlockEntity> CABLE_BUS = create("cable_bus",
+            CableBusBlockEntity.class,
+            CableBusBlockEntity::new, TLBlocks.CABLE_BUS);
+    public static final DeferredBlockEntityType<ControllerBlockEntity> CONTROLLER = create("controller",
+            ControllerBlockEntity.class, ControllerBlockEntity::new, TLBlocks.CONTROLLER);
+    public static final DeferredBlockEntityType<DriveBlockEntity> DRIVE = create("drive", DriveBlockEntity.class,
+            DriveBlockEntity::new, TLBlocks.DRIVE);
+    public static final DeferredBlockEntityType<MEChestBlockEntity> ME_CHEST = create("chest", MEChestBlockEntity.class,
+            MEChestBlockEntity::new, TLBlocks.ME_CHEST);
+    public static final DeferredBlockEntityType<CellWorkbenchBlockEntity> CELL_WORKBENCH = create("cell_workbench",
+            CellWorkbenchBlockEntity.class, CellWorkbenchBlockEntity::new, TLBlocks.CELL_WORKBENCH);
+    public static final DeferredBlockEntityType<IOPortBlockEntity> IO_PORT = create("io_port", IOPortBlockEntity.class,
+            IOPortBlockEntity::new, TLBlocks.IO_PORT);
+
+    public static final DeferredBlockEntityType<ItemGenBlockEntity> DEBUG_ITEM_GEN = create("debug_item_gen",
+            ItemGenBlockEntity.class, ItemGenBlockEntity::new, TLBlocks.DEBUG_ITEM_GEN);
+    public static final DeferredBlockEntityType<PhantomNodeBlockEntity> DEBUG_PHANTOM_NODE = create(
+            "debug_phantom_node",
+            PhantomNodeBlockEntity.class, PhantomNodeBlockEntity::new, TLBlocks.DEBUG_PHANTOM_NODE);
+    public static final DeferredBlockEntityType<CubeGeneratorBlockEntity> DEBUG_CUBE_GEN = create("debug_cube_gen",
+            CubeGeneratorBlockEntity.class, CubeGeneratorBlockEntity::new, TLBlocks.DEBUG_CUBE_GEN);
+
+    private TLBlockEntities() {
+    }
+
+    /**
+     * Get all block entity types whose implementations extends the given base class.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T extends BlockEntity> List<BlockEntityType<? extends T>> getSubclassesOf(Class<T> baseClass) {
+        var result = new ArrayList<BlockEntityType<? extends T>>();
+        for (var type : BLOCK_ENTITY_TYPES) {
+            if (baseClass.isAssignableFrom(type.getBlockEntityClass())) {
+                result.add((BlockEntityType<? extends T>) type.get());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get all block entity types whose implementations implement the given interface.
+     */
+    public static List<BlockEntityType<?>> getImplementorsOf(Class<?> iface) {
+        var result = new ArrayList<BlockEntityType<?>>();
+        for (var type : BLOCK_ENTITY_TYPES) {
+            if (iface.isAssignableFrom(type.getBlockEntityClass())) {
+                result.add(type.get());
+            }
+        }
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    @SafeVarargs
+    private static <T extends TLBaseBlockEntity> DeferredBlockEntityType<T> create(String shortId,
+            Class<T> entityClass,
+            BlockEntityFactory<T> factory,
+            BlockDefinition<? extends TLBaseEntityBlock<?>>... blockDefinitions) {
+        Preconditions.checkArgument(blockDefinitions.length > 0);
+
+        var deferred = DR.register(shortId, () -> {
+            AtomicReference<BlockEntityType<T>> typeHolder = new AtomicReference<>();
+            BlockEntityType.BlockEntitySupplier<T> supplier = (blockPos, blockState) -> factory.create(typeHolder.get(),
+                    blockPos, blockState);
+
+            var blocks = Arrays.stream(blockDefinitions)
+                    .map(BlockDefinition::block)
+                    .toArray(TLBaseEntityBlock[]::new);
+
+            var type = BlockEntityType.Builder.of(supplier, blocks).build(null);
+            typeHolder.setPlain(type); // Makes it available to the supplier used above
+
+            TLBaseBlockEntity.registerBlockEntityItem(type, blockDefinitions[0].asItem());
+
+            // If the block entity classes implement specific interfaces, automatically register them
+            // as tickers with the blocks that create that entity.
+            BlockEntityTicker<T> serverTicker = null;
+            if (ServerTickingBlockEntity.class.isAssignableFrom(entityClass)) {
+                serverTicker = (level, pos, state, entity) -> {
+                    ((ServerTickingBlockEntity) entity).serverTick();
+                };
+            }
+            BlockEntityTicker<T> clientTicker = null;
+            if (ClientTickingBlockEntity.class.isAssignableFrom(entityClass)) {
+                clientTicker = (level, pos, state, entity) -> {
+                    ((ClientTickingBlockEntity) entity).clientTick();
+                };
+            }
+
+            for (var block : blocks) {
+                TLBaseEntityBlock<T> baseBlock = (TLBaseEntityBlock<T>) block;
+                baseBlock.setBlockEntity(entityClass, type, clientTicker, serverTicker);
+            }
+
+            return type;
+        });
+
+        var result = new DeferredBlockEntityType<>(entityClass, deferred);
+        BLOCK_ENTITY_TYPES.add(result);
+        return result;
+    }
+
+    @FunctionalInterface
+    interface BlockEntityFactory<T extends TLBaseBlockEntity> {
+        T create(BlockEntityType<T> type, BlockPos pos, BlockState state);
+    }
+}

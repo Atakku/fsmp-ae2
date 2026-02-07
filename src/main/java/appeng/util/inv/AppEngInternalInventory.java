@@ -34,17 +34,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import appeng.api.inventories.BaseInternalInventory;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
 public class AppEngInternalInventory extends BaseInternalInventory {
     private boolean enableClientEvents = false;
     private InternalInventoryHost host;
     private final NonNullList<ItemStack> stacks;
     private final int[] maxStack;
-    private IAEItemFilter filter;
+    private ITLItemFilter filter;
     private boolean notifyingChanges = false;
 
-    public AppEngInternalInventory(InternalInventoryHost host, int size, int maxStack, IAEItemFilter filter) {
+    public AppEngInternalInventory(InternalInventoryHost host, int size, int maxStack, ITLItemFilter filter) {
         this.setHost(host);
         this.setFilter(filter);
         this.maxStack = new int[size];
@@ -64,7 +64,7 @@ public class AppEngInternalInventory extends BaseInternalInventory {
         this(inventory, size, 64);
     }
 
-    public void setFilter(IAEItemFilter filter) {
+    public void setFilter(ITLItemFilter filter) {
         this.filter = filter;
     }
 

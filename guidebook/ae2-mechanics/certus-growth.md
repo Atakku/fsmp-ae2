@@ -1,6 +1,6 @@
 ---
 navigation:
-  parent: ae2-mechanics/ae2-mechanics-index.md
+  parent: tl2-mechanics/tl2-mechanics-index.md
   title: Certus Growth
   icon: quartz_cluster
 ---
@@ -18,7 +18,7 @@ growing, it will drop one <ItemLink id="certus_quartz_dust" />, unchanged by for
 <ItemLink id="certus_quartz_crystal" />s, and fortune will increase this number.
 
 There are 4 tiers of budding certus blocks: Flawless, Flawed, Chipped, and Damaged, and you initially
-find them in [meteorites](../ae2-mechanics/meteorites.md).
+find them in [meteorites](../tl2-mechanics/meteorites.md).
 
 <GameScene zoom="4" background="transparent">
   <ImportStructure src="../assets/assemblies/budding_blocks.snbt" />

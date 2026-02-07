@@ -77,16 +77,14 @@ import appeng.client.gui.style.StyleManager;
 import appeng.client.guidebook.ConfigValueTagExtension;
 import appeng.client.guidebook.PartAnnotationStrategy;
 import appeng.client.render.StorageCellClientTooltipComponent;
-import appeng.client.render.effects.LightningFX;
 import appeng.client.render.effects.ParticleTypes;
 import appeng.client.render.effects.VibrantFX;
 import appeng.client.render.model.GlassBakedModel;
 import appeng.client.render.overlay.OverlayManager;
 import appeng.client.render.tesr.ChestBlockEntityRenderer;
 import appeng.client.render.tesr.DriveLedBlockEntityRenderer;
-import appeng.client.render.tesr.SkyChestTESR;
-import appeng.core.definitions.AEAttachmentTypes;
-import appeng.core.definitions.AEBlockEntities;
+import appeng.core.definitions.TLAttachmentTypes;
+import appeng.core.definitions.TLBlockEntities;
 import appeng.core.network.ServerboundPacket;
 import appeng.core.network.serverbound.MouseWheelPacket;
 import appeng.core.network.serverbound.UpdateHoldingCtrlPacket;
@@ -96,13 +94,12 @@ import appeng.hooks.RenderBlockOutlineHook;
 import appeng.init.client.InitAdditionalModels;
 import appeng.init.client.InitBlockColors;
 import appeng.init.client.InitBuiltInModels;
-import appeng.init.client.InitEntityLayerDefinitions;
 import appeng.init.client.InitItemColors;
 import appeng.init.client.InitItemModelsProperties;
 import appeng.init.client.InitScreens;
 import appeng.init.client.InitStackRenderHandlers;
 import appeng.items.storage.StorageCellTooltipComponent;
-import appeng.siteexport.AESiteExporter;
+import appeng.siteexport.TLSiteExporter;
 
 /**
  * Client-specific functionality.
@@ -117,12 +114,12 @@ public class AppEngClient extends AppEngBase {
      * This modifier key has to be held to activate mouse wheel items.
      */
     private static final KeyMapping MOUSE_WHEEL_ITEM_MODIFIER = new KeyMapping(
-            "key.ae2.mouse_wheel_item_modifier", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,
-            InputConstants.KEY_LSHIFT, "key.ae2.category");
+            "key.tl2.mouse_wheel_item_modifier", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,
+            InputConstants.KEY_LSHIFT, "key.tl2.category");
 
     private static final KeyMapping PART_PLACEMENT_OPPOSITE = new KeyMapping(
-            "key.ae2.part_placement_opposite", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,
-            InputConstants.KEY_LCONTROL, "key.ae2.category");
+            "key.tl2.part_placement_opposite", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM,
+            InputConstants.KEY_LCONTROL, "key.tl2.category");
 
     private final Guide guide;
 
@@ -139,7 +136,6 @@ public class AppEngClient extends AppEngBase {
         modEventBus.addListener(this::registerBlockColors);
         modEventBus.addListener(this::registerItemColors);
         modEventBus.addListener(this::registerEntityRenderers);
-        modEventBus.addListener(this::registerEntityLayerDefinitions);
         modEventBus.addListener(this::registerHotkeys);
         modEventBus.addListener(InitScreens::init);
         modEventBus.addListener(this::enqueueImcMessages);
@@ -175,8 +171,8 @@ public class AppEngClient extends AppEngBase {
         NeoForge.EVENT_BUS.addListener((RegisterClientCommandsEvent evt) -> {
             var dispatcher = evt.getDispatcher();
 
-            LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("ae2client");
-            if (AEConfig.instance().isDebugToolsEnabled()) {
+            LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("tl2client");
+            if (TLConfig.instance().isDebugToolsEnabled()) {
                 for (var commandBuilder : ClientCommands.DEBUG_COMMANDS) {
                     commandBuilder.build(builder);
                 }
@@ -188,7 +184,7 @@ public class AppEngClient extends AppEngBase {
     private Guide createGuide() {
 
         return Guide.builder(AppEng.makeId("guide"))
-                .folder("ae2guide")
+                .folder("tl2guide")
                 .extension(ImplicitAnnotationStrategy.EXTENSION_POINT, new PartAnnotationStrategy())
                 .extension(TagCompiler.EXTENSION_POINT, new ConfigValueTagExtension())
                 .build();
@@ -222,7 +218,6 @@ public class AppEngClient extends AppEngBase {
     }
 
     public void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ParticleTypes.LIGHTNING, LightningFX.Factory::new);
         event.registerSpriteSet(ParticleTypes.VIBRANT, VibrantFX.Factory::new);
     }
 
@@ -244,7 +239,7 @@ public class AppEngClient extends AppEngBase {
             try {
                 postClientSetup(minecraft);
             } catch (Throwable e) {
-                LOG.error("AE2 failed postClientSetup", e);
+                LOG.error("TL2 failed postClientSetup", e);
                 throw new RuntimeException(e);
             }
         });
@@ -255,16 +250,9 @@ public class AppEngClient extends AppEngBase {
     }
 
     private void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(AEBlockEntities.SKY_CHEST.get(), SkyChestTESR::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.DRIVE.get(), DriveLedBlockEntityRenderer::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.ME_CHEST.get(), ChestBlockEntityRenderer::new);
-        event.registerBlockEntityRenderer(AEBlockEntities.CABLE_BUS.get(), CableBusTESR::new);
-    }
-
-    private void registerEntityLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        InitEntityLayerDefinitions.init((modelLayerLocation, layerDefinition) -> {
-            event.registerLayerDefinition(modelLayerLocation, () -> layerDefinition);
-        });
+        event.registerBlockEntityRenderer(TLBlockEntities.DRIVE.get(), DriveLedBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(TLBlockEntities.ME_CHEST.get(), ChestBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(TLBlockEntities.CABLE_BUS.get(), CableBusTESR::new);
     }
 
     /**
@@ -281,7 +269,7 @@ public class AppEngClient extends AppEngBase {
             if (Boolean.getBoolean("appeng.runGuideExportAndExit")) {
                 Path outputFolder = Paths.get(System.getProperty("appeng.guideExportFolder"));
 
-                new AESiteExporter(minecraft, outputFolder, guide)
+                new TLSiteExporter(minecraft, outputFolder, guide)
                         .exportOnNextTickAndExit();
             }
         }
@@ -321,9 +309,9 @@ public class AppEngClient extends AppEngBase {
 
             if (player != null) {
                 var isDown = event.getAction() == InputConstants.PRESS || event.getAction() == InputConstants.REPEAT;
-                var previousIsDown = player.getData(AEAttachmentTypes.HOLDING_CTRL);
+                var previousIsDown = player.getData(TLAttachmentTypes.HOLDING_CTRL);
                 if (previousIsDown != isDown) {
-                    player.setData(AEAttachmentTypes.HOLDING_CTRL, isDown);
+                    player.setData(TLAttachmentTypes.HOLDING_CTRL, isDown);
                     PacketDistributor.sendToServer(new UpdateHoldingCtrlPacket(isDown));
                 }
             }
@@ -348,13 +336,10 @@ public class AppEngClient extends AppEngBase {
     @Override
     public void spawnEffect(EffectType effect, Level level, double posX, double posY,
             double posZ, Object o) {
-        if (AEConfig.instance().isEnableEffects()) {
+        if (TLConfig.instance().isEnableEffects()) {
             switch (effect) {
                 case Vibrant:
                     this.spawnVibrant(level, posX, posY, posZ);
-                    return;
-                case Lightning:
-                    this.spawnLightning(level, posX, posY, posZ);
                     return;
                 default:
             }
@@ -371,12 +356,6 @@ public class AppEngClient extends AppEngBase {
                     0.0D,
                     0.0D);
         }
-    }
-
-    private void spawnLightning(Level level, double posX, double posY, double posZ) {
-        Minecraft.getInstance().particleEngine.createParticle(ParticleTypes.LIGHTNING, posX, posY + 0.3f, posZ, 0.0f,
-                0.0f,
-                0.0f);
     }
 
     @Override

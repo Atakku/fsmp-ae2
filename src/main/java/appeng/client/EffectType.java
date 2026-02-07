@@ -19,5 +19,5 @@
 package appeng.client;
 
 public enum EffectType {
-    Lightning, Vibrant
+    Vibrant
 }

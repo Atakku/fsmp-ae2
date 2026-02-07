@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tl2:calculation_processor"
+    },
+    {
+      "item": "tl2:basic_card"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:void_card"
+  }
+}

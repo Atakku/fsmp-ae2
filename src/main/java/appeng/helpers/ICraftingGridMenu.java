@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.TLItemKey;
 import appeng.api.storage.ILinkStatus;
 
 public interface ICraftingGridMenu {
@@ -65,6 +65,6 @@ public interface ICraftingGridMenu {
      */
     boolean isPlayerInventorySlotLocked(int invSlot);
 
-    record AutoCraftEntry(AEItemKey what, List<Integer> slots) {
+    record AutoCraftEntry(TLItemKey what, List<Integer> slots) {
     }
 }

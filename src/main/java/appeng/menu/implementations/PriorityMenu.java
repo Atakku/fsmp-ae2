@@ -22,13 +22,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 
 import appeng.helpers.IPriorityHost;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.ISubMenu;
+import appeng.menu.TLBaseMenu;
 
 /**
  * @see appeng.client.gui.implementations.PriorityScreen
  */
-public class PriorityMenu extends AEBaseMenu implements ISubMenu {
+public class PriorityMenu extends TLBaseMenu implements ISubMenu {
 
     private static final String ACTION_SET_PRIORITY = "setPriority";
 

@@ -35,11 +35,11 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
+import appeng.api.util.TLColor;
 
 /**
- * Implemented on AE's block entities.
+ * Implemented on TL's block entities.
  * <p>
  * Do Not Implement
  */
@@ -108,15 +108,15 @@ public interface IPartHost extends ICustomCableConnection {
     DimensionalBlockPos getLocation();
 
     /**
-     * @return the block entity for the host, this can either be an FMP block entity, or a AE block entity
+     * @return the block entity for the host, this can either be an FMP block entity, or a TL block entity
      */
     BlockEntity getBlockEntity();
 
     /**
      * @return the color of the host type ( this is determined by the middle cable. ) if no cable is present, it returns
-     *         {@link AEColor} .Transparent other wise it returns the color of the cable in the center.
+     *         {@link TLColor} .Transparent other wise it returns the color of the cable in the center.
      */
-    AEColor getColor();
+    TLColor getColor();
 
     /**
      * destroys the part container, for internal use.

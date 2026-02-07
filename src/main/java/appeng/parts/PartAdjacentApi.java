@@ -14,17 +14,17 @@ import appeng.util.Platform;
  * Utility class to cache an API that is adjacent to a part.
  */
 public class PartAdjacentApi<T> {
-    private final AEBasePart part;
+    private final TLBasePart part;
     private final BlockCapability<T, Direction> capability;
     private final Runnable invalidationListener;
     private BlockCapabilityCache<T, Direction> cache;
 
-    public PartAdjacentApi(AEBasePart part, BlockCapability<T, Direction> capability) {
+    public PartAdjacentApi(TLBasePart part, BlockCapability<T, Direction> capability) {
         this(part, capability, () -> {
         });
     }
 
-    public PartAdjacentApi(AEBasePart part, BlockCapability<T, Direction> capability, Runnable invalidationListener) {
+    public PartAdjacentApi(TLBasePart part, BlockCapability<T, Direction> capability, Runnable invalidationListener) {
         this.capability = capability;
         this.part = part;
         this.invalidationListener = invalidationListener;
@@ -57,7 +57,7 @@ public class PartAdjacentApi<T> {
         return cache.getCapability();
     }
 
-    public static boolean isPartValid(AEBasePart part) {
+    public static boolean isPartValid(TLBasePart part) {
         var be = part.getBlockEntity();
         return be instanceof IPartHost host && host.getPart(part.getSide()) == part && !be.isRemoved();
     }

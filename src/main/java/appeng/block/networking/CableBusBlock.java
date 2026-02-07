@@ -70,8 +70,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
 
-import appeng.api.util.AEColor;
-import appeng.block.AEBaseEntityBlock;
+import appeng.api.util.TLColor;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.client.render.cablebus.CableBusBakedModel;
 import appeng.client.render.cablebus.CableBusBreakingParticle;
@@ -79,7 +79,7 @@ import appeng.client.render.cablebus.CableBusRenderState;
 import appeng.parts.ICableBusContainer;
 import appeng.parts.NullCableBusContainer;
 
-public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implements SimpleWaterloggedBlock {
+public class CableBusBlock extends TLBaseEntityBlock<CableBusBlockEntity> implements SimpleWaterloggedBlock {
 
     private static final ICableBusContainer NULL_CABLE_BUS = new NullCableBusContainer();
 
@@ -228,7 +228,7 @@ public class CableBusBlock extends AEBaseEntityBlock<CableBusBlockEntity> implem
     public boolean recolorBlock(BlockGetter level, BlockPos pos, Direction side,
             DyeColor color, Player who) {
         try {
-            return this.cb(level, pos).recolourBlock(side, AEColor.fromDye(color), who);
+            return this.cb(level, pos).recolourBlock(side, TLColor.fromDye(color), who);
         } catch (Throwable ignored) {
         }
         return false;

@@ -25,11 +25,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.client.render.StaticItemColor;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.ItemDefinition;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 import appeng.items.parts.ColoredPartItem;
 import appeng.items.parts.PartItem;
 import appeng.items.storage.BasicStorageCell;
@@ -52,27 +52,27 @@ public final class InitItemColors {
 
     private static void init(ItemColorRegistrar registrar) {
         // I checked, the ME chest doesn't keep its color in item form
-        registrar.register(new StaticItemColor(AEColor.TRANSPARENT), AEBlocks.ME_CHEST.asItem());
+        registrar.register(new StaticItemColor(TLColor.TRANSPARENT), TLBlocks.ME_CHEST.asItem());
 
-        registrar.register(InitItemColors::getColorApplicatorColor, AEItems.COLOR_APPLICATOR);
+        registrar.register(InitItemColors::getColorApplicatorColor, TLItems.COLOR_APPLICATOR);
 
-        registrar.register(PortableCellItem::getColor, AEItems.PORTABLE_ITEM_CELL1K, AEItems.PORTABLE_FLUID_CELL1K,
-                AEItems.PORTABLE_ITEM_CELL4K, AEItems.PORTABLE_FLUID_CELL4K,
-                AEItems.PORTABLE_ITEM_CELL16K, AEItems.PORTABLE_FLUID_CELL16K,
-                AEItems.PORTABLE_ITEM_CELL64K, AEItems.PORTABLE_FLUID_CELL64K,
-                AEItems.PORTABLE_ITEM_CELL256K, AEItems.PORTABLE_FLUID_CELL256K);
+        registrar.register(PortableCellItem::getColor, TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_FLUID_CELL1K,
+                TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_FLUID_CELL4K,
+                TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_FLUID_CELL16K,
+                TLItems.PORTABLE_ITEM_CELL64K, TLItems.PORTABLE_FLUID_CELL64K,
+                TLItems.PORTABLE_ITEM_CELL256K, TLItems.PORTABLE_FLUID_CELL256K);
 
-        registrar.register(BasicStorageCell::getColor, AEItems.ITEM_CELL_1K, AEItems.FLUID_CELL_1K,
-                AEItems.ITEM_CELL_4K, AEItems.FLUID_CELL_4K,
-                AEItems.ITEM_CELL_16K, AEItems.FLUID_CELL_16K,
-                AEItems.ITEM_CELL_64K, AEItems.FLUID_CELL_64K,
-                AEItems.ITEM_CELL_256K, AEItems.FLUID_CELL_256K);
+        registrar.register(BasicStorageCell::getColor, TLItems.ITEM_CELL_1K, TLItems.FLUID_CELL_1K,
+                TLItems.ITEM_CELL_4K, TLItems.FLUID_CELL_4K,
+                TLItems.ITEM_CELL_16K, TLItems.FLUID_CELL_16K,
+                TLItems.ITEM_CELL_64K, TLItems.FLUID_CELL_64K,
+                TLItems.ITEM_CELL_256K, TLItems.FLUID_CELL_256K);
 
         // Automatically register colors for certain items we register
-        for (ItemDefinition<?> definition : AEItems.getItems()) {
+        for (ItemDefinition<?> definition : TLItems.getItems()) {
             Item item = definition.asItem();
             if (item instanceof PartItem) {
-                AEColor color = AEColor.TRANSPARENT;
+                TLColor color = TLColor.TRANSPARENT;
                 if (item instanceof ColoredPartItem) {
                     color = ((ColoredPartItem<?>) item).getColor();
                 }
@@ -86,7 +86,7 @@ public final class InitItemColors {
             return -1;
         }
 
-        final AEColor col = ((ColorApplicatorItem) itemStack.getItem()).getActiveColor(itemStack);
+        final TLColor col = ((ColorApplicatorItem) itemStack.getItem()).getActiveColor(itemStack);
 
         if (col == null) {
             return -1;

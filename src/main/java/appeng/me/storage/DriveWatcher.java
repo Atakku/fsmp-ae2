@@ -20,7 +20,7 @@ package appeng.me.storage;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.StorageCell;
 
@@ -44,7 +44,7 @@ public class DriveWatcher extends MEInventoryHandler {
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         var inserted = super.insert(what, amount, mode, source);
 
         if (mode == Actionable.MODULATE && inserted > 0) {
@@ -60,7 +60,7 @@ public class DriveWatcher extends MEInventoryHandler {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         var extracted = super.extract(what, amount, mode, source);
 
         if (mode == Actionable.MODULATE && extracted > 0) {

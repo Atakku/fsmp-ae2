@@ -7,7 +7,7 @@ import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGrid;
 
 /**
- * Triggered to spawn additional testing tools into a container placed next to a spawned AE2 grid.
+ * Triggered to spawn additional testing tools into a container placed next to a spawned TL2 grid.
  */
 @TestPlotClass
 public class SpawnExtraGridTestTools extends Event {

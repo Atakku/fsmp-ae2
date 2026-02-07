@@ -27,20 +27,20 @@ import net.minecraft.world.entity.player.Inventory;
 
 import guideme.PageAnchor;
 
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.NumberEntryType;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.NumberEntryWidget;
 import appeng.menu.implementations.PriorityMenu;
 
-public class PriorityScreen extends AEBaseScreen<PriorityMenu> {
+public class PriorityScreen extends TLBaseScreen<PriorityMenu> {
 
     private final NumberEntryWidget priority;
 
     public PriorityScreen(PriorityMenu menu, Inventory playerInventory, Component title,
             ScreenStyle style) {
         super(menu, playerInventory, title, style);
-        AESubScreen.addBackButton(menu, "back", widgets);
+        TLSubScreen.addBackButton(menu, "back", widgets);
 
         this.priority = widgets.addNumberEntryWidget("priority", NumberEntryType.UNITLESS);
         this.priority.setTextFieldStyle(style.getWidget("priorityInput"));
@@ -49,7 +49,7 @@ public class PriorityScreen extends AEBaseScreen<PriorityMenu> {
         this.priority.setOnChange(this::savePriority);
         this.priority.setOnConfirm(() -> {
             savePriority();
-            AESubScreen.goBack();
+            TLSubScreen.goBack();
         });
     }
 

@@ -34,20 +34,20 @@ import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import appeng.api.config.Actionable;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.IncludeExclude;
-import appeng.api.ids.AEComponents;
+import appeng.api.ids.TLComponents;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.IBasicCellItem;
 import appeng.api.storage.cells.ISaveProvider;
 import appeng.api.storage.cells.StorageCell;
 import appeng.api.upgrades.IUpgradeInventory;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.util.ConfigInventory;
 import appeng.util.prioritylist.FuzzyPriorityList;
 import appeng.util.prioritylist.IPartitionList;
@@ -57,13 +57,13 @@ public class BasicCellInventory implements StorageCell {
 
     @Nullable
     private final ISaveProvider container;
-    private final AEKeyType keyType;
+    private final TLKeyType keyType;
     private final IPartitionList partitionList;
     private final IncludeExclude partitionListMode;
     private int maxItemTypes;
     private int storedItems;
     private long storedItemCount;
-    private Object2LongMap<AEKey> storedAmounts;
+    private Object2LongMap<TLKey> storedAmounts;
     private final ItemStack i;
     private final IBasicCellItem cellType;
     private final long maxItemsPerType; // max items per type, basically infinite unless there is a distribution card.
@@ -95,8 +95,8 @@ public class BasicCellInventory implements StorageCell {
         var upgrades = getUpgradesInventory();
         var config = getConfigInventory();
 
-        boolean hasInverter = upgrades.isInstalled(AEItems.INVERTER_CARD);
-        boolean isFuzzy = upgrades.isInstalled(AEItems.FUZZY_CARD);
+        boolean hasInverter = upgrades.isInstalled(TLItems.INVERTER_CARD);
+        boolean isFuzzy = upgrades.isInstalled(TLItems.FUZZY_CARD);
         if (isFuzzy) {
             builder.fuzzyMode(getFuzzyMode());
         }
@@ -107,7 +107,7 @@ public class BasicCellInventory implements StorageCell {
         partitionList = builder.build();
 
         // Check for equal distribution card.
-        if (upgrades.isInstalled(AEItems.EQUAL_DISTRIBUTION_CARD)) {
+        if (upgrades.isInstalled(TLItems.EQUAL_DISTRIBUTION_CARD)) {
             // Compute max possible amount of types based on whitelist size, and bound by type limit.
             long maxTypes = Integer.MAX_VALUE;
             if (!isFuzzy && partitionListMode == IncludeExclude.WHITELIST && !config.keySet().isEmpty()) {
@@ -122,11 +122,11 @@ public class BasicCellInventory implements StorageCell {
             this.maxItemsPerType = Long.MAX_VALUE;
         }
 
-        this.hasVoidUpgrade = upgrades.isInstalled(AEItems.VOID_CARD);
+        this.hasVoidUpgrade = upgrades.isInstalled(TLItems.VOID_CARD);
     }
 
     private List<GenericStack> getStoredStacks() {
-        return i.getOrDefault(AEComponents.STORAGE_CELL_INV, List.of());
+        return i.getOrDefault(TLComponents.STORAGE_CELL_INV, List.of());
     }
 
     public IncludeExclude getPartitionListMode() {
@@ -174,7 +174,7 @@ public class BasicCellInventory implements StorageCell {
         return cellType.storableInStorageCell() || getAvailableStacks().isEmpty();
     }
 
-    protected Object2LongMap<AEKey> getCellItems() {
+    protected Object2LongMap<TLKey> getCellItems() {
         if (this.storedAmounts == null) {
             this.storedAmounts = new Object2LongOpenHashMap<>();
             this.loadCellItems();
@@ -203,9 +203,9 @@ public class BasicCellInventory implements StorageCell {
         }
 
         if (stacks.isEmpty()) {
-            i.remove(AEComponents.STORAGE_CELL_INV);
+            i.remove(TLComponents.STORAGE_CELL_INV);
         } else {
-            i.set(AEComponents.STORAGE_CELL_INV, stacks);
+            i.set(TLComponents.STORAGE_CELL_INV, stacks);
         }
 
         this.storedItems = (short) this.storedAmounts.size();
@@ -329,7 +329,7 @@ public class BasicCellInventory implements StorageCell {
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         if (amount == 0 || !keyType.contains(what)) {
             return 0;
         }
@@ -355,9 +355,9 @@ public class BasicCellInventory implements StorageCell {
     }
 
     // Inner insert for items that pass the filter.
-    private long innerInsert(AEKey what, long amount, Actionable mode) {
+    private long innerInsert(TLKey what, long amount, Actionable mode) {
         // Prevent non-empty storage cells from being recursively stored inside this cell
-        if (what instanceof AEItemKey itemKey) {
+        if (what instanceof TLItemKey itemKey) {
             var stack = itemKey.toStack();
 
             var cellInv = StorageCells.getCellInventory(stack, null);
@@ -398,7 +398,7 @@ public class BasicCellInventory implements StorageCell {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         var currentAmount = getCellItems().getLong(what);
         if (currentAmount > 0) {
             if (amount >= currentAmount) {

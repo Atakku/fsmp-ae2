@@ -8,16 +8,16 @@ import com.google.common.primitives.Ints;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.GenericStack;
-import appeng.client.gui.AEBaseScreen;
+import appeng.api.stacks.TLItemKey;
+import appeng.client.gui.TLBaseScreen;
 import appeng.menu.slot.FakeSlot;
 
 public final class DropTargets {
     private DropTargets() {
     }
 
-    public static List<DropTarget> getTargets(AEBaseScreen<?> aeScreen) {
+    public static List<DropTarget> getTargets(TLBaseScreen<?> aeScreen) {
         List<DropTarget> targets = new ArrayList<>();
         for (var slot : aeScreen.getMenu().slots) {
             if (slot.isActive() && slot instanceof FakeSlot fakeSlot) {
@@ -48,7 +48,7 @@ public final class DropTargets {
 
         // Fake slots use GenericStacks wrapped in ItemStack for non-items internally
         private static ItemStack wrapFilterAsItem(GenericStack genericStack) {
-            if (genericStack.what() instanceof AEItemKey itemKey) {
+            if (genericStack.what() instanceof TLItemKey itemKey) {
                 return itemKey.toStack(Ints.saturatedCast(Math.max(1, genericStack.amount())));
             } else {
                 return GenericStack.wrapInItemStack(genericStack.what(), Math.max(1, genericStack.amount()));

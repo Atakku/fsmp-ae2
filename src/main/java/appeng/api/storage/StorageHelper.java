@@ -29,8 +29,8 @@ import com.google.common.primitives.Ints;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.core.stats.AeStats;
 
 public final class StorageHelper {
@@ -46,7 +46,7 @@ public final class StorageHelper {
      * @return extracted items or {@code null} of nothing was extracted.
      */
     public static long extraction(MEStorage inv,
-            AEKey request, long amount, IActionSource src) {
+            TLKey request, long amount, IActionSource src) {
         return extraction(inv, request, amount, src, Actionable.MODULATE);
     }
 
@@ -60,7 +60,7 @@ public final class StorageHelper {
      * @return extracted items or {@code null} of nothing was extracted.
      */
     public static long extraction(MEStorage inv,
-            AEKey request, long amount, IActionSource src, Actionable mode) {
+            TLKey request, long amount, IActionSource src, Actionable mode) {
         Objects.requireNonNull(inv, "inv");
         Objects.requireNonNull(request, "request");
         Objects.requireNonNull(src, "src");
@@ -72,7 +72,7 @@ public final class StorageHelper {
             if (mode == Actionable.MODULATE) {
                 var ret = inv.extract(request, itemToExtract, Actionable.MODULATE, src);
 
-                if (ret != 0 && request instanceof AEItemKey) {
+                if (ret != 0 && request instanceof TLItemKey) {
                     src.player().ifPresent(player -> {
                         AeStats.ItemsExtracted.addToPlayer(player, Ints.saturatedCast(ret));
                     });
@@ -95,7 +95,7 @@ public final class StorageHelper {
      * @return the number of items inserted.
      */
     public static long insert(MEStorage inv,
-            AEKey input, long amount, IActionSource src) {
+            TLKey input, long amount, IActionSource src) {
         return insert(inv, input, amount, src, Actionable.MODULATE);
     }
 
@@ -108,7 +108,7 @@ public final class StorageHelper {
      * @param mode  Simulate or modulate
      * @return the number of items inserted.
      */
-    public static long insert(MEStorage inv, AEKey input, long amount,
+    public static long insert(MEStorage inv, TLKey input, long amount,
             IActionSource src, Actionable mode) {
         Objects.requireNonNull(inv);
         Objects.requireNonNull(input);
@@ -123,7 +123,7 @@ public final class StorageHelper {
         if (mode == Actionable.MODULATE) {
             var inserted = inv.insert(input, amount, Actionable.MODULATE, src);
 
-            if (input instanceof AEItemKey) {
+            if (input instanceof TLItemKey) {
                 src.player().ifPresent(player -> {
                     AeStats.ItemsInserted.addToPlayer(player, Ints.saturatedCast(inserted));
                 });

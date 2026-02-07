@@ -26,7 +26,7 @@ import net.minecraft.world.phys.Vec3;
 
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.TLItemKey;
 import appeng.api.storage.ISubMenuHost;
 import appeng.api.storage.StorageHelper;
 import appeng.core.AppEng;
@@ -69,14 +69,14 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
 
         if (this.isLocked() && !InteractionUtil.isInAlternateUseMode(player)) {
             if (InteractionUtil.canWrenchRotate(heldItem)
-                    && (this.getDisplayed() == null || !AEItemKey.matches(getDisplayed(), heldItem))) {
+                    && (this.getDisplayed() == null || !TLItemKey.matches(getDisplayed(), heldItem))) {
                 // wrench it
                 return super.onUseWithoutItem(player, pos);
             } else if (!heldItem.isEmpty()) {
                 this.insertItem(player, heldItem);
                 return true;
             }
-        } else if (this.getDisplayed() != null && AEItemKey.matches(getDisplayed(), heldItem)) {
+        } else if (this.getDisplayed() != null && TLItemKey.matches(getDisplayed(), heldItem)) {
             this.insertItem(player, heldItem);
             return true;
         }
@@ -114,7 +114,7 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
             return false;
         }
 
-        if (this.getDisplayed() instanceof AEItemKey itemKey) {
+        if (this.getDisplayed() instanceof TLItemKey itemKey) {
             this.extractItem(player, itemKey.getMaxStackSize());
         }
 
@@ -146,7 +146,7 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
         getMainNode().ifPresent(grid -> {
             var cell = grid.getStorageService().getInventory();
 
-            if (getDisplayed() instanceof AEItemKey itemKey) {
+            if (getDisplayed() instanceof TLItemKey itemKey) {
                 var inv = new PlayerInternalInventory(player.getInventory());
 
                 for (int x = 0; x < inv.size(); x++) {
@@ -168,14 +168,14 @@ public class ConversionMonitorPart extends AbstractMonitorPart implements ISubMe
         getMainNode().ifPresent(grid -> {
             var cell = grid.getStorageService().getInventory();
 
-            var inserted = StorageHelper.insert(cell, AEItemKey.of(heldItem), heldItem.getCount(),
+            var inserted = StorageHelper.insert(cell, TLItemKey.of(heldItem), heldItem.getCount(),
                     new PlayerSource(player, this));
             heldItem.shrink((int) inserted);
         });
     }
 
     private void extractItem(Player player, int count) {
-        if (!(this.getDisplayed() instanceof AEItemKey itemKey)) {
+        if (!(this.getDisplayed() instanceof TLItemKey itemKey)) {
             return;
         }
 

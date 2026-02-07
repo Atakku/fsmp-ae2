@@ -25,31 +25,31 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 public final class ColoredItemDefinition<T extends Item> {
 
-    private final Map<AEColor, ItemDefinition<T>> items = new EnumMap<>(AEColor.class);
-    private final Map<AEColor, ResourceLocation> ids = new EnumMap<>(AEColor.class);
+    private final Map<TLColor, ItemDefinition<T>> items = new EnumMap<>(TLColor.class);
+    private final Map<TLColor, ResourceLocation> ids = new EnumMap<>(TLColor.class);
 
-    void add(AEColor v, ResourceLocation id, ItemDefinition<T> is) {
+    void add(TLColor v, ResourceLocation id, ItemDefinition<T> is) {
         this.ids.put(v, id);
         this.items.put(v, is);
     }
 
-    public ResourceLocation id(AEColor color) {
+    public ResourceLocation id(TLColor color) {
         return ids.get(color);
     }
 
-    public T item(AEColor color) {
+    public T item(TLColor color) {
         return this.items.get(color).asItem();
     }
 
-    public ItemStack stack(AEColor color) {
+    public ItemStack stack(TLColor color) {
         return stack(color, 1);
     }
 
-    public ItemStack stack(AEColor color, int stackSize) {
+    public ItemStack stack(TLColor color, int stackSize) {
         var item = item(color);
 
         if (item == null) {

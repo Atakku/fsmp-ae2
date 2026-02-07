@@ -38,13 +38,13 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import appeng.client.Point;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.WidgetStyle;
-import appeng.client.gui.widgets.AE2Button;
-import appeng.client.gui.widgets.AECheckbox;
-import appeng.client.gui.widgets.AETextField;
 import appeng.client.gui.widgets.BackgroundPanel;
 import appeng.client.gui.widgets.IResizableWidget;
 import appeng.client.gui.widgets.NumberEntryWidget;
 import appeng.client.gui.widgets.Scrollbar;
+import appeng.client.gui.widgets.TL2Button;
+import appeng.client.gui.widgets.TLCheckbox;
+import appeng.client.gui.widgets.TLTextField;
 import appeng.client.gui.widgets.TabButton;
 import appeng.core.localization.GuiText;
 import appeng.core.network.ServerboundPacket;
@@ -109,18 +109,18 @@ public class WidgetContainer {
      * Convenient way to add Vanilla buttons without having to specify x,y,width and height. The actual
      * position/rectangle is instead sourced from the screen style.
      */
-    public AE2Button addButton(String id, Component text, OnPress action) {
-        var button = new AE2Button(text, action);
+    public TL2Button addButton(String id, Component text, OnPress action) {
+        var button = new TL2Button(text, action);
         add(id, button);
         return button;
     }
 
-    public AE2Button addButton(String id, Component text, Runnable action) {
+    public TL2Button addButton(String id, Component text, Runnable action) {
         return addButton(id, text, btn -> action.run());
     }
 
-    public AECheckbox addCheckbox(String id, Component text, Runnable changeListener) {
-        var checkbox = new AECheckbox(0, 0, 0, AECheckbox.SIZE, style, text);
+    public TLCheckbox addCheckbox(String id, Component text, Runnable changeListener) {
+        var checkbox = new TLCheckbox(0, 0, 0, TLCheckbox.SIZE, style, text);
         add(id, checkbox);
         checkbox.setChangeListener(changeListener);
         return checkbox;
@@ -159,7 +159,7 @@ public class WidgetContainer {
         add(id, new BackgroundPanel(background));
     }
 
-    void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+    void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
         for (var entry : widgets.entrySet()) {
             var widget = entry.getValue();
             if (widget.isFocused()) {
@@ -391,8 +391,8 @@ public class WidgetContainer {
                 && mouseY >= area.getY() && mouseY < area.getY() + area.getHeight();
     }
 
-    public AETextField addTextField(String id) {
-        var searchField = new AETextField(style, Minecraft.getInstance().font,
+    public TLTextField addTextField(String id) {
+        var searchField = new TLTextField(style, Minecraft.getInstance().font,
                 0, 0, 0, 0);
         searchField.setBordered(false);
         searchField.setMaxLength(25);

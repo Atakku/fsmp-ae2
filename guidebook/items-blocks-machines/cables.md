@@ -7,91 +7,91 @@ navigation:
 categories:
 - network infrastructure
 item_ids:
-- ae2:white_glass_cable
-- ae2:orange_glass_cable
-- ae2:magenta_glass_cable
-- ae2:light_blue_glass_cable
-- ae2:yellow_glass_cable
-- ae2:lime_glass_cable
-- ae2:pink_glass_cable
-- ae2:gray_glass_cable
-- ae2:light_gray_glass_cable
-- ae2:cyan_glass_cable
-- ae2:purple_glass_cable
-- ae2:blue_glass_cable
-- ae2:brown_glass_cable
-- ae2:green_glass_cable
-- ae2:red_glass_cable
-- ae2:black_glass_cable
-- ae2:fluix_glass_cable
-- ae2:white_covered_cable
-- ae2:orange_covered_cable
-- ae2:magenta_covered_cable
-- ae2:light_blue_covered_cable
-- ae2:yellow_covered_cable
-- ae2:lime_covered_cable
-- ae2:pink_covered_cable
-- ae2:gray_covered_cable
-- ae2:light_gray_covered_cable
-- ae2:cyan_covered_cable
-- ae2:purple_covered_cable
-- ae2:blue_covered_cable
-- ae2:brown_covered_cable
-- ae2:green_covered_cable
-- ae2:red_covered_cable
-- ae2:black_covered_cable
-- ae2:fluix_covered_cable
-- ae2:white_covered_dense_cable
-- ae2:orange_covered_dense_cable
-- ae2:magenta_covered_dense_cable
-- ae2:light_blue_covered_dense_cable
-- ae2:yellow_covered_dense_cable
-- ae2:lime_covered_dense_cable
-- ae2:pink_covered_dense_cable
-- ae2:gray_covered_dense_cable
-- ae2:light_gray_covered_dense_cable
-- ae2:cyan_covered_dense_cable
-- ae2:purple_covered_dense_cable
-- ae2:blue_covered_dense_cable
-- ae2:brown_covered_dense_cable
-- ae2:green_covered_dense_cable
-- ae2:red_covered_dense_cable
-- ae2:black_covered_dense_cable
-- ae2:fluix_covered_dense_cable
-- ae2:white_smart_cable
-- ae2:orange_smart_cable
-- ae2:magenta_smart_cable
-- ae2:light_blue_smart_cable
-- ae2:yellow_smart_cable
-- ae2:lime_smart_cable
-- ae2:pink_smart_cable
-- ae2:gray_smart_cable
-- ae2:light_gray_smart_cable
-- ae2:cyan_smart_cable
-- ae2:purple_smart_cable
-- ae2:blue_smart_cable
-- ae2:brown_smart_cable
-- ae2:green_smart_cable
-- ae2:red_smart_cable
-- ae2:black_smart_cable
-- ae2:fluix_smart_cable
-- ae2:white_smart_dense_cable
-- ae2:orange_smart_dense_cable
-- ae2:magenta_smart_dense_cable
-- ae2:light_blue_smart_dense_cable
-- ae2:yellow_smart_dense_cable
-- ae2:lime_smart_dense_cable
-- ae2:pink_smart_dense_cable
-- ae2:gray_smart_dense_cable
-- ae2:light_gray_smart_dense_cable
-- ae2:cyan_smart_dense_cable
-- ae2:purple_smart_dense_cable
-- ae2:blue_smart_dense_cable
-- ae2:brown_smart_dense_cable
-- ae2:green_smart_dense_cable
-- ae2:red_smart_dense_cable
-- ae2:black_smart_dense_cable
-- ae2:fluix_smart_dense_cable
+- tl2:white_glass_cable
+- tl2:orange_glass_cable
+- tl2:magenta_glass_cable
+- tl2:light_blue_glass_cable
+- tl2:yellow_glass_cable
+- tl2:lime_glass_cable
+- tl2:pink_glass_cable
+- tl2:gray_glass_cable
+- tl2:light_gray_glass_cable
+- tl2:cyan_glass_cable
+- tl2:purple_glass_cable
+- tl2:blue_glass_cable
+- tl2:brown_glass_cable
+- tl2:green_glass_cable
+- tl2:red_glass_cable
+- tl2:black_glass_cable
+- tl2:fluix_glass_cable
+- tl2:white_covered_cable
+- tl2:orange_covered_cable
+- tl2:magenta_covered_cable
+- tl2:light_blue_covered_cable
+- tl2:yellow_covered_cable
+- tl2:lime_covered_cable
+- tl2:pink_covered_cable
+- tl2:gray_covered_cable
+- tl2:light_gray_covered_cable
+- tl2:cyan_covered_cable
+- tl2:purple_covered_cable
+- tl2:blue_covered_cable
+- tl2:brown_covered_cable
+- tl2:green_covered_cable
+- tl2:red_covered_cable
+- tl2:black_covered_cable
+- tl2:fluix_covered_cable
+- tl2:white_covered_dense_cable
+- tl2:orange_covered_dense_cable
+- tl2:magenta_covered_dense_cable
+- tl2:light_blue_covered_dense_cable
+- tl2:yellow_covered_dense_cable
+- tl2:lime_covered_dense_cable
+- tl2:pink_covered_dense_cable
+- tl2:gray_covered_dense_cable
+- tl2:light_gray_covered_dense_cable
+- tl2:cyan_covered_dense_cable
+- tl2:purple_covered_dense_cable
+- tl2:blue_covered_dense_cable
+- tl2:brown_covered_dense_cable
+- tl2:green_covered_dense_cable
+- tl2:red_covered_dense_cable
+- tl2:black_covered_dense_cable
+- tl2:fluix_covered_dense_cable
+- tl2:white_smart_cable
+- tl2:orange_smart_cable
+- tl2:magenta_smart_cable
+- tl2:light_blue_smart_cable
+- tl2:yellow_smart_cable
+- tl2:lime_smart_cable
+- tl2:pink_smart_cable
+- tl2:gray_smart_cable
+- tl2:light_gray_smart_cable
+- tl2:cyan_smart_cable
+- tl2:purple_smart_cable
+- tl2:blue_smart_cable
+- tl2:brown_smart_cable
+- tl2:green_smart_cable
+- tl2:red_smart_cable
+- tl2:black_smart_cable
+- tl2:fluix_smart_cable
+- tl2:white_smart_dense_cable
+- tl2:orange_smart_dense_cable
+- tl2:magenta_smart_dense_cable
+- tl2:light_blue_smart_dense_cable
+- tl2:yellow_smart_dense_cable
+- tl2:lime_smart_dense_cable
+- tl2:pink_smart_dense_cable
+- tl2:gray_smart_dense_cable
+- tl2:light_gray_smart_dense_cable
+- tl2:cyan_smart_dense_cable
+- tl2:purple_smart_dense_cable
+- tl2:blue_smart_dense_cable
+- tl2:brown_smart_dense_cable
+- tl2:green_smart_dense_cable
+- tl2:red_smart_dense_cable
+- tl2:black_smart_dense_cable
+- tl2:fluix_smart_dense_cable
 ---
 
 # Cables
@@ -105,20 +105,20 @@ While ME networks are also created by adjacent ME-capable machines, cables are t
 extending an ME network over larger areas.
 
 Differently colored cables can be used to ensure adjacent cables do not connected to each other,
-allowing [channels](../ae2-mechanics/channels.md) to be distributed more efficiently. They also affect the color of terminals connected to them,
+allowing [channels](../tl2-mechanics/channels.md) to be distributed more efficiently. They also affect the color of terminals connected to them,
 so you don't have to have all your terminals be purple. Fluix cables connect to every other color.
 
 Of note, **CHANNELS HAVE NOTHING TO DO WITH CABLE COLOR**
 
 ## An Important Note
 
-**If you are new to AE2 and unfamiliar with channels, use smart cable and dense smart cable wherever you can.
+**If you are new to TL2 and unfamiliar with channels, use smart cable and dense smart cable wherever you can.
 It will show how channels are routed through your network, making their behavior more understandable.**
 
 ## Another Note
 
 **These are not item or fluid or energy or etc. pipes.** They have no internal inventory, pattern providers and machines do not "push"
-into them, all they do is connect AE2 [devices](../ae2-mechanics/devices.md) together into a network.
+into them, all they do is connect TL2 devices together into a network.
 
 ## Glass Cable
 
@@ -128,7 +128,7 @@ into them, all they do is connect AE2 [devices](../ae2-mechanics/devices.md) tog
 </GameScene>
 
 <ItemLink id="fluix_glass_cable" /> is the simplest cable to make, transfers power
-and up to 8 [channels](../ae2-mechanics/channels.md). It comes in 17 different colors, the default
+and up to 8 [channels](../tl2-mechanics/channels.md). It comes in 17 different colors, the default
 being Fluix, and can be dyed any color using any of the 16 dyes.
 
 To craft colored cables surround a dye of any type with 8 cables of the same
@@ -139,7 +139,7 @@ brush in world.
 You can craft any colored cable with a water bucket to remove the dye.
 
 You can cover the cable with wool to create <ItemLink id="fluix_covered_cable" />, and craft <ItemLink id="fluix_smart_cable" /> to get a better idea of what is going on with
-your [channels](../ae2-mechanics/channels.md).
+your [channels](../tl2-mechanics/channels.md).
 
 <RecipeFor id="fluix_glass_cable" />
 

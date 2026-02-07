@@ -39,10 +39,10 @@ import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigManagerBuilder;
 import appeng.api.util.IConfigurableObject;
-import appeng.core.definitions.AEItems;
-import appeng.parts.AEBasePart;
+import appeng.core.definitions.TLItems;
+import appeng.parts.TLBasePart;
 
-public abstract class UpgradeablePart extends AEBasePart implements IConfigurableObject, IUpgradeableObject {
+public abstract class UpgradeablePart extends TLBasePart implements IConfigurableObject, IUpgradeableObject {
     private final IConfigManager config;
     private final IUpgradeInventory upgrades;
 
@@ -78,7 +78,7 @@ public abstract class UpgradeablePart extends AEBasePart implements IConfigurabl
     }
 
     protected boolean isSleeping() {
-        if (upgrades.isInstalled(AEItems.REDSTONE_CARD)) {
+        if (upgrades.isInstalled(TLItems.REDSTONE_CARD)) {
             return switch (this.getRSMode()) {
                 case IGNORE -> false;
                 case HIGH_SIGNAL -> !this.getHost().hasRedstone();
@@ -92,7 +92,7 @@ public abstract class UpgradeablePart extends AEBasePart implements IConfigurabl
 
     @Override
     public boolean canConnectRedstone() {
-        return this.upgrades.getMaxInstalled(AEItems.REDSTONE_CARD) > 0;
+        return this.upgrades.getMaxInstalled(TLItems.REDSTONE_CARD) > 0;
     }
 
     @Override

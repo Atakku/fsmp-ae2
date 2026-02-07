@@ -7,7 +7,7 @@ navigation:
 categories:
 - machines
 item_ids:
-- ae2:cell_workbench
+- tl2:cell_workbench
 ---
 
 # The Cell Workbench

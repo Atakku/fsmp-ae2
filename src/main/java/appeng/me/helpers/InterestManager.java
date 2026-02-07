@@ -24,22 +24,22 @@ import java.util.Set;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 public class InterestManager<T> {
 
-    private final Multimap<AEKey, T> container;
+    private final Multimap<TLKey, T> container;
     private final Set<T> allStacksWatchers = Sets.newIdentityHashSet();
 
-    public InterestManager(Multimap<AEKey, T> interests) {
+    public InterestManager(Multimap<TLKey, T> interests) {
         this.container = interests;
     }
 
-    public boolean put(AEKey stack, T iw) {
+    public boolean put(TLKey stack, T iw) {
         return this.container.put(stack, iw);
     }
 
-    public boolean remove(AEKey stack, T iw) {
+    public boolean remove(TLKey stack, T iw) {
         return this.container.remove(stack, iw);
     }
 
@@ -51,11 +51,11 @@ public class InterestManager<T> {
         }
     }
 
-    public boolean containsKey(AEKey stack) {
+    public boolean containsKey(TLKey stack) {
         return this.container.containsKey(stack);
     }
 
-    public Collection<T> get(AEKey stack) {
+    public Collection<T> get(TLKey stack) {
         return this.container.get(stack);
     }
 

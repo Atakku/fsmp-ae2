@@ -4,12 +4,12 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKeyType;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
 import appeng.menu.interfaces.KeyTypeSelectionMenu;
 
-public record SelectKeyTypePacket(AEKeyType keyType, boolean enabled) implements ServerboundPacket {
+public record SelectKeyTypePacket(TLKeyType keyType, boolean enabled) implements ServerboundPacket {
     public static final StreamCodec<RegistryFriendlyByteBuf, SelectKeyTypePacket> STREAM_CODEC = StreamCodec.ofMember(
             SelectKeyTypePacket::write,
             SelectKeyTypePacket::decode);
@@ -27,7 +27,7 @@ public record SelectKeyTypePacket(AEKeyType keyType, boolean enabled) implements
     }
 
     public static SelectKeyTypePacket decode(RegistryFriendlyByteBuf buf) {
-        return new SelectKeyTypePacket(AEKeyType.fromRawId(buf.readVarInt()), buf.readBoolean());
+        return new SelectKeyTypePacket(TLKeyType.fromRawId(buf.readVarInt()), buf.readBoolean());
     }
 
     @Override

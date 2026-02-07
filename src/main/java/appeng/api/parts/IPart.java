@@ -57,8 +57,8 @@ import net.neoforged.neoforge.client.model.data.ModelData;
 
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IManagedGridNode;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
 import appeng.util.SettingsFrom;
 
 public interface IPart extends ICustomCableConnection, Clearable {
@@ -287,8 +287,8 @@ public interface IPart extends ICustomCableConnection, Clearable {
      * {@link appeng.api.networking.IInWorldGridNodeHost#getCableConnectionType(Direction)} by the part host for the
      * side this part is on.
      */
-    default AECableType getExternalCableConnectionType() {
-        return AECableType.GLASS;
+    default TLCableType getExternalCableConnectionType() {
+        return TLCableType.GLASS;
     }
 
     /**
@@ -380,7 +380,7 @@ public interface IPart extends ICustomCableConnection, Clearable {
      *         yourself.
      */
     @Override
-    float getCableConnectionLength(AECableType cable);
+    float getCableConnectionLength(TLCableType cable);
 
     /**
      * same as Block.animateTick, for but parts.
@@ -420,14 +420,14 @@ public interface IPart extends ICustomCableConnection, Clearable {
      *
      * <dl>
      * <dt>Tint Index 1</dt>
-     * <dd>The {@link AEColor#blackVariant dark variant color} of the cable that this part is attached to.</dd>
+     * <dd>The {@link TLColor#blackVariant dark variant color} of the cable that this part is attached to.</dd>
      * <dt>Tint Index 2</dt>
-     * <dd>The {@link AEColor#mediumVariant color} of the cable that this part is attached to.</dd>
+     * <dd>The {@link TLColor#mediumVariant color} of the cable that this part is attached to.</dd>
      * <dt>Tint Index 3</dt>
-     * <dd>The {@link AEColor#whiteVariant bright variant color} of the cable that this part is attached to.</dd>
+     * <dd>The {@link TLColor#whiteVariant bright variant color} of the cable that this part is attached to.</dd>
      * <dt>Tint Index 4</dt>
-     * <dd>A color variant that is between the cable's {@link AEColor#mediumVariant color} and its
-     * {@link AEColor#whiteVariant bright variant}.</dd>
+     * <dd>A color variant that is between the cable's {@link TLColor#mediumVariant color} and its
+     * {@link TLColor#whiteVariant bright variant}.</dd>
      * </dl>
      *
      * <b>Important:</b> All models must have been registered via the {@link PartModels} API before use.
@@ -466,7 +466,7 @@ public interface IPart extends ICustomCableConnection, Clearable {
      * This method may be implemented by a part to request a specific type of cable connection for rendering. Mechanics
      * are not affected by this in any way.
      */
-    default AECableType getDesiredConnectionType() {
-        return AECableType.GLASS;
+    default TLCableType getDesiredConnectionType() {
+        return TLCableType.GLASS;
     }
 }

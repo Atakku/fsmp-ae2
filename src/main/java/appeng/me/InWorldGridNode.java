@@ -35,8 +35,8 @@ import appeng.api.networking.GridFlags;
 import appeng.api.networking.GridHelper;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeListener;
-import appeng.api.util.AEColor;
-import appeng.core.AELog;
+import appeng.api.util.TLColor;
+import appeng.core.TLLog;
 
 /**
  * A grid node that is accessible from within the level will also look actively for connections to nodes that are
@@ -87,7 +87,7 @@ public class InWorldGridNode extends GridNode {
                         // Keep the existing connection and carry on
                         continue sides;
                     } else {
-                        AELog.warn("Grid node %s did not disconnect properly and is now replaced with %s",
+                        TLLog.warn("Grid node %s did not disconnect properly and is now replaced with %s",
                                 os, adjacentNode);
                         c.destroy();
                     }
@@ -152,7 +152,7 @@ public class InWorldGridNode extends GridNode {
     private boolean hasCompatibleColor(IGridNode otherNode) {
         var ourColor = getGridColor();
         var theirColor = otherNode.getGridColor();
-        return ourColor == AEColor.TRANSPARENT || theirColor == AEColor.TRANSPARENT || ourColor == theirColor;
+        return ourColor == TLColor.TRANSPARENT || theirColor == TLColor.TRANSPARENT || ourColor == theirColor;
     }
 
     public BlockPos getLocation() {

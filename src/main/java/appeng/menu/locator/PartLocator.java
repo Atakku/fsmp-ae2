@@ -8,7 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
 import appeng.api.parts.PartHelper;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 
 /**
  * Locates a part on an {@link appeng.api.parts.IPartHost} using the position of its host and the side it's attached to.
@@ -20,7 +20,7 @@ record PartLocator(BlockPos pos, @Nullable Direction side) implements MenuHostLo
         if (hostInterface.isInstance(part)) {
             return hostInterface.cast(part);
         } else if (part != null) {
-            AELog.warn("Part at %s does not implement host interface %s",
+            TLLog.warn("Part at %s does not implement host interface %s",
                     part, hostInterface);
         }
 

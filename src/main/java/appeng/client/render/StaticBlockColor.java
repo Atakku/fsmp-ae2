@@ -25,16 +25,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 /**
- * Returns the shades of a single AE color for tint indices 0, 1, and 2.
+ * Returns the shades of a single TL color for tint indices 0, 1, and 2.
  */
 public class StaticBlockColor implements BlockColor {
 
-    private final AEColor color;
+    private final TLColor color;
 
-    public StaticBlockColor(AEColor color) {
+    public StaticBlockColor(TLColor color) {
         this.color = color;
     }
 

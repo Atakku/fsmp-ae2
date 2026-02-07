@@ -39,7 +39,7 @@ import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.UpgradeInventories;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.helpers.IConfigInvHost;
 import appeng.helpers.externalstorage.GenericStackInv;
 import appeng.util.ConfigInventory;
@@ -47,7 +47,7 @@ import appeng.util.ConfigManager;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.InternalInventoryHost;
 
-public class CellWorkbenchBlockEntity extends AEBaseBlockEntity
+public class CellWorkbenchBlockEntity extends TLBaseBlockEntity
         implements IConfigurableObject, IUpgradeableObject, InternalInventoryHost, IConfigInvHost {
 
     private final AppEngInternalInventory cell = new AppEngInternalInventory(this, 1);

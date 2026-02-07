@@ -6,8 +6,8 @@ import net.minecraft.network.chat.Component;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.MEStorage;
 
 /**
@@ -32,17 +32,17 @@ public class DelegatingMEInventory implements MEStorage {
     }
 
     @Override
-    public boolean isPreferredStorageFor(AEKey input, IActionSource source) {
+    public boolean isPreferredStorageFor(TLKey input, IActionSource source) {
         return getDelegate().isPreferredStorageFor(input, source);
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         return getDelegate().insert(what, amount, mode, source);
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         return getDelegate().extract(what, amount, mode, source);
     }
 

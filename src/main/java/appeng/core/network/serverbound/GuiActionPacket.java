@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 
 /**
  * This packet is used for triggering generic menu-specific GUI actions.
@@ -48,7 +48,7 @@ public record GuiActionPacket(int containerId, String actionName,
     @Override
     public void handleOnServer(ServerPlayer player) {
         AbstractContainerMenu c = player.containerMenu;
-        if (c instanceof AEBaseMenu baseMenu && c.containerId == this.containerId) {
+        if (c instanceof TLBaseMenu baseMenu && c.containerId == this.containerId) {
             baseMenu.receiveClientAction(actionName, jsonPayload);
         }
     }

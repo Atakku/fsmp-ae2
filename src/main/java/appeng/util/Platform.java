@@ -61,7 +61,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 import appeng.api.config.SortOrder;
 import appeng.api.util.DimensionalBlockPos;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.hooks.VisualStateSaving;
 import appeng.hooks.ticking.TickHandler;
 import appeng.util.helpers.P2PHelper;
@@ -112,7 +112,7 @@ public class Platform {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException ignored) {
-            AELog.warn("Unable to find class %s. Integration with PonderJS disabled.", className);
+            TLLog.warn("Unable to find class %s. Integration with PonderJS disabled.", className);
             return null;
         }
     }
@@ -229,7 +229,7 @@ public class Platform {
             playerUuid = DEFAULT_FAKE_PLAYER_UUID;
         }
 
-        return FakePlayerFactory.get(level, new GameProfile(playerUuid, "[AE2]"));
+        return FakePlayerFactory.get(level, new GameProfile(playerUuid, "[TL2]"));
     }
 
     public static Direction rotateAround(Direction forward, Direction axis) {
@@ -344,7 +344,7 @@ public class Platform {
     }
 
     /**
-     * @return True if AE2 is being run within a dev environment.
+     * @return True if TL2 is being run within a dev environment.
      */
     public static boolean isDevelopmentEnvironment() {
         return !FMLEnvironment.production;

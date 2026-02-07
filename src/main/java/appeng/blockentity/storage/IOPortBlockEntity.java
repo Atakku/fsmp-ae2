@@ -58,20 +58,20 @@ import appeng.api.storage.cells.StorageCell;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.UpgradeInventories;
-import appeng.api.util.AECableType;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
-import appeng.blockentity.grid.AENetworkedInvBlockEntity;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
+import appeng.api.util.TLCableType;
+import appeng.blockentity.grid.TLNetworkedInvBlockEntity;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 import appeng.core.settings.TickRates;
 import appeng.me.helpers.MachineSource;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
-import appeng.util.inv.filter.AEItemFilters;
+import appeng.util.inv.filter.TLItemFilters;
 
-public class IOPortBlockEntity extends AENetworkedInvBlockEntity
+public class IOPortBlockEntity extends TLNetworkedInvBlockEntity
         implements IUpgradeableObject, IConfigurableObject, IGridTickable {
     private static final int NUMBER_OF_CELL_SLOTS = 6;
     private static final int NUMBER_OF_UPGRADE_SLOTS = 3;
@@ -84,9 +84,9 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
             this.outputCells);
 
     private final InternalInventory inputCellsExt = new FilteredInternalInventory(this.inputCells,
-            AEItemFilters.INSERT_ONLY);
+            TLItemFilters.INSERT_ONLY);
     private final InternalInventory outputCellsExt = new FilteredInternalInventory(this.outputCells,
-            AEItemFilters.EXTRACT_ONLY);
+            TLItemFilters.EXTRACT_ONLY);
 
     private final IUpgradeInventory upgrades;
     private final IActionSource mySrc;
@@ -107,7 +107,7 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
         this.mySrc = new MachineSource(this);
         this.lastRedstoneState = YesNo.UNDECIDED;
 
-        this.upgrades = UpgradeInventories.forMachine(AEBlocks.IO_PORT, NUMBER_OF_UPGRADE_SLOTS, this::saveChanges);
+        this.upgrades = UpgradeInventories.forMachine(TLBlocks.IO_PORT, NUMBER_OF_UPGRADE_SLOTS, this::saveChanges);
     }
 
     @Override
@@ -146,8 +146,8 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction dir) {
-        return AECableType.SMART;
+    public TLCableType getCableConnectionType(Direction dir) {
+        return TLCableType.SMART;
     }
 
     private void updateTask() {
@@ -177,7 +177,7 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
     }
 
     private boolean isEnabled() {
-        if (!upgrades.isInstalled(AEItems.REDSTONE_CARD)) {
+        if (!upgrades.isInstalled(TLItems.REDSTONE_CARD)) {
             return true;
         }
 
@@ -269,7 +269,7 @@ public class IOPortBlockEntity extends AENetworkedInvBlockEntity
         TickRateModulation ret = TickRateModulation.SLEEP;
         long itemsToMove = 256;
 
-        switch (upgrades.getInstalledUpgrades(AEItems.SPEED_CARD)) {
+        switch (upgrades.getInstalledUpgrades(TLItems.SPEED_CARD)) {
             case 1 -> itemsToMove *= 2;
             case 2 -> itemsToMove *= 4;
             case 3 -> itemsToMove *= 8;

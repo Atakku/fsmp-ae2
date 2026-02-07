@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "neoforge:difference",
+      "base": {
+        "tag": "tl2:glass_cable"
+      },
+      "subtracted": {
+        "item": "tl2:fluix_glass_cable"
+      }
+    },
+    {
+      "tag": "tl2:can_remove_color"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:fluix_glass_cable"
+  }
+}

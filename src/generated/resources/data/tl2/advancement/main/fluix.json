@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "certus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:fluix_crystal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "achievement.tl2.Fluix.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tl2:fluix_crystal"
+    },
+    "title": {
+      "translate": "achievement.tl2.Fluix"
+    }
+  },
+  "requirements": [
+    [
+      "certus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -26,9 +26,9 @@ import net.minecraft.world.item.context.UseOnContext;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartHelper;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 
-public class PartItem<T extends IPart> extends AEBaseItem implements IPartItem<T> {
+public class PartItem<T extends IPart> extends TLBaseItem implements IPartItem<T> {
 
     private final Class<T> partClass;
     private final Function<IPartItem<T>, T> factory;

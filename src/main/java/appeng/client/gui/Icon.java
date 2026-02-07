@@ -24,7 +24,7 @@ import appeng.client.gui.style.Blitter;
 import appeng.core.AppEng;
 
 /**
- * Edit in {@code assets/ae2/textures/guis/states.png}.
+ * Edit in {@code assets/tl2/textures/guis/states.png}.
  */
 public enum Icon {
     // ROW 0
@@ -36,8 +36,6 @@ public enum Icon {
     REDSTONE_BELOW(208, 0),
     // CLEAR, STASH
     CLEAR(96, 0),
-    // ENCODE
-    WHITE_ARROW_DOWN(128, 0),
     // LOCKED
     LOCKED(144, 0),
     HELP(176, 0),
@@ -45,8 +43,6 @@ public enum Icon {
     BACKGROUND_STORAGE_CELL(240, 0),
 
     // ROW 1
-    BLOCKING_MODE_NO(64, 16),
-    BLOCKING_MODE_YES(80, 16),
     BACK(96, 16),
     TRANSPARENT_FACADES_OFF(96, 16),
     TRANSPARENT_FACADES_ON(112, 16),
@@ -79,8 +75,6 @@ public enum Icon {
     SUBSTITUTION_DISABLED(112, 48),
     FLUID_SUBSTITUTION_ENABLED(128, 48),
     FLUID_SUBSTITUTION_DISABLED(144, 48),
-    FILTER_ON_EXTRACT_ENABLED(160, 48),
-    FILTER_ON_EXTRACT_DISABLED(176, 48),
     BACKGROUND_INGOT(224, 48),
     BACKGROUND_STORAGE_COMPONENT(240, 48),
 
@@ -110,13 +104,6 @@ public enum Icon {
     FUZZY_PERCENT_75(32, 96),
     FUZZY_PERCENT_99(48, 96),
     FUZZY_IGNORE(64, 96),
-    INSCRIBER_SEPARATE_SIDES(80, 96),
-    INSCRIBER_COMBINED_SIDES(96, 96),
-    AUTO_EXPORT_OFF(112, 96),
-    AUTO_EXPORT_ON(128, 96),
-    INSCRIBER_BUFFER_4(144, 96),
-    INSCRIBER_BUFFER_64(160, 96),
-    INSCRIBER_BUFFER_1(176, 96),
 
     // ROW 8
     INVALID(0, 128),
@@ -157,9 +144,6 @@ public enum Icon {
     TAB_BUTTON_BACKGROUND_BORDERLESS_FOCUS(128, 224, 25, 22),
     TAB_BUTTON_BACKGROUND_FOCUS(160, 224, 22, 22),
 
-    SCHEDULING_DEFAULT(0, 240),
-    SCHEDULING_ROUND_ROBIN(16, 240),
-    SCHEDULING_RANDOM(32, 240),
     OVERLAY_OFF(48, 240),
     OVERLAY_ON(64, 240),
 
@@ -167,7 +151,6 @@ public enum Icon {
     S_ARROW_UP(224, 192, 8, 8),
     S_ARROW_DOWN(232, 192, 8, 8),
     S_CLEAR(224, 200, 8, 8),
-    S_CYCLE(232, 200, 8, 8),
     S_SUBSTITUTION_ENABLED(224, 208, 8, 8),
     S_SUBSTITUTION_DISABLED(232, 208, 8, 8),
     S_FLUID_SUBSTITUTION_ENABLED(224, 216, 8, 8),

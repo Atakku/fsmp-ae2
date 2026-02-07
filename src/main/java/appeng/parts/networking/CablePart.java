@@ -48,14 +48,14 @@ import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.parts.BusSupport;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
-import appeng.core.definitions.AEParts;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
+import appeng.core.definitions.TLParts;
 import appeng.items.parts.ColoredPartItem;
 import appeng.items.tools.powered.ColorApplicatorItem;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 
-public abstract class CablePart extends AEBasePart implements ICablePart {
+public abstract class CablePart extends TLBasePart implements ICablePart {
 
     private static final IGridNodeListener<CablePart> NODE_LISTENER = new NodeListener<>() {
         @Override
@@ -89,11 +89,11 @@ public abstract class CablePart extends AEBasePart implements ICablePart {
     }
 
     @Override
-    public AEColor getCableColor() {
+    public TLColor getCableColor() {
         if (getPartItem() instanceof ColoredPartItem<?> coloredPartItem) {
             return coloredPartItem.getColor();
         }
-        return AEColor.TRANSPARENT;
+        return TLColor.TRANSPARENT;
     }
 
     @Override
@@ -155,7 +155,7 @@ public abstract class CablePart extends AEBasePart implements ICablePart {
     }
 
     @Override
-    public float getCableConnectionLength(AECableType cable) {
+    public float getCableConnectionLength(TLCableType cable) {
         if (cable == this.getCableConnectionType()) {
             return 4;
         } else if (cable.ordinal() >= this.getCableConnectionType().ordinal()) {
@@ -182,20 +182,20 @@ public abstract class CablePart extends AEBasePart implements ICablePart {
     }
 
     @Override
-    public boolean changeColor(AEColor newColor, Player who) {
+    public boolean changeColor(TLColor newColor, Player who) {
         if (this.getCableColor() != newColor) {
             IPartItem<?> newPart = null;
 
-            if (this.getCableConnectionType() == AECableType.GLASS) {
-                newPart = AEParts.GLASS_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == AECableType.COVERED) {
-                newPart = AEParts.COVERED_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == AECableType.SMART) {
-                newPart = AEParts.SMART_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == AECableType.DENSE_COVERED) {
-                newPart = AEParts.COVERED_DENSE_CABLE.item(newColor);
-            } else if (this.getCableConnectionType() == AECableType.DENSE_SMART) {
-                newPart = AEParts.SMART_DENSE_CABLE.item(newColor);
+            if (this.getCableConnectionType() == TLCableType.GLASS) {
+                newPart = TLParts.GLASS_CABLE.item(newColor);
+            } else if (this.getCableConnectionType() == TLCableType.COVERED) {
+                newPart = TLParts.COVERED_CABLE.item(newColor);
+            } else if (this.getCableConnectionType() == TLCableType.SMART) {
+                newPart = TLParts.SMART_CABLE.item(newColor);
+            } else if (this.getCableConnectionType() == TLCableType.DENSE_COVERED) {
+                newPart = TLParts.COVERED_DENSE_CABLE.item(newColor);
+            } else if (this.getCableConnectionType() == TLCableType.DENSE_SMART) {
+                newPart = TLParts.SMART_DENSE_CABLE.item(newColor);
             }
 
             if (newPart != null) {

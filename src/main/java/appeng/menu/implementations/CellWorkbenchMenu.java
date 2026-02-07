@@ -37,8 +37,8 @@ import appeng.api.config.CopyMode;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.Settings;
 import appeng.api.inventories.ISegmentedInventory;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.util.IConfigManager;
@@ -208,9 +208,9 @@ public class CellWorkbenchMenu extends UpgradeableMenu<CellWorkbenchBlockEntity>
     }
 
     @NotNull
-    private Iterator<? extends AEKey> iterateCellStacks(ItemStack is) {
+    private Iterator<? extends TLKey> iterateCellStacks(ItemStack is) {
         var cellInv = StorageCells.getCellInventory(is, null);
-        Iterator<? extends AEKey> i;
+        Iterator<? extends TLKey> i;
         if (cellInv != null) {
             i = Iterators.transform(cellInv.getAvailableStacks().iterator(), Map.Entry::getKey);
         } else {

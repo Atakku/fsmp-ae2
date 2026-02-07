@@ -30,7 +30,7 @@ import net.minecraft.world.level.ItemLike;
 import appeng.api.inventories.InternalInventory;
 
 /**
- * This specialized inventory can be used to insert and extract upgrade cards into AE2 machines. Only upgrades supported
+ * This specialized inventory can be used to insert and extract upgrade cards into TL2 machines. Only upgrades supported
  * by the machine can be inserted.
  */
 public interface IUpgradeInventory extends InternalInventory {

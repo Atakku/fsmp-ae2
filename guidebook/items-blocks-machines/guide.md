@@ -6,14 +6,14 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:guide
+- tl2:guide
 ---
 
 # The Guide
 
 <ItemImage id="guide" scale="8" />
 
-### This guide that you are reading now, for all your AE2 guiding needs.
+### This guide that you are reading now, for all your TL2 guiding needs.
 
 * Access the sidebar on the left to find a table of contents
 * Many pages have interactive scenes. If a scene has ![Plus](../assets/diagrams/plus.png)

@@ -26,7 +26,7 @@ public class TheOneProbeModule implements Function<ITheOneProbe, Void> {
 
     @Override
     public Void apply(ITheOneProbe input) {
-        input.registerProbeConfigProvider(new AEConfigProvider());
+        input.registerProbeConfigProvider(new TLConfigProvider());
         var provider = new BlockEntityInfoProvider();
         input.registerProvider(provider);
         input.registerBlockDisplayOverride(provider);

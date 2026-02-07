@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 
 class ExternalInventoryCache {
     private GenericStack[] cached = new GenericStack[0];
@@ -26,8 +26,8 @@ class ExternalInventoryCache {
         }
     }
 
-    public Set<AEKey> update() {
-        var changes = new HashSet<AEKey>();
+    public Set<TLKey> update() {
+        var changes = new HashSet<TLKey>();
         final int slots = this.facade.getSlots();
 
         // Make room for new slots
@@ -60,7 +60,7 @@ class ExternalInventoryCache {
         return changes;
     }
 
-    private void handlePossibleSlotChanges(int slot, GenericStack oldStack, GenericStack newStack, Set<AEKey> changes) {
+    private void handlePossibleSlotChanges(int slot, GenericStack oldStack, GenericStack newStack, Set<TLKey> changes) {
         if (oldStack != null && newStack != null && oldStack.what().equals(newStack.what())) {
             handleAmountChanged(slot, oldStack, newStack, changes);
         } else {
@@ -68,7 +68,7 @@ class ExternalInventoryCache {
         }
     }
 
-    private void handleAmountChanged(int slot, GenericStack oldStack, GenericStack newStack, Set<AEKey> changes) {
+    private void handleAmountChanged(int slot, GenericStack oldStack, GenericStack newStack, Set<TLKey> changes) {
         // Still the same item, but amount might have changed
         if (newStack.amount() != oldStack.amount()) {
             this.cached[slot] = newStack;
@@ -76,7 +76,7 @@ class ExternalInventoryCache {
         }
     }
 
-    private void handleItemChanged(int slot, GenericStack oldStack, GenericStack newStack, Set<AEKey> changes) {
+    private void handleItemChanged(int slot, GenericStack oldStack, GenericStack newStack, Set<TLKey> changes) {
         // Completely different item
         this.cached[slot] = newStack;
 

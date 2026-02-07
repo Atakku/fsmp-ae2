@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import appeng.api.implementations.blockentities.IColorableBlockEntity;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 
 /**
  * Automatically exposes the color of a colorable block entity using tint indices 0-2
@@ -39,7 +39,7 @@ public class ColorableBlockEntityBlockColor implements BlockColor {
     @Override
     public int getColor(BlockState state, @Nullable BlockAndTintGetter level, @Nullable BlockPos pos,
             int tintIndex) {
-        AEColor color = AEColor.TRANSPARENT; // Default to a neutral color
+        TLColor color = TLColor.TRANSPARENT; // Default to a neutral color
 
         if (level != null && pos != null) {
             BlockEntity te = level.getBlockEntity(pos);

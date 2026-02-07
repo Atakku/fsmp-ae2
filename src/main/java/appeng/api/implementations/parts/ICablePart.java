@@ -31,8 +31,8 @@ import net.minecraft.world.entity.player.Player;
 import appeng.api.parts.BusSupport;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartHost;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
 
 /**
  * Implemented on the {@link IPart}s cable objects that can be placed at the center of {@link IPartHost}s.
@@ -47,12 +47,12 @@ public interface ICablePart extends IPart {
     /**
      * @return the current color of the cable.
      */
-    AEColor getCableColor();
+    TLColor getCableColor();
 
     /**
      * @return the Cable type.
      */
-    AECableType getCableConnectionType();
+    TLCableType getCableConnectionType();
 
     /**
      * Change the color of the cable, this should cost a small amount of dye, or something.
@@ -61,12 +61,12 @@ public interface ICablePart extends IPart {
      *
      * @return if the color change was successful.
      */
-    boolean changeColor(AEColor newColor, Player who);
+    boolean changeColor(TLColor newColor, Player who);
 
     /**
      * Change sides on the cables node.
      *
-     * Called by AE, do not invoke.
+     * Called by TL, do not invoke.
      *
      * @param sides sides of cable
      */

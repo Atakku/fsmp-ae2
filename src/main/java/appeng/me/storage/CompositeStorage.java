@@ -8,9 +8,9 @@ import net.minecraft.network.chat.Component;
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.networking.ticking.TickRateModulation;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.MEStorage;
 import appeng.core.localization.GuiText;
 
@@ -20,27 +20,27 @@ import appeng.core.localization.GuiText;
 public class CompositeStorage implements MEStorage, ITickingMonitor {
     private final InventoryCache cache;
 
-    private Map<AEKeyType, MEStorage> storages;
+    private Map<TLKeyType, MEStorage> storages;
 
     private boolean forceCacheRebuild = true;
 
-    public CompositeStorage(Map<AEKeyType, MEStorage> storages) {
+    public CompositeStorage(Map<TLKeyType, MEStorage> storages) {
         this.storages = storages;
         this.cache = new InventoryCache();
     }
 
-    public void setStorages(Map<AEKeyType, MEStorage> storages) {
+    public void setStorages(Map<TLKeyType, MEStorage> storages) {
         this.storages = Objects.requireNonNull(storages);
     }
 
     @Override
-    public boolean isPreferredStorageFor(AEKey what, IActionSource source) {
+    public boolean isPreferredStorageFor(TLKey what, IActionSource source) {
         var storage = storages.get(what.getType());
         return storage != null && storage.isPreferredStorageFor(what, source);
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         var storage = storages.get(what.getType());
         var inserted = storage != null ? storage.insert(what, amount, mode, source) : 0;
 
@@ -52,7 +52,7 @@ public class CompositeStorage implements MEStorage, ITickingMonitor {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         var storage = storages.get(what.getType());
         var extracted = storage != null ? storage.extract(what, amount, mode, source) : 0;
 
@@ -142,7 +142,7 @@ public class CompositeStorage implements MEStorage, ITickingMonitor {
             out.addAll(frontBuffer);
         }
 
-        public boolean contains(AEKey what) {
+        public boolean contains(TLKey what) {
             return frontBuffer.get(what) > 0;
         }
     }

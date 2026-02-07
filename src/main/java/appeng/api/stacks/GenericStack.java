@@ -25,14 +25,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-import appeng.api.ids.AEComponents;
-import appeng.core.definitions.AEItems;
+import appeng.api.ids.TLComponents;
+import appeng.core.definitions.TLItems;
 import appeng.items.misc.WrappedGenericStack;
 
 /**
- * Represents some amount of some generic resource that AE can store or handle in crafting.
+ * Represents some amount of some generic resource that TL can store or handle in crafting.
  */
-public record GenericStack(AEKey what, long amount) {
+public record GenericStack(TLKey what, long amount) {
 
     @ApiStatus.Internal
     public static final String AMOUNT_FIELD = "#";
@@ -40,7 +40,7 @@ public record GenericStack(AEKey what, long amount) {
     private static final Logger LOG = LoggerFactory.getLogger(GenericStack.class);
 
     public static final Codec<GenericStack> CODEC = RecordCodecBuilder.create(builder -> builder.group(
-            AEKey.MAP_CODEC.forGetter(GenericStack::what),
+            TLKey.MAP_CODEC.forGetter(GenericStack::what),
             Codec.LONG.fieldOf(AMOUNT_FIELD).forGetter(GenericStack::amount)).apply(builder, GenericStack::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, GenericStack> STREAM_CODEC = StreamCodec.ofMember(
@@ -56,15 +56,15 @@ public record GenericStack(AEKey what, long amount) {
         public <T> DataResult<Pair<GenericStack, T>> apply(DynamicOps<T> ops, T input,
                 DataResult<Pair<GenericStack, T>> a) {
             if (a instanceof DataResult.Error<Pair<GenericStack, T>> error) {
-                var missingContent = AEItems.MISSING_CONTENT.stack();
+                var missingContent = TLItems.MISSING_CONTENT.stack();
                 var convert = Dynamic.convert(ops, NbtOps.INSTANCE, input);
                 if (convert instanceof CompoundTag compoundTag) {
-                    missingContent.set(AEComponents.MISSING_CONTENT_ITEMSTACK_DATA, CustomData.of(compoundTag));
+                    missingContent.set(TLComponents.MISSING_CONTENT_ITEMSTACK_DATA, CustomData.of(compoundTag));
                 }
                 LOG.error("Failed to deserialize GenericStack {}: {}", input, error.message());
-                missingContent.set(AEComponents.MISSING_CONTENT_ERROR, error.message());
+                missingContent.set(TLComponents.MISSING_CONTENT_ERROR, error.message());
 
-                var replacement = new GenericStack(AEItemKey.of(missingContent), 1);
+                var replacement = new GenericStack(TLItemKey.of(missingContent), 1);
 
                 return DataResult.success(
                         Pair.of(replacement, input),
@@ -80,18 +80,18 @@ public record GenericStack(AEKey what, long amount) {
             // When the serialization result failed, we write a missing content item instead
             // this one will NOT be recoverable
             if (t instanceof DataResult.Error<T> error) {
-                var missingContent = AEItems.MISSING_CONTENT.stack();
+                var missingContent = TLItems.MISSING_CONTENT.stack();
                 LOG.error("Failed to serialize GenericStack {}: {}", input, error.message());
-                missingContent.set(AEComponents.MISSING_CONTENT_ERROR, error.message());
+                missingContent.set(TLComponents.MISSING_CONTENT_ERROR, error.message());
 
-                var replacement = new GenericStack(AEItemKey.of(missingContent), 1);
+                var replacement = new GenericStack(TLItemKey.of(missingContent), 1);
                 return CODEC.encodeStart(ops, replacement).setLifecycle(t.lifecycle());
             }
 
             // When the input is a MISSING_CONTENT item and has the original data attached,
             // we write that back.
-            if (input.what() instanceof AEItemKey itemKey && itemKey.is(AEItems.MISSING_CONTENT)) {
-                var originalData = itemKey.get(AEComponents.MISSING_CONTENT_ITEMSTACK_DATA);
+            if (input.what() instanceof TLItemKey itemKey && itemKey.is(TLItems.MISSING_CONTENT)) {
+                var originalData = itemKey.get(TLComponents.MISSING_CONTENT_ITEMSTACK_DATA);
                 if (originalData != null) {
                     return DataResult.success(Dynamic.convert(NbtOps.INSTANCE, ops, originalData.getUnsafe()),
                             t.lifecycle());
@@ -118,7 +118,7 @@ public record GenericStack(AEKey what, long amount) {
             return null;
         }
 
-        var what = AEKey.readKey(buffer);
+        var what = TLKey.readKey(buffer);
         if (what == null) {
             return null;
         }
@@ -132,7 +132,7 @@ public record GenericStack(AEKey what, long amount) {
         } else {
             buffer.writeBoolean(true);
 
-            AEKey.writeKey(buffer, stack.what);
+            TLKey.writeKey(buffer, stack.what);
             buffer.writeVarLong(stack.amount);
         }
     }
@@ -169,7 +169,7 @@ public record GenericStack(AEKey what, long amount) {
             return genericStack;
         }
 
-        var key = AEItemKey.of(stack);
+        var key = TLItemKey.of(stack);
         if (key == null) {
             return null;
         }
@@ -181,7 +181,7 @@ public record GenericStack(AEKey what, long amount) {
      */
     @Nullable
     public static GenericStack fromFluidStack(FluidStack stack) {
-        var key = AEFluidKey.of(stack);
+        var key = TLFluidKey.of(stack);
         if (key == null) {
             return null;
         }
@@ -200,7 +200,7 @@ public record GenericStack(AEKey what, long amount) {
         }
     }
 
-    public static ItemStack wrapInItemStack(AEKey what, long amount) {
+    public static ItemStack wrapInItemStack(TLKey what, long amount) {
         return WrappedGenericStack.wrap(what, amount);
     }
 

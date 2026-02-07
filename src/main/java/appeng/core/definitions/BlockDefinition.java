@@ -28,8 +28,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLKey;
 
 public class BlockDefinition<T extends Block> implements ItemLike {
     private final String englishName;
@@ -70,7 +70,7 @@ public class BlockDefinition<T extends Block> implements ItemLike {
         return item.is(comparableStack);
     }
 
-    public boolean is(AEKey key) {
+    public boolean is(TLKey key) {
         return item.is(key);
     }
 

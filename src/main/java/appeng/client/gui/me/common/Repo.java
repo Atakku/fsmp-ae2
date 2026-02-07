@@ -44,12 +44,12 @@ import it.unimi.dsi.fastutil.longs.LongSet;
 
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.client.gui.me.search.RepoSearch;
 import appeng.client.gui.widgets.IScrollSource;
 import appeng.client.gui.widgets.ISortSource;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.menu.me.common.GridInventoryEntry;
 import appeng.menu.me.common.IClientRepo;
 import appeng.util.prioritylist.IPartitionList;
@@ -123,7 +123,7 @@ public class Repo implements IClientRepo {
         if (localEntry == null) {
             // First time we're seeing this serial -> create new entry
             if (serverEntry.getWhat() == null) {
-                AELog.warn("First time seeing serial %s, but incomplete info received", serverEntry.getSerial());
+                TLLog.warn("First time seeing serial %s, but incomplete info received", serverEntry.getSerial());
                 return;
             }
             if (serverEntry.isMeaningful()) {
@@ -272,10 +272,10 @@ public class Repo implements IClientRepo {
     }
 
     /**
-     * Computes free slot indices by AEKey. Used to replace removed items by items that are visually indistinguishable.
+     * Computes free slot indices by TLKey. Used to replace removed items by items that are visually indistinguishable.
      */
-    private Map<AEKey, IntList> getFreeSlots(List<GridInventoryEntry> slots) {
-        Map<AEKey, IntList> freeSlots = new HashMap<>();
+    private Map<TLKey, IntList> getFreeSlots(List<GridInventoryEntry> slots) {
+        Map<TLKey, IntList> freeSlots = new HashMap<>();
 
         for (int i = 0; i < slots.size(); ++i) {
             var entry = slots.get(i);
@@ -293,7 +293,7 @@ public class Repo implements IClientRepo {
     }
 
     private static boolean takeOverSlotOccupiedByRemovedItem(GridInventoryEntry serverEntry,
-            Map<AEKey, IntList> freeSlots, List<GridInventoryEntry> slots) {
+            Map<TLKey, IntList> freeSlots, List<GridInventoryEntry> slots) {
         IntList freeSlotIndices = freeSlots.get(serverEntry.getWhat());
         if (freeSlotIndices == null) {
             return false;
@@ -381,7 +381,7 @@ public class Repo implements IClientRepo {
         this.search.setSearchString(searchString);
     }
 
-    private Comparator<AEKey> getKeyComparator(SortOrder sortBy, SortDir sortDir) {
+    private Comparator<TLKey> getKeyComparator(SortOrder sortBy, SortDir sortDir) {
         return KeySorters.getComparator(sortBy, sortDir);
     }
 
@@ -392,7 +392,7 @@ public class Repo implements IClientRepo {
     public void setPaused(boolean paused) {
         if (this.paused != paused) {
             this.paused = paused;
-            AELog.debug("Toggling client-repo pause mode to %s", this.paused);
+            TLLog.debug("Toggling client-repo pause mode to %s", this.paused);
             if (!paused) {
                 updateView(); // resort on unpause
             }
@@ -410,7 +410,7 @@ public class Repo implements IClientRepo {
         for (int i = 0; i < ingredient.getStackingIds().size(); i++) {
             var itemId = ingredient.getStackingIds().getInt(i);
             for (var entry : getByItemId(itemId)) {
-                if (((AEItemKey) entry.getWhat()).matches(ingredient)) {
+                if (((TLItemKey) entry.getWhat()).matches(ingredient)) {
                     entries.add(entry);
                 }
             }
@@ -430,7 +430,7 @@ public class Repo implements IClientRepo {
     private void rebuildItemIdToEntries() {
         entriesByItemId.clear();
         for (var entry : getAllEntries()) {
-            if (entry.getWhat() instanceof AEItemKey itemKey) {
+            if (entry.getWhat() instanceof TLItemKey itemKey) {
                 var itemId = BuiltInRegistries.ITEM.getId(itemKey.getItem());
                 var currentList = entriesByItemId.get(itemId);
                 if (currentList == null) {

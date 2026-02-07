@@ -42,8 +42,8 @@ import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.networking.pathing.ControllerState;
 import appeng.api.networking.pathing.IPathingService;
 import appeng.blockentity.networking.ControllerBlockEntity;
-import appeng.core.AEConfig;
-import appeng.core.AELog;
+import appeng.core.TLConfig;
+import appeng.core.TLLog;
 import appeng.core.stats.AdvancementTriggers;
 import appeng.me.Grid;
 import appeng.me.pathfinding.AdHocChannelUpdater;
@@ -81,7 +81,7 @@ public class PathingService implements IPathingService, IGridServiceProvider {
      * repathing.
      */
     private boolean channelModeLocked;
-    private ChannelMode channelMode = AEConfig.instance().getChannelMode();
+    private ChannelMode channelMode = TLConfig.instance().getChannelMode();
 
     public PathingService(IGrid g) {
         this.grid = (Grid) g;
@@ -192,7 +192,7 @@ public class PathingService implements IPathingService, IGridServiceProvider {
                     channelMode = nodeChannelMode;
                 }
             } catch (IllegalArgumentException e) {
-                AELog.warn("Invalid channel mode stored on grid node: %s", channelModeName);
+                TLLog.warn("Invalid channel mode stored on grid node: %s", channelModeName);
             }
         }
     }
@@ -304,7 +304,7 @@ public class PathingService implements IPathingService, IGridServiceProvider {
     @Override
     public void repath() {
         if (!this.channelModeLocked) {
-            this.channelMode = AEConfig.instance().getChannelMode();
+            this.channelMode = TLConfig.instance().getChannelMode();
         }
 
         this.channelsByBlocks = 0;

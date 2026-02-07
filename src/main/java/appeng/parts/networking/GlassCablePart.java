@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.core.Direction;
 
 import appeng.api.parts.IPartCollisionHelper;
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 import appeng.items.parts.ColoredPartItem;
 
 public class GlassCablePart extends CablePart {
@@ -34,8 +34,8 @@ public class GlassCablePart extends CablePart {
     }
 
     @Override
-    public AECableType getCableConnectionType() {
-        return AECableType.GLASS;
+    public TLCableType getCableConnectionType() {
+        return TLCableType.GLASS;
     }
 
     @Override

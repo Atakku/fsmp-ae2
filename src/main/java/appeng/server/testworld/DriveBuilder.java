@@ -9,12 +9,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.MEStorage;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.me.cells.BasicCellInventory;
 import appeng.me.helpers.BaseActionSource;
 import appeng.util.ConfigInventory;
@@ -30,21 +30,21 @@ public class DriveBuilder {
     }
 
     public CreativeCellBuilder addCreativeCell() {
-        var cell = AEItems.CREATIVE_CELL.stack();
-        var configInv = AEItems.CREATIVE_CELL.get().getConfigInventory(cell);
+        var cell = TLItems.CREATIVE_CELL.stack();
+        var configInv = TLItems.CREATIVE_CELL.get().getConfigInventory(cell);
         cells.add(cell);
         return new CreativeCellBuilder(configInv);
     }
 
     public ItemCellBuilder addItemCell64k() {
-        var cell = AEItems.ITEM_CELL_64K.stack();
+        var cell = TLItems.ITEM_CELL_64K.stack();
         var cellInv = BasicCellInventory.createInventory(cell, null);
         cells.add(cell);
         return new ItemCellBuilder(cellInv);
     }
 
     public FluidCellBuilder addFluidCell64k() {
-        var cell = AEItems.FLUID_CELL_64K.stack();
+        var cell = TLItems.FLUID_CELL_64K.stack();
         var cellInv = BasicCellInventory.createInventory(cell, null);
         cells.add(cell);
         return new FluidCellBuilder(cellInv);
@@ -61,7 +61,7 @@ public class DriveBuilder {
             add(stack.what(), stack.amount());
         }
 
-        public void add(AEKey what, long amount) {
+        public void add(TLKey what, long amount) {
             if (inv.insert(what, amount, Actionable.MODULATE, new BaseActionSource()) != amount) {
                 throw new IllegalArgumentException("Couldn't insert " + amount + " of " + what);
             }
@@ -78,7 +78,7 @@ public class DriveBuilder {
         }
 
         public void addBuckets(Fluid fluid, double buckets) {
-            add(AEFluidKey.of(fluid), (long) (buckets * AEFluidKey.AMOUNT_BUCKET));
+            add(TLFluidKey.of(fluid), (long) (buckets * TLFluidKey.AMOUNT_BUCKET));
         }
     }
 
@@ -88,7 +88,7 @@ public class DriveBuilder {
         }
 
         public void add(ItemLike what, long amount) {
-            add(AEItemKey.of(what), amount);
+            add(TLItemKey.of(what), amount);
         }
     }
 
@@ -100,11 +100,11 @@ public class DriveBuilder {
         }
 
         public CreativeCellBuilder add(ItemLike item) {
-            return add(AEItemKey.of(item));
+            return add(TLItemKey.of(item));
         }
 
         public CreativeCellBuilder add(Fluid fluid) {
-            return add(AEFluidKey.of(fluid));
+            return add(TLFluidKey.of(fluid));
         }
 
         public CreativeCellBuilder add(@Nullable GenericStack stack) {
@@ -114,7 +114,7 @@ public class DriveBuilder {
             return this;
         }
 
-        public CreativeCellBuilder add(AEKey key) {
+        public CreativeCellBuilder add(TLKey key) {
             inv.insert(key, 1, Actionable.MODULATE, new BaseActionSource());
             return this;
         }

@@ -5,7 +5,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import appeng.api.implementations.blockentities.IColorableBlockEntity;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.core.network.ServerboundPacket;
 import appeng.core.network.serverbound.ColorApplicatorSelectColorPacket;
 
@@ -14,8 +14,8 @@ public final class ColorApplicatorPickColorHook {
     }
 
     public static boolean onPickColor(Player player, BlockHitResult hitResult) {
-        if (!AEItems.COLOR_APPLICATOR.is(player.getOffhandItem())
-                && !AEItems.COLOR_APPLICATOR.is(player.getMainHandItem())) {
+        if (!TLItems.COLOR_APPLICATOR.is(player.getOffhandItem())
+                && !TLItems.COLOR_APPLICATOR.is(player.getMainHandItem())) {
             return false;
         }
 

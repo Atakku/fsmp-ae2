@@ -7,8 +7,8 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:mysterious_cube
-- ae2:not_so_mysterious_cube
+- tl2:mysterious_cube
+- tl2:not_so_mysterious_cube
 ---
 
 # The Mysterious Cube

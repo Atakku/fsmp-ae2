@@ -1,6 +1,6 @@
 ---
 navigation:
-  parent: ae2-mechanics/ae2-mechanics-index.md
+  parent: tl2-mechanics/tl2-mechanics-index.md
   title: Network Connections
   icon: fluix_glass_cable
 ---
@@ -9,7 +9,7 @@ navigation:
 
 ## What Does "Network" Mean?
 
-A "Network" is a group of devices linked by blocks that can pass [channels](../ae2-mechanics/channels.md),
+A "Network" is a group of devices linked by blocks that can pass [channels](../tl2-mechanics/channels.md),
 like [cables](../items-blocks-machines/cables.md) or fullblock machines. (<ItemLink id="drive" />, etc.)
 Technically a single cable is a network, actually.
 

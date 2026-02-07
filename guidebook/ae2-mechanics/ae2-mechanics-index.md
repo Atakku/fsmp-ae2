@@ -1,9 +1,9 @@
 ---
 navigation:
-  title: AE2 Mechanics
+  title: TL2 Mechanics
   position: 30
 ---
 
-# AE2 Mechanics
+# TL2 Mechanics
 
 <SubPages />

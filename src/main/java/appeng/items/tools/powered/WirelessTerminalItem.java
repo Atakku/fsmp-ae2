@@ -43,7 +43,7 @@ import appeng.api.config.Settings;
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
 import appeng.api.features.IGridLinkableHandler;
-import appeng.api.ids.AEComponents;
+import appeng.api.ids.TLComponents;
 import appeng.api.implementations.blockentities.IWirelessAccessPoint;
 import appeng.api.implementations.menuobjects.IMenuItem;
 import appeng.api.networking.IGrid;
@@ -126,7 +126,7 @@ public class WirelessTerminalItem extends ContainerItem implements IMenuItem {
      */
     @Nullable
     public GlobalPos getLinkedPosition(ItemStack item) {
-        return item.get(AEComponents.WIRELESS_LINK_TARGET);
+        return item.get(TLComponents.WIRELESS_LINK_TARGET);
     }
 
     @Nullable
@@ -212,12 +212,12 @@ public class WirelessTerminalItem extends ContainerItem implements IMenuItem {
 
         @Override
         public void link(ItemStack itemStack, GlobalPos pos) {
-            itemStack.set(AEComponents.WIRELESS_LINK_TARGET, pos);
+            itemStack.set(TLComponents.WIRELESS_LINK_TARGET, pos);
         }
 
         @Override
         public void unlink(ItemStack itemStack) {
-            itemStack.remove(AEComponents.WIRELESS_LINK_TARGET);
+            itemStack.remove(TLComponents.WIRELESS_LINK_TARGET);
         }
     }
 }

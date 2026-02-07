@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
-import appeng.core.AELog;
+import appeng.core.TLLog;
 
 /**
  * Locates a {@link net.minecraft.world.level.block.entity.BlockEntity} that hosts a menu.
@@ -27,7 +27,7 @@ record BlockEntityLocator(BlockPos pos) implements MenuHostLocator {
         if (hostInterface.isInstance(blockEntity)) {
             return hostInterface.cast(blockEntity);
         } else if (blockEntity != null) {
-            AELog.warn("Cannot locate menu host @ %s, %s does not implement %s",
+            TLLog.warn("Cannot locate menu host @ %s, %s does not implement %s",
                     pos, blockEntity, hostInterface);
         }
 

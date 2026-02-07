@@ -5,14 +5,14 @@ navigation:
 ---
 
 <div class="notification is-info">
-  The following information only applies to Applied Energistics 2 in Minecraft 1.20 and newer.
+  The following information only applies to Theoretical Lethargics 2 in Minecraft 1.20 and newer.
 </div>
 
 # Getting Started
 
 ## Getting The Initial Materials
 
-To get started with Applied Energistics 2, one must first find an amethyst geode. These are fairly common and tend to spawn frequently underground, so you've probably encountered one in your travels.
+To get started with Theoretical Lethargics 2, one must first find an amethyst geode. These are fairly common and tend to spawn frequently underground, so you've probably encountered one in your travels.
 
 Mine the amethyst clusters and any amethyst blocks you find. Do not break any budding amethyst, as even with silk touch they will not drop.
 
@@ -82,7 +82,7 @@ Produce a few of each type of processor in preparation for the next step, making
 
 Its pronounced Emm-Eee, and stands for Matter Energy.
 
-Matter Energy is the main component of Applied Energistics 2, it's like a mad scientist version of a Multi-Block chest,
+Matter Energy is the main component of Theoretical Lethargics 2, it's like a mad scientist version of a Multi-Block chest,
 and it can revolutionize your storage situation. ME is extremely different than other storage systems in Minecraft, and
 it might take a little out of the box thinking to get used to; but once you get started vast amounts of storage in tiny
 space, and multiple access terminals are just the tip of the iceberg of what becomes possible.
@@ -98,11 +98,11 @@ can add and remove items from it as if it were a <ItemLink id="minecraft:chest" 
 actually stored in the Storage cells, and not the <ItemLink id="chest" /> itself.
 
 The <ItemLink id="chest" /> is quite situational and limited in utility. To really
-take advantage of AE2, you need to set up an [ME Network](ae2-mechanics/me-network-connections.md).
+take advantage of TL2, you need to set up an [ME Network](tl2-mechanics/me-network-connections.md).
 
 ## Your Very First ME System
 
-Now that you have all of the basic materials and machines for Applied Energistics 2, you can make your first ME (Matter Energy) system. This will be a very basic one, no logistics, just nice, simple, searchable storage.
+Now that you have all of the basic materials and machines for Theoretical Lethargics 2, you can make your first ME (Matter Energy) system. This will be a very basic one, no logistics, just nice, simple, searchable storage.
 
 <GameScene zoom="6" interactive={true}>
 <ImportStructure src="assets/assemblies/tiny_me_system.snbt" />
@@ -117,7 +117,7 @@ Now that you have all of the basic materials and machines for Applied Energistic
     capacity and types (it would be more efficient to [partition](items-blocks-machines/cell_workbench.md) a mix of 4k and 1k but that's a complexity we won't go into now)
 ---
 1.  Place the drive down.
-2.  The energy acceptor (and several other AE2 [devices](ae2-mechanics/devices.md)) comes in 2 modes, cube and flat. They can be switched between in a crafting grid. If your energy acceptor is a cube, place it down next to the drive. If it's a flat square, place a cable on the drive and place the acceptor on that.
+2.  The energy acceptor (and several other TL2 [devices](tl2-mechanics/devices.md)) comes in 2 modes, cube and flat. They can be switched between in a crafting grid. If your energy acceptor is a cube, place it down next to the drive. If it's a flat square, place a cable on the drive and place the acceptor on that.
 3.  Run energy into the energy acceptor with a cable/pipe/conduit from your favorite energy-generation mod.
 4.  Place a cable on top of the drive (or otherwise at eye level) and place your terminal or crafting terminal on it.
 5.  Put your storage cells into the drive
@@ -128,8 +128,8 @@ Now that you have all of the basic materials and machines for Applied Energistic
 
 ### Overcoming Limits
 
-At this point you probably getting close to 8 or so [devices](ae2-mechanics/devices.md), once you hit 9 devices you'll have to start
-managing [channels](ae2-mechanics/channels.md). Many devices but not all, require a channel to
+At this point you probably getting close to 8 or so [devices](tl2-mechanics/devices.md), once you hit 9 devices you'll have to start
+managing [channels](tl2-mechanics/channels.md). Many devices but not all, require a channel to
 function.
 
 By default a network can support 8 channels, once you break this limit, you'll have to add

@@ -9,24 +9,24 @@ import java.util.function.Predicate;
 
 import net.minecraft.tags.TagKey;
 
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKeyType;
 import appeng.menu.me.common.GridInventoryEntry;
 
 final class TagSearchPredicate implements Predicate<GridInventoryEntry> {
     private final String term;
     /**
-     * Stores the tag keys we found for each AE key type we encountered.
+     * Stores the tag keys we found for each TL key type we encountered.
      */
-    private final Map<AEKeyType, List<TagKey<?>>> tagCache = new IdentityHashMap<>();
+    private final Map<TLKeyType, List<TagKey<?>>> tagCache = new IdentityHashMap<>();
 
     public TagSearchPredicate(String term) {
         this.term = term.toLowerCase(Locale.ROOT);
     }
 
     /**
-     * Finds all tags for all AE key types that match the given search pattern.
+     * Finds all tags for all TL key types that match the given search pattern.
      */
-    private List<TagKey<?>> getTagsMatchingTerm(AEKeyType keyType) {
+    private List<TagKey<?>> getTagsMatchingTerm(TLKeyType keyType) {
         return keyType.getTagNames()
                 .filter(tagKey -> {
                     // ResourceLocations require namespace and path to already be lowercase

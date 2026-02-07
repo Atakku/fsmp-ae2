@@ -9,21 +9,21 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypes;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypes;
 import appeng.api.storage.ISubMenuHost;
 import appeng.client.Point;
-import appeng.client.gui.AEBaseScreen;
-import appeng.client.gui.AESubScreen;
 import appeng.client.gui.ICompositeWidget;
 import appeng.client.gui.Icon;
-import appeng.client.gui.widgets.AECheckbox;
+import appeng.client.gui.TLBaseScreen;
+import appeng.client.gui.TLSubScreen;
+import appeng.client.gui.widgets.TLCheckbox;
 import appeng.client.gui.widgets.TabButton;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.interfaces.KeyTypeSelectionMenu;
 
-public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu, P extends AEBaseScreen<C>>
-        extends AESubScreen<C, P> {
+public class KeyTypeSelectionScreen<C extends TLBaseMenu & KeyTypeSelectionMenu, P extends TLBaseScreen<C>>
+        extends TLSubScreen<C, P> {
     private final KeyTypeCheckboxes keyTypesWidget = new KeyTypeCheckboxes();
 
     public KeyTypeSelectionScreen(P parent, ISubMenuHost subMenuHost, Component dialogTitle) {
@@ -53,7 +53,7 @@ public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu,
         super.updateBeforeRender();
 
         int selectedEntryCount = 0;
-        AECheckbox selectedEntry = null;
+        TLCheckbox selectedEntry = null;
 
         for (var entry : keyTypesWidget.checkboxes.entrySet()) {
             boolean selected = getMenu().getClientKeyTypeSelection().keyTypes().get(entry.getKey());
@@ -74,10 +74,10 @@ public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu,
 
     private class KeyTypeCheckboxes implements ICompositeWidget {
         private static final int PADDING = 6;
-        private static final int KEY_TYPE_SPACING = AECheckbox.SIZE + PADDING;
+        private static final int KEY_TYPE_SPACING = TLCheckbox.SIZE + PADDING;
 
         private Rect2i bounds = new Rect2i(0, 0, 0, 0);
-        private final Map<AEKeyType, AECheckbox> checkboxes = new LinkedHashMap<>();
+        private final Map<TLKeyType, TLCheckbox> checkboxes = new LinkedHashMap<>();
 
         @Override
         public void setPosition(Point position) {
@@ -95,7 +95,7 @@ public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu,
         }
 
         @Override
-        public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+        public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
             int xPos = this.bounds.getX() + bounds.getX();
             int yPos = this.bounds.getY() + bounds.getY();
 
@@ -107,7 +107,7 @@ public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu,
                 // Dynamic width based on text size
                 int textboxWidth = 24 + Minecraft.getInstance().font.width(text);
 
-                var checkbox = new AECheckbox(xPos, yPos, textboxWidth, AECheckbox.SIZE, screen.getStyle(),
+                var checkbox = new TLCheckbox(xPos, yPos, textboxWidth, TLCheckbox.SIZE, screen.getStyle(),
                         keyType.getDescription());
                 checkbox.setChangeListener(() -> getMenu().selectKeyType(keyType, checkbox.isSelected()));
                 addWidget.accept(checkbox);
@@ -116,7 +116,7 @@ public class KeyTypeSelectionScreen<C extends AEBaseMenu & KeyTypeSelectionMenu,
                 yPos += KEY_TYPE_SPACING;
             }
 
-            int height = this.bounds.getY() + AEKeyTypes.getAll().size() * KEY_TYPE_SPACING + PADDING;
+            int height = this.bounds.getY() + TLKeyTypes.getAll().size() * KEY_TYPE_SPACING + PADDING;
             KeyTypeSelectionScreen.this.setHeight(height);
         }
     }

@@ -31,21 +31,21 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.client.AEKeyRendering;
+import appeng.api.client.TLKeyRendering;
 import appeng.api.config.FuzzyMode;
-import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellWorkbenchItem;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.core.localization.GuiText;
 import appeng.core.localization.Tooltips;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 import appeng.items.contents.CellConfig;
 import appeng.me.cells.CreativeCellHandler;
 import appeng.util.ConfigInventory;
 
-public class CreativeCellItem extends AEBaseItem implements ICellWorkbenchItem {
+public class CreativeCellItem extends TLBaseItem implements ICellWorkbenchItem {
     public CreativeCellItem(Properties props) {
         super(props);
     }
@@ -75,7 +75,7 @@ public class CreativeCellItem extends AEBaseItem implements ICellWorkbenchItem {
             if (!cc.isEmpty()) {
                 if (Screen.hasShiftDown()) {
                     for (var key : cc.keySet()) {
-                        lines.add(Tooltips.of(AEKeyRendering.getDisplayName(key)));
+                        lines.add(Tooltips.of(TLKeyRendering.getDisplayName(key)));
                     }
                 } else {
                     lines.add(Tooltips.of(GuiText.PressShiftForFullList));
@@ -90,8 +90,8 @@ public class CreativeCellItem extends AEBaseItem implements ICellWorkbenchItem {
     }
 
     public static ItemStack ofItems(ItemLike... items) {
-        var cell = AEItems.CREATIVE_CELL.stack();
-        var configInv = AEItems.CREATIVE_CELL.get().getConfigInventory(cell);
+        var cell = TLItems.CREATIVE_CELL.stack();
+        var configInv = TLItems.CREATIVE_CELL.get().getConfigInventory(cell);
         for (int i = 0; i < items.length; i++) {
             configInv.setStack(i, GenericStack.fromItemStack(new ItemStack(items[i])));
         }
@@ -99,10 +99,10 @@ public class CreativeCellItem extends AEBaseItem implements ICellWorkbenchItem {
     }
 
     public static ItemStack ofFluids(Fluid... fluids) {
-        var cell = AEItems.CREATIVE_CELL.stack();
-        var configInv = AEItems.CREATIVE_CELL.get().getConfigInventory(cell);
+        var cell = TLItems.CREATIVE_CELL.stack();
+        var configInv = TLItems.CREATIVE_CELL.get().getConfigInventory(cell);
         for (int i = 0; i < fluids.length; i++) {
-            configInv.setStack(i, new GenericStack(AEFluidKey.of(fluids[i]), 1));
+            configInv.setStack(i, new GenericStack(TLFluidKey.of(fluids[i]), 1));
         }
         return cell;
     }

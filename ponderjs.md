@@ -1,11 +1,11 @@
 # PonderJS NBT Interface
 
-AE2 normally uses server-side only state and synchronizes it using a binary blob to the client. This
+TL2 normally uses server-side only state and synchronizes it using a binary blob to the client. This
 obviously will not work with PonderJS's `modifyTileNBT` calls.
 
 ## Cable Bus
 
-To place AE2 cables with attached parts in PonderJS, the `ae2:cable_bus` block must be placed first.
+To place TL2 cables with attached parts in PonderJS, the `tl2:cable_bus` block must be placed first.
 Then it's NBT data can be modified to actually set the cable and attach parts.
 
 The cable bus supports one NBT property for each side and one for the center where the cable is placed.
@@ -16,17 +16,17 @@ respective side of the cable.
 A part tag requires at least an `id` property, which is the Item ID of the part that should be placed at that location
 of the cable bus. Any additional properties are part-type specific.
 
-You can find all AE2 part ids in [AEPartIds.java](./src/main/java/appeng/api/ids/AEPartIds.java).
+You can find all TL2 part ids in [TLPartIds.java](./src/main/java/appeng/api/ids/TLPartIds.java).
 
 ### Cables
 
 The following code places a simple uncolored glass cable at 0,0,0:
 
 ```javascript
-scene.world.setBlocks([0, 0, 0], "ae2:cable_bus", false);
+scene.world.setBlocks([0, 0, 0], "tl2:cable_bus", false);
 scene.world.modifyTileNBT([0, 0, 0], nbt => {
     nbt.cable = {
-        id: "ae2:fluix_glass_cable"
+        id: "tl2:fluix_glass_cable"
     };
 });
 ```
@@ -45,10 +45,10 @@ Cables also support the following properties to configure their visual appearanc
 Full example:
 
 ```javascript
-scene.world.setBlocks([0, 0, 0, 4, 0, 0], "ae2:cable_bus", false);
+scene.world.setBlocks([0, 0, 0, 4, 0, 0], "tl2:cable_bus", false);
 scene.world.modifyTileNBT([0, 0, 0, 4, 0, 0], nbt => {
     nbt.cable = {
-        id: "ae2:fluix_smart_cable",
+        id: "tl2:fluix_smart_cable",
         visual: {
             channels: 5, // Show 5 channels on the cable
             powered: true, // actually show the channels
@@ -68,13 +68,13 @@ make the indicator light more visible.
 
 ```javascript
 // Place green cable with storage bus facing downwards
-scene.world.setBlocks([2, 1, 2], "ae2:cable_bus", false);
+scene.world.setBlocks([2, 1, 2], "tl2:cable_bus", false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
     nbt.cable = {
-        id: "ae2:green_covered_cable"
+        id: "tl2:green_covered_cable"
     };
     nbt.down = {
-        id: 'ae2:storage_bus'
+        id: 'tl2:storage_bus'
     };
 });
 
@@ -94,31 +94,31 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
 ### Facades
 
 Facades are serialized as ItemStack NBT data under one key per side: `facadeDown`, `facadeUp`, `facadeNorth`
-, `facadeSouth`, `facadeWest`, `facadeEast`. Please note that it's a serialized AE2 facade item and not the
+, `facadeSouth`, `facadeWest`, `facadeEast`. Please note that it's a serialized TL2 facade item and not the
 item the facade was created from. See below for an example:
 
 ```javascript
-scene.world.setBlocks([2, 1, 2], "ae2:cable_bus", false);
+scene.world.setBlocks([2, 1, 2], "tl2:cable_bus", false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
   nbt.cable = {
-    id: "ae2:fluix_covered_cable"
+    id: "tl2:fluix_covered_cable"
   };
   nbt.facadeUp = {
-    id: 'ae2:facade',
+    id: 'tl2:facade',
     Count: 1,
     tag: {
       item: 'minecraft:cobblestone'
     }
   };
   nbt.facadeWest = {
-    id: 'ae2:facade',
+    id: 'tl2:facade',
     Count: 1,
     tag: {
       item: 'minecraft:stone'
     }
   };
   nbt.facadeNorth = {
-    id: 'ae2:facade',
+    id: 'tl2:facade',
     Count: 1,
     tag: {
       item: 'minecraft:glass'
@@ -135,10 +135,10 @@ NBT Example:
 
 ```javascript
 nbt.north = {
-    id: 'ae2:storage_monitor',
+    id: 'tl2:storage_monitor',
     isLocked: true, // Shows the lock indicator (default: false)
     configuredItem: {
-        "#c": "ae2:i", // ae2:i for items, ae2:f for fluids (no default)
+        "#c": "tl2:i", // tl2:i for items, tl2:f for fluids (no default)
         "id": "minecraft:stick", // ID of shown item or fluid
         "tag": {}, // NBT of shown item or fluid (default is null -> no NBT)
     },
@@ -155,7 +155,7 @@ NBT Example:
 
 ```javascript
 nbt.north = {
-    id: 'ae2:level_emitter',
+    id: 'tl2:level_emitter',
     visual: {
         on: true // Toggles the level emitter on or off
     }
@@ -170,7 +170,7 @@ NBT Example:
 
 ```javascript
 nbt.up = {
-    id: 'ae2:annihilation_plane',
+    id: 'tl2:annihilation_plane',
     visual: {
         powered: true // Enables the texture animation on the plane (default: false)
     }
@@ -185,7 +185,7 @@ NBT Example:
 
 ```javascript
 nbt.south = {
-    id: 'ae2:me_p2p_tunnel',
+    id: 'tl2:me_p2p_tunnel',
     freq: 1234, // The frequency is shown as a colored pattern on the back
     visual: {
         powered: true
@@ -204,7 +204,7 @@ NBT Example:
 
 ```javascript
 nbt.east = {
-    id: 'ae2:toggle_bus',
+    id: 'tl2:toggle_bus',
     visual: {
         powered: true, // The bus needs to be powered to show the indicator
         on: true // Toggles the visual indicator on/off (default: false)
@@ -221,7 +221,7 @@ NBT Example:
 
 ```javascript
 nbt.north = {
-    id: "ae2:terminal",
+    id: "tl2:terminal",
     spin: 1 // Rotation. Default is 0. 0=0°, 1=90°, 2=180° 3=270°.
 };
 ```
@@ -230,7 +230,7 @@ nbt.north = {
 
 Some block entities also support specific NBT to manipulate their visual state.
 
-In general, AE block entities support the `forward` and `up` NBT properties to set their orientation.
+In general, TL block entities support the `forward` and `up` NBT properties to set their orientation.
 The default is `forward` = `north` and `up` = `up`.
 
 #### ME Drive
@@ -238,17 +238,17 @@ The default is `forward` = `north` and `up` = `up`.
 Example:
 
 ```javascript
-scene.world.setBlock([2, 1, 2], 'ae2:drive', false);
+scene.world.setBlock([2, 1, 2], 'tl2:drive', false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
     nbt.visual = {
         online: true, // Controls whether the LEDs are on or off (default: false)
         // Set the cells using cell0 to cell9
         cell2: {
-            id: 'ae2:item_storage_cell_64k', // Item ID of cell
+            id: 'tl2:item_storage_cell_64k', // Item ID of cell
             state: 'empty' // Status of cell LED
         },
         cell5: {
-            id: 'ae2:fluid_storage_cell_64k',
+            id: 'tl2:fluid_storage_cell_64k',
             state: 'full'
         }
     };
@@ -277,12 +277,12 @@ Uses standard Forge Tank NBT, which means:
 
 #### Wireless Access Point
 
-Uses a combination of block states and the standard NBT for rotation of AE2 block entities.
+Uses a combination of block states and the standard NBT for rotation of TL2 block entities.
 
 Example:
 
 ```javascript
-scene.world.setBlock([2, 1, 2], 'ae2:wireless_access_point', false);
+scene.world.setBlock([2, 1, 2], 'tl2:wireless_access_point', false);
 // States: off, on, has_channel
 scene.world.modifyBlock([2, 1, 2], state => state.with("state", "has_channel"), false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
@@ -291,19 +291,9 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
 });
 ```
 
-#### Inscriber
-
-NBT Example:
-
-```javascript
-scene.world.modifyTileNBT([2, 1, 2], nbt => {
-    nbt.visual.smash = true; // Triggers an animation cycle and auto-resets to false once it's done
-});
-```
-
 #### Inventories
 
-Some AE2 machines have internal inventories. These save their slots under the `inv` tag. Each slot is named
+Some TL2 machines have internal inventories. These save their slots under the `inv` tag. Each slot is named
 `item<x>` with x starting from 0 and counting up. Each slot uses the standard Vanilla ItemStack NBT format.
 
 Example:
@@ -325,12 +315,12 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
 NBT Example:
 
 ```javascript
-scene.world.setBlock([2, 1, 2], 'ae2:charger', false);
+scene.world.setBlock([2, 1, 2], 'tl2:charger', false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
     // Put a crystal in
     nbt.inv = {
         item0: {
-            id: 'ae2:certus_quartz_crystal',
+            id: 'tl2:certus_quartz_crystal',
             Count: 1
         }
     };
@@ -342,7 +332,7 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
     // Put a *charged* crystal in
     nbt.inv = {
         item0: {
-            id: 'ae2:charged_certus_quartz_crystal',
+            id: 'tl2:charged_certus_quartz_crystal',
             Count: 1
         }
     };

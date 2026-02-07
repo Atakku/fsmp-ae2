@@ -14,12 +14,12 @@ import net.minecraft.world.level.material.Fluids;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.CellState;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.me.helpers.BaseActionSource;
 import appeng.util.BootstrapMinecraft;
 
@@ -33,21 +33,21 @@ public class BasicInventoryTest {
      */
     @Test
     void testFluidExtract() {
-        var item = AEItems.FLUID_CELL_256K.asItem();
+        var item = TLItems.FLUID_CELL_256K.asItem();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
         // Values are more than Integer.MAX_VALUE
-        long testAmount = 40_000L * AEFluidKey.AMOUNT_BUCKET;
-        assertThat(cell.insert(AEFluidKey.of(Fluids.LAVA), testAmount, Actionable.MODULATE, SRC))
+        long testAmount = 40_000L * TLFluidKey.AMOUNT_BUCKET;
+        assertThat(cell.insert(TLFluidKey.of(Fluids.LAVA), testAmount, Actionable.MODULATE, SRC))
                 .isEqualTo(testAmount);
-        assertThat(cell.extract(AEFluidKey.of(Fluids.LAVA), testAmount, Actionable.MODULATE, SRC))
+        assertThat(cell.extract(TLFluidKey.of(Fluids.LAVA), testAmount, Actionable.MODULATE, SRC))
                 .isEqualTo(testAmount);
     }
 
     @Test
     void testTypeLimit() {
-        var item = AEItems.ITEM_CELL_1K.get();
+        var item = TLItems.ITEM_CELL_1K.get();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
@@ -69,29 +69,29 @@ public class BasicInventoryTest {
 
     @Test
     void testSingleType() {
-        var item = AEItems.ITEM_CELL_1K.get();
+        var item = TLItems.ITEM_CELL_1K.get();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
 
         long maxItems = (long) (item.getBytes(stack) - item.getBytesPerType(stack))
-                * AEKeyType.items().getAmountPerByte();
+                * TLKeyType.items().getAmountPerByte();
 
-        assertThat(cell.insert(AEItemKey.of(Items.DIAMOND_PICKAXE), Long.MAX_VALUE, Actionable.MODULATE, SRC))
+        assertThat(cell.insert(TLItemKey.of(Items.DIAMOND_PICKAXE), Long.MAX_VALUE, Actionable.MODULATE, SRC))
                 .isEqualTo(maxItems);
     }
 
     @Test
     void testEvenDistribution() {
-        var item = AEItems.ITEM_CELL_1K.get();
+        var item = TLItems.ITEM_CELL_1K.get();
         var stack = new ItemStack(item);
-        item.getUpgrades(stack).addItems(AEItems.EQUAL_DISTRIBUTION_CARD.stack());
+        item.getUpgrades(stack).addItems(TLItems.EQUAL_DISTRIBUTION_CARD.stack());
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
 
         int totalTypes = item.getTotalTypes(stack);
         long maxTotalCount = (item.getBytes(stack) - (long) totalTypes * item.getBytesPerType(stack))
-                * AEKeyType.items().getAmountPerByte();
+                * TLKeyType.items().getAmountPerByte();
         // Should be inserted for the first totalTypes-1 types
         long maxItemsPerType = (long) Math.ceil((double) maxTotalCount / item.getTotalTypes(stack));
         // Should be inserted for the very last type
@@ -112,14 +112,14 @@ public class BasicInventoryTest {
 
     @Test
     void testVoidUpgrade() {
-        var item = AEItems.ITEM_CELL_1K.get();
+        var item = TLItems.ITEM_CELL_1K.get();
         var stack = new ItemStack(item);
-        item.getUpgrades(stack).addItems(AEItems.VOID_CARD.stack());
+        item.getUpgrades(stack).addItems(TLItems.VOID_CARD.stack());
 
         // Setup whitelist
-        var allowed = AEItemKey.of(Items.DIAMOND);
-        var allowed2 = AEItemKey.of(Items.DIAMOND_BLOCK);
-        var rejected = AEItemKey.of(Items.GOLD_INGOT);
+        var allowed = TLItemKey.of(Items.DIAMOND);
+        var allowed2 = TLItemKey.of(Items.DIAMOND_BLOCK);
+        var rejected = TLItemKey.of(Items.GOLD_INGOT);
         item.getConfigInventory(stack).addFilter(allowed).addFilter(allowed2);
 
         var cell = StorageCells.getCellInventory(stack, null);
@@ -137,25 +137,25 @@ public class BasicInventoryTest {
 
     @Test
     void testVoidUpgradeUnformatted() {
-        var item = AEItems.ITEM_CELL_1K.get();
+        var item = TLItems.ITEM_CELL_1K.get();
         var stack = new ItemStack(item);
-        item.getUpgrades(stack).addItems(AEItems.VOID_CARD.stack());
+        item.getUpgrades(stack).addItems(TLItems.VOID_CARD.stack());
 
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
 
         // Ensure that the first insert of a single type voids only excess.
-        var filler = AEItemKey.of(Items.DIAMOND);
+        var filler = TLItemKey.of(Items.DIAMOND);
         assertThat(cell.insert(filler, Long.MAX_VALUE, Actionable.MODULATE, SRC)).isEqualTo(Long.MAX_VALUE);
         assertThat(cell.getAvailableStacks().get(filler)).isNotZero();
         // Ensure that new item types that the cell cannot store don't get voided.
-        var rejected = AEItemKey.of(Items.STICK);
+        var rejected = TLItemKey.of(Items.STICK);
         assertThat(cell.insert(rejected, Long.MAX_VALUE, Actionable.MODULATE, SRC)).isZero();
 
         // Part two, fill cell with 63 different types this time.
         cell.extract(filler, Long.MAX_VALUE, Actionable.MODULATE, SRC);
-        item.getUpgrades(stack).removeItems(1, AEItems.VOID_CARD.stack(), null);
-        item.getUpgrades(stack).addItems(AEItems.EQUAL_DISTRIBUTION_CARD.stack());
+        item.getUpgrades(stack).removeItems(1, TLItems.VOID_CARD.stack(), null);
+        item.getUpgrades(stack).addItems(TLItems.EQUAL_DISTRIBUTION_CARD.stack());
         cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
 
@@ -166,7 +166,7 @@ public class BasicInventoryTest {
             cell.insert(keys[i], Long.MAX_VALUE, Actionable.MODULATE, SRC);
         }
 
-        item.getUpgrades(stack).addItems(AEItems.VOID_CARD.stack());
+        item.getUpgrades(stack).addItems(TLItems.VOID_CARD.stack());
         cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
 
@@ -176,12 +176,12 @@ public class BasicInventoryTest {
         assertThat(cell.insert(rejected, Long.MAX_VALUE, Actionable.MODULATE, SRC)).isZero();
     }
 
-    private static AEItemKey[] generateDifferentKeys(int count) {
-        var out = new AEItemKey[count];
+    private static TLItemKey[] generateDifferentKeys(int count) {
+        var out = new TLItemKey[count];
         for (int i = 0; i < count; ++i) {
             var itemStack = new ItemStack(Items.DIAMOND);
             itemStack.set(DataComponents.CUSTOM_NAME, Component.literal("number" + i));
-            out[i] = AEItemKey.of(itemStack);
+            out[i] = TLItemKey.of(itemStack);
         }
         return out;
     }

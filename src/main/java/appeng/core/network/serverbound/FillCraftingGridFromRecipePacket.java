@@ -20,8 +20,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import appeng.api.config.FuzzyMode;
 import appeng.api.networking.storage.IStorageService;
-import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLItemKey;
 import appeng.api.storage.MEStorage;
 import appeng.api.storage.StorageHelper;
 import appeng.core.network.CustomAppEngPayload;
@@ -148,7 +148,7 @@ public record FillCraftingGridFromRecipePacket(
                     // Grid already has an item that matches the ingredient
                     continue;
                 } else {
-                    var in = AEItemKey.of(currentItem);
+                    var in = TLItemKey.of(currentItem);
                     var inserted = StorageHelper.insert(networkStorage, in, currentItem.getCount(),
                             cct.getActionSource());
                     if (inserted < currentItem.getCount()) {
@@ -238,7 +238,7 @@ public record FillCraftingGridFromRecipePacket(
     }
 
     /**
-     * From a stream of AE item stacks, pick the one with the highest available amount in the network. Returns null if
+     * From a stream of TL item stacks, pick the one with the highest available amount in the network. Returns null if
      * the stream is empty.
      * <p/>
      * We normalize the stored amount vs. the amount needed for the recipe. While this is irrelevant for crafting
@@ -252,19 +252,19 @@ public record FillCraftingGridFromRecipePacket(
      * once.
      * </pre>
      */
-    private List<AEItemKey> findBestMatchingItemStack(Ingredient ingredient, IPartitionList filter,
+    private List<TLItemKey> findBestMatchingItemStack(Ingredient ingredient, IPartitionList filter,
             KeyCounter storage) {
         return Arrays.stream(ingredient.getItems())//
-                .map(AEItemKey::of) //
+                .map(TLItemKey::of) //
                 .filter(r -> r != null && (filter == null || filter.isListed(r)))
                 .flatMap(s -> storage.findFuzzy(s, FuzzyMode.IGNORE_ALL).stream())//
                 // While FuzzyMode.IGNORE_ALL will retrieve all stacks of the same Item which matches
                 // standard Vanilla Ingredient matching, there are NBT-matching Ingredient subclasses on Forge,
                 // and Mods might actually have mixed into Ingredient
-                .filter(e -> ((AEItemKey) e.getKey()).matches(ingredient))
+                .filter(e -> ((TLItemKey) e.getKey()).matches(ingredient))
                 // Sort in descending order of availability
                 .sorted((a, b) -> Long.compare(b.getLongValue(), a.getLongValue()))//
-                .map(e -> (AEItemKey) e.getKey())//
+                .map(e -> (TLItemKey) e.getKey())//
                 .toList();
     }
 }

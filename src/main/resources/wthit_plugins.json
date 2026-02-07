@@ -1,5 +1,5 @@
 {
-  "ae2:wthit": {
+  "tl2:wthit": {
     "initializer": "appeng.integration.modules.wthit.WthitModule",
     "side": "*"
   }

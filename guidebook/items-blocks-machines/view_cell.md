@@ -7,7 +7,7 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:view_cell
+- tl2:view_cell
 ---
 
 # View Cell

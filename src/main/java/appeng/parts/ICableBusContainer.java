@@ -34,7 +34,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.api.parts.SelectedPart;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLColor;
 import appeng.client.render.cablebus.CableBusRenderState;
 
 public interface ICableBusContainer {
@@ -59,7 +59,7 @@ public interface ICableBusContainer {
 
     SelectedPart selectPartLocal(Vec3 v3);
 
-    boolean recolourBlock(Direction side, AEColor colour, Player who);
+    boolean recolourBlock(Direction side, TLColor colour, Player who);
 
     boolean isLadder(LivingEntity entity);
 

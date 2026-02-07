@@ -27,13 +27,13 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.OrientationStrategies;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.misc.CellWorkbenchBlockEntity;
 import appeng.menu.MenuOpener;
 import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.locator.MenuLocators;
 
-public class CellWorkbenchBlock extends AEBaseEntityBlock<CellWorkbenchBlockEntity> {
+public class CellWorkbenchBlock extends TLBaseEntityBlock<CellWorkbenchBlockEntity> {
 
     public CellWorkbenchBlock() {
         super(metalProps());

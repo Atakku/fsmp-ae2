@@ -7,7 +7,7 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:quartz_block
+- tl2:quartz_block
 ---
 
 # The Certus Quartz Block

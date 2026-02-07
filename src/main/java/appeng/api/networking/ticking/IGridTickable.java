@@ -27,7 +27,7 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridNodeService;
 
 /**
- * Implement on IGridHosts which want to use AE's Network Ticking Feature.
+ * Implement on IGridHosts which want to use TL's Network Ticking Feature.
  * <p/>
  * <strong>Important note regarding IGridTickables with more then one one node:</strong>
  * <p/>
@@ -38,7 +38,7 @@ import appeng.api.networking.IGridNodeService;
 public interface IGridTickable extends IGridNodeService {
 
     /**
-     * Return a valid TickingRequest to tell AE a guide for which type of responsiveness your device wants.
+     * Return a valid TickingRequest to tell TL a guide for which type of responsiveness your device wants.
      * <p>
      * This will be called for your block entity any time your block entity changes grids, this can happen at any time,
      * so if your using the sleep feature you may wish to preserve your sleep, in the result of this method. or you can
@@ -49,7 +49,7 @@ public interface IGridTickable extends IGridNodeService {
     TickingRequest getTickingRequest(IGridNode node);
 
     /**
-     * AE lets you adjust your tick rate based on the results of your tick, if your block as accomplished work you may
+     * TL lets you adjust your tick rate based on the results of your tick, if your block as accomplished work you may
      * wish to increase the ticking speed, if your block is idle you may wish to slow it down.
      * <p>
      * Its up to you.

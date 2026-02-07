@@ -19,10 +19,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.connection.ConnectionType;
 
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
-import appeng.api.storage.AEKeyFilter;
-import appeng.core.AELog;
+import appeng.api.stacks.TLKey;
+import appeng.api.storage.TLKeyFilter;
+import appeng.core.TLLog;
 import appeng.core.network.ClientboundPacket;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.menu.me.common.GridInventoryEntry;
@@ -94,7 +94,7 @@ public record MEInventoryUpdatePacket(
         private int entryCount;
 
         @Nullable
-        private AEKeyFilter filter;
+        private TLKeyFilter filter;
 
         public Builder(int containerId, boolean fullUpdate, RegistryAccess registryAccess) {
             this.containerId = containerId;
@@ -102,14 +102,14 @@ public record MEInventoryUpdatePacket(
             this.registryAccess = registryAccess;
         }
 
-        public void setFilter(@Nullable AEKeyFilter filter) {
+        public void setFilter(@Nullable TLKeyFilter filter) {
             this.filter = filter;
         }
 
         public void addFull(IncrementalUpdateHelper updateHelper,
                 KeyCounter networkStorage,
                 KeyCounter requestables) {
-            var keys = new HashSet<AEKey>();
+            var keys = new HashSet<TLKey>();
             keys.addAll(networkStorage.keySet());
             keys.addAll(requestables.keySet());
 
@@ -130,12 +130,12 @@ public record MEInventoryUpdatePacket(
         public void addChanges(IncrementalUpdateHelper updateHelper,
                 KeyCounter networkStorage,
                 KeyCounter requestables) {
-            for (AEKey key : updateHelper) {
+            for (TLKey key : updateHelper) {
                 if (this.filter != null && !this.filter.matches(key)) {
                     continue;
                 }
 
-                AEKey sendKey;
+                TLKey sendKey;
                 Long serial = updateHelper.getSerial(key);
 
                 // Try to serialize the item into the buffer
@@ -222,7 +222,7 @@ public record MEInventoryUpdatePacket(
      */
     private static void writeEntry(RegistryFriendlyByteBuf buffer, GridInventoryEntry entry) {
         buffer.writeVarLong(entry.getSerial());
-        AEKey.writeOptionalKey(buffer, entry.getWhat());
+        TLKey.writeOptionalKey(buffer, entry.getWhat());
         buffer.writeVarLong(entry.getStoredAmount());
         buffer.writeVarLong(entry.getRequestableAmount());
     }
@@ -232,7 +232,7 @@ public record MEInventoryUpdatePacket(
      */
     public static GridInventoryEntry readEntry(RegistryFriendlyByteBuf buffer) {
         long serial = buffer.readVarLong();
-        AEKey what = AEKey.readOptionalKey(buffer);
+        TLKey what = TLKey.readOptionalKey(buffer);
         long storedAmount = buffer.readVarLong();
         long requestableAmount = buffer.readVarLong();
         return new GridInventoryEntry(serial, what, storedAmount, requestableAmount);
@@ -245,7 +245,7 @@ public record MEInventoryUpdatePacket(
                 && player.containerMenu instanceof MEStorageMenu meMenu) {
             var clientRepo = meMenu.getClientRepo();
             if (clientRepo == null) {
-                AELog.info("Ignoring ME inventory update packet because no client repo is available.");
+                TLLog.info("Ignoring ME inventory update packet because no client repo is available.");
                 return;
             }
 

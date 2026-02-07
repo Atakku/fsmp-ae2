@@ -18,9 +18,9 @@
 
 package appeng.items.materials;
 
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 
-public final class MaterialItem extends AEBaseItem {
+public final class MaterialItem extends TLBaseItem {
     public MaterialItem(Properties properties) {
         super(properties);
     }

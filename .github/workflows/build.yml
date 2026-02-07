@@ -46,13 +46,6 @@ jobs:
 
       - name: Run Game Tests
         run: ./gradlew runGametest
-      - name: Upload new Source Text Strings to Crowdin
-        run: ./gradlew uploadToCrowdin
-        env:
-          GIT_BRANCH: master
-          CROWDIN_TOKEN: ${{ secrets.CROWDIN_TOKEN }}
-        continue-on-error: true
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
 
       # Always upload test results
       - name: Merge Test Reports
@@ -73,12 +66,12 @@ jobs:
       - name: Prepare artifact metadata. Note that VERSION is set by the gradle script.
         id: prepare_artifact_metadata
         run: |
-          echo ARTIFACT_PATH=./build/libs/appliedenergistics2-${VERSION}.jar >> $GITHUB_OUTPUT
-          echo ARTIFACT_NAME=appliedenergistics2-${VERSION}.jar >> $GITHUB_OUTPUT
-          echo JAVADOC_PATH=./build/libs/appliedenergistics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
-          echo JAVADOC_NAME=appliedenergistics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
-          echo API_PATH=./build/libs/appliedenergistics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
-          echo API_NAME=appliedenergistics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
+          echo ARTIFACT_PATH=./build/libs/theoreticallethargics2-${VERSION}.jar >> $GITHUB_OUTPUT
+          echo ARTIFACT_NAME=theoreticallethargics2-${VERSION}.jar >> $GITHUB_OUTPUT
+          echo JAVADOC_PATH=./build/libs/theoreticallethargics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
+          echo JAVADOC_NAME=theoreticallethargics2-${VERSION}-javadoc.jar >> $GITHUB_OUTPUT
+          echo API_PATH=./build/libs/theoreticallethargics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
+          echo API_NAME=theoreticallethargics2-${VERSION}-api.jar >> $GITHUB_OUTPUT
           echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       - name: Archive build results
         run: tar -I zstd -cf build.tar.zst build/libs build/repo

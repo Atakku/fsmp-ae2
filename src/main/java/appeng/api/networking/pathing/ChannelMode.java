@@ -1,7 +1,7 @@
 package appeng.api.networking.pathing;
 
 /**
- * Defines how AE2's channel capacities work.
+ * Defines how TL2's channel capacities work.
  */
 public enum ChannelMode {
     /**

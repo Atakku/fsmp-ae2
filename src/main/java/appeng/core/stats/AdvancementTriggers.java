@@ -36,10 +36,6 @@ public class AdvancementTriggers {
      * Has a network with 2048 channels
      */
     public static final PlayerTrigger NETWORK_ADMIN = new PlayerTrigger();
-    /**
-     * Placed a storage bus on an interface.
-     */
-    public static final PlayerTrigger RECURSIVE = new PlayerTrigger();
 
     public static Criterion<?> networkApprenticeCriterion() {
         return NETWORK_APPRENTICE.createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
@@ -51,9 +47,5 @@ public class AdvancementTriggers {
 
     public static Criterion<?> networkAdminCriterion() {
         return NETWORK_ADMIN.createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
-    }
-
-    public static Criterion<?> recursiveCriterion() {
-        return RECURSIVE.createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
     }
 }

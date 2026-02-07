@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "tl2:fluix_pearl"
+    },
+    "b": {
+      "tag": "c:ingots/iron"
+    },
+    "c": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "pattern": [
+    " a ",
+    "bcb",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:wireless_receiver"
+  }
+}

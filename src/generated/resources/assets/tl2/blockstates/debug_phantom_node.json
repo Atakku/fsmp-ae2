@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tl2:block/debug_phantom_node"
+    }
+  }
+}

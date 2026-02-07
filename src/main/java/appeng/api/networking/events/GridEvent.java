@@ -26,7 +26,7 @@ package appeng.api.networking.events;
 import appeng.api.networking.IGrid;
 
 /**
- * Part of AE's Event Bus.
+ * Part of TL's Event Bus.
  *
  * Posted via {@link IGrid}.postEvent.
  */

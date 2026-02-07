@@ -40,15 +40,15 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 
 import appeng.core.AppEng;
 import appeng.init.InitMenuTypes;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.MenuOpener;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.locator.MenuHostLocator;
 import appeng.menu.locator.MenuLocators;
 
 /**
  * Builder that allows creation of menu types which can be opened from multiple types of hosts.
  */
-public final class MenuTypeBuilder<M extends AEBaseMenu, I> {
+public final class MenuTypeBuilder<M extends TLBaseMenu, I> {
 
     @Nullable
     private ResourceLocation id;
@@ -78,12 +78,12 @@ public final class MenuTypeBuilder<M extends AEBaseMenu, I> {
         this.factory = factory;
     }
 
-    public static <C extends AEBaseMenu, I> MenuTypeBuilder<C, I> create(MenuFactory<C, I> factory,
+    public static <C extends TLBaseMenu, I> MenuTypeBuilder<C, I> create(MenuFactory<C, I> factory,
             Class<I> hostInterface) {
         return new MenuTypeBuilder<>(hostInterface, factory);
     }
 
-    public static <C extends AEBaseMenu, I> MenuTypeBuilder<C, I> create(TypedMenuFactory<C, I> factory,
+    public static <C extends TLBaseMenu, I> MenuTypeBuilder<C, I> create(TypedMenuFactory<C, I> factory,
             Class<I> hostInterface) {
         return new MenuTypeBuilder<>(hostInterface, factory);
     }
@@ -165,8 +165,8 @@ public final class MenuTypeBuilder<M extends AEBaseMenu, I> {
 
             @Override
             public boolean shouldTriggerClientSideContainerClosingOnOpen() {
-                // Do not send close packets when switching between AE menus
-                return !(player.containerMenu instanceof AEBaseMenu);
+                // Do not send close packets when switching between TL menus
+                return !(player.containerMenu instanceof TLBaseMenu);
             }
         }
 

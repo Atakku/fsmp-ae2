@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "tl2:block/generics/bottom",
+    "side": "tl2:block/cell_workbench_side",
+    "top": "tl2:block/cell_workbench_top"
+  }
+}

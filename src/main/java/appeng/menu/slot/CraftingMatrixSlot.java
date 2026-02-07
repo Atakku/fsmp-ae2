@@ -22,13 +22,13 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.inventories.InternalInventory;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 
 public class CraftingMatrixSlot extends AppEngSlot {
-    private final AEBaseMenu c;
+    private final TLBaseMenu c;
     private final Container wrappedInventory;
 
-    public CraftingMatrixSlot(AEBaseMenu c, InternalInventory inv, int invSlot) {
+    public CraftingMatrixSlot(TLBaseMenu c, InternalInventory inv, int invSlot) {
         super(inv, invSlot);
         this.c = c;
         this.wrappedInventory = inv.toContainer();

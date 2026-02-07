@@ -36,8 +36,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import appeng.core.definitions.AEBlockEntities;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.TLBlockEntities;
+import appeng.core.definitions.TLBlocks;
 import appeng.parts.PartPlacement;
 
 public final class PartHelper {
@@ -46,7 +46,7 @@ public final class PartHelper {
 
     /**
      * When implementing a custom part in an addon, you can use this method in
-     * {@link net.minecraft.world.item.Item#useOn} of your parts item (if you're not using AE2s internal PartItem class)
+     * {@link net.minecraft.world.item.Item#useOn} of your parts item (if you're not using TL2s internal PartItem class)
      * to implement part placement.
      *
      * @return The result of placement suitable for returning from
@@ -135,9 +135,9 @@ public final class PartHelper {
                 return null;
             }
 
-            var state = AEBlocks.CABLE_BUS.block().getStateForPlacement(level, pos);
+            var state = TLBlocks.CABLE_BUS.block().getStateForPlacement(level, pos);
             level.setBlockAndUpdate(pos, state);
-            return AEBlockEntities.CABLE_BUS.getBlockEntity(level, pos);
+            return TLBlockEntities.CABLE_BUS.getBlockEntity(level, pos);
         }
     }
 
@@ -153,9 +153,9 @@ public final class PartHelper {
             return null;
         }
 
-        var state = AEBlocks.CABLE_BUS.block().getStateForPlacement(level, pos);
+        var state = TLBlocks.CABLE_BUS.block().getStateForPlacement(level, pos);
         level.setBlockAndUpdate(pos, state);
-        return AEBlockEntities.CABLE_BUS.getBlockEntity(level, pos);
+        return TLBlockEntities.CABLE_BUS.getBlockEntity(level, pos);
     }
 
     public static boolean canPlacePartHost(@Nullable Player player, Level level, BlockPos pos) {

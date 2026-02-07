@@ -33,8 +33,8 @@ import net.minecraft.world.item.ItemStack;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.stacks.GenericStack;
 import appeng.client.gui.Icon;
-import appeng.core.AELog;
-import appeng.menu.AEBaseMenu;
+import appeng.core.TLLog;
+import appeng.menu.TLBaseMenu;
 
 public class AppEngSlot extends Slot {
     private static final Container EMPTY_INVENTORY = new SimpleContainer(0);
@@ -48,7 +48,7 @@ public class AppEngSlot extends Slot {
     private Supplier<@Nullable List<Component>> emptyTooltip = () -> null;
 
     private boolean isDraggable = true;
-    private AEBaseMenu menu = null;
+    private TLBaseMenu menu = null;
     private boolean active = true;
 
     /**
@@ -251,11 +251,11 @@ public class AppEngSlot extends Slot {
         this.isDraggable = isDraggable;
     }
 
-    protected AEBaseMenu getMenu() {
+    protected TLBaseMenu getMenu() {
         return this.menu;
     }
 
-    public void setMenu(AEBaseMenu menu) {
+    public void setMenu(TLBaseMenu menu) {
         this.menu = menu;
     }
 
@@ -273,7 +273,7 @@ public class AppEngSlot extends Slot {
                 validState = getCurrentValidationState();
             } catch (Exception e) {
                 validState = false;
-                AELog.warn("Failed to update validation state for slot %s: %s", this, e);
+                TLLog.warn("Failed to update validation state for slot %s: %s", this, e);
             }
         }
         return validState;

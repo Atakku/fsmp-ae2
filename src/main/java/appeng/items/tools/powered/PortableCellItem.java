@@ -33,8 +33,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.api.config.FuzzyMode;
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.ids.TLComponents;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.cells.IBasicCellItem;
 import appeng.core.AppEng;
 import appeng.items.contents.CellConfig;
@@ -44,10 +44,10 @@ import appeng.util.ConfigInventory;
 public class PortableCellItem extends AbstractPortableCell implements IBasicCellItem {
 
     private final StorageTier tier;
-    private final AEKeyType keyType;
+    private final TLKeyType keyType;
     private final int totalTypes;
 
-    public PortableCellItem(AEKeyType keyType, int totalTypes, MenuType<?> menuType, StorageTier tier,
+    public PortableCellItem(TLKeyType keyType, int totalTypes, MenuType<?> menuType, StorageTier tier,
             Properties props, int defaultColor) {
         super(menuType, props, defaultColor);
         this.tier = tier;
@@ -95,16 +95,16 @@ public class PortableCellItem extends AbstractPortableCell implements IBasicCell
 
     @Override
     public FuzzyMode getFuzzyMode(ItemStack is) {
-        return is.getOrDefault(AEComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
+        return is.getOrDefault(TLComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
     }
 
     @Override
     public void setFuzzyMode(ItemStack is, FuzzyMode fzMode) {
-        is.set(AEComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
+        is.set(TLComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
     }
 
     @Override
-    public AEKeyType getKeyType() {
+    public TLKeyType getKeyType() {
         return keyType;
     }
 

@@ -15,22 +15,22 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypes;
 import appeng.api.stacks.GenericStack;
-import appeng.api.storage.AEKeySlotFilter;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypes;
+import appeng.api.storage.TLKeySlotFilter;
 import appeng.helpers.externalstorage.GenericStackInv;
 import appeng.me.helpers.BaseActionSource;
 
 /**
- * Configuration inventories contain a set of {@link AEKey} references that configure how certain aspects of a machine
+ * Configuration inventories contain a set of {@link TLKey} references that configure how certain aspects of a machine
  * work.
  * <p/>
  * They can expose an {@link net.minecraft.world.item.ItemStack} based wrapper that can be used as backing for
- * {@link net.minecraft.world.inventory.Slot} in {@link appeng.menu.AEBaseMenu}.
+ * {@link net.minecraft.world.inventory.Slot} in {@link appeng.menu.TLBaseMenu}.
  * <p/>
  * Primarily their role beyond their base class {@link GenericStackInv} is enforcing the configured filter even on
  * returned keys, not just when setting them.
@@ -50,7 +50,7 @@ public class ConfigInventory extends GenericStackInv {
         return EMPTY_TYPES;
     }
 
-    protected ConfigInventory(Set<AEKeyType> supportedTypes, @Nullable AEKeySlotFilter slotFilter,
+    protected ConfigInventory(Set<TLKeyType> supportedTypes, @Nullable TLKeySlotFilter slotFilter,
             Mode mode,
             int size, @Nullable Runnable listener,
             boolean allowOverstacking) {
@@ -62,9 +62,9 @@ public class ConfigInventory extends GenericStackInv {
     public final static class Builder {
         private final Mode mode;
         private final int size;
-        private Set<AEKeyType> supportedTypes = AEKeyTypes.getAll();
+        private Set<TLKeyType> supportedTypes = TLKeyTypes.getAll();
         @Nullable
-        private AEKeySlotFilter slotFilter;
+        private TLKeySlotFilter slotFilter;
         @Nullable
         private Runnable changeListener;
         private boolean allowOverstacking;
@@ -74,12 +74,12 @@ public class ConfigInventory extends GenericStackInv {
             this.size = size;
         }
 
-        public Builder supportedType(AEKeyType type) {
+        public Builder supportedType(TLKeyType type) {
             this.supportedTypes = Set.of(type);
             return this;
         }
 
-        public Builder supportedTypes(AEKeyType type, AEKeyType... moreTypes) {
+        public Builder supportedTypes(TLKeyType type, TLKeyType... moreTypes) {
             if (moreTypes.length == 0) {
                 return supportedType(type);
             }
@@ -89,7 +89,7 @@ public class ConfigInventory extends GenericStackInv {
             return this;
         }
 
-        public Builder supportedTypes(Collection<AEKeyType> types) {
+        public Builder supportedTypes(Collection<TLKeyType> types) {
             if (types.isEmpty()) {
                 throw new IllegalArgumentException("Configuration inventories must support at least one key type");
             }
@@ -100,7 +100,7 @@ public class ConfigInventory extends GenericStackInv {
         /**
          * Set a filter that limits what can be inserted to certain slots.
          */
-        public Builder slotFilter(AEKeySlotFilter slotFilter) {
+        public Builder slotFilter(TLKeySlotFilter slotFilter) {
             this.slotFilter = slotFilter;
             return this;
         }
@@ -108,7 +108,7 @@ public class ConfigInventory extends GenericStackInv {
         /**
          * Set a filter that applies to all slots at once.
          */
-        public Builder slotFilter(Predicate<AEKey> filter) {
+        public Builder slotFilter(Predicate<TLKey> filter) {
             this.slotFilter = (slot, what) -> filter.apply(what);
             return this;
         }
@@ -172,7 +172,7 @@ public class ConfigInventory extends GenericStackInv {
 
     @Nullable
     @Override
-    public AEKey getKey(int slot) {
+    public TLKey getKey(int slot) {
         var key = super.getKey(slot);
         if (key == null) {
             return null;
@@ -185,8 +185,8 @@ public class ConfigInventory extends GenericStackInv {
         return key;
     }
 
-    public Set<AEKey> keySet() {
-        var result = new LinkedHashSet<AEKey>();
+    public Set<TLKey> keySet() {
+        var result = new LinkedHashSet<TLKey>();
         for (int i = 0; i < stacks.length; i++) {
             var what = getKey(i);
             if (what != null) {
@@ -222,7 +222,7 @@ public class ConfigInventory extends GenericStackInv {
     }
 
     @Override
-    public long getMaxAmount(AEKey key) {
+    public long getMaxAmount(TLKey key) {
         if (allowOverstacking)
             return getCapacity(key.getType());
         return super.getMaxAmount(key);
@@ -234,16 +234,16 @@ public class ConfigInventory extends GenericStackInv {
     }
 
     public ConfigInventory addFilter(ItemLike item) {
-        addFilter(AEItemKey.of(item));
+        addFilter(TLItemKey.of(item));
         return this;
     }
 
     public ConfigInventory addFilter(Fluid fluid) {
-        addFilter(AEFluidKey.of(fluid));
+        addFilter(TLFluidKey.of(fluid));
         return this;
     }
 
-    public ConfigInventory addFilter(AEKey what) {
+    public ConfigInventory addFilter(TLKey what) {
         Preconditions.checkState(getMode() == Mode.CONFIG_TYPES);
         insert(what, 1, Actionable.MODULATE, new BaseActionSource());
         return this;

@@ -1,12 +1,12 @@
 package appeng.api.storage;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
-class NoOpKeyFilter implements AEKeyFilter {
+class NoOpKeyFilter implements TLKeyFilter {
     static NoOpKeyFilter INSTANCE = new NoOpKeyFilter();
 
     @Override
-    public boolean matches(AEKey what) {
+    public boolean matches(TLKey what) {
         return true;
     }
 

@@ -11,9 +11,9 @@ import net.minecraft.world.inventory.MenuType;
 
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.ISubMenu;
 import appeng.menu.MenuOpener;
+import appeng.menu.TLBaseMenu;
 
 public record SwitchGuisPacket(
         @Nullable MenuType<? extends ISubMenu> newGui) implements ServerboundPacket {
@@ -70,7 +70,7 @@ public record SwitchGuisPacket(
     }
 
     private void doOpenSubMenu(ServerPlayer player) {
-        if (player.containerMenu instanceof AEBaseMenu bc) {
+        if (player.containerMenu instanceof TLBaseMenu bc) {
             var locator = bc.getLocator();
             if (locator != null) {
                 MenuOpener.open(newGui, player, locator);

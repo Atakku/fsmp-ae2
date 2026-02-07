@@ -31,11 +31,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.OrientationStrategies;
 import appeng.api.storage.cells.CellState;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.storage.MEChestBlockEntity;
 import appeng.core.localization.PlayerMessages;
 
-public class MEChestBlock extends AEBaseEntityBlock<MEChestBlockEntity> {
+public class MEChestBlock extends TLBaseEntityBlock<MEChestBlockEntity> {
 
     public final static BooleanProperty LIGHTS_ON = BooleanProperty.create("lights_on");
 

@@ -7,23 +7,23 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:item_cell_housing
-- ae2:fluid_cell_housing
-- ae2:cell_component_1k
-- ae2:cell_component_4k
-- ae2:cell_component_16k
-- ae2:cell_component_64k
-- ae2:cell_component_256k
-- ae2:item_storage_cell_1k
-- ae2:item_storage_cell_4k
-- ae2:item_storage_cell_16k
-- ae2:item_storage_cell_64k
-- ae2:item_storage_cell_256k
-- ae2:fluid_storage_cell_1k
-- ae2:fluid_storage_cell_4k
-- ae2:fluid_storage_cell_16k
-- ae2:fluid_storage_cell_64k
-- ae2:fluid_storage_cell_256k
+- tl2:item_cell_housing
+- tl2:fluid_cell_housing
+- tl2:cell_component_1k
+- tl2:cell_component_4k
+- tl2:cell_component_16k
+- tl2:cell_component_64k
+- tl2:cell_component_256k
+- tl2:item_storage_cell_1k
+- tl2:item_storage_cell_4k
+- tl2:item_storage_cell_16k
+- tl2:item_storage_cell_64k
+- tl2:item_storage_cell_256k
+- tl2:fluid_storage_cell_1k
+- tl2:fluid_storage_cell_4k
+- tl2:fluid_storage_cell_16k
+- tl2:fluid_storage_cell_64k
+- tl2:fluid_storage_cell_256k
 ---
 
 # Storage Cells
@@ -57,7 +57,7 @@ item_ids:
 Storage Cells are one of the primary methods of storage in Applied Energistics. They go in <ItemLink id="drive" />s
 or <ItemLink id="chest" />s.
 
-See [Bytes and Types](../ae2-mechanics/bytes-and-types.md) for an explanation of their capacities in bytes and types.
+See [Bytes and Types](../tl2-mechanics/bytes-and-types.md) for an explanation of their capacities in bytes and types.
 
 Storage components can be removed from the housing if the cell is empty by shift-right clicking with the cell in your hand.
 
@@ -69,7 +69,7 @@ Storage components can be removed from the housing if the cell is empty by shift
 
 ## Storage Capacity with Varying Type Count
 
-The [upfront cost of types](../ae2-mechanics/bytes-and-types.md) is such that a cell holding 1 type can hold 2x as much as a cell with all 63 types in use.
+The [upfront cost of types](../tl2-mechanics/bytes-and-types.md) is such that a cell holding 1 type can hold 2x as much as a cell with all 63 types in use.
 
 | Cell                                     | Total Capacity of Cell With 1 Type In Use | Total Capacity of Cell With 63 Types In Use |
 | ---------------------------------------- | ----------------------------------------: | ------------------------------------------: |
@@ -122,7 +122,7 @@ Housings by themselves are crafted like so:
 
 # Storage Components
 
-Storage Components are the core of all AE2 cells, determining the capacity of the cells. Each tier increases the capacity
+Storage Components are the core of all TL2 cells, determining the capacity of the cells. Each tier increases the capacity
 by 4x and costs 3 of the previous tier.
 
 <Column>

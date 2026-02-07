@@ -8,7 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 import appeng.api.features.GridLinkables;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 
 @EventBusSubscriber
 public final class SpawnTestTools {
@@ -24,7 +24,7 @@ public final class SpawnTestTools {
         var wap = waps.iterator().next();
         var inventory = e.getInventory();
 
-        for (var item : List.of(AEItems.WIRELESS_CRAFTING_TERMINAL, AEItems.WIRELESS_TERMINAL)) {
+        for (var item : List.of(TLItems.WIRELESS_CRAFTING_TERMINAL, TLItems.WIRELESS_TERMINAL)) {
             var terminal = item.stack();
             // Link it to the WAP we just placed
             GridLinkables.get(item).link(terminal, GlobalPos.of(wap.getLevel().dimension(), wap.getBlockPos()));

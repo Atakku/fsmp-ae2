@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 @OnlyIn(Dist.CLIENT)
 public final class PinnedKeys {
@@ -22,10 +22,10 @@ public final class PinnedKeys {
     public static final int MAX_PINNED = 9;
 
     // Compares by time the entry was pinned in ascending order
-    private static final Comparator<Map.Entry<AEKey, PinInfo>> TIME_COMPARATOR = Comparator
+    private static final Comparator<Map.Entry<TLKey, PinInfo>> TIME_COMPARATOR = Comparator
             .comparing(e -> e.getValue().since);
 
-    private static final Map<AEKey, PinInfo> pinned = new HashMap<>(MAX_PINNED);
+    private static final Map<TLKey, PinInfo> pinned = new HashMap<>(MAX_PINNED);
 
     private PinnedKeys() {
     }
@@ -34,12 +34,12 @@ public final class PinnedKeys {
         return pinned.isEmpty();
     }
 
-    public static Set<AEKey> getPinnedKeys() {
+    public static Set<TLKey> getPinnedKeys() {
         return ImmutableSet.copyOf(pinned.keySet());
     }
 
     @Nullable
-    public static PinInfo getPinInfo(AEKey key) {
+    public static PinInfo getPinInfo(TLKey key) {
         return pinned.get(key);
     }
 
@@ -47,7 +47,7 @@ public final class PinnedKeys {
         pinned.clear();
     }
 
-    public static void pinKey(AEKey key, PinReason reason) {
+    public static void pinKey(TLKey key, PinReason reason) {
         // Refresh timer for existing pinned keys if they're re-pinned
         var info = pinned.get(key);
         if (info != null) {
@@ -66,11 +66,11 @@ public final class PinnedKeys {
         }
     }
 
-    public static void unpin(AEKey what) {
+    public static void unpin(TLKey what) {
         pinned.remove(what);
     }
 
-    public static boolean isPinned(AEKey what) {
+    public static boolean isPinned(TLKey what) {
         return pinned.containsKey(what);
     }
 

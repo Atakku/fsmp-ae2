@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "tl2:block/quartz_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tl2:block/quartz_pillar"
+    },
+    "axis=z": {
+      "model": "tl2:block/quartz_pillar",
+      "x": 90
+    }
+  },
+  "athena:loader": "athena:pillar",
+  "ctm_textures": {
+    "bottom": "tl2:block/quartz_pillar_bottom",
+    "center": "tl2:block/quartz_pillar_side",
+    "self": "tl2:block/quartz_pillar_side",
+    "top": "tl2:block/quartz_pillar_top",
+    "particle": "tl2:block/cut_quartz_block"
+  }
+}

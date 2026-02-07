@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
 import appeng.helpers.InventoryAction;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 import appeng.util.Platform;
 
 public record InventoryActionPacket(InventoryAction action,
@@ -57,7 +57,7 @@ public record InventoryActionPacket(InventoryAction action,
 
     @Override
     public void handleOnServer(ServerPlayer player) {
-        if (player.containerMenu instanceof AEBaseMenu baseMenu) {
+        if (player.containerMenu instanceof TLBaseMenu baseMenu) {
             if (action == InventoryAction.SET_FILTER) {
                 baseMenu.setFilter(this.slot, this.slotItem);
             } else {

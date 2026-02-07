@@ -32,26 +32,24 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.implementations.CellWorkbenchScreen;
 import appeng.client.gui.implementations.DriveScreen;
 import appeng.client.gui.implementations.IOPortScreen;
 import appeng.client.gui.implementations.MEChestScreen;
 import appeng.client.gui.implementations.PriorityScreen;
-import appeng.client.gui.implementations.SkyChestScreen;
 import appeng.client.gui.implementations.StorageLevelEmitterScreen;
 import appeng.client.gui.implementations.WirelessAccessPointScreen;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.client.gui.me.items.CraftingTermScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.style.StyleManager;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.implementations.CellWorkbenchMenu;
 import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.MEChestMenu;
 import appeng.menu.implementations.PriorityMenu;
-import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.me.common.MEStorageMenu;
@@ -73,7 +71,6 @@ public final class InitScreens {
 
     public static void init(RegisterMenuScreensEvent event) {
         // spotless:off
-        register(event, SkyChestMenu.TYPE, SkyChestScreen::new, "/screens/sky_chest.json");
         register(event, MEChestMenu.TYPE, MEChestScreen::new, "/screens/me_chest.json");
         register(event, WirelessAccessPointMenu.TYPE, WirelessAccessPointScreen::new, "/screens/wireless_access_point.json");
         register(event, DriveMenu.TYPE, DriveScreen::new, "/screens/drive.json");
@@ -117,7 +114,7 @@ public final class InitScreens {
     /**
      * Registers a screen for a given menu and ensures the given style is applied after opening the screen.
      */
-    public static <M extends AEBaseMenu, U extends AEBaseScreen<M>> void register(RegisterMenuScreensEvent event,
+    public static <M extends TLBaseMenu, U extends TLBaseScreen<M>> void register(RegisterMenuScreensEvent event,
             MenuType<M> type,
             StyledScreenFactory<M, U> factory,
             String stylePath) {

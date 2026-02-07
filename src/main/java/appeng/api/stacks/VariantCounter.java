@@ -11,9 +11,9 @@ import it.unimi.dsi.fastutil.objects.Object2LongSortedMap;
 import appeng.api.config.FuzzyMode;
 
 /**
- * Tallies a negative or positive amount for sub-variants of a {@link AEKey}.
+ * Tallies a negative or positive amount for sub-variants of a {@link TLKey}.
  */
-abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
+abstract class VariantCounter implements Iterable<Object2LongMap.Entry<TLKey>> {
     /**
      * Enable to skip and remove keys that are mapped to zero.
      */
@@ -27,15 +27,15 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         this.dropZeros = dropZeros;
     }
 
-    public long get(AEKey key) {
+    public long get(TLKey key) {
         return this.getRecords().getOrDefault(key, 0);
     }
 
-    public void add(AEKey key, long amount) {
+    public void add(TLKey key, long amount) {
         this.getRecords().addTo(key, amount);
     }
 
-    public void set(AEKey key, long amount) {
+    public void set(TLKey key, long amount) {
         if (dropZeros && amount == 0) {
             getRecords().removeLong(key);
         } else {
@@ -43,7 +43,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         }
     }
 
-    public long remove(AEKey key) {
+    public long remove(TLKey key) {
         return getRecords().removeLong(key);
     }
 
@@ -59,7 +59,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         }
     }
 
-    public abstract Collection<Object2LongMap.Entry<AEKey>> findFuzzy(AEKey filter, FuzzyMode fuzzy);
+    public abstract Collection<Object2LongMap.Entry<TLKey>> findFuzzy(TLKey filter, FuzzyMode fuzzy);
 
     public int size() {
         if (!dropZeros) {
@@ -91,7 +91,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     }
 
     @Override
-    public Iterator<Object2LongMap.Entry<AEKey>> iterator() {
+    public Iterator<Object2LongMap.Entry<TLKey>> iterator() {
         if (!dropZeros) {
             return Object2LongMaps.fastIterator(getRecords());
         }
@@ -99,7 +99,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         return new NonDefaultIterator();
     }
 
-    abstract AEKey2LongMap getRecords();
+    abstract TLKey2LongMap getRecords();
 
     /**
      * Sets all amounts to zero.
@@ -137,9 +137,9 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
     /**
      * Only returns entries that do not have amount 0.
      */
-    private class NonDefaultIterator implements Iterator<Object2LongMap.Entry<AEKey>> {
-        private final Iterator<Object2LongMap.Entry<AEKey>> parent;
-        private Object2LongMap.Entry<AEKey> next;
+    private class NonDefaultIterator implements Iterator<Object2LongMap.Entry<TLKey>> {
+        private final Iterator<Object2LongMap.Entry<TLKey>> parent;
+        private Object2LongMap.Entry<TLKey> next;
 
         public NonDefaultIterator() {
             this.parent = Object2LongMaps.fastIterator(getRecords());
@@ -152,7 +152,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
         }
 
         @Override
-        public Object2LongMap.Entry<AEKey> next() {
+        public Object2LongMap.Entry<TLKey> next() {
             if (this.next == null) {
                 throw new NoSuchElementException();
             }
@@ -162,7 +162,7 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
             return result;
         }
 
-        private Object2LongMap.Entry<AEKey> seekNext() {
+        private Object2LongMap.Entry<TLKey> seekNext() {
             while (this.parent.hasNext()) {
                 var entry = this.parent.next();
 
@@ -182,19 +182,19 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
      * ranges via {@link #findFuzzy}.
      */
     static class UnorderedVariantMap extends VariantCounter {
-        private final AEKey2LongMap records = new AEKey2LongMap.OpenHashMap();
+        private final TLKey2LongMap records = new TLKey2LongMap.OpenHashMap();
 
         /**
          * For keys whose primary key does not support fuzzy range lookups, we simply return all records, which amounts
          * to ignoring NBT.
          */
         @Override
-        public Collection<Object2LongMap.Entry<AEKey>> findFuzzy(AEKey filter, FuzzyMode fuzzy) {
+        public Collection<Object2LongMap.Entry<TLKey>> findFuzzy(TLKey filter, FuzzyMode fuzzy) {
             return records.object2LongEntrySet();
         }
 
         @Override
-        AEKey2LongMap getRecords() {
+        TLKey2LongMap getRecords() {
             return records;
         }
 
@@ -211,16 +211,16 @@ abstract class VariantCounter implements Iterable<Object2LongMap.Entry<AEKey>> {
      * {@link #findFuzzy}.
      */
     static class FuzzyVariantMap extends VariantCounter {
-        private final AEKey2LongMap.AVLTreeMap records = FuzzySearch.createMap2Long();
+        private final TLKey2LongMap.AVLTreeMap records = FuzzySearch.createMap2Long();
 
         @Override
-        public Collection<Object2LongMap.Entry<AEKey>> findFuzzy(AEKey key, FuzzyMode fuzzy) {
-            // The cast is necessary because the subMap in the call is not an instance of AEKey2LongMap.AVLTreeMap!
-            return FuzzySearch.findFuzzy((Object2LongSortedMap<AEKey>) records, key, fuzzy).object2LongEntrySet();
+        public Collection<Object2LongMap.Entry<TLKey>> findFuzzy(TLKey key, FuzzyMode fuzzy) {
+            // The cast is necessary because the subMap in the call is not an instance of TLKey2LongMap.AVLTreeMap!
+            return FuzzySearch.findFuzzy((Object2LongSortedMap<TLKey>) records, key, fuzzy).object2LongEntrySet();
         }
 
         @Override
-        AEKey2LongMap getRecords() {
+        TLKey2LongMap getRecords() {
             return this.records;
         }
 

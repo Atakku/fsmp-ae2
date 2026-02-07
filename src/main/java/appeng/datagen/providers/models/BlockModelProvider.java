@@ -22,10 +22,10 @@ import appeng.block.networking.WirelessAccessPointBlock;
 import appeng.block.storage.IOPortBlock;
 import appeng.block.storage.MEChestBlock;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.BlockDefinition;
+import appeng.core.definitions.TLBlocks;
 
-public class BlockModelProvider extends AE2BlockStateProvider {
+public class BlockModelProvider extends TL2BlockStateProvider {
 
     public BlockModelProvider(PackOutput packOutput, ExistingFileHelper exFileHelper) {
         super(packOutput, AppEng.MOD_ID, exFileHelper);
@@ -34,40 +34,30 @@ public class BlockModelProvider extends AE2BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         // These models will be overwritten in code
-        builtInModel(AEBlocks.QUARTZ_GLASS, true);
-        builtInModel(AEBlocks.CABLE_BUS);
+        builtInModel(TLBlocks.QUARTZ_GLASS, true);
+        builtInModel(TLBlocks.CABLE_BUS);
 
         var driveModel = builtInBlockModel("drive");
-        multiVariantGenerator(AEBlocks.DRIVE, Variant.variant().with(VariantProperties.MODEL, driveModel.getLocation()))
+        multiVariantGenerator(TLBlocks.DRIVE, Variant.variant().with(VariantProperties.MODEL, driveModel.getLocation()))
                 .with(createFacingSpinDispatch());
 
         wirelessAccessPoint();
         meChest();
         ioPort();
 
-        simpleBlockAndItem(AEBlocks.FLAWLESS_BUDDING_QUARTZ);
-        simpleBlockAndItem(AEBlocks.FLAWED_BUDDING_QUARTZ);
-        simpleBlockAndItem(AEBlocks.CHIPPED_BUDDING_QUARTZ);
-        simpleBlockAndItem(AEBlocks.DAMAGED_BUDDING_QUARTZ);
+        simpleBlockAndItem(TLBlocks.DEBUG_ITEM_GEN, "block/debug/item_gen");
+        simpleBlockAndItem(TLBlocks.DEBUG_PHANTOM_NODE, "block/debug/phantom_node");
+        simpleBlockAndItem(TLBlocks.DEBUG_CUBE_GEN, "block/debug/cube_gen");
 
-        generateQuartzCluster(AEBlocks.SMALL_QUARTZ_BUD);
-        generateQuartzCluster(AEBlocks.MEDIUM_QUARTZ_BUD);
-        generateQuartzCluster(AEBlocks.LARGE_QUARTZ_BUD);
-        generateQuartzCluster(AEBlocks.QUARTZ_CLUSTER);
-
-        simpleBlockAndItem(AEBlocks.DEBUG_ITEM_GEN, "block/debug/item_gen");
-        simpleBlockAndItem(AEBlocks.DEBUG_PHANTOM_NODE, "block/debug/phantom_node");
-        simpleBlockAndItem(AEBlocks.DEBUG_CUBE_GEN, "block/debug/cube_gen");
-
-        simpleBlockAndItem(AEBlocks.CELL_WORKBENCH, models().cubeBottomTop(
-                modelPath(AEBlocks.CELL_WORKBENCH),
+        simpleBlockAndItem(TLBlocks.CELL_WORKBENCH, models().cubeBottomTop(
+                modelPath(TLBlocks.CELL_WORKBENCH),
                 makeId("block/cell_workbench_side"),
                 makeId("block/generics/bottom"),
                 makeId("block/cell_workbench_top")));
     }
 
     private void meChest() {
-        var multipart = multiPartGenerator(AEBlocks.ME_CHEST);
+        var multipart = multiPartGenerator(TLBlocks.ME_CHEST);
         withOrientations(
                 multipart,
                 Variant.variant().with(VariantProperties.MODEL, AppEng.makeId("block/chest/base")));
@@ -82,7 +72,7 @@ public class BlockModelProvider extends AE2BlockStateProvider {
     }
 
     private void wirelessAccessPoint() {
-        var builder = getMultipartBuilder(AEBlocks.WIRELESS_ACCESS_POINT.block());
+        var builder = getMultipartBuilder(TLBlocks.WIRELESS_ACCESS_POINT.block());
 
         var chassis = models().getExistingFile(AppEng.makeId("block/wireless_access_point_chassis"));
         var antennaOff = models().getExistingFile(AppEng.makeId("block/wireless_access_point_off"));
@@ -122,12 +112,12 @@ public class BlockModelProvider extends AE2BlockStateProvider {
         var offModel = models().getExistingFile(AppEng.makeId("block/io_port"));
         var onModel = models().getExistingFile(AppEng.makeId("block/io_port_on"));
 
-        multiVariantGenerator(AEBlocks.IO_PORT)
+        multiVariantGenerator(TLBlocks.IO_PORT)
                 .with(createFacingSpinDispatch())
                 .with(PropertyDispatch.property(IOPortBlock.POWERED)
                         .select(false, Variant.variant().with(VariantProperties.MODEL, offModel.getLocation()))
                         .select(true, Variant.variant().with(VariantProperties.MODEL, onModel.getLocation())));
-        itemModels().withExistingParent(modelPath(AEBlocks.IO_PORT), offModel.getLocation());
+        itemModels().withExistingParent(modelPath(TLBlocks.IO_PORT), offModel.getLocation());
     }
 
     private String modelPath(BlockDefinition<?> block) {

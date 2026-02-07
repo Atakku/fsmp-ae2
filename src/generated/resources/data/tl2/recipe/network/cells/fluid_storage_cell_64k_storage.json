@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tl2:fluid_cell_housing"
+    },
+    {
+      "item": "tl2:cell_component_64k"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:fluid_storage_cell_64k"
+  }
+}

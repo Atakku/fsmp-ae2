@@ -36,12 +36,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import appeng.core.AEConfig;
-import appeng.core.AELog;
-import appeng.items.AEBaseItem;
+import appeng.core.TLConfig;
+import appeng.core.TLLog;
+import appeng.items.TLBaseItem;
 import appeng.util.InteractionUtil;
 
-public class EraserItem extends AEBaseItem {
+public class EraserItem extends TLBaseItem {
 
     private static final int BOX_SIZE = 48;
     private static final int BLOCK_ERASE_LIMIT = BOX_SIZE * BOX_SIZE * BOX_SIZE;
@@ -104,7 +104,7 @@ public class EraserItem extends AEBaseItem {
             }
         }
 
-        AELog.info("Delete " + blocks + " blocks");
+        TLLog.info("Delete " + blocks + " blocks");
 
         return InteractionResult.sidedSuccess(level.isClientSide());
     }
@@ -156,7 +156,7 @@ public class EraserItem extends AEBaseItem {
 
     @Override
     public void addToMainCreativeTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        if (AEConfig.instance().isDebugToolsEnabled()) {
+        if (TLConfig.instance().isDebugToolsEnabled()) {
             output.accept(this);
         }
     }

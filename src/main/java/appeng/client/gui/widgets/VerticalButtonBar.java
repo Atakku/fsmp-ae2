@@ -28,8 +28,8 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.Rect2i;
 
 import appeng.client.Point;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.ICompositeWidget;
+import appeng.client.gui.TLBaseScreen;
 import appeng.core.AppEng;
 
 /**
@@ -110,7 +110,7 @@ public class VerticalButtonBar implements ICompositeWidget {
      * widgets when this happens.
      */
     @Override
-    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
         this.screenOrigin = Point.fromTopLeft(bounds);
         for (var button : this.buttons) {
             if (button.isFocused()) {

@@ -7,26 +7,26 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:flawless_budding_quartz
-- ae2:flawed_budding_quartz
-- ae2:chipped_budding_quartz
-- ae2:damaged_budding_quartz
-- ae2:small_quartz_bud
-- ae2:medium_quartz_bud
-- ae2:large_quartz_bud
-- ae2:quartz_cluster
+- tl2:flawless_budding_quartz
+- tl2:flawed_budding_quartz
+- tl2:chipped_budding_quartz
+- tl2:damaged_budding_quartz
+- tl2:small_quartz_bud
+- tl2:medium_quartz_bud
+- tl2:large_quartz_bud
+- tl2:quartz_cluster
 ---
 
 # Budding Certus Quartz
 
-(also see [Certus Growth](../ae2-mechanics/certus-growth.md))
+(also see [Certus Growth](../tl2-mechanics/certus-growth.md))
 
 <GameScene zoom="4" background="transparent">
   <ImportStructure src="../assets/assemblies/budding_blocks.snbt" />
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
-Certus quartz buds will sprout from budding certus blocks, similar to amethyst. These are found in [meteorites](../ae2-mechanics/meteorites.md).
+Certus quartz buds will sprout from budding certus blocks, similar to amethyst. These are found in [meteorites](../tl2-mechanics/meteorites.md).
 There are 4 tiers of budding certus blocks: Flawless, Flawed, Chipped, and Damaged. They can be most easily identified
 with a mod like HWYLA, Jade, The One Probe, etc. (or the f3 screen)
 

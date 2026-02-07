@@ -26,7 +26,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.Upgrades;
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.UpgradesPanel;
 import appeng.core.localization.GuiText;
@@ -37,7 +37,7 @@ import appeng.menu.implementations.UpgradeableMenu;
  * This screen adds the ability for {@link IUpgradeableObject} screens to show the upgrade inventory and the player's
  * toolbox to more easily install/remove upgrades.
  */
-public class UpgradeableScreen<T extends UpgradeableMenu<?>> extends AEBaseScreen<T> {
+public class UpgradeableScreen<T extends UpgradeableMenu<?>> extends TLBaseScreen<T> {
 
     public UpgradeableScreen(T menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);

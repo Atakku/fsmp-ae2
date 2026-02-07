@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "tl2:formation_core"
+    },
+    "b": {
+      "tag": "c:ingots/iron"
+    },
+    "c": {
+      "item": "tl2:cell_component_4k"
+    },
+    "d": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "pattern": [
+    "ab ",
+    "bc ",
+    "  d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:color_applicator"
+  }
+}

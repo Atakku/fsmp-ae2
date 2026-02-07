@@ -78,21 +78,6 @@ public class ActionButton extends IconButton {
                 displayName = ButtonToolTips.StashToPlayer;
                 displayValue = ButtonToolTips.StashToPlayerDesc;
             }
-            case ENCODE -> {
-                icon = Icon.WHITE_ARROW_DOWN;
-                displayName = ButtonToolTips.Encode;
-                displayValue = ButtonToolTips.EncodeDescription;
-            }
-            case CYCLE_PROCESSING_OUTPUT -> {
-                icon = Icon.SCHEDULING_DEFAULT;
-                displayName = ButtonToolTips.CycleProcessingOutput;
-                displayValue = ButtonToolTips.CycleProcessingOutputTooltip;
-            }
-            case S_CYCLE_PROCESSING_OUTPUT -> {
-                icon = Icon.S_CYCLE;
-                displayName = ButtonToolTips.CycleProcessingOutput;
-                displayValue = ButtonToolTips.CycleProcessingOutputTooltip;
-            }
             case TERMINAL_SETTINGS -> {
                 icon = Icon.COG;
                 displayName = ButtonToolTips.TerminalSettings;

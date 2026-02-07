@@ -50,13 +50,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import appeng.api.orientation.IOrientationStrategy;
 import appeng.api.orientation.OrientationStrategies;
 import appeng.api.orientation.RelativeSide;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.blockentity.networking.WirelessAccessPointBlockEntity;
 import appeng.menu.MenuOpener;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.locator.MenuLocators;
 
-public class WirelessAccessPointBlock extends AEBaseEntityBlock<WirelessAccessPointBlockEntity>
+public class WirelessAccessPointBlock extends TLBaseEntityBlock<WirelessAccessPointBlockEntity>
         implements SimpleWaterloggedBlock {
 
     public enum State implements StringRepresentable {

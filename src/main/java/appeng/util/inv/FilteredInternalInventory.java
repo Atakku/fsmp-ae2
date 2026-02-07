@@ -24,13 +24,13 @@ import net.minecraft.world.item.ItemStack;
 
 import appeng.api.inventories.BaseInternalInventory;
 import appeng.api.inventories.InternalInventory;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
 public class FilteredInternalInventory extends BaseInternalInventory {
     private final InternalInventory delegate;
-    private final IAEItemFilter filter;
+    private final ITLItemFilter filter;
 
-    public FilteredInternalInventory(InternalInventory delegate, IAEItemFilter filter) {
+    public FilteredInternalInventory(InternalInventory delegate, ITLItemFilter filter) {
         this.delegate = Objects.requireNonNull(delegate);
         this.filter = Objects.requireNonNull(filter);
     }

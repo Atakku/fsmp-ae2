@@ -60,7 +60,7 @@ class InitScreensTest {
     @Test
     void testMissingStyles() {
         List<String> missingStyles = InitScreens.MENU_STYLES.values().stream()
-                .filter(f -> (getClass().getResourceAsStream("/assets/ae2" + f) == null))
+                .filter(f -> (getClass().getResourceAsStream("/assets/tl2" + f) == null))
                 .collect(Collectors.toList());
         assertThat(missingStyles).isEmpty();
     }
@@ -97,9 +97,9 @@ class InitScreensTest {
      */
     @Test
     void testMissingTranslationKeys() throws IOException {
-        // Load AE2 translation data
+        // Load TL2 translation data
         Map<String, String> i18n = new HashMap<>(Language.getInstance().getLanguageData());
-        try (InputStream in = getClass().getResourceAsStream("/assets/ae2/lang/en_us.json")) {
+        try (InputStream in = getClass().getResourceAsStream("/assets/tl2/lang/en_us.json")) {
             Language.loadFromJson(in, i18n::put);
         }
 

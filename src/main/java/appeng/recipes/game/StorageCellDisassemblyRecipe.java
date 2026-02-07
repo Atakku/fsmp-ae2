@@ -19,7 +19,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-import appeng.recipes.AERecipeTypes;
+import appeng.recipes.TLRecipeTypes;
 
 /**
  * Used to handle disassembly of the (Portable) Storage Cells.
@@ -75,7 +75,7 @@ public class StorageCellDisassemblyRecipe extends CustomRecipe {
     public static List<ItemStack> getDisassemblyResult(Level level, Item cell) {
         var recipeManager = level.getRecipeManager();
 
-        for (var holder : recipeManager.byType(AERecipeTypes.CELL_DISASSEMBLY)) {
+        for (var holder : recipeManager.byType(TLRecipeTypes.CELL_DISASSEMBLY)) {
             if (holder.value().storageCell == cell) {
                 return holder.value().getCellDisassemblyItems();
             }
@@ -111,6 +111,6 @@ public class StorageCellDisassemblyRecipe extends CustomRecipe {
 
     @Override
     public RecipeType<?> getType() {
-        return AERecipeTypes.CELL_DISASSEMBLY;
+        return TLRecipeTypes.CELL_DISASSEMBLY;
     }
 }

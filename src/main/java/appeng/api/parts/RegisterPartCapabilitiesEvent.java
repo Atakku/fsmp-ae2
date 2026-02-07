@@ -63,7 +63,7 @@ public class RegisterPartCapabilitiesEvent extends Event implements IModBusEvent
 
     /**
      * When using capabilities with a context other than {@link Direction}, you need to register a mapping function for
-     * AE2 to get the side from the context. It cannot determine which part on a part host should handle the capability
+     * TL2 to get the side from the context. It cannot determine which part on a part host should handle the capability
      * otherwise.
      */
     public <T, C> void registerContext(BlockCapability<T, C> capability, Function<C, Direction> directionGetter) {

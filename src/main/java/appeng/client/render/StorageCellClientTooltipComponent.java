@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.client.AEKeyRendering;
+import appeng.api.client.TLKeyRendering;
 import appeng.api.stacks.AmountFormat;
 import appeng.client.gui.me.common.StackSizeRenderer;
 import appeng.core.localization.GuiText;
@@ -92,7 +92,7 @@ public class StorageCellClientTooltipComponent implements ClientTooltipComponent
         if (!content.isEmpty()) {
             var xoff = 0;
             for (var stack : content) {
-                AEKeyRendering.drawInGui(Minecraft.getInstance(), guiGraphics, x + xoff, y, stack.what());
+                TLKeyRendering.drawInGui(Minecraft.getInstance(), guiGraphics, x + xoff, y, stack.what());
                 xoff += 17;
             }
 

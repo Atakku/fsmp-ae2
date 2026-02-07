@@ -7,8 +7,8 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:quartz_glass
-- ae2:quartz_vibrant_glass
+- tl2:quartz_glass
+- tl2:quartz_vibrant_glass
 ---
 
 # Quartz Glass
@@ -16,7 +16,7 @@ item_ids:
 <BlockImage id="quartz_glass" scale="8" />
 
 Mostly clear glass made with <ItemLink id="certus_quartz_dust" />.
-Used to make many AE2 machines and items.
+Used to make many TL2 machines and items.
 
 There is a variant, vibrant quartz glass, that emits light.
 

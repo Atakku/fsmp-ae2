@@ -25,6 +25,6 @@ public enum EmiText implements LocalizationEnum {
 
     @Override
     public String getTranslationKey() {
-        return "ae2.emi_integration." + name().toLowerCase(Locale.ROOT);
+        return "tl2.emi_integration." + name().toLowerCase(Locale.ROOT);
     }
 }

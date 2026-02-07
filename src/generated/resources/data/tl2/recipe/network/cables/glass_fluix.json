@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "tl2:fluix_crystal"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "tl2:fluix_glass_cable"
+  }
+}

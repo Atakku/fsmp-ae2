@@ -22,12 +22,12 @@ import java.util.Set;
 
 import appeng.api.config.SortDir;
 import appeng.api.config.SortOrder;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLKeyType;
 
 public interface ISortSource {
     SortOrder getSortBy();
 
     SortDir getSortDir();
 
-    Set<AEKeyType> getSortKeyTypes();
+    Set<TLKeyType> getSortKeyTypes();
 }

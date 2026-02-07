@@ -26,7 +26,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 
 import it.unimi.dsi.fastutil.shorts.ShortSet;
 
-import appeng.core.AELog;
+import appeng.core.TLLog;
 
 /**
  * Helper class for synchronizing fields from server-side menus to client-side menus. Fields need to be annotated with
@@ -99,7 +99,7 @@ public class DataSynchronization {
         for (short key = data.readShort(); key != -1; key = data.readShort()) {
             SynchronizedField<?> field = fields.get(key);
             if (field == null) {
-                AELog.warn("Server sent update for GUI field %d, which we don't know.", key);
+                TLLog.warn("Server sent update for GUI field %d, which we don't know.", key);
                 continue;
             }
 

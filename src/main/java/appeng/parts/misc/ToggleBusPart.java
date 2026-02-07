@@ -39,13 +39,13 @@ import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartHost;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 import appeng.core.AppEng;
 import appeng.items.parts.PartModels;
-import appeng.parts.AEBasePart;
 import appeng.parts.PartModel;
+import appeng.parts.TLBasePart;
 
-public class ToggleBusPart extends AEBasePart {
+public class ToggleBusPart extends TLBasePart {
 
     @PartModels
     public static final ResourceLocation MODEL_BASE = AppEng.makeId("part/toggle_bus_base");
@@ -168,7 +168,7 @@ public class ToggleBusPart extends AEBasePart {
     }
 
     @Override
-    public float getCableConnectionLength(AECableType cable) {
+    public float getCableConnectionLength(TLCableType cable) {
         return 5;
     }
 

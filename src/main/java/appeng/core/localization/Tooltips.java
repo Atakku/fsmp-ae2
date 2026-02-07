@@ -18,11 +18,11 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.behaviors.EmptyingAction;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AmountFormat;
 import appeng.api.stacks.GenericStack;
-import appeng.core.AEConfig;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.core.TLConfig;
 
 /**
  * Static utilities for constructing tooltips in various places.
@@ -144,23 +144,23 @@ public final class Tooltips {
     /**
      * Should the amount be shown in the tooltip of the given stack.
      */
-    public static boolean shouldShowAmountTooltip(AEKey what, long amount) {
+    public static boolean shouldShowAmountTooltip(TLKey what, long amount) {
         // TODO: Now that we can show fractional numbers, this approach of detecting whether the formatted amount has
         // been abbreviated or rounded no longer works
-        var bigNumber = AEConfig.instance().isUseLargeFonts() ? 999L : 9999L;
+        var bigNumber = TLConfig.instance().isUseLargeFonts() ? 999L : 9999L;
         return amount > bigNumber * what.getAmountPerUnit()
                 // Unit symbols are never shown in slots and must be shown in the tooltip instead
                 || what.getUnitSymbol() != null
                 // Damaged items always get their amount shown in the tooltip because
                 // the amount is sometimes hard to read superimposed on the damage bar
-                || what instanceof AEItemKey itemKey && itemKey.getReadOnlyStack().isBarVisible();
+                || what instanceof TLItemKey itemKey && itemKey.getReadOnlyStack().isBarVisible();
     }
 
     public static Component getAmountTooltip(ButtonToolTips baseText, GenericStack stack) {
         return getAmountTooltip(baseText, stack.what(), stack.amount());
     }
 
-    public static Component getAmountTooltip(ButtonToolTips baseText, AEKey what, long amount) {
+    public static Component getAmountTooltip(ButtonToolTips baseText, TLKey what, long amount) {
         var amountText = what.formatAmount(amount, AmountFormat.FULL);
         return baseText.text(amountText).withStyle(MUTED_COLOR);
     }

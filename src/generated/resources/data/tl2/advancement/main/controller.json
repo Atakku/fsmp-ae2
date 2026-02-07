@@ -1,0 +1,33 @@
+{
+  "parent": "tl2:main/fluix",
+  "criteria": {
+    "certus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:controller"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "achievement.tl2.Controller.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tl2:controller"
+    },
+    "title": {
+      "translate": "achievement.tl2.Controller"
+    }
+  },
+  "requirements": [
+    [
+      "certus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

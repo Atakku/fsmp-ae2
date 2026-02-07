@@ -35,8 +35,8 @@ import appeng.api.networking.GridFlags;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
-import appeng.client.render.model.AEModelData;
-import appeng.parts.AEBasePart;
+import appeng.client.render.model.TLModelData;
+import appeng.parts.TLBasePart;
 import appeng.util.InteractionUtil;
 
 /**
@@ -53,7 +53,7 @@ import appeng.util.InteractionUtil;
  * @version rv3
  * @since rv3
  */
-public abstract class AbstractReportingPart extends AEBasePart implements IMonitorPart {
+public abstract class AbstractReportingPart extends TLBasePart implements IMonitorPart {
 
     private byte spin = 0; // 0-3
     private int opacity = -1;
@@ -160,7 +160,7 @@ public abstract class AbstractReportingPart extends AEBasePart implements IMonit
     @Override
     public ModelData getModelData() {
         return ModelData.builder()
-                .with(AEModelData.SPIN, getSpin())
+                .with(TLModelData.SPIN, getSpin())
                 .build();
     }
 

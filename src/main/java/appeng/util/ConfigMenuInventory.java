@@ -10,15 +10,15 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.inventories.InternalInventory;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.helpers.externalstorage.GenericStackInv;
 
 /**
  * Wraps this configuration inventory as an {@link ItemStack} based inventory for use in a menu. It will automatically
  * convert appropriately from {@link ItemStack}s set by the player to the internal key-based representation with the
- * help of a matching {@link AEKeyType}.
+ * help of a matching {@link TLKeyType}.
  */
 public class ConfigMenuInventory implements InternalInventory {
     private final GenericStackInv inv;
@@ -48,7 +48,7 @@ public class ConfigMenuInventory implements InternalInventory {
 
     @Override
     public int getSlotLimit(int slot) {
-        return (int) Math.min(Integer.MAX_VALUE, inv.getCapacity(AEKeyType.items()));
+        return (int) Math.min(Integer.MAX_VALUE, inv.getCapacity(TLKeyType.items()));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ConfigMenuInventory implements InternalInventory {
 
         // Special case for item channel to maximize the support with other mods and allowing pick up if the
         // underlying inventory / slot does.
-        if (stack != null && stack.what() instanceof AEItemKey itemKey) {
+        if (stack != null && stack.what() instanceof TLItemKey itemKey) {
             // For type only inventories, force amount = 1 since this will hide amount rendering
             // Otherwise, only convert to the real stack if it fits in the max stack size
             if (inv.getMode() == ConfigInventory.Mode.CONFIG_TYPES) {
@@ -91,7 +91,7 @@ public class ConfigMenuInventory implements InternalInventory {
         // Item Stacks that contain a wrapped GenericStack will automatically be unwrapped
         var unwrapped = GenericStack.unwrapItemStack(stack);
         if (unwrapped != null) {
-            if (unwrapped.what() instanceof AEItemKey itemKey) {
+            if (unwrapped.what() instanceof TLItemKey itemKey) {
                 // Let the standard logic handle wrapped items
                 stack = itemKey.toStack(Math.max(1, Ints.saturatedCast(unwrapped.amount())));
             } else {
@@ -105,8 +105,8 @@ public class ConfigMenuInventory implements InternalInventory {
         }
 
         // Try items last
-        if (inv.isSupportedType(AEKeyType.items())) {
-            var what = AEItemKey.of(stack);
+        if (inv.isSupportedType(TLKeyType.items())) {
+            var what = TLItemKey.of(stack);
             if (what != null) {
                 return new GenericStack(what, stack.getCount());
             }

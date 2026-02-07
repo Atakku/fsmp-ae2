@@ -40,15 +40,15 @@ import appeng.api.behaviors.GenericInternalInventory;
 import appeng.api.behaviors.GenericSlotCapacities;
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.AEKeyTypes;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
-import appeng.api.storage.AEKeySlotFilter;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
+import appeng.api.stacks.TLKeyTypes;
 import appeng.api.storage.MEStorage;
-import appeng.core.AELog;
+import appeng.api.storage.TLKeySlotFilter;
+import appeng.core.TLLog;
 import appeng.util.ConfigMenuInventory;
 
 public class GenericStackInv implements MEStorage, GenericInternalInventory {
@@ -56,10 +56,10 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     private final Runnable listener;
     private boolean suppressOnChange;
     private boolean onChangeSuppressed;
-    private final Reference2LongMap<AEKeyType> capacities = new Reference2LongArrayMap<>();
-    private final Set<AEKeyType> supportedKeyTypes;
+    private final Reference2LongMap<TLKeyType> capacities = new Reference2LongArrayMap<>();
+    private final Set<TLKeyType> supportedKeyTypes;
     @Nullable
-    private AEKeySlotFilter filter;
+    private TLKeySlotFilter filter;
     protected final Mode mode;
     private Component description = Component.empty();
 
@@ -81,27 +81,27 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     public GenericStackInv(@Nullable Runnable listener, Mode mode, int size) {
-        this(AEKeyTypes.getAll(), listener, mode, size);
+        this(TLKeyTypes.getAll(), listener, mode, size);
     }
 
-    public GenericStackInv(Set<AEKeyType> supportedKeyTypes, @Nullable Runnable listener, Mode mode, int size) {
+    public GenericStackInv(Set<TLKeyType> supportedKeyTypes, @Nullable Runnable listener, Mode mode, int size) {
         this.supportedKeyTypes = Set.copyOf(Objects.requireNonNull(supportedKeyTypes, "supportedKeyTypes"));
         this.stacks = new GenericStack[size];
         this.listener = listener;
         this.mode = mode;
     }
 
-    protected void setFilter(@Nullable AEKeySlotFilter filter) {
+    protected void setFilter(@Nullable TLKeySlotFilter filter) {
         this.filter = filter;
     }
 
     @Nullable
-    public AEKeySlotFilter getFilter() {
+    public TLKeySlotFilter getFilter() {
         return filter;
     }
 
     @Override
-    public boolean isSupportedType(AEKeyType type) {
+    public boolean isSupportedType(TLKeyType type) {
         return supportedKeyTypes.contains(type);
     }
 
@@ -127,7 +127,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
 
     @Override
     @Nullable
-    public AEKey getKey(int slot) {
+    public TLKey getKey(int slot) {
         return stacks[slot] != null ? stacks[slot].what() : null;
     }
 
@@ -149,7 +149,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     @Override
-    public long insert(int slot, AEKey what, long amount, Actionable mode) {
+    public long insert(int slot, TLKey what, long amount, Actionable mode) {
         Objects.requireNonNull(what, "what");
         Preconditions.checkArgument(amount >= 0, "amount >= 0");
 
@@ -173,12 +173,12 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
         return 0;
     }
 
-    public boolean isAllowedIn(int slot, AEKey what) {
+    public boolean isAllowedIn(int slot, TLKey what) {
         return isSupportedType(what) && (filter == null || filter.isAllowed(slot, what));
     }
 
     @Override
-    public long extract(int slot, AEKey what, long amount, Actionable mode) {
+    public long extract(int slot, TLKey what, long amount, Actionable mode) {
         Objects.requireNonNull(what, "what");
         Preconditions.checkArgument(amount >= 0, "amount >= 0");
 
@@ -202,7 +202,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
                 // Ensure setStack didn't screw us over
                 var reallyExtracted = Math.max(0, currentAmount - getAmount(slot));
                 if (reallyExtracted != canExtract) {
-                    AELog.warn(
+                    TLLog.warn(
                             "GenericStackInv simulation/modulation extraction mismatch: canExtract=%d, reallyExtracted=%d",
                             canExtract, reallyExtracted);
                     canExtract = reallyExtracted;
@@ -213,7 +213,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     @Override
-    public long getCapacity(AEKeyType space) {
+    public long getCapacity(TLKeyType space) {
         return capacities.getOrDefault(space, Long.MAX_VALUE);
     }
 
@@ -227,7 +227,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
         return true;
     }
 
-    public void setCapacity(AEKeyType space, long capacity) {
+    public void setCapacity(TLKeyType space, long capacity) {
         this.capacities.put(space, capacity);
     }
 
@@ -238,8 +238,8 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     @Override
-    public long getMaxAmount(AEKey key) {
-        if (key instanceof AEItemKey itemKey) {
+    public long getMaxAmount(TLKey key) {
+        if (key instanceof TLItemKey itemKey) {
             return Math.min(itemKey.getMaxStackSize(), getCapacity(key.getType()));
         }
         return getCapacity(key.getType());
@@ -404,7 +404,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         Objects.requireNonNull(what, "what");
         Preconditions.checkArgument(amount >= 0, "amount >= 0");
         if (!isSupportedType(what)) {
@@ -437,7 +437,7 @@ public class GenericStackInv implements MEStorage, GenericInternalInventory {
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         Objects.requireNonNull(what, "what");
         Preconditions.checkArgument(amount >= 0, "amount >= 0");
 

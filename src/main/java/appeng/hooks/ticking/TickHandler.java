@@ -47,8 +47,8 @@ import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-import appeng.blockentity.AEBaseBlockEntity;
-import appeng.core.AELog;
+import appeng.blockentity.TLBaseBlockEntity;
+import appeng.core.TLLog;
 import appeng.me.Grid;
 import appeng.me.GridNode;
 import appeng.util.ILevelRunnable;
@@ -129,7 +129,7 @@ public class TickHandler {
     }
 
     /**
-     * Add a {@link AEBaseBlockEntity} to be initializes with the next update.
+     * Add a {@link TLBaseBlockEntity} to be initializes with the next update.
      *
      * @see appeng.api.networking.GridHelper#onFirstTick
      */
@@ -301,7 +301,7 @@ public class TickHandler {
         processQueueElementsRemaining += this.processQueue(this.serverQueue, null);
 
         if (this.stopWatch.elapsed(TimeUnit.MILLISECONDS) > TIME_LIMIT_PROCESS_QUEUE_MILLISECONDS) {
-            AELog.warn("Exceeded time limit of %d ms after processing %d queued tick callbacks (%d remain)",
+            TLLog.warn("Exceeded time limit of %d ms after processing %d queued tick callbacks (%d remain)",
                     TIME_LIMIT_PROCESS_QUEUE_MILLISECONDS, processQueueElementsProcessed,
                     processQueueElementsRemaining);
         }
@@ -330,7 +330,7 @@ public class TickHandler {
                 // we'll work on this chunk again next tick.
                 var chunkQueue = levelQueue.remove(packedChunkPos);
                 if (chunkQueue == null) {
-                    AELog.warn("Chunk %s was unloaded while we were readying block entities",
+                    TLLog.warn("Chunk %s was unloaded while we were readying block entities",
                             new ChunkPos(packedChunkPos));
                     continue; // This should never happen, chunk unloaded under our noses
                 }
@@ -342,7 +342,7 @@ public class TickHandler {
                             // This could load more chunks, but the earliest time to be initialized is the next tick.
                             info.callInit();
                         } catch (Throwable t) {
-                            CrashReport crashReport = CrashReport.forThrowable(t, "Readying AE2 block entity");
+                            CrashReport crashReport = CrashReport.forThrowable(t, "Readying TL2 block entity");
 
                             var category = crashReport.addCategory("Block entity being readied");
                             category.setDetail("World", () -> level.dimension().location().toString());
@@ -383,7 +383,7 @@ public class TickHandler {
                     break;
                 }
             } catch (Exception e) {
-                AELog.warn(e);
+                TLLog.warn(e);
             }
         }
 

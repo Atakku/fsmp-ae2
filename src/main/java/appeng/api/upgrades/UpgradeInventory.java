@@ -32,7 +32,7 @@ import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import appeng.api.inventories.InternalInventory;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.InternalInventoryHost;
-import appeng.util.inv.filter.IAEItemFilter;
+import appeng.util.inv.filter.ITLItemFilter;
 
 abstract class UpgradeInventory extends AppEngInternalInventory implements InternalInventoryHost, IUpgradeInventory {
     private final Item item;
@@ -109,7 +109,7 @@ abstract class UpgradeInventory extends AppEngInternalInventory implements Inter
         super.sendChangeNotification(slot);
     }
 
-    private class UpgradeInvFilter implements IAEItemFilter {
+    private class UpgradeInvFilter implements ITLItemFilter {
 
         @Override
         public boolean allowExtract(InternalInventory inv, int slot, int amount) {

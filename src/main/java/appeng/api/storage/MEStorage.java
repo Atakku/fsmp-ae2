@@ -32,15 +32,15 @@ import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 
 /**
- * AE's Equivalent to IInventory, used to reading contents, and manipulating contents of ME Inventories.
+ * TL's Equivalent to IInventory, used to reading contents, and manipulating contents of ME Inventories.
  * <p>
  * Implementations should COMPLETELY ignore stack size limits from an external view point, Meaning that you can inject
  * Integer.MAX_VALUE items and it should work as defined, or be able to extract Integer.MAX_VALUE and have it work as
- * defined, Translations to MC's max stack size are external to the AE API.
+ * defined, Translations to MC's max stack size are external to the TL API.
  * <p>
  * If you want to request at most a stack of an item, you need to use {@link ItemStack#getMaxStackSize()} before
  * extracting from this inventory.
@@ -59,7 +59,7 @@ public interface MEStorage {
      *
      * @param source The source trying to find storage for stacks.
      */
-    default boolean isPreferredStorageFor(AEKey what, IActionSource source) {
+    default boolean isPreferredStorageFor(TLKey what, IActionSource source) {
         return false;
     }
 
@@ -71,7 +71,7 @@ public interface MEStorage {
      * @param mode   action type
      * @return returns the number of items inserted.
      */
-    default long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    default long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         return 0;
     }
 
@@ -83,7 +83,7 @@ public interface MEStorage {
      * @param mode   simulate, or perform action?
      * @return returns the number of items extracted
      */
-    default long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    default long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         return 0;
     }
 
@@ -111,7 +111,7 @@ public interface MEStorage {
         return result;
     }
 
-    static void checkPreconditions(AEKey what, long amount, Actionable mode, IActionSource source) {
+    static void checkPreconditions(TLKey what, long amount, Actionable mode, IActionSource source) {
         Objects.requireNonNull(what, "Cannot pass a null key");
         Objects.requireNonNull(mode, "Cannot pass a null mode");
         Objects.requireNonNull(source, "Cannot pass a null source");

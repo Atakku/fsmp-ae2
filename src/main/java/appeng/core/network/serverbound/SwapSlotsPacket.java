@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
-import appeng.menu.AEBaseMenu;
+import appeng.menu.TLBaseMenu;
 
 public record SwapSlotsPacket(int slotA, int slotB) implements ServerboundPacket {
     public static final StreamCodec<RegistryFriendlyByteBuf, SwapSlotsPacket> STREAM_CODEC = StreamCodec.ofMember(
@@ -34,8 +34,8 @@ public record SwapSlotsPacket(int slotA, int slotB) implements ServerboundPacket
 
     @Override
     public void handleOnServer(ServerPlayer player) {
-        if (player != null && player.containerMenu instanceof AEBaseMenu) {
-            ((AEBaseMenu) player.containerMenu).swapSlotContents(this.slotA, this.slotB);
+        if (player != null && player.containerMenu instanceof TLBaseMenu) {
+            ((TLBaseMenu) player.containerMenu).swapSlotContents(this.slotA, this.slotB);
         }
     }
 }

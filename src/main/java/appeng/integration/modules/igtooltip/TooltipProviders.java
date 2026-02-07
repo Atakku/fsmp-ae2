@@ -12,9 +12,9 @@ import appeng.api.integrations.igtooltip.CommonRegistration;
 import appeng.api.integrations.igtooltip.PartTooltips;
 import appeng.api.integrations.igtooltip.TooltipProvider;
 import appeng.api.parts.IPart;
-import appeng.block.AEBaseEntityBlock;
+import appeng.block.TLBaseEntityBlock;
 import appeng.block.networking.CableBusBlock;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.core.AppEng;
 import appeng.integration.modules.igtooltip.blocks.GridNodeStateDataProvider;
@@ -22,7 +22,7 @@ import appeng.integration.modules.igtooltip.parts.ChannelDataProvider;
 import appeng.integration.modules.igtooltip.parts.GridNodeStateProvider;
 import appeng.integration.modules.igtooltip.parts.PartHostTooltips;
 import appeng.integration.modules.igtooltip.parts.StorageMonitorDataProvider;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 import appeng.parts.networking.IUsedChannelProvider;
 import appeng.parts.reporting.AbstractMonitorPart;
 
@@ -40,8 +40,8 @@ public final class TooltipProviders implements TooltipProvider {
         PartTooltips.addBody(AbstractMonitorPart.class, new StorageMonitorDataProvider());
         PartTooltips.addBody(IPart.class, new GridNodeStateProvider());
         PartTooltips.addServerData(IPart.class, new GridNodeStateProvider());
-        PartTooltips.addBody(AEBasePart.class, DebugProvider::providePartBody, DEBUG_PRIORITY);
-        PartTooltips.addServerData(AEBasePart.class, DebugProvider::providePartData, DEBUG_PRIORITY);
+        PartTooltips.addBody(TLBasePart.class, DebugProvider::providePartBody, DEBUG_PRIORITY);
+        PartTooltips.addServerData(TLBasePart.class, DebugProvider::providePartData, DEBUG_PRIORITY);
     }
 
     public static void loadCommon(CommonRegistration registration) {
@@ -119,7 +119,7 @@ public final class TooltipProviders implements TooltipProvider {
 
     @Override
     public void registerBlockEntityBaseClasses(BaseClassRegistration registration) {
-        registration.addBaseBlockEntity(AEBaseBlockEntity.class, AEBaseEntityBlock.class);
+        registration.addBaseBlockEntity(TLBaseBlockEntity.class, TLBaseEntityBlock.class);
         registration.addPartHost(CableBusBlockEntity.class, CableBusBlock.class);
     }
 }

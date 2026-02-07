@@ -13,8 +13,8 @@ import net.minecraft.world.level.ItemLike;
 
 import appeng.api.features.HotkeyAction;
 import appeng.core.AppEng;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.ItemDefinition;
+import appeng.core.definitions.TLItems;
 import appeng.items.tools.powered.AbstractPortableCell;
 
 /**
@@ -24,24 +24,24 @@ public class HotkeyActions {
     public static final Map<String, List<HotkeyAction>> REGISTRY = new HashMap<>();
 
     public static void init() {
-        register(AEItems.WIRELESS_TERMINAL,
-                (player, locator) -> AEItems.WIRELESS_TERMINAL.get().openFromInventory(player, locator),
+        register(TLItems.WIRELESS_TERMINAL,
+                (player, locator) -> TLItems.WIRELESS_TERMINAL.get().openFromInventory(player, locator),
                 WIRELESS_TERMINAL);
-        register(AEItems.WIRELESS_CRAFTING_TERMINAL,
-                (player, locator) -> AEItems.WIRELESS_CRAFTING_TERMINAL.get().openFromInventory(player, locator),
+        register(TLItems.WIRELESS_CRAFTING_TERMINAL,
+                (player, locator) -> TLItems.WIRELESS_CRAFTING_TERMINAL.get().openFromInventory(player, locator),
                 WIRELESS_TERMINAL);
 
-        registerPortableCell(AEItems.PORTABLE_ITEM_CELL1K, PORTABLE_ITEM_CELL);
-        registerPortableCell(AEItems.PORTABLE_ITEM_CELL4K, PORTABLE_ITEM_CELL);
-        registerPortableCell(AEItems.PORTABLE_ITEM_CELL16K, PORTABLE_ITEM_CELL);
-        registerPortableCell(AEItems.PORTABLE_ITEM_CELL64K, PORTABLE_ITEM_CELL);
-        registerPortableCell(AEItems.PORTABLE_ITEM_CELL256K, PORTABLE_ITEM_CELL);
+        registerPortableCell(TLItems.PORTABLE_ITEM_CELL1K, PORTABLE_ITEM_CELL);
+        registerPortableCell(TLItems.PORTABLE_ITEM_CELL4K, PORTABLE_ITEM_CELL);
+        registerPortableCell(TLItems.PORTABLE_ITEM_CELL16K, PORTABLE_ITEM_CELL);
+        registerPortableCell(TLItems.PORTABLE_ITEM_CELL64K, PORTABLE_ITEM_CELL);
+        registerPortableCell(TLItems.PORTABLE_ITEM_CELL256K, PORTABLE_ITEM_CELL);
 
-        registerPortableCell(AEItems.PORTABLE_FLUID_CELL1K, PORTABLE_FLUID_CELL);
-        registerPortableCell(AEItems.PORTABLE_FLUID_CELL4K, PORTABLE_FLUID_CELL);
-        registerPortableCell(AEItems.PORTABLE_FLUID_CELL16K, PORTABLE_FLUID_CELL);
-        registerPortableCell(AEItems.PORTABLE_FLUID_CELL64K, PORTABLE_FLUID_CELL);
-        registerPortableCell(AEItems.PORTABLE_FLUID_CELL256K, PORTABLE_FLUID_CELL);
+        registerPortableCell(TLItems.PORTABLE_FLUID_CELL1K, PORTABLE_FLUID_CELL);
+        registerPortableCell(TLItems.PORTABLE_FLUID_CELL4K, PORTABLE_FLUID_CELL);
+        registerPortableCell(TLItems.PORTABLE_FLUID_CELL16K, PORTABLE_FLUID_CELL);
+        registerPortableCell(TLItems.PORTABLE_FLUID_CELL64K, PORTABLE_FLUID_CELL);
+        registerPortableCell(TLItems.PORTABLE_FLUID_CELL256K, PORTABLE_FLUID_CELL);
     }
 
     /**

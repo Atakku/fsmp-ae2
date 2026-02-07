@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:quartz"
+    },
+    "b": {
+      "tag": "c:dusts/fluix"
+    },
+    "c": {
+      "item": "tl2:logic_processor"
+    }
+  },
+  "pattern": [
+    "abc"
+  ],
+  "result": {
+    "count": 2,
+    "id": "tl2:annihilation_core"
+  }
+}

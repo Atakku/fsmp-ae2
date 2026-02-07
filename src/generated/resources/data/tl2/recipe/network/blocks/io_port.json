@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:glass_blocks/cheap"
+    },
+    "b": {
+      "item": "tl2:drive"
+    },
+    "c": {
+      "item": "tl2:fluix_glass_cable"
+    },
+    "d": {
+      "tag": "c:ingots/iron"
+    },
+    "e": {
+      "item": "tl2:logic_processor"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "bcb",
+    "ded"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:io_port"
+  }
+}

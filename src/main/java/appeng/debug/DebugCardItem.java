@@ -42,10 +42,10 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.pathing.ControllerState;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartHost;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
 import appeng.hooks.ticking.TickHandler;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 import appeng.me.Grid;
 import appeng.me.GridNode;
 import appeng.me.helpers.IGridConnectedBlockEntity;
@@ -54,7 +54,7 @@ import appeng.parts.networking.CablePart;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
-public class DebugCardItem extends AEBaseItem {
+public class DebugCardItem extends TLBaseItem {
 
     public DebugCardItem(Properties properties) {
         super(properties);
@@ -223,7 +223,7 @@ public class DebugCardItem extends AEBaseItem {
             }
         }
 
-        if (te instanceof AEBaseBlockEntity be) {
+        if (te instanceof TLBaseBlockEntity be) {
             this.outputMessage(player, "-- Delayed Init Details");
             outputSecondaryMessage(player, "QueuedForReady", "" + be.getQueuedForReady());
             outputSecondaryMessage(player, "ReadyInvoked", "" + be.getReadyInvoked());

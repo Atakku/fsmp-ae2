@@ -14,7 +14,7 @@ public final class EmiStackConverters {
     }
 
     /**
-     * Registers a new EMI stack-converter for handling custom {@link appeng.api.stacks.AEKey key types} in the AE2 EMI
+     * Registers a new EMI stack-converter for handling custom {@link appeng.api.stacks.TLKey key types} in the TL2 EMI
      * addon.
      *
      * @return false if a converter for the converters type has already been registered.

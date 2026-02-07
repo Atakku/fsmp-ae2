@@ -7,8 +7,8 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:certus_quartz_wrench
-- ae2:nether_quartz_wrench
+- tl2:certus_quartz_wrench
+- tl2:nether_quartz_wrench
 ---
 
 # Wrenches
@@ -19,11 +19,11 @@ item_ids:
   <ItemImage id="nether_quartz_wrench" scale="4" />
 </Row>
 
-Wrenches are used to rotate ae2 devices (right-click), and disassemble ae2 blocks (shift-right-click).
-[Subparts](../ae2-mechanics/cable-subparts.md) can be removed from a cable without breaking everything on the cable
+Wrenches are used to rotate tl2 devices (right-click), and disassemble tl2 blocks (shift-right-click).
+[Subparts](../tl2-mechanics/cable-subparts.md) can be removed from a cable without breaking everything on the cable
 (or the cable can be removed without breaking the subparts.)
 
-Many ae2 blocks can be rotated, so just because this guide doesn't say you can rotate something doesn't mean you can't.
+Many tl2 blocks can be rotated, so just because this guide doesn't say you can rotate something doesn't mean you can't.
 
 ## Recipes
 

@@ -59,20 +59,20 @@ import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartHost;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.SelectedPart;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
 import appeng.client.render.cablebus.CableBusRenderState;
 import appeng.client.render.cablebus.CableCoreType;
-import appeng.core.AELog;
-import appeng.helpers.AEMultiBlockEntity;
+import appeng.core.TLLog;
+import appeng.helpers.TLMultiBlockEntity;
 import appeng.hooks.VisualStateSaving;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.InWorldGridNode;
 import appeng.parts.networking.CablePart;
 import appeng.util.Platform;
 
-public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer {
+public class CableBusContainer implements TLMultiBlockEntity, ICableBusContainer {
 
     /**
      * NBT property names used to store the parts for the given side. Index is 0-5 for normal directions and 6 for the
@@ -308,12 +308,12 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
     }
 
     @Override
-    public AEColor getColor() {
+    public TLColor getColor() {
         if (this.storage.getCenter() != null) {
             final ICablePart c = this.storage.getCenter();
             return c.getCableColor();
         }
-        return AEColor.TRANSPARENT;
+        return TLColor.TRANSPARENT;
     }
 
     @Override
@@ -516,7 +516,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction dir) {
+    public TLCableType getCableConnectionType(Direction dir) {
         final IPart part = this.getPart(dir);
 
         if (part != null) {
@@ -527,11 +527,11 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
             final ICablePart c = this.storage.getCenter();
             return c.getCableConnectionType();
         }
-        return AECableType.NONE;
+        return TLCableType.NONE;
     }
 
     @Override
-    public float getCableConnectionLength(AECableType cable) {
+    public float getCableConnectionLength(TLCableType cable) {
         return this.getPart(null) instanceof ICablePart
                 ? this.getPart(null).getCableConnectionLength(cable)
                 : -1;
@@ -762,7 +762,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
         var itemId = ResourceLocation.parse(data.getString("id"));
         var partItem = IPartItem.byId(itemId);
         if (partItem == null) {
-            AELog.warn("Ignoring persisted part with non-part-item %s", itemId);
+            TLLog.warn("Ignoring persisted part with non-part-item %s", itemId);
             return false;
         }
 
@@ -774,7 +774,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
             if (p != null) {
                 p.readFromNBT(data, registries);
             } else {
-                AELog.warn("Invalid NBT For CableBus Container: " + itemId
+                TLLog.warn("Invalid NBT For CableBus Container: " + itemId
                         + " is not a valid part; it was ignored.");
             }
         }
@@ -811,7 +811,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
     }
 
     @Override
-    public boolean recolourBlock(Direction side, AEColor colour, Player who) {
+    public boolean recolourBlock(Direction side, TLColor colour, Player who) {
         final IPart cable = this.getPart(null);
         if (cable != null) {
             final ICablePart pc = (ICablePart) cable;
@@ -848,7 +848,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
 
                 // If there is one, check out which type it has, but default to this cable's
                 // type
-                AECableType connectionType = cable.getCableConnectionType();
+                TLCableType connectionType = cable.getCableConnectionType();
 
                 // Only use the incoming cable-type of the adjacent block, if it's not a cable bus itself
                 // Dense cables however also respect the adjacent cable-type since their outgoing connection
@@ -858,7 +858,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
 
                 if (adjacentHost != null) {
                     var adjacentType = adjacentHost.getCableConnectionType(side.getOpposite());
-                    connectionType = AECableType.min(connectionType, adjacentType);
+                    connectionType = TLCableType.min(connectionType, adjacentType);
                 }
 
                 // Check if the adjacent TE is a cable bus or not
@@ -897,7 +897,7 @@ public class CableBusContainer implements AEMultiBlockEntity, ICableBusContainer
             // Some attachments want a thicker cable than glass, account for that
             var desiredType = part.getDesiredConnectionType();
             if (renderState.getCoreType() == CableCoreType.GLASS
-                    && (desiredType == AECableType.SMART || desiredType == AECableType.COVERED)) {
+                    && (desiredType == TLCableType.SMART || desiredType == TLCableType.COVERED)) {
                 renderState.setCoreType(CableCoreType.COVERED);
             }
 

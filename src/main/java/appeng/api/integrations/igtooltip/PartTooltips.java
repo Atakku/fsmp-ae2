@@ -11,7 +11,7 @@ import appeng.api.integrations.igtooltip.providers.ServerDataProvider;
 import appeng.integration.modules.igtooltip.parts.PartTooltipProviders;
 
 /**
- * Add additional in-game tooltips for parts and integrate them automatically with any AE2 supported in-game tooltip mod
+ * Add additional in-game tooltips for parts and integrate them automatically with any TL2 supported in-game tooltip mod
  * (Jade, TOP, WTHIT).
  */
 @ApiStatus.Experimental

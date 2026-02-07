@@ -42,7 +42,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 /**
- * A screen style document defines various visual aspects of AE2 screens.
+ * A screen style document defines various visual aspects of TL2 screens.
  */
 public class ScreenStyle {
 

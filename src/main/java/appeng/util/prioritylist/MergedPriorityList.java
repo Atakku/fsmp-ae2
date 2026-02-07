@@ -21,7 +21,7 @@ package appeng.util.prioritylist;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 public final class MergedPriorityList implements IPartitionList {
 
@@ -37,7 +37,7 @@ public final class MergedPriorityList implements IPartitionList {
     }
 
     @Override
-    public boolean isListed(AEKey input) {
+    public boolean isListed(TLKey input) {
         for (IPartitionList l : this.negative) {
             if (l.isListed(input)) {
                 return false;
@@ -63,7 +63,7 @@ public final class MergedPriorityList implements IPartitionList {
     }
 
     @Override
-    public Iterable<AEKey> getItems() {
+    public Iterable<TLKey> getItems() {
         throw new UnsupportedOperationException();
     }
 }

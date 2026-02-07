@@ -34,10 +34,10 @@ import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNodeListener;
 import appeng.api.orientation.BlockOrientation;
 import appeng.api.orientation.RelativeSide;
-import appeng.api.util.AECableType;
-import appeng.blockentity.grid.AENetworkedBlockEntity;
+import appeng.api.util.TLCableType;
+import appeng.blockentity.grid.TLNetworkedBlockEntity;
 
-public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
+public class WirelessAccessPointBlockEntity extends TLNetworkedBlockEntity
         implements IWirelessAccessPoint, IChannelState {
 
     public static final int CHANNEL_FLAG = 1;
@@ -85,8 +85,8 @@ public class WirelessAccessPointBlockEntity extends AENetworkedBlockEntity
     }
 
     @Override
-    public AECableType getCableConnectionType(Direction dir) {
-        return AECableType.SMART;
+    public TLCableType getCableConnectionType(Direction dir) {
+        return TLCableType.SMART;
     }
 
     @Override

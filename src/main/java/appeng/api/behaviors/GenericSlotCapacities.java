@@ -8,8 +8,8 @@ import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.world.item.Item;
 
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.util.CowMap;
 
 /**
@@ -17,19 +17,19 @@ import appeng.util.CowMap;
  */
 @ApiStatus.Experimental
 public class GenericSlotCapacities {
-    private static final CowMap<AEKeyType, Long> map = CowMap.identityHashMap();
+    private static final CowMap<TLKeyType, Long> map = CowMap.identityHashMap();
 
     static {
-        register(AEKeyType.items(), (long) Item.ABSOLUTE_MAX_STACK_SIZE);
-        register(AEKeyType.fluids(), 4L * AEFluidKey.AMOUNT_BUCKET);
+        register(TLKeyType.items(), (long) Item.ABSOLUTE_MAX_STACK_SIZE);
+        register(TLKeyType.fluids(), 4L * TLFluidKey.AMOUNT_BUCKET);
     }
 
-    public static void register(AEKeyType type, Long capacity) {
+    public static void register(TLKeyType type, Long capacity) {
         Preconditions.checkArgument(capacity >= 0, "capacity >= 0");
         map.putIfAbsent(type, capacity);
     }
 
-    public static Map<AEKeyType, Long> getMap() {
+    public static Map<TLKeyType, Long> getMap() {
         return map.getMap();
     }
 

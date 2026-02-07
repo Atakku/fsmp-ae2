@@ -34,29 +34,29 @@ import net.minecraft.world.item.ItemStack;
 
 import appeng.api.behaviors.ContainerItemStrategies;
 import appeng.api.config.Actionable;
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEKey;
+import appeng.api.ids.TLComponents;
 import appeng.api.stacks.GenericStack;
-import appeng.core.definitions.AEItems;
-import appeng.items.AEBaseItem;
+import appeng.api.stacks.TLKey;
+import appeng.core.definitions.TLItems;
+import appeng.items.TLBaseItem;
 
 /**
  * Wraps a {@link GenericStack} in an {@link ItemStack}. Even stacks that actually represent vanilla {@link Item items}
  * will be wrapped in this item, to allow items with amount 0 to be represented as itemstacks without becoming the empty
  * item.
  */
-public class WrappedGenericStack extends AEBaseItem {
+public class WrappedGenericStack extends TLBaseItem {
     private static final Logger LOG = LoggerFactory.getLogger(WrappedGenericStack.class);
 
     public static ItemStack wrap(GenericStack stack) {
         Objects.requireNonNull(stack, "stack");
-        var item = AEItems.WRAPPED_GENERIC_STACK.asItem();
+        var item = TLItems.WRAPPED_GENERIC_STACK.asItem();
         var result = new ItemStack(item);
-        result.set(AEComponents.WRAPPED_STACK, stack);
+        result.set(TLComponents.WRAPPED_STACK, stack);
         return result;
     }
 
-    public static ItemStack wrap(AEKey what, long amount) {
+    public static ItemStack wrap(TLKey what, long amount) {
         Objects.requireNonNull(what, "what");
 
         return wrap(new GenericStack(what, amount));
@@ -67,12 +67,12 @@ public class WrappedGenericStack extends AEBaseItem {
     }
 
     @Nullable
-    public AEKey unwrapWhat(ItemStack stack) {
+    public TLKey unwrapWhat(ItemStack stack) {
         if (stack.getItem() != this) {
             return null;
         }
 
-        var wrapped = stack.get(AEComponents.WRAPPED_STACK);
+        var wrapped = stack.get(TLComponents.WRAPPED_STACK);
 
         if (wrapped == null) {
             return null;
@@ -86,7 +86,7 @@ public class WrappedGenericStack extends AEBaseItem {
             return 0;
         }
 
-        var wrapped = stack.get(AEComponents.WRAPPED_STACK);
+        var wrapped = stack.get(TLComponents.WRAPPED_STACK);
 
         if (wrapped == null) {
             return 0;

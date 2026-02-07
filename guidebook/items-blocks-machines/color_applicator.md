@@ -7,7 +7,7 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:color_applicator
+- tl2:color_applicator
 ---
 
 # The Color Applicator

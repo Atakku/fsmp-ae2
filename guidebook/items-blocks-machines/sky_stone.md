@@ -7,15 +7,15 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:sky_stone_block
-- ae2:smooth_sky_stone_block
+- tl2:sky_stone_block
+- tl2:smooth_sky_stone_block
 ---
 
 # Sky Stone
 
 <BlockImage id="sky_stone_block" scale="8" />
 
-The material [meteorites](../ae2-mechanics/meteorites.md) are made out of, used in the recipes of the <ItemLink id="sky_stone_tank" />, <ItemLink id="not_so_mysterious_cube" />,
+The material [meteorites](../tl2-mechanics/meteorites.md) are made out of, used in the recipes of the <ItemLink id="sky_stone_tank" />, <ItemLink id="not_so_mysterious_cube" />,
 <ItemLink id="cell_component_256k" />, and most importantly, the <ItemLink id="controller" />.
 
 ## Recipes

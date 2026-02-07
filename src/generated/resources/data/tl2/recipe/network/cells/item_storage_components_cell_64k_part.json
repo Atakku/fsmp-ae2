@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:dusts/glowstone"
+    },
+    "b": {
+      "item": "tl2:calculation_processor"
+    },
+    "c": {
+      "item": "tl2:cell_component_16k"
+    },
+    "d": {
+      "item": "tl2:quartz_glass"
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "aca"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:cell_component_64k"
+  }
+}

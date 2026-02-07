@@ -63,10 +63,10 @@ import appeng.api.networking.IGridNodeService;
 import appeng.api.networking.IGridVisitor;
 import appeng.api.networking.pathing.ChannelMode;
 import appeng.api.parts.IPart;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.util.AEColor;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.util.TLColor;
 import appeng.blockentity.networking.ControllerBlockEntity;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.me.pathfinding.IPathItem;
 import appeng.util.IDebugExportable;
 import appeng.util.JsonStreamUtil;
@@ -90,9 +90,9 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
     private boolean ready;
     protected final List<GridConnection> connections = new ArrayList<>();
     @Nullable
-    private AEItemKey visualRepresentation = null;
+    private TLItemKey visualRepresentation = null;
 
-    private AEColor gridColor = AEColor.TRANSPARENT;
+    private TLColor gridColor = TLColor.TRANSPARENT;
     private int owningPlayerId = -1;
     private Grid myGrid;
     private Object visitorIterationNumber = null;
@@ -280,15 +280,15 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
      * Sets an itemstack that will only be used to represent this grid node in user interfaces. Can be set to
      * <code>null</code> to hide the node from UIs.
      */
-    public void setVisualRepresentation(@Nullable AEItemKey visualRepresentation) {
+    public void setVisualRepresentation(@Nullable TLItemKey visualRepresentation) {
         this.visualRepresentation = visualRepresentation;
     }
 
     /**
-     * Colors can be used to prevent adjacent grid nodes from connecting. {@link AEColor#TRANSPARENT} indicates that the
+     * Colors can be used to prevent adjacent grid nodes from connecting. {@link TLColor#TRANSPARENT} indicates that the
      * node will connect to nodes of any color.
      */
-    public void setGridColor(AEColor color) {
+    public void setGridColor(TLColor color) {
         this.gridColor = Objects.requireNonNull(color);
         this.updateState();
     }
@@ -366,7 +366,7 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
 
         connections.clear();
 
-        AELog.grid("Destroyed node %s in grid %s", this, this.myGrid);
+        TLLog.grid("Destroyed node %s in grid %s", this, this.myGrid);
         if (this.myGrid != null) {
             this.myGrid.remove(this);
             this.myGrid = null;
@@ -434,7 +434,7 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
 
         // When we're already part of the grid, we kinda need to leave and rejoin if the data changed...
         if (ready && this.myGrid != null && !areTagsEqualIgnoringPlayerId(this.savedData, oldNodeData)) {
-            AELog.debug("Resetting grid node %s to reload NBT", this);
+            TLLog.debug("Resetting grid node %s to reload NBT", this);
             this.destroy();
             markReady();
         }
@@ -487,12 +487,12 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
 
     @Nullable
     @Override
-    public AEItemKey getVisualRepresentation() {
+    public TLItemKey getVisualRepresentation() {
         return visualRepresentation;
     }
 
     @Override
-    public AEColor getGridColor() {
+    public TLColor getGridColor() {
         return gridColor;
     }
 
@@ -643,7 +643,7 @@ public class GridNode implements IGridNode, IPathItem, IDebugExportable {
 
         if (this.usedChannels > getMaxChannels()) {
             LOG.error(
-                    "Internal channel assignment error. Grid node {} has {} channels passing through it but it only supports up to {}. Please open an issue on the AE2 repository.",
+                    "Internal channel assignment error. Grid node {} has {} channels passing through it but it only supports up to {}. Please open an issue on the TL2 repository.",
                     this, this.usedChannels, getMaxChannels());
         }
 

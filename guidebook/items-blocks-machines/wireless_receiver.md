@@ -7,7 +7,7 @@ navigation:
 categories:
 - misc ingredients blocks
 item_ids:
-- ae2:wireless_receiver
+- tl2:wireless_receiver
 ---
 
 # Wireless Receiver

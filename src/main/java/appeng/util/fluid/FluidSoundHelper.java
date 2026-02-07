@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
-import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.TLFluidKey;
 
 /**
  * Helps with playing fill/empty sounds for fluids to players.
@@ -37,7 +37,7 @@ public final class FluidSoundHelper {
     private FluidSoundHelper() {
     }
 
-    public static void playFillSound(Player player, @Nullable AEFluidKey fluid) {
+    public static void playFillSound(Player player, @Nullable TLFluidKey fluid) {
         if (fluid == null) {
             return;
         }
@@ -50,7 +50,7 @@ public final class FluidSoundHelper {
         playSound(player, fillSound);
     }
 
-    public static void playEmptySound(Player player, @Nullable AEFluidKey fluid) {
+    public static void playEmptySound(Player player, @Nullable TLFluidKey fluid) {
         if (fluid == null) {
             return;
         }

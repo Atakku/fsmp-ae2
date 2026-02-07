@@ -13,7 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.BlockHitResult;
 
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 
 /**
  * {@link MenuHostLocator} is used to find the host of a menu on both the server and client-side in a predictable manner
@@ -75,7 +75,7 @@ public final class MenuLocators {
         return new BlockEntityLocator(te.getBlockPos());
     }
 
-    public static MenuHostLocator forPart(AEBasePart part) {
+    public static MenuHostLocator forPart(TLBasePart part) {
         var pos = part.getHost().getLocation();
         return new PartLocator(pos.getPos(), part.getSide());
     }

@@ -52,7 +52,7 @@ class VariantsBuilder implements IGeneratedBlockState {
                 modelObj.addProperty("x", rotationY);
             }
             if (rotationZ != 0) {
-                modelObj.addProperty("ae2:z", rotationZ);
+                modelObj.addProperty("tl2:z", rotationZ);
             }
             variantsDef.add(stateText.toString(), modelObj);
         });

@@ -26,7 +26,6 @@ import net.minecraft.world.level.ItemLike;
 
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.RedstoneMode;
-import appeng.api.config.SchedulingMode;
 import appeng.api.config.Settings;
 import appeng.api.config.YesNo;
 import appeng.api.upgrades.IUpgradeInventory;
@@ -34,14 +33,14 @@ import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
 import appeng.helpers.externalstorage.GenericStackInv;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.guisync.GuiSync;
 import appeng.menu.slot.FakeSlot;
 import appeng.menu.slot.IOptionalSlotHost;
 import appeng.menu.slot.OptionalFakeSlot;
 
-public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends AEBaseMenu implements IOptionalSlotHost {
+public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends TLBaseMenu implements IOptionalSlotHost {
 
     private final T host;
     @GuiSync(0)
@@ -50,8 +49,6 @@ public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends AEBa
     public FuzzyMode fzMode = FuzzyMode.IGNORE_ALL;
     @GuiSync(5)
     public YesNo cMode = YesNo.NO;
-    @GuiSync(6)
-    public SchedulingMode schedulingMode = SchedulingMode.DEFAULT;
 
     public UpgradeableMenu(MenuType<?> menuType, int id, Inventory ip, T host) {
         super(menuType, id, ip, host);
@@ -123,9 +120,6 @@ public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends AEBa
     protected void loadSettingsFromHost(IConfigManager cm) {
         this.setFuzzyMode(cm.getSetting(Settings.FUZZY_MODE));
         this.setRedStoneMode(cm.getSetting(Settings.REDSTONE_CONTROLLED));
-        if (cm.hasSetting(Settings.SCHEDULING_MODE)) {
-            this.setSchedulingMode(cm.getSetting(Settings.SCHEDULING_MODE));
-        }
     }
 
     protected void standardDetectAndSendChanges() {
@@ -159,14 +153,6 @@ public abstract class UpgradeableMenu<T extends IUpgradeableObject> extends AEBa
 
     public void setRedStoneMode(RedstoneMode rsMode) {
         this.rsMode = rsMode;
-    }
-
-    public SchedulingMode getSchedulingMode() {
-        return this.schedulingMode;
-    }
-
-    private void setSchedulingMode(SchedulingMode schedulingMode) {
-        this.schedulingMode = schedulingMode;
     }
 
     public final T getHost() {

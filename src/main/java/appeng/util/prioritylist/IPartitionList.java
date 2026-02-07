@@ -22,20 +22,20 @@ import org.jetbrains.annotations.Nullable;
 
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.IncludeExclude;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 
 public interface IPartitionList {
-    boolean isListed(AEKey input);
+    boolean isListed(TLKey input);
 
     boolean isEmpty();
 
-    Iterable<AEKey> getItems();
+    Iterable<TLKey> getItems();
 
     /**
      * Checks if the given stack matches this partition list assuming a given WHITELIST/BLACKLIST mode.
      */
-    default boolean matchesFilter(AEKey key, IncludeExclude mode) {
+    default boolean matchesFilter(TLKey key, IncludeExclude mode) {
         if (!isEmpty()) { // Always return true for empty lists
             switch (mode) {
                 case WHITELIST -> {
@@ -66,14 +66,14 @@ public interface IPartitionList {
             this.fuzzyMode = fuzzyMode;
         }
 
-        public void add(@Nullable AEKey key) {
+        public void add(@Nullable TLKey key) {
             if (key != null) {
                 keys.add(key, 1);
             }
         }
 
-        public void addAll(Iterable<AEKey> keys) {
-            for (AEKey key : keys) {
+        public void addAll(Iterable<TLKey> keys) {
+            for (TLKey key : keys) {
                 this.keys.add(key, 1);
             }
         }

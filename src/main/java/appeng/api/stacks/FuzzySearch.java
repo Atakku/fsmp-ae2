@@ -23,22 +23,22 @@ final class FuzzySearch {
     /**
      * Creates a map that is searchable via {@link #findFuzzy}.
      */
-    public static <K extends AEKey, V> Object2ObjectSortedMap<K, V> createMap() {
+    public static <K extends TLKey, V> Object2ObjectSortedMap<K, V> createMap() {
         return new Object2ObjectAVLTreeMap<>(COMPARATOR);
     }
 
     /**
      * Creates a map that is searchable via {@link #findFuzzy}.
      */
-    public static AEKey2LongMap.AVLTreeMap createMap2Long() {
-        return new AEKey2LongMap.AVLTreeMap(COMPARATOR);
+    public static TLKey2LongMap.AVLTreeMap createMap2Long() {
+        return new TLKey2LongMap.AVLTreeMap(COMPARATOR);
     }
 
     /**
      * Does a fuzzy search. The map must have been created using {@link #createMap}.
      */
     @SuppressWarnings({ "unchecked" })
-    public static <T extends SortedMap<K, V>, K, V> T findFuzzy(T map, AEKey key, FuzzyMode fuzzy) {
+    public static <T extends SortedMap<K, V>, K, V> T findFuzzy(T map, TLKey key, FuzzyMode fuzzy) {
         var lowerBound = makeLowerBound(key, fuzzy);
         var upperBound = makeUpperBound(key, fuzzy);
         Preconditions.checkState(lowerBound.itemDamage > upperBound.itemDamage);
@@ -53,7 +53,7 @@ final class FuzzySearch {
     }
 
     /**
-     * This comparator creates a strict and total ordering over all {@link AEKey} of the same item. To support selecting
+     * This comparator creates a strict and total ordering over all {@link TLKey} of the same item. To support selecting
      * ranges of durability, it is defined for type {@link Object} and also accepts {@link FuzzyBound} as an argument to
      * compare against.
      */
@@ -64,23 +64,23 @@ final class FuzzySearch {
             // Since we never put damage bounds into the map as keys, only one
             // of the two arguments can possibly be a bound
             FuzzyBound boundA = null;
-            AEKey stackA = null;
+            TLKey stackA = null;
             int fuzzyOrderB;
             if (a instanceof FuzzyBound) {
                 boundA = (FuzzyBound) a;
                 fuzzyOrderB = boundA.itemDamage;
             } else {
-                stackA = (AEKey) a;
+                stackA = (TLKey) a;
                 fuzzyOrderB = stackA.getFuzzySearchValue();
             }
             FuzzyBound boundB = null;
-            AEKey stackB = null;
+            TLKey stackB = null;
             int fuzzyOrderA;
             if (b instanceof FuzzyBound) {
                 boundB = (FuzzyBound) b;
                 fuzzyOrderA = boundB.itemDamage;
             } else {
-                stackB = (AEKey) b;
+                stackB = (TLKey) b;
                 fuzzyOrderA = stackB.getFuzzySearchValue();
             }
 
@@ -122,7 +122,7 @@ final class FuzzySearch {
      * Keep in mind that the stack order is from most damaged to least damaged, so this lower bound will actually be a
      * higher number than the upper bound.
      */
-    static FuzzyBound makeLowerBound(AEKey key, FuzzyMode fuzzy) {
+    static FuzzyBound makeLowerBound(TLKey key, FuzzyMode fuzzy) {
         var maxValue = key.getFuzzySearchMaxValue();
         Preconditions.checkState(maxValue > 0, "Cannot use fuzzy search on keys that don't have a fuzzy max value: %s",
                 key);
@@ -142,7 +142,7 @@ final class FuzzySearch {
      * Keep in mind that the stack order is from most damaged to least damaged, so this upper bound will actually be a
      * lower number than the lower bound. It also is exclusive.
      */
-    static FuzzyBound makeUpperBound(AEKey key, FuzzyMode fuzzy) {
+    static FuzzyBound makeUpperBound(TLKey key, FuzzyMode fuzzy) {
         var maxValue = key.getFuzzySearchMaxValue();
         Preconditions.checkState(maxValue > 0, "Cannot use fuzzy search on keys that don't have a fuzzy max value: %s",
                 key);

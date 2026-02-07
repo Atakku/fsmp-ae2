@@ -39,7 +39,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartHost;
 import appeng.api.parts.IPartItem;
-import appeng.core.AEConfig;
+import appeng.core.TLConfig;
 import appeng.parts.BusCollisionHelper;
 import appeng.parts.PartPlacement;
 
@@ -105,7 +105,7 @@ public class RenderBlockOutlineHook {
             return false;
         }
 
-        if (AEConfig.instance().isPlacementPreviewEnabled()) {
+        if (TLConfig.instance().isPlacementPreviewEnabled()) {
             var itemInHand = player.getItemInHand(InteractionHand.MAIN_HAND);
             // Render without depth test to also have a preview for parts inside blocks.
             showPartPlacementPreview(player, poseStack, buffers, camera, hitResult, itemInHand, true);

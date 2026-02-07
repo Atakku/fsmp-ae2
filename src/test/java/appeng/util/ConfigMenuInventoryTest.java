@@ -14,19 +14,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
 
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKeyType;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKeyType;
 
 @BootstrapMinecraft
 class ConfigMenuInventoryTest {
 
-    private static final GenericStack STICK = new GenericStack(AEItemKey.of(Items.STICK), 1);
-    private static final GenericStack STONE = new GenericStack(AEItemKey.of(Items.STONE), 1);
-    private static final GenericStack ZERO_STICK = new GenericStack(AEItemKey.of(Items.STICK), 0);
-    private static final GenericStack WATER = new GenericStack(AEFluidKey.of(Fluids.WATER), AEFluidKey.AMOUNT_BUCKET);
-    private static final GenericStack WATER_BUCKET = new GenericStack(AEItemKey.of(Items.WATER_BUCKET), 1);
+    private static final GenericStack STICK = new GenericStack(TLItemKey.of(Items.STICK), 1);
+    private static final GenericStack STONE = new GenericStack(TLItemKey.of(Items.STONE), 1);
+    private static final GenericStack ZERO_STICK = new GenericStack(TLItemKey.of(Items.STICK), 0);
+    private static final GenericStack WATER = new GenericStack(TLFluidKey.of(Fluids.WATER), TLFluidKey.AMOUNT_BUCKET);
+    private static final GenericStack WATER_BUCKET = new GenericStack(TLItemKey.of(Items.WATER_BUCKET), 1);
 
     @TestFactory
     @DisplayName("Test item based config inventory")
@@ -56,7 +56,7 @@ class ConfigMenuInventoryTest {
 
     @Test
     void testFluidConfigReadsAsWrappedStackOfCount1() {
-        var inv = ConfigInventory.configTypes(1).supportedType(AEKeyType.fluids()).build();
+        var inv = ConfigInventory.configTypes(1).supportedType(TLKeyType.fluids()).build();
         inv.setStack(0, WATER);
         var wrappedStack = inv.createMenuWrapper().getStackInSlot(0);
         assertEquals(1, wrappedStack.getCount());
@@ -70,7 +70,7 @@ class ConfigMenuInventoryTest {
      */
     @Test
     void testItemTypeConfigReadsAsItemWithAmount1() {
-        var inv = ConfigInventory.configTypes(1).supportedType(AEKeyType.items()).build();
+        var inv = ConfigInventory.configTypes(1).supportedType(TLKeyType.items()).build();
         inv.setStack(0, ZERO_STICK);
         var fakeStack = inv.createMenuWrapper().getStackInSlot(0);
         assertEquals(Items.STICK, fakeStack.getItem());
@@ -80,15 +80,15 @@ class ConfigMenuInventoryTest {
     // Test when an item-based machine's config inventory is interacted with
     private DynamicTest itemTest(String displayName, ItemStack inserted, @Nullable GenericStack expectedStack,
             @Nullable GenericStack initialStack) {
-        return test(displayName, AEKeyType.items(), inserted, expectedStack, initialStack);
+        return test(displayName, TLKeyType.items(), inserted, expectedStack, initialStack);
     }
 
     private DynamicTest fluidTest(String displayName, ItemStack inserted, @Nullable GenericStack expectedStack,
             @Nullable GenericStack initialStack) {
-        return test(displayName, AEKeyType.fluids(), inserted, expectedStack, initialStack);
+        return test(displayName, TLKeyType.fluids(), inserted, expectedStack, initialStack);
     }
 
-    private DynamicTest test(String displayName, AEKeyType channel, ItemStack inserted,
+    private DynamicTest test(String displayName, TLKeyType channel, ItemStack inserted,
             @Nullable GenericStack expectedStack, @Nullable GenericStack initialStack) {
         return DynamicTest.dynamicTest(
                 displayName,

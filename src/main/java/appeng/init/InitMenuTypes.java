@@ -30,7 +30,6 @@ import appeng.menu.implementations.DriveMenu;
 import appeng.menu.implementations.IOPortMenu;
 import appeng.menu.implementations.MEChestMenu;
 import appeng.menu.implementations.PriorityMenu;
-import appeng.menu.implementations.SkyChestMenu;
 import appeng.menu.implementations.StorageLevelEmitterMenu;
 import appeng.menu.implementations.WirelessAccessPointMenu;
 import appeng.menu.me.common.MEStorageMenu;
@@ -57,7 +56,6 @@ public final class InitMenuTypes {
                 MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
                 MEStorageMenu.WIRELESS_TYPE,
                 PriorityMenu.TYPE,
-                SkyChestMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,
                 WirelessCraftingTermMenu.TYPE,
                 WirelessAccessPointMenu.TYPE);

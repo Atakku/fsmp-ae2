@@ -33,7 +33,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import appeng.api.AECapabilities;
+import appeng.api.TLCapabilities;
 import appeng.api.networking.events.GridEvent;
 import appeng.hooks.ticking.TickHandler;
 import appeng.me.GridConnection;
@@ -130,7 +130,7 @@ public final class GridHelper {
      */
     @Nullable
     public static IInWorldGridNodeHost getNodeHost(Level level, BlockPos pos) {
-        return level.getCapability(AECapabilities.IN_WORLD_GRID_NODE_HOST, pos, null);
+        return level.getCapability(TLCapabilities.IN_WORLD_GRID_NODE_HOST, pos, null);
     }
 
     /**

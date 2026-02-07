@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tl2:item_cell_housing"
+    },
+    {
+      "item": "tl2:fluix_crystal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:view_cell"
+  }
+}

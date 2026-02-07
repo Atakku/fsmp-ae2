@@ -38,8 +38,8 @@ public class GameTestPlotAdapter {
             }
 
             result.add(new TestFunction(
-                    "ae2",
-                    "ae2." + plot.getId().getPath(),
+                    "tl2",
+                    "tl2." + plot.getId().getPath(),
                     plot.getId().toString(),
                     Rotation.NONE,
                     test.maxTicks,

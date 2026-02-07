@@ -6,7 +6,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 
-import appeng.core.definitions.AEAttachmentTypes;
+import appeng.core.definitions.TLAttachmentTypes;
 import appeng.core.network.CustomAppEngPayload;
 import appeng.core.network.ServerboundPacket;
 
@@ -33,6 +33,6 @@ public record UpdateHoldingCtrlPacket(boolean keyDown) implements ServerboundPac
 
     @Override
     public void handleOnServer(ServerPlayer player) {
-        player.setData(AEAttachmentTypes.HOLDING_CTRL, keyDown);
+        player.setData(TLAttachmentTypes.HOLDING_CTRL, keyDown);
     }
 }

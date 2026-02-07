@@ -10,13 +10,13 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.Capabilities;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLFluidKey;
 import appeng.util.GenericContainerHelper;
 import appeng.util.fluid.FluidSoundHelper;
 
 class FluidContainerItemStrategy
-        implements ContainerItemStrategy<AEFluidKey, FluidContainerItemStrategy.Context> {
+        implements ContainerItemStrategy<TLFluidKey, FluidContainerItemStrategy.Context> {
     @Override
     public @Nullable GenericStack getContainedStack(ItemStack stack) {
         return GenericContainerHelper.getContainedFluidStack(stack);
@@ -40,7 +40,7 @@ class FluidContainerItemStrategy
     }
 
     @Override
-    public long extract(Context context, AEFluidKey what, long amount, Actionable mode) {
+    public long extract(Context context, TLFluidKey what, long amount, Actionable mode) {
         var stack = context.getStack();
         var copy = stack.copyWithCount(1);
         var fluidHandler = copy.getCapability(Capabilities.FluidHandler.ITEM);
@@ -57,7 +57,7 @@ class FluidContainerItemStrategy
     }
 
     @Override
-    public long insert(Context context, AEFluidKey what, long amount, Actionable mode) {
+    public long insert(Context context, TLFluidKey what, long amount, Actionable mode) {
         var stack = context.getStack();
         var copy = stack.copyWithCount(1);
         var fluidHandler = copy.getCapability(Capabilities.FluidHandler.ITEM);
@@ -74,12 +74,12 @@ class FluidContainerItemStrategy
     }
 
     @Override
-    public void playFillSound(Player player, AEFluidKey what) {
+    public void playFillSound(Player player, TLFluidKey what) {
         FluidSoundHelper.playFillSound(player, what);
     }
 
     @Override
-    public void playEmptySound(Player player, AEFluidKey what) {
+    public void playEmptySound(Player player, TLFluidKey what) {
         FluidSoundHelper.playEmptySound(player, what);
     }
 

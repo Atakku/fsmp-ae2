@@ -34,9 +34,9 @@ import net.minecraft.world.inventory.Slot;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.Upgrades;
 import appeng.client.Point;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.ICompositeWidget;
 import appeng.client.gui.Rects;
+import appeng.client.gui.TLBaseScreen;
 import appeng.client.gui.Tooltip;
 import appeng.client.gui.style.Blitter;
 import appeng.menu.slot.AppEngSlot;
@@ -104,7 +104,7 @@ public final class UpgradesPanel implements ICompositeWidget {
     }
 
     @Override
-    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, AEBaseScreen<?> screen) {
+    public void populateScreen(Consumer<AbstractWidget> addWidget, Rect2i bounds, TLBaseScreen<?> screen) {
         this.screenOrigin = Point.fromTopLeft(bounds);
     }
 

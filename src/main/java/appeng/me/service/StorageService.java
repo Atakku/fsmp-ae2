@@ -48,8 +48,8 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IGridServiceProvider;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.networking.storage.IStorageWatcherNode;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.IStorageMounts;
 import appeng.api.storage.IStorageProvider;
 import appeng.api.storage.MEStorage;
@@ -69,7 +69,7 @@ public class StorageService implements IStorageService, IGridServiceProvider {
      * Tracks state for storage providers that are provided by other grid services (i.e. crafting).
      */
     private final List<ProviderState> globalProviders = new ArrayList<>();
-    private final SetMultimap<AEKey, StackWatcher<IStorageWatcherNode>> interests = HashMultimap.create();
+    private final SetMultimap<TLKey, StackWatcher<IStorageWatcherNode>> interests = HashMultimap.create();
     private final InterestManager<StackWatcher<IStorageWatcherNode>> interestManager = new InterestManager<>(
             this.interests);
     private final NetworkStorage storage;
@@ -81,7 +81,7 @@ public class StorageService implements IStorageService, IGridServiceProvider {
      * Private cached amounts, to ensure that we send correct change notifications even if
      * {@link #cachedAvailableStacks} is modified by mistake.
      */
-    private final Object2LongMap<AEKey> cachedAvailableAmounts = new Object2LongOpenHashMap<>();
+    private final Object2LongMap<TLKey> cachedAvailableAmounts = new Object2LongOpenHashMap<>();
     private boolean cachedStacksNeedUpdate = true;
     /**
      * Tracks the stack watcher associated with a given grid node. Needed to clean up watchers when the node leaves the
@@ -144,7 +144,7 @@ public class StorageService implements IStorageService, IGridServiceProvider {
         }
     }
 
-    private void postWatcherUpdate(AEKey what, long newAmount) {
+    private void postWatcherUpdate(TLKey what, long newAmount) {
         for (var watcher : interestManager.get(what)) {
             watcher.getHost().onStackChange(what, newAmount);
         }

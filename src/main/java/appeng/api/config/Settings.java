@@ -62,7 +62,6 @@ public final class Settings {
     public static final Setting<YesNo> SEARCH_TOOLTIPS = register("search_tooltips", YesNo.YES, YesNo.NO);
     public static final Setting<RelativeDirection> IO_DIRECTION = register("io_direction", RelativeDirection.LEFT,
             RelativeDirection.RIGHT);
-    public static final Setting<YesNo> BLOCKING_MODE = register("blocking_mode", YesNo.YES, YesNo.NO);
     public static final Setting<OperationMode> OPERATION_MODE = register("operation_mode", OperationMode.class);
     public static final Setting<FullnessMode> FULLNESS_MODE = register("fullness_mode", FullnessMode.class);
     public static final Setting<FuzzyMode> FUZZY_MODE = register("fuzzy_mode", FuzzyMode.class);
@@ -74,17 +73,7 @@ public final class Settings {
             YesNo.NO);
     public static final Setting<StorageFilter> STORAGE_FILTER = register("storage_filter", StorageFilter.class);
     public static final Setting<YesNo> PLACE_BLOCK = register("place_block", YesNo.YES, YesNo.NO);
-    public static final Setting<SchedulingMode> SCHEDULING_MODE = register("scheduling_mode", SchedulingMode.class);
     public static final Setting<YesNo> OVERLAY_MODE = register("overlay_mode", YesNo.YES, YesNo.NO);
-    public static final Setting<YesNo> FILTER_ON_EXTRACT = register("filter_on_extract", YesNo.YES, YesNo.NO);
-    public static final Setting<YesNo> INSCRIBER_SEPARATE_SIDES = register("inscriber_separate_sides", YesNo.NO,
-            YesNo.YES);
-    public static final Setting<YesNo> AUTO_EXPORT = register("auto_export", YesNo.NO, YesNo.YES);
-
-    @Deprecated(forRemoval = true)
-    public static final Setting<YesNo> INSCRIBER_BUFFER_SIZE = register("inscriber_buffer_size", YesNo.NO, YesNo.YES);
-    public static final Setting<InscriberInputCapacity> INSCRIBER_INPUT_CAPACITY = register("inscriber_input_capacity",
-            InscriberInputCapacity.class);
 
     public static Setting<?> getOrThrow(String name) {
         var setting = SETTINGS.get(name);

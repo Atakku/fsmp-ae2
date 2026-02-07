@@ -35,11 +35,11 @@ import appeng.api.networking.IManagedGridNode;
 import appeng.api.networking.security.IActionHost;
 import appeng.api.orientation.BlockOrientation;
 import appeng.block.IOwnerAwareBlockEntity;
-import appeng.blockentity.AEBaseBlockEntity;
+import appeng.blockentity.TLBaseBlockEntity;
 import appeng.me.InWorldGridNode;
 
 /**
- * Interface implemented by the various AE2 block entities that connect to the grid, to support callbacks from the block
+ * Interface implemented by the various TL2 block entities that connect to the grid, to support callbacks from the block
  * entities main grid node.
  */
 public interface IGridConnectedBlockEntity extends IActionHost, IOwnerAwareBlockEntity, IInWorldGridNodeHost {
@@ -84,7 +84,7 @@ public interface IGridConnectedBlockEntity extends IActionHost, IOwnerAwareBlock
 
     /**
      * Used to save changes in the grid nodes contained in the block entity to disk. Implemented in
-     * {@link AEBaseBlockEntity#saveChanges()}
+     * {@link TLBaseBlockEntity#saveChanges()}
      */
     void saveChanges();
 

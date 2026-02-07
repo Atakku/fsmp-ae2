@@ -7,7 +7,7 @@ navigation:
 categories:
 - machines
 item_ids:
-- ae2:inscriber
+- tl2:inscriber
 ---
 
 # The Inscriber
@@ -15,7 +15,7 @@ item_ids:
 <BlockImage id="inscriber" scale="8" />
 
 The inscriber is used to inscribe circuits and [processors](processors.md) using [presses](presses.md), and to crush various items into dust.
-It can accept either AE2's power (AE) or Fabric/Forge Energy (E/FE). It can be sided, such that inserting items from different sides
+It can accept either TL2's power (TL) or Fabric/Forge Energy (E/FE). It can be sided, such that inserting items from different sides
 inserts them into different slots in its inventory. To facilitate this, it can be rotated with a <ItemLink id="certus_quartz_wrench" />.
 It can also be set to push the results of crafts to adjacent inventories.
 

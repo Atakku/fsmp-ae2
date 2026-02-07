@@ -20,13 +20,13 @@ package appeng.util.prioritylist;
 
 import java.util.Collections;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.TLKey;
 
 public class DefaultPriorityList implements IPartitionList {
     public static final DefaultPriorityList INSTANCE = new DefaultPriorityList();
 
     @Override
-    public boolean isListed(AEKey input) {
+    public boolean isListed(TLKey input) {
         return false;
     }
 
@@ -36,7 +36,7 @@ public class DefaultPriorityList implements IPartitionList {
     }
 
     @Override
-    public Iterable<AEKey> getItems() {
+    public Iterable<TLKey> getItems() {
         return Collections.emptyList();
     }
 }

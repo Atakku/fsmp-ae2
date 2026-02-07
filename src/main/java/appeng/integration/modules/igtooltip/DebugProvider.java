@@ -20,11 +20,11 @@ import appeng.api.networking.IGridNode;
 import appeng.api.networking.IManagedGridNode;
 import appeng.api.networking.ticking.IGridTickable;
 import appeng.api.orientation.IOrientationStrategy;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.me.InWorldGridNode;
 import appeng.me.helpers.IGridConnectedBlockEntity;
 import appeng.me.service.TickManagerService;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 import appeng.util.Platform;
 
 public final class DebugProvider {
@@ -59,11 +59,11 @@ public final class DebugProvider {
         }
     }
 
-    public static void providePartBody(AEBasePart object, TooltipContext context, TooltipBuilder tooltip) {
+    public static void providePartBody(TLBasePart object, TooltipContext context, TooltipBuilder tooltip) {
         DebugProvider.addToTooltip(context.serverData(), tooltip);
     }
 
-    public static void providePartData(Player player, AEBasePart part, CompoundTag serverData) {
+    public static void providePartData(Player player, TLBasePart part, CompoundTag serverData) {
         if (DebugProvider.isVisible(player)) {
             DebugProvider.addServerDataMainNode(serverData, part.getMainNode());
             DebugProvider.addServerDataNode(serverData, "External Node", part.getExternalFacingNode());
@@ -220,8 +220,8 @@ public final class DebugProvider {
     }
 
     private static boolean isVisible(Player player) {
-        return AEItems.DEBUG_CARD.is(player.getItemInHand(InteractionHand.OFF_HAND))
-                || AEItems.DEBUG_CARD.is(player.getItemInHand(InteractionHand.MAIN_HAND));
+        return TLItems.DEBUG_CARD.is(player.getItemInHand(InteractionHand.OFF_HAND))
+                || TLItems.DEBUG_CARD.is(player.getItemInHand(InteractionHand.MAIN_HAND));
     }
 
 }

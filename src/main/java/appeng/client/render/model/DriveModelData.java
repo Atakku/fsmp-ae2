@@ -29,9 +29,9 @@ public final class DriveModelData {
     }
 
     public static ModelData.Builder builder(Item[] cells) {
-        return AEModelData.builder()
+        return TLModelData.builder()
                 .with(STATE, cells)
-                .with(AEModelData.SKIP_CACHE, true);
+                .with(TLModelData.SKIP_CACHE, true);
     }
 
     public static ModelData create(Item[] cells) {

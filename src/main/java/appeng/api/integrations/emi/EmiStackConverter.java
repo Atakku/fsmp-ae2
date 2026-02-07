@@ -7,19 +7,19 @@ import dev.emi.emi.api.stack.EmiStack;
 import appeng.api.stacks.GenericStack;
 
 /**
- * Implement this interface to provide AE2s EMI integration with a new way to convert between AE2 {@link GenericStack}
+ * Implement this interface to provide TL2s EMI integration with a new way to convert between TL2 {@link GenericStack}
  * and {@link dev.emi.emi.api.stack.EmiStack}.
  * <ul>
  * <li>Recipe transfers</li>
- * <li>Pressing R/U on custom stacks in AE2 user interfaces</li>
- * <li>Dragging ghost items of custom types from EMI to AE2 interfaces</li>
+ * <li>Pressing R/U on custom stacks in TL2 user interfaces</li>
+ * <li>Dragging ghost items of custom types from EMI to TL2 interfaces</li>
  * </ul>
  * <p/>
  * To register your converter, see {@link EmiStackConverters}.
  */
 public interface EmiStackConverter {
     /**
-     * The EMI {@link EmiStack#getKeyOfType key type} handled by this converter. AE2 handles
+     * The EMI {@link EmiStack#getKeyOfType key type} handled by this converter. TL2 handles
      * {@link net.minecraft.world.level.material.Fluid} and {@link net.minecraft.world.item.Item} already.
      */
     Class<?> getKeyType();

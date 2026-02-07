@@ -18,7 +18,7 @@
 
 package appeng.parts.networking;
 
-import appeng.api.util.AECableType;
+import appeng.api.util.TLCableType;
 import appeng.items.parts.ColoredPartItem;
 
 public class CoveredDenseCablePart extends DenseCablePart {
@@ -28,8 +28,8 @@ public class CoveredDenseCablePart extends DenseCablePart {
     }
 
     @Override
-    public AECableType getCableConnectionType() {
-        return AECableType.DENSE_COVERED;
+    public TLCableType getCableConnectionType() {
+        return TLCableType.DENSE_COVERED;
     }
 
 }

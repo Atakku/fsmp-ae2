@@ -7,8 +7,8 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:wireless_terminal
-- ae2:wireless_crafting_terminal
+- tl2:wireless_terminal
+- tl2:wireless_crafting_terminal
 ---
 
 # Wireless Terminals
@@ -33,8 +33,8 @@ Their energy can be recharged in a <ItemLink id="charger" />.
 
 <ItemImage id="wireless_terminal" scale="4" />
 
-Your basic terminal, now portable! View and access the contents of your [network's storage](../ae2-mechanics/import-export-storage.md)
-and request things from your [autocrafting](../ae2-mechanics/autocrafting.md) setup from anywhere within the range of a
+Your basic terminal, now portable! View and access the contents of your [network's storage](../tl2-mechanics/import-export-storage.md)
+and request things from your [autocrafting](../tl2-mechanics/autocrafting.md) setup from anywhere within the range of a
 <ItemLink id="wireless_access_point" />.
 
 ## The UI
@@ -56,7 +56,7 @@ The Wireless Terminal supports the following [upgrades](upgrade_cards.md):
 <ItemImage id="wireless_crafting_terminal" scale="4" />
 
 The Wireless Crafting Terminal is similar to a regular wireless terminal, with all the same settings and sections, but with an added crafting grid that will be automatically
-refilled from [network storage](../ae2-mechanics/import-export-storage.md). Be careful when shift-clicking the output!
+refilled from [network storage](../tl2-mechanics/import-export-storage.md). Be careful when shift-clicking the output!
 
 ## The UI
 

@@ -65,23 +65,23 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.api.config.Actionable;
 import appeng.api.config.FuzzyMode;
-import appeng.api.ids.AEComponents;
+import appeng.api.ids.TLComponents;
 import appeng.api.implementations.blockentities.IColorableBlockEntity;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.IBasicCellItem;
-import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalBlockPos;
+import appeng.api.util.TLColor;
 import appeng.block.networking.CableBusBlock;
-import appeng.core.definitions.AEItems;
+import appeng.core.definitions.TLItems;
 import appeng.core.localization.GuiText;
 import appeng.datagen.providers.tags.ConventionTags;
 import appeng.helpers.IMouseWheelItem;
 import appeng.hooks.IBlockTool;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 import appeng.items.contents.CellConfig;
 import appeng.items.storage.StorageTier;
 import appeng.me.cells.BasicCellHandler;
@@ -90,10 +90,10 @@ import appeng.util.ConfigInventory;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
 
-public class ColorApplicatorItem extends AEBaseItem
+public class ColorApplicatorItem extends TLBaseItem
         implements IBasicCellItem, IBlockTool, IMouseWheelItem {
 
-    private static final Map<TagKey<Item>, AEColor> TAG_TO_COLOR = AEColor.VALID_COLORS.stream()
+    private static final Map<TagKey<Item>, TLColor> TAG_TO_COLOR = TLColor.VALID_COLORS.stream()
             .collect(Collectors.toMap(
                     aeColor -> ConventionTags.dye(aeColor.dye),
                     Function.identity()));
@@ -160,12 +160,12 @@ public class ColorApplicatorItem extends AEBaseItem
             }
 
             if (color != null) {
-                if (color == AEColor.TRANSPARENT) {
+                if (color == TLColor.TRANSPARENT) {
                     // clean cables.
                     if (p != null
                             && level.getBlockEntity(pos) instanceof IColorableBlockEntity colorableBlockEntity
-                            && colorableBlockEntity.getColor() != AEColor.TRANSPARENT) {
-                        if (colorableBlockEntity.recolourBlock(side, AEColor.TRANSPARENT, p)) {
+                            && colorableBlockEntity.getColor() != TLColor.TRANSPARENT) {
+                        if (colorableBlockEntity.recolourBlock(side, TLColor.TRANSPARENT, p)) {
                             consumeColor(is, color, false);
                             return InteractionResult.sidedSuccess(level.isClientSide());
                         }
@@ -214,7 +214,7 @@ public class ColorApplicatorItem extends AEBaseItem
     public Component getName(ItemStack is) {
         Component extra = GuiText.Empty.text();
 
-        final AEColor selected = this.getActiveColor(is);
+        final TLColor selected = this.getActiveColor(is);
 
         if (selected != null && Platform.isClient()) {
             extra = Component.translatable(selected.translationKey);
@@ -223,14 +223,14 @@ public class ColorApplicatorItem extends AEBaseItem
         return super.getName(is).copy().append(" - ").append(extra);
     }
 
-    public AEColor getActiveColor(ItemStack tol) {
+    public TLColor getActiveColor(ItemStack tol) {
         return this.getColor(tol);
     }
 
     /**
      * Try consuming 1 of the given color.
      */
-    public boolean consumeColor(ItemStack applicator, AEColor color, boolean simulate) {
+    public boolean consumeColor(ItemStack applicator, TLColor color, boolean simulate) {
         var inv = StorageCells.getCellInventory(applicator, null);
         if (inv == null) {
             return false;
@@ -249,7 +249,7 @@ public class ColorApplicatorItem extends AEBaseItem
     /**
      * Try consuming 1 of the given item.
      */
-    public boolean consumeItem(ItemStack applicator, AEKey key, boolean simulate) {
+    public boolean consumeItem(ItemStack applicator, TLKey key, boolean simulate) {
         var inv = StorageCells.getCellInventory(applicator, null);
         if (inv == null) {
             return false;
@@ -268,18 +268,18 @@ public class ColorApplicatorItem extends AEBaseItem
     }
 
     @Nullable
-    private AEColor getColorFrom(AEKey key) {
-        if (key instanceof AEItemKey itemKey) {
+    private TLColor getColorFrom(TLKey key) {
+        if (key instanceof TLItemKey itemKey) {
             var item = itemKey.getItem();
 
             if (item instanceof SnowballItem) {
-                return AEColor.TRANSPARENT;
+                return TLColor.TRANSPARENT;
             }
 
             // Especially during startup when Vanilla builds it's search index, we don't have tags loaded yet
             var vanillaDye = VANILLA_DYES.inverse().get(item);
             if (vanillaDye != null) {
-                return AEColor.fromDye(vanillaDye);
+                return TLColor.fromDye(vanillaDye);
             }
 
             for (var entry : TAG_TO_COLOR.entrySet()) {
@@ -287,16 +287,16 @@ public class ColorApplicatorItem extends AEBaseItem
                     return entry.getValue();
                 }
             }
-        } else if (key instanceof AEFluidKey fluidKey) {
+        } else if (key instanceof TLFluidKey fluidKey) {
             if (fluidKey.isTagged(FluidTags.WATER)) {
-                return AEColor.TRANSPARENT;
+                return TLColor.TRANSPARENT;
             }
         }
         return null;
     }
 
-    public AEColor getColor(ItemStack is) {
-        var selectedPaint = is.get(AEComponents.SELECTED_COLOR);
+    public TLColor getColor(ItemStack is) {
+        var selectedPaint = is.get(TLComponents.SELECTED_COLOR);
         if (selectedPaint != null) {
             return selectedPaint;
         }
@@ -305,8 +305,8 @@ public class ColorApplicatorItem extends AEBaseItem
     }
 
     @Nullable
-    private AEColor findNextColor(ItemStack is, @Nullable AEColor anchorColor, int scrollOffset) {
-        AEColor newColor = null;
+    private TLColor findNextColor(ItemStack is, @Nullable TLColor anchorColor, int scrollOffset) {
+        TLColor newColor = null;
 
         var inv = StorageCells.getCellInventory(is, null);
         if (inv != null) {
@@ -317,7 +317,7 @@ public class ColorApplicatorItem extends AEBaseItem
                     newColor = getColorFrom(firstItem);
                 }
             } else {
-                var list = new LinkedList<AEKey>();
+                var list = new LinkedList<TLKey>();
 
                 for (var i : keyList) {
                     list.add(i.getKey());
@@ -361,12 +361,12 @@ public class ColorApplicatorItem extends AEBaseItem
         return newColor;
     }
 
-    private void setColor(ItemStack is, @Nullable AEColor newColor) {
-        is.set(AEComponents.SELECTED_COLOR, newColor);
+    private void setColor(ItemStack is, @Nullable TLColor newColor) {
+        is.set(TLComponents.SELECTED_COLOR, newColor);
     }
 
     private boolean recolourBlock(Block blk, Direction side, Level level, BlockPos pos,
-            AEColor newColor, @Nullable Player p) {
+            TLColor newColor, @Nullable Player p) {
         var state = level.getBlockState(pos);
 
         Block recolored = BlockRecolorer.recolor(blk, newColor);
@@ -402,7 +402,7 @@ public class ColorApplicatorItem extends AEBaseItem
         return newState;
     }
 
-    public void cycleColors(ItemStack is, @Nullable AEColor currentColor, int i) {
+    public void cycleColors(ItemStack is, @Nullable TLColor currentColor, int i) {
         if (currentColor == null) {
             this.setColor(is, this.getColor(is));
         } else {
@@ -439,7 +439,7 @@ public class ColorApplicatorItem extends AEBaseItem
     }
 
     @Override
-    public boolean isBlackListed(ItemStack cellItem, AEKey requestedAddition) {
+    public boolean isBlackListed(ItemStack cellItem, TLKey requestedAddition) {
         return getColorFrom(requestedAddition) == null;
     }
 
@@ -449,23 +449,23 @@ public class ColorApplicatorItem extends AEBaseItem
     }
 
     @Override
-    public AEKeyType getKeyType() {
-        return AEKeyType.items();
+    public TLKeyType getKeyType() {
+        return TLKeyType.items();
     }
 
     @Override
     public ConfigInventory getConfigInventory(ItemStack is) {
-        return CellConfig.create(Set.of(AEKeyType.items()), is);
+        return CellConfig.create(Set.of(TLKeyType.items()), is);
     }
 
     @Override
     public FuzzyMode getFuzzyMode(ItemStack is) {
-        return is.getOrDefault(AEComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
+        return is.getOrDefault(TLComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
     }
 
     @Override
     public void setFuzzyMode(ItemStack is, FuzzyMode fzMode) {
-        is.set(AEComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
+        is.set(TLComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
     }
 
     @Override
@@ -485,21 +485,21 @@ public class ColorApplicatorItem extends AEBaseItem
      */
     public static ItemStack createFullColorApplicator() {
         // Give a fully set up color applicator
-        var item = AEItems.COLOR_APPLICATOR.get();
+        var item = TLItems.COLOR_APPLICATOR.get();
         var applicator = new ItemStack(item);
 
         // Add all dyes
         var dyeStorage = BasicCellHandler.INSTANCE.getCellInventory(applicator, null);
 
         for (var dyeItem : VANILLA_DYES.values()) {
-            dyeStorage.insert(AEItemKey.of(dyeItem), 128, Actionable.MODULATE, new BaseActionSource());
+            dyeStorage.insert(TLItemKey.of(dyeItem), 128, Actionable.MODULATE, new BaseActionSource());
         }
-        dyeStorage.insert(AEItemKey.of(Items.SNOWBALL), 128, Actionable.MODULATE, new BaseActionSource());
+        dyeStorage.insert(TLItemKey.of(Items.SNOWBALL), 128, Actionable.MODULATE, new BaseActionSource());
 
         return applicator;
     }
 
-    public void setActiveColor(ItemStack applicator, @Nullable AEColor color) {
+    public void setActiveColor(ItemStack applicator, @Nullable TLColor color) {
         if (color == null) {
             setColor(applicator, null);
             return;
@@ -512,7 +512,7 @@ public class ColorApplicatorItem extends AEBaseItem
         }
 
         for (var entry : inv.getAvailableStacks()) {
-            if (entry.getKey() instanceof AEItemKey itemKey && getColorFrom(itemKey) == color) {
+            if (entry.getKey() instanceof TLItemKey itemKey && getColorFrom(itemKey) == color) {
                 setColor(applicator, color);
                 return;
             }

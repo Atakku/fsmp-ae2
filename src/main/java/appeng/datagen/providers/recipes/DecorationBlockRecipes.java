@@ -27,121 +27,33 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 
 import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.BlockDefinition;
 import appeng.core.definitions.ItemDefinition;
-import appeng.datagen.providers.tags.ConventionTags;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
 
-public class DecorationBlockRecipes extends AE2RecipeProvider {
+public class DecorationBlockRecipes extends TL2RecipeProvider {
     public DecorationBlockRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
 
     @Override
     public String getName() {
-        return "AE2 Decoration Blocks";
+        return "TL2 Decoration Blocks";
     }
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
+        crystalBlock(consumer, TLItems.FLUIX_CRYSTAL, TLBlocks.FLUIX_BLOCK);
 
-        crystalBlock(consumer, AEItems.CERTUS_QUARTZ_CRYSTAL, AEBlocks.QUARTZ_BLOCK);
-        crystalBlock(consumer, AEItems.FLUIX_CRYSTAL, AEBlocks.FLUIX_BLOCK);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SKY_STONE_BRICK, 4)
-                .pattern("aa")
-                .pattern("aa")
-                .define('a', AEBlocks.SMOOTH_SKY_STONE_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.SMOOTH_SKY_STONE_BLOCK), has(AEBlocks.SMOOTH_SKY_STONE_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/sky_stone_brick"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.SKY_STONE_SMALL_BRICK, 4)
-                .pattern("aa")
-                .pattern("aa")
-                .define('a', AEBlocks.SKY_STONE_BRICK)
-                .unlockedBy(criterionName(AEBlocks.SKY_STONE_BRICK), has(AEBlocks.SKY_STONE_BRICK))
-                .save(consumer, AppEng.makeId("decorative/sky_stone_small_brick"));
-
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.SMOOTH_SKY_STONE_BLOCK), RecipeCategory.MISC,
-                        AEBlocks.SKY_STONE_BRICK)
-                .unlockedBy(criterionName(AEBlocks.SMOOTH_SKY_STONE_BLOCK), has(AEBlocks.SMOOTH_SKY_STONE_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/sky_stone_brick_from_stonecutting"));
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.SMOOTH_SKY_STONE_BLOCK), RecipeCategory.MISC,
-                        AEBlocks.SKY_STONE_SMALL_BRICK)
-                .unlockedBy(criterionName(AEBlocks.SMOOTH_SKY_STONE_BLOCK), has(AEBlocks.SMOOTH_SKY_STONE_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/sky_stone_small_brick_from_stonecutting"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.CUT_QUARTZ_BLOCK, 4)
-                .pattern("aa")
-                .pattern("aa")
-                .define('a', AEBlocks.QUARTZ_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.QUARTZ_BLOCK), has(AEBlocks.QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/cut_quartz_block"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_BRICKS, 4)
-                .pattern("aa")
-                .pattern("aa")
-                .define('a', AEBlocks.CUT_QUARTZ_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/certus_quartz_bricks"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_PILLAR, 2)
-                .pattern("a")
-                .pattern("a")
-                .define('a', AEBlocks.CUT_QUARTZ_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/certus_quartz_pillar"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.CHISELED_QUARTZ_BLOCK, 1)
-                .pattern("a")
-                .pattern("a")
-                .define('a', AEBlocks.CUT_QUARTZ_SLAB)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_SLAB), has(AEBlocks.CUT_QUARTZ_SLAB))
-                .save(consumer, AppEng.makeId("decorative/chiseled_quartz_block"));
-
-        SimpleCookingRecipeBuilder
-                .smelting(Ingredient.of(AEBlocks.CUT_QUARTZ_BLOCK), RecipeCategory.MISC, AEBlocks.SMOOTH_QUARTZ_BLOCK,
-                        .1f, 200)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/smooth_quartz_block"));
-
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.QUARTZ_BLOCK), RecipeCategory.MISC, AEBlocks.CUT_QUARTZ_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.QUARTZ_BLOCK), has(AEBlocks.QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/cut_quartz_block_from_stonecutting"));
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.CUT_QUARTZ_BLOCK), RecipeCategory.MISC, AEBlocks.QUARTZ_BRICKS)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/certus_quartz_bricks_from_stonecutting"));
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.CUT_QUARTZ_BLOCK), RecipeCategory.MISC, AEBlocks.QUARTZ_PILLAR)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/certus_quartz_pillar_from_stonecutting"));
-        SingleItemRecipeBuilder
-                .stonecutting(Ingredient.of(AEBlocks.CUT_QUARTZ_BLOCK), RecipeCategory.MISC,
-                        AEBlocks.CHISELED_QUARTZ_BLOCK)
-                .unlockedBy(criterionName(AEBlocks.CUT_QUARTZ_BLOCK), has(AEBlocks.CUT_QUARTZ_BLOCK))
-                .save(consumer, AppEng.makeId("decorative/chiseled_quartz_block_from_stonecutting"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_GLASS, 4)
-                .pattern("aba")
-                .pattern("bab")
-                .pattern("aba")
-                .define('a', ConventionTags.ALL_QUARTZ_DUST)
-                .define('b', ConventionTags.GLASS_CHEAP)
-                .unlockedBy("has_quartz_dust", has(ConventionTags.ALL_QUARTZ_DUST))
-                .save(consumer, AppEng.makeId("decorative/quartz_glass"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEBlocks.QUARTZ_VIBRANT_GLASS)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.QUARTZ_VIBRANT_GLASS)
                 .pattern("aba")
                 .define('a', Items.GLOWSTONE_DUST)
-                .define('b', AEBlocks.QUARTZ_GLASS)
-                .unlockedBy(criterionName(AEBlocks.QUARTZ_GLASS), has(AEBlocks.QUARTZ_GLASS))
+                .define('b', TLBlocks.QUARTZ_GLASS)
+                .unlockedBy(criterionName(TLBlocks.QUARTZ_GLASS), has(TLBlocks.QUARTZ_GLASS))
                 .save(consumer, AppEng.makeId("decorative/quartz_vibrant_glass"));
     }
 

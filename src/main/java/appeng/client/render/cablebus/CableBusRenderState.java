@@ -30,8 +30,8 @@ import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.client.model.data.ModelProperty;
 
 import appeng.api.parts.IPartModel;
-import appeng.api.util.AECableType;
-import appeng.api.util.AEColor;
+import appeng.api.util.TLCableType;
+import appeng.api.util.TLColor;
 
 /**
  * This class captures the entire rendering state needed for a cable bus and transports it to the rendering thread for
@@ -43,16 +43,16 @@ public class CableBusRenderState {
 
     // The cable type used for rendering the outgoing connections to other blocks
     // and attached parts
-    private AECableType cableType = AECableType.NONE;
+    private TLCableType cableType = TLCableType.NONE;
 
     // The type to use for rendering the core of the cable.
     private CableCoreType coreType;
 
-    private AEColor cableColor = AEColor.TRANSPARENT;
+    private TLColor cableColor = TLColor.TRANSPARENT;
 
     // Describes the outgoing connections of this cable bus to other blocks, and how
     // they should be rendered
-    private EnumMap<Direction, AECableType> connectionTypes = new EnumMap<>(Direction.class);
+    private EnumMap<Direction, TLCableType> connectionTypes = new EnumMap<>(Direction.class);
 
     // Indicate on which sides signified by connectionTypes above, there is another
     // cable bus. If a side is connected,
@@ -90,19 +90,19 @@ public class CableBusRenderState {
         this.coreType = coreType;
     }
 
-    public AECableType getCableType() {
+    public TLCableType getCableType() {
         return this.cableType;
     }
 
-    public void setCableType(AECableType cableType) {
+    public void setCableType(TLCableType cableType) {
         this.cableType = cableType;
     }
 
-    public AEColor getCableColor() {
+    public TLColor getCableColor() {
         return this.cableColor;
     }
 
-    public void setCableColor(AEColor cableColor) {
+    public void setCableColor(TLColor cableColor) {
         this.cableColor = cableColor;
     }
 
@@ -110,11 +110,11 @@ public class CableBusRenderState {
         return this.channelsOnSide;
     }
 
-    public EnumMap<Direction, AECableType> getConnectionTypes() {
+    public EnumMap<Direction, TLCableType> getConnectionTypes() {
         return this.connectionTypes;
     }
 
-    public void setConnectionTypes(EnumMap<Direction, AECableType> connectionTypes) {
+    public void setConnectionTypes(EnumMap<Direction, TLCableType> connectionTypes) {
         this.connectionTypes = connectionTypes;
     }
 

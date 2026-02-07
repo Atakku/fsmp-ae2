@@ -28,7 +28,7 @@ import me.shedaniel.rei.api.client.gui.drag.DraggableStackVisitor;
 import me.shedaniel.rei.api.client.gui.drag.DraggedAcceptorResult;
 import me.shedaniel.rei.api.client.gui.drag.DraggingContext;
 
-import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.TLBaseScreen;
 import appeng.integration.modules.itemlists.DropTargets;
 
 /**
@@ -36,15 +36,15 @@ import appeng.integration.modules.itemlists.DropTargets;
  * having the actual item in hand.
  */
 @SuppressWarnings("rawtypes")
-class GhostIngredientHandler implements DraggableStackVisitor<AEBaseScreen> {
+class GhostIngredientHandler implements DraggableStackVisitor<TLBaseScreen> {
 
     @Override
     public <R extends Screen> boolean isHandingScreen(R screen) {
-        return screen instanceof AEBaseScreen;
+        return screen instanceof TLBaseScreen;
     }
 
     @Override
-    public Stream<BoundsProvider> getDraggableAcceptingBounds(DraggingContext<AEBaseScreen> context,
+    public Stream<BoundsProvider> getDraggableAcceptingBounds(DraggingContext<TLBaseScreen> context,
             DraggableStack stack) {
 
         var genericStack = GenericEntryStackHelper.ingredientToStack(stack.getStack());
@@ -64,7 +64,7 @@ class GhostIngredientHandler implements DraggableStackVisitor<AEBaseScreen> {
     }
 
     @Override
-    public DraggedAcceptorResult acceptDraggedStack(DraggingContext<AEBaseScreen> context, DraggableStack stack) {
+    public DraggedAcceptorResult acceptDraggedStack(DraggingContext<TLBaseScreen> context, DraggableStack stack) {
         var genericStack = GenericEntryStackHelper.ingredientToStack(stack.getStack());
         if (genericStack == null) {
             return DraggedAcceptorResult.PASS;

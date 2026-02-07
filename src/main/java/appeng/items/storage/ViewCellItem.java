@@ -24,15 +24,15 @@ import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.FuzzyMode;
-import appeng.api.ids.AEComponents;
-import appeng.api.stacks.AEItemKey;
+import appeng.api.ids.TLComponents;
 import appeng.api.stacks.KeyCounter;
-import appeng.api.storage.AEKeyFilter;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.storage.TLKeyFilter;
 import appeng.api.storage.cells.ICellWorkbenchItem;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.UpgradeInventories;
-import appeng.core.definitions.AEItems;
-import appeng.items.AEBaseItem;
+import appeng.core.definitions.TLItems;
+import appeng.items.TLBaseItem;
 import appeng.items.contents.CellConfig;
 import appeng.util.ConfigInventory;
 import appeng.util.prioritylist.FuzzyPriorityList;
@@ -40,7 +40,7 @@ import appeng.util.prioritylist.IPartitionList;
 import appeng.util.prioritylist.MergedPriorityList;
 import appeng.util.prioritylist.PrecisePriorityList;
 
-public class ViewCellItem extends AEBaseItem implements ICellWorkbenchItem {
+public class ViewCellItem extends TLBaseItem implements ICellWorkbenchItem {
     public ViewCellItem(Properties properties) {
         super(properties);
     }
@@ -50,10 +50,10 @@ public class ViewCellItem extends AEBaseItem implements ICellWorkbenchItem {
      * part of the filter.
      */
     public static IPartitionList createItemFilter(Collection<ItemStack> list) {
-        return createFilter(AEItemKey.filter(), list);
+        return createFilter(TLItemKey.filter(), list);
     }
 
-    public static IPartitionList createFilter(AEKeyFilter filter,
+    public static IPartitionList createFilter(TLKeyFilter filter,
             Collection<ItemStack> list) {
         IPartitionList myPartitionList = null;
 
@@ -80,8 +80,8 @@ public class ViewCellItem extends AEBaseItem implements ICellWorkbenchItem {
 
                 if (!priorityList.isEmpty()) {
                     var upgrades = vc.getUpgrades(currentViewCell);
-                    var hasInverter = upgrades.isInstalled(AEItems.INVERTER_CARD);
-                    if (upgrades.isInstalled(AEItems.FUZZY_CARD)) {
+                    var hasInverter = upgrades.isInstalled(TLItems.INVERTER_CARD);
+                    if (upgrades.isInstalled(TLItems.FUZZY_CARD)) {
                         myMergedList.addNewList(new FuzzyPriorityList(priorityList, fzMode), !hasInverter);
                     } else {
                         myMergedList.addNewList(new PrecisePriorityList(priorityList), !hasInverter);
@@ -107,11 +107,11 @@ public class ViewCellItem extends AEBaseItem implements ICellWorkbenchItem {
 
     @Override
     public FuzzyMode getFuzzyMode(ItemStack is) {
-        return is.getOrDefault(AEComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
+        return is.getOrDefault(TLComponents.STORAGE_CELL_FUZZY_MODE, FuzzyMode.IGNORE_ALL);
     }
 
     @Override
     public void setFuzzyMode(ItemStack is, FuzzyMode fzMode) {
-        is.set(AEComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
+        is.set(TLComponents.STORAGE_CELL_FUZZY_MODE, fzMode);
     }
 }

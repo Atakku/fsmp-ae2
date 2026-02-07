@@ -7,16 +7,16 @@ navigation:
 categories:
 - tools
 item_ids:
-- ae2:certus_quartz_axe
-- ae2:certus_quartz_hoe
-- ae2:certus_quartz_shovel
-- ae2:certus_quartz_pickaxe
-- ae2:certus_quartz_sword
-- ae2:nether_quartz_axe
-- ae2:nether_quartz_hoe
-- ae2:nether_quartz_shovel
-- ae2:nether_quartz_pickaxe
-- ae2:nether_quartz_sword
+- tl2:certus_quartz_axe
+- tl2:certus_quartz_hoe
+- tl2:certus_quartz_shovel
+- tl2:certus_quartz_pickaxe
+- tl2:certus_quartz_sword
+- tl2:nether_quartz_axe
+- tl2:nether_quartz_hoe
+- tl2:nether_quartz_shovel
+- tl2:nether_quartz_pickaxe
+- tl2:nether_quartz_sword
 ---
 
 # Quartz Tools

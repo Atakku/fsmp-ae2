@@ -49,10 +49,10 @@ import appeng.api.implementations.blockentities.IViewCellStorage;
 import appeng.api.implementations.menuobjects.IPortableTerminal;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.security.IActionHost;
-import appeng.api.stacks.AEFluidKey;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLFluidKey;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.ILinkStatus;
 import appeng.api.storage.ITerminalHost;
 import appeng.api.storage.MEStorage;
@@ -63,15 +63,15 @@ import appeng.api.util.IConfigurableObject;
 import appeng.api.util.KeyTypeSelection;
 import appeng.api.util.KeyTypeSelectionHost;
 import appeng.client.gui.me.common.MEStorageScreen;
-import appeng.core.AELog;
+import appeng.core.TLLog;
 import appeng.core.network.ServerboundPacket;
 import appeng.core.network.bidirectional.ConfigValuePacket;
 import appeng.core.network.clientbound.MEInventoryUpdatePacket;
 import appeng.core.network.clientbound.SetLinkStatusPacket;
 import appeng.core.network.serverbound.MEInteractionPacket;
 import appeng.helpers.InventoryAction;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
+import appeng.menu.TLBaseMenu;
 import appeng.menu.guisync.GuiSync;
 import appeng.menu.guisync.LinkStatusAwareMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
@@ -83,7 +83,7 @@ import appeng.util.Platform;
 /**
  * @see MEStorageScreen
  */
-public class MEStorageMenu extends AEBaseMenu
+public class MEStorageMenu extends TLBaseMenu
         implements IConfigurableObject, IMEInteractionHandler, LinkStatusAwareMenu,
         KeyTypeSelectionMenu {
 
@@ -183,7 +183,7 @@ public class MEStorageMenu extends AEBaseMenu
         return null;
     }
 
-    public boolean isKeyVisible(AEKey key) {
+    public boolean isKeyVisible(TLKey key) {
         // If the host is a basic item cell with a limited key space, account for this
         if (itemMenuHost != null && itemMenuHost.getItem() instanceof IBasicCellItem basicCellItem) {
             return basicCellItem.getKeyType().contains(key);
@@ -232,7 +232,7 @@ public class MEStorageMenu extends AEBaseMenu
                 }
 
             } catch (Exception e) {
-                AELog.warn(e, "Failed to send incremental inventory update to client");
+                TLLog.warn(e, "Failed to send incremental inventory update to client");
             }
 
             previousAvailableStacks = availableStacks;
@@ -307,7 +307,7 @@ public class MEStorageMenu extends AEBaseMenu
             return;
         }
 
-        AEKey stack = getStackBySerial(serial);
+        TLKey stack = getStackBySerial(serial);
         if (stack == null) {
             // This can happen if the client sent the request after we removed the item, but before
             // the client knows about it (-> network delay).
@@ -317,7 +317,7 @@ public class MEStorageMenu extends AEBaseMenu
         handleNetworkInteraction(player, stack, action);
     }
 
-    protected void handleNetworkInteraction(ServerPlayer player, @Nullable AEKey clickedKey, InventoryAction action) {
+    protected void handleNetworkInteraction(ServerPlayer player, @Nullable TLKey clickedKey, InventoryAction action) {
 
         if (!canInteractWithGrid()) {
             return;
@@ -352,7 +352,7 @@ public class MEStorageMenu extends AEBaseMenu
         }
 
         // Any of the remaining actions are for items only
-        if (!(clickedKey instanceof AEItemKey clickedItem)) {
+        if (!(clickedKey instanceof TLItemKey clickedItem)) {
             return;
         }
 
@@ -363,7 +363,7 @@ public class MEStorageMenu extends AEBaseMenu
                 // hovering in the network inventory.
                 var carried = getCarried();
                 if (!carried.isEmpty()) {
-                    var what = AEItemKey.of(carried);
+                    var what = TLItemKey.of(carried);
                     var inserted = StorageHelper.insert(storage, what, 1, this.getActionSource());
                     if (inserted > 0) {
                         getCarried().shrink(1);
@@ -449,18 +449,18 @@ public class MEStorageMenu extends AEBaseMenu
                     }
                 }
             }
-            default -> AELog.warn("Received unhandled inventory action %s from client in %s", action, getClass());
+            default -> TLLog.warn("Received unhandled inventory action %s from client in %s", action, getClass());
         }
     }
 
-    private void tryFillContainerItem(@Nullable AEKey clickedKey, boolean moveToPlayer, boolean fillAll) {
+    private void tryFillContainerItem(@Nullable TLKey clickedKey, boolean moveToPlayer, boolean fillAll) {
         // Special handling for fluids to facilitate filling water/lava buckets which are often
         // needed for crafting and placement in-world.
         boolean grabbedEmptyBucket = false;
-        if (getCarried().isEmpty() && clickedKey instanceof AEFluidKey fluidKey
+        if (getCarried().isEmpty() && clickedKey instanceof TLFluidKey fluidKey
                 && fluidKey.getFluid().getBucket() != Items.AIR) {
             // This costs no energy, but who cares...
-            if (storage.extract(AEItemKey.of(Items.BUCKET), 1, Actionable.MODULATE, getActionSource()) >= 1) {
+            if (storage.extract(TLItemKey.of(Items.BUCKET), 1, Actionable.MODULATE, getActionSource()) >= 1) {
                 var bucket = Items.BUCKET.getDefaultInstance();
                 setCarried(bucket);
                 grabbedEmptyBucket = true;
@@ -476,7 +476,7 @@ public class MEStorageMenu extends AEBaseMenu
 
         // If we grabbed an empty bucket, and after trying to fill it, it's still empty, put it back!
         if (grabbedEmptyBucket && getCarried().is(Items.BUCKET)) {
-            var inserted = storage.insert(AEItemKey.of(getCarried()), getCarried().getCount(), Actionable.MODULATE,
+            var inserted = storage.insert(TLItemKey.of(getCarried()), getCarried().getCount(), Actionable.MODULATE,
                     getActionSource());
             var newCarried = getCarried().copy();
             newCarried.shrink(Ints.saturatedCast(inserted));
@@ -495,7 +495,7 @@ public class MEStorageMenu extends AEBaseMenu
     protected void putCarriedItemIntoNetwork(boolean singleItem) {
         var heldStack = getCarried();
 
-        var what = AEItemKey.of(heldStack);
+        var what = TLItemKey.of(heldStack);
         if (what == null) {
             return;
         }
@@ -510,7 +510,7 @@ public class MEStorageMenu extends AEBaseMenu
         setCarried(Platform.getInsertionRemainder(heldStack, inserted));
     }
 
-    private boolean moveOneStackToPlayer(AEItemKey what) {
+    private boolean moveOneStackToPlayer(TLItemKey what) {
         var potentialAmount = storage.extract(what, what.getMaxStackSize(), Actionable.SIMULATE, getActionSource());
         if (potentialAmount <= 0) {
             return false; // No item available
@@ -542,7 +542,7 @@ public class MEStorageMenu extends AEBaseMenu
     }
 
     @Nullable
-    protected final AEKey getStackBySerial(long serial) {
+    protected final TLKey getStackBySerial(long serial) {
         return updateHelper.getBySerial(serial);
     }
 
@@ -581,7 +581,7 @@ public class MEStorageMenu extends AEBaseMenu
             return super.transferStackToMenu(input);
         }
 
-        var key = AEItemKey.of(input);
+        var key = TLItemKey.of(input);
         if (key == null || !isKeyVisible(key)) {
             return 0;
         }

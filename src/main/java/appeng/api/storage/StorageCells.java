@@ -52,7 +52,7 @@ public final class StorageCells {
     /**
      * Register a new handler.
      * <p>
-     * Never be call before {@link net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent} was handled by AE2. Will throw
+     * Never be call before {@link net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent} was handled by TL2. Will throw
      * an exception otherwise.
      *
      * @param handler cell handler
@@ -69,7 +69,7 @@ public final class StorageCells {
      * return true, if you can get a InventoryHandler for the item passed.
      *
      * @param is to be checked item
-     * @return true if the provided item, can be handled by a handler in AE, ( AE May choose to skip this and just get
+     * @return true if the provided item, can be handled by a handler in TL, ( TL May choose to skip this and just get
      *         the handler instead. )
      */
     public static synchronized boolean isCellHandled(ItemStack is) {

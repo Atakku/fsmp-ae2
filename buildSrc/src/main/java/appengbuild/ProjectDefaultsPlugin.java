@@ -28,7 +28,7 @@ public class ProjectDefaultsPlugin implements Plugin<Project> {
 
         String projectVersion = getProjectVersion(project);
         project.setVersion(projectVersion);
-        project.getLogger().lifecycle("AE2 Version: {}", projectVersion);
+        project.getLogger().lifecycle("TL2 Version: {}", projectVersion);
         project.getTasks().register("printProjectVersion", PrintProjectVersion.class);
     }
 

@@ -37,8 +37,8 @@ import net.minecraft.world.level.Level;
 import appeng.api.config.Actionable;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLItemKey;
 import appeng.api.storage.MEStorage;
 import appeng.helpers.ICraftingGridMenu;
 import appeng.helpers.InventoryAction;
@@ -254,7 +254,7 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
             return ItemStack.EMPTY;
         }
 
-        var ae_req = AEItemKey.of(providedTemplate);
+        var ae_req = TLItemKey.of(providedTemplate);
 
         if (filter == null || filter.isListed(ae_req)) {
             var extracted = src.extract(ae_req, 1, Actionable.MODULATE, mySrc);
@@ -269,7 +269,7 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
             var craftingInputItems = new ArrayList<>(craftingItems);
 
             for (var x : items) {
-                if (x.getKey() instanceof AEItemKey itemKey) {
+                if (x.getKey() instanceof TLItemKey itemKey) {
                     if (providedTemplate.getItem() == itemKey.getItem() && !itemKey.matches(output)) {
 
                         craftingInputItems.set(slot, itemKey.toStack());
@@ -312,7 +312,7 @@ public class CraftingTermSlot extends AppEngCraftingSlot {
                 if (this.craftInv.getStackInSlot(x).isEmpty()) {
                     this.craftInv.setItemDirect(x, set[x]);
                 } else if (!set[x].isEmpty()) {
-                    var what = AEItemKey.of(set[x]);
+                    var what = TLItemKey.of(set[x]);
                     var amount = set[x].getCount();
                     var inserted = inv.insert(what, amount, Actionable.MODULATE,
                             this.mySrc);

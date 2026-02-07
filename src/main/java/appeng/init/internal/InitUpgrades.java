@@ -21,9 +21,9 @@ package appeng.init.internal;
 import java.util.List;
 
 import appeng.api.upgrades.Upgrades;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 import appeng.core.localization.GuiText;
 
 public final class InitUpgrades {
@@ -38,58 +38,58 @@ public final class InitUpgrades {
         String portableCellGroup = GuiText.PortableCells.getTranslationKey();
 
         // IO Port!
-        Upgrades.add(AEItems.SPEED_CARD, AEBlocks.IO_PORT, 3);
-        Upgrades.add(AEItems.REDSTONE_CARD, AEBlocks.IO_PORT, 1);
+        Upgrades.add(TLItems.SPEED_CARD, TLBlocks.IO_PORT, 3);
+        Upgrades.add(TLItems.REDSTONE_CARD, TLBlocks.IO_PORT, 1);
 
         // Level Emitter!
-        Upgrades.add(AEItems.FUZZY_CARD, AEParts.LEVEL_EMITTER, 1);
+        Upgrades.add(TLItems.FUZZY_CARD, TLParts.LEVEL_EMITTER, 1);
 
         // Storage Cells
         var itemCells = List.of(
-                AEItems.ITEM_CELL_1K, AEItems.ITEM_CELL_4K, AEItems.ITEM_CELL_16K, AEItems.ITEM_CELL_64K,
-                AEItems.ITEM_CELL_256K);
+                TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K, TLItems.ITEM_CELL_16K, TLItems.ITEM_CELL_64K,
+                TLItems.ITEM_CELL_256K);
         for (var itemCell : itemCells) {
-            Upgrades.add(AEItems.FUZZY_CARD, itemCell, 1, storageCellGroup);
-            Upgrades.add(AEItems.INVERTER_CARD, itemCell, 1, storageCellGroup);
-            Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, itemCell, 1, storageCellGroup);
-            Upgrades.add(AEItems.VOID_CARD, itemCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.FUZZY_CARD, itemCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.INVERTER_CARD, itemCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, itemCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.VOID_CARD, itemCell, 1, storageCellGroup);
         }
 
         var fluidCells = List.of(
-                AEItems.FLUID_CELL_1K, AEItems.FLUID_CELL_4K, AEItems.FLUID_CELL_16K, AEItems.FLUID_CELL_64K,
-                AEItems.FLUID_CELL_256K);
+                TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K, TLItems.FLUID_CELL_16K, TLItems.FLUID_CELL_64K,
+                TLItems.FLUID_CELL_256K);
         for (var fluidCell : fluidCells) {
-            Upgrades.add(AEItems.INVERTER_CARD, fluidCell, 1, storageCellGroup);
-            Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, fluidCell, 1, storageCellGroup);
-            Upgrades.add(AEItems.VOID_CARD, fluidCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.INVERTER_CARD, fluidCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, fluidCell, 1, storageCellGroup);
+            Upgrades.add(TLItems.VOID_CARD, fluidCell, 1, storageCellGroup);
         }
 
         var portableCells = List.of(
-                AEItems.PORTABLE_ITEM_CELL1K, AEItems.PORTABLE_ITEM_CELL4K, AEItems.PORTABLE_ITEM_CELL16K,
-                AEItems.PORTABLE_ITEM_CELL64K, AEItems.PORTABLE_ITEM_CELL256K);
+                TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_ITEM_CELL16K,
+                TLItems.PORTABLE_ITEM_CELL64K, TLItems.PORTABLE_ITEM_CELL256K);
         for (var portableCell : portableCells) {
-            Upgrades.add(AEItems.FUZZY_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.INVERTER_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.VOID_CARD, portableCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.FUZZY_CARD, portableCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.INVERTER_CARD, portableCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, portableCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.VOID_CARD, portableCell, 1, portableCellGroup);
         }
 
         var portableFluidCells = List.of(
-                AEItems.PORTABLE_FLUID_CELL1K, AEItems.PORTABLE_FLUID_CELL4K, AEItems.PORTABLE_FLUID_CELL16K,
-                AEItems.PORTABLE_FLUID_CELL64K, AEItems.PORTABLE_FLUID_CELL256K);
+                TLItems.PORTABLE_FLUID_CELL1K, TLItems.PORTABLE_FLUID_CELL4K, TLItems.PORTABLE_FLUID_CELL16K,
+                TLItems.PORTABLE_FLUID_CELL64K, TLItems.PORTABLE_FLUID_CELL256K);
         for (var portableFluidCell : portableFluidCells) {
-            Upgrades.add(AEItems.INVERTER_CARD, portableFluidCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, portableFluidCell, 1, portableCellGroup);
-            Upgrades.add(AEItems.VOID_CARD, portableFluidCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.INVERTER_CARD, portableFluidCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, portableFluidCell, 1, portableCellGroup);
+            Upgrades.add(TLItems.VOID_CARD, portableFluidCell, 1, portableCellGroup);
         }
 
         // View Cell
-        Upgrades.add(AEItems.FUZZY_CARD, AEItems.VIEW_CELL, 1);
-        Upgrades.add(AEItems.INVERTER_CARD, AEItems.VIEW_CELL, 1);
+        Upgrades.add(TLItems.FUZZY_CARD, TLItems.VIEW_CELL, 1);
+        Upgrades.add(TLItems.INVERTER_CARD, TLItems.VIEW_CELL, 1);
 
         // Color Applicator
-        Upgrades.add(AEItems.EQUAL_DISTRIBUTION_CARD, AEItems.COLOR_APPLICATOR, 1);
-        Upgrades.add(AEItems.VOID_CARD, AEItems.COLOR_APPLICATOR, 1);
+        Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, TLItems.COLOR_APPLICATOR, 1);
+        Upgrades.add(TLItems.VOID_CARD, TLItems.COLOR_APPLICATOR, 1);
     }
 
 }

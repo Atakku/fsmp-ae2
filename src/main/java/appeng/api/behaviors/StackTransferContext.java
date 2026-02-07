@@ -4,9 +4,9 @@ import org.jetbrains.annotations.ApiStatus;
 
 import appeng.api.networking.security.IActionSource;
 import appeng.api.networking.storage.IStorageService;
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
-import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
+import appeng.api.stacks.TLKeyType;
 import appeng.util.prioritylist.IPartitionList;
 
 /**
@@ -28,9 +28,9 @@ public interface StackTransferContext {
 
     boolean hasDoneWork();
 
-    boolean isKeyTypeEnabled(AEKeyType space);
+    boolean isKeyTypeEnabled(TLKeyType space);
 
-    boolean isInFilter(AEKey key);
+    boolean isInFilter(TLKey key);
 
     IPartitionList getFilter();
 
@@ -38,7 +38,7 @@ public interface StackTransferContext {
 
     boolean isInverted();
 
-    boolean canInsert(AEItemKey what, long amount);
+    boolean canInsert(TLItemKey what, long amount);
 
     void reduceOperationsRemaining(long inserted);
 }

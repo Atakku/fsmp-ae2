@@ -11,12 +11,12 @@ import net.minecraft.world.level.Level;
 import guideme.GuidesCommon;
 
 import appeng.core.AppEng;
-import appeng.items.AEBaseItem;
+import appeng.items.TLBaseItem;
 
 /**
  * Shows the guidebook when used.
  */
-public class GuideItem extends AEBaseItem {
+public class GuideItem extends TLBaseItem {
     public static final ResourceLocation GUIDE_ID = AppEng.makeId("guide");
 
     public GuideItem(Properties properties) {

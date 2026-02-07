@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartHost;
-import appeng.parts.AEBasePart;
+import appeng.parts.TLBasePart;
 
 /**
  * Helps plane parts (annihilation, formation) with determining and checking for connections to adjacent plane parts of
@@ -36,9 +36,9 @@ import appeng.parts.AEBasePart;
  */
 public final class PlaneConnectionHelper {
 
-    private final AEBasePart part;
+    private final TLBasePart part;
 
-    public PlaneConnectionHelper(AEBasePart part) {
+    public PlaneConnectionHelper(TLBasePart part) {
         this.part = part;
     }
 

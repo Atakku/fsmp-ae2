@@ -26,14 +26,14 @@ import net.minecraft.world.item.ItemStack;
 
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
+import appeng.api.stacks.TLKey;
 import appeng.api.storage.cells.CellState;
 import appeng.api.storage.cells.StorageCell;
 import appeng.items.contents.CellConfig;
 
 class CreativeCellInventory implements StorageCell {
-    private final Set<AEKey> configured;
+    private final Set<TLKey> configured;
     private final ItemStack stack;
 
     protected CreativeCellInventory(ItemStack o) {
@@ -45,24 +45,24 @@ class CreativeCellInventory implements StorageCell {
     }
 
     @Override
-    public long insert(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long insert(TLKey what, long amount, Actionable mode, IActionSource source) {
         return configured.contains(what) ? amount : 0;
     }
 
     @Override
-    public long extract(AEKey what, long amount, Actionable mode, IActionSource source) {
+    public long extract(TLKey what, long amount, Actionable mode, IActionSource source) {
         return configured.contains(what) ? amount : 0;
     }
 
     @Override
     public void getAvailableStacks(KeyCounter out) {
-        for (AEKey key : this.configured) {
+        for (TLKey key : this.configured) {
             out.add(key, Integer.MAX_VALUE);
         }
     }
 
     @Override
-    public boolean isPreferredStorageFor(AEKey input, IActionSource source) {
+    public boolean isPreferredStorageFor(TLKey input, IActionSource source) {
         return this.configured.contains(input);
     }
 

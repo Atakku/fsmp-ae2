@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
-import appeng.api.ids.AEComponents;
+import appeng.api.ids.TLComponents;
 import appeng.api.inventories.ISegmentedInventory;
 import appeng.api.inventories.InternalInventory;
 import appeng.items.contents.StackDependentSupplier;
@@ -48,7 +48,7 @@ public class WirelessCraftingTerminalMenuHost<T extends WirelessCraftingTerminal
         var craftingGrid = new AppEngInternalInventory(new InternalInventoryHost() {
             @Override
             public void saveChangedInventory(AppEngInternalInventory inv) {
-                stack.set(AEComponents.CRAFTING_INV, inv.toItemContainerContents());
+                stack.set(TLComponents.CRAFTING_INV, inv.toItemContainerContents());
             }
 
             @Override
@@ -57,7 +57,7 @@ public class WirelessCraftingTerminalMenuHost<T extends WirelessCraftingTerminal
             }
         }, 9);
         craftingGrid
-                .fromItemContainerContents(stack.getOrDefault(AEComponents.CRAFTING_INV, ItemContainerContents.EMPTY));
+                .fromItemContainerContents(stack.getOrDefault(TLComponents.CRAFTING_INV, ItemContainerContents.EMPTY));
         return craftingGrid;
     }
 }

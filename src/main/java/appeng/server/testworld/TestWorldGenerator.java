@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.entity.SignText;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
-import appeng.core.definitions.AEBlocks;
 import appeng.server.testplots.TestPlots;
 
 public class TestWorldGenerator {
@@ -153,7 +152,7 @@ public class TestWorldGenerator {
                 positionedPlot.origin.getY() - 1,
                 positionedPlot.bounds.maxZ() + 1);
         for (var pos : BlockPos.betweenClosed(from, to)) {
-            level.setBlock(pos, AEBlocks.SKY_STONE_SMALL_BRICK.block().defaultBlockState(), Block.UPDATE_ALL);
+            level.setBlock(pos, Blocks.STONE_BRICKS.defaultBlockState(), Block.UPDATE_ALL);
         }
     }
 
@@ -163,7 +162,7 @@ public class TestWorldGenerator {
         var to = new ChunkPos(
                 new BlockPos(overallBounds.maxX() + OUTER_PADDING, 0, overallBounds.maxZ() + OUTER_PADDING));
 
-        var state = AEBlocks.SKY_STONE_BRICK.block().defaultBlockState();
+        var state = Blocks.STONE_BRICKS.defaultBlockState();
         var pos = new BlockPos.MutableBlockPos();
         ChunkPos.rangeClosed(from, to).forEach(chunkPos -> {
             var chunk = level.getChunk(chunkPos.x, chunkPos.z);

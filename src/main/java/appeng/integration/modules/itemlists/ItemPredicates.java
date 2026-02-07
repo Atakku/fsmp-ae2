@@ -2,11 +2,11 @@ package appeng.integration.modules.itemlists;
 
 import net.minecraft.world.item.ItemStack;
 
-import appeng.api.util.AEColor;
-import appeng.core.AEConfig;
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
-import appeng.core.definitions.AEParts;
+import appeng.api.util.TLColor;
+import appeng.core.TLConfig;
+import appeng.core.definitions.TLBlocks;
+import appeng.core.definitions.TLItems;
+import appeng.core.definitions.TLParts;
 
 public final class ItemPredicates {
     private ItemPredicates() {
@@ -17,11 +17,11 @@ public final class ItemPredicates {
             return true;
         }
 
-        if (!AEConfig.instance().isDebugToolsEnabled() && isDeveloperTool(stack)) {
+        if (!TLConfig.instance().isDebugToolsEnabled() && isDeveloperTool(stack)) {
             return true;
         }
 
-        if (AEConfig.instance().isDisableColoredCableRecipesInRecipeViewer() && isColoredCable(stack)) {
+        if (TLConfig.instance().isDisableColoredCableRecipesInRecipeViewer() && isColoredCable(stack)) {
             return true;
         }
 
@@ -29,30 +29,30 @@ public final class ItemPredicates {
     }
 
     private static boolean isInternal(ItemStack stack) {
-        return AEItems.WRAPPED_GENERIC_STACK.is(stack)
-                || AEItems.MISSING_CONTENT.is(stack)
-                || AEBlocks.CABLE_BUS.is(stack);
+        return TLItems.WRAPPED_GENERIC_STACK.is(stack)
+                || TLItems.MISSING_CONTENT.is(stack)
+                || TLBlocks.CABLE_BUS.is(stack);
     }
 
     private static boolean isDeveloperTool(ItemStack stack) {
-        return AEBlocks.DEBUG_CUBE_GEN.is(stack) ||
-                AEBlocks.DEBUG_ITEM_GEN.is(stack) ||
-                AEBlocks.DEBUG_PHANTOM_NODE.is(stack) ||
-                AEItems.DEBUG_CARD.is(stack) ||
-                AEItems.DEBUG_ERASER.is(stack) ||
-                AEItems.DEBUG_REPLICATOR_CARD.is(stack);
+        return TLBlocks.DEBUG_CUBE_GEN.is(stack) ||
+                TLBlocks.DEBUG_ITEM_GEN.is(stack) ||
+                TLBlocks.DEBUG_PHANTOM_NODE.is(stack) ||
+                TLItems.DEBUG_CARD.is(stack) ||
+                TLItems.DEBUG_ERASER.is(stack) ||
+                TLItems.DEBUG_REPLICATOR_CARD.is(stack);
     }
 
     private static boolean isColoredCable(ItemStack stack) {
-        for (var color : AEColor.values()) {
-            if (color == AEColor.TRANSPARENT) {
+        for (var color : TLColor.values()) {
+            if (color == TLColor.TRANSPARENT) {
                 continue; // Keep the Fluix variant
             }
-            if (stack.getItem() == AEParts.COVERED_CABLE.item(color) ||
-                    stack.getItem() == AEParts.COVERED_DENSE_CABLE.item(color) ||
-                    stack.getItem() == AEParts.GLASS_CABLE.item(color) ||
-                    stack.getItem() == AEParts.SMART_CABLE.item(color) ||
-                    stack.getItem() == AEParts.SMART_DENSE_CABLE.item(color)) {
+            if (stack.getItem() == TLParts.COVERED_CABLE.item(color) ||
+                    stack.getItem() == TLParts.COVERED_DENSE_CABLE.item(color) ||
+                    stack.getItem() == TLParts.GLASS_CABLE.item(color) ||
+                    stack.getItem() == TLParts.SMART_CABLE.item(color) ||
+                    stack.getItem() == TLParts.SMART_DENSE_CABLE.item(color)) {
                 return true;
             }
         }

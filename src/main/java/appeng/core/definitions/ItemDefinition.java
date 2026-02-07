@@ -27,9 +27,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-import appeng.api.stacks.AEItemKey;
-import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.TLItemKey;
+import appeng.api.stacks.TLKey;
 import appeng.util.helpers.ItemComparisonHelper;
 
 public class ItemDefinition<T extends Item> implements ItemLike, Supplier<T> {
@@ -58,7 +58,7 @@ public class ItemDefinition<T extends Item> implements ItemLike, Supplier<T> {
     }
 
     public GenericStack genericStack(long stackSize) {
-        return new GenericStack(AEItemKey.of(item), stackSize);
+        return new GenericStack(TLItemKey.of(item), stackSize);
     }
 
     public Holder<Item> holder() {
@@ -89,8 +89,8 @@ public class ItemDefinition<T extends Item> implements ItemLike, Supplier<T> {
     /**
      * @return True if this item is represented by the given key.
      */
-    public final boolean is(AEKey key) {
-        if (key instanceof AEItemKey itemKey) {
+    public final boolean is(TLKey key) {
+        if (key instanceof TLItemKey itemKey) {
             return asItem() == itemKey.getItem();
         }
         return false;
@@ -100,7 +100,7 @@ public class ItemDefinition<T extends Item> implements ItemLike, Supplier<T> {
      * @return True if this item is represented by the given key.
      */
     @Deprecated(forRemoval = true, since = "1.21")
-    public final boolean isSameAs(AEKey key) {
+    public final boolean isSameAs(TLKey key) {
         return is(key);
     }
 
