@@ -21,10 +21,6 @@ It is not possible to have 2 controllers in one [ME Network](../tl2-mechanics/me
 
 The controller provides 32 [Channels](../tl2-mechanics/channels.md) per face.
 
-The controller requires 6 TL/t per controller block to
-function. Each controller block can store 8000 TL, so larger networks might require additional
-energy storage. See [energy](../tl2-mechanics/energy.md) for details.
-
 Multiblock Controllers can be built in a fairly free form.
 
 <GameScene zoom="2" background="transparent">

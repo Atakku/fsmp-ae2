@@ -27,6 +27,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.google.common.base.Preconditions;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -105,11 +106,14 @@ public final class TLItems {
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", TLItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 
     ///
-    /// MATERIALS
+    /// Basic materials
     ///
-    public static final ItemDefinition<MaterialItem> SILICON = item("Silicon", TLItemIds.SILICON, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> FLUIX_CRYSTAL = item("Fluix Crystal", TLItemIds.FLUIX_CRYSTAL, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> AMETHYST_DUST = item("Amethyst Dust", TLItemIds.AMETHYST_DUST, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> QUARTZ_DUST = item("Quartz Dust", TLItemIds.QUARTZ_DUST, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FLUIX_DUST = item("Fluix Dust", TLItemIds.FLUIX_DUST, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> FLUIX_CRYSTAL = item("Fluix Crystal", TLItemIds.FLUIX_CRYSTAL, MaterialItem::new);
+
+    public static final ItemDefinition<MaterialItem> SILICON = item("Silicon", TLItemIds.SILICON, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FLUIX_PEARL = item("Fluix Pearl", TLItemIds.FLUIX_PEARL, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CALCULATION_PROCESSOR_PRINT = item("Printed Calculation Circuit", TLItemIds.CALCULATION_PROCESSOR_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR_PRINT = item("Printed Engineering Circuit", TLItemIds.ENGINEERING_PROCESSOR_PRINT, MaterialItem::new);
@@ -139,7 +143,6 @@ public final class TLItems {
     ///
     /// CELLS
     ///
-
     public static final ItemDefinition<CreativeCellItem> CREATIVE_CELL = item("Creative ME Storage Cell", TLItemIds.CREATIVE_CELL, p -> new CreativeCellItem(p.stacksTo(1).rarity(Rarity.EPIC)));
     public static final ItemDefinition<ViewCellItem> VIEW_CELL = item("View Cell", TLItemIds.VIEW_CELL, p -> new ViewCellItem(p.stacksTo(1)));
 
@@ -156,9 +159,13 @@ public final class TLItems {
     public static final ItemDefinition<Item> TABLET = item("Guide", TLItemIds.GUIDE, p -> new GuideItem(p.stacksTo(1)));
 
     ///
+    /// SEQUENCED ASSEMBLY ITEMS
+    ///
+    public static final ItemDefinition<SequencedAssemblyItem> UNFINISHED_FLUIX_CRYSTAL = item("Unfinished Fluix Crystal", TLItemIds.UNFINISHED_FLUIX_CRYSTAL, SequencedAssemblyItem::new);
+
+    ///
     /// UNSUPPORTED DEV TOOLS
     ///
-
     public static final ItemDefinition<EraserItem> DEBUG_ERASER = item("Dev.Eraser", AppEng.makeId("debug_eraser"), EraserItem::new);
     public static final ItemDefinition<DebugCardItem> DEBUG_CARD = item("Dev.DebugCard", AppEng.makeId("debug_card"), DebugCardItem::new);
     public static final ItemDefinition<ReplicatorCardItem> DEBUG_REPLICATOR_CARD = item("Dev.ReplicatorCard", AppEng.makeId("debug_replicator_card"), ReplicatorCardItem::new);

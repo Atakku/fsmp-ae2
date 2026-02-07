@@ -68,7 +68,6 @@ public final class TLItemIds {
     ///
     public static final ResourceLocation SILICON = id("silicon");
     public static final ResourceLocation FLUIX_CRYSTAL = id("fluix_crystal");
-    public static final ResourceLocation FLUIX_DUST = id("fluix_dust");
     public static final ResourceLocation FLUIX_PEARL = id("fluix_pearl");
     public static final ResourceLocation PURIFIED_CERTUS_QUARTZ_CRYSTAL = id("purified_certus_quartz_crystal");
     public static final ResourceLocation PURIFIED_NETHER_QUARTZ_CRYSTAL = id("purified_nether_quartz_crystal");
@@ -98,6 +97,18 @@ public final class TLItemIds {
     public static final ResourceLocation FORMATION_CORE = id("formation_core");
     public static final ResourceLocation ANNIHILATION_CORE = id("annihilation_core");
     public static final ResourceLocation GUIDE = id("guide");
+
+    ///
+    /// DUSTS
+    ///
+    public static final ResourceLocation AMETHYST_DUST = id("amethyst_dust");
+    public static final ResourceLocation QUARTZ_DUST = id("quartz_dust");
+    public static final ResourceLocation FLUIX_DUST = id("fluix_dust");
+
+    ///
+    /// SEQUENCED ASSEMBLY ITEMS
+    ///
+    public static final ResourceLocation UNFINISHED_FLUIX_CRYSTAL = id("unfinished_fluix_crystal");
 
     private static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(TLConstants.MOD_ID, id);

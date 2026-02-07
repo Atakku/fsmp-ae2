@@ -24,40 +24,6 @@ item_ids:
 - tl2:red_glass_cable
 - tl2:black_glass_cable
 - tl2:fluix_glass_cable
-- tl2:white_covered_cable
-- tl2:orange_covered_cable
-- tl2:magenta_covered_cable
-- tl2:light_blue_covered_cable
-- tl2:yellow_covered_cable
-- tl2:lime_covered_cable
-- tl2:pink_covered_cable
-- tl2:gray_covered_cable
-- tl2:light_gray_covered_cable
-- tl2:cyan_covered_cable
-- tl2:purple_covered_cable
-- tl2:blue_covered_cable
-- tl2:brown_covered_cable
-- tl2:green_covered_cable
-- tl2:red_covered_cable
-- tl2:black_covered_cable
-- tl2:fluix_covered_cable
-- tl2:white_covered_dense_cable
-- tl2:orange_covered_dense_cable
-- tl2:magenta_covered_dense_cable
-- tl2:light_blue_covered_dense_cable
-- tl2:yellow_covered_dense_cable
-- tl2:lime_covered_dense_cable
-- tl2:pink_covered_dense_cable
-- tl2:gray_covered_dense_cable
-- tl2:light_gray_covered_dense_cable
-- tl2:cyan_covered_dense_cable
-- tl2:purple_covered_dense_cable
-- tl2:blue_covered_dense_cable
-- tl2:brown_covered_dense_cable
-- tl2:green_covered_dense_cable
-- tl2:red_covered_dense_cable
-- tl2:black_covered_dense_cable
-- tl2:fluix_covered_dense_cable
 - tl2:white_smart_cable
 - tl2:orange_smart_cable
 - tl2:magenta_smart_cable
@@ -138,48 +104,12 @@ brush in world.
 
 You can craft any colored cable with a water bucket to remove the dye.
 
-You can cover the cable with wool to create <ItemLink id="fluix_covered_cable" />, and craft <ItemLink id="fluix_smart_cable" /> to get a better idea of what is going on with
+You can craft <ItemLink id="fluix_smart_cable" /> to get a better idea of what is going on with
 your [channels](../tl2-mechanics/channels.md).
 
 <RecipeFor id="fluix_glass_cable" />
 
 <RecipeFor id="blue_glass_cable" />
-
-## Covered Cable
-
-<GameScene zoom="6" background="transparent">
-  <ImportStructure src="../assets/assemblies/fluix_covered_cable.snbt" />
-  <IsometricCamera yaw="195" pitch="30" />
-</GameScene>
-
-The covered cable variant offers no gameplay benefits over its <ItemLink id="fluix_glass_cable" /> counterpart. It can however be used
-as an alternate aesthetic choice if you prefer the covered look.
-
-Can be colored in the same manner as <ItemLink id="fluix_glass_cable" />. Four <ItemLink id="fluix_covered_cable" /> can be crafted with
-redstone and glowstone to make <ItemLink id="fluix_covered_dense_cable" />.
-
-<Recipe id="network/cables/covered_fluix" />
-
-<RecipeFor id="blue_covered_cable" />
-
-## Dense Cable
-
-<GameScene zoom="6" background="transparent">
-  <ImportStructure src="../assets/assemblies/fluix_covered_dense_cable.snbt" />
-  <IsometricCamera yaw="195" pitch="30" />
-</GameScene>
-
-Higher Capacity cable, can carry 32 channels unlike standard cable which can only carry 8,
-however it doesn't support buses so you must first step down from dense to a
-smaller cable (such as <ItemLink id="fluix_glass_cable" /> or <ItemLink id="fluix_smart_cable" />) before using buses or
-panels.
-
-Dense cables slightly override the "shortest path" behavior of channels, channels will take the shortest path to a
-dense cable, and then the shortest path through that dense cable to a controller.
-
-<Recipe id="network/cables/dense_covered_fluix" />
-
-<RecipeFor id="blue_covered_dense_cable" />
 
 ## Smart Cable
 
@@ -212,3 +142,22 @@ These can also be colored in the same manner as <ItemLink id="fluix_glass_cable"
 <Recipe id="network/cables/dense_smart_fluix" />
 
 <RecipeFor id="blue_smart_cable" />
+
+## Dense Cable
+
+<GameScene zoom="6" background="transparent">
+  <ImportStructure src="../assets/assemblies/fluix_covered_dense_cable.snbt" />
+  <IsometricCamera yaw="195" pitch="30" />
+</GameScene>
+
+Higher Capacity cable, can carry 32 channels unlike standard cable which can only carry 8,
+however it doesn't support buses so you must first step down from dense to a
+smaller cable (such as <ItemLink id="fluix_glass_cable" /> or <ItemLink id="fluix_smart_cable" />) before using buses or
+panels.
+
+Dense cables slightly override the "shortest path" behavior of channels, channels will take the shortest path to a
+dense cable, and then the shortest path through that dense cable to a controller.
+
+<Recipe id="network/cables/fluix_smart_dense_cable" />
+
+<RecipeFor id="blue_smart_dense_cable" />

@@ -18,9 +18,6 @@ Mine the amethyst clusters and any amethyst blocks you find. Do not break any bu
 
 ## Growing Amethyst
 
-<GameScene zoom="4" background="transparent">
-<ImportStructure src="assets/assemblies/budding_amethyst_1.snbt" />
-</GameScene>
 
 Certus quartz buds will sprout from [budding certus blocks](items-blocks-machines/budding_certus.md), similar to amethyst. If you break a bud that is not finished
 growing, it will drop one <ItemLink id="certus_quartz_dust" />, unchanged by fortune. If you break a fully grown cluster, it will drop four
@@ -28,10 +25,6 @@ growing, it will drop one <ItemLink id="certus_quartz_dust" />, unchanged by for
 
 Amethyst grows in 4 distinct stages:
 
-<GameScene zoom="4" background="transparent">
-<ImportStructure src="assets/assemblies/budding_blocks.snbt" />
-<IsometricCamera yaw="195" pitch="30" />
-</GameScene>
 
 Every time a bud grows by another stage, the budding block has a chance to degrade by one tier, eventually turning into
 a plain certus quartz block. They can be repaired (and new budding blocks created) by throwing the budding block (or a
@@ -41,11 +34,6 @@ certus quartz block) in water with one or more <ItemLink id="charged_certus_quar
 
 Flawless budding certus blocks will not degrade and will generate certus infinitely. However they cannot be crafted or moved
 with a pickaxe, even with silk touch.
-
-<GameScene zoom="4" background="transparent">
-<ImportStructure src="assets/assemblies/budding_amethyst_2.snbt" />
-<IsometricCamera yaw="195" pitch="30" />
-</GameScene>
 
 If you don't have enough quartz to also make an <ItemLink id="vibration_chamber" />,
 you can make a <ItemLink id="crank" /> and stick it on the end of your accelerator.

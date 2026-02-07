@@ -7,16 +7,13 @@ navigation:
 
 # Keeping Your Network Organized
 
-Using filters, [partitions](../items-blocks-machines/cell_workbench.md), and [storage priority](../tl2-mechanics/import-export-storage.md#storage-priority),
+Using filters, [partitions](../items-blocks-machines/cell_workbench.md), and storage priority,
 you can set up several tiers of storage for various kinds of things.
 
 The kinds of storage tend to be:
 * General storage, for all the random stuff you have a few to a few thousand of. This uses small [cells](../items-blocks-machines/storage_cells.md),
-like 4k or 16k.
-* Bulk storage, for all the stuff you have more than a few thousand of, like cobble or iron. This uses big cells like 64k
-or the cells from the MEGA addon.
-* Local storage at farms, as described in [Specialized Local Storage](specialized-local-storage.md) and the 
-[various](simple-certus-farm.md) [certus](semiauto-certus-farm.md) [farms](advanced-certus-farm.md).
+like 1k or 4k.
+* Bulk storage, for all the stuff you have more than a few thousand of, like cobble or iron. This uses big cells like 16k or 64k.
 
 The priorities are set up so that when items are dumped into the main network, it first tries to store them in the specialized
 bulk or local storage, and if that can't be done (due to filters and partitions), it then puts the items in general storage.

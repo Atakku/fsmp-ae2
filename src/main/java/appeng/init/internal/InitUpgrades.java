@@ -45,7 +45,8 @@ public final class InitUpgrades {
         Upgrades.add(TLItems.FUZZY_CARD, TLParts.LEVEL_EMITTER, 1);
 
         // Storage Cells
-        var itemCells = List.of(TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K, TLItems.ITEM_CELL_16K, TLItems.ITEM_CELL_64K);
+        var itemCells = List.of(TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K, TLItems.ITEM_CELL_16K,
+                TLItems.ITEM_CELL_64K);
         for (var itemCell : itemCells) {
             Upgrades.add(TLItems.FUZZY_CARD, itemCell, 1, storageCellGroup);
             Upgrades.add(TLItems.INVERTER_CARD, itemCell, 1, storageCellGroup);
@@ -53,14 +54,16 @@ public final class InitUpgrades {
             Upgrades.add(TLItems.VOID_CARD, itemCell, 1, storageCellGroup);
         }
 
-        var fluidCells = List.of(TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K, TLItems.FLUID_CELL_16K, TLItems.FLUID_CELL_64K);
+        var fluidCells = List.of(TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K, TLItems.FLUID_CELL_16K,
+                TLItems.FLUID_CELL_64K);
         for (var fluidCell : fluidCells) {
             Upgrades.add(TLItems.INVERTER_CARD, fluidCell, 1, storageCellGroup);
             Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, fluidCell, 1, storageCellGroup);
             Upgrades.add(TLItems.VOID_CARD, fluidCell, 1, storageCellGroup);
         }
 
-        var portableCells = List.of(TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_ITEM_CELL64K);
+        var portableCells = List.of(TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_ITEM_CELL4K,
+                TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_ITEM_CELL64K);
         for (var portableCell : portableCells) {
             Upgrades.add(TLItems.FUZZY_CARD, portableCell, 1, portableCellGroup);
             Upgrades.add(TLItems.INVERTER_CARD, portableCell, 1, portableCellGroup);
@@ -68,7 +71,8 @@ public final class InitUpgrades {
             Upgrades.add(TLItems.VOID_CARD, portableCell, 1, portableCellGroup);
         }
 
-        var portableFluidCells = List.of(TLItems.PORTABLE_FLUID_CELL1K, TLItems.PORTABLE_FLUID_CELL4K, TLItems.PORTABLE_FLUID_CELL16K, TLItems.PORTABLE_FLUID_CELL64K);
+        var portableFluidCells = List.of(TLItems.PORTABLE_FLUID_CELL1K, TLItems.PORTABLE_FLUID_CELL4K,
+                TLItems.PORTABLE_FLUID_CELL16K, TLItems.PORTABLE_FLUID_CELL64K);
         for (var portableFluidCell : portableFluidCells) {
             Upgrades.add(TLItems.INVERTER_CARD, portableFluidCell, 1, portableCellGroup);
             Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, portableFluidCell, 1, portableCellGroup);

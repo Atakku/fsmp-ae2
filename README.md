@@ -18,6 +18,7 @@
 * Textures and Models
   - (c) 2020, [Ridanisaurus Rid](https://github.com/Ridanisaurus/), (c) 2013 - 2020 AlgorithmX2 et al
   - [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+  - amethyst_dust.png - borrowed from [Hexcasting](https://github.com/FallingColors/HexMod/blob/40c2b95b933b59175a9db28afa4c1ca85ac540c5/Common/src/main/resources/assets/hexcasting/textures/item/amethyst_dust.png)
 * Text and Translations
   - [![License](https://img.shields.io/badge/License-No%20Restriction-green.svg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
 * Additional Sound Licenses

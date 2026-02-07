@@ -45,6 +45,23 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
     protected void addTags(HolderLookup.Provider registries) {
         copyBlockTags();
 
+        // Basic materials
+        tag(ConventionTags.DUSTS)
+                .add(TLItems.AMETHYST_DUST.asItem())
+                .add(TLItems.QUARTZ_DUST.asItem())
+                .add(TLItems.FLUIX_DUST.asItem());
+
+        tag(ConventionTags.DUSTS_AMETHYST)
+                .add(TLItems.AMETHYST_DUST.asItem());
+        tag(ConventionTags.DUSTS_QUARTZ)
+                .add(TLItems.QUARTZ_DUST.asItem());
+        tag(ConventionTags.DUSTS_FLUIX)
+                .add(TLItems.FLUIX_DUST.asItem());
+
+        tag(ConventionTags.GEMS)
+                .add(TLItems.AMETHYST_DUST.asItem())
+                .add(TLItems.FLUIX_CRYSTAL.asItem());
+
         for (TLColor color : TLColor.values()) {
             tag(ConventionTags.SMART_DENSE_CABLE).add(TLParts.SMART_DENSE_CABLE.item(color));
             tag(ConventionTags.SMART_CABLE).add(TLParts.SMART_CABLE.item(color));
@@ -67,18 +84,6 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .add(TLParts.MONITOR.asItem())
                 .add(TLParts.SEMI_DARK_MONITOR.asItem())
                 .add(TLParts.DARK_MONITOR.asItem());
-
-        tag(ConventionTags.FLUIX_DUST)
-                .add(TLItems.FLUIX_DUST.asItem());
-
-        tag(ConventionTags.FLUIX_CRYSTAL)
-                .add(TLItems.FLUIX_CRYSTAL.asItem());
-
-        tag(ConventionTags.DUSTS)
-                .add(TLItems.FLUIX_DUST.asItem());
-
-        tag(ConventionTags.GEMS)
-                .add(TLItems.FLUIX_CRYSTAL.asItem());
 
         tag(ConventionTags.CURIOS).add(
                 TLItems.WIRELESS_TERMINAL.asItem(),

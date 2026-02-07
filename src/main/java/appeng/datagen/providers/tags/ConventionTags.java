@@ -56,13 +56,19 @@ public final class ConventionTags {
             AppEng.makeId("exported_settings"));
 
     public static final TagKey<Item> DUSTS = Tags.Items.DUSTS;
+    public static final TagKey<Item> DUSTS_REDSTONE = Tags.Items.DUSTS_REDSTONE;
+    public static final TagKey<Item> DUSTS_GLOWSTONE = Tags.Items.DUSTS_GLOWSTONE;
+    public static final TagKey<Item> DUSTS_AMETHYST = tag("c:dusts/amethyst");
+    public static final TagKey<Item> DUSTS_QUARTZ = tag("c:dusts/quartz");
+    public static final TagKey<Item> DUSTS_FLUIX = tag("c:dusts/fluix");
+
     public static final TagKey<Item> GEMS = Tags.Items.GEMS;
+    public static final TagKey<Item> GEMS_DIAMOND = Tags.Items.GEMS_DIAMOND;
+    public static final TagKey<Item> GEMS_AMETHYST = Tags.Items.GEMS_AMETHYST;
+    public static final TagKey<Item> GEMS_QUARTZ = Tags.Items.GEMS_QUARTZ;
+    public static final TagKey<Item> GEMS_FLUIX = tag("c:gems/fluix");
 
     public static final TagKey<Item> SILICON = tag("c:silicon");
-
-    public static final TagKey<Item> NETHER_QUARTZ = Tags.Items.GEMS_QUARTZ;
-    public static final TagKey<Item> FLUIX_DUST = tag("c:dusts/fluix");
-    public static final TagKey<Item> FLUIX_CRYSTAL = tag("c:gems/fluix");
 
     public static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
 
@@ -71,10 +77,6 @@ public final class ConventionTags {
 
     public static final TagKey<Item> IRON_NUGGET = Tags.Items.NUGGETS_IRON;
     public static final TagKey<Item> IRON_INGOT = Tags.Items.INGOTS_IRON;
-
-    public static final TagKey<Item> DIAMOND = Tags.Items.GEMS_DIAMOND;
-    public static final TagKey<Item> REDSTONE = Tags.Items.DUSTS_REDSTONE;
-    public static final TagKey<Item> GLOWSTONE = Tags.Items.DUSTS_GLOWSTONE;
 
     public static final TagKey<Item> ENDER_PEARL = Tags.Items.ENDER_PEARLS;
 

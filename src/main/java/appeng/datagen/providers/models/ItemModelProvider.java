@@ -22,8 +22,11 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
     protected void registerModels() {
         flatSingleLayer(TLItems.MISSING_CONTENT, "minecraft:item/barrier");
 
-        builtInItemModel("facade");
-        builtInItemModel("meteorite_compass");
+        // Basic materials
+        flatSingleLayer(TLItems.AMETHYST_DUST, "item/amethyst_dust");
+        flatSingleLayer(TLItems.QUARTZ_DUST, "item/quartz_dust");
+        flatSingleLayer(TLItems.FLUIX_DUST, "item/fluix_dust");
+        flatSingleLayer(TLItems.FLUIX_CRYSTAL, "item/fluix_crystal");
 
         flatSingleLayer(TLItems.ADVANCED_CARD, "item/advanced_card");
         flatSingleLayer(TLItems.VOID_CARD, "item/card_void");
@@ -31,23 +34,29 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.BASIC_CARD, "item/basic_card");
         flatSingleLayer(TLItems.CALCULATION_PROCESSOR, "item/calculation_processor");
         flatSingleLayer(TLItems.CALCULATION_PROCESSOR_PRINT, "item/printed_calculation_processor");
-        storageCell(TLItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
-        storageCell(TLItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
-        storageCell(TLItems.ITEM_CELL_16K, "item/item_storage_cell_16k");
-        storageCell(TLItems.ITEM_CELL_64K, "item/item_storage_cell_64k");
         flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(TLItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
         flatSingleLayer(TLItems.ENGINEERING_PROCESSOR, "item/engineering_processor");
         flatSingleLayer(TLItems.ENGINEERING_PROCESSOR_PRINT, "item/printed_engineering_processor");
         flatSingleLayer(TLItems.EQUAL_DISTRIBUTION_CARD, "item/card_equal_distribution");
+        storageCell(TLItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
+        storageCell(TLItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
+        storageCell(TLItems.ITEM_CELL_16K, "item/item_storage_cell_16k");
+        storageCell(TLItems.ITEM_CELL_64K, "item/item_storage_cell_64k");
         storageCell(TLItems.FLUID_CELL_1K, "item/fluid_storage_cell_1k");
         storageCell(TLItems.FLUID_CELL_4K, "item/fluid_storage_cell_4k");
         storageCell(TLItems.FLUID_CELL_16K, "item/fluid_storage_cell_16k");
         storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
+        portableCell(TLItems.PORTABLE_ITEM_CELL1K, "item", "1k");
+        portableCell(TLItems.PORTABLE_ITEM_CELL4K, "item", "4k");
+        portableCell(TLItems.PORTABLE_ITEM_CELL16K, "item", "16k");
+        portableCell(TLItems.PORTABLE_ITEM_CELL64K, "item", "64k");
+        portableCell(TLItems.PORTABLE_FLUID_CELL1K, "fluid", "1k");
+        portableCell(TLItems.PORTABLE_FLUID_CELL4K, "fluid", "4k");
+        portableCell(TLItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
+        portableCell(TLItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
         flatSingleLayer(TLItems.FLUID_CELL_HOUSING, "item/fluid_cell_housing");
-        flatSingleLayer(TLItems.FLUIX_CRYSTAL, "item/fluix_crystal");
-        flatSingleLayer(TLItems.FLUIX_DUST, "item/fluix_dust");
         flatSingleLayer(TLItems.FLUIX_PEARL, "item/fluix_pearl");
         flatSingleLayer(TLItems.FORMATION_CORE, "item/formation_core");
         flatSingleLayer(TLItems.FUZZY_CARD, "item/card_fuzzy");
@@ -60,14 +69,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.ITEM_CELL_HOUSING, "item/item_cell_housing");
         flatSingleLayer(TLItems.LOGIC_PROCESSOR, "item/logic_processor");
         flatSingleLayer(TLItems.LOGIC_PROCESSOR_PRINT, "item/printed_logic_processor");
-        portableCell(TLItems.PORTABLE_ITEM_CELL1K, "item", "1k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL4K, "item", "4k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL16K, "item", "16k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL64K, "item", "64k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL1K, "fluid", "1k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL4K, "fluid", "4k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
         flatSingleLayer(TLItems.REDSTONE_CARD, "item/card_redstone");
         flatSingleLayer(TLItems.SILICON, "item/silicon");
         flatSingleLayer(TLItems.SILICON_PRINT, "item/printed_silicon");

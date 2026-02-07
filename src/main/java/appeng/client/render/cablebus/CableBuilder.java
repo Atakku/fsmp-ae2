@@ -129,7 +129,7 @@ class CableBuilder {
 
         // For to-machine connections, use a thicker end-cap for the connection
         if (connectionType != TLCableType.GLASS && !cableBusAdjacent) {
-            TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.GLASS).get(cableColor); //akutodo
+            TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.GLASS).get(cableColor); // akutodo
             cubeBuilder.setTexture(texture);
 
             this.addBigCoveredCableSizedCube(facing, cubeBuilder);
@@ -215,7 +215,7 @@ class CableBuilder {
     public void addSmartConnection(Direction facing, TLColor cableColor, TLCableType connectionType,
             boolean cableBusAdjacent, int channels, List<BakedQuad> quadsOut) {
         if (connectionType == TLCableType.GLASS) {
-            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut); //akutodo
+            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut); // akutodo
             return;
         }
 
@@ -374,7 +374,7 @@ class CableBuilder {
             this.addSmartConnection(facing, cableColor, connectionType, cableBusAdjacent, channels, quadsOut);
             return;
         } else if (connectionType == TLCableType.GLASS) {
-            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut);  //akutodo
+            this.addGlassConnection(facing, cableColor, connectionType, cableBusAdjacent, quadsOut); // akutodo
             return;
         }
         CubeBuilder cubeBuilder = new CubeBuilder(quadsOut);
