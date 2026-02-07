@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "tl2:block/cut_quartz_block",
-    "side": "tl2:block/chiseled_quartz_block_side"
-  }
-}

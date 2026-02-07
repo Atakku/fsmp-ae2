@@ -34,8 +34,7 @@ import appeng.menu.SlotSemantics;
 import appeng.menu.implementations.UpgradeableMenu;
 
 /**
- * This screen adds the ability for {@link IUpgradeableObject} screens to show the upgrade inventory and the player's
- * toolbox to more easily install/remove upgrades.
+ * This screen adds the ability for {@link IUpgradeableObject} screens to show the upgrade inventory
  */
 public class UpgradeableScreen<T extends UpgradeableMenu<?>> extends TLBaseScreen<T> {
 

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "tl2:block/smooth_sky_stone_block"
-  }
-}

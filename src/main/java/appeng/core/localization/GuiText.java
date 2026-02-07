@@ -50,7 +50,7 @@ public enum GuiText implements LocalizationEnum {
     Crafting("Crafting: %s"),
     CraftingTerminal("Crafting Terminal"),
     Crafts("Crafts"),
-    CreativeTab("Applied Energistics 2"),
+    CreativeTab("Theoretical Lethargics 2"),
     Cyan("Cyan"),
     Deprecated("Deprecated"),
     Drive("ME Drive"),

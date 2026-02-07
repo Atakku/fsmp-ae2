@@ -37,7 +37,7 @@ import appeng.core.network.ClientboundPacket;
 
 public interface AppEng {
 
-    String MOD_NAME = "Applied Energistics 2";
+    String MOD_NAME = "Theoretical Lethargics 2";
     String MOD_ID = TLConstants.MOD_ID;
 
     static AppEng instance() {

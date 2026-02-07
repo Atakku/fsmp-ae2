@@ -8,7 +8,6 @@ import appeng.client.gui.widgets.TLCheckbox;
 import appeng.client.gui.widgets.TabButton;
 import appeng.core.localization.GuiText;
 import appeng.integration.abstraction.ItemListMod;
-import appeng.menu.SlotSemantics;
 import appeng.menu.me.common.MEStorageMenu;
 
 public class TerminalSettingsScreen<C extends MEStorageMenu> extends TLSubScreen<C, MEStorageScreen<C>> {
@@ -66,9 +65,6 @@ public class TerminalSettingsScreen<C extends MEStorageMenu> extends TLSubScreen
     @Override
     protected void init() {
         super.init();
-
-        // The screen JSON includes the toolbox, but we don't actually have a need for it here
-        setSlotsHidden(SlotSemantics.TOOLBOX, true);
     }
 
     private void switchToAeSearch() {

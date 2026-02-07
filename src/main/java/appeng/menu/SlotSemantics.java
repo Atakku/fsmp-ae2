@@ -74,7 +74,6 @@ public final class SlotSemantics {
 
     public static final SlotSemantic PLAYER_INVENTORY = register("PLAYER_INVENTORY", true, 2000);
     public static final SlotSemantic PLAYER_HOTBAR = register("PLAYER_HOTBAR", true, 1000);
-    public static final SlotSemantic TOOLBOX = register("TOOLBOX", true, 3000);
     /**
      * Used for configuration slots that configure a filter, such as on planes, import/export busses, etc.
      */
