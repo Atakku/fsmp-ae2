@@ -18,15 +18,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 
-import appeng.api.stacks.TLKeyType;
 import appeng.api.util.TLColor;
 import appeng.core.AppEng;
-import appeng.core.definitions.ItemDefinition;
 import appeng.core.definitions.TLBlocks;
 import appeng.core.definitions.TLItems;
 import appeng.core.definitions.TLParts;
 import appeng.datagen.providers.tags.ConventionTags;
-import appeng.items.tools.powered.PortableCellItem;
 
 public class CraftingRecipes extends TL2RecipeProvider {
     public CraftingRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -382,40 +379,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', TLBlocks.QUARTZ_GLASS)
                 .unlockedBy("has_quartz_glass", has(TLBlocks.QUARTZ_GLASS))
                 .save(consumer, AppEng.makeId("decorative/quartz_vibrant_glass"));
-
-        // ====================================================
-        // recipes/tools
-        // ====================================================
-
-        portableCell(consumer, TLItems.PORTABLE_ITEM_CELL1K);
-        portableCell(consumer, TLItems.PORTABLE_ITEM_CELL4K);
-        portableCell(consumer, TLItems.PORTABLE_ITEM_CELL16K);
-        portableCell(consumer, TLItems.PORTABLE_ITEM_CELL64K);
-        portableCell(consumer, TLItems.PORTABLE_FLUID_CELL1K);
-        portableCell(consumer, TLItems.PORTABLE_FLUID_CELL4K);
-        portableCell(consumer, TLItems.PORTABLE_FLUID_CELL16K);
-        portableCell(consumer, TLItems.PORTABLE_FLUID_CELL64K);
-    }
-
-    private void portableCell(RecipeOutput consumer, ItemDefinition<PortableCellItem> cell) {
-        ItemDefinition<?> housing;
-        if (cell.get().getKeyType() == TLKeyType.items()) {
-            housing = TLItems.ITEM_CELL_HOUSING;
-        } else if (cell.get().getKeyType() == TLKeyType.fluids()) {
-            housing = TLItems.FLUID_CELL_HOUSING;
-        } else {
-            throw new RuntimeException("No housing known for " + cell.get().getKeyType());
-        }
-
-        var component = cell.get().getTier().componentSupplier().get();
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cell)
-                .requires(TLBlocks.ME_CHEST)
-                .requires(component)
-                .requires(Blocks.REDSTONE_BLOCK)
-                .requires(housing)
-                .unlockedBy("has_" + housing.id().getPath(), has(housing))
-                .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
-                .save(consumer, cell.get().getRecipeId());
     }
 
     private void addItemCells(RecipeOutput consumer) {

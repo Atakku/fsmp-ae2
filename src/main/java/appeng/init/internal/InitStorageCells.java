@@ -80,15 +80,6 @@ public final class InitStorageCells {
         StorageCellModels.registerModel(TLItems.FLUID_CELL_16K, MODEL_CELL_FLUIDS_16K);
         StorageCellModels.registerModel(TLItems.FLUID_CELL_64K, MODEL_CELL_FLUIDS_64K);
         StorageCellModels.registerModel(TLItems.CREATIVE_CELL, MODEL_CELL_CREATIVE);
-
-        StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL1K, MODEL_CELL_ITEMS_1K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL4K, MODEL_CELL_ITEMS_4K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL16K, MODEL_CELL_ITEMS_16K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_ITEM_CELL64K, MODEL_CELL_ITEMS_64K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL1K, MODEL_CELL_FLUIDS_1K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL4K, MODEL_CELL_FLUIDS_4K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL16K, MODEL_CELL_FLUIDS_16K);
-        StorageCellModels.registerModel(TLItems.PORTABLE_FLUID_CELL64K, MODEL_CELL_FLUIDS_64K);
     }
 
 }

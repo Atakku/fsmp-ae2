@@ -1,7 +1,5 @@
 package appeng.hotkeys;
 
-import static appeng.api.features.HotkeyAction.PORTABLE_FLUID_CELL;
-import static appeng.api.features.HotkeyAction.PORTABLE_ITEM_CELL;
 import static appeng.api.features.HotkeyAction.WIRELESS_TERMINAL;
 
 import java.util.ArrayList;
@@ -13,9 +11,7 @@ import net.minecraft.world.level.ItemLike;
 
 import appeng.api.features.HotkeyAction;
 import appeng.core.AppEng;
-import appeng.core.definitions.ItemDefinition;
 import appeng.core.definitions.TLItems;
-import appeng.items.tools.powered.AbstractPortableCell;
 
 /**
  * Registry of {@link HotkeyAction}
@@ -30,23 +26,6 @@ public class HotkeyActions {
         register(TLItems.WIRELESS_CRAFTING_TERMINAL,
                 (player, locator) -> TLItems.WIRELESS_CRAFTING_TERMINAL.get().openFromInventory(player, locator),
                 WIRELESS_TERMINAL);
-
-        registerPortableCell(TLItems.PORTABLE_ITEM_CELL1K, PORTABLE_ITEM_CELL);
-        registerPortableCell(TLItems.PORTABLE_ITEM_CELL4K, PORTABLE_ITEM_CELL);
-        registerPortableCell(TLItems.PORTABLE_ITEM_CELL16K, PORTABLE_ITEM_CELL);
-        registerPortableCell(TLItems.PORTABLE_ITEM_CELL64K, PORTABLE_ITEM_CELL);
-
-        registerPortableCell(TLItems.PORTABLE_FLUID_CELL1K, PORTABLE_FLUID_CELL);
-        registerPortableCell(TLItems.PORTABLE_FLUID_CELL4K, PORTABLE_FLUID_CELL);
-        registerPortableCell(TLItems.PORTABLE_FLUID_CELL16K, PORTABLE_FLUID_CELL);
-        registerPortableCell(TLItems.PORTABLE_FLUID_CELL64K, PORTABLE_FLUID_CELL);
-    }
-
-    /**
-     * a convenience helper for registering hotkeys for portable cells
-     */
-    public static void registerPortableCell(ItemDefinition<? extends AbstractPortableCell> cell, String id) {
-        register(cell, (player, locator) -> cell.get().openFromInventory(player, locator), id);
     }
 
     /**

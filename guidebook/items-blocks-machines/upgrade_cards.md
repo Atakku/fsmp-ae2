@@ -159,12 +159,3 @@ split the cell into equally-sized sections based on what the card is [partitione
 filling the cell.
 
 <RecipeFor id="equal_distribution_card" />
-
-## Energy Card
-
-<ItemImage id="energy_card" scale="2" />
-
-Energy cards add more energy storage to certain tools like portable terminals, and make <ItemLink id="vibration_chamber" />s
-more efficient.
-
-<RecipeFor id="energy_card" />

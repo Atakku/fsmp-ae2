@@ -71,16 +71,6 @@ public final class TLItemIds {
     public static final ResourceLocation FLUID_CELL_16K = id("fluid_storage_cell_16k");
     public static final ResourceLocation FLUID_CELL_64K = id("fluid_storage_cell_64k");
 
-    // Portable cells
-    public static final ResourceLocation PORTABLE_ITEM_CELL1K = id("portable_item_cell_1k");
-    public static final ResourceLocation PORTABLE_ITEM_CELL4K = id("portable_item_cell_4k");
-    public static final ResourceLocation PORTABLE_ITEM_CELL16K = id("portable_item_cell_16k");
-    public static final ResourceLocation PORTABLE_ITEM_CELL64K = id("portable_item_cell_64k");
-    public static final ResourceLocation PORTABLE_FLUID_CELL1K = id("portable_fluid_cell_1k");
-    public static final ResourceLocation PORTABLE_FLUID_CELL4K = id("portable_fluid_cell_4k");
-    public static final ResourceLocation PORTABLE_FLUID_CELL16K = id("portable_fluid_cell_16k");
-    public static final ResourceLocation PORTABLE_FLUID_CELL64K = id("portable_fluid_cell_64k");
-
     // Cards
     public static final ResourceLocation BASIC_CARD = id("basic_card");
     public static final ResourceLocation REDSTONE_CARD = id("redstone_card");

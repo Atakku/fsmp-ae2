@@ -91,13 +91,6 @@ public class MEStorageMenu extends TLBaseMenu
             .<MEStorageMenu, ITerminalHost>create(MEStorageMenu::new, ITerminalHost.class)
             .build("item_terminal");
 
-    public static final MenuType<MEStorageMenu> PORTABLE_ITEM_CELL_TYPE = MenuTypeBuilder
-            .<MEStorageMenu, IPortableTerminal>create(MEStorageMenu::new, IPortableTerminal.class)
-            .build("portable_item_cell");
-    public static final MenuType<MEStorageMenu> PORTABLE_FLUID_CELL_TYPE = MenuTypeBuilder
-            .<MEStorageMenu, IPortableTerminal>create(MEStorageMenu::new, IPortableTerminal.class)
-            .build("portable_fluid_cell");
-
     public static final MenuType<MEStorageMenu> WIRELESS_TYPE = MenuTypeBuilder
             .<MEStorageMenu, IPortableTerminal>create(MEStorageMenu::new, IPortableTerminal.class)
             .build("wirelessterm");

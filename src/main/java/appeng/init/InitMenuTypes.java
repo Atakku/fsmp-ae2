@@ -52,8 +52,6 @@ public final class InitMenuTypes {
                 DriveMenu.TYPE,
                 IOPortMenu.TYPE,
                 MEStorageMenu.TYPE,
-                MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
-                MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
                 MEStorageMenu.WIRELESS_TYPE,
                 PriorityMenu.TYPE,
                 StorageLevelEmitterMenu.TYPE,

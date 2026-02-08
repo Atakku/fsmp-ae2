@@ -9,12 +9,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 
 import appeng.core.AppEng;
 import appeng.core.definitions.BlockDefinition;
 import appeng.core.definitions.ItemDefinition;
-import appeng.core.definitions.TLBlocks;
 import appeng.core.definitions.TLItems;
 import appeng.recipes.game.AddItemUpgradeRecipe;
 import appeng.recipes.game.RemoveItemUpgradeRecipe;
@@ -60,22 +58,6 @@ public class UpgradeRecipes extends TL2RecipeProvider {
                         new CellUpgradeTier("16k", TLItems.FLUID_CELL_16K, TLItems.CELL_COMPONENT_16K),
                         new CellUpgradeTier("64k", TLItems.FLUID_CELL_64K, TLItems.CELL_COMPONENT_64K)),
                 List.of(TLItems.FLUID_CELL_HOUSING));
-        storageCellUpgradeRecipes(
-                output,
-                List.of(
-                        new CellUpgradeTier("1k", TLItems.PORTABLE_ITEM_CELL1K, TLItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", TLItems.PORTABLE_ITEM_CELL4K, TLItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", TLItems.PORTABLE_ITEM_CELL16K, TLItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", TLItems.PORTABLE_ITEM_CELL64K, TLItems.CELL_COMPONENT_64K)),
-                List.of(TLBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, TLItems.ITEM_CELL_HOUSING));
-        storageCellUpgradeRecipes(
-                output,
-                List.of(
-                        new CellUpgradeTier("1k", TLItems.PORTABLE_FLUID_CELL1K, TLItems.CELL_COMPONENT_1K),
-                        new CellUpgradeTier("4k", TLItems.PORTABLE_FLUID_CELL4K, TLItems.CELL_COMPONENT_4K),
-                        new CellUpgradeTier("16k", TLItems.PORTABLE_FLUID_CELL16K, TLItems.CELL_COMPONENT_16K),
-                        new CellUpgradeTier("64k", TLItems.PORTABLE_FLUID_CELL64K, TLItems.CELL_COMPONENT_64K)),
-                List.of(TLBlocks.ME_CHEST, Blocks.REDSTONE_BLOCK, TLItems.FLUID_CELL_HOUSING));
     }
 
     private void storageCellUpgradeRecipes(RecipeOutput output, List<CellUpgradeTier> tiers,

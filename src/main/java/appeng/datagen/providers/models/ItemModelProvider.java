@@ -61,16 +61,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         storageCell(TLItems.FLUID_CELL_16K, "item/fluid_storage_cell_16k");
         storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
 
-        // Portable cells
-        portableCell(TLItems.PORTABLE_ITEM_CELL1K, "item", "1k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL4K, "item", "4k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL16K, "item", "16k");
-        portableCell(TLItems.PORTABLE_ITEM_CELL64K, "item", "64k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL1K, "fluid", "1k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL4K, "fluid", "4k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
-        portableCell(TLItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
-
         // Cards
         flatSingleLayer(TLItems.BASIC_CARD, "item/basic_card");
         flatSingleLayer(TLItems.ADVANCED_CARD, "item/advanced_card");
@@ -103,18 +93,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
                 "layer0",
                 makeId(background))
                 .texture("layer1", "item/storage_cell_led");
-    }
-
-    private void portableCell(ItemDefinition<?> item, String housingType, String tier) {
-        String id = item.id().getPath();
-        singleTexture(
-                id,
-                mcLoc("item/generated"),
-                "layer0",
-                makeId("item/portable_cell_%s_housing".formatted(housingType)))
-                .texture("layer1", "item/portable_cell_led")
-                .texture("layer2", "item/portable_cell_screen")
-                .texture("layer3", "item/portable_cell_side_%s".formatted(tier));
     }
 
     private void registerEmptyModel(ItemDefinition<?> item) {

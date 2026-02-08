@@ -88,11 +88,6 @@ Storage cells support the following [upgrades](upgrade_cards.md), inserted via a
 *   <ItemLink id="equal_distribution_card" /> allocates the same amount of cell byte space to each type, so one type cannot fill up the entire cell
 *   <ItemLink id="void_card" /> voids items inserted if the cell is full (or that specific type's allocated space in the
     case of an equal distribution card), useful for stopping farms from backing up. Be careful to partition this!
-*   Portable cells can accept <ItemLink id="energy_card" /> in order to increase their battery capacity
-
-## Coloring
-
-Portable item and fluid cells can be colored similar to leather armor, by crafting them together with dyes.
 
 # Housings
 
@@ -148,29 +143,6 @@ Item storage cells can hold up to 63 distinct types of items, and are available 
   </Row>
 </Column>
 
-## Portable Item Storage
-
-These act as a tiny <ItemLink id="chest" /> in your pocket, or like a form of backpack. They can be charged in a <ItemLink id="charger" />
-
-Unlike standard storage cells, these actually *reduce* in type capacity as their byte capacity increases, and have half the
-total byte capacity.
-
-In addition to the upgrade cards all cells can receive, these also accept <ItemLink id="energy_card" />s to upgrade their internal batteries.
-
-<Column>
-  <Row>
-    <RecipeFor id="portable_item_cell_1k" />
-
-    <RecipeFor id="portable_item_cell_4k" />
-  </Row>
-
-  <Row>
-    <RecipeFor id="portable_item_cell_16k" />
-
-    <RecipeFor id="portable_item_cell_64k" />
-  </Row>
-</Column>
-
 # Fluid Storage Cells
 
 Fluid storage cells can hold up to 5 distinct types of fluids, and are available in all the standard capacities.
@@ -186,29 +158,6 @@ Fluid storage cells can hold up to 5 distinct types of fluids, and are available
     <Recipe id="network/cells/fluid_storage_cell_16k_storage" />
 
     <Recipe id="network/cells/fluid_storage_cell_64k_storage" />
-  </Row>
-</Column>
-
-## Portable Fluid Storage
-
-These act as a tiny <ItemLink id="chest" /> in your pocket, or like a form of backpack. They can be charged in a <ItemLink id="charger" />
-
-Unlike standard storage cells, these actually *reduce* in type capacity as their byte capacity increases, and have half the
-total byte capacity.
-
-In addition to the upgrade cards all cells can receive, these also accept <ItemLink id="energy_card" />s to upgrade their internal batteries.
-
-<Column>
-  <Row>
-    <RecipeFor id="portable_fluid_cell_1k" />
-
-    <RecipeFor id="portable_fluid_cell_4k" />
-  </Row>
-
-  <Row>
-    <RecipeFor id="portable_fluid_cell_16k" />
-
-    <RecipeFor id="portable_fluid_cell_64k" />
   </Row>
 </Column>
 

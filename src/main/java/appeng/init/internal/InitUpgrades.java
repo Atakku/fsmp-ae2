@@ -35,7 +35,6 @@ public final class InitUpgrades {
         // Block and part interface have different translation keys, but support the
         // same upgrades
         String storageCellGroup = GuiText.StorageCells.getTranslationKey();
-        String portableCellGroup = GuiText.PortableCells.getTranslationKey();
 
         // IO Port!
         Upgrades.add(TLItems.SPEED_CARD, TLBlocks.IO_PORT, 3);
@@ -60,23 +59,6 @@ public final class InitUpgrades {
             Upgrades.add(TLItems.INVERTER_CARD, fluidCell, 1, storageCellGroup);
             Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, fluidCell, 1, storageCellGroup);
             Upgrades.add(TLItems.VOID_CARD, fluidCell, 1, storageCellGroup);
-        }
-
-        var portableCells = List.of(TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_ITEM_CELL4K,
-                TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_ITEM_CELL64K);
-        for (var portableCell : portableCells) {
-            Upgrades.add(TLItems.FUZZY_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(TLItems.INVERTER_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, portableCell, 1, portableCellGroup);
-            Upgrades.add(TLItems.VOID_CARD, portableCell, 1, portableCellGroup);
-        }
-
-        var portableFluidCells = List.of(TLItems.PORTABLE_FLUID_CELL1K, TLItems.PORTABLE_FLUID_CELL4K,
-                TLItems.PORTABLE_FLUID_CELL16K, TLItems.PORTABLE_FLUID_CELL64K);
-        for (var portableFluidCell : portableFluidCells) {
-            Upgrades.add(TLItems.INVERTER_CARD, portableFluidCell, 1, portableCellGroup);
-            Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, portableFluidCell, 1, portableCellGroup);
-            Upgrades.add(TLItems.VOID_CARD, portableFluidCell, 1, portableCellGroup);
         }
 
         // View Cell

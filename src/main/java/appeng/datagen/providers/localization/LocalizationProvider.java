@@ -99,8 +99,6 @@ public class LocalizationProvider implements ITL2DataProvider {
         add("commands.tl2.usage",
                 "Commands provided by Theoretical Lethargics 2 - use /tl2 list for a list, and /tl2 help _____ for help with a command.");
         add("key.tl2.category", "Theoretical Lethargics 2");
-        add("key.tl2.portable_fluid_cell", "Open Portable Fluid Cell");
-        add("key.tl2.portable_item_cell", "Open Portable Item Cell");
         add("key.tl2.wireless_terminal", "Open Wireless Terminal");
         add("key.tl2.guide", "Open Guide for Items");
         add("key.tl2.mouse_wheel_item_modifier", "Modifier for Mouse-Wheel Items");

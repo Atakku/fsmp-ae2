@@ -207,27 +207,5 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(network2)
                 .addCriterion("cable", AdvancementTriggers.networkAdminCriterion())
                 .save(consumer, "tl2:main/network3");
-
-        var portableCell = Advancement.Builder.advancement()
-                .display(
-                        TLItems.PORTABLE_ITEM_CELL1K,
-                        localization.component("achievement.tl2.PortableCell", "Storage Nomad"),
-                        localization.component("achievement.tl2.PortableCell.desc", "Craft a Portable Cell"),
-                        null /* background */,
-                        AdvancementType.TASK,
-                        false,
-                        false,
-                        false)
-                .parent(storageCell)
-                .addCriterion("pc_1k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL1K))
-                .addCriterion("pc_4k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL4K))
-                .addCriterion("pc_16k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL16K))
-                .addCriterion("pc_64k",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.PORTABLE_ITEM_CELL64K))
-                .requirements(AdvancementRequirements.Strategy.OR)
-                .save(consumer, "tl2:main/portable_cell");
     }
 }

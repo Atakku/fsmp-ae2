@@ -87,15 +87,7 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
         tag(ConventionTags.CURIOS).add(
                 TLItems.WIRELESS_TERMINAL.asItem(),
-                TLItems.WIRELESS_CRAFTING_TERMINAL.asItem(),
-                TLItems.PORTABLE_ITEM_CELL1K.asItem(),
-                TLItems.PORTABLE_ITEM_CELL4K.asItem(),
-                TLItems.PORTABLE_ITEM_CELL16K.asItem(),
-                TLItems.PORTABLE_ITEM_CELL64K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL1K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL4K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL16K.asItem(),
-                TLItems.PORTABLE_FLUID_CELL64K.asItem());
+                TLItems.WIRELESS_CRAFTING_TERMINAL.asItem());
 
         tag(ConventionTags.CAN_REMOVE_COLOR).add(Items.WATER_BUCKET, Items.SNOWBALL);
 

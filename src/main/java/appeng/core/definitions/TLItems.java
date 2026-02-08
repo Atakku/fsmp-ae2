@@ -50,13 +50,10 @@ import appeng.items.misc.MissingContentItem;
 import appeng.items.misc.WrappedGenericStack;
 import appeng.items.storage.BasicStorageCell;
 import appeng.items.storage.CreativeCellItem;
-import appeng.items.storage.StorageTier;
 import appeng.items.storage.ViewCellItem;
 import appeng.items.tools.GuideItem;
-import appeng.items.tools.powered.PortableCellItem;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
 import appeng.items.tools.powered.WirelessTerminalItem;
-import appeng.menu.me.common.MEStorageMenu;
 
 /**
  * Internal implementation for the API items
@@ -66,19 +63,6 @@ public final class TLItems {
 
     // spotless:off
     private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
-
-    ///
-    /// PORTABLE CELLS
-    ///
-    private static ItemDefinition<PortableCellItem> makePortableItemCell(ResourceLocation id, StorageTier tier) {
-        var name = tier.namePrefix() + " Portable Item Cell";
-        return item(name, id, p -> new PortableCellItem(TLKeyType.items(), 63 - tier.index() * 9, MEStorageMenu.PORTABLE_ITEM_CELL_TYPE, tier, p.stacksTo(1), 0x80caff));
-    }
-
-    private static ItemDefinition<PortableCellItem> makePortableFluidCell(ResourceLocation id, StorageTier tier) {
-        var name = tier.namePrefix() + " Portable Fluid Cell";
-        return item(name, id, p -> new PortableCellItem(TLKeyType.fluids(), 18, MEStorageMenu.PORTABLE_FLUID_CELL_TYPE, tier, p.stacksTo(1), 0x80caff));
-    }
 
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", TLItemIds.MISSING_CONTENT, MissingContentItem::new, null);
@@ -122,16 +106,6 @@ public final class TLItems {
     public static final ItemDefinition<BasicStorageCell> FLUID_CELL_4K = item("4k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 1.0f, 4, 32, 18, TLKeyType.fluids()));
     public static final ItemDefinition<BasicStorageCell> FLUID_CELL_16K = item("16k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 1.5f, 16, 128, 18, TLKeyType.fluids()));
     public static final ItemDefinition<BasicStorageCell> FLUID_CELL_64K = item("64k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 2.0f, 64, 512, 18, TLKeyType.fluids()));
-
-    // Portable cells
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL1K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL1K, StorageTier.SIZE_1K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL4K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL4K, StorageTier.SIZE_4K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL16K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL16K, StorageTier.SIZE_16K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL64K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL64K, StorageTier.SIZE_64K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL1K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL1K, StorageTier.SIZE_1K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL4K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL4K, StorageTier.SIZE_4K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL16K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL16K, StorageTier.SIZE_16K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL64K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL64K, StorageTier.SIZE_64K);
 
     // Cards
     public static final ItemDefinition<MaterialItem> BASIC_CARD = item("Basic Card", TLItemIds.BASIC_CARD, MaterialItem::new);

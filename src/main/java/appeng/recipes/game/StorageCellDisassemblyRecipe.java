@@ -22,7 +22,7 @@ import net.minecraft.world.level.Level;
 import appeng.recipes.TLRecipeTypes;
 
 /**
- * Used to handle disassembly of the (Portable) Storage Cells.
+ * Used to handle disassembly of the Storage Cells.
  */
 public class StorageCellDisassemblyRecipe extends CustomRecipe {
     public static final MapCodec<StorageCellDisassemblyRecipe> CODEC = RecordCodecBuilder.mapCodec((builder) -> builder

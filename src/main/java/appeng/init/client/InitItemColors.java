@@ -32,7 +32,6 @@ import appeng.core.definitions.TLItems;
 import appeng.items.parts.ColoredPartItem;
 import appeng.items.parts.PartItem;
 import appeng.items.storage.BasicStorageCell;
-import appeng.items.tools.powered.PortableCellItem;
 
 public final class InitItemColors {
     private InitItemColors() {
@@ -51,11 +50,6 @@ public final class InitItemColors {
     private static void init(ItemColorRegistrar registrar) {
         // I checked, the ME chest doesn't keep its color in item form
         registrar.register(new StaticItemColor(TLColor.TRANSPARENT), TLBlocks.ME_CHEST.asItem());
-
-        registrar.register(PortableCellItem::getColor, TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_FLUID_CELL1K,
-                TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_FLUID_CELL4K,
-                TLItems.PORTABLE_ITEM_CELL16K, TLItems.PORTABLE_FLUID_CELL16K,
-                TLItems.PORTABLE_ITEM_CELL64K, TLItems.PORTABLE_FLUID_CELL64K);
 
         registrar.register(BasicStorageCell::getColor, TLItems.ITEM_CELL_1K, TLItems.FLUID_CELL_1K,
                 TLItems.ITEM_CELL_4K, TLItems.FLUID_CELL_4K,

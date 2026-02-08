@@ -89,14 +89,6 @@ public final class InitScreens {
                 MEStorageScreen::new,
                 "/screens/terminals/terminal.json");
         InitScreens.<MEStorageMenu, MEStorageScreen<MEStorageMenu>>register(event,
-                MEStorageMenu.PORTABLE_ITEM_CELL_TYPE,
-                MEStorageScreen::new,
-                "/screens/terminals/portable_item_cell.json");
-        InitScreens.<MEStorageMenu, MEStorageScreen<MEStorageMenu>>register(event,
-                MEStorageMenu.PORTABLE_FLUID_CELL_TYPE,
-                MEStorageScreen::new,
-                "/screens/terminals/portable_fluid_cell.json");
-        InitScreens.<MEStorageMenu, MEStorageScreen<MEStorageMenu>>register(event,
                 MEStorageMenu.WIRELESS_TYPE,
                 MEStorageScreen::new,
                 "/screens/terminals/wireless_terminal.json");
