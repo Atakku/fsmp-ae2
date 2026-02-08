@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "tl2:circuit_calculation"
   },
-  "loops": 5,
+  "loops": 0,
   "results": [
     {
       "id": "tl2:processor_calculation"

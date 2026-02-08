@@ -47,21 +47,10 @@ public final class TLItemIds {
     public static final ResourceLocation CIRCUIT_CALCULATION = id("circuit_calculation");
     public static final ResourceLocation CIRCUIT_ENGINEERING = id("circuit_engineering");
 
-    // Incomplete processors
-    public static final ResourceLocation INCOMPLETE_PROCESSOR_LOGIC = id("incomplete_processor_logic");
-    public static final ResourceLocation INCOMPLETE_PROCESSOR_CALCULATION = id("incomplete_processor_calculation");
-    public static final ResourceLocation INCOMPLETE_PROCESSOR_ENGINEERING = id("incomplete_processor_engineering");
-
     // Processors
     public static final ResourceLocation PROCESSOR_LOGIC = id("processor_logic");
     public static final ResourceLocation PROCESSOR_CALCULATION = id("processor_calculation");
     public static final ResourceLocation PROCESSOR_ENGINEERING = id("processor_engineering");
-
-    // Incomplete components
-    public static final ResourceLocation INCOMPLETE_COMPONENT_1K = id("incomplete_component_1k");
-    public static final ResourceLocation INCOMPLETE_COMPONENT_4K = id("incomplete_component_4k");
-    public static final ResourceLocation INCOMPLETE_COMPONENT_16K = id("incomplete_component_16k");
-    public static final ResourceLocation INCOMPLETE_COMPONENT_64K = id("incomplete_component_64k");
 
     // Cell components
     public static final ResourceLocation COMPONENT_1K = id("component_1k");

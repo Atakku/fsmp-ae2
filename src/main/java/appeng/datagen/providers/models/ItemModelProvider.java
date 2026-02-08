@@ -37,10 +37,21 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.CIRCUIT_CALCULATION, "item/circuit_calculation");
         flatSingleLayer(TLItems.CIRCUIT_ENGINEERING, "item/circuit_engineering");
 
+        // Incomplete processors
+        flatSingleLayer(TLItems.INCOMPLETE_PROCESSOR_LOGIC, "item/processor_logic");
+        flatSingleLayer(TLItems.INCOMPLETE_PROCESSOR_CALCULATION, "item/processor_calculation");
+        flatSingleLayer(TLItems.INCOMPLETE_PROCESSOR_ENGINEERING, "item/processor_engineering");
+
         // Processors
         flatSingleLayer(TLItems.PROCESSOR_LOGIC, "item/processor_logic");
         flatSingleLayer(TLItems.PROCESSOR_CALCULATION, "item/processor_calculation");
         flatSingleLayer(TLItems.PROCESSOR_ENGINEERING, "item/processor_engineering");
+
+        // Incomplete cell components
+        flatSingleLayer(TLItems.INCOMPLETE_COMPONENT_1K, "item/component_1k");
+        flatSingleLayer(TLItems.INCOMPLETE_COMPONENT_4K, "item/component_4k");
+        flatSingleLayer(TLItems.INCOMPLETE_COMPONENT_16K, "item/component_16k");
+        flatSingleLayer(TLItems.INCOMPLETE_COMPONENT_64K, "item/component_64k");
 
         // Cell components
         flatSingleLayer(TLItems.COMPONENT_1K, "item/component_1k");

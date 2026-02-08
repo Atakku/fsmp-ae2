@@ -83,21 +83,15 @@ public final class TLItems {
     public static final ItemDefinition<MaterialItem> CIRCUIT_CALCULATION = item("Calculation Circuit", TLItemIds.CIRCUIT_CALCULATION, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CIRCUIT_ENGINEERING = item("Engineering Circuit", TLItemIds.CIRCUIT_ENGINEERING, MaterialItem::new);
 
-    // Incomplete processors
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_LOGIC = item("Incomplete Logic Processor", TLItemIds.INCOMPLETE_PROCESSOR_LOGIC, SequencedAssemblyItem::new);
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_CALCULATION = item("Incomplete Calculation Processor", TLItemIds.INCOMPLETE_PROCESSOR_CALCULATION, SequencedAssemblyItem::new);
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_ENGINEERING = item("Incomplete Engineering Processor", TLItemIds.INCOMPLETE_PROCESSOR_ENGINEERING, SequencedAssemblyItem::new);
-
     // Processors
     public static final ItemDefinition<MaterialItem> PROCESSOR_LOGIC = item("Logic Processor", TLItemIds.PROCESSOR_LOGIC, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> PROCESSOR_CALCULATION = item("Calculation Processor", TLItemIds.PROCESSOR_CALCULATION, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> PROCESSOR_ENGINEERING = item("Engineering Processor", TLItemIds.PROCESSOR_ENGINEERING, MaterialItem::new);
 
-    // Incomplete components
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_1K = item("Incomplete 1k ME Storage Component", TLItemIds.INCOMPLETE_COMPONENT_1K, SequencedAssemblyItem::new);
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_4K = item("Incomplete 4k ME Storage Component", TLItemIds.INCOMPLETE_COMPONENT_4K, SequencedAssemblyItem::new);
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_16K = item("Incomplete 16k ME Storage Component", TLItemIds.INCOMPLETE_COMPONENT_16K, SequencedAssemblyItem::new);
-    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_64K = item("Incomplete 64k ME Storage Component", TLItemIds.INCOMPLETE_COMPONENT_64K, SequencedAssemblyItem::new);
+    // Incomplete processors
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_LOGIC = incomplete(TLItems.PROCESSOR_LOGIC);
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_CALCULATION = incomplete(TLItems.PROCESSOR_CALCULATION);
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_PROCESSOR_ENGINEERING = incomplete(TLItems.PROCESSOR_ENGINEERING);
 
     // Cell components
     public static final ItemDefinition<StorageComponentItem> COMPONENT_1K = item("1k ME Storage Component", TLItemIds.COMPONENT_1K, p -> new StorageComponentItem(p, 1));
@@ -106,6 +100,12 @@ public final class TLItems {
     public static final ItemDefinition<StorageComponentItem> COMPONENT_64K = item("64k ME Storage Component", TLItemIds.COMPONENT_64K, p -> new StorageComponentItem(p, 64));
     public static final ItemDefinition<MaterialItem> HOUSING_ITEM = item("ME Item Cell Housing", TLItemIds.HOUSING_ITEM, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> HOUSING_FLUID = item("ME Fluid Cell Housing", TLItemIds.HOUSING_FLUID, MaterialItem::new);
+
+    // Incomplete components
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_1K = incomplete(TLItems.COMPONENT_1K);
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_4K = incomplete(TLItems.COMPONENT_4K);
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_16K = incomplete(TLItems.COMPONENT_16K);
+    public static final ItemDefinition<SequencedAssemblyItem> INCOMPLETE_COMPONENT_64K = incomplete(TLItems.COMPONENT_64K);
 
     // Complex ingredients
     public static final ItemDefinition<MaterialItem> ANNIHILATION_CORE = item("Annihilation Core", TLItemIds.ANNIHILATION_CORE, MaterialItem::new);
@@ -150,6 +150,13 @@ public final class TLItems {
 
     public static List<ItemDefinition<?>> getItems() {
         return Collections.unmodifiableList(ITEMS);
+    }
+
+    static <T extends Item> ItemDefinition<SequencedAssemblyItem> incomplete(ItemDefinition<T> item) {
+        var def = new ItemDefinition<>("Incomplete " + item.getEnglishName(),
+                DR.registerItem("incomplete_" + item.id().getPath(), SequencedAssemblyItem::new));
+        ITEMS.add(def);
+        return def;
     }
 
     static <T extends Item> ItemDefinition<T> item(String name, ResourceLocation id,

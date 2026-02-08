@@ -46,6 +46,7 @@ public class SequencedAssemblyRecipes extends SequencedAssemblyRecipeGen {
                         .addStep(DeployerApplicationRecipe::new, rb -> rb.require(ConventionTags.DUSTS_REDSTONE))
                         .addStep(DeployerApplicationRecipe::new, rb -> rb.require(ConventionTags.SILICON))
                         .addStep(PressingRecipe::new, rb -> rb)
+                        .loops(0)
                         .addOutput(result, 1));
     }
 
