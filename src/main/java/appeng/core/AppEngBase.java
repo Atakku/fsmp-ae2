@@ -62,7 +62,6 @@ import appeng.hooks.ticking.TickHandler;
 import appeng.hotkeys.HotkeyActions;
 import appeng.init.InitAdvancementTriggers;
 import appeng.init.InitCapabilityProviders;
-import appeng.init.InitDispenserBehavior;
 import appeng.init.InitMenuTypes;
 import appeng.init.InitStats;
 import appeng.init.client.InitParticleTypes;
@@ -169,8 +168,6 @@ public abstract class AppEngBase implements AppEng {
         // Now that item instances are available, we can initialize registries that need item instances
         InitGridLinkables.init();
         InitStorageCells.init();
-
-        InitDispenserBehavior.init();
 
         InitUpgrades.init();
     }

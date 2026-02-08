@@ -108,7 +108,7 @@ public final class UpgradesPanel implements ICompositeWidget {
 
     @Override
     public void updateBeforeRender() {
-        int slotOriginX = this.x + PADDING;
+        int slotOriginX = this.x + PADDING - this.getBounds().getWidth();
         int slotOriginY = this.y + PADDING;
 
         for (Slot slot : slots) {
@@ -130,7 +130,7 @@ public final class UpgradesPanel implements ICompositeWidget {
         }
 
         // This is the absolute x,y coord of the first slot within the panel
-        int slotOriginX = screenOrigin.getX() + this.x + PADDING;
+        int slotOriginX = screenOrigin.getX() + this.x + PADDING - this.getBounds().getWidth();
         int y = screenOrigin.getY() + this.y + PADDING;
 
         for (int i = 0; i < slotCount; i++) {
@@ -144,12 +144,6 @@ public final class UpgradesPanel implements ICompositeWidget {
             drawSlot(guiGraphics, x, y, borderLeft, borderTop, borderRight, borderBottom);
         }
         // Added border to match the rest of the GUI style - RID
-        //guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, y, 0XFFf2f2f2);
-        //guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, y + (SLOT_SIZE * slotCount) - 1, 0XFFf2f2f2);
-        //guiGraphics.vLine(slotOriginX - 5, y - 1, y + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
-        //guiGraphics.vLine(slotOriginX + 12, y - 1, y + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
-
-
         guiGraphics.hLine(slotOriginX, slotOriginX + (SLOT_SIZE * slotCount) - 1, y, 0XFFf2f2f2);
         guiGraphics.hLine(slotOriginX, slotOriginX + (SLOT_SIZE * slotCount) - 1, y + SLOT_SIZE - 1, 0XFFf2f2f2);
         guiGraphics.vLine(slotOriginX, y - 1, y + SLOT_SIZE, 0XFFf2f2f2);
@@ -158,7 +152,7 @@ public final class UpgradesPanel implements ICompositeWidget {
 
     @Override
     public void addExclusionZones(List<Rect2i> exclusionZones, Rect2i screenBounds) {
-        int offsetX = screenBounds.getX();
+        int offsetX = screenBounds.getX() - this.getBounds().getWidth();
         int offsetY = screenBounds.getY();
 
         int slotCount = getUpgradeSlotCount();

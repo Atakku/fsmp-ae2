@@ -13,7 +13,6 @@
     "AbstractContainerScreenMixin",
     "GuiGraphicsMixin",
     "WrappedGenericStackTooltipModIdMixin",
-    "PickColorMixin",
     "TextureAtlasMixin",
     "PonderWorldMixin",
     "ModelBakeryMixin",

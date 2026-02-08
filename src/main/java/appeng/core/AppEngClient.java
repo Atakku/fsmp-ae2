@@ -50,7 +50,6 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -95,7 +94,6 @@ import appeng.init.client.InitAdditionalModels;
 import appeng.init.client.InitBlockColors;
 import appeng.init.client.InitBuiltInModels;
 import appeng.init.client.InitItemColors;
-import appeng.init.client.InitItemModelsProperties;
 import appeng.init.client.InitScreens;
 import appeng.init.client.InitStackRenderHandlers;
 import appeng.items.storage.StorageCellTooltipComponent;
@@ -132,7 +130,6 @@ public class AppEngClient extends AppEngBase {
         modEventBus.addListener(this::registerClientTooltipComponents);
         modEventBus.addListener(this::registerParticleFactories);
         modEventBus.addListener(this::modelRegistryEventAdditionalModels);
-        modEventBus.addListener(this::modelRegistryEvent);
         modEventBus.addListener(this::registerBlockColors);
         modEventBus.addListener(this::registerItemColors);
         modEventBus.addListener(this::registerEntityRenderers);
@@ -277,10 +274,6 @@ public class AppEngClient extends AppEngBase {
 
     public void modelRegistryEventAdditionalModels(ModelEvent.RegisterAdditional event) {
         InitAdditionalModels.init(event);
-    }
-
-    public void modelRegistryEvent(RegisterGeometryLoaders event) {
-        InitItemModelsProperties.init();
     }
 
     private void wheelEvent(final InputEvent.MouseScrollingEvent me) {

@@ -35,7 +35,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 
 import appeng.api.implementations.parts.ICablePart;
@@ -51,7 +50,6 @@ import appeng.api.util.TLCableType;
 import appeng.api.util.TLColor;
 import appeng.core.definitions.TLParts;
 import appeng.items.parts.ColoredPartItem;
-import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.parts.TLBasePart;
 
 public abstract class CablePart extends TLBasePart implements ICablePart {
@@ -161,22 +159,6 @@ public abstract class CablePart extends TLBasePart implements ICablePart {
             return -1;
         } else {
             return 8;
-        }
-    }
-
-    @Override
-    public void onPlacement(Player player) {
-        super.onPlacement(player);
-
-        // Apply the color of a held color applicator on placement
-        var stack = player.getItemInHand(InteractionHand.OFF_HAND);
-        if (!stack.isEmpty() && stack.getItem() instanceof ColorApplicatorItem item) {
-            var color = item.getActiveColor(stack);
-            if (color != null && color != getCableColor() && item.consumeColor(stack, color, true)) {
-                if (changeColor(color, player) && !player.getAbilities().instabuild) {
-                    item.consumeColor(stack, color, false);
-                }
-            }
         }
     }
 

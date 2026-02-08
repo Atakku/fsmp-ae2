@@ -3,7 +3,6 @@ package appeng.server.subcommands;
 import static net.minecraft.commands.Commands.literal;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.google.common.base.Stopwatch;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -16,20 +15,15 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.levelgen.FlatLevelSource;
-import net.neoforged.neoforge.common.NeoForge;
 
 import appeng.core.TLLog;
-import appeng.core.definitions.TLItems;
 import appeng.core.localization.PlayerMessages;
-import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.server.ISubCommand;
-import appeng.server.testplots.KitOutPlayerEvent;
 import appeng.server.testplots.TestPlots;
 import appeng.server.testworld.TestWorldGenerator;
 
@@ -83,8 +77,6 @@ public class SetupTestWorldCommand implements ISubCommand {
             player.getAbilities().flying = true;
             player.onUpdateAbilities();
 
-            kitOutPlayer(player);
-
             // Only teleport the player if they're not within the bounds already
             if (!generator.isWithinBounds(player.blockPosition())) {
                 var goodStartPos = generator.getSuitableStartPos();
@@ -109,15 +101,6 @@ public class SetupTestWorldCommand implements ISubCommand {
                 entity.remove(Entity.RemovalReason.DISCARDED);
             }
         }
-    }
-
-    private void kitOutPlayer(ServerPlayer player) {
-        var playerInv = player.getInventory();
-        var fullApplicator = ColorApplicatorItem.createFullColorApplicator();
-        if (!playerInv.hasAnyOf(Collections.singleton(TLItems.COLOR_APPLICATOR.asItem()))) {
-            playerInv.placeItemBackInInventory(fullApplicator);
-        }
-        NeoForge.EVENT_BUS.post(new KitOutPlayerEvent(player));
     }
 
     /**

@@ -395,18 +395,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL4K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL16K);
         portableCell(consumer, TLItems.PORTABLE_FLUID_CELL64K);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.COLOR_APPLICATOR)
-                .pattern("ab ")
-                .pattern("bc ")
-                .pattern("  d")
-                .define('a', TLItems.FORMATION_CORE)
-                .define('b', ConventionTags.IRON_INGOT)
-                .define('c', TLItems.CELL_COMPONENT_4K)
-                .define('d', Blocks.REDSTONE_BLOCK)
-                .unlockedBy("has_formation_core", has(TLItems.FORMATION_CORE))
-                .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
-                .save(consumer, AppEng.makeId("tools/network_color_applicator"));
     }
 
     private void portableCell(RecipeOutput consumer, ItemDefinition<PortableCellItem> cell) {

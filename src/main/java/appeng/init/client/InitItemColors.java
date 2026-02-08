@@ -21,7 +21,6 @@ package appeng.init.client;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
@@ -33,7 +32,6 @@ import appeng.core.definitions.TLItems;
 import appeng.items.parts.ColoredPartItem;
 import appeng.items.parts.PartItem;
 import appeng.items.storage.BasicStorageCell;
-import appeng.items.tools.powered.ColorApplicatorItem;
 import appeng.items.tools.powered.PortableCellItem;
 
 public final class InitItemColors {
@@ -53,8 +51,6 @@ public final class InitItemColors {
     private static void init(ItemColorRegistrar registrar) {
         // I checked, the ME chest doesn't keep its color in item form
         registrar.register(new StaticItemColor(TLColor.TRANSPARENT), TLBlocks.ME_CHEST.asItem());
-
-        registrar.register(InitItemColors::getColorApplicatorColor, TLItems.COLOR_APPLICATOR);
 
         registrar.register(PortableCellItem::getColor, TLItems.PORTABLE_ITEM_CELL1K, TLItems.PORTABLE_FLUID_CELL1K,
                 TLItems.PORTABLE_ITEM_CELL4K, TLItems.PORTABLE_FLUID_CELL4K,
@@ -77,25 +73,6 @@ public final class InitItemColors {
                 registrar.register(new StaticItemColor(color), item);
             }
         }
-    }
-
-    private static int getColorApplicatorColor(ItemStack itemStack, int idx) {
-        if (idx == 0) {
-            return -1;
-        }
-
-        final TLColor col = ((ColorApplicatorItem) itemStack.getItem()).getActiveColor(itemStack);
-
-        if (col == null) {
-            return -1;
-        }
-
-        return switch (idx) {
-            case 1 -> col.blackVariant;
-            case 2 -> col.mediumVariant;
-            case 3 -> col.whiteVariant;
-            default -> -1;
-        };
     }
 
     private static ItemColor makeOpaque(ItemColor itemColor) {

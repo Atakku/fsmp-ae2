@@ -82,10 +82,6 @@ public final class InitUpgrades {
         // View Cell
         Upgrades.add(TLItems.FUZZY_CARD, TLItems.VIEW_CELL, 1);
         Upgrades.add(TLItems.INVERTER_CARD, TLItems.VIEW_CELL, 1);
-
-        // Color Applicator
-        Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, TLItems.COLOR_APPLICATOR, 1);
-        Upgrades.add(TLItems.VOID_CARD, TLItems.COLOR_APPLICATOR, 1);
     }
 
 }

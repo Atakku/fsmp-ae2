@@ -25,7 +25,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import appeng.client.render.cablebus.CableBusModel;
-import appeng.client.render.model.ColorApplicatorModel;
 import appeng.client.render.model.DriveModel;
 import appeng.client.render.model.GlassModel;
 import appeng.core.AppEng;
@@ -40,7 +39,6 @@ public final class InitBuiltInModels {
         addBuiltInModel("block/cable_bus", CableBusModel::new);
         addBuiltInModel("block/quartz_glass", GlassModel::new);
         addBuiltInModel("block/drive", DriveModel::new);
-        addBuiltInModel("color_applicator", ColorApplicatorModel::new);
     }
 
     private static <T extends UnbakedModel> void addBuiltInModel(String id,

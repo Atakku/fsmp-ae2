@@ -99,7 +99,6 @@ public final class TLItemIds {
     // Misc
     public static final ResourceLocation CREATIVE_CELL = id("creative_storage_cell");
     public static final ResourceLocation WRAPPED_GENERIC_STACK = id("wrapped_generic_stack");
-    public static final ResourceLocation COLOR_APPLICATOR = id("color_applicator");
 
     private static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(TLConstants.MOD_ID, id);
