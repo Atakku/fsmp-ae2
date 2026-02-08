@@ -76,7 +76,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.IRON_INGOT)
                 .define('c', ConventionTags.DUSTS_REDSTONE)
                 .define('d', TLItems.PROCESSOR_CALCULATION)
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("materials/basiccard"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.REDSTONE_CARD)
                 .requires(Items.REDSTONE_TORCH)
@@ -100,7 +100,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.IRON_INGOT)
                 .define('c', ConventionTags.DUSTS_REDSTONE)
                 .define('d', TLItems.PROCESSOR_CALCULATION)
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("materials/advancedcard"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FUZZY_CARD)
                 .requires(TLItems.ADVANCED_CARD)
@@ -185,7 +185,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(Items.CRAFTING_TABLE)
                 .requires(TLItems.PROCESSOR_CALCULATION)
                 .unlockedBy("has_terminal", has(TLItems.WIRELESS_TERMINAL))
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("network/upgrade_wireless_crafting_terminal"));
 
         // ====================================================
@@ -200,7 +200,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', TLItems.PROCESSOR_CALCULATION)
                 .define('c', ConventionTags.IRON_INGOT)
                 .define('d', ConventionTags.CHEST)
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("network/blocks/cell_workbench"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.CONTROLLER)
                 .pattern("aba")
@@ -210,7 +210,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', TLItems.FLUIX)
                 .define('c', TLItems.PROCESSOR_ENGINEERING)
                 .unlockedBy("has_fluix_crystal", has(TLItems.FLUIX))
-                .unlockedBy("has_engineering_processor", has(TLItems.PROCESSOR_ENGINEERING))
+                .unlockedBy("has_processor_engineering", has(TLItems.PROCESSOR_ENGINEERING))
                 .save(consumer, AppEng.makeId("network/blocks/controller"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.IO_PORT)
                 .pattern("aaa")
@@ -243,7 +243,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('a', ConventionTags.IRON_INGOT)
                 .define('b', TLItems.PROCESSOR_ENGINEERING)
                 .define('c', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .unlockedBy("has_engineering_processor", has(TLItems.PROCESSOR_ENGINEERING))
+                .unlockedBy("has_processor_engineering", has(TLItems.PROCESSOR_ENGINEERING))
                 .save(consumer, AppEng.makeId("network/blocks/storage_drive"));
 
         addCables(consumer);
@@ -261,7 +261,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('c', ConventionTags.IRON_INGOT)
                 .define('d', ConventionTags.COPPER_INGOT)
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
-                .save(consumer, AppEng.makeId("network/cells/item_cell_housing"));
+                .save(consumer, AppEng.makeId("network/cells/housing_item"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.HOUSING_FLUID)
                 .pattern("aba")
                 .pattern("b b")
@@ -270,7 +270,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.DUSTS_REDSTONE)
                 .define('c', ConventionTags.COPPER_INGOT)
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
-                .save(consumer, AppEng.makeId("network/cells/fluid_cell_housing"));
+                .save(consumer, AppEng.makeId("network/cells/housing_fluid"));
 
         addFluidCells(consumer);
         addItemCells(consumer);
@@ -298,7 +298,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.LEVEL_EMITTER)
                 .requires(Items.REDSTONE_TORCH)
                 .requires(TLItems.PROCESSOR_CALCULATION)
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("network/parts/level_emitter"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.CONVERSION_MONITOR)
                 .requires(TLItems.FORMATION_CORE)
@@ -341,7 +341,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(TLItems.ANNIHILATION_CORE)
                 .unlockedBy("has_formation_core", has(TLItems.FORMATION_CORE))
                 .unlockedBy("has_illuminated_panel", has(ConventionTags.ILLUMINATED_PANEL))
-                .unlockedBy("has_logic_processor", has(TLItems.PROCESSOR_LOGIC))
+                .unlockedBy("has_processor_logic", has(TLItems.PROCESSOR_LOGIC))
                 .unlockedBy("has_annihilation_core", has(TLItems.ANNIHILATION_CORE))
                 .save(consumer, AppEng.makeId("network/parts/terminals"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.CRAFTING_TERMINAL)
@@ -349,7 +349,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(Items.CRAFTING_TABLE)
                 .requires(TLItems.PROCESSOR_CALCULATION)
                 .unlockedBy("has_terminal", has(TLParts.TERMINAL))
-                .unlockedBy("has_calculation_processor", has(TLItems.PROCESSOR_CALCULATION))
+                .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("network/parts/terminals_crafting"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.TOGGLE_BUS)
                 .pattern(" a ")
@@ -394,13 +394,13 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('c', TLItems.COMPONENT_1K)
                 .define('d', ConventionTags.IRON_INGOT)
                 .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_1k", has(TLItems.COMPONENT_1K))
+                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_1k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_1K)
                 .requires(TLItems.HOUSING_ITEM)
                 .requires(TLItems.COMPONENT_1K)
-                .unlockedBy("has_cell_component_1k", has(TLItems.COMPONENT_1K))
-                .unlockedBy("has_item_cell_housing", has(TLItems.HOUSING_ITEM))
+                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
+                .unlockedBy("has_housing_item", has(TLItems.HOUSING_ITEM))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_1k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_4K)
@@ -412,12 +412,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('c', TLItems.COMPONENT_4K)
                 .define('d', ConventionTags.IRON_INGOT)
                 .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_4k", has(TLItems.COMPONENT_4K))
+                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_4k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_4K)
                 .requires(TLItems.HOUSING_ITEM)
                 .requires(TLItems.COMPONENT_4K)
-                .unlockedBy("has_cell_component_4k", has(TLItems.COMPONENT_4K))
+                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_4k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_16K)
@@ -429,12 +429,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('c', TLItems.COMPONENT_16K)
                 .define('d', ConventionTags.IRON_INGOT)
                 .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_16k", has(TLItems.COMPONENT_16K))
+                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_16k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_16K)
                 .requires(TLItems.COMPONENT_16K)
                 .requires(TLItems.HOUSING_ITEM)
-                .unlockedBy("has_cell_component_16k", has(TLItems.COMPONENT_16K))
+                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_16k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_64K)
@@ -446,12 +446,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('c', TLItems.COMPONENT_64K)
                 .define('d', ConventionTags.IRON_INGOT)
                 .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_64k", has(TLItems.COMPONENT_64K))
+                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_64k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_64K)
                 .requires(TLItems.HOUSING_ITEM)
                 .requires(TLItems.COMPONENT_64K)
-                .unlockedBy("has_cell_component_64k", has(TLItems.COMPONENT_64K))
+                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/item_storage_cell_64k_storage"));
     }
 
@@ -464,13 +464,13 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.DUSTS_REDSTONE)
                 .define('c', TLItems.COMPONENT_1K)
                 .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_1k", has(TLItems.COMPONENT_1K))
+                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_1k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_1K)
                 .requires(TLItems.HOUSING_FLUID)
                 .requires(TLItems.COMPONENT_1K)
-                .unlockedBy("has_item_cell_housing", has(TLItems.HOUSING_FLUID))
-                .unlockedBy("has_cell_component_1k", has(TLItems.COMPONENT_1K))
+                .unlockedBy("has_housing_item", has(TLItems.HOUSING_FLUID))
+                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_1k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_4K)
@@ -481,12 +481,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.DUSTS_REDSTONE)
                 .define('c', TLItems.COMPONENT_4K)
                 .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_4k", has(TLItems.COMPONENT_4K))
+                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_4k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_4K)
                 .requires(TLItems.HOUSING_FLUID)
                 .requires(TLItems.COMPONENT_4K)
-                .unlockedBy("has_cell_component_4k", has(TLItems.COMPONENT_4K))
+                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_4k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_16K)
@@ -497,12 +497,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.DUSTS_REDSTONE)
                 .define('c', TLItems.COMPONENT_16K)
                 .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_16k", has(TLItems.COMPONENT_16K))
+                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_16k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_16K)
                 .requires(TLItems.HOUSING_FLUID)
                 .requires(TLItems.COMPONENT_16K)
-                .unlockedBy("has_cell_component_16k", has(TLItems.COMPONENT_16K))
+                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_16k_storage"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_64K)
@@ -513,12 +513,12 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('b', ConventionTags.DUSTS_REDSTONE)
                 .define('c', TLItems.COMPONENT_64K)
                 .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_cell_component_64k", has(TLItems.COMPONENT_64K))
+                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_64k"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_64K)
                 .requires(TLItems.HOUSING_FLUID)
                 .requires(TLItems.COMPONENT_64K)
-                .unlockedBy("has_cell_component_64k", has(TLItems.COMPONENT_64K))
+                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
                 .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_64k_storage"));
     }
 

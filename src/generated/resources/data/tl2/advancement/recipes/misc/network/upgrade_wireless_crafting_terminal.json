@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_calculation_processor": {
+    "has_processor_calculation": {
       "conditions": {
         "items": [
           {
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_terminal",
-      "has_calculation_processor"
+      "has_processor_calculation"
     ]
   ],
   "rewards": {

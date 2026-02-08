@@ -7,12 +7,12 @@ navigation:
 categories:
 - tools
 item_ids:
-- tl2:item_cell_housing
-- tl2:fluid_cell_housing
-- tl2:cell_component_1k
-- tl2:cell_component_4k
-- tl2:cell_component_16k
-- tl2:cell_component_64k
+- tl2:housing_item
+- tl2:housing_fluid
+- tl2:component_1k
+- tl2:component_4k
+- tl2:component_16k
+- tl2:component_64k
 - tl2:item_storage_cell_1k
 - tl2:item_storage_cell_4k
 - tl2:item_storage_cell_16k
@@ -102,9 +102,9 @@ Cells can be made with a storage component and a housing or with the housing rec
 Housings by themselves are crafted like so:
 
 <Row>
-  <RecipeFor id="item_cell_housing" />
+  <RecipeFor id="housing_item" />
 
-  <RecipeFor id="fluid_cell_housing" />
+  <RecipeFor id="housing_fluid" />
 </Row>
 
 # Storage Components
@@ -114,14 +114,14 @@ by 4x and costs 3 of the previous tier.
 
 <Column>
   <Row>
-    <RecipeFor id="cell_component_1k" />
+    <RecipeFor id="component_1k" />
 
-    <RecipeFor id="cell_component_4k" />
+    <RecipeFor id="component_4k" />
   </Row>
   <Row>
-    <RecipeFor id="cell_component_16k" />
+    <RecipeFor id="component_16k" />
 
-    <RecipeFor id="cell_component_64k" />
+    <RecipeFor id="component_64k" />
   </Row>
 </Column>
 

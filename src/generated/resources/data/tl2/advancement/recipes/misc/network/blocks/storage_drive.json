@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_engineering_processor": {
+    "has_processor_engineering": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_engineering_processor"
+      "has_processor_engineering"
     ]
   ],
   "rewards": {

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cell_component_1k": {
+    "has_component_1k": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_cell_component_1k"
+      "has_component_1k"
     ]
   ],
   "rewards": {

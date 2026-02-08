@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tl2:network/cells/fluid_cell_housing"
+        "recipe": "tl2:network/cells/housing_fluid"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tl2:network/cells/fluid_cell_housing"
+      "tl2:network/cells/housing_fluid"
     ]
   }
 }

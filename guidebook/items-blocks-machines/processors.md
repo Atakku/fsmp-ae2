@@ -2,29 +2,29 @@
 navigation:
   parent: items-blocks-machines/items-blocks-machines-index.md
   title: Processors
-  icon: logic_processor
+  icon: processor_logic
   position: 010
 categories:
 - misc ingredients blocks
 item_ids:
-- tl2:logic_processor
-- tl2:calculation_processor
-- tl2:engineering_processor
+- tl2:processor_logic
+- tl2:processor_calculation
+- tl2:processor_engineering
 - tl2:printed_silicon
-- tl2:printed_logic_processor
-- tl2:printed_calculation_processor
-- tl2:printed_engineering_processor
+- tl2:circuit_logic
+- tl2:circuit_calculation
+- tl2:circuit_engineering
 - tl2:silicon
 ---
 
 # Processors
 
 <Row>
-  <ItemImage id="logic_processor" scale="4" />
+  <ItemImage id="processor_logic" scale="4" />
 
-  <ItemImage id="calculation_processor" scale="4" />
+  <ItemImage id="processor_calculation" scale="4" />
 
-  <ItemImage id="engineering_processor" scale="4" />
+  <ItemImage id="processor_engineering" scale="4" />
 </Row>
 
 Processors are one of the primary ingredients in TL2 devices and machines. They are also one of your first
@@ -46,13 +46,13 @@ process (usually achieved via a series of AKUTODO).
   <Row>
     <RecipeFor id="printed_silicon" />
 
-    <RecipeFor id="printed_logic_processor" />
+    <RecipeFor id="circuit_logic" />
   </Row>
 
   <Row>
-    <RecipeFor id="printed_calculation_processor" />
+    <RecipeFor id="circuit_calculation" />
 
-    <RecipeFor id="printed_engineering_processor" />
+    <RecipeFor id="circuit_engineering" />
   </Row>
 
   <br />
@@ -60,10 +60,10 @@ process (usually achieved via a series of AKUTODO).
   3.  Final assembly
 
   <Row>
-    <RecipeFor id="logic_processor" />
+    <RecipeFor id="processor_logic" />
 
-    <RecipeFor id="calculation_processor" />
+    <RecipeFor id="processor_calculation" />
   </Row>
 
-  <RecipeFor id="engineering_processor" />
+  <RecipeFor id="processor_engineering" />
 </Column>

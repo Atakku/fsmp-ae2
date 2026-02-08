@@ -51,11 +51,11 @@ In your looting of a meteorite, you will have found four "presses" from breaking
 <ItemGrid>
   <ItemIcon id="silicon_press" />
 
-  <ItemIcon id="logic_processor_press" />
+  <ItemIcon id="processor_logic_press" />
 
-  <ItemIcon id="calculation_processor_press" />
+  <ItemIcon id="processor_calculation_press" />
 
-  <ItemIcon id="engineering_processor_press" />
+  <ItemIcon id="processor_engineering_press" />
 </ItemGrid>
 
 The inscriber is a sided machine, much like the vanilla furnace. Inserting from the top or bottom places items in the top or bottom slots, and inserting from the side or back inserts into the center slot. Results can be pulled from the side or back.
