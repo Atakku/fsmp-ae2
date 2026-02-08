@@ -48,10 +48,8 @@ public final class UpgradesPanel implements ICompositeWidget {
 
     private static final int SLOT_SIZE = 18;
     private static final int PADDING = 5;
-    private static final int MAX_ROWS = 8;
 
     private static final Blitter BACKGROUND = Blitter.texture("guis/extra_panels.png", 128, 128);
-    private static final Blitter INNER_CORNER = BACKGROUND.copy().src(12, 33, SLOT_SIZE, SLOT_SIZE);
 
     private final List<Slot> slots;
 
@@ -98,8 +96,8 @@ public final class UpgradesPanel implements ICompositeWidget {
     public Rect2i getBounds() {
         int slotCount = getUpgradeSlotCount();
 
-        int height = 2 * PADDING + Math.min(MAX_ROWS, slotCount) * SLOT_SIZE;
-        int width = 2 * PADDING + (slotCount + MAX_ROWS - 1) / MAX_ROWS * SLOT_SIZE;
+        int height = 2 * PADDING + SLOT_SIZE;
+        int width = 2 * PADDING + slotCount * SLOT_SIZE;
         return new Rect2i(x, y, width, height);
     }
 
@@ -110,7 +108,7 @@ public final class UpgradesPanel implements ICompositeWidget {
 
     @Override
     public void updateBeforeRender() {
-        int slotOriginX = this.x;
+        int slotOriginX = this.x + PADDING;
         int slotOriginY = this.y + PADDING;
 
         for (Slot slot : slots) {
@@ -120,7 +118,7 @@ public final class UpgradesPanel implements ICompositeWidget {
 
             slot.x = slotOriginX + 1;
             slot.y = slotOriginY + 1;
-            slotOriginY += SLOT_SIZE;
+            slotOriginX += SLOT_SIZE;
         }
     }
 
@@ -133,36 +131,29 @@ public final class UpgradesPanel implements ICompositeWidget {
 
         // This is the absolute x,y coord of the first slot within the panel
         int slotOriginX = screenOrigin.getX() + this.x + PADDING;
-        int slotOriginY = screenOrigin.getY() + this.y + PADDING;
+        int y = screenOrigin.getY() + this.y + PADDING;
 
         for (int i = 0; i < slotCount; i++) {
-            // Unlike other UIs, this is drawn top-to-bottom,left-to-right
-            int row = i % MAX_ROWS;
-            int col = i / MAX_ROWS;
+            int x = slotOriginX + i * SLOT_SIZE;
 
-            int x = slotOriginX + col * SLOT_SIZE;
-            int y = slotOriginY + row * SLOT_SIZE;
-
-            boolean borderLeft = col == 0;
-            boolean borderTop = row == 0;
-            // The panel can have a "jagged" edge if the number of slots is not divisible by MAX_ROWS
-            boolean lastSlot = i + 1 >= slotCount;
-            boolean lastRow = row + 1 >= MAX_ROWS;
-            boolean borderBottom = lastRow || lastSlot;
-            boolean borderRight = i >= slotCount - MAX_ROWS;
+            boolean borderLeft = i == 0;
+            boolean borderTop = true;
+            boolean borderBottom = false;
+            boolean borderRight = i >= slotCount - 1;
 
             drawSlot(guiGraphics, x, y, borderLeft, borderTop, borderRight, borderBottom);
-
-            // Cover up the inner corner when we just drew a rather ugly "inner corner"
-            if (col > 0 && lastSlot && !lastRow) {
-                INNER_CORNER.dest(x, y + SLOT_SIZE).blit(guiGraphics);
-            }
         }
         // Added border to match the rest of the GUI style - RID
-        guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, slotOriginY, 0XFFf2f2f2);
-        guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, slotOriginY + (SLOT_SIZE * slotCount) - 1, 0XFFf2f2f2);
-        guiGraphics.vLine(slotOriginX - 5, slotOriginY - 1, slotOriginY + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
-        guiGraphics.vLine(slotOriginX + 12, slotOriginY - 1, slotOriginY + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
+        //guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, y, 0XFFf2f2f2);
+        //guiGraphics.hLine(slotOriginX - 4, slotOriginX + 11, y + (SLOT_SIZE * slotCount) - 1, 0XFFf2f2f2);
+        //guiGraphics.vLine(slotOriginX - 5, y - 1, y + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
+        //guiGraphics.vLine(slotOriginX + 12, y - 1, y + (SLOT_SIZE * slotCount), 0XFFf2f2f2);
+
+
+        guiGraphics.hLine(slotOriginX, slotOriginX + (SLOT_SIZE * slotCount) - 1, y, 0XFFf2f2f2);
+        guiGraphics.hLine(slotOriginX, slotOriginX + (SLOT_SIZE * slotCount) - 1, y + SLOT_SIZE - 1, 0XFFf2f2f2);
+        guiGraphics.vLine(slotOriginX, y - 1, y + SLOT_SIZE, 0XFFf2f2f2);
+        guiGraphics.vLine(slotOriginX + (SLOT_SIZE * slotCount) - 1, y - 1, y + SLOT_SIZE, 0XFFf2f2f2);
     }
 
     @Override
@@ -176,29 +167,12 @@ public final class UpgradesPanel implements ICompositeWidget {
         final int margin = 2;
 
         // Add a single bounding rectangle for as many columns as are fully populated
-        int fullCols = slotCount / MAX_ROWS;
         int rightEdge = offsetX + x;
-        if (fullCols > 0) {
-            int fullColWidth = PADDING * 2 + fullCols * SLOT_SIZE;
-            exclusionZones.add(Rects.expand(new Rect2i(
-                    rightEdge,
-                    offsetY + y,
-                    fullColWidth,
-                    PADDING * 2 + MAX_ROWS * SLOT_SIZE), margin));
-            rightEdge += fullColWidth;
-        }
-
-        // If there's a partially populated row at the end, add a smaller rectangle for it
-        int remaining = slotCount - fullCols * MAX_ROWS;
-        if (remaining > 0) {
-            exclusionZones.add(Rects.expand(new Rect2i(
-                    rightEdge,
-                    offsetY + y,
-                    // We need to add padding in case there's no full column that already includes it
-                    SLOT_SIZE + (fullCols > 0 ? 0 : PADDING * 2),
-                    PADDING * 2 + remaining * SLOT_SIZE), margin));
-        }
-
+        exclusionZones.add(Rects.expand(new Rect2i(
+                rightEdge,
+                offsetY + y,
+                PADDING * 2 + slotCount * SLOT_SIZE,
+                SLOT_SIZE + PADDING * 2), margin));
     }
 
     @Nullable

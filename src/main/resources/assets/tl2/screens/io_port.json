@@ -32,6 +32,10 @@
     "operationMode": {
       "left": 80,
       "top": 17
+    },
+    "upgrades": {
+      "left": 112,
+      "top": -21
     }
   }
 }

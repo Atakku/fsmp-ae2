@@ -169,10 +169,6 @@ public class MEStorageScreen<C extends MEStorageMenu>
         this.addToLeftToolbar(
                 new SettingToggleButton<>(Settings.TERMINAL_STYLE, terminalStyle, this::toggleTerminalStyle));
 
-        this.widgets.add("upgrades", new UpgradesPanel(
-                menu.getSlots(SlotSemantics.UPGRADE),
-                menu.getHost()));
-
         // Restore previous search term
         if ((menu.isReturnedFromSubScreen() || config.isRememberLastSearch()) && rememberedSearch != null
                 && !rememberedSearch.isEmpty()) {
