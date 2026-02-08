@@ -9,7 +9,7 @@
       "item": "minecraft:crafting_table"
     },
     {
-      "item": "tl2:calculation_processor"
+      "item": "tl2:processor_calculation"
     }
   ],
   "result": {

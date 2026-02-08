@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:cell_component_16k"
+            "items": "tl2:component_16k"
           }
         ]
       },

@@ -1,7 +1,7 @@
 {
   "type": "tl2:storage_cell_upgrade",
   "input_cell": "tl2:item_storage_cell_1k",
-  "input_component": "tl2:cell_component_16k",
+  "input_component": "tl2:component_16k",
   "result_cell": "tl2:item_storage_cell_16k",
-  "result_component": "tl2:cell_component_1k"
+  "result_component": "tl2:component_1k"
 }

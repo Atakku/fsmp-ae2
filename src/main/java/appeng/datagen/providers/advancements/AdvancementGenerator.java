@@ -68,7 +68,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
             ExistingFileHelper existingFileHelper) {
         var root = Advancement.Builder.advancement()
                 .display(
-                        TLItems.FLUIX_CRYSTAL,
+                        TLItems.FLUIX,
                         localization.component("achievement.tl2.Fluix", "Unnatural"),
                         localization.component("achievement.tl2.Fluix.desc", "Create Fluix Crystals"),
                         null /* background */,
@@ -77,7 +77,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         true /* announceChat */,
                         false /* hidden */
                 )
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.FLUIX_CRYSTAL))
+                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.FLUIX))
                 .save(consumer, "tl2:main/fluix");
 
         var controller = Advancement.Builder.advancement()

@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:fluix_crystal"
+            "items": "tl2:fluix"
           }
         ]
       },
@@ -17,7 +17,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "tl2:fluix_crystal"
+      "id": "tl2:fluix"
     },
     "title": {
       "translate": "achievement.tl2.Fluix"

@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:processor_engineering"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "tl2:component_64k"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_64k"
+        },
+        {
+          "tag": "c:dusts/fluix"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_64k"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_64k"
+        },
+        {
+          "item": "tl2:component_16k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_64k"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_64k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_64k"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_component_64k"
+  }
+}

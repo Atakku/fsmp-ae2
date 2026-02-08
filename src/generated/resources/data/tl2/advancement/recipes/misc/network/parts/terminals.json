@@ -35,7 +35,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:logic_processor"
+            "items": "tl2:processor_logic"
           }
         ]
       },

@@ -14,21 +14,19 @@ import appeng.core.definitions.TLItems;
 import appeng.datagen.providers.tags.ConventionTags;
 
 public class MixingRecipes extends MixingRecipeGen {
-    public MixingRecipes(PackOutput output, CompletableFuture<Provider> registries) {
-        super(output, registries, AppEng.MOD_ID);
-    }
-
     @Override
     public String getName() {
         return "TL2 Mixing Recipes";
     }
 
-    GeneratedRecipe
+    public MixingRecipes(PackOutput output, CompletableFuture<Provider> registries) {
+        super(output, registries, AppEng.MOD_ID);
+    }
 
-    FLUIX_CRYSTAL = create("fluix_crystal",
+    GeneratedRecipe FLUIX_CRYSTAL = create("fluix_crystal",
             b -> b.require(Fluids.WATER, 250).require(ConventionTags.DUSTS_AMETHYST)
                     .require(ConventionTags.DUSTS_REDSTONE)
                     .require(ConventionTags.DUSTS_QUARTZ)
                     .withFluidOutputs(new FluidStack(Fluids.WATER, 250))
-                    .output(TLItems.FLUIX_DUST.get(), 2));
+                    .output(TLItems.DUST_FLUIX.get(), 2));
 }

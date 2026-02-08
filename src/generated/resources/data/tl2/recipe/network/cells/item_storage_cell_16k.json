@@ -9,7 +9,7 @@
       "tag": "c:dusts/redstone"
     },
     "c": {
-      "item": "tl2:cell_component_16k"
+      "item": "tl2:component_16k"
     },
     "d": {
       "tag": "c:ingots/iron"

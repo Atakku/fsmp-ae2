@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:cell_component_1k"
+            "items": "tl2:component_1k"
           }
         ]
       },
@@ -15,7 +15,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:fluid_cell_housing"
+            "items": "tl2:housing_fluid"
           }
         ]
       },

@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:processor_logic"
+  },
+  "loops": 4,
+  "results": [
+    {
+      "id": "tl2:component_1k"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_1k"
+        },
+        {
+          "tag": "c:dusts/redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_1k"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_1k"
+        },
+        {
+          "tag": "c:gems/amethyst"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_1k"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_1k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_1k"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_component_1k"
+  }
+}

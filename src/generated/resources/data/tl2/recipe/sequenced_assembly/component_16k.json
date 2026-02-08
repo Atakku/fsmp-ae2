@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:processor_calculation"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "tl2:component_16k"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_16k"
+        },
+        {
+          "tag": "c:dusts/glowstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_16k"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_16k"
+        },
+        {
+          "item": "tl2:component_4k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_16k"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_16k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_16k"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_component_16k"
+  }
+}

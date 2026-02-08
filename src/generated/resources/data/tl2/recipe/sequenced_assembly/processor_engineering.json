@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:circuit_engineering"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "id": "tl2:processor_engineering"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_engineering"
+        },
+        {
+          "tag": "c:dusts/redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_engineering"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_engineering"
+        },
+        {
+          "tag": "c:silicon"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_engineering"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_engineering"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_engineering"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_processor_engineering"
+  }
+}

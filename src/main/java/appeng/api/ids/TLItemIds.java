@@ -32,34 +32,49 @@ import net.minecraft.resources.ResourceLocation;
 public final class TLItemIds {
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
 
-    // Basic materials
-    public static final ResourceLocation AMETHYST_DUST = id("amethyst_dust");
-    public static final ResourceLocation QUARTZ_DUST = id("quartz_dust");
-    public static final ResourceLocation FLUIX_DUST = id("fluix_dust");
-    public static final ResourceLocation FLUIX_CRYSTAL = id("fluix_crystal");
-
+    // Base materials
+    public static final ResourceLocation FLUIX = id("fluix");
     public static final ResourceLocation SILICON = id("silicon");
-    public static final ResourceLocation SILICON_PRINT = id("printed_silicon");
-    public static final ResourceLocation LOGIC_PROCESSOR = id("logic_processor");
-    public static final ResourceLocation LOGIC_PROCESSOR_PRINT = id("printed_logic_processor");
-    public static final ResourceLocation CALCULATION_PROCESSOR = id("calculation_processor");
-    public static final ResourceLocation CALCULATION_PROCESSOR_PRINT = id("printed_calculation_processor");
-    public static final ResourceLocation ENGINEERING_PROCESSOR = id("engineering_processor");
-    public static final ResourceLocation ENGINEERING_PROCESSOR_PRINT = id("printed_engineering_processor");
 
+    // Dusts
+    public static final ResourceLocation DUST_AMETHYST = id("dust_amethyst");
+    public static final ResourceLocation DUST_QUARTZ = id("dust_quartz");
+    public static final ResourceLocation DUST_FLUIX = id("dust_fluix");
+
+    // Processor parts
+    public static final ResourceLocation PRESSED_SILICON = id("pressed_silicon");
+    public static final ResourceLocation CIRCUIT_LOGIC = id("circuit_logic");
+    public static final ResourceLocation CIRCUIT_CALCULATION = id("circuit_calculation");
+    public static final ResourceLocation CIRCUIT_ENGINEERING = id("circuit_engineering");
+
+    // Incomplete processors
+    public static final ResourceLocation INCOMPLETE_PROCESSOR_LOGIC = id("incomplete_processor_logic");
+    public static final ResourceLocation INCOMPLETE_PROCESSOR_CALCULATION = id("incomplete_processor_calculation");
+    public static final ResourceLocation INCOMPLETE_PROCESSOR_ENGINEERING = id("incomplete_processor_engineering");
+
+    // Processors
+    public static final ResourceLocation PROCESSOR_LOGIC = id("processor_logic");
+    public static final ResourceLocation PROCESSOR_CALCULATION = id("processor_calculation");
+    public static final ResourceLocation PROCESSOR_ENGINEERING = id("processor_engineering");
+
+    // Incomplete components
+    public static final ResourceLocation INCOMPLETE_COMPONENT_1K = id("incomplete_component_1k");
+    public static final ResourceLocation INCOMPLETE_COMPONENT_4K = id("incomplete_component_4k");
+    public static final ResourceLocation INCOMPLETE_COMPONENT_16K = id("incomplete_component_16k");
+    public static final ResourceLocation INCOMPLETE_COMPONENT_64K = id("incomplete_component_64k");
+
+    // Cell components
+    public static final ResourceLocation COMPONENT_1K = id("component_1k");
+    public static final ResourceLocation COMPONENT_4K = id("component_4k");
+    public static final ResourceLocation COMPONENT_16K = id("component_16k");
+    public static final ResourceLocation COMPONENT_64K = id("component_64k");
+    public static final ResourceLocation HOUSING_ITEM = id("housing_item");
+    public static final ResourceLocation HOUSING_FLUID = id("housing_fluid");
+
+    // Complex ingredients
     public static final ResourceLocation ANNIHILATION_CORE = id("annihilation_core");
     public static final ResourceLocation FORMATION_CORE = id("formation_core");
     public static final ResourceLocation FLUIX_PEARL = id("fluix_pearl");
-    public static final ResourceLocation GUIDE = id("guide");
-    public static final ResourceLocation VIEW_CELL = id("view_cell");
-
-    // Cell components
-    public static final ResourceLocation CELL_COMPONENT_1K = id("cell_component_1k");
-    public static final ResourceLocation CELL_COMPONENT_4K = id("cell_component_4k");
-    public static final ResourceLocation CELL_COMPONENT_16K = id("cell_component_16k");
-    public static final ResourceLocation CELL_COMPONENT_64K = id("cell_component_64k");
-    public static final ResourceLocation ITEM_CELL_HOUSING = id("item_cell_housing");
-    public static final ResourceLocation FLUID_CELL_HOUSING = id("fluid_cell_housing");
 
     // Cells
     public static final ResourceLocation ITEM_CELL_1K = id("item_storage_cell_1k");
@@ -72,6 +87,7 @@ public final class TLItemIds {
     public static final ResourceLocation FLUID_CELL_64K = id("fluid_storage_cell_64k");
 
     // Cards
+    public static final ResourceLocation VIEW_CELL = id("view_cell");
     public static final ResourceLocation BASIC_CARD = id("basic_card");
     public static final ResourceLocation REDSTONE_CARD = id("redstone_card");
     public static final ResourceLocation VOID_CARD = id("void_card");
@@ -87,6 +103,7 @@ public final class TLItemIds {
     public static final ResourceLocation WIRELESS_CRAFTING_TERMINAL = id("wireless_crafting_terminal");
 
     // Misc
+    public static final ResourceLocation GUIDE = id("guide");
     public static final ResourceLocation CREATIVE_CELL = id("creative_storage_cell");
     public static final ResourceLocation WRAPPED_GENERIC_STACK = id("wrapped_generic_stack");
 

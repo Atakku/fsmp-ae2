@@ -39,8 +39,11 @@ import appeng.datagen.providers.models.CableModelProvider;
 import appeng.datagen.providers.models.ItemModelProvider;
 import appeng.datagen.providers.models.PartModelProvider;
 import appeng.datagen.providers.recipes.CraftingRecipes;
+import appeng.datagen.providers.recipes.CuttingRecipes;
 import appeng.datagen.providers.recipes.MillingRecipes;
 import appeng.datagen.providers.recipes.MixingRecipes;
+import appeng.datagen.providers.recipes.PressingRecipes;
+import appeng.datagen.providers.recipes.SequencedAssemblyRecipes;
 import appeng.datagen.providers.recipes.SmeltingRecipes;
 import appeng.datagen.providers.recipes.UpgradeRecipes;
 import appeng.datagen.providers.tags.BlockTagsProvider;
@@ -78,11 +81,14 @@ public class TL2DataGenerators {
                 new AdvancementGenerator(localization))));
 
         // Recipes
-        pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
-        pack.addProvider(bindRegistries(UpgradeRecipes::new, registries));
+        pack.addProvider(bindRegistries(CuttingRecipes::new, registries));
         pack.addProvider(bindRegistries(MillingRecipes::new, registries));
         pack.addProvider(bindRegistries(MixingRecipes::new, registries));
+        pack.addProvider(bindRegistries(PressingRecipes::new, registries));
+        pack.addProvider(bindRegistries(SequencedAssemblyRecipes::new, registries));
+        pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
+        pack.addProvider(bindRegistries(UpgradeRecipes::new, registries));
 
         // Must run last
         pack.addProvider(packOutput -> localization);

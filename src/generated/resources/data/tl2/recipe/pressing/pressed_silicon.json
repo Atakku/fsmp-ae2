@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "tag": "c:silicon"
+    }
+  ],
+  "results": [
+    {
+      "id": "tl2:pressed_silicon"
+    }
+  ]
+}

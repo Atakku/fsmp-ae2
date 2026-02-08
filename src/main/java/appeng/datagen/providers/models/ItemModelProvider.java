@@ -22,34 +22,38 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
     protected void registerModels() {
         flatSingleLayer(TLItems.MISSING_CONTENT, "minecraft:item/barrier");
 
-        // Basic materials
-        flatSingleLayer(TLItems.AMETHYST_DUST, "item/amethyst_dust");
-        flatSingleLayer(TLItems.QUARTZ_DUST, "item/quartz_dust");
-        flatSingleLayer(TLItems.FLUIX_DUST, "item/fluix_dust");
-        flatSingleLayer(TLItems.FLUIX_CRYSTAL, "item/fluix_crystal");
-
+        // Base materials
+        flatSingleLayer(TLItems.FLUIX, "item/fluix");
         flatSingleLayer(TLItems.SILICON, "item/silicon");
-        flatSingleLayer(TLItems.SILICON_PRINT, "item/printed_silicon");
-        flatSingleLayer(TLItems.LOGIC_PROCESSOR, "item/logic_processor");
-        flatSingleLayer(TLItems.LOGIC_PROCESSOR_PRINT, "item/printed_logic_processor");
-        flatSingleLayer(TLItems.CALCULATION_PROCESSOR, "item/calculation_processor");
-        flatSingleLayer(TLItems.CALCULATION_PROCESSOR_PRINT, "item/printed_calculation_processor");
-        flatSingleLayer(TLItems.ENGINEERING_PROCESSOR, "item/engineering_processor");
-        flatSingleLayer(TLItems.ENGINEERING_PROCESSOR_PRINT, "item/printed_engineering_processor");
 
+        // Dusts
+        flatSingleLayer(TLItems.DUST_AMETHYST, "item/dust_amethyst");
+        flatSingleLayer(TLItems.DUST_QUARTZ, "item/dust_quartz");
+        flatSingleLayer(TLItems.DUST_FLUIX, "item/dust_fluix");
+
+        // Processor parts
+        flatSingleLayer(TLItems.PRESSED_SILICON, "item/pressed_silicon");
+        flatSingleLayer(TLItems.CIRCUIT_LOGIC, "item/circuit_logic");
+        flatSingleLayer(TLItems.CIRCUIT_CALCULATION, "item/circuit_calculation");
+        flatSingleLayer(TLItems.CIRCUIT_ENGINEERING, "item/circuit_engineering");
+
+        // Processors
+        flatSingleLayer(TLItems.PROCESSOR_LOGIC, "item/processor_logic");
+        flatSingleLayer(TLItems.PROCESSOR_CALCULATION, "item/processor_calculation");
+        flatSingleLayer(TLItems.PROCESSOR_ENGINEERING, "item/processor_engineering");
+
+        // Cell components
+        flatSingleLayer(TLItems.COMPONENT_1K, "item/component_1k");
+        flatSingleLayer(TLItems.COMPONENT_4K, "item/component_4k");
+        flatSingleLayer(TLItems.COMPONENT_16K, "item/component_16k");
+        flatSingleLayer(TLItems.COMPONENT_64K, "item/component_64k");
+        flatSingleLayer(TLItems.HOUSING_ITEM, "item/housing_item");
+        flatSingleLayer(TLItems.HOUSING_FLUID, "item/housing_fluid");
+
+        // Complex ingredients
         flatSingleLayer(TLItems.ANNIHILATION_CORE, "item/annihilation_core");
         flatSingleLayer(TLItems.FORMATION_CORE, "item/formation_core");
         flatSingleLayer(TLItems.FLUIX_PEARL, "item/fluix_pearl");
-        flatSingleLayer(TLItemIds.GUIDE, "item/guide");
-        flatSingleLayer(TLItems.VIEW_CELL, "item/view_cell");
-
-        // Cell components
-        flatSingleLayer(TLItems.CELL_COMPONENT_1K, "item/cell_component_1k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_4K, "item/cell_component_4k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_16K, "item/cell_component_16k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_64K, "item/cell_component_64k");
-        flatSingleLayer(TLItems.ITEM_CELL_HOUSING, "item/item_cell_housing");
-        flatSingleLayer(TLItems.FLUID_CELL_HOUSING, "item/fluid_cell_housing");
 
         // Cells
         storageCell(TLItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
@@ -62,6 +66,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
 
         // Cards
+        flatSingleLayer(TLItems.VIEW_CELL, "item/view_cell");
         flatSingleLayer(TLItems.BASIC_CARD, "item/basic_card");
         flatSingleLayer(TLItems.ADVANCED_CARD, "item/advanced_card");
         flatSingleLayer(TLItems.VOID_CARD, "item/card_void");
@@ -77,6 +82,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.WIRELESS_CRAFTING_TERMINAL, "item/wireless_crafting_terminal");
 
         // Misc
+        flatSingleLayer(TLItemIds.GUIDE, "item/guide");
         flatSingleLayer(TLItems.CREATIVE_CELL, "item/creative_storage_cell");
         flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");

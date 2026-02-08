@@ -6,7 +6,7 @@
       "item": "minecraft:redstone_torch"
     },
     {
-      "item": "tl2:calculation_processor"
+      "item": "tl2:processor_calculation"
     }
   ],
   "result": {

@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tl2:calculation_processor"
+      "item": "tl2:processor_calculation"
     },
     {
       "item": "tl2:basic_card"

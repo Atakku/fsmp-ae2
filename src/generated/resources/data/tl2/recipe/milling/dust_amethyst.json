@@ -1,0 +1,14 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "tag": "c:gems/amethyst"
+    }
+  ],
+  "processing_time": 200,
+  "results": [
+    {
+      "id": "tl2:dust_amethyst"
+    }
+  ]
+}

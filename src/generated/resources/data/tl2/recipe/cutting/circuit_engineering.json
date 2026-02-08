@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "processing_time": 200,
+  "results": [
+    {
+      "id": "tl2:circuit_engineering"
+    }
+  ]
+}

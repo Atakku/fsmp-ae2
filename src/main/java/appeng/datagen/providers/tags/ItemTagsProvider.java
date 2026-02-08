@@ -47,20 +47,20 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
 
         // Basic materials
         tag(ConventionTags.DUSTS)
-                .add(TLItems.AMETHYST_DUST.asItem())
-                .add(TLItems.QUARTZ_DUST.asItem())
-                .add(TLItems.FLUIX_DUST.asItem());
+                .add(TLItems.DUST_AMETHYST.asItem())
+                .add(TLItems.DUST_QUARTZ.asItem())
+                .add(TLItems.DUST_FLUIX.asItem());
 
         tag(ConventionTags.DUSTS_AMETHYST)
-                .add(TLItems.AMETHYST_DUST.asItem());
+                .add(TLItems.DUST_AMETHYST.asItem());
         tag(ConventionTags.DUSTS_QUARTZ)
-                .add(TLItems.QUARTZ_DUST.asItem());
+                .add(TLItems.DUST_QUARTZ.asItem());
         tag(ConventionTags.DUSTS_FLUIX)
-                .add(TLItems.FLUIX_DUST.asItem());
+                .add(TLItems.DUST_FLUIX.asItem());
 
         tag(ConventionTags.GEMS)
-                .add(TLItems.AMETHYST_DUST.asItem())
-                .add(TLItems.FLUIX_CRYSTAL.asItem());
+                .add(TLItems.DUST_AMETHYST.asItem())
+                .add(TLItems.FLUIX.asItem());
 
         tag(ConventionTags.SILICON)
                 .add(TLItems.SILICON.asItem());

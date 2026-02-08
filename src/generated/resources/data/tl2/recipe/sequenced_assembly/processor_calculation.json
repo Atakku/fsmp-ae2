@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:circuit_calculation"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "id": "tl2:processor_calculation"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_calculation"
+        },
+        {
+          "tag": "c:dusts/redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_calculation"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_calculation"
+        },
+        {
+          "tag": "c:silicon"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_calculation"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_processor_calculation"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_processor_calculation"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_processor_calculation"
+  }
+}

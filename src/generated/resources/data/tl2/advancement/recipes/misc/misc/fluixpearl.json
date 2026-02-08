@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crystals/fluix": {
-      "conditions": {
-        "items": [
-          {
-            "items": "tl2:fluix_crystal"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_dusts/fluix": {
       "conditions": {
         "items": [
           {
             "items": "#c:dusts/fluix"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gems/fluix": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gems/fluix"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_dusts/fluix",
-      "has_crystals/fluix"
+      "has_gems/fluix"
     ]
   ],
   "rewards": {

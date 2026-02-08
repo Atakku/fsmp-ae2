@@ -4,11 +4,11 @@
   "cell_disassembly_items": [
     {
       "count": 1,
-      "id": "tl2:item_cell_housing"
+      "id": "tl2:housing_item"
     },
     {
       "count": 1,
-      "id": "tl2:cell_component_4k"
+      "id": "tl2:component_4k"
     }
   ]
 }

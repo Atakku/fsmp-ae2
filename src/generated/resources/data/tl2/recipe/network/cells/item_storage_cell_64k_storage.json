@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tl2:item_cell_housing"
+      "item": "tl2:housing_item"
     },
     {
-      "item": "tl2:cell_component_64k"
+      "item": "tl2:component_64k"
     }
   ],
   "result": {

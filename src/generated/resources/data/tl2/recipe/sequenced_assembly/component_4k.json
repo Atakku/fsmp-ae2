@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tl2:processor_calculation"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "tl2:component_4k"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_4k"
+        },
+        {
+          "tag": "c:dusts/redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_4k"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_4k"
+        },
+        {
+          "item": "tl2:component_1k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_4k"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tl2:incomplete_component_4k"
+        }
+      ],
+      "results": [
+        {
+          "id": "tl2:incomplete_component_4k"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "tl2:incomplete_component_4k"
+  }
+}

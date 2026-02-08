@@ -15,7 +15,7 @@
       "tag": "c:ingots/iron"
     },
     "e": {
-      "item": "tl2:logic_processor"
+      "item": "tl2:processor_logic"
     }
   },
   "pattern": [

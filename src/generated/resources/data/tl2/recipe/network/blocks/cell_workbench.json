@@ -6,7 +6,7 @@
       "tag": "minecraft:wool"
     },
     "b": {
-      "item": "tl2:calculation_processor"
+      "item": "tl2:processor_calculation"
     },
     "c": {
       "tag": "c:ingots/iron"

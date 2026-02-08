@@ -6,10 +6,10 @@
       "item": "minecraft:smooth_stone"
     },
     "b": {
-      "item": "tl2:fluix_crystal"
+      "item": "tl2:fluix"
     },
     "c": {
-      "item": "tl2:engineering_processor"
+      "item": "tl2:processor_engineering"
     }
   },
   "pattern": [

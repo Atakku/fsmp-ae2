@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tl2:fluid_cell_housing"
+      "item": "tl2:housing_fluid"
     },
     {
-      "item": "tl2:cell_component_16k"
+      "item": "tl2:component_16k"
     }
   ],
   "result": {
