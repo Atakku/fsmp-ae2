@@ -17,7 +17,7 @@ item_ids:
 The IO Port allows you to rapidly fill or empty [storage cells](../items-blocks-machines/storage_cells.md) to or from
 [network storage](../tl2-mechanics/import-export-storage.md).
 
-It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
+It can be rotated with a <ItemLink id="create:wrench" />.
 
 ## Settings
 

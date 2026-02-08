@@ -28,14 +28,14 @@ item_ids:
 </Row>
 
 Processors are one of the primary ingredients in TL2 devices and machines. They are also one of your first
-big automation challenges. There are three types of processor, made with gold, <ItemLink id="certus_quartz_crystal" />,
-and diamond respectively. They are made using [presses](presses.md) in an <ItemLink id="inscriber" />, in a multi-step
-process (usually achieved via a series of inscribers and filtered piping).
+big automation challenges. There are three types of processors, made with <ItemLink id="minecraft:gold_ingot" />, <ItemLink id="minecraft:amethyst_shard" />,
+and <ItemLink id="minecraft:diamond" /> respectively. They are in a multi-step
+process (usually achieved via a series of AKUTODO).
 
 ## Production Steps
 
 <Column gap="5">
-  1.  Gather/make the required ingredients: silicon, redstone, gold, <ItemLink id="certus_quartz_crystal" />, diamond.
+  1.  Gather/make the required ingredients: <ItemLink id="silicon" />, <ItemLink id="minecraft:redstone" />, <ItemLink id="minecraft:gold_ingot" />, <ItemLink id="minecraft:amethyst_shard" />, <ItemLink id="minecraft:diamond" />.
 
   <RecipeFor id="silicon" />
 

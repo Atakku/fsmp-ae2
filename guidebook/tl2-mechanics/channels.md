@@ -65,11 +65,6 @@ the bundle, which obviously means that "wire" isn't available further down the l
 
 An easy way to see how channels are being used and routed through your network is to use [smart cables](../items-blocks-machines/cables.md), which will display on them the paths and usage of channels.
 
-Channels will consume 1⁄128 ae/t per node they transverse, this means that by
-adding a <ItemLink id="controller" /> for a
-network with 8 devices and over 96 nodes your power usage might actually
-decrease power consumption because it changes how channels are allocated.
-
 Of note, **CHANNELS HAVE NOTHING TO DO WITH CABLE COLOR**, all cable color does is make cables not connect.
 
 ## Channel Routing

@@ -209,7 +209,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('a', Blocks.SMOOTH_STONE)
                 .define('b', TLItems.FLUIX_CRYSTAL)
                 .define('c', TLItems.ENGINEERING_PROCESSOR)
-                .unlockedBy("has_purified_fluix_crystal", has(TLItems.FLUIX_CRYSTAL))
+                .unlockedBy("has_fluix_crystal", has(TLItems.FLUIX_CRYSTAL))
                 .unlockedBy("has_engineering_processor", has(TLItems.ENGINEERING_PROCESSOR))
                 .save(consumer, AppEng.makeId("network/blocks/controller"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.IO_PORT)
@@ -368,6 +368,20 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(TLParts.TOGGLE_BUS)
                 .unlockedBy("has_toggle_bus", has(TLParts.TOGGLE_BUS))
                 .save(consumer, AppEng.makeId("network/parts/toggle_bus_inverted_alt"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.FLUIX_BLOCK)
+                .pattern("aa")
+                .pattern("aa")
+                .define('a', TLItems.FLUIX_CRYSTAL)
+                .unlockedBy("has_fluix_crystal", has(TLItems.FLUIX_CRYSTAL))
+                .save(consumer, AppEng.makeId("decorative/" + TLBlocks.FLUIX_BLOCK.id().getPath()));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.QUARTZ_VIBRANT_GLASS)
+                .pattern("aba")
+                .define('a', Items.GLOWSTONE_DUST)
+                .define('b', TLBlocks.QUARTZ_GLASS)
+                .unlockedBy("has_quartz_glass", has(TLBlocks.QUARTZ_GLASS))
+                .save(consumer, AppEng.makeId("decorative/quartz_vibrant_glass"));
 
         // ====================================================
         // recipes/tools

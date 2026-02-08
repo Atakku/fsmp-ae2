@@ -44,28 +44,6 @@ The level emitter supports the following [upgrades](upgrade_cards.md):
 *   <ItemLink id="fuzzy_card" /> lets the emitter filter by damage level and/or ignore item NBT
 *   <ItemLink id="crafting_card" /> enables the crafting functionality
 
-## Crafting Functionality
-
-If a <ItemLink id="crafting_card" /> is inserted, the emitter will be switched into crafting mode.
-
-This enables two options:
-
-The first option, "emit redstone while item is crafting", makes the emitter emit a redstone signal while your [autocrafting](../tl2-mechanics/autocrafting.md)
-is crafting some specific item through <ItemLink id="pattern_provider" />s. This is useful for only turning on specific
-power-hungry automation setups while they are actually being used.
-
-The second option, "emit redstone to craft item", is extremely useful for specific use cases like infinite farms and
-automation setups that only have a chance of making an output, instead of a guaranteed output.
-This setting creates a virtual [pattern](patterns.md) for [autocrafting](../tl2-mechanics/autocrafting.md) to use, for whatever item
-is in the emitter's filter slot.
-(For correct functionality, an actual pattern for the same item **should not exist** in your <ItemLink id="pattern_provider" />s)
-
-This "pattern" does not define, or even care about ingredients.
-All it says is "If you emit redstone from this level emitter, the ME system will receive this item at some point in the
-near or distant future". This is usually used to activate and deactivate infinite farms which require no input ingredients,
-or to activate [a system that handles recursive recipes](../example-setups/recursive-crafting-setup.md) (which standard autocafting cannot understand)
-like, for example, "1 cobblestone = 2 cobblestone" if you have a machine that duplicates cobblestone.
-
 ## Recipe
 
 <RecipeFor id="level_emitter" />

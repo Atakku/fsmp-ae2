@@ -24,17 +24,6 @@ together into a functional system. Here is an example:
         are mainly just to look cool.
     </BoxAnnotation>
 
-    <BoxAnnotation color="#33dd33" min="13 12 13" max="14 13 14" thickness="0.05">
-        Every good network has an energy cell, to allow higher energy input per gametick and 
-        smooth out power fluctuations.
-    </BoxAnnotation>
-    
-    <BoxAnnotation color="#33dd33" min="2 1 10" max="4 4 13" thickness="0.05">
-        You probably want to use some other mod's power source, a reactor or solar panel or generator or
-        whatever. Vibration Chambers are ok-ish but TL2 is designed to be used in a modpack and use your 
-        base's main power generator.
-    </BoxAnnotation>
-
     <BoxAnnotation color="#33dd33" min="15 1 9" max="16 3 14" thickness="0.05">
         Facades can be used to hide stuff behind walls.
     </BoxAnnotation>

@@ -21,7 +21,7 @@ The Drive is the [device](../tl2-mechanics/devices.md) you plug your [storage ce
 
 If for some reason you want to, you can push and pull the cells from its inventory with any item logistics like hoppers or tl2 busses.
 
-It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
+It can be rotated with a <ItemLink id="create:wrench" />.
 
 ## Cell Status LEDs
 
@@ -33,7 +33,7 @@ The cells in the drive have an LED on them which shows their status:
 | Blue   | Has some contents                                                                |
 | Orange | [Types](../tl2-mechanics/bytes-and-types.md) full, no new types can be added     |
 | Red    | [Bytes](../tl2-mechanics/bytes-and-types.md) full, no more items can be inserted |
-| Black  | No power or drive has no [channel](../tl2-mechanics/channels.md)                 |
+| Black  | Drive has no [channel](../tl2-mechanics/channels.md)                 |
 
 ## Priority
 

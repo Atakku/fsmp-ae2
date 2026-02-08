@@ -16,11 +16,6 @@ item_ids:
 <BlockImage id="wireless_access_point" p:state="has_channel" scale="8" />
 
 Allows wireless access via a <ItemLink id="wireless_terminal" />.
-Range and power usage is determined based on the number of <ItemLink id="wireless_booster" /> installed.
-
-A network can have any number of wireless access points with any number
-of <ItemLink id="wireless_booster" /> in each one, allowing you to optimize power usage
-and range by altering your setup.
 
 Requires a [channel](../tl2-mechanics/channels.md).
 

@@ -71,13 +71,10 @@ public final class ConventionTags {
     public static final TagKey<Item> SILICON = tag("c:silicon");
 
     public static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
-
     public static final TagKey<Item> GOLD_NUGGET = Tags.Items.NUGGETS_GOLD;
     public static final TagKey<Item> GOLD_INGOT = Tags.Items.INGOTS_GOLD;
-
     public static final TagKey<Item> IRON_NUGGET = Tags.Items.NUGGETS_IRON;
     public static final TagKey<Item> IRON_INGOT = Tags.Items.INGOTS_IRON;
-
     public static final TagKey<Item> ENDER_PEARL = Tags.Items.ENDER_PEARLS;
 
     public static final TagKey<Item> WOOD_STICK = Tags.Items.RODS_WOODEN;

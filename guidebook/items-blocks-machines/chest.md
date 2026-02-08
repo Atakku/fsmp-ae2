@@ -28,7 +28,7 @@ It has 2 different GUIs and is sided for item transport. Interacting with the to
 the mounted storage cell through this face, but not extracted. Interacting with any other face opens the GUI with the slot for the storage cell
 and the priority settings. The cell can be inserted and removed by item logistics only through the face with the cell slot.
 
-It can be rotated with a <ItemLink id="certus_quartz_wrench" />.
+It can be rotated with a <ItemLink id="create:wrench" />.
 
 It has a small TL energy storage buffer, so if not on a network with an [energy cell](../items-blocks-machines/energy_cells.md),
 inserting or extracting too many items at once may cause it to brown out.
@@ -55,7 +55,7 @@ The cells in the chest have an LED on them which shows their status:
 | Blue   | Has some contents                                                                |
 | Orange | [Types](../tl2-mechanics/bytes-and-types.md) full, no new types can be added     |
 | Red    | [Bytes](../tl2-mechanics/bytes-and-types.md) full, no more items can be inserted |
-| Black  | No power or drive has no [channel](../tl2-mechanics/channels.md)                 |
+| Black  | Drive has no [channel](../tl2-mechanics/channels.md)                 |
 
 ## Priority
 

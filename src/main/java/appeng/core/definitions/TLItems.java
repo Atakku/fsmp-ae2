@@ -21,13 +21,10 @@ package appeng.core.definitions;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.google.common.base.Preconditions;
-import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -42,7 +39,6 @@ import appeng.api.ids.TLCreativeTabIds;
 import appeng.api.ids.TLItemIds;
 import appeng.api.stacks.TLKeyType;
 import appeng.api.upgrades.Upgrades;
-import appeng.api.util.TLColor;
 import appeng.core.AppEng;
 import appeng.core.MainCreativeTab;
 import appeng.debug.DebugCardItem;
@@ -73,13 +69,6 @@ public final class TLItems {
     private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
 
     ///
-    /// VARIOUS POWERED TOOLS
-    ///
-    public static final ItemDefinition<WirelessTerminalItem> WIRELESS_TERMINAL = item("Wireless Terminal", TLItemIds.WIRELESS_TERMINAL, p -> new WirelessTerminalItem(p.stacksTo(1)));
-    public static final ItemDefinition<WirelessTerminalItem> WIRELESS_CRAFTING_TERMINAL = item("Wireless Crafting Terminal", TLItemIds.WIRELESS_CRAFTING_TERMINAL, p -> new WirelessCraftingTerminalItem(p.stacksTo(1)));
-    public static final ItemDefinition<ColorApplicatorItem> COLOR_APPLICATOR = item("Color Applicator", TLItemIds.COLOR_APPLICATOR, p -> new ColorApplicatorItem(p.stacksTo(1)));
-
-    ///
     /// PORTABLE CELLS
     ///
     private static ItemDefinition<PortableCellItem> makePortableItemCell(ResourceLocation id, StorageTier tier) {
@@ -92,36 +81,60 @@ public final class TLItems {
         return item(name, id, p -> new PortableCellItem(TLKeyType.fluids(), 18, MEStorageMenu.PORTABLE_FLUID_CELL_TYPE, tier, p.stacksTo(1), 0x80caff));
     }
 
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL1K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL1K, StorageTier.SIZE_1K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL4K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL4K, StorageTier.SIZE_4K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL16K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL16K, StorageTier.SIZE_16K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL64K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL64K, StorageTier.SIZE_64K);
-
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL1K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL1K, StorageTier.SIZE_1K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL4K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL4K, StorageTier.SIZE_4K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL16K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL16K, StorageTier.SIZE_16K);
-    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL64K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL64K, StorageTier.SIZE_64K);
-
     // Used to represent missing content if a mod got uninstalled
     public static final ItemDefinition<Item> MISSING_CONTENT = item("Missing Content", TLItemIds.MISSING_CONTENT, MissingContentItem::new, null);
 
-    ///
-    /// Basic materials
-    ///
+    // Basic materials
     public static final ItemDefinition<MaterialItem> AMETHYST_DUST = item("Amethyst Dust", TLItemIds.AMETHYST_DUST, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> QUARTZ_DUST = item("Quartz Dust", TLItemIds.QUARTZ_DUST, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FLUIX_DUST = item("Fluix Dust", TLItemIds.FLUIX_DUST, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> FLUIX_CRYSTAL = item("Fluix Crystal", TLItemIds.FLUIX_CRYSTAL, MaterialItem::new);
 
+
     public static final ItemDefinition<MaterialItem> SILICON = item("Silicon", TLItemIds.SILICON, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> FLUIX_PEARL = item("Fluix Pearl", TLItemIds.FLUIX_PEARL, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> CALCULATION_PROCESSOR_PRINT = item("Printed Calculation Circuit", TLItemIds.CALCULATION_PROCESSOR_PRINT, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR_PRINT = item("Printed Engineering Circuit", TLItemIds.ENGINEERING_PROCESSOR_PRINT, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> LOGIC_PROCESSOR_PRINT = item("Printed Logic Circuit", TLItemIds.LOGIC_PROCESSOR_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> SILICON_PRINT = item("Printed Silicon", TLItemIds.SILICON_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> LOGIC_PROCESSOR = item("Logic Processor", TLItemIds.LOGIC_PROCESSOR, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> LOGIC_PROCESSOR_PRINT = item("Printed Logic Circuit", TLItemIds.LOGIC_PROCESSOR_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> CALCULATION_PROCESSOR = item("Calculation Processor", TLItemIds.CALCULATION_PROCESSOR, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> CALCULATION_PROCESSOR_PRINT = item("Printed Calculation Circuit", TLItemIds.CALCULATION_PROCESSOR_PRINT, MaterialItem::new);
     public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR = item("Engineering Processor", TLItemIds.ENGINEERING_PROCESSOR, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> ENGINEERING_PROCESSOR_PRINT = item("Printed Engineering Circuit", TLItemIds.ENGINEERING_PROCESSOR_PRINT, MaterialItem::new);
+
+    public static final ItemDefinition<MaterialItem> ANNIHILATION_CORE = item("Annihilation Core", TLItemIds.ANNIHILATION_CORE, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> FORMATION_CORE = item("Formation Core", TLItemIds.FORMATION_CORE, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> FLUIX_PEARL = item("Fluix Pearl", TLItemIds.FLUIX_PEARL, MaterialItem::new);
+    public static final ItemDefinition<Item> TABLET = item("Guide", TLItemIds.GUIDE, p -> new GuideItem(p.stacksTo(1)));
+    public static final ItemDefinition<ViewCellItem> VIEW_CELL = item("View Cell", TLItemIds.VIEW_CELL, p -> new ViewCellItem(p.stacksTo(1)));
+
+    // Cell components
+    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_1K = item("1k ME Storage Component", TLItemIds.CELL_COMPONENT_1K, p -> new StorageComponentItem(p, 1));
+    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_4K = item("4k ME Storage Component", TLItemIds.CELL_COMPONENT_4K, p -> new StorageComponentItem(p, 4));
+    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_16K = item("16k ME Storage Component", TLItemIds.CELL_COMPONENT_16K, p -> new StorageComponentItem(p, 16));
+    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_64K = item("64k ME Storage Component", TLItemIds.CELL_COMPONENT_64K, p -> new StorageComponentItem(p, 64));
+    public static final ItemDefinition<MaterialItem> ITEM_CELL_HOUSING = item("ME Item Cell Housing", TLItemIds.ITEM_CELL_HOUSING, MaterialItem::new);
+    public static final ItemDefinition<MaterialItem> FLUID_CELL_HOUSING = item("ME Fluid Cell Housing", TLItemIds.FLUID_CELL_HOUSING, MaterialItem::new);
+
+    // Cells
+    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_1K = item("1k ME Item Storage Cell", TLItemIds.ITEM_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 0.5f, 1, 8, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_4K = item("4k ME Item Storage Cell", TLItemIds.ITEM_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 1.0f, 4, 32, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_16K = item("16k ME Item Storage Cell", TLItemIds.ITEM_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 1.5f, 16, 128, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_64K = item("64k ME Item Storage Cell", TLItemIds.ITEM_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 2.0f, 64, 512, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_1K = item("1k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 0.5f, 1, 8, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_4K = item("4k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 1.0f, 4, 32, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_16K = item("16k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 1.5f, 16, 128, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_64K = item("64k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 2.0f, 64, 512, 18, TLKeyType.fluids()));
+
+    // Portable cells
+    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL1K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL1K, StorageTier.SIZE_1K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL4K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL4K, StorageTier.SIZE_4K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL16K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL16K, StorageTier.SIZE_16K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_ITEM_CELL64K = makePortableItemCell(TLItemIds.PORTABLE_ITEM_CELL64K, StorageTier.SIZE_64K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL1K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL1K, StorageTier.SIZE_1K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL4K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL4K, StorageTier.SIZE_4K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL16K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL16K, StorageTier.SIZE_16K);
+    public static final ItemDefinition<PortableCellItem> PORTABLE_FLUID_CELL64K = makePortableFluidCell(TLItemIds.PORTABLE_FLUID_CELL64K, StorageTier.SIZE_64K);
+
+    // Cards
     public static final ItemDefinition<MaterialItem> BASIC_CARD = item("Basic Card", TLItemIds.BASIC_CARD, MaterialItem::new);
     public static final ItemDefinition<Item> REDSTONE_CARD = item("Redstone Card", TLItemIds.REDSTONE_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> VOID_CARD = item("Overflow Destruction Card", TLItemIds.VOID_CARD, Upgrades::createUpgradeCardItem);
@@ -130,42 +143,15 @@ public final class TLItems {
     public static final ItemDefinition<Item> SPEED_CARD = item("Acceleration Card", TLItemIds.SPEED_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> INVERTER_CARD = item("Inverter Card", TLItemIds.INVERTER_CARD, Upgrades::createUpgradeCardItem);
     public static final ItemDefinition<Item> EQUAL_DISTRIBUTION_CARD = item("Equal Distribution Card", TLItemIds.EQUAL_DISTRIBUTION_CARD, Upgrades::createUpgradeCardItem);
-    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_1K = item("1k ME Storage Component", TLItemIds.CELL_COMPONENT_1K, p -> new StorageComponentItem(p, 1));
-    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_4K = item("4k ME Storage Component", TLItemIds.CELL_COMPONENT_4K, p -> new StorageComponentItem(p, 4));
-    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_16K = item("16k ME Storage Component", TLItemIds.CELL_COMPONENT_16K, p -> new StorageComponentItem(p, 16));
-    public static final ItemDefinition<StorageComponentItem> CELL_COMPONENT_64K = item("64k ME Storage Component", TLItemIds.CELL_COMPONENT_64K, p -> new StorageComponentItem(p, 64));
-    public static final ItemDefinition<MaterialItem> ITEM_CELL_HOUSING = item("ME Item Cell Housing", TLItemIds.ITEM_CELL_HOUSING, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> FLUID_CELL_HOUSING = item("ME Fluid Cell Housing", TLItemIds.FLUID_CELL_HOUSING, MaterialItem::new);
+
+    // Wireless & terminals
     public static final ItemDefinition<MaterialItem> WIRELESS_RECEIVER = item("Wireless Receiver", TLItemIds.WIRELESS_RECEIVER, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> FORMATION_CORE = item("Formation Core", TLItemIds.FORMATION_CORE, MaterialItem::new);
-    public static final ItemDefinition<MaterialItem> ANNIHILATION_CORE = item("Annihilation Core", TLItemIds.ANNIHILATION_CORE, MaterialItem::new);
+    public static final ItemDefinition<WirelessTerminalItem> WIRELESS_TERMINAL = item("Wireless Terminal", TLItemIds.WIRELESS_TERMINAL, p -> new WirelessTerminalItem(p.stacksTo(1)));
+    public static final ItemDefinition<WirelessTerminalItem> WIRELESS_CRAFTING_TERMINAL = item("Wireless Crafting Terminal", TLItemIds.WIRELESS_CRAFTING_TERMINAL, p -> new WirelessCraftingTerminalItem(p.stacksTo(1)));
 
-    ///
-    /// CELLS
-    ///
+    // Misc
+    public static final ItemDefinition<ColorApplicatorItem> COLOR_APPLICATOR = item("Color Applicator", TLItemIds.COLOR_APPLICATOR, p -> new ColorApplicatorItem(p.stacksTo(1)));
     public static final ItemDefinition<CreativeCellItem> CREATIVE_CELL = item("Creative ME Storage Cell", TLItemIds.CREATIVE_CELL, p -> new CreativeCellItem(p.stacksTo(1).rarity(Rarity.EPIC)));
-    public static final ItemDefinition<ViewCellItem> VIEW_CELL = item("View Cell", TLItemIds.VIEW_CELL, p -> new ViewCellItem(p.stacksTo(1)));
-
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_1K = item("1k ME Item Storage Cell", TLItemIds.ITEM_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 0.5f, 1, 8, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_4K = item("4k ME Item Storage Cell", TLItemIds.ITEM_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 1.0f, 4, 32, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_16K = item("16k ME Item Storage Cell", TLItemIds.ITEM_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 1.5f, 16, 128, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_64K = item("64k ME Item Storage Cell", TLItemIds.ITEM_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 2.0f, 64, 512, 63, TLKeyType.items()));
-
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_1K = item("1k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 0.5f, 1, 8, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_4K = item("4k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 1.0f, 4, 32, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_16K = item("16k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 1.5f, 16, 128, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_64K = item("64k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 2.0f, 64, 512, 18, TLKeyType.fluids()));
-
-    public static final ItemDefinition<Item> TABLET = item("Guide", TLItemIds.GUIDE, p -> new GuideItem(p.stacksTo(1)));
-
-    ///
-    /// SEQUENCED ASSEMBLY ITEMS
-    ///
-    public static final ItemDefinition<SequencedAssemblyItem> UNFINISHED_FLUIX_CRYSTAL = item("Unfinished Fluix Crystal", TLItemIds.UNFINISHED_FLUIX_CRYSTAL, SequencedAssemblyItem::new);
-
-    ///
-    /// UNSUPPORTED DEV TOOLS
-    ///
     public static final ItemDefinition<EraserItem> DEBUG_ERASER = item("Dev.Eraser", AppEng.makeId("debug_eraser"), EraserItem::new);
     public static final ItemDefinition<DebugCardItem> DEBUG_CARD = item("Dev.DebugCard", AppEng.makeId("debug_card"), DebugCardItem::new);
     public static final ItemDefinition<ReplicatorCardItem> DEBUG_REPLICATOR_CARD = item("Dev.ReplicatorCard", AppEng.makeId("debug_replicator_card"), ReplicatorCardItem::new);
@@ -177,23 +163,6 @@ public final class TLItems {
         return Collections.unmodifiableList(ITEMS);
     }
 
-    private static <T extends Item> ColoredItemDefinition<T> createColoredItems(String name,
-            Map<TLColor, ResourceLocation> ids,
-            BiFunction<Item.Properties, TLColor, T> factory) {
-        var colors = new ColoredItemDefinition<T>();
-        for (var entry : ids.entrySet()) {
-            String fullName;
-            if (entry.getKey() == TLColor.TRANSPARENT) {
-                fullName = name;
-            } else {
-                fullName = entry.getKey().getEnglishName() + " " + name;
-            }
-            colors.add(entry.getKey(), entry.getValue(),
-                    item(fullName, entry.getValue(), p -> factory.apply(p, entry.getKey())));
-        }
-        return colors;
-    }
-
     static <T extends Item> ItemDefinition<T> item(String name, ResourceLocation id,
             Function<Item.Properties, T> factory) {
         return item(name, id, factory, TLCreativeTabIds.MAIN);
@@ -202,8 +171,6 @@ public final class TLItems {
     static <T extends Item> ItemDefinition<T> item(String name, ResourceLocation id,
             Function<Item.Properties, T> factory,
             @Nullable ResourceKey<CreativeModeTab> group) {
-
-        Item.Properties p = new Item.Properties();
 
         Preconditions.checkArgument(id.getNamespace().equals(AppEng.MOD_ID), "Can only register for TL2");
         var definition = new ItemDefinition<>(name, DR.registerItem(id.getPath(), factory));

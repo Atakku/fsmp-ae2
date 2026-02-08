@@ -62,14 +62,14 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
                 .add(TLItems.AMETHYST_DUST.asItem())
                 .add(TLItems.FLUIX_CRYSTAL.asItem());
 
+        tag(ConventionTags.SILICON)
+                .add(TLItems.SILICON.asItem());
+
         for (TLColor color : TLColor.values()) {
             tag(ConventionTags.SMART_DENSE_CABLE).add(TLParts.SMART_DENSE_CABLE.item(color));
             tag(ConventionTags.SMART_CABLE).add(TLParts.SMART_CABLE.item(color));
             tag(ConventionTags.GLASS_CABLE).add(TLParts.GLASS_CABLE.item(color));
         }
-
-        tag(ConventionTags.SILICON)
-                .add(TLItems.SILICON.asItem());
 
         tag(TLTags.METAL_INGOTS)
                 .addOptionalTag(ResourceLocation.parse("c:ingots/copper"))

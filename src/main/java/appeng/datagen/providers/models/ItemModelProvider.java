@@ -28,18 +28,30 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.FLUIX_DUST, "item/fluix_dust");
         flatSingleLayer(TLItems.FLUIX_CRYSTAL, "item/fluix_crystal");
 
-        flatSingleLayer(TLItems.ADVANCED_CARD, "item/advanced_card");
-        flatSingleLayer(TLItems.VOID_CARD, "item/card_void");
-        flatSingleLayer(TLItems.ANNIHILATION_CORE, "item/annihilation_core");
-        flatSingleLayer(TLItems.BASIC_CARD, "item/basic_card");
+        flatSingleLayer(TLItems.SILICON, "item/silicon");
+        flatSingleLayer(TLItems.SILICON_PRINT, "item/printed_silicon");
+        flatSingleLayer(TLItems.LOGIC_PROCESSOR, "item/logic_processor");
+        flatSingleLayer(TLItems.LOGIC_PROCESSOR_PRINT, "item/printed_logic_processor");
         flatSingleLayer(TLItems.CALCULATION_PROCESSOR, "item/calculation_processor");
         flatSingleLayer(TLItems.CALCULATION_PROCESSOR_PRINT, "item/printed_calculation_processor");
-        flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
-        flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");
-        flatSingleLayer(TLItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
         flatSingleLayer(TLItems.ENGINEERING_PROCESSOR, "item/engineering_processor");
         flatSingleLayer(TLItems.ENGINEERING_PROCESSOR_PRINT, "item/printed_engineering_processor");
-        flatSingleLayer(TLItems.EQUAL_DISTRIBUTION_CARD, "item/card_equal_distribution");
+
+        flatSingleLayer(TLItems.ANNIHILATION_CORE, "item/annihilation_core");
+        flatSingleLayer(TLItems.FORMATION_CORE, "item/formation_core");
+        flatSingleLayer(TLItems.FLUIX_PEARL, "item/fluix_pearl");
+        flatSingleLayer(TLItemIds.GUIDE, "item/guide");
+        flatSingleLayer(TLItems.VIEW_CELL, "item/view_cell");
+
+        // Cell components
+        flatSingleLayer(TLItems.CELL_COMPONENT_1K, "item/cell_component_1k");
+        flatSingleLayer(TLItems.CELL_COMPONENT_4K, "item/cell_component_4k");
+        flatSingleLayer(TLItems.CELL_COMPONENT_16K, "item/cell_component_16k");
+        flatSingleLayer(TLItems.CELL_COMPONENT_64K, "item/cell_component_64k");
+        flatSingleLayer(TLItems.ITEM_CELL_HOUSING, "item/item_cell_housing");
+        flatSingleLayer(TLItems.FLUID_CELL_HOUSING, "item/fluid_cell_housing");
+
+        // Cells
         storageCell(TLItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
         storageCell(TLItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
         storageCell(TLItems.ITEM_CELL_16K, "item/item_storage_cell_16k");
@@ -48,6 +60,8 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         storageCell(TLItems.FLUID_CELL_4K, "item/fluid_storage_cell_4k");
         storageCell(TLItems.FLUID_CELL_16K, "item/fluid_storage_cell_16k");
         storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
+
+        // Portable cells
         portableCell(TLItems.PORTABLE_ITEM_CELL1K, "item", "1k");
         portableCell(TLItems.PORTABLE_ITEM_CELL4K, "item", "4k");
         portableCell(TLItems.PORTABLE_ITEM_CELL16K, "item", "16k");
@@ -56,28 +70,27 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         portableCell(TLItems.PORTABLE_FLUID_CELL4K, "fluid", "4k");
         portableCell(TLItems.PORTABLE_FLUID_CELL16K, "fluid", "16k");
         portableCell(TLItems.PORTABLE_FLUID_CELL64K, "fluid", "64k");
-        flatSingleLayer(TLItems.FLUID_CELL_HOUSING, "item/fluid_cell_housing");
-        flatSingleLayer(TLItems.FLUIX_PEARL, "item/fluix_pearl");
-        flatSingleLayer(TLItems.FORMATION_CORE, "item/formation_core");
+
+        // Cards
+        flatSingleLayer(TLItems.BASIC_CARD, "item/basic_card");
+        flatSingleLayer(TLItems.ADVANCED_CARD, "item/advanced_card");
+        flatSingleLayer(TLItems.VOID_CARD, "item/card_void");
+        flatSingleLayer(TLItems.SPEED_CARD, "item/card_speed");
         flatSingleLayer(TLItems.FUZZY_CARD, "item/card_fuzzy");
         flatSingleLayer(TLItems.INVERTER_CARD, "item/card_inverter");
-        flatSingleLayer(TLItems.CELL_COMPONENT_16K, "item/cell_component_16k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_1K, "item/cell_component_1k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_4K, "item/cell_component_4k");
-        flatSingleLayer(TLItems.CELL_COMPONENT_64K, "item/cell_component_64k");
-        flatSingleLayer(TLItems.CREATIVE_CELL, "item/creative_storage_cell");
-        flatSingleLayer(TLItems.ITEM_CELL_HOUSING, "item/item_cell_housing");
-        flatSingleLayer(TLItems.LOGIC_PROCESSOR, "item/logic_processor");
-        flatSingleLayer(TLItems.LOGIC_PROCESSOR_PRINT, "item/printed_logic_processor");
         flatSingleLayer(TLItems.REDSTONE_CARD, "item/card_redstone");
-        flatSingleLayer(TLItems.SILICON, "item/silicon");
-        flatSingleLayer(TLItems.SILICON_PRINT, "item/printed_silicon");
-        flatSingleLayer(TLItems.SPEED_CARD, "item/card_speed");
-        flatSingleLayer(TLItemIds.GUIDE, "item/guide");
-        flatSingleLayer(TLItems.VIEW_CELL, "item/view_cell");
-        flatSingleLayer(TLItems.WIRELESS_CRAFTING_TERMINAL, "item/wireless_crafting_terminal");
+        flatSingleLayer(TLItems.EQUAL_DISTRIBUTION_CARD, "item/card_equal_distribution");
+
+        // Wireless & terminals
         flatSingleLayer(TLItems.WIRELESS_RECEIVER, "item/wireless_receiver");
         flatSingleLayer(TLItems.WIRELESS_TERMINAL, "item/wireless_terminal");
+        flatSingleLayer(TLItems.WIRELESS_CRAFTING_TERMINAL, "item/wireless_crafting_terminal");
+
+        // Misc
+        flatSingleLayer(TLItems.CREATIVE_CELL, "item/creative_storage_cell");
+        flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
+        flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");
+        flatSingleLayer(TLItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
         registerEmptyModel(TLItems.WRAPPED_GENERIC_STACK);
         registerEmptyModel(TLBlocks.CABLE_BUS.item());
     }

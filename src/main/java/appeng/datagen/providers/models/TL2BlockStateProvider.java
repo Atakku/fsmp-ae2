@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import com.google.gson.JsonPrimitive;
 
-import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.blockstates.Condition;
 import net.minecraft.data.models.blockstates.MultiPartGenerator;
@@ -13,10 +12,6 @@ import net.minecraft.data.models.blockstates.PropertyDispatch;
 import net.minecraft.data.models.blockstates.Variant;
 import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.data.models.blockstates.VariantProperty;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -62,62 +57,6 @@ public abstract class TL2BlockStateProvider extends BlockStateProvider implement
         simpleBlockItem(block.block(), model);
     }
 
-    /**
-     * Defines a standard wall blockstate, the necessary block models and item model.
-     */
-    protected void wall(BlockDefinition<WallBlock> block, String texture) {
-        wallBlock(block.block(), AppEng.makeId(texture));
-        itemModels().wallInventory(block.id().getPath(), AppEng.makeId(texture));
-    }
-
-    protected void slabBlock(BlockDefinition<SlabBlock> slab, BlockDefinition<?> base) {
-        var texture = blockTexture(base.block()).getPath();
-        slabBlock(slab, base, texture, texture, texture);
-    }
-
-    protected void slabBlock(BlockDefinition<SlabBlock> slab, BlockDefinition<?> base, String bottomTexture,
-            String sideTexture, String topTexture) {
-        var side = AppEng.makeId(sideTexture);
-        var bottom = AppEng.makeId(bottomTexture);
-        var top = AppEng.makeId(topTexture);
-
-        var bottomModel = models().slab(slab.id().getPath(), side, bottom, top);
-        simpleBlockItem(slab.block(), bottomModel);
-        slabBlock(
-                slab.block(),
-                bottomModel,
-                models().slabTop(slab.id().getPath() + "_top", side, bottom, top),
-                models().getExistingFile(base.id()));
-    }
-
-    protected void stairsBlock(BlockDefinition<StairBlock> stairs, BlockDefinition<?> base) {
-        var texture = "block/" + base.id().getPath();
-
-        stairsBlock(stairs, texture, texture, texture);
-    }
-
-    protected void stairsBlock(BlockDefinition<StairBlock> stairs, String bottomTexture, String sideTexture,
-            String topTexture) {
-        var baseName = stairs.id().getPath();
-
-        var side = AppEng.makeId(sideTexture);
-        var bottom = AppEng.makeId(bottomTexture);
-        var top = AppEng.makeId(topTexture);
-
-        ModelFile stairsModel = models().stairs(baseName, side, bottom, top);
-        ModelFile stairsInner = models().stairsInner(baseName + "_inner", side, bottom, top);
-        ModelFile stairsOuter = models().stairsOuter(baseName + "_outer", side, bottom, top);
-        stairsBlock(stairs.block(), stairsModel, stairsInner, stairsOuter);
-        simpleBlockItem(stairs.block(), stairsModel);
-    }
-
-    protected VariantsBuilder rotatedVariants(BlockDefinition<?> blockDef) {
-        Block block = blockDef.block();
-        var builder = new VariantsBuilder(block);
-        registeredBlocks.put(block, builder);
-        return builder;
-    }
-
     protected final MultiVariantGenerator multiVariantGenerator(BlockDefinition<?> blockDef, Variant... variants) {
         if (variants.length == 0) {
             variants = new Variant[] { Variant.variant() };
@@ -125,16 +64,6 @@ public abstract class TL2BlockStateProvider extends BlockStateProvider implement
         var builder = MultiVariantGenerator.multiVariant(blockDef.block(), variants);
         registeredBlocks.put(blockDef.block(), () -> builder.get().getAsJsonObject());
         return builder;
-    }
-
-    protected static PropertyDispatch createFacingDispatch(int baseRotX, int baseRotY) {
-        return PropertyDispatch.property(BlockStateProperties.FACING)
-                .select(Direction.DOWN, applyRotation(Variant.variant(), baseRotX + 90, baseRotY, 0))
-                .select(Direction.UP, applyRotation(Variant.variant(), baseRotX + 270, baseRotY, 0))
-                .select(Direction.NORTH, applyRotation(Variant.variant(), baseRotX, baseRotY, 0))
-                .select(Direction.SOUTH, applyRotation(Variant.variant(), baseRotX, baseRotY + 180, 0))
-                .select(Direction.WEST, applyRotation(Variant.variant(), baseRotX, baseRotY + 270, 0))
-                .select(Direction.EAST, applyRotation(Variant.variant(), baseRotX, baseRotY + 90, 0));
     }
 
     protected static PropertyDispatch createFacingSpinDispatch(int baseRotX, int baseRotY) {

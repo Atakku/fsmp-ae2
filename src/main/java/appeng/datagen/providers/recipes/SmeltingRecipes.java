@@ -33,26 +33,26 @@ import appeng.datagen.providers.tags.ConventionTags;
 
 public class SmeltingRecipes extends TL2RecipeProvider {
 
-  public SmeltingRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-    super(output, registries);
-  }
+    public SmeltingRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
+    }
 
-  @Override
-  public String getName() {
-    return "TL2 Smelting Recipes";
-  }
+    @Override
+    public String getName() {
+        return "TL2 Smelting Recipes";
+    }
 
-  @Override
-  public void buildRecipes(RecipeOutput consumer) {
-    SimpleCookingRecipeBuilder
-        .smelting(Ingredient.of(ConventionTags.DUSTS_QUARTZ), RecipeCategory.MISC, TLItems.SILICON, .35f,
-            200)
-        .unlockedBy("has_quartz_dust", has(ConventionTags.DUSTS_QUARTZ))
-        .save(consumer, AppEng.makeId("smelting/silicon_from_quartz_dust"));
-    SimpleCookingRecipeBuilder
-        .blasting(Ingredient.of(ConventionTags.DUSTS_QUARTZ), RecipeCategory.MISC, TLItems.SILICON, .35f,
-            100)
-        .unlockedBy("has_quartz_dust", has(ConventionTags.DUSTS_QUARTZ))
-        .save(consumer, AppEng.makeId("blasting/silicon_from_quartz_dust"));
-  }
+    @Override
+    public void buildRecipes(RecipeOutput consumer) {
+        SimpleCookingRecipeBuilder
+                .smelting(Ingredient.of(ConventionTags.DUSTS_QUARTZ), RecipeCategory.MISC, TLItems.SILICON, .35f,
+                        200)
+                .unlockedBy("has_quartz_dust", has(ConventionTags.DUSTS_QUARTZ))
+                .save(consumer, AppEng.makeId("smelting/silicon_from_quartz_dust"));
+        SimpleCookingRecipeBuilder
+                .blasting(Ingredient.of(ConventionTags.DUSTS_QUARTZ), RecipeCategory.MISC, TLItems.SILICON, .35f,
+                        100)
+                .unlockedBy("has_quartz_dust", has(ConventionTags.DUSTS_QUARTZ))
+                .save(consumer, AppEng.makeId("blasting/silicon_from_quartz_dust"));
+    }
 }

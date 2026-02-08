@@ -22,7 +22,7 @@ Monitors allow visualization and interaction with a single item or fluid type, w
 
 Monitors will inherit the color of the [cable](cables.md) they are mounted on.
 
-If the monitor is on the floor or ceiling, you can rotate it with a <ItemLink id="certus_quartz_wrench" />.
+If the monitor is on the floor or ceiling, you can rotate it with a <ItemLink id="create:wrench" />.
 
 They are [cable subparts](../tl2-mechanics/cable-subparts.md).
 
