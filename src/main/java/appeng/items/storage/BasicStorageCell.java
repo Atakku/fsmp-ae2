@@ -57,7 +57,6 @@ public class BasicStorageCell extends TLBaseItem implements IBasicCellItem, TLTo
     private final TLKeyType keyType;
 
     public BasicStorageCell(Properties properties,
-            double idleDrain,
             int kilobytes,
             int bytesPerType,
             int totalTypes,
