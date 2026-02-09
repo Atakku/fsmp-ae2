@@ -70,10 +70,10 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .requires(TLItems.FLUIX)
                 .unlockedBy("has_terminal", has(ConventionTags.HOUSING))
                 .save(consumer, AppEng.makeId("network/cells/view_cell_storage"));
-        addCells(consumer, "item", TLItems.HOUSING_ITEM, TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K,
-                TLItems.ITEM_CELL_16K, TLItems.ITEM_CELL_64K);
-        addCells(consumer, "fluid", TLItems.HOUSING_FLUID, TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K,
-                TLItems.FLUID_CELL_16K, TLItems.FLUID_CELL_64K);
+        addCells(consumer, "item", TLItems.HOUSING_ITEM, TLItems.CELL_ITEM_1K, TLItems.CELL_ITEM_4K,
+                TLItems.CELL_ITEM_16K, TLItems.CELL_ITEM_64K);
+        addCells(consumer, "fluid", TLItems.HOUSING_FLUID, TLItems.CELL_FLUID_1K, TLItems.CELL_FLUID_4K,
+                TLItems.CELL_FLUID_16K, TLItems.CELL_FLUID_64K);
 
         // Basic Cards
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.BASIC_CARD, 2)

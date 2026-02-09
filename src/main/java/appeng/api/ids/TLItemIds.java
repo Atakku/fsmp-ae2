@@ -65,14 +65,14 @@ public final class TLItemIds {
     public static final ResourceLocation FLUIX_PEARL = id("fluix_pearl");
 
     // Cells
-    public static final ResourceLocation ITEM_CELL_1K = id("item_storage_cell_1k");
-    public static final ResourceLocation ITEM_CELL_4K = id("item_storage_cell_4k");
-    public static final ResourceLocation ITEM_CELL_16K = id("item_storage_cell_16k");
-    public static final ResourceLocation ITEM_CELL_64K = id("item_storage_cell_64k");
-    public static final ResourceLocation FLUID_CELL_1K = id("fluid_storage_cell_1k");
-    public static final ResourceLocation FLUID_CELL_4K = id("fluid_storage_cell_4k");
-    public static final ResourceLocation FLUID_CELL_16K = id("fluid_storage_cell_16k");
-    public static final ResourceLocation FLUID_CELL_64K = id("fluid_storage_cell_64k");
+    public static final ResourceLocation CELL_ITEM_1K = id("cell_item_1k");
+    public static final ResourceLocation CELL_ITEM_4K = id("cell_item_4k");
+    public static final ResourceLocation CELL_ITEM_16K = id("cell_item_16k");
+    public static final ResourceLocation CELL_ITEM_64K = id("cell_item_64k");
+    public static final ResourceLocation CELL_FLUID_1K = id("cell_fluid_1k");
+    public static final ResourceLocation CELL_FLUID_4K = id("cell_fluid_4k");
+    public static final ResourceLocation CELL_FLUID_16K = id("cell_fluid_16k");
+    public static final ResourceLocation CELL_FLUID_64K = id("cell_fluid_64k");
 
     // Cards
     public static final ResourceLocation VIEW_CELL = id("view_cell");
@@ -92,7 +92,7 @@ public final class TLItemIds {
 
     // Misc
     public static final ResourceLocation GUIDE = id("guide");
-    public static final ResourceLocation CREATIVE_CELL = id("creative_storage_cell");
+    public static final ResourceLocation CREATIVE_CELL = id("cell_creative");
     public static final ResourceLocation WRAPPED_GENERIC_STACK = id("wrapped_generic_stack");
 
     private static ResourceLocation id(String id) {

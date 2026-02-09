@@ -95,7 +95,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
 
         var storageCell = Advancement.Builder.advancement()
                 .display(
-                        TLItems.ITEM_CELL_64K,
+                        TLItems.CELL_ITEM_64K,
                         localization.component("achievement.tl2.StorageCell", "Better Than Chests"),
                         localization.component("achievement.tl2.StorageCell.desc", "Craft a Storage Cell"),
                         null,
@@ -104,10 +104,10 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false,
                         false)
                 .parent(fluix)
-                .addCriterion("c1k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_1K))
-                .addCriterion("c4k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_4K))
-                .addCriterion("c16k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_16K))
-                .addCriterion("c64k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_64K))
+                .addCriterion("c1k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.CELL_ITEM_1K))
+                .addCriterion("c4k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.CELL_ITEM_4K))
+                .addCriterion("c16k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.CELL_ITEM_16K))
+                .addCriterion("c64k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.CELL_ITEM_64K))
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .save(consumer, "tl2:main/storage_cell");
 

@@ -250,7 +250,7 @@ public final class TestPlots {
     @TestPlot("item_chest")
     public static void itemChest(PlotBuilder plot) {
         plot.blockEntity("0 0 0", TLBlocks.ME_CHEST, chest -> {
-            var cellItem = TLItems.ITEM_CELL_1K.stack();
+            var cellItem = TLItems.CELL_ITEM_1K.stack();
             var cellInv = StorageCells.getCellInventory(cellItem, null);
             var r = RandomSource.create();
             for (var i = 0; i < 100; i++) {
@@ -267,7 +267,7 @@ public final class TestPlots {
     @TestPlot("fluid_chest")
     public static void fluidChest(PlotBuilder plot) {
         plot.blockEntity("0 0 0", TLBlocks.ME_CHEST, chest -> {
-            var cellItem = TLItems.FLUID_CELL_1K.stack();
+            var cellItem = TLItems.CELL_FLUID_1K.stack();
             var cellInv = StorageCells.getCellInventory(cellItem, null);
             var r = RandomSource.create();
             for (var i = 0; i < 100; i++) {
@@ -293,8 +293,8 @@ public final class TestPlots {
         var origin = BlockPos.ZERO;
         plot.cable(origin.below());
         plot.blockEntity(origin, TLBlocks.ME_CHEST, chest -> {
-            var cell = TLItems.ITEM_CELL_1K.stack();
-            TLItems.ITEM_CELL_1K.get().getConfigInventory(cell).addFilter(Items.REDSTONE);
+            var cell = TLItems.CELL_ITEM_1K.stack();
+            TLItems.CELL_ITEM_1K.get().getConfigInventory(cell).addFilter(Items.REDSTONE);
             chest.setCell(cell);
         });
         // Hopper to test insertion of stuff. It should try to insert stick first.

@@ -41,23 +41,23 @@ item_ids:
 - tl2:red_smart_cable
 - tl2:black_smart_cable
 - tl2:fluix_smart_cable
-- tl2:white_smart_dense_cable
-- tl2:orange_smart_dense_cable
-- tl2:magenta_smart_dense_cable
-- tl2:light_blue_smart_dense_cable
-- tl2:yellow_smart_dense_cable
-- tl2:lime_smart_dense_cable
-- tl2:pink_smart_dense_cable
-- tl2:gray_smart_dense_cable
-- tl2:light_gray_smart_dense_cable
-- tl2:cyan_smart_dense_cable
-- tl2:purple_smart_dense_cable
-- tl2:blue_smart_dense_cable
-- tl2:brown_smart_dense_cable
-- tl2:green_smart_dense_cable
-- tl2:red_smart_dense_cable
-- tl2:black_smart_dense_cable
-- tl2:fluix_smart_dense_cable
+- tl2:white_dense_cable
+- tl2:orange_dense_cable
+- tl2:magenta_dense_cable
+- tl2:light_blue_dense_cable
+- tl2:yellow_dense_cable
+- tl2:lime_dense_cable
+- tl2:pink_dense_cable
+- tl2:gray_dense_cable
+- tl2:light_gray_dense_cable
+- tl2:cyan_dense_cable
+- tl2:purple_dense_cable
+- tl2:blue_dense_cable
+- tl2:brown_dense_cable
+- tl2:green_dense_cable
+- tl2:red_dense_cable
+- tl2:black_dense_cable
+- tl2:fluix_dense_cable
 ---
 
 # Cables
@@ -117,14 +117,9 @@ your [channels](../tl2-mechanics/channels.md).
   <ImportStructure src="../assets/assemblies/fluix_smart_cable.snbt" />
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
-<GameScene zoom="6" background="transparent">
-  <ImportStructure src="../assets/assemblies/fluix_smart_dense_cable.snbt" />
-  <IsometricCamera yaw="195" pitch="30" />
-</GameScene>
 </Row>
 
-While bearing some similarity to <ItemLink id="fluix_covered_cable" /> in appearance, they
-provide diagnostic function by visualizing the channel usage on the cables,
+These cables provide diagnostic function by visualizing the channel usage on the cables,
 the channels appear as lit colored lines that run along the black stripe on
 the cables giving you an understanding of how your channels are being used on
 your network. For regular smart cables, the first four channels show as lines matching the color of the
@@ -138,25 +133,22 @@ These can also be colored in the same manner as <ItemLink id="fluix_glass_cable"
 
 <Recipe id="network/cables/smart_fluix" />
 
-<Recipe id="network/cables/dense_fluix" />
-
 <RecipeFor id="blue_smart_cable" />
 
 ## Dense Cable
 
 <GameScene zoom="6" background="transparent">
-  <ImportStructure src="../assets/assemblies/fluix_covered_dense_cable.snbt" />
+  <ImportStructure src="../assets/assemblies/fluix_dense_cable.snbt" />
   <IsometricCamera yaw="195" pitch="30" />
 </GameScene>
 
 Higher Capacity cable, can carry 32 channels unlike standard cable which can only carry 8,
-however it doesn't support buses so you must first step down from dense to a
-smaller cable (such as <ItemLink id="fluix_glass_cable" /> or <ItemLink id="fluix_smart_cable" />) before using buses or
-panels.
+however it doesn't support panels so you must first step down from dense to a
+smaller cable (such as <ItemLink id="fluix_glass_cable" /> or <ItemLink id="fluix_smart_cable" />) before using panels.
 
 Dense cables slightly override the "shortest path" behavior of channels, channels will take the shortest path to a
 dense cable, and then the shortest path through that dense cable to a controller.
 
-<Recipe id="network/cables/fluix_smart_dense_cable" />
+<Recipe id="network/cables/dense_fluix" />
 
-<RecipeFor id="blue_smart_dense_cable" />
+<RecipeFor id="blue_dense_cable" />

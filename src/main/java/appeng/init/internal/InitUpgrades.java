@@ -44,8 +44,8 @@ public final class InitUpgrades {
         Upgrades.add(TLItems.FUZZY_CARD, TLParts.LEVEL_EMITTER, 1);
 
         // Storage Cells
-        var itemCells = List.of(TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K, TLItems.ITEM_CELL_16K,
-                TLItems.ITEM_CELL_64K);
+        var itemCells = List.of(TLItems.CELL_ITEM_1K, TLItems.CELL_ITEM_4K, TLItems.CELL_ITEM_16K,
+                TLItems.CELL_ITEM_64K);
         for (var itemCell : itemCells) {
             Upgrades.add(TLItems.FUZZY_CARD, itemCell, 1, storageCellGroup);
             Upgrades.add(TLItems.INVERTER_CARD, itemCell, 1, storageCellGroup);
@@ -53,8 +53,8 @@ public final class InitUpgrades {
             Upgrades.add(TLItems.VOID_CARD, itemCell, 1, storageCellGroup);
         }
 
-        var fluidCells = List.of(TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K, TLItems.FLUID_CELL_16K,
-                TLItems.FLUID_CELL_64K);
+        var fluidCells = List.of(TLItems.CELL_FLUID_1K, TLItems.CELL_FLUID_4K, TLItems.CELL_FLUID_16K,
+                TLItems.CELL_FLUID_64K);
         for (var fluidCell : fluidCells) {
             Upgrades.add(TLItems.INVERTER_CARD, fluidCell, 1, storageCellGroup);
             Upgrades.add(TLItems.EQUAL_DISTRIBUTION_CARD, fluidCell, 1, storageCellGroup);

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#tl2:smart_dense_cable"
+            "items": "#tl2:dense_cable"
           }
         ]
       },

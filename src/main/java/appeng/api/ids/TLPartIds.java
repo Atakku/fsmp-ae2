@@ -128,7 +128,7 @@ public final class TLPartIds {
     public static final ResourceLocation CABLE_DENSE_BLUE = id("blue_dense_cable");
     public static final ResourceLocation CABLE_DENSE_BROWN = id("brown_dense_cable");
     public static final ResourceLocation CABLE_DENSE_GREEN = id("green_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_RED = id("red_smart_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_RED = id("red_dense_cable");
     public static final ResourceLocation CABLE_DENSE_BLACK = id("black_dense_cable");
     public static final ResourceLocation CABLE_DENSE_TRANSPARENT = id("fluix_dense_cable");
     public static final Map<TLColor, ResourceLocation> CABLE_DENSE = ImmutableMap

@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tl2:network/cells/item_cell_1k_storage"
+        "recipe": "tl2:network/cells/cell_item_1k_storage"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -37,7 +37,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tl2:network/cells/item_cell_1k_storage"
+      "tl2:network/cells/cell_item_1k_storage"
     ]
   }
 }

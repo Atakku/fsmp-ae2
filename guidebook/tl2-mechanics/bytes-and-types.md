@@ -2,19 +2,19 @@
 navigation:
   parent: tl2-mechanics/tl2-mechanics-index.md
   title: Bytes and Types
-  icon: creative_storage_cell
+  icon: cell_creative
 ---
 
 # Bytes and Types
 
 <Row>
-    <ItemImage id="item_storage_cell_1k" scale="4" />
+    <ItemImage id="cell_item_1k" scale="4" />
 
-    <ItemImage id="item_storage_cell_4k" scale="4" />
+    <ItemImage id="cell_item_4k" scale="4" />
 
-    <ItemImage id="item_storage_cell_16k" scale="4" />
+    <ItemImage id="cell_item_16k" scale="4" />
 
-    <ItemImage id="item_storage_cell_64k" scale="4" />
+    <ItemImage id="cell_item_64k" scale="4" />
   </Row>
 
 [Storage Cells](../items-blocks-machines/storage_cells.md) are defined by both *bytes* and *types*. Bytes, like in
@@ -53,10 +53,10 @@ a rough estimate of their cost.
 
 | Cell                                     |   Bytes | Types | Bytes Per Type | Certus | Redstone | Gold | Glowstone |
 | ---------------------------------------- | ------: | ----: | -------------: | -----: | -------: | ---: | --------: |
-| <ItemLink id="item_storage_cell_1k" />   |   1,024 |    63 |              8 |      4 |        5 |    1 |         0 |
-| <ItemLink id="item_storage_cell_4k" />   |   4,096 |    63 |             32 |  14.25 |       20 |    3 |         0 |
-| <ItemLink id="item_storage_cell_16k" />  |  16,384 |    63 |            128 |     45 |       61 |    9 |         4 |
-| <ItemLink id="item_storage_cell_64k" />  |  65,536 |    63 |            512 | 137.25 |      184 |   27 |        16 |
+| <ItemLink id="cell_item_1k" />   |   1,024 |    63 |              8 |      4 |        5 |    1 |         0 |
+| <ItemLink id="cell_item_4k" />   |   4,096 |    63 |             32 |  14.25 |       20 |    3 |         0 |
+| <ItemLink id="cell_item_16k" />  |  16,384 |    63 |            128 |     45 |       61 |    9 |         4 |
+| <ItemLink id="cell_item_64k" />  |  65,536 |    63 |            512 | 137.25 |      184 |   27 |        16 |
 
 ## Storage Capacity with Varying Type Count
 
@@ -64,10 +64,10 @@ The upfront cost of types is such that a cell holding 1 type can hold 2x as much
 
 | Cell                                     | Total Capacity of Cell With 1 Type In Use | Total Capacity of Cell With 63 Types In Use |
 | ---------------------------------------- | ----------------------------------------: | ------------------------------------------: |
-| <ItemLink id="item_storage_cell_1k" />   |                                     8,128 |                                       4,160 |
-| <ItemLink id="item_storage_cell_4k" />   |                                    32,512 |                                      16,640 |
-| <ItemLink id="item_storage_cell_16k" />  |                                   130,048 |                                      66,560 |
-| <ItemLink id="item_storage_cell_64k" />  |                                   520,192 |                                     266,240 |
+| <ItemLink id="cell_item_1k" />   |                                     8,128 |                                       4,160 |
+| <ItemLink id="cell_item_4k" />   |                                    32,512 |                                      16,640 |
+| <ItemLink id="cell_item_16k" />  |                                   130,048 |                                      66,560 |
+| <ItemLink id="cell_item_64k" />  |                                   520,192 |                                     266,240 |
 
 ![A Cell With 1 Type](../assets/diagrams/1_type_cell.png)
 

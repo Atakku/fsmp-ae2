@@ -52,7 +52,7 @@ public final class InitStorageCells {
     private static final ResourceLocation MODEL_CELL_FLUIDS_64K = ResourceLocation.parse(
             "tl2:block/drive/cells/64k_fluid_cell");
     private static final ResourceLocation MODEL_CELL_CREATIVE = ResourceLocation.parse(
-            "tl2:block/drive/cells/creative_cell");
+            "tl2:block/drive/cells/cell_creative");
 
     private static final ResourceLocation[] MODELS = { MODEL_BASE, MODEL_CELL_EMPTY,
             StorageCellModels.getDefaultModel(),
@@ -71,14 +71,14 @@ public final class InitStorageCells {
         StorageCells.addCellHandler(BasicCellHandler.INSTANCE);
         StorageCells.addCellHandler(CreativeCellHandler.INSTANCE);
 
-        StorageCellModels.registerModel(TLItems.ITEM_CELL_1K, MODEL_CELL_ITEMS_1K);
-        StorageCellModels.registerModel(TLItems.ITEM_CELL_4K, MODEL_CELL_ITEMS_4K);
-        StorageCellModels.registerModel(TLItems.ITEM_CELL_16K, MODEL_CELL_ITEMS_16K);
-        StorageCellModels.registerModel(TLItems.ITEM_CELL_64K, MODEL_CELL_ITEMS_64K);
-        StorageCellModels.registerModel(TLItems.FLUID_CELL_1K, MODEL_CELL_FLUIDS_1K);
-        StorageCellModels.registerModel(TLItems.FLUID_CELL_4K, MODEL_CELL_FLUIDS_4K);
-        StorageCellModels.registerModel(TLItems.FLUID_CELL_16K, MODEL_CELL_FLUIDS_16K);
-        StorageCellModels.registerModel(TLItems.FLUID_CELL_64K, MODEL_CELL_FLUIDS_64K);
+        StorageCellModels.registerModel(TLItems.CELL_ITEM_1K, MODEL_CELL_ITEMS_1K);
+        StorageCellModels.registerModel(TLItems.CELL_ITEM_4K, MODEL_CELL_ITEMS_4K);
+        StorageCellModels.registerModel(TLItems.CELL_ITEM_16K, MODEL_CELL_ITEMS_16K);
+        StorageCellModels.registerModel(TLItems.CELL_ITEM_64K, MODEL_CELL_ITEMS_64K);
+        StorageCellModels.registerModel(TLItems.CELL_FLUID_1K, MODEL_CELL_FLUIDS_1K);
+        StorageCellModels.registerModel(TLItems.CELL_FLUID_4K, MODEL_CELL_FLUIDS_4K);
+        StorageCellModels.registerModel(TLItems.CELL_FLUID_16K, MODEL_CELL_FLUIDS_16K);
+        StorageCellModels.registerModel(TLItems.CELL_FLUID_64K, MODEL_CELL_FLUIDS_64K);
         StorageCellModels.registerModel(TLItems.CREATIVE_CELL, MODEL_CELL_CREATIVE);
     }
 

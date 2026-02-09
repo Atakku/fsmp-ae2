@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tl2:item/cell_fluid_64k",
+    "layer1": "tl2:item/cell_led"
+  }
+}

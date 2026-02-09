@@ -1,14 +1,14 @@
 {
   "type": "tl2:storage_cell_disassembly",
-  "cell": "tl2:fluid_storage_cell_4k",
+  "cell": "tl2:cell_item_16k",
   "cell_disassembly_items": [
     {
       "count": 1,
-      "id": "tl2:housing_fluid"
+      "id": "tl2:housing_item"
     },
     {
       "count": 1,
-      "id": "tl2:component_4k"
+      "id": "tl2:component_16k"
     }
   ]
 }

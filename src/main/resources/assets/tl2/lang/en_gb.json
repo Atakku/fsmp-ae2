@@ -7,8 +7,8 @@
   "gui.tooltips.tl2.TerminalStyle_Tall": "Tall Centred Terminal",
   "item.tl2.gray_glass_cable": "Grey ME Glass Cable",
   "item.tl2.gray_smart_cable": "Grey ME Smart Cable",
-  "item.tl2.gray_smart_dense_cable": "Grey ME Dense Smart Cable",
+  "item.tl2.gray_dense_cable": "Grey ME Dense Smart Cable",
   "item.tl2.light_gray_glass_cable": "Light Grey ME Glass Cable",
   "item.tl2.light_gray_smart_cable": "Light Grey ME Smart Cable",
-  "item.tl2.light_gray_smart_dense_cable": "Light Grey ME Dense Smart Cable"
+  "item.tl2.light_gray_dense_cable": "Light Grey ME Dense Smart Cable"
 }

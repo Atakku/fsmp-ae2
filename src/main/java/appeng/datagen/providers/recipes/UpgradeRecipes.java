@@ -45,18 +45,18 @@ public class UpgradeRecipes extends TL2RecipeProvider {
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", TLItems.ITEM_CELL_1K, TLItems.COMPONENT_1K),
-                        new CellUpgradeTier("4k", TLItems.ITEM_CELL_4K, TLItems.COMPONENT_4K),
-                        new CellUpgradeTier("16k", TLItems.ITEM_CELL_16K, TLItems.COMPONENT_16K),
-                        new CellUpgradeTier("64k", TLItems.ITEM_CELL_64K, TLItems.COMPONENT_64K)),
+                        new CellUpgradeTier("1k", TLItems.CELL_ITEM_1K, TLItems.COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.CELL_ITEM_4K, TLItems.COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.CELL_ITEM_16K, TLItems.COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.CELL_ITEM_64K, TLItems.COMPONENT_64K)),
                 List.of(TLItems.HOUSING_ITEM));
         storageCellUpgradeRecipes(
                 output,
                 List.of(
-                        new CellUpgradeTier("1k", TLItems.FLUID_CELL_1K, TLItems.COMPONENT_1K),
-                        new CellUpgradeTier("4k", TLItems.FLUID_CELL_4K, TLItems.COMPONENT_4K),
-                        new CellUpgradeTier("16k", TLItems.FLUID_CELL_16K, TLItems.COMPONENT_16K),
-                        new CellUpgradeTier("64k", TLItems.FLUID_CELL_64K, TLItems.COMPONENT_64K)),
+                        new CellUpgradeTier("1k", TLItems.CELL_FLUID_1K, TLItems.COMPONENT_1K),
+                        new CellUpgradeTier("4k", TLItems.CELL_FLUID_4K, TLItems.COMPONENT_4K),
+                        new CellUpgradeTier("16k", TLItems.CELL_FLUID_16K, TLItems.COMPONENT_16K),
+                        new CellUpgradeTier("64k", TLItems.CELL_FLUID_64K, TLItems.COMPONENT_64K)),
                 List.of(TLItems.HOUSING_FLUID));
     }
 

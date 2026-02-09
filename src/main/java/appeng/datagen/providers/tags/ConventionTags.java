@@ -95,7 +95,7 @@ public final class ConventionTags {
 
     public static final TagKey<Item> GLASS_CABLE = tag("tl2:glass_cable");
     public static final TagKey<Item> SMART_CABLE = tag("tl2:smart_cable");
-    public static final TagKey<Item> DENSE_CABLE = tag("tl2:smart_dense_cable");
+    public static final TagKey<Item> DENSE_CABLE = tag("tl2:dense_cable");
 
     /**
      * Items that can be used in recipes to remove color from colored items.

@@ -67,14 +67,14 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
         flatSingleLayer(TLItems.FLUIX_PEARL, "item/fluix_pearl");
 
         // Cells
-        storageCell(TLItems.ITEM_CELL_1K, "item/item_storage_cell_1k");
-        storageCell(TLItems.ITEM_CELL_4K, "item/item_storage_cell_4k");
-        storageCell(TLItems.ITEM_CELL_16K, "item/item_storage_cell_16k");
-        storageCell(TLItems.ITEM_CELL_64K, "item/item_storage_cell_64k");
-        storageCell(TLItems.FLUID_CELL_1K, "item/fluid_storage_cell_1k");
-        storageCell(TLItems.FLUID_CELL_4K, "item/fluid_storage_cell_4k");
-        storageCell(TLItems.FLUID_CELL_16K, "item/fluid_storage_cell_16k");
-        storageCell(TLItems.FLUID_CELL_64K, "item/fluid_storage_cell_64k");
+        storageCell(TLItems.CELL_ITEM_1K, "item/cell_item_1k");
+        storageCell(TLItems.CELL_ITEM_4K, "item/cell_item_4k");
+        storageCell(TLItems.CELL_ITEM_16K, "item/cell_item_16k");
+        storageCell(TLItems.CELL_ITEM_64K, "item/cell_item_64k");
+        storageCell(TLItems.CELL_FLUID_1K, "item/cell_fluid_1k");
+        storageCell(TLItems.CELL_FLUID_4K, "item/cell_fluid_4k");
+        storageCell(TLItems.CELL_FLUID_16K, "item/cell_fluid_16k");
+        storageCell(TLItems.CELL_FLUID_64K, "item/cell_fluid_64k");
 
         // Cards
         flatSingleLayer(TLItems.VIEW_CELL, "item/view_cell");
@@ -94,7 +94,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
 
         // Misc
         flatSingleLayer(TLItemIds.GUIDE, "item/guide");
-        flatSingleLayer(TLItems.CREATIVE_CELL, "item/creative_storage_cell");
+        flatSingleLayer(TLItems.CREATIVE_CELL, "item/cell_creative");
         flatSingleLayer(TLItems.DEBUG_CARD, "item/debug_card");
         flatSingleLayer(TLItems.DEBUG_ERASER, "item/debug/eraser");
         flatSingleLayer(TLItems.DEBUG_REPLICATOR_CARD, "item/debug/replicator_card");
@@ -109,7 +109,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
                 mcLoc("item/generated"),
                 "layer0",
                 makeId(background))
-                .texture("layer1", "item/storage_cell_led");
+                .texture("layer1", "item/cell_led");
     }
 
     private void registerEmptyModel(ItemDefinition<?> item) {

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:item_storage_cell_16k"
+            "items": "tl2:cell_item_16k"
           }
         ]
       },
@@ -15,7 +15,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:item_storage_cell_1k"
+            "items": "tl2:cell_item_1k"
           }
         ]
       },
@@ -25,7 +25,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:item_storage_cell_4k"
+            "items": "tl2:cell_item_4k"
           }
         ]
       },
@@ -35,7 +35,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:item_storage_cell_64k"
+            "items": "tl2:cell_item_64k"
           }
         ]
       },
@@ -49,7 +49,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "tl2:item_storage_cell_64k"
+      "id": "tl2:cell_item_64k"
     },
     "show_toast": false,
     "title": {

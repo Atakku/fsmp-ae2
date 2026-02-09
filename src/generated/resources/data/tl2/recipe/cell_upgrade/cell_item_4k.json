@@ -1,6 +1,6 @@
 {
   "type": "tl2:storage_cell_disassembly",
-  "cell": "tl2:item_storage_cell_1k",
+  "cell": "tl2:cell_item_4k",
   "cell_disassembly_items": [
     {
       "count": 1,
@@ -8,7 +8,7 @@
     },
     {
       "count": 1,
-      "id": "tl2:component_1k"
+      "id": "tl2:component_4k"
     }
   ]
 }

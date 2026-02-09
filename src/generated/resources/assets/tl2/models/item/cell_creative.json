@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tl2:item/creative_storage_cell"
+    "layer0": "tl2:item/cell_creative"
   }
 }

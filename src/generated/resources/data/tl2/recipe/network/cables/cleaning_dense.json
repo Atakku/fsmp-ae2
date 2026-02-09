@@ -5,7 +5,7 @@
     {
       "type": "neoforge:difference",
       "base": {
-        "tag": "tl2:smart_dense_cable"
+        "tag": "tl2:dense_cable"
       },
       "subtracted": {
         "item": "tl2:fluix_dense_cable"

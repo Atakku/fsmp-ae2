@@ -322,8 +322,8 @@ public interface PlotBuilder {
         blockEntity(posToBb(pos), TLBlocks.DRIVE, drive -> {
             BlockOrientation.get(facing).setOn(drive);
             var cells = drive.getInternalInventory();
-            cells.addItems(TLItems.ITEM_CELL_64K.stack());
-            cells.addItems(TLItems.FLUID_CELL_64K.stack());
+            cells.addItems(TLItems.CELL_ITEM_64K.stack());
+            cells.addItems(TLItems.CELL_FLUID_64K.stack());
         });
     }
 

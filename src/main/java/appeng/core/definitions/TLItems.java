@@ -113,14 +113,14 @@ public final class TLItems {
     public static final ItemDefinition<MaterialItem> FLUIX_PEARL = item("Fluix Pearl", TLItemIds.FLUIX_PEARL, MaterialItem::new);
 
     // Cells
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_1K = item("1k ME Item Storage Cell", TLItemIds.ITEM_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 1, 8, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_4K = item("4k ME Item Storage Cell", TLItemIds.ITEM_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 4, 32, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_16K = item("16k ME Item Storage Cell", TLItemIds.ITEM_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 16, 128, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> ITEM_CELL_64K = item("64k ME Item Storage Cell", TLItemIds.ITEM_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 64, 512, 63, TLKeyType.items()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_1K = item("1k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_1K, p -> new BasicStorageCell(p.stacksTo(1), 1, 8, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_4K = item("4k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_4K, p -> new BasicStorageCell(p.stacksTo(1), 4, 32, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_16K = item("16k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_16K, p -> new BasicStorageCell(p.stacksTo(1), 16, 128, 18, TLKeyType.fluids()));
-    public static final ItemDefinition<BasicStorageCell> FLUID_CELL_64K = item("64k ME Fluid Storage Cell", TLItemIds.FLUID_CELL_64K, p -> new BasicStorageCell(p.stacksTo(1), 64, 512, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> CELL_ITEM_1K = item("1k ME Item Storage Cell", TLItemIds.CELL_ITEM_1K, p -> new BasicStorageCell(p.stacksTo(1), 1, 8, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> CELL_ITEM_4K = item("4k ME Item Storage Cell", TLItemIds.CELL_ITEM_4K, p -> new BasicStorageCell(p.stacksTo(1), 4, 32, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> CELL_ITEM_16K = item("16k ME Item Storage Cell", TLItemIds.CELL_ITEM_16K, p -> new BasicStorageCell(p.stacksTo(1), 16, 128, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> CELL_ITEM_64K = item("64k ME Item Storage Cell", TLItemIds.CELL_ITEM_64K, p -> new BasicStorageCell(p.stacksTo(1), 64, 512, 63, TLKeyType.items()));
+    public static final ItemDefinition<BasicStorageCell> CELL_FLUID_1K = item("1k ME Fluid Storage Cell", TLItemIds.CELL_FLUID_1K, p -> new BasicStorageCell(p.stacksTo(1), 1, 8, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> CELL_FLUID_4K = item("4k ME Fluid Storage Cell", TLItemIds.CELL_FLUID_4K, p -> new BasicStorageCell(p.stacksTo(1), 4, 32, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> CELL_FLUID_16K = item("16k ME Fluid Storage Cell", TLItemIds.CELL_FLUID_16K, p -> new BasicStorageCell(p.stacksTo(1), 16, 128, 18, TLKeyType.fluids()));
+    public static final ItemDefinition<BasicStorageCell> CELL_FLUID_64K = item("64k ME Fluid Storage Cell", TLItemIds.CELL_FLUID_64K, p -> new BasicStorageCell(p.stacksTo(1), 64, 512, 18, TLKeyType.fluids()));
 
     // Cards
     public static final ItemDefinition<ViewCellItem> VIEW_CELL = item("View Cell", TLItemIds.VIEW_CELL, p -> new ViewCellItem(p.stacksTo(1)));

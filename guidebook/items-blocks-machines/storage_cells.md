@@ -2,7 +2,7 @@
 navigation:
   parent: items-blocks-machines/items-blocks-machines-index.md
   title: Storage Cells
-  icon: item_storage_cell_1k
+  icon: cell_item_1k
   position: 410
 categories:
 - tools
@@ -13,37 +13,37 @@ item_ids:
 - tl2:component_4k
 - tl2:component_16k
 - tl2:component_64k
-- tl2:item_storage_cell_1k
-- tl2:item_storage_cell_4k
-- tl2:item_storage_cell_16k
-- tl2:item_storage_cell_64k
-- tl2:fluid_storage_cell_1k
-- tl2:fluid_storage_cell_4k
-- tl2:fluid_storage_cell_16k
-- tl2:fluid_storage_cell_64k
+- tl2:cell_item_1k
+- tl2:cell_item_4k
+- tl2:cell_item_16k
+- tl2:cell_item_64k
+- tl2:cell_fluid_1k
+- tl2:cell_fluid_4k
+- tl2:cell_fluid_16k
+- tl2:cell_fluid_64k
 ---
 
 # Storage Cells
 
 <Column>
   <Row>
-    <ItemImage id="item_storage_cell_1k" scale="4" />
+    <ItemImage id="cell_item_1k" scale="4" />
 
-    <ItemImage id="item_storage_cell_4k" scale="4" />
+    <ItemImage id="cell_item_4k" scale="4" />
 
-    <ItemImage id="item_storage_cell_16k" scale="4" />
+    <ItemImage id="cell_item_16k" scale="4" />
 
-    <ItemImage id="item_storage_cell_64k" scale="4" />
+    <ItemImage id="cell_item_64k" scale="4" />
   </Row>
 
   <Row>
-    <ItemImage id="fluid_storage_cell_1k" scale="4" />
+    <ItemImage id="cell_fluid_1k" scale="4" />
 
-    <ItemImage id="fluid_storage_cell_4k" scale="4" />
+    <ItemImage id="cell_fluid_4k" scale="4" />
 
-    <ItemImage id="fluid_storage_cell_16k" scale="4" />
+    <ItemImage id="cell_fluid_16k" scale="4" />
 
-    <ItemImage id="fluid_storage_cell_64k" scale="4" />
+    <ItemImage id="cell_fluid_64k" scale="4" />
   </Row>
 </Column>
 
@@ -55,7 +55,7 @@ See [Bytes and Types](../tl2-mechanics/bytes-and-types.md) for an explanation of
 Storage components can be removed from the housing if the cell is empty by shift-right clicking with the cell in your hand.
 
 <Row>
-    <Recipe id="upgrade/item_storage_cell_1k_to_4k" />
+    <Recipe id="upgrade/cell_item_1k_to_4k" />
 
     You can upgrade storage cells to higher tiers by combining them with higher-tier storage components in a crafting grid. Their content will be retained, and the lower-tier component is  returned.
 </Row>
@@ -66,10 +66,10 @@ The [upfront cost of types](../tl2-mechanics/bytes-and-types.md) is such that a 
 
 | Cell                                     | Total Capacity of Cell With 1 Type In Use | Total Capacity of Cell With 63 Types In Use |
 | ---------------------------------------- | ----------------------------------------: | ------------------------------------------: |
-| <ItemLink id="item_storage_cell_1k" />   |                                     8,128 |                                       4,160 |
-| <ItemLink id="item_storage_cell_4k" />   |                                    32,512 |                                      16,640 |
-| <ItemLink id="item_storage_cell_16k" />  |                                   130,048 |                                      66,560 |
-| <ItemLink id="item_storage_cell_64k" />  |                                   520,192 |                                     266,240 |
+| <ItemLink id="cell_item_1k" />   |                                     8,128 |                                       4,160 |
+| <ItemLink id="cell_item_4k" />   |                                    32,512 |                                      16,640 |
+| <ItemLink id="cell_item_16k" />  |                                   130,048 |                                      66,560 |
+| <ItemLink id="cell_item_64k" />  |                                   520,192 |                                     266,240 |
 
 
 ## Partitioning
@@ -94,9 +94,9 @@ Storage cells support the following [upgrades](upgrade_cards.md), inserted via a
 Cells can be made with a storage component and a housing or with the housing recipe around a storage component:
 
 <Row>
-  <Recipe id="network/cells/item_storage_cell_1k" />
+  <Recipe id="network/cells/cell_item_1k" />
 
-  <Recipe id="network/cells/item_storage_cell_1k_storage" />
+  <Recipe id="network/cells/cell_item_1k_storage" />
 </Row>
 
 Housings by themselves are crafted like so:
@@ -131,15 +131,15 @@ Item storage cells can hold up to 63 distinct types of items, and are available 
 
 <Column>
   <Row>
-    <Recipe id="network/cells/item_storage_cell_1k_storage" />
+    <Recipe id="network/cells/cell_item_1k_storage" />
 
-    <Recipe id="network/cells/item_storage_cell_4k_storage" />
+    <Recipe id="network/cells/cell_item_4k_storage" />
   </Row>
 
   <Row>
-    <Recipe id="network/cells/item_storage_cell_16k_storage" />
+    <Recipe id="network/cells/cell_item_16k_storage" />
 
-    <Recipe id="network/cells/item_storage_cell_64k_storage" />
+    <Recipe id="network/cells/cell_item_64k_storage" />
   </Row>
 </Column>
 
@@ -149,22 +149,22 @@ Fluid storage cells can hold up to 5 distinct types of fluids, and are available
 
 <Column>
   <Row>
-    <Recipe id="network/cells/fluid_storage_cell_1k_storage" />
+    <Recipe id="network/cells/cell_fluid_1k_storage" />
 
-    <Recipe id="network/cells/fluid_storage_cell_4k_storage" />
+    <Recipe id="network/cells/cell_fluid_4k_storage" />
   </Row>
 
   <Row>
-    <Recipe id="network/cells/fluid_storage_cell_16k_storage" />
+    <Recipe id="network/cells/cell_fluid_16k_storage" />
 
-    <Recipe id="network/cells/fluid_storage_cell_64k_storage" />
+    <Recipe id="network/cells/cell_fluid_64k_storage" />
   </Row>
 </Column>
 
 # Creative Storage Cell
 
 <Row>
-  <ItemImage id="creative_storage_cell" scale="2" />
+  <ItemImage id="cell_creative" scale="2" />
 </Row>
 
 Creative cells **do not provide infinite storage**. Instead, they act as infinite sources and sinks of whatever

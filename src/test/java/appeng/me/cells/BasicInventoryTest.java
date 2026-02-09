@@ -33,7 +33,7 @@ public class BasicInventoryTest {
      */
     @Test
     void testFluidExtract() {
-        var item = TLItems.FLUID_CELL_64K.asItem();
+        var item = TLItems.CELL_FLUID_64K.asItem();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
@@ -47,7 +47,7 @@ public class BasicInventoryTest {
 
     @Test
     void testTypeLimit() {
-        var item = TLItems.ITEM_CELL_1K.get();
+        var item = TLItems.CELL_ITEM_1K.get();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
@@ -69,7 +69,7 @@ public class BasicInventoryTest {
 
     @Test
     void testSingleType() {
-        var item = TLItems.ITEM_CELL_1K.get();
+        var item = TLItems.CELL_ITEM_1K.get();
         var stack = new ItemStack(item);
         var cell = StorageCells.getCellInventory(stack, null);
         Objects.requireNonNull(cell);
@@ -83,7 +83,7 @@ public class BasicInventoryTest {
 
     @Test
     void testEvenDistribution() {
-        var item = TLItems.ITEM_CELL_1K.get();
+        var item = TLItems.CELL_ITEM_1K.get();
         var stack = new ItemStack(item);
         item.getUpgrades(stack).addItems(TLItems.EQUAL_DISTRIBUTION_CARD.stack());
         var cell = StorageCells.getCellInventory(stack, null);
@@ -112,7 +112,7 @@ public class BasicInventoryTest {
 
     @Test
     void testVoidUpgrade() {
-        var item = TLItems.ITEM_CELL_1K.get();
+        var item = TLItems.CELL_ITEM_1K.get();
         var stack = new ItemStack(item);
         item.getUpgrades(stack).addItems(TLItems.VOID_CARD.stack());
 
@@ -137,7 +137,7 @@ public class BasicInventoryTest {
 
     @Test
     void testVoidUpgradeUnformatted() {
-        var item = TLItems.ITEM_CELL_1K.get();
+        var item = TLItems.CELL_ITEM_1K.get();
         var stack = new ItemStack(item);
         item.getUpgrades(stack).addItems(TLItems.VOID_CARD.stack());
 

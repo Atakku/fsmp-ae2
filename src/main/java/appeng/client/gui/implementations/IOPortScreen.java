@@ -69,7 +69,7 @@ public class IOPortScreen extends UpgradeableScreen<IOPortMenu> {
             int mouseY, float partialTicks) {
         super.drawBG(guiGraphics, offsetX, offsetY, mouseX, mouseY, partialTicks);
 
-        this.drawItem(guiGraphics, offsetX + 66 - 8, offsetY + 17, TLItems.ITEM_CELL_1K.stack());
+        this.drawItem(guiGraphics, offsetX + 66 - 8, offsetY + 17, TLItems.CELL_ITEM_1K.stack());
         this.drawItem(guiGraphics, offsetX + 94 + 8, offsetY + 17, TLBlocks.DRIVE.stack());
     }
 

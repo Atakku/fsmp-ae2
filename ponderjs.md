@@ -71,7 +71,7 @@ make the indicator light more visible.
 scene.world.setBlocks([2, 1, 2], "tl2:cable_bus", false);
 scene.world.modifyTileNBT([2, 1, 2], nbt => {
     nbt.cable = {
-        id: "tl2:green_covered_cable"
+        id: "tl2:green_smart_cable"
     };
     nbt.down = {
         id: 'tl2:storage_bus'
@@ -173,11 +173,11 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
         online: true, // Controls whether the LEDs are on or off (default: false)
         // Set the cells using cell0 to cell9
         cell2: {
-            id: 'tl2:item_storage_cell_64k', // Item ID of cell
+            id: 'tl2:cell_item_64k', // Item ID of cell
             state: 'empty' // Status of cell LED
         },
         cell5: {
-            id: 'tl2:fluid_storage_cell_64k',
+            id: 'tl2:cell_fluid_64k',
             state: 'full'
         }
     };

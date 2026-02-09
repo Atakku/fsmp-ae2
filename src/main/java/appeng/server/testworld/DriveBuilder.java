@@ -37,14 +37,14 @@ public class DriveBuilder {
     }
 
     public ItemCellBuilder addItemCell64k() {
-        var cell = TLItems.ITEM_CELL_64K.stack();
+        var cell = TLItems.CELL_ITEM_64K.stack();
         var cellInv = BasicCellInventory.createInventory(cell, null);
         cells.add(cell);
         return new ItemCellBuilder(cellInv);
     }
 
     public FluidCellBuilder addFluidCell64k() {
-        var cell = TLItems.FLUID_CELL_64K.stack();
+        var cell = TLItems.CELL_FLUID_64K.stack();
         var cellInv = BasicCellInventory.createInventory(cell, null);
         cells.add(cell);
         return new FluidCellBuilder(cellInv);

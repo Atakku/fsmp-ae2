@@ -1,6 +1,6 @@
 {
   "type": "tl2:storage_cell_disassembly",
-  "cell": "tl2:fluid_storage_cell_64k",
+  "cell": "tl2:cell_fluid_64k",
   "cell_disassembly_items": [
     {
       "count": 1,

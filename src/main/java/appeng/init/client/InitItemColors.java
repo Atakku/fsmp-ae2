@@ -51,10 +51,10 @@ public final class InitItemColors {
         // I checked, the ME chest doesn't keep its color in item form
         registrar.register(new StaticItemColor(TLColor.TRANSPARENT), TLBlocks.ME_CHEST.asItem());
 
-        registrar.register(BasicStorageCell::getColor, TLItems.ITEM_CELL_1K, TLItems.FLUID_CELL_1K,
-                TLItems.ITEM_CELL_4K, TLItems.FLUID_CELL_4K,
-                TLItems.ITEM_CELL_16K, TLItems.FLUID_CELL_16K,
-                TLItems.ITEM_CELL_64K, TLItems.FLUID_CELL_64K);
+        registrar.register(BasicStorageCell::getColor, TLItems.CELL_ITEM_1K, TLItems.CELL_FLUID_1K,
+                TLItems.CELL_ITEM_4K, TLItems.CELL_FLUID_4K,
+                TLItems.CELL_ITEM_16K, TLItems.CELL_FLUID_16K,
+                TLItems.CELL_ITEM_64K, TLItems.CELL_FLUID_64K);
 
         // Automatically register colors for certain items we register
         for (ItemDefinition<?> definition : TLItems.getItems()) {
