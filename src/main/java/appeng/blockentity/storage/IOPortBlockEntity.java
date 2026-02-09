@@ -64,7 +64,6 @@ import appeng.api.util.TLCableType;
 import appeng.blockentity.grid.TLNetworkedInvBlockEntity;
 import appeng.core.definitions.TLBlocks;
 import appeng.core.definitions.TLItems;
-import appeng.core.settings.TickRates;
 import appeng.me.helpers.MachineSource;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.CombinedInternalInventory;
@@ -257,7 +256,7 @@ public class IOPortBlockEntity extends TLNetworkedInvBlockEntity
 
     @Override
     public TickingRequest getTickingRequest(IGridNode node) {
-        return new TickingRequest(TickRates.IOPort, !this.hasWork());
+        return new TickingRequest(1, 5, !this.hasWork());
     }
 
     @Override

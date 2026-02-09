@@ -17,25 +17,6 @@ public enum ItemModText implements LocalizationEnum {
     WILL_CRAFT("Will craft unavailable items"),
     CTRL_CLICK_TO_CRAFT("CTRL + click to craft unavailable items"),
     MOVE_ITEMS("Move items"),
-    // Display of TL2-specific REI/JEI entries
-    TRANSFORM_CATEGORY("In-World Transformation"),
-    P2P_API_ATTUNEMENT("Attune with any:"),
-    P2P_TUNNEL_ATTUNEMENT("P2P Tunnel Attunement"),
-    P2P_TAG_ATTUNEMENT("Attune with any shown item"),
-    CERTUS_QUARTZ_GROWTH("Certus Quartz Growth"),
-
-    QUARTZ_BUDS_GROW_ON_BUDDING_QUARTZ("Quartz buds grow on budding quartz."),
-    BUDS_DROP_DUST_WHEN_NOT_FULLY_GROWN("A quartz bud drops dust when not fully grown."),
-    FULLY_GROWN_BUDS_DROP_CRYSTALS("A fully grown quartz bud drops crystals."),
-    FORTUNE_APPLIES("Fortune enchantment applies"),
-    IMPERFECT_BUDDING_QUARTZ_DECAYS("Imperfect budding quartz has a chance to decay when buds grow."),
-    DECAY_CHANCE("%d%% chance"),
-    BUDDING_QUARTZ_DECAYS_WHEN_BROKEN("Budding quartz decays when broken."),
-    SILK_TOUCH_PREVENTS_DECAY_FOR_IMPERFECT("Silk touch prevents decay for imperfect budding quartz."),
-    BUDDING_QUARTZ_CREATION_AND_WORLDGEN(
-            "Budding quartz can be found in meteorites, or be regenerated using charged quartz in water."),
-    FLAWLESS_BUDDING_QUARTZ_DESCRIPTION(
-            "Flawless budding quartz never decays when growing buds. It may only be found in meteorites."),
 
     RIGHT_CLICK("Right-Click"),
     SHIFT_RIGHT_CLICK("Shift+Right-Click"),

@@ -114,14 +114,7 @@ public class LocalizationProvider implements ITL2DataProvider {
         add("theoneprobe.tl2.device_offline", "Device Offline");
         add("theoneprobe.tl2.device_online", "Device Online");
         add("theoneprobe.tl2.locked", "Locked");
-        add("theoneprobe.tl2.nested_p2p_tunnel", "Error: Nested P2P Tunnel");
-        add("theoneprobe.tl2.p2p_frequency", "Frequency: %1$s");
-        add("theoneprobe.tl2.p2p_input_many_outputs", "Linked (Input Side) - %d Outputs");
-        add("theoneprobe.tl2.p2p_input_one_output", "Linked (Input Side)");
-        add("theoneprobe.tl2.p2p_output", "Linked (Output Side)");
-        add("theoneprobe.tl2.p2p_unlinked", "Unlinked");
         add("theoneprobe.tl2.showing", "Showing");
-        add("theoneprobe.tl2.stored_energy", "%1$d / %2$d");
         add("theoneprobe.tl2.unlocked", "Unlocked");
     }
 

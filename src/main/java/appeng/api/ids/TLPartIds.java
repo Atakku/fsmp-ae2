@@ -34,7 +34,6 @@ import appeng.api.util.TLColor;
 /**
  * Contains {@link net.minecraft.world.item.Item} ids for various cable bus parts defined by TL2.
  */
-@SuppressWarnings("unused")
 public final class TLPartIds {
 
     ///

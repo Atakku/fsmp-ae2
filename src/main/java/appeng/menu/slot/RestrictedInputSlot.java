@@ -22,7 +22,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 
 import appeng.api.features.GridLinkables;
 import appeng.api.features.IGridLinkableHandler;
@@ -64,10 +63,6 @@ public class RestrictedInputSlot extends AppEngSlot {
     public Slot setStackLimit(int i) {
         this.stackLimit = i;
         return this;
-    }
-
-    private Level getLevel() {
-        return getMenu().getPlayerInventory().player.getCommandSenderWorld();
     }
 
     @Override

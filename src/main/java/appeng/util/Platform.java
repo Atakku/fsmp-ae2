@@ -64,14 +64,11 @@ import appeng.api.util.DimensionalBlockPos;
 import appeng.core.TLLog;
 import appeng.hooks.VisualStateSaving;
 import appeng.hooks.ticking.TickHandler;
-import appeng.util.helpers.P2PHelper;
 
 public class Platform {
 
     @VisibleForTesting
     public static ThreadGroup serverThreadGroup = SidedThreadGroups.SERVER;
-
-    private static final P2PHelper P2P_HELPER = new P2PHelper();
 
     public static final Direction[] DIRECTIONS_WITH_NULL = new Direction[] { Direction.DOWN, Direction.UP,
             Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST, null };
@@ -115,10 +112,6 @@ public class Platform {
             TLLog.warn("Unable to find class %s. Integration with PonderJS disabled.", className);
             return null;
         }
-    }
-
-    public static P2PHelper p2p() {
-        return P2P_HELPER;
     }
 
     public static String formatTimeMeasurement(long nanos) {

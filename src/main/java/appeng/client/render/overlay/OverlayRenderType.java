@@ -18,21 +18,13 @@
 
 package appeng.client.render.overlay;
 
-import static net.minecraft.client.renderer.RenderStateShard.COLOR_WRITE;
-import static net.minecraft.client.renderer.RenderStateShard.GREATER_DEPTH_TEST;
-import static net.minecraft.client.renderer.RenderStateShard.LEQUAL_DEPTH_TEST;
-import static net.minecraft.client.renderer.RenderStateShard.TRANSLUCENT_TRANSPARENCY;
-
 import java.util.OptionalDouble;
 
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
 import net.minecraft.client.renderer.RenderStateShard;
-import net.minecraft.client.renderer.RenderStateShard.LineStateShard;
-import net.minecraft.client.renderer.RenderStateShard.TransparencyStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderType.CompositeState;
 
 /**
  * This is based on the area render of https://github.com/TeamPneumatic/pnc-repressurized/

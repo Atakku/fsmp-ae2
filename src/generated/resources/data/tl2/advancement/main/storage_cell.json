@@ -1,5 +1,5 @@
 {
-  "parent": "tl2:main/controller",
+  "parent": "tl2:main/fluix",
   "criteria": {
     "c16k": {
       "conditions": {

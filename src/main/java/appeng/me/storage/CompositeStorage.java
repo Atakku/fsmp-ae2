@@ -141,9 +141,5 @@ public class CompositeStorage implements MEStorage, ITickingMonitor {
         public void getAvailableKeys(KeyCounter out) {
             out.addAll(frontBuffer);
         }
-
-        public boolean contains(TLKey what) {
-            return frontBuffer.get(what) > 0;
-        }
     }
 }

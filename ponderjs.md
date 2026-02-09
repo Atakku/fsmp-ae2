@@ -91,42 +91,6 @@ scene.world.modifyTileNBT([2, 1, 2], nbt => {
 }, true);
 ```
 
-### Facades
-
-Facades are serialized as ItemStack NBT data under one key per side: `facadeDown`, `facadeUp`, `facadeNorth`
-, `facadeSouth`, `facadeWest`, `facadeEast`. Please note that it's a serialized TL2 facade item and not the
-item the facade was created from. See below for an example:
-
-```javascript
-scene.world.setBlocks([2, 1, 2], "tl2:cable_bus", false);
-scene.world.modifyTileNBT([2, 1, 2], nbt => {
-  nbt.cable = {
-    id: "tl2:fluix_covered_cable"
-  };
-  nbt.facadeUp = {
-    id: 'tl2:facade',
-    Count: 1,
-    tag: {
-      item: 'minecraft:cobblestone'
-    }
-  };
-  nbt.facadeWest = {
-    id: 'tl2:facade',
-    Count: 1,
-    tag: {
-      item: 'minecraft:stone'
-    }
-  };
-  nbt.facadeNorth = {
-    id: 'tl2:facade',
-    Count: 1,
-    tag: {
-      item: 'minecraft:glass'
-    }
-  };
-});
-```
-
 ### Part-Specific Properties
 
 #### Storage Monitor & Conversion Monitor
@@ -173,41 +137,6 @@ nbt.up = {
     id: 'tl2:annihilation_plane',
     visual: {
         powered: true // Enables the texture animation on the plane (default: false)
-    }
-};
-```
-
-#### P2P Tunnels
-
-Remember that each type of P2P tunnel has their own item id.
-
-NBT Example:
-
-```javascript
-nbt.south = {
-    id: 'tl2:me_p2p_tunnel',
-    freq: 1234, // The frequency is shown as a colored pattern on the back
-    visual: {
-        powered: true
-    }
-};
-```
-
-**Light P2P Tunnel**
-
-The Light P2P tunnel also supports a `lastValue` property that sets the emitted light-level on the output side.
-But PonderJS does not support block lighting, making this pointless.
-
-#### Toggle Bus / Inverted Toggle Bus
-
-NBT Example:
-
-```javascript
-nbt.east = {
-    id: 'tl2:toggle_bus',
-    visual: {
-        powered: true, // The bus needs to be powered to show the indicator
-        on: true // Toggles the visual indicator on/off (default: false)
     }
 };
 ```

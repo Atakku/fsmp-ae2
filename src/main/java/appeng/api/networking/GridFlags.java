@@ -38,8 +38,7 @@ public enum GridFlags {
     CANNOT_CARRY,
 
     /**
-     * This node can transmit 32 signals, this should only apply to Tier2 Cable, P2P Tunnels, and Quantum Network
-     * Bridges.
+     * This node can transmit 32 signals, this should only apply to Tier2 Cables
      * <p>
      * Causes paths through these nodes to be strongly preferred.
      */

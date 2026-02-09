@@ -139,10 +139,6 @@ final class RectanglePacking {
             this.wrapped = wrapped;
         }
 
-        public Rectangle<T> copy() {
-            return new Rectangle<>(x, y, w, h, wrapped);
-        }
-
         public Positioned<T> toPositioned() {
             return new Positioned<>(x, y, w, h, wrapped);
         }

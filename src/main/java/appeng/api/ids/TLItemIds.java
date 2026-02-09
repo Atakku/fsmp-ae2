@@ -28,7 +28,6 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Contains {@link net.minecraft.world.item.Item} ids for various items defined by TL2.
  */
-@SuppressWarnings("unused")
 public final class TLItemIds {
     public static final ResourceLocation MISSING_CONTENT = id("missing_content");
 

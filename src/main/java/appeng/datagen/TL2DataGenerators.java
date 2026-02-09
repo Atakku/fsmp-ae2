@@ -37,7 +37,6 @@ import appeng.datagen.providers.loot.TL2LootTableProvider;
 import appeng.datagen.providers.models.BlockModelProvider;
 import appeng.datagen.providers.models.CableModelProvider;
 import appeng.datagen.providers.models.ItemModelProvider;
-import appeng.datagen.providers.models.PartModelProvider;
 import appeng.datagen.providers.recipes.CraftingRecipes;
 import appeng.datagen.providers.recipes.CuttingRecipes;
 import appeng.datagen.providers.recipes.MillingRecipes;
@@ -74,7 +73,6 @@ public class TL2DataGenerators {
         pack.addProvider(packOutput -> new BlockModelProvider(packOutput, existingFileHelper));
         pack.addProvider(packOutput -> new ItemModelProvider(packOutput, existingFileHelper));
         pack.addProvider(packOutput -> new CableModelProvider(packOutput, existingFileHelper));
-        pack.addProvider(packOutput -> new PartModelProvider(packOutput, existingFileHelper));
 
         // Misc
         pack.addProvider(packOutput -> new AdvancementProvider(packOutput, registries, existingFileHelper, List.of(

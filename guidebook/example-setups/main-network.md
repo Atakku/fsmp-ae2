@@ -24,13 +24,6 @@ together into a functional system. Here is an example:
         are mainly just to look cool.
     </BoxAnnotation>
 
-    <BoxAnnotation color="#33dd33" min="15 1 9" max="16 3 14" thickness="0.05">
-        Facades can be used to hide stuff behind walls.
-    </BoxAnnotation>
-    <BoxAnnotation color="#33dd33" min="15 3 12" max="16 10 14" thickness="0.05">
-        Facades can be used to hide stuff behind walls.
-    </BoxAnnotation>
-
     <BoxAnnotation color="#33dd33" min="13 9 7" max="14 10 9" thickness="0.05">
         You don't need that many drive bays and cells for your general storage, 2-4 Drives worth of 4k or 16k
         cells is almost always enough.

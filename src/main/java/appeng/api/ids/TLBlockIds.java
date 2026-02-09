@@ -29,7 +29,6 @@ import net.minecraft.world.level.block.Block;
 /**
  * Contains {@link Block} ids for various blocks defined by TL2.
  */
-@SuppressWarnings("unused")
 public final class TLBlockIds {
     ///
     /// ME NETWORK

@@ -629,10 +629,6 @@ public class MEStorageScreen<C extends MEStorageMenu>
         return super.keyPressed(keyCode, scanCode, p_keyPressed_3_);
     }
 
-    private boolean isHovered() {
-        return isHovering(0, 0, this.imageWidth, this.imageHeight, currentMouseX, currentMouseY);
-    }
-
     @Override
     public void containerTick() {
         this.repo.setEnabled(this.menu.getLinkStatus().connected());

@@ -18,20 +18,15 @@
 
 package appeng.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
-import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
 import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
 import appeng.api.config.TerminalStyle;
-import appeng.core.settings.TickRates;
 import appeng.util.Platform;
 
 public final class TLConfig {
@@ -331,9 +326,6 @@ public final class TLConfig {
         public final BooleanValue gridLog;
         public final BooleanValue chunkLoggerTrace;
 
-        public final Map<TickRates, IntValue> tickRateMin = new HashMap<>();
-        public final Map<TickRates, IntValue> tickRateMax = new HashMap<>();
-
         public CommonConfig() {
             var builder = new ModConfigSpec.Builder();
 
@@ -348,25 +340,10 @@ public final class TLConfig {
             chunkLoggerTrace = define(builder, "chunkLoggerTrace", false,
                     "Enable stack trace logging for the chunk loading debug command");
             builder.pop();
-
-            builder.comment(
-                    " Min / Max Tickrates for dynamic ticking, most of these components also use sleeping, to prevent constant ticking, adjust with care, non standard rates are not supported or tested.");
-            builder.push("tickRates");
-            for (TickRates tickRate : TickRates.values()) {
-                tickRateMin.put(tickRate, define(builder, tickRate.name() + "Min", tickRate.getDefaultMin()));
-                tickRateMax.put(tickRate, define(builder, tickRate.name() + "Max", tickRate.getDefaultMax()));
-            }
-            builder.pop();
-
             spec = builder.build();
         }
 
         public void sync() {
-            for (TickRates tr : TickRates.values()) {
-                tr.setMin(tickRateMin.get(tr).get());
-                tr.setMax(tickRateMax.get(tr).get());
-            }
-
             TLLog.setDebugLogEnabled(debugLog.get());
             TLLog.setGridLogEnabled(gridLog.get());
         }
@@ -387,26 +364,6 @@ public final class TLConfig {
         return define(builder, name, defaultValue);
     }
 
-    private static DoubleValue define(ModConfigSpec.Builder builder, String name, double defaultValue) {
-        return define(builder, name, defaultValue, Double.MIN_VALUE, Double.MAX_VALUE);
-    }
-
-    private static DoubleValue define(ModConfigSpec.Builder builder, String name, double defaultValue, String comment) {
-        builder.comment(comment);
-        return define(builder, name, defaultValue);
-    }
-
-    private static DoubleValue define(ModConfigSpec.Builder builder, String name, double defaultValue, double min,
-            double max, String comment) {
-        builder.comment(comment);
-        return define(builder, name, defaultValue, min, max);
-    }
-
-    private static DoubleValue define(ModConfigSpec.Builder builder, String name, double defaultValue, double min,
-            double max) {
-        return builder.defineInRange(name, defaultValue, min, max);
-    }
-
     private static IntValue define(ModConfigSpec.Builder builder, String name, int defaultValue, int min, int max,
             String comment) {
         builder.comment(comment);
@@ -424,12 +381,6 @@ public final class TLConfig {
     private static <T extends Enum<T>> EnumValue<T> defineEnum(ModConfigSpec.Builder builder, String name,
             T defaultValue) {
         return builder.defineEnum(name, defaultValue);
-    }
-
-    private static <T extends Enum<T>> EnumValue<T> defineEnum(ModConfigSpec.Builder builder, String name,
-            T defaultValue, String comment) {
-        builder.comment(comment);
-        return defineEnum(builder, name, defaultValue);
     }
 
 }

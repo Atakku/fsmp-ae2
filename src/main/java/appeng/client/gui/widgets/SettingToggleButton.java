@@ -33,7 +33,6 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.FullnessMode;
@@ -214,17 +213,6 @@ public class SettingToggleButton<T extends Enum<T>> extends IconButton {
         appearances.put(
                 new EnumPair<>(setting, val),
                 new ButtonAppearance(icon, null, lines));
-    }
-
-    private static <T extends Enum<T>> void registerApp(ItemLike item, Setting<T> setting, T val,
-            ButtonToolTips title, Component... tooltipLines) {
-        var lines = new ArrayList<Component>();
-        lines.add(title.text());
-        Collections.addAll(lines, tooltipLines);
-
-        appearances.put(
-                new EnumPair<>(setting, val),
-                new ButtonAppearance(null, item.asItem(), lines));
     }
 
     private static <T extends Enum<T>> void registerApp(Icon icon, Setting<T> setting, T val,

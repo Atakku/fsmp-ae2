@@ -66,18 +66,17 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
     @Override
     public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer,
             ExistingFileHelper existingFileHelper) {
-        var root = Advancement.Builder.advancement()
+        var fluix = Advancement.Builder.advancement()
                 .display(
                         TLItems.FLUIX,
                         localization.component("achievement.tl2.Fluix", "Unnatural"),
                         localization.component("achievement.tl2.Fluix.desc", "Create Fluix Crystals"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.FLUIX))
+                        true,
+                        true,
+                        false)
+                .addCriterion("fluix", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.FLUIX))
                 .save(consumer, "tl2:main/fluix");
 
         var controller = Advancement.Builder.advancement()
@@ -85,14 +84,13 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         TLBlocks.CONTROLLER,
                         localization.component("achievement.tl2.Controller", "Networking Switchboard"),
                         localization.component("achievement.tl2.Controller.desc", "Craft a Controller"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(root)
-                .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLBlocks.CONTROLLER))
+                        true,
+                        true,
+                        false)
+                .parent(fluix)
+                .addCriterion("controller", InventoryChangeTrigger.TriggerInstance.hasItems(TLBlocks.CONTROLLER))
                 .save(consumer, "tl2:main/controller");
 
         var storageCell = Advancement.Builder.advancement()
@@ -100,12 +98,12 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         TLItems.ITEM_CELL_64K,
                         localization.component("achievement.tl2.StorageCell", "Better Than Chests"),
                         localization.component("achievement.tl2.StorageCell.desc", "Craft a Storage Cell"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
                         false,
                         false,
                         false)
-                .parent(controller)
+                .parent(fluix)
                 .addCriterion("c1k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_1K))
                 .addCriterion("c4k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_4K))
                 .addCriterion("c16k", InventoryChangeTrigger.TriggerInstance.hasItems(TLItems.ITEM_CELL_16K))
@@ -118,12 +116,11 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         TLBlocks.IO_PORT,
                         localization.component("achievement.tl2.IOPort", "Storage Cell Shuffle"),
                         localization.component("achievement.tl2.IOPort.desc", "Craft an IO Port"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
+                        true,
+                        true,
+                        false)
                 .parent(storageCell)
                 .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLBlocks.IO_PORT))
                 .save(consumer, "tl2:main/ioport");
@@ -133,29 +130,27 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         TLParts.CRAFTING_TERMINAL,
                         localization.component("achievement.tl2.CraftingTerminal", "A (Much) Bigger Table"),
                         localization.component("achievement.tl2.CraftingTerminal.desc", "Craft a Crafting Terminal"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
+                        true,
+                        true,
+                        false)
                 .parent(controller)
                 .addCriterion("certus", InventoryChangeTrigger.TriggerInstance.hasItems(TLParts.CRAFTING_TERMINAL))
                 .save(consumer, "tl2:main/crafting_terminal");
 
-        var glassCable = Advancement.Builder.advancement()
+        var cable = Advancement.Builder.advancement()
                 .display(
                         TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT),
                         localization.component("achievement.tl2.GlassCable", "Fluix Energy Connection"),
                         localization.component("achievement.tl2.GlassCable.desc", "Craft ME Glass Cable"),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(root)
-                .addCriterion("certus",
+                        true,
+                        true,
+                        false)
+                .parent(fluix)
+                .addCriterion("cable",
                         InventoryChangeTrigger.TriggerInstance
                                 .hasItems(ItemPredicate.Builder.item().of(ConventionTags.GLASS_CABLE).build()))
                 .save(consumer, "tl2:main/glass_cable");
@@ -166,13 +161,12 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         localization.component("achievement.tl2.Networking1", "Network Apprentice"),
                         localization.component("achievement.tl2.Networking1.desc",
                                 "Reach 8 channels using devices on a network."),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
-                .parent(glassCable)
+                        true,
+                        true,
+                        false)
+                .parent(cable)
                 .addCriterion("cable", AdvancementTriggers.networkApprenticeCriterion())
                 .save(consumer, "tl2:main/network1");
 
@@ -182,12 +176,11 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         localization.component("achievement.tl2.Networking2", "Network Engineer"),
                         localization.component("achievement.tl2.Networking2.desc",
                                 "Reach 128 channels using devices on a network."),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
+                        true,
+                        true,
+                        false)
                 .parent(network1)
                 .addCriterion("cable", AdvancementTriggers.networkEngineerCriterion())
                 .save(consumer, "tl2:main/network2");
@@ -198,12 +191,11 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         localization.component("achievement.tl2.Networking3", "Network Administrator"),
                         localization.component("achievement.tl2.Networking3.desc",
                                 "Reach 2048 channels using devices on a network."),
-                        null /* background */,
+                        null,
                         AdvancementType.TASK,
-                        true /* showToast */,
-                        true /* announceChat */,
-                        false /* hidden */
-                )
+                        true,
+                        true,
+                        false)
                 .parent(network2)
                 .addCriterion("cable", AdvancementTriggers.networkAdminCriterion())
                 .save(consumer, "tl2:main/network3");

@@ -133,11 +133,6 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
                 makeId(texture));
     }
 
-    private ItemModelBuilder builtInItemModel(String name) {
-        var model = getBuilder("item/" + name);
-        return model;
-    }
-
     private static ResourceLocation makeId(String id) {
         return id.contains(":") ? ResourceLocation.parse(id) : AppEng.makeId(id);
     }
