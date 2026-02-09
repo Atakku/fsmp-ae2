@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_smart_cable/magenta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:magenta_smart_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/dense_magenta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_smart_cable/magenta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/dense_magenta"
+    ]
+  }
+}

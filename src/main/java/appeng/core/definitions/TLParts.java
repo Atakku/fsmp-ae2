@@ -38,15 +38,13 @@ import appeng.items.parts.PartModelsHelper;
 import appeng.parts.automation.StorageLevelEmitterPart;
 import appeng.parts.misc.InvertedToggleBusPart;
 import appeng.parts.misc.ToggleBusPart;
+import appeng.parts.networking.DenseCablePart;
 import appeng.parts.networking.GlassCablePart;
 import appeng.parts.networking.SmartCablePart;
-import appeng.parts.networking.SmartDenseCablePart;
 import appeng.parts.reporting.ConversionMonitorPart;
 import appeng.parts.reporting.CraftingTerminalPart;
-import appeng.parts.reporting.DarkPanelPart;
 import appeng.parts.reporting.ItemTerminalPart;
 import appeng.parts.reporting.PanelPart;
-import appeng.parts.reporting.SemiDarkPanelPart;
 import appeng.parts.reporting.StorageMonitorPart;
 
 /**
@@ -56,14 +54,12 @@ public final class TLParts {
     public static final List<ColoredItemDefinition<?>> COLORED_PARTS = new ArrayList<>();
 
     // spotless:off
-    public static final ColoredItemDefinition<ColoredPartItem<SmartCablePart>> SMART_CABLE = constructColoredDefinition("ME Smart Cable", "smart_cable", SmartCablePart.class, SmartCablePart::new);
     public static final ColoredItemDefinition<ColoredPartItem<GlassCablePart>> GLASS_CABLE = constructColoredDefinition("ME Glass Cable", "glass_cable", GlassCablePart.class, GlassCablePart::new);
-    public static final ColoredItemDefinition<ColoredPartItem<SmartDenseCablePart>> SMART_DENSE_CABLE = constructColoredDefinition("ME Dense Smart Cable", "smart_dense_cable", SmartDenseCablePart.class, SmartDenseCablePart::new);
+    public static final ColoredItemDefinition<ColoredPartItem<SmartCablePart>> SMART_CABLE = constructColoredDefinition("ME Smart Cable", "smart_cable", SmartCablePart.class, SmartCablePart::new);
+    public static final ColoredItemDefinition<ColoredPartItem<DenseCablePart>> DENSE_CABLE = constructColoredDefinition("ME Dense Cable", "dense_cable",  DenseCablePart.class, DenseCablePart::new);
     public static final ItemDefinition<PartItem<ToggleBusPart>> TOGGLE_BUS = createPart("ME Toggle Bus", TLPartIds.TOGGLE_BUS, ToggleBusPart.class, ToggleBusPart::new);
     public static final ItemDefinition<PartItem<InvertedToggleBusPart>> INVERTED_TOGGLE_BUS = createPart("ME Inverted Toggle Bus", TLPartIds.INVERTED_TOGGLE_BUS, InvertedToggleBusPart.class, InvertedToggleBusPart::new);
-    public static final ItemDefinition<PartItem<PanelPart>> MONITOR = createPart("Bright Illuminated Panel", TLPartIds.MONITOR, PanelPart.class, PanelPart::new);
-    public static final ItemDefinition<PartItem<SemiDarkPanelPart>> SEMI_DARK_MONITOR = createPart("Illuminated Panel", TLPartIds.SEMI_DARK_MONITOR, SemiDarkPanelPart.class, SemiDarkPanelPart::new);
-    public static final ItemDefinition<PartItem<DarkPanelPart>> DARK_MONITOR = createPart("Dark Illuminated Panel", TLPartIds.DARK_MONITOR, DarkPanelPart.class, DarkPanelPart::new);
+    public static final ItemDefinition<PartItem<PanelPart>> PANEL = createPart("Illuminated Panel", TLPartIds.PANEL, PanelPart.class, PanelPart::new);
     public static final ItemDefinition<PartItem<StorageLevelEmitterPart>> LEVEL_EMITTER = createPart("ME Level Emitter", TLPartIds.LEVEL_EMITTER, StorageLevelEmitterPart.class, StorageLevelEmitterPart::new);
     public static final ItemDefinition<PartItem<CraftingTerminalPart>> CRAFTING_TERMINAL = createPart("ME Crafting Terminal", TLPartIds.CRAFTING_TERMINAL, CraftingTerminalPart.class, CraftingTerminalPart::new);
     public static final ItemDefinition<PartItem<ItemTerminalPart>> TERMINAL = createPart("ME Terminal", TLPartIds.TERMINAL, ItemTerminalPart.class, ItemTerminalPart::new);

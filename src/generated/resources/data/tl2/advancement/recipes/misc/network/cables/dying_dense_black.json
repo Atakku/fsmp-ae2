@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cable_dense": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#tl2:smart_dense_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dye/black": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dyes/black"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/dying_dense_black"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cable_dense",
+      "has_dye/black"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/dying_dense_black"
+    ]
+  }
+}

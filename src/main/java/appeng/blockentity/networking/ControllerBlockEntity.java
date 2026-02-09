@@ -52,7 +52,7 @@ public class ControllerBlockEntity extends TLNetworkedInvBlockEntity {
 
     @Override
     public TLCableType getCableConnectionType(Direction dir) {
-        return TLCableType.DENSE_SMART;
+        return TLCableType.DENSE;
     }
 
     @Override

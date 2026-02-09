@@ -1,21 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dyes/black": {
+    "has_dusts/glowstone": {
       "conditions": {
         "items": [
           {
-            "items": "#c:dyes/yellow"
+            "items": "#c:dusts/glowstone"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_fluix_smart_cable": {
+    "has_dusts/redstone": {
       "conditions": {
         "items": [
           {
-            "items": "tl2:fluix_smart_cable"
+            "items": "#c:dusts/redstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glass_cable/yellow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:yellow_glass_cable"
           }
         ]
       },
@@ -31,8 +41,9 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_dyes/black",
-      "has_fluix_smart_cable"
+      "has_dusts/redstone",
+      "has_dusts/glowstone",
+      "has_glass_cable/yellow"
     ]
   ],
   "rewards": {

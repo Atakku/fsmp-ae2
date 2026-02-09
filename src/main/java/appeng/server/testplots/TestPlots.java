@@ -194,7 +194,7 @@ public final class TestPlots {
     public static void allTerminals(PlotBuilder plot) {
         plot.cable("0 -1 0");
 
-        plot.cable("[-1,0] [0,8] 0", TLParts.SMART_DENSE_CABLE);
+        plot.cable("[-1,0] [0,8] 0", TLParts.DENSE_CABLE);
         plot.block("[-1,0] 5 0", TLBlocks.CONTROLLER);
         plot.storageDrive(new BlockPos(0, 5, 1));
         plot.afterGridInitAt(new BlockPos(0, 5, 1), (grid, gridNode) -> {
@@ -222,8 +222,8 @@ public final class TestPlots {
             line.cable("[1,9] 0 0", TLParts.GLASS_CABLE, color);
             line.part("1 0 0", Direction.NORTH, TLParts.TERMINAL);
             line.part("2 0 0", Direction.NORTH, TLParts.CRAFTING_TERMINAL);
-            line.part("3 0 0", Direction.NORTH, TLParts.MONITOR);
-            line.part("4 0 0", Direction.NORTH, TLParts.MONITOR);
+            line.part("3 0 0", Direction.NORTH, TLParts.PANEL);
+            line.part("4 0 0", Direction.NORTH, TLParts.PANEL);
             line.part("5 0 0", Direction.NORTH, TLParts.STORAGE_MONITOR, monitor -> {
                 var enchantedPickaxe = createEnchantedPickaxe(monitor.getLevel());
                 monitor.setConfiguredItem(enchantedPickaxe);
@@ -233,9 +233,9 @@ public final class TestPlots {
                 monitor.setConfiguredItem(TLItemKey.of(Items.ACACIA_LOG));
                 monitor.setLocked(true);
             });
-            line.part("7 0 0", Direction.NORTH, TLParts.MONITOR);
-            line.part("8 0 0", Direction.NORTH, TLParts.SEMI_DARK_MONITOR);
-            line.part("9 0 0", Direction.NORTH, TLParts.DARK_MONITOR);
+            line.part("7 0 0", Direction.NORTH, TLParts.PANEL);
+            line.part("8 0 0", Direction.NORTH, TLParts.PANEL);
+            line.part("9 0 0", Direction.NORTH, TLParts.PANEL);
         }
     }
 

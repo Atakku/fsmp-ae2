@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cable_smart": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#tl2:smart_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dye/light_blue": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dyes/light_blue"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/dying_smart_light_blue"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cable_smart",
+      "has_dye/light_blue"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/dying_smart_light_blue"
+    ]
+  }
+}

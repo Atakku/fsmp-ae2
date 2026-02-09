@@ -79,7 +79,7 @@ class CableBuilder {
         String textureFolder = switch (cableType) {
             case GLASS -> "part/cable/glass/";
             case SMART -> "part/cable/smart/";
-            case DENSE_SMART -> "part/cable/dense_smart/";
+            case DENSE -> "part/cable/dense/";
             default -> throw new IllegalStateException("Cable type " + cableType + " does not support connections.");
         };
 
@@ -100,8 +100,8 @@ class CableBuilder {
             case SMART:
                 this.addCableCore(CableCoreType.SMART, color, quadsOut);
                 break;
-            case DENSE_SMART:
-                this.addCableCore(CableCoreType.DENSE_SMART, color, quadsOut);
+            case DENSE:
+                this.addCableCore(CableCoreType.DENSE, color, quadsOut);
                 break;
             default:
         }
@@ -116,7 +116,7 @@ class CableBuilder {
         switch (coreType) {
             case GLASS -> cubeBuilder.addCube(6, 6, 6, 10, 10, 10);
             case SMART -> cubeBuilder.addCube(5, 5, 5, 11, 11, 11);
-            case DENSE_SMART -> cubeBuilder.addCube(3, 3, 3, 13, 13, 13);
+            case DENSE -> cubeBuilder.addCube(3, 3, 3, 13, 13, 13);
         }
     }
 
@@ -391,7 +391,7 @@ class CableBuilder {
             }
         }
 
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE_SMART).get(cableColor);
+        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE).get(cableColor);
         cubeBuilder.setTexture(texture);
 
         addDenseCableSizedCube(facing, cubeBuilder);
@@ -435,7 +435,7 @@ class CableBuilder {
             }
         }
 
-        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE_SMART).get(cableColor);
+        TextureAtlasSprite texture = this.connectionTextures.get(TLCableType.DENSE).get(cableColor);
         cubeBuilder.setTexture(texture);
 
         setStraightCableUVs(cubeBuilder, facing, 3 / 16f, 13 / 16f);

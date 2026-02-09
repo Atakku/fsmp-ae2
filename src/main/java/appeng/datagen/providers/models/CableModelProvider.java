@@ -22,7 +22,7 @@ public class CableModelProvider extends TL2BlockStateProvider {
 
         buildCableItems(TLParts.GLASS_CABLE, "item/glass_cable_base", "part/cable/glass/");
         buildCableItems(TLParts.SMART_CABLE, "item/smart_cable_base", "part/cable/smart/");
-        buildCableItems(TLParts.SMART_DENSE_CABLE, "item/smart_dense_cable_base", "part/cable/dense_smart/");
+        buildCableItems(TLParts.DENSE_CABLE, "item/dense_cable_base", "part/cable/dense/");
 
     }
 

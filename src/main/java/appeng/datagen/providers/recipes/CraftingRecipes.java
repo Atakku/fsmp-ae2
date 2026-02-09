@@ -20,6 +20,7 @@ import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 
 import appeng.api.util.TLColor;
 import appeng.core.AppEng;
+import appeng.core.definitions.ColoredItemDefinition;
 import appeng.core.definitions.TLBlocks;
 import appeng.core.definitions.TLItems;
 import appeng.core.definitions.TLParts;
@@ -63,17 +64,24 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .unlockedBy("has_processor/logic", has(TLItems.PROCESSOR_LOGIC))
                 .save(consumer, AppEng.makeId("materials/formationcore"));
 
-        // Cell components
+        // Cells
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.VIEW_CELL)
+                .requires(ConventionTags.HOUSING)
+                .requires(TLItems.FLUIX)
+                .unlockedBy("has_terminal", has(ConventionTags.HOUSING))
+                .save(consumer, AppEng.makeId("network/cells/view_cell_storage"));
+        addCells(consumer, "item", TLItems.HOUSING_ITEM, TLItems.ITEM_CELL_1K, TLItems.ITEM_CELL_4K,
+                TLItems.ITEM_CELL_16K, TLItems.ITEM_CELL_64K);
+        addCells(consumer, "fluid", TLItems.HOUSING_FLUID, TLItems.FLUID_CELL_1K, TLItems.FLUID_CELL_4K,
+                TLItems.FLUID_CELL_16K, TLItems.FLUID_CELL_64K);
 
-        // ====================================================
         // Basic Cards
-        // ====================================================
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.BASIC_CARD, 2)
                 .pattern("ab ")
                 .pattern("cdb")
                 .pattern("ab ")
-                .define('a', ConventionTags.INGOT_GOLD)
-                .define('b', ConventionTags.IRON_INGOT)
+                .define('a', ConventionTags.INGOTS_GOLD)
+                .define('b', ConventionTags.INGOTS_IRON)
                 .define('c', ConventionTags.DUSTS_REDSTONE)
                 .define('d', TLItems.PROCESSOR_CALCULATION)
                 .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
@@ -89,15 +97,13 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .unlockedBy("has_basic_card", has(TLItems.BASIC_CARD))
                 .save(consumer, AppEng.makeId("materials/cardvoid"));
 
-        // ====================================================
         // Advanced Cards
-        // ====================================================
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ADVANCED_CARD, 2)
                 .pattern("ab ")
                 .pattern("cdb")
                 .pattern("ab ")
                 .define('a', ConventionTags.GEMS_DIAMOND)
-                .define('b', ConventionTags.IRON_INGOT)
+                .define('b', ConventionTags.INGOTS_IRON)
                 .define('c', ConventionTags.DUSTS_REDSTONE)
                 .define('d', TLItems.PROCESSOR_CALCULATION)
                 .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
@@ -123,23 +129,21 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .unlockedBy("has_advanced_card", has(TLItems.ADVANCED_CARD))
                 .save(consumer, AppEng.makeId("materials/carddistribution"));
 
-        // ====================================================
-        // Misc Materials
-        // ====================================================
-
-        // ====================================================
-        // recipes/misc
-        // ====================================================
-
+        // Fluix compacting
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.FLUIX_BLOCK)
+                .pattern("aa")
+                .pattern("aa")
+                .define('a', TLItems.FLUIX)
+                .unlockedBy("has_fluix", has(TLItems.FLUIX))
+                .save(consumer, AppEng.makeId("misc/fluix_to_block"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUIX, 4)
                 .requires(TLBlocks.FLUIX_BLOCK)
                 .unlockedBy("has_fluix_block", has(TLBlocks.FLUIX_BLOCK))
-                .save(consumer, AppEng.makeId("misc/deconstruction_fluix_block"));
+                .save(consumer, AppEng.makeId("misc/fluix_from_block"));
 
-        // ====================================================
-        // recipes/network
-        // ====================================================
+        addCables(consumer);
 
+        // wireless
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.WIRELESS_ACCESS_POINT)
                 .pattern("a")
                 .pattern("b")
@@ -154,7 +158,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("bcb")
                 .pattern(" b ")
                 .define('a', TLItems.FLUIX_PEARL)
-                .define('b', ConventionTags.IRON_INGOT)
+                .define('b', ConventionTags.INGOTS_IRON)
                 .define('c', Items.QUARTZ)
                 .unlockedBy("has_fluix_pearl", has(TLItems.FLUIX_PEARL))
                 .save(consumer, AppEng.makeId("network/wireless_part"));
@@ -198,7 +202,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("ccc")
                 .define('a', ItemTags.WOOL)
                 .define('b', TLItems.PROCESSOR_CALCULATION)
-                .define('c', ConventionTags.IRON_INGOT)
+                .define('c', ConventionTags.INGOTS_IRON)
                 .define('d', ConventionTags.CHEST)
                 .unlockedBy("has_processor_calculation", has(TLItems.PROCESSOR_CALCULATION))
                 .save(consumer, AppEng.makeId("network/blocks/cell_workbench"));
@@ -209,7 +213,7 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .define('a', Blocks.SMOOTH_STONE)
                 .define('b', TLItems.FLUIX)
                 .define('c', TLItems.PROCESSOR_ENGINEERING)
-                .unlockedBy("has_fluix_crystal", has(TLItems.FLUIX))
+                .unlockedBy("has_fluix", has(TLItems.FLUIX))
                 .unlockedBy("has_processor_engineering", has(TLItems.PROCESSOR_ENGINEERING))
                 .save(consumer, AppEng.makeId("network/blocks/controller"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.IO_PORT)
@@ -218,8 +222,8 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("ded")
                 .define('a', ConventionTags.GLASS_CHEAP)
                 .define('b', TLBlocks.DRIVE)
-                .define('c', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .define('d', ConventionTags.IRON_INGOT)
+                .define('c', ConventionTags.GLASS_CABLE)
+                .define('d', ConventionTags.INGOTS_IRON)
                 .define('e', TLItems.PROCESSOR_LOGIC)
                 .unlockedBy("has_drive", has(TLBlocks.DRIVE))
                 .save(consumer, AppEng.makeId("network/blocks/io_port"));
@@ -229,10 +233,10 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("ded")
                 .define('a', ConventionTags.GLASS_CHEAP)
                 .define('b', TLParts.TERMINAL)
-                .define('c', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_glass_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
+                .define('c', ConventionTags.GLASS_CABLE)
+                .define('d', ConventionTags.INGOTS_IRON)
+                .define('e', ConventionTags.INGOTS_COPPER)
+                .unlockedBy("has_glass_cable", has(ConventionTags.GLASS_CABLE))
                 .unlockedBy("has_terminal", has(TLParts.TERMINAL))
                 .unlockedBy("has_crystals/fluix", has(TLItems.FLUIX))
                 .save(consumer, AppEng.makeId("network/blocks/storage_chest"));
@@ -240,13 +244,11 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("aba")
                 .pattern("c c")
                 .pattern("aba")
-                .define('a', ConventionTags.IRON_INGOT)
+                .define('a', ConventionTags.INGOTS_IRON)
                 .define('b', TLItems.PROCESSOR_ENGINEERING)
-                .define('c', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
+                .define('c', ConventionTags.GLASS_CABLE)
                 .unlockedBy("has_processor_engineering", has(TLItems.PROCESSOR_ENGINEERING))
                 .save(consumer, AppEng.makeId("network/blocks/storage_drive"));
-
-        addCables(consumer);
 
         // ====================================================
         // recipes/network/cells
@@ -258,8 +260,8 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("cdc")
                 .define('a', TLBlocks.QUARTZ_GLASS)
                 .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', ConventionTags.IRON_INGOT)
-                .define('d', ConventionTags.COPPER_INGOT)
+                .define('c', ConventionTags.INGOTS_IRON)
+                .define('d', ConventionTags.INGOTS_COPPER)
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
                 .save(consumer, AppEng.makeId("network/cells/housing_item"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.HOUSING_FLUID)
@@ -268,28 +270,9 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("ccc")
                 .define('a', TLBlocks.QUARTZ_GLASS)
                 .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', ConventionTags.COPPER_INGOT)
+                .define('c', ConventionTags.INGOTS_COPPER)
                 .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
                 .save(consumer, AppEng.makeId("network/cells/housing_fluid"));
-
-        addFluidCells(consumer);
-        addItemCells(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.VIEW_CELL)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.FLUIX)
-                .define('d', ConventionTags.IRON_INGOT)
-                .unlockedBy("has_terminal", has(TLParts.TERMINAL))
-                .save(consumer, AppEng.makeId("network/cells/view_cell"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.VIEW_CELL)
-                .requires(TLItems.HOUSING_ITEM)
-                .requires(TLItems.FLUIX)
-                .unlockedBy("has_terminal", has(TLParts.TERMINAL))
-                .save(consumer, AppEng.makeId("network/cells/view_cell_storage"));
 
         // ====================================================
         // recipes/network/parts
@@ -308,39 +291,27 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .save(consumer, AppEng.makeId("network/parts/monitors_conversion"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.STORAGE_MONITOR)
                 .requires(TLParts.LEVEL_EMITTER)
-                .requires(ConventionTags.ILLUMINATED_PANEL)
-                .unlockedBy("has_illuminated_panel", has(ConventionTags.ILLUMINATED_PANEL))
+                .requires(TLParts.PANEL)
+                .unlockedBy("has_illuminated_panel", has(TLParts.PANEL))
                 .unlockedBy("has_level_emitter", has(TLParts.LEVEL_EMITTER))
                 .save(consumer, AppEng.makeId("network/parts/monitors_storage"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.DARK_MONITOR)
-                .requires(TLParts.MONITOR)
-                .unlockedBy("has_monitor", has(TLParts.MONITOR))
-                .save(consumer, AppEng.makeId("network/parts/panels_dark_monitor"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.MONITOR)
-                .requires(TLParts.SEMI_DARK_MONITOR)
-                .unlockedBy("has_semi_dark_monitor", has(TLParts.SEMI_DARK_MONITOR))
-                .save(consumer, AppEng.makeId("network/parts/panels_monitor"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.SEMI_DARK_MONITOR, 3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.PANEL, 3)
                 .pattern(" ab")
                 .pattern("cdb")
                 .pattern(" ab")
                 .define('a', ConventionTags.DUSTS_GLOWSTONE)
                 .define('b', TLBlocks.QUARTZ_GLASS)
-                .define('c', ConventionTags.IRON_INGOT)
+                .define('c', ConventionTags.INGOTS_IRON)
                 .define('d', ConventionTags.DUSTS_REDSTONE)
                 .unlockedBy("has_quartz_glass", has(TLBlocks.QUARTZ_GLASS))
                 .save(consumer, AppEng.makeId("network/parts/panels_semi_dark_monitor"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SEMI_DARK_MONITOR)
-                .requires(TLParts.DARK_MONITOR)
-                .unlockedBy("has_dark_monitor", has(TLParts.DARK_MONITOR))
-                .save(consumer, AppEng.makeId("network/parts/panels_semi_dark_monitor_alt"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.TERMINAL)
                 .requires(TLItems.FORMATION_CORE)
-                .requires(ConventionTags.ILLUMINATED_PANEL)
+                .requires(TLParts.PANEL)
                 .requires(TLItems.PROCESSOR_LOGIC)
                 .requires(TLItems.ANNIHILATION_CORE)
                 .unlockedBy("has_formation_core", has(TLItems.FORMATION_CORE))
-                .unlockedBy("has_illuminated_panel", has(ConventionTags.ILLUMINATED_PANEL))
+                .unlockedBy("has_illuminated_panel", has(TLParts.PANEL))
                 .unlockedBy("has_processor_logic", has(TLItems.PROCESSOR_LOGIC))
                 .unlockedBy("has_annihilation_core", has(TLItems.ANNIHILATION_CORE))
                 .save(consumer, AppEng.makeId("network/parts/terminals"));
@@ -356,9 +327,9 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .pattern("bcb")
                 .pattern(" a ")
                 .define('a', ConventionTags.DUSTS_REDSTONE)
-                .define('b', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
+                .define('b', ConventionTags.GLASS_CABLE)
                 .define('c', Items.LEVER)
-                .unlockedBy("has_glass_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
+                .unlockedBy("has_glass_cable", has(ConventionTags.GLASS_CABLE))
                 .save(consumer, AppEng.makeId("network/parts/toggle_bus"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.TOGGLE_BUS)
                 .requires(TLParts.INVERTED_TOGGLE_BUS)
@@ -369,13 +340,6 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .unlockedBy("has_toggle_bus", has(TLParts.TOGGLE_BUS))
                 .save(consumer, AppEng.makeId("network/parts/toggle_bus_inverted_alt"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.FLUIX_BLOCK)
-                .pattern("aa")
-                .pattern("aa")
-                .define('a', TLItems.FLUIX)
-                .unlockedBy("has_fluix_crystal", has(TLItems.FLUIX))
-                .save(consumer, AppEng.makeId("decorative/" + TLBlocks.FLUIX_BLOCK.id().getPath()));
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLBlocks.QUARTZ_VIBRANT_GLASS)
                 .pattern("aba")
                 .define('a', Items.GLOWSTONE_DUST)
@@ -384,223 +348,91 @@ public class CraftingRecipes extends TL2RecipeProvider {
                 .save(consumer, AppEng.makeId("decorative/quartz_vibrant_glass"));
     }
 
-    private void addItemCells(RecipeOutput consumer) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_1K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_1K)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_1k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_1K)
-                .requires(TLItems.HOUSING_ITEM)
+    private void addCells(RecipeOutput consumer, String type, ItemLike housing, ItemLike cell1k, ItemLike cell4k,
+            ItemLike cell16k, ItemLike cell64k) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cell1k)
+                .requires(housing)
                 .requires(TLItems.COMPONENT_1K)
+                .unlockedBy("has_housing_" + type, has(housing))
                 .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
-                .unlockedBy("has_housing_item", has(TLItems.HOUSING_ITEM))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_1k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_4K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_4K)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_4k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_4K)
-                .requires(TLItems.HOUSING_ITEM)
+                .save(consumer, AppEng.makeId("network/cells/" + type + "_cell_1k_storage"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cell4k)
+                .requires(housing)
                 .requires(TLItems.COMPONENT_4K)
+                .unlockedBy("has_housing_" + type, has(housing))
                 .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_4k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_16K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_16K)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_16k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_16K)
+                .save(consumer, AppEng.makeId("network/cells/" + type + "_cell_4k_storage"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cell16k)
+                .requires(housing)
                 .requires(TLItems.COMPONENT_16K)
-                .requires(TLItems.HOUSING_ITEM)
+                .unlockedBy("has_housing_" + type, has(housing))
                 .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_16k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.ITEM_CELL_64K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ded")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_64K)
-                .define('d', ConventionTags.IRON_INGOT)
-                .define('e', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_64k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.ITEM_CELL_64K)
-                .requires(TLItems.HOUSING_ITEM)
+                .save(consumer, AppEng.makeId("network/cells/" + type + "_cell_16k_storage"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cell64k)
+                .requires(housing)
                 .requires(TLItems.COMPONENT_64K)
+                .unlockedBy("has_housing_" + type, has(housing))
                 .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
-                .save(consumer, AppEng.makeId("network/cells/item_storage_cell_64k_storage"));
+                .save(consumer, AppEng.makeId("network/cells/" + type + "_cell_64k_storage"));
     }
 
-    private void addFluidCells(RecipeOutput consumer) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_1K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_1K)
-                .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_1k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_1K)
-                .requires(TLItems.HOUSING_FLUID)
-                .requires(TLItems.COMPONENT_1K)
-                .unlockedBy("has_housing_item", has(TLItems.HOUSING_FLUID))
-                .unlockedBy("has_component_1k", has(TLItems.COMPONENT_1K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_1k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_4K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_4K)
-                .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_4k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_4K)
-                .requires(TLItems.HOUSING_FLUID)
-                .requires(TLItems.COMPONENT_4K)
-                .unlockedBy("has_component_4k", has(TLItems.COMPONENT_4K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_4k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_16K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_16K)
-                .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_16k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_16K)
-                .requires(TLItems.HOUSING_FLUID)
-                .requires(TLItems.COMPONENT_16K)
-                .unlockedBy("has_component_16k", has(TLItems.COMPONENT_16K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_16k_storage"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLItems.FLUID_CELL_64K)
-                .pattern("aba")
-                .pattern("bcb")
-                .pattern("ddd")
-                .define('a', TLBlocks.QUARTZ_GLASS)
-                .define('b', ConventionTags.DUSTS_REDSTONE)
-                .define('c', TLItems.COMPONENT_64K)
-                .define('d', ConventionTags.COPPER_INGOT)
-                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_64k"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLItems.FLUID_CELL_64K)
-                .requires(TLItems.HOUSING_FLUID)
-                .requires(TLItems.COMPONENT_64K)
-                .unlockedBy("has_component_64k", has(TLItems.COMPONENT_64K))
-                .save(consumer, AppEng.makeId("network/cells/fluid_storage_cell_64k_storage"));
-    }
-
-    // ====================================================
-    // recipes/network/cables
-    // ====================================================
+    // Cable recipes
     private static void addCables(RecipeOutput consumer) {
-        for (var color : TLColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_dyes/black", has(ConventionTags.dye(color.dye)))
-                    .unlockedBy("has_fluix_smart_dense_cable", has(TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT)))
-                    .save(consumer, AppEng.makeId("network/cables/dense_smart_" + color.registryPrefix));
-        }
+        cableDying(consumer, "glass", ConventionTags.GLASS_CABLE, TLParts.GLASS_CABLE);
+        cableDying(consumer, "smart", ConventionTags.SMART_CABLE, TLParts.SMART_CABLE);
+        cableDying(consumer, "dense", ConventionTags.DENSE_CABLE, TLParts.DENSE_CABLE);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .unlockedBy("has_fluix_smart_cable", has(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT)))
-                .save(consumer, AppEng.makeId("network/cables/dense_smart_from_smart"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT))
-                .requires(tagExcept(ConventionTags.SMART_DENSE_CABLE,
-                        TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT)))
-                .requires(ConventionTags.CAN_REMOVE_COLOR)
-                .unlockedBy("has_smart_dense_cable", has(ConventionTags.SMART_DENSE_CABLE))
-                .save(consumer, AppEng.makeId("network/cables/dense_smart_fluix_clean"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT), 4)
+                .pattern(" b ")
+                .pattern("cac")
+                .pattern(" b ")
+                .define('a', ConventionTags.DUSTS_QUARTZ)
+                .define('b', ConventionTags.GLASS_CHEAP)
+                .define('c', ConventionTags.GEMS_FLUIX)
+                .unlockedBy("has_quartz_dust", has(ConventionTags.DUSTS_QUARTZ))
+                .unlockedBy("has_glass", has(ConventionTags.GLASS_CHEAP))
+                .unlockedBy("has_fluix", has(ConventionTags.GEMS_FLUIX))
+                .save(consumer, AppEng.makeId("network/cables/glass"));
 
-        for (var color : TLColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.GLASS_CABLE.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_dyes/black", has(ConventionTags.dye(color.dye)))
-                    .unlockedBy("has_fluix_glass_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
-                    .save(consumer, AppEng.makeId("network/cables/glass_" + color.registryPrefix));
-        }
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT), 4)
-                .requires(Items.QUARTZ)
-                .requires(TLItems.FLUIX)
-                .unlockedBy("has_nether_quartz", has(ConventionTags.GEMS_QUARTZ))
-                .unlockedBy("has_crystals/fluix", has(TLItems.FLUIX))
-                .save(consumer, AppEng.makeId("network/cables/glass_fluix"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .requires(tagExcept(ConventionTags.GLASS_CABLE, TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
-                .requires(ConventionTags.CAN_REMOVE_COLOR)
-                .unlockedBy("has_glass_cable", has(ConventionTags.GLASS_CABLE))
-                .save(consumer, AppEng.makeId("network/cables/glass_fluix_clean"));
-
-        for (var color : TLColor.VALID_COLORS) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TLParts.SMART_CABLE.item(color), 8)
-                    .pattern("aaa")
-                    .pattern("aba")
-                    .pattern("aaa")
-                    .define('a', TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                    .define('b', ConventionTags.dye(color.dye))
-                    .unlockedBy("has_dyes/black", has(ConventionTags.dye(color.dye)))
-                    .unlockedBy("has_fluix_smart_cable", has(TLParts.SMART_CABLE.item(TLColor.TRANSPARENT)))
+        for (var color : TLColor.values()) {
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_CABLE.item(color))
+                    .requires(TLParts.GLASS_CABLE.item(color))
+                    .requires(ConventionTags.DUSTS_REDSTONE)
+                    .requires(ConventionTags.DUSTS_GLOWSTONE)
+                    .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
+                    .unlockedBy("has_dusts/glowstone", has(ConventionTags.DUSTS_GLOWSTONE))
+                    .unlockedBy("has_glass_cable/" + color.registryPrefix, has(TLParts.GLASS_CABLE.item(color)))
                     .save(consumer, AppEng.makeId("network/cables/smart_" + color.registryPrefix));
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.DENSE_CABLE.item(color))
+                    .requires(TLParts.SMART_CABLE.item(color))
+                    .requires(TLParts.SMART_CABLE.item(color))
+                    .requires(TLParts.SMART_CABLE.item(color))
+                    .requires(TLParts.SMART_CABLE.item(color))
+                    .unlockedBy("has_smart_cable/" + color.registryPrefix, has(TLParts.SMART_CABLE.item(color)))
+                    .save(consumer, AppEng.makeId("network/cables/dense_" + color.registryPrefix));
+        }
+    }
+
+    private static void cableDying(RecipeOutput consumer, String name, TagKey<Item> tag,
+            ColoredItemDefinition<?> item) {
+        for (var color : TLColor.VALID_COLORS) {
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, item.item(color), 8)
+                    .pattern("aaa")
+                    .pattern("aba")
+                    .pattern("aaa")
+                    .define('a', tag)
+                    .define('b', ConventionTags.dye(color.dye))
+                    .unlockedBy("has_cable_" + name, has(tag))
+                    .unlockedBy("has_dye/" + color.registryPrefix, has(ConventionTags.dye(color.dye)))
+                    .save(consumer, AppEng.makeId("network/cables/dying_" + name + "_" + color.registryPrefix));
         }
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT))
-                .requires(ConventionTags.DUSTS_REDSTONE)
-                .requires(ConventionTags.DUSTS_GLOWSTONE)
-                .unlockedBy("has_dusts/redstone", has(ConventionTags.DUSTS_REDSTONE))
-                .unlockedBy("has_dusts/glowstone", has(ConventionTags.DUSTS_GLOWSTONE))
-                .unlockedBy("has_cable", has(TLParts.GLASS_CABLE.item(TLColor.TRANSPARENT)))
-                .save(consumer, AppEng.makeId("network/cables/smart_fluix"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT))
-                .requires(tagExcept(ConventionTags.SMART_CABLE, TLParts.SMART_CABLE.item(TLColor.TRANSPARENT)))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, item.item(TLColor.TRANSPARENT))
+                .requires(tagExcept(tag, item.item(TLColor.TRANSPARENT)))
                 .requires(ConventionTags.CAN_REMOVE_COLOR)
-                .unlockedBy("has_smart_cable", has(ConventionTags.SMART_CABLE))
-                .save(consumer, AppEng.makeId("network/cables/smart_fluix_clean"));
+                .unlockedBy("has_cable_" + name, has(tag))
+                .save(consumer, AppEng.makeId("network/cables/cleaning_" + name));
     }
 
     private static Ingredient tagExcept(TagKey<Item> tag, ItemLike exception) {

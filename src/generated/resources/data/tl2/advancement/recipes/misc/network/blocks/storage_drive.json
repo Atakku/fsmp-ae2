@@ -1,11 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_processor_engineering": {
+    "has_fluix": {
       "conditions": {
         "items": [
           {
-            "items": "tl2:processor_engineering"
+            "items": "#c:gems/fluix"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:glass_blocks/cheap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_quartz_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/quartz"
           }
         ]
       },
@@ -21,7 +41,9 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_processor_engineering"
+      "has_quartz_dust",
+      "has_glass",
+      "has_fluix"
     ]
   ],
   "rewards": {

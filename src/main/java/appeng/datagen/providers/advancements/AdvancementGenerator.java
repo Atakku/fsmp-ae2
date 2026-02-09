@@ -187,7 +187,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
 
         var network3 = Advancement.Builder.advancement()
                 .display(
-                        TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT),
+                        TLParts.DENSE_CABLE.item(TLColor.TRANSPARENT),
                         localization.component("achievement.tl2.Networking3", "Network Administrator"),
                         localization.component("achievement.tl2.Networking3.desc",
                                 "Reach 2048 channels using devices on a network."),

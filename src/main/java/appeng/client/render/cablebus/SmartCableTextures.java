@@ -51,17 +51,17 @@ public class SmartCableTextures {
     // one of each set are composed together to get even/odd colored channels
     private final TextureAtlasSprite[] textures;
 
-    public static final Material[] DENSE_SMART_CHANNELS_TEXTURES = Arrays
-            .stream(new ResourceLocation[] { AppEng.makeId("part/cable/dense_smart/channels_00"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_01"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_02"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_03"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_04"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_10"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_11"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_12"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_13"), //
-                    AppEng.makeId("part/cable/dense_smart/channels_14")//
+    public static final Material[] DENSE_CHANNELS_TEXTURES = Arrays
+            .stream(new ResourceLocation[] { AppEng.makeId("part/cable/dense/channels_00"), //
+                    AppEng.makeId("part/cable/dense/channels_01"), //
+                    AppEng.makeId("part/cable/dense/channels_02"), //
+                    AppEng.makeId("part/cable/dense/channels_03"), //
+                    AppEng.makeId("part/cable/dense/channels_04"), //
+                    AppEng.makeId("part/cable/dense/channels_10"), //
+                    AppEng.makeId("part/cable/dense/channels_11"), //
+                    AppEng.makeId("part/cable/dense/channels_12"), //
+                    AppEng.makeId("part/cable/dense/channels_13"), //
+                    AppEng.makeId("part/cable/dense/channels_14")//
             }).map(e -> new Material(TextureAtlas.LOCATION_BLOCKS, e)).toArray(Material[]::new);
 
     // Textures used to display channels on dense smart cables. There's two sets of 5
@@ -74,7 +74,7 @@ public class SmartCableTextures {
                 .map(bakedTextureGetter)//
                 .toArray(TextureAtlasSprite[]::new);
 
-        this.densetextures = Arrays.stream(DENSE_SMART_CHANNELS_TEXTURES)//
+        this.densetextures = Arrays.stream(DENSE_CHANNELS_TEXTURES)//
                 .map(bakedTextureGetter)//
                 .toArray(TextureAtlasSprite[]::new);
     }

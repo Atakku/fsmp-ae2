@@ -1,21 +1,21 @@
 {
   "values": [
-    "tl2:white_smart_dense_cable",
-    "tl2:light_gray_smart_dense_cable",
-    "tl2:gray_smart_dense_cable",
-    "tl2:black_smart_dense_cable",
-    "tl2:lime_smart_dense_cable",
-    "tl2:yellow_smart_dense_cable",
-    "tl2:orange_smart_dense_cable",
-    "tl2:brown_smart_dense_cable",
-    "tl2:red_smart_dense_cable",
-    "tl2:pink_smart_dense_cable",
-    "tl2:magenta_smart_dense_cable",
-    "tl2:purple_smart_dense_cable",
-    "tl2:blue_smart_dense_cable",
-    "tl2:light_blue_smart_dense_cable",
-    "tl2:cyan_smart_dense_cable",
-    "tl2:green_smart_dense_cable",
-    "tl2:fluix_smart_dense_cable"
+    "tl2:white_dense_cable",
+    "tl2:light_gray_dense_cable",
+    "tl2:gray_dense_cable",
+    "tl2:black_dense_cable",
+    "tl2:lime_dense_cable",
+    "tl2:yellow_dense_cable",
+    "tl2:orange_dense_cable",
+    "tl2:brown_dense_cable",
+    "tl2:red_dense_cable",
+    "tl2:pink_dense_cable",
+    "tl2:magenta_dense_cable",
+    "tl2:purple_dense_cable",
+    "tl2:blue_dense_cable",
+    "tl2:light_blue_dense_cable",
+    "tl2:cyan_dense_cable",
+    "tl2:green_dense_cable",
+    "tl2:fluix_dense_cable"
   ]
 }

@@ -55,40 +55,48 @@ public final class ConventionTags {
             Registries.DATA_COMPONENT_TYPE,
             AppEng.makeId("exported_settings"));
 
-    public static final TagKey<Item> DUSTS = Tags.Items.DUSTS;
-    public static final TagKey<Item> DUSTS_REDSTONE = Tags.Items.DUSTS_REDSTONE;
-    public static final TagKey<Item> DUSTS_GLOWSTONE = Tags.Items.DUSTS_GLOWSTONE;
-    public static final TagKey<Item> DUSTS_AMETHYST = tag("c:dusts/amethyst");
-    public static final TagKey<Item> DUSTS_QUARTZ = tag("c:dusts/quartz");
-    public static final TagKey<Item> DUSTS_FLUIX = tag("c:dusts/fluix");
+    // Foreign ingots
+    public static final TagKey<Item> INGOTS_COPPER = Tags.Items.INGOTS_COPPER;
+    public static final TagKey<Item> INGOTS_IRON = Tags.Items.INGOTS_IRON;
+    public static final TagKey<Item> INGOTS_GOLD = Tags.Items.INGOTS_GOLD;
 
+    // Foreign gems
     public static final TagKey<Item> GEMS = Tags.Items.GEMS;
     public static final TagKey<Item> GEMS_DIAMOND = Tags.Items.GEMS_DIAMOND;
     public static final TagKey<Item> GEMS_AMETHYST = Tags.Items.GEMS_AMETHYST;
     public static final TagKey<Item> GEMS_QUARTZ = Tags.Items.GEMS_QUARTZ;
-    public static final TagKey<Item> GEMS_FLUIX = tag("c:gems/fluix");
 
+    // Foreign dusts
+    public static final TagKey<Item> DUSTS = Tags.Items.DUSTS;
+    public static final TagKey<Item> DUSTS_REDSTONE = Tags.Items.DUSTS_REDSTONE;
+    public static final TagKey<Item> DUSTS_GLOWSTONE = Tags.Items.DUSTS_GLOWSTONE;
+
+    // Basic materials
+    public static final TagKey<Item> GEMS_FLUIX = tag("c:gems/fluix");
     public static final TagKey<Item> SILICON = tag("c:silicon");
 
-    public static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
-    public static final TagKey<Item> GOLD_NUGGET = Tags.Items.NUGGETS_GOLD;
-    public static final TagKey<Item> INGOT_GOLD = Tags.Items.INGOTS_GOLD;
-    public static final TagKey<Item> IRON_NUGGET = Tags.Items.NUGGETS_IRON;
-    public static final TagKey<Item> IRON_INGOT = Tags.Items.INGOTS_IRON;
+    // Dusts
+    public static final TagKey<Item> DUSTS_AMETHYST = tag("c:dusts/amethyst");
+    public static final TagKey<Item> DUSTS_QUARTZ = tag("c:dusts/quartz");
+    public static final TagKey<Item> DUSTS_FLUIX = tag("c:dusts/fluix");
+
+    // Housing
+    public static final TagKey<Item> HOUSING = tag("tl2:housing");
+
     public static final TagKey<Item> ENDER_PEARL = Tags.Items.ENDER_PEARLS;
 
-    public static final TagKey<Item> WOOD_STICK = Tags.Items.RODS_WOODEN;
     public static final TagKey<Item> CHEST = Tags.Items.CHESTS_WOODEN;
 
-    public static final TagKey<Item> STONE = Tags.Items.STONES;
     public static final TagKey<Item> GLASS = Tags.Items.GLASS_BLOCKS;
     public static final TagKey<Item> GLASS_CHEAP = Tags.Items.GLASS_BLOCKS_CHEAP;
     public static final TagKey<Block> GLASS_BLOCK = Tags.Blocks.GLASS_BLOCKS;
 
+    public static final TagKey<Item> SMALL_CABLES = tag("tl2:small_cables");
+
     public static final TagKey<Item> GLASS_CABLE = tag("tl2:glass_cable");
     public static final TagKey<Item> SMART_CABLE = tag("tl2:smart_cable");
-    public static final TagKey<Item> SMART_DENSE_CABLE = tag("tl2:smart_dense_cable");
-    public static final TagKey<Item> ILLUMINATED_PANEL = tag("tl2:illuminated_panel");
+    public static final TagKey<Item> DENSE_CABLE = tag("tl2:smart_dense_cable");
+
     /**
      * Items that can be used in recipes to remove color from colored items.
      */

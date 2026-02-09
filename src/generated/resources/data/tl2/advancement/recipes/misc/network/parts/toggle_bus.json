@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:fluix_glass_cable"
+            "items": "#tl2:glass_cable"
           }
         ]
       },

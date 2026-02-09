@@ -114,41 +114,41 @@ public final class TLPartIds {
             .put(TLColor.TRANSPARENT, CABLE_SMART_TRANSPARENT)
             .build();
 
-    public static final ResourceLocation CABLE_DENSE_SMART_WHITE = id("white_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_ORANGE = id("orange_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_MAGENTA = id("magenta_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_LIGHT_BLUE = id("light_blue_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_YELLOW = id("yellow_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_LIME = id("lime_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_PINK = id("pink_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_GRAY = id("gray_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_LIGHT_GRAY = id("light_gray_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_CYAN = id("cyan_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_PURPLE = id("purple_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_BLUE = id("blue_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_BROWN = id("brown_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_GREEN = id("green_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_RED = id("red_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_BLACK = id("black_smart_dense_cable");
-    public static final ResourceLocation CABLE_DENSE_SMART_TRANSPARENT = id("fluix_smart_dense_cable");
-    public static final Map<TLColor, ResourceLocation> CABLE_DENSE_SMART = ImmutableMap
-            .<TLColor, ResourceLocation>builder().put(TLColor.WHITE, CABLE_DENSE_SMART_WHITE)
-            .put(TLColor.ORANGE, CABLE_DENSE_SMART_ORANGE)
-            .put(TLColor.MAGENTA, CABLE_DENSE_SMART_MAGENTA)
-            .put(TLColor.LIGHT_BLUE, CABLE_DENSE_SMART_LIGHT_BLUE)
-            .put(TLColor.YELLOW, CABLE_DENSE_SMART_YELLOW)
-            .put(TLColor.LIME, CABLE_DENSE_SMART_LIME)
-            .put(TLColor.PINK, CABLE_DENSE_SMART_PINK)
-            .put(TLColor.GRAY, CABLE_DENSE_SMART_GRAY)
-            .put(TLColor.LIGHT_GRAY, CABLE_DENSE_SMART_LIGHT_GRAY)
-            .put(TLColor.CYAN, CABLE_DENSE_SMART_CYAN)
-            .put(TLColor.PURPLE, CABLE_DENSE_SMART_PURPLE)
-            .put(TLColor.BLUE, CABLE_DENSE_SMART_BLUE)
-            .put(TLColor.BROWN, CABLE_DENSE_SMART_BROWN)
-            .put(TLColor.GREEN, CABLE_DENSE_SMART_GREEN)
-            .put(TLColor.RED, CABLE_DENSE_SMART_RED)
-            .put(TLColor.BLACK, CABLE_DENSE_SMART_BLACK)
-            .put(TLColor.TRANSPARENT, CABLE_DENSE_SMART_TRANSPARENT)
+    public static final ResourceLocation CABLE_DENSE_WHITE = id("white_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_ORANGE = id("orange_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_MAGENTA = id("magenta_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_LIGHT_BLUE = id("light_blue_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_YELLOW = id("yellow_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_LIME = id("lime_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_PINK = id("pink_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_GRAY = id("gray_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_LIGHT_GRAY = id("light_gray_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_CYAN = id("cyan_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_PURPLE = id("purple_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_BLUE = id("blue_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_BROWN = id("brown_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_GREEN = id("green_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_RED = id("red_smart_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_BLACK = id("black_dense_cable");
+    public static final ResourceLocation CABLE_DENSE_TRANSPARENT = id("fluix_dense_cable");
+    public static final Map<TLColor, ResourceLocation> CABLE_DENSE = ImmutableMap
+            .<TLColor, ResourceLocation>builder().put(TLColor.WHITE, CABLE_DENSE_WHITE)
+            .put(TLColor.ORANGE, CABLE_DENSE_ORANGE)
+            .put(TLColor.MAGENTA, CABLE_DENSE_MAGENTA)
+            .put(TLColor.LIGHT_BLUE, CABLE_DENSE_LIGHT_BLUE)
+            .put(TLColor.YELLOW, CABLE_DENSE_YELLOW)
+            .put(TLColor.LIME, CABLE_DENSE_LIME)
+            .put(TLColor.PINK, CABLE_DENSE_PINK)
+            .put(TLColor.GRAY, CABLE_DENSE_GRAY)
+            .put(TLColor.LIGHT_GRAY, CABLE_DENSE_LIGHT_GRAY)
+            .put(TLColor.CYAN, CABLE_DENSE_CYAN)
+            .put(TLColor.PURPLE, CABLE_DENSE_PURPLE)
+            .put(TLColor.BLUE, CABLE_DENSE_BLUE)
+            .put(TLColor.BROWN, CABLE_DENSE_BROWN)
+            .put(TLColor.GREEN, CABLE_DENSE_GREEN)
+            .put(TLColor.RED, CABLE_DENSE_RED)
+            .put(TLColor.BLACK, CABLE_DENSE_BLACK)
+            .put(TLColor.TRANSPARENT, CABLE_DENSE_TRANSPARENT)
             .build();
 
     ///
@@ -162,9 +162,7 @@ public final class TLPartIds {
     ///
     /// Monitors and terminals
     ///
-    public static final ResourceLocation MONITOR = id("monitor");
-    public static final ResourceLocation SEMI_DARK_MONITOR = id("semi_dark_monitor");
-    public static final ResourceLocation DARK_MONITOR = id("dark_monitor");
+    public static final ResourceLocation PANEL = id("panel");
     public static final ResourceLocation TERMINAL = id("terminal");
     public static final ResourceLocation CRAFTING_TERMINAL = id("crafting_terminal");
     public static final ResourceLocation STORAGE_MONITOR = id("storage_monitor");

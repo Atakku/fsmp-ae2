@@ -6,7 +6,7 @@
       "tag": "c:dusts/redstone"
     },
     "b": {
-      "item": "tl2:fluix_glass_cable"
+      "tag": "tl2:glass_cable"
     },
     "c": {
       "item": "minecraft:lever"

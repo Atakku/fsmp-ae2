@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#tl2:illuminated_panel"
+            "items": "tl2:panel"
           }
         ]
       },

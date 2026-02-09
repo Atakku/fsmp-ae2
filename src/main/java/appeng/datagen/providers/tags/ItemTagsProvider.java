@@ -27,7 +27,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import appeng.api.ids.TLTags;
 import appeng.api.util.TLColor;
 import appeng.core.AppEng;
 import appeng.core.definitions.TLItems;
@@ -45,45 +44,49 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider i
     protected void addTags(HolderLookup.Provider registries) {
         copyBlockTags();
 
-        // Basic materials
+        // Foreign gems
+        tag(ConventionTags.GEMS)
+                .add(TLItems.FLUIX.asItem());
+
+        // Foreign dusts
         tag(ConventionTags.DUSTS)
                 .add(TLItems.DUST_AMETHYST.asItem())
                 .add(TLItems.DUST_QUARTZ.asItem())
                 .add(TLItems.DUST_FLUIX.asItem());
 
+        // Basic materials
+        tag(ConventionTags.GEMS_FLUIX)
+                .add(TLItems.FLUIX.asItem());
+        tag(ConventionTags.SILICON)
+                .add(TLItems.SILICON.asItem());
+
+        // Dusts
         tag(ConventionTags.DUSTS_AMETHYST)
                 .add(TLItems.DUST_AMETHYST.asItem());
         tag(ConventionTags.DUSTS_QUARTZ)
                 .add(TLItems.DUST_QUARTZ.asItem());
         tag(ConventionTags.DUSTS_FLUIX)
                 .add(TLItems.DUST_FLUIX.asItem());
+        ;
 
-        tag(ConventionTags.GEMS)
-                .add(TLItems.DUST_AMETHYST.asItem())
-                .add(TLItems.FLUIX.asItem());
+        // Housing
+        tag(ConventionTags.HOUSING)
+                .add(TLItems.HOUSING_ITEM.asItem())
+                .add(TLItems.HOUSING_FLUID.asItem());
 
-        tag(ConventionTags.SILICON)
-                .add(TLItems.SILICON.asItem());
-
+        // Cables and colors
         for (TLColor color : TLColor.values()) {
-            tag(ConventionTags.SMART_DENSE_CABLE).add(TLParts.SMART_DENSE_CABLE.item(color));
-            tag(ConventionTags.SMART_CABLE).add(TLParts.SMART_CABLE.item(color));
-            tag(ConventionTags.GLASS_CABLE).add(TLParts.GLASS_CABLE.item(color));
+            tag(ConventionTags.SMALL_CABLES)
+                    .add(TLParts.GLASS_CABLE.item(color))
+                    .add(TLParts.SMART_CABLE.item(color));
+
+            tag(ConventionTags.GLASS_CABLE)
+                    .add(TLParts.GLASS_CABLE.item(color));
+            tag(ConventionTags.SMART_CABLE)
+                    .add(TLParts.SMART_CABLE.item(color));
+            tag(ConventionTags.DENSE_CABLE)
+                    .add(TLParts.DENSE_CABLE.item(color));
         }
-
-        tag(TLTags.METAL_INGOTS)
-                .addOptionalTag(ResourceLocation.parse("c:ingots/copper"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/tin"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/iron"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/gold"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/brass"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/nickel"))
-                .addOptionalTag(ResourceLocation.parse("c:ingots/aluminium"));
-
-        tag(ConventionTags.ILLUMINATED_PANEL)
-                .add(TLParts.MONITOR.asItem())
-                .add(TLParts.SEMI_DARK_MONITOR.asItem())
-                .add(TLParts.DARK_MONITOR.asItem());
 
         tag(ConventionTags.CURIOS).add(
                 TLItems.WIRELESS_TERMINAL.asItem(),

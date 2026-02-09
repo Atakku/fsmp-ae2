@@ -1,21 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "key": {
-    "a": {
-      "item": "tl2:fluix_smart_cable"
+  "ingredients": [
+    {
+      "item": "tl2:green_glass_cable"
     },
-    "b": {
-      "tag": "c:dyes/green"
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/glowstone"
     }
-  },
-  "pattern": [
-    "aaa",
-    "aba",
-    "aaa"
   ],
   "result": {
-    "count": 8,
+    "count": 1,
     "id": "tl2:green_smart_cable"
   }
 }

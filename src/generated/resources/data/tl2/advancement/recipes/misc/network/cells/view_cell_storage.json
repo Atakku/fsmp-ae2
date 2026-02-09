@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tl2:terminal"
+            "items": "#tl2:housing"
           }
         ]
       },

@@ -1,0 +1,6 @@
+{
+  "parent": "tl2:item/dense_cable_base",
+  "textures": {
+    "base": "tl2:part/cable/dense/lime"
+  }
+}

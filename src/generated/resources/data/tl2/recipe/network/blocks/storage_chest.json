@@ -9,7 +9,7 @@
       "item": "tl2:terminal"
     },
     "c": {
-      "item": "tl2:fluix_glass_cable"
+      "tag": "tl2:glass_cable"
     },
     "d": {
       "tag": "c:ingots/iron"

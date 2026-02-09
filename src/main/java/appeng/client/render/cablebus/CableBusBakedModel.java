@@ -207,7 +207,7 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                     this.cableBuilder.addStraightSmartConnection(facing, cableColor,
                             renderState.getChannelsOnSide().get(facing), quadsOut);
                     break;
-                case DENSE_SMART:
+                case DENSE:
                     this.cableBuilder.addStraightDenseSmartConnection(facing, cableColor,
                             renderState.getChannelsOnSide().get(facing), quadsOut);
                     break;
@@ -233,7 +233,7 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                 case SMART:
                     this.cableBuilder.addConstrainedSmartConnection(facing, cableColor, distance, channels, quadsOut);
                     break;
-                case DENSE_SMART:
+                case DENSE:
                     // Dense cables do not render connections to parts since none can be attached
                     break;
                 default:
@@ -257,7 +257,7 @@ public class CableBusBakedModel implements IDynamicBakedModel {
                     this.cableBuilder.addSmartConnection(facing, cableColor, connectionType, cableBusAdjacent, channels,
                             quadsOut);
                     break;
-                case DENSE_SMART:
+                case DENSE:
                     this.cableBuilder.addDenseSmartConnection(facing, cableColor, connectionType, cableBusAdjacent,
                             channels, quadsOut);
                     break;

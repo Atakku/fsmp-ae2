@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_smart_cable/white": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tl2:white_smart_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/dense_white"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_smart_cable/white"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/dense_white"
+    ]
+  }
+}

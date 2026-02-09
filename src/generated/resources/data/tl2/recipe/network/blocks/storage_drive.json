@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "a": {
-      "tag": "c:ingots/iron"
+      "tag": "c:dusts/quartz"
     },
     "b": {
-      "item": "tl2:processor_engineering"
+      "tag": "c:glass_blocks/cheap"
     },
     "c": {
-      "item": "tl2:fluix_glass_cable"
+      "tag": "c:gems/fluix"
     }
   },
   "pattern": [
-    "aba",
-    "c c",
-    "aba"
+    " b ",
+    "cac",
+    " b "
   ],
   "result": {
     "count": 1,

@@ -50,7 +50,7 @@ public final class ItemPredicates {
             }
             if (stack.getItem() == TLParts.GLASS_CABLE.item(color) ||
                     stack.getItem() == TLParts.SMART_CABLE.item(color) ||
-                    stack.getItem() == TLParts.SMART_DENSE_CABLE.item(color)) {
+                    stack.getItem() == TLParts.DENSE_CABLE.item(color)) {
                 return true;
             }
         }

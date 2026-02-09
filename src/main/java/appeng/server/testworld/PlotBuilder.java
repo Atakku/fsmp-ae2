@@ -88,7 +88,7 @@ public interface PlotBuilder {
     }
 
     default CableBuilder denseCable(String bb) {
-        return cable(bb, TLParts.SMART_DENSE_CABLE.item(TLColor.TRANSPARENT));
+        return cable(bb, TLParts.DENSE_CABLE.item(TLColor.TRANSPARENT));
     }
 
     default void part(String bb, Direction side, ItemDefinition<? extends PartItem<?>> part) {

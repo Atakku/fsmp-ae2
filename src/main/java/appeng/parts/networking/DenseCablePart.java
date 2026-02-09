@@ -26,11 +26,13 @@ import net.minecraft.core.Direction;
 
 import appeng.api.networking.GridFlags;
 import appeng.api.networking.GridHelper;
+import appeng.api.networking.IGridNodeListener;
 import appeng.api.parts.BusSupport;
 import appeng.api.parts.IPartCollisionHelper;
+import appeng.api.util.TLCableType;
 import appeng.items.parts.ColoredPartItem;
 
-public abstract class DenseCablePart extends CablePart {
+public class DenseCablePart extends CablePart {
     public DenseCablePart(ColoredPartItem<?> partItem) {
         super(partItem);
 
@@ -40,6 +42,18 @@ public abstract class DenseCablePart extends CablePart {
     @Override
     public BusSupport supportsBuses() {
         return BusSupport.DENSE_CABLE;
+    }
+
+    @Override
+    public TLCableType getCableConnectionType() {
+        return TLCableType.DENSE;
+    }
+
+    @Override
+    protected void onMainNodeStateChanged(IGridNodeListener.State reason) {
+        if (reason != IGridNodeListener.State.GRID_BOOT) {
+            this.getHost().markForUpdate();
+        }
     }
 
     @Override

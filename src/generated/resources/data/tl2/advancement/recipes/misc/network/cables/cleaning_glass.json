@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cable_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#tl2:glass_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/cleaning_glass"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cable_glass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/cleaning_glass"
+    ]
+  }
+}

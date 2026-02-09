@@ -25,7 +25,6 @@ import net.minecraft.world.item.Items;
 
 import appeng.api.features.GridLinkables;
 import appeng.api.features.IGridLinkableHandler;
-import appeng.api.ids.TLTags;
 import appeng.api.implementations.items.IStorageComponent;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.storage.StorageCells;
@@ -89,9 +88,6 @@ public class RestrictedInputSlot extends AppEngSlot {
 
         // TODO: might need to check for our own patterns in some cases
         switch (this.which) {
-            case METAL_INGOTS:
-                return isMetalIngot(stack);
-
             case VIEW_CELL:
                 return TLItems.VIEW_CELL.is(stack);
 
@@ -128,10 +124,6 @@ public class RestrictedInputSlot extends AppEngSlot {
         return this.isAllowEdit();
     }
 
-    public static boolean isMetalIngot(ItemStack i) {
-        return i.getItem().builtInRegistryHolder().is(TLTags.METAL_INGOTS);
-    }
-
     private boolean isAllowEdit() {
         return this.allowEdit;
     }
@@ -151,8 +143,7 @@ public class RestrictedInputSlot extends AppEngSlot {
         TRASH(Icon.BACKGROUND_TRASH),
         UPGRADES(Icon.BACKGROUND_UPGRADE),
         WORKBENCH_CELL(Icon.BACKGROUND_STORAGE_CELL),
-        VIEW_CELL(Icon.BACKGROUND_VIEW_CELL),
-        METAL_INGOTS(Icon.BACKGROUND_INGOT);
+        VIEW_CELL(Icon.BACKGROUND_VIEW_CELL);
 
         public final Icon icon;
 

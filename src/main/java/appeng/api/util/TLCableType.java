@@ -42,9 +42,9 @@ public enum TLCableType {
     /**
      * Smart Dense Cable, represents a tier 2 block that can carry 32 channels.
      */
-    DENSE_SMART(TLCableVariant.SMART, TLCableSize.DENSE);
+    DENSE(TLCableVariant.SMART, TLCableSize.DENSE);
 
-    public static final TLCableType[] VALIDCABLES = { GLASS, SMART, DENSE_SMART };
+    public static final TLCableType[] VALIDCABLES = { GLASS, SMART, DENSE };
 
     private final TLCableVariant variant;
     private final TLCableSize size;
@@ -104,7 +104,7 @@ public enum TLCableType {
                     case NORMAL:
                         return SMART;
                     case DENSE:
-                        return DENSE_SMART;
+                        return DENSE;
                     default:
                         break;
                 }

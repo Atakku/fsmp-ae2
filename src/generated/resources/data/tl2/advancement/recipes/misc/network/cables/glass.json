@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fluix": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gems/fluix"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:glass_blocks/cheap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_quartz_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/quartz"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tl2:network/cables/glass"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_quartz_dust",
+      "has_glass",
+      "has_fluix"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tl2:network/cables/glass"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tl2:light_blue_smart_cable"
+    },
+    {
+      "item": "tl2:light_blue_smart_cable"
+    },
+    {
+      "item": "tl2:light_blue_smart_cable"
+    },
+    {
+      "item": "tl2:light_blue_smart_cable"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tl2:light_blue_dense_cable"
+  }
+}

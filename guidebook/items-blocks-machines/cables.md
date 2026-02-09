@@ -138,7 +138,7 @@ These can also be colored in the same manner as <ItemLink id="fluix_glass_cable"
 
 <Recipe id="network/cables/smart_fluix" />
 
-<Recipe id="network/cables/dense_smart_fluix" />
+<Recipe id="network/cables/dense_fluix" />
 
 <RecipeFor id="blue_smart_cable" />
 

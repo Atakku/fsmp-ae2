@@ -23,7 +23,7 @@ public class CuttingRecipes extends CuttingRecipeGen {
     public CuttingRecipes(PackOutput output, CompletableFuture<Provider> registries) {
         super(output, registries, AppEng.MOD_ID);
 
-        circuit("logic", ConventionTags.INGOT_GOLD, TLItems.CIRCUIT_LOGIC);
+        circuit("logic", ConventionTags.INGOTS_GOLD, TLItems.CIRCUIT_LOGIC);
         circuit("calculation", ConventionTags.GEMS_QUARTZ, TLItems.CIRCUIT_CALCULATION);
         circuit("engineering", ConventionTags.GEMS_DIAMOND, TLItems.CIRCUIT_ENGINEERING);
     }

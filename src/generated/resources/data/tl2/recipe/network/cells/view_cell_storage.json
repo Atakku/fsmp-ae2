@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tl2:housing_item"
+      "tag": "tl2:housing"
     },
     {
       "item": "tl2:fluix"
